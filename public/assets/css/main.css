@@ -1,0 +1,354 @@
+body {
+  margin: 0;
+  font-family: Montserrat, sans-serif;
+  color: #fff;
+  background-color: #1b2a32;
+  height: 100vh;
+}
+
+a {
+  color: #fff;
+}
+
+.container {
+  height: 100vh;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: auto;
+      grid-template-columns: auto;
+  -ms-grid-rows: 6rem auto;
+      grid-template-rows: 6rem auto;
+      grid-template-areas: "header" "content";
+}
+
+header {
+  background-color: #5b3451;
+  -ms-grid-row: 1;
+  -ms-grid-column: 1;
+  grid-area: header;
+  text-align: center;
+}
+
+header .logo-mobile img {
+  height: 4rem;
+}
+
+header nav.header {
+  height: 4rem;
+}
+
+header .navigation {
+  height: 100vh;
+}
+
+header .navigation ul.menu {
+  background-color: #1b2a32;
+  margin: 0;
+  padding: 0;
+  width: 70%;
+  height: 100%;
+  list-style-type: none;
+  float: right;
+  text-align: center;
+  overflow-y: auto;
+}
+
+header .navigation ul.menu li a {
+  font-size: 1rem;
+  text-decoration: none;
+  display: block;
+  padding: 1.5rem 2rem;
+  opacity: .65;
+}
+
+header .navigation ul.menu li a:hover {
+  opacity: 1;
+}
+
+header .navigation ul.menu .close {
+  font-size: 2rem;
+  position: fixed;
+  top: .5rem;
+  left: 1.5rem;
+}
+
+header .navigation ul.menu li.active {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+header .navigation ul.menu li.active a {
+  opacity: 1;
+}
+
+.burger {
+  float: left;
+  font-size: 1.5rem;
+  height: 4rem;
+  width: 4rem;
+  border: 0;
+  color: #fafafa;
+  background: rgba(0, 0, 0, 0);
+}
+
+.mobile {
+  float: right;
+  font-size: 1.5rem;
+  height: 4rem;
+  width: 4rem;
+  border: 0;
+  color: #fafafa;
+  background: rgba(0, 0, 0, 0);
+}
+
+.tabs {
+  background-color: #17242b;
+  -webkit-box-shadow: 0 -1px 0 #495865 inset;
+          box-shadow: 0 -1px 0 #495865 inset;
+  text-align: left;
+}
+
+.tabs ul {
+  list-style-type: none;
+  overflow: scroll;
+  height: 2rem;
+  margin: 0;
+  padding: 0;
+  list-style-position: inside;
+  white-space: nowrap;
+}
+
+.tabs ul li {
+  font-size: .9rem;
+  line-height: 2rem;
+  margin-right: .5rem;
+  display: inline-block;
+  opacity: .65;
+}
+
+.tabs ul li a {
+  padding: 0 .5rem;
+  text-decoration: none;
+}
+
+.tabs ul li i {
+  margin-bottom: 3px;
+  font-size: 1rem;
+}
+
+.tabs ul li.active {
+  opacity: 1;
+  -webkit-box-shadow: 0 -3px 0 #4aaed9 inset;
+          box-shadow: 0 -3px 0 #4aaed9 inset;
+  -webkit-transition: -webkit-box-shadow .2s ease-in;
+  transition: -webkit-box-shadow .2s ease-in;
+  transition: box-shadow .2s ease-in;
+  transition: box-shadow .2s ease-in, -webkit-box-shadow .2s ease-in;
+}
+
+.tabs ul::-webkit-scrollbar {
+  width: 0rem;
+  height: 0rem;
+}
+
+#sidebar ul.menu {
+  background-color: #1b2a32;
+  margin: 0;
+  padding: 0;
+  width: 70%;
+  height: 100vh;
+  float: left;
+  overflow-y: auto;
+}
+
+#sidebar ul.menu li a {
+  text-decoration: none;
+  opacity: .65;
+}
+
+#sidebar ul.menu .parent {
+  display: block;
+  width: 100%;
+}
+
+#sidebar ul.menu .parent .key {
+  display: block;
+  padding: 1rem;
+}
+
+#sidebar ul.menu .parent .key .collapse {
+  float: right;
+  -webkit-transform: rotate(-90deg);
+          transform: rotate(-90deg);
+}
+
+#sidebar ul.menu .parent ul {
+  padding: 0;
+  display: none;
+}
+
+#sidebar ul.menu .parent ul li {
+  padding: .5rem 0 .5rem 2rem;
+}
+
+#sidebar ul.menu .parent ul li:hover {
+  background-color: #28404d;
+}
+
+#sidebar ul.menu .parent ul li:hover a {
+  opacity: 1;
+}
+
+#sidebar ul.menu .parent ul li.active {
+  background-color: #324f62;
+}
+
+#sidebar ul.menu .parent ul li.active a {
+  opacity: 1;
+}
+
+#sidebar ul.menu .parent.open ul {
+  display: block;
+}
+
+#sidebar ul.menu .parent.open .key .collapse {
+  -webkit-transform: rotate(0deg);
+          transform: rotate(0deg);
+}
+
+#sidebar ul.menu .close {
+  font-size: 2rem;
+  position: fixed;
+  top: .5rem;
+  right: 1.5rem;
+}
+
+.navigation {
+  overflow-y: auto;
+  width: 100%;
+  visibility: hidden;
+  position: absolute;
+  top: 0;
+  z-index: 10;
+}
+
+.navigation.active {
+  visibility: visible;
+}
+
+.menu .backdrop {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.85);
+  z-index: -1;
+}
+
+@media (min-width: 960px) {
+  .menu .backdrop {
+    display: none;
+  }
+}
+
+.content {
+  -ms-grid-row: 2;
+  -ms-grid-column: 1;
+  grid-area: content;
+  overflow: auto;
+}
+
+.content .inner {
+  padding: 1rem;
+}
+
+::-webkit-scrollbar {
+  width: 1rem;
+  height: 1rem;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.5);
+}
+
+@media (min-width: 960px) {
+  .container {
+    height: 100vh;
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: 300px auto;
+        grid-template-columns: 300px auto;
+    -ms-grid-rows: 6rem auto;
+        grid-template-rows: 6rem auto;
+        grid-template-areas: "header header" "sidebar content";
+  }
+  header {
+    -ms-grid-row: 1;
+    -ms-grid-column: 1;
+    -ms-grid-column-span: 2;
+    grid-area: header;
+  }
+  header .logo-mobile {
+    display: none;
+  }
+  header .navigation {
+    display: block;
+    visibility: initial;
+    height: 4rem;
+  }
+  header .navigation ul.menu {
+    background-color: unset;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    height: 4rem;
+    float: left;
+  }
+  header .navigation ul.menu li {
+    line-height: 4rem;
+    float: left;
+  }
+  header .navigation ul.menu li a {
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    padding: 0 1rem;
+  }
+  header .navigation ul.menu li a img {
+    height: 4rem;
+  }
+  #sidebar.navigation {
+    background-color: #1b2a32;
+    top: 0;
+    position: initial;
+    visibility: initial;
+    height: calc(100vh - 6rem);
+    -ms-grid-row: 2;
+    -ms-grid-column: 1;
+    grid-area: sidebar;
+  }
+  #sidebar.navigation .menu {
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow-y: initial;
+    background-color: #17242b;
+  }
+  .content {
+    -ms-grid-row: 2;
+    -ms-grid-column: 2;
+    grid-area: content;
+    overflow: auto;
+  }
+  .close,
+  .burger,
+  .mobile {
+    display: none;
+  }
+}
+/*# sourceMappingURL=main.css.map */

@@ -1,0 +1,360 @@
+$text-color: #fff;
+$background-color: #1b2a32;
+$primary-color: #5b3451;
+$secondary-color: #17242b;
+$menu-active: #324f62;
+$menu-hover: #28404d;
+
+body {
+    margin: 0;
+    font-family: Montserrat, sans-serif;
+    color: $text-color;
+    background-color: $background-color;
+    height: 100vh;
+}
+
+a {
+    color: $text-color;
+}
+
+.container {
+    height: 100vh;
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: 6rem auto;
+    grid-template-areas: "header""content";
+}
+
+header {
+    background-color: $primary-color;
+    grid-area: header;
+    text-align: center;
+
+    .logo-mobile img {
+        height: 4rem;
+    }
+
+    nav.header {
+        height: 4rem;
+    }
+
+    .navigation {
+        height: 100vh;
+
+        ul.menu {
+            background-color: $background-color;
+            margin: 0;
+            padding: 0;
+            width: 70%;
+            height: 100%;
+            list-style-type: none;
+            float: right;
+            text-align: center;
+            overflow-y: auto;
+
+            li {
+                a {
+                    font-size: 1rem;
+                    text-decoration: none;
+                    display: block;
+                    padding: 1.5rem 2rem;
+                    opacity: .65;
+
+                    &:hover {
+                        opacity: 1;
+                    }
+                }
+            }
+
+            .close {
+                font-size: 2rem;
+                position: fixed;
+                top: .5rem;
+                left: 1.5rem;
+            }
+
+            & li.active {
+                background: rgba(255, 255, 255, .15);
+
+                a {
+                    opacity: 1;
+                }
+            }
+        }
+    }
+}
+
+.burger {
+    float: left;
+    font-size: 1.5rem;
+    height: 4rem;
+    width: 4rem;
+    border: 0;
+    color: #fafafa;
+    background: rgba(0, 0, 0, 0)
+}
+
+.mobile {
+    float: right;
+    font-size: 1.5rem;
+    height: 4rem;
+    width: 4rem;
+    border: 0;
+    color: #fafafa;
+    background: rgba(0, 0, 0, 0)
+}
+
+
+.tabs {
+    background-color: $secondary-color;
+    box-shadow: 0 -1px 0 #495865 inset;
+    text-align: left;
+
+    ul {
+        list-style-type: none;
+        overflow: scroll;
+        height: 2rem;
+        margin: 0;
+        padding: 0;
+        list-style-position: inside;
+        white-space: nowrap;
+
+        li {
+            font-size: .9rem;
+            line-height: 2rem;
+            margin-right: .5rem;
+            display: inline-block;
+            opacity: .65;
+
+            a {
+                padding: 0 .5rem;
+                text-decoration: none;
+            }
+
+            i {
+                margin-bottom: 3px;
+                font-size: 1rem;
+            }
+
+            &.active {
+                opacity: 1;
+                box-shadow: 0 -3px 0 #4aaed9 inset;
+                transition: box-shadow .2s ease-in;
+            }
+        }
+
+    }
+
+    & ul::-webkit-scrollbar {
+        width: 0rem;
+        height: 0rem;
+    }
+}
+
+#sidebar {
+    ul.menu {
+        background-color: $background-color;
+        margin: 0;
+        padding: 0;
+        width: 70%;
+        height: 100vh;
+        float: left;
+        overflow-y: auto;
+
+        li {
+            a {
+                text-decoration: none;
+                opacity: .65;
+            }
+        }
+
+        .parent {
+            display: block;
+            width: 100%;
+
+            .key {
+                display: block;
+                padding: 1rem;
+
+                .collapse {
+                    float: right;
+                    transform: rotate(-90deg)
+                }
+            }
+
+            ul {
+                padding: 0;
+                display: none;
+
+                li {
+                    padding: .5rem 0 .5rem 2rem;
+
+                    &:hover {
+                        background-color: $menu-hover;
+
+                        a {
+                            opacity: 1;
+                        }
+                    }
+
+                    &.active {
+                        background-color: $menu-active;
+
+                        a {
+                            opacity: 1;
+                        }
+                    }
+                }
+            }
+
+            &.open {
+                ul {
+                    display: block;
+                }
+
+                .key .collapse {
+                    transform: rotate(0deg)
+                }
+            }
+        }
+
+        .close {
+            font-size: 2rem;
+            position: fixed;
+            top: .5rem;
+            right: 1.5rem;
+        }
+    }
+}
+
+.navigation {
+    overflow-y: auto;
+    width: 100%;
+    visibility: hidden;
+    position: absolute;
+    top: 0;
+    z-index: 10;
+
+    &.active {
+        visibility: visible;
+    }
+}
+
+.menu .backdrop {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, .85);
+    z-index: -1;
+
+    @media (min-width: 960px) {
+        display: none;
+    }
+}
+
+.content {
+    grid-area: content;
+    overflow: auto;
+
+    .inner {
+        padding: 1rem;
+
+    }
+}
+
+::-webkit-scrollbar {
+    width: 1rem;
+    height: 1rem;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.1);
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.5);
+}
+
+@media (min-width: 960px) {
+
+    .container {
+        height: 100vh;
+        display: grid;
+        grid-template-columns: 300px auto;
+        grid-template-rows: 6rem auto;
+        grid-template-areas: "header header""sidebar content";
+    }
+
+    header {
+        grid-area: header;
+
+        .logo-mobile {
+            display: none;
+        }
+
+        .navigation {
+            display: block;
+            visibility: initial;
+            height: 4rem;
+
+            ul.menu {
+                background-color: unset;
+                list-style-type: none;
+                margin: 0;
+                padding: 0;
+                overflow: hidden;
+                height: 4rem;
+                float: left;
+
+                li {
+                    line-height: 4rem;
+                    float: left;
+
+                    a {
+                        display: block;
+                        text-align: center;
+                        text-decoration: none;
+                        padding: 0 1rem;
+
+                        & img {
+                            height: 4rem;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    #sidebar.navigation {
+        background-color: $background-color;
+        top: 0;
+        position: initial;
+        visibility: initial;
+        height: calc(100vh - 6rem);
+        grid-area: sidebar;
+
+        .menu {
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow-y: initial;
+            background-color: $secondary-color;
+
+        }
+    }
+
+    .content {
+        grid-area: content;
+        overflow: auto;
+
+    }
+
+    .close,
+    .burger,
+    .mobile {
+        display: none;
+    }
+
+}
