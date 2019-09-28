@@ -1,6 +1,29 @@
 <script>
+  import Router from "svelte-spa-router";
+
+  import { state, projects } from "./stores";
+
   import HeaderComponent from "./shared/Header.svelte";
   import SidebarComponent from "./shared/Sidebar.svelte";
+
+  import OverviewRoute from "./routes/Overview.svelte";
+  import WriteRoute from "./routes/Write.svelte";
+  import DatabaseRoute from "./routes/Database.svelte";
+  import MindmapRoute from "./routes/Mindmap.svelte";
+  import SettingsRoute from "./routes/Settings.svelte";
+  import ExportRoute from "./routes/Export.svelte";
+
+  const routes = {
+    "/": OverviewRoute,
+    "/write/:sceneId?": WriteRoute,
+    "/database/:entryId?": DatabaseRoute,
+    "/mindmap/:mapId?": MindmapRoute,
+    "/settings": SettingsRoute,
+    "/export": ExportRoute,
+
+    // Catch-all
+    "*": OverviewRoute
+  };
 
   let sidebarState = false;
   let navigationState = false;
@@ -18,77 +41,7 @@
   <SidebarComponent bind:sidebarState />
   <div class="content">
     <div class="inner">
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem, reiciendis
-        eius? Iusto iste pariatur voluptates at sequi similique, itaque ipsam
-        voluptas molestias id? Aperiam ab dolore optio, quia repellat quidem.
-      </p>
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem, reiciendis
-        eius? Iusto iste pariatur voluptates at sequi similique, itaque ipsam
-        voluptas molestias id? Aperiam ab dolore optio, quia repellat quidem.
-      </p>
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem, reiciendis
-        eius? Iusto iste pariatur voluptates at sequi similique, itaque ipsam
-        voluptas molestias id? Aperiam ab dolore optio, quia repellat quidem.
-      </p>
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem, reiciendis
-        eius? Iusto iste pariatur voluptates at sequi similique, itaque ipsam
-        voluptas molestias id? Aperiam ab dolore optio, quia repellat quidem.
-      </p>
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem, reiciendis
-        eius? Iusto iste pariatur voluptates at sequi similique, itaque ipsam
-        voluptas molestias id? Aperiam ab dolore optio, quia repellat quidem.
-      </p>
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem, reiciendis
-        eius? Iusto iste pariatur voluptates at sequi similique, itaque ipsam
-        voluptas molestias id? Aperiam ab dolore optio, quia repellat quidem.
-      </p>
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem, reiciendis
-        eius? Iusto iste pariatur voluptates at sequi similique, itaque ipsam
-        voluptas molestias id? Aperiam ab dolore optio, quia repellat quidem.
-      </p>
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem, reiciendis
-        eius? Iusto iste pariatur voluptates at sequi similique, itaque ipsam
-        voluptas molestias id? Aperiam ab dolore optio, quia repellat quidem.
-      </p>
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem, reiciendis
-        eius? Iusto iste pariatur voluptates at sequi similique, itaque ipsam
-        voluptas molestias id? Aperiam ab dolore optio, quia repellat quidem.
-      </p>
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem, reiciendis
-        eius? Iusto iste pariatur voluptates at sequi similique, itaque ipsam
-        voluptas molestias id? Aperiam ab dolore optio, quia repellat quidem.
-      </p>
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem, reiciendis
-        eius? Iusto iste pariatur voluptates at sequi similique, itaque ipsam
-        voluptas molestias id? Aperiam ab dolore optio, quia repellat quidem.
-      </p>
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem, reiciendis
-        eius? Iusto iste pariatur voluptates at sequi similique, itaque ipsam
-        voluptas molestias id? Aperiam ab dolore optio, quia repellat quidem.
-      </p>
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem, reiciendis
-        eius? Iusto iste pariatur voluptates at sequi similique, itaque ipsam
-        voluptas molestias id? Aperiam ab dolore optio, quia repellat quidem.
-      </p>
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem, reiciendis
-        eius? Iusto iste pariatur voluptates at sequi similique, itaque ipsam
-        voluptas molestias id? Aperiam ab dolore optio, quia repellat quidem.
-      </p>
-
+      <Router {routes} />
     </div>
   </div>
 </div>

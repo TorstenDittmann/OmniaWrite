@@ -1,5 +1,7 @@
 <script>
   import { createEventDispatcher } from "svelte";
+  import {link} from "svelte-spa-router";
+  import active from 'svelte-spa-router/active'
 
   export let navigationState;
 
@@ -27,22 +29,25 @@
         <a href="#" class="close" on:click={() => (navigationState = false)}>
           <i class="icon icon-close" />
         </a>
-        <li>
-          <a href="#">
+        <li use:active={'/', 'active'}>
+          <a href="/" use:link>
             <img src="assets/logo.png" alt="OmniaWrite Logo" />
           </a>
         </li>
-        <li class="active">
-          <a href="#">Write</a>
+        <li use:active={'/write/*', 'active'}>
+          <a href="/write/" use:link>Write</a>
         </li>
-        <li>
-          <a href="#">Database</a>
+        <li use:active={'/database/*', 'active'}>
+          <a href="/database/" use:link>Database</a>
         </li>
-        <li>
-          <a href="#">Mindmap</a>
+        <li use:active={'/mindmap/*', 'active'}>
+          <a href="/mindmap/" use:link>Mindmaps</a>
         </li>
-        <li>
-          <a href="#">Settings</a>
+        <li use:active={'/settings', 'active'}>
+          <a href="/settings" use:link>Settings</a>
+        </li>
+        <li use:active={'/export', 'active'}>
+          <a href="/export" use:link>Export</a>
         </li>
       </ul>
     </div>

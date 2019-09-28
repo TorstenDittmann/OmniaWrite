@@ -162,7 +162,8 @@ header {
         overflow-y: auto;
 
         li {
-            a {
+            cursor: pointer;
+            a, span {
                 text-decoration: none;
                 opacity: .65;
             }
@@ -192,7 +193,7 @@ header {
                     &:hover {
                         background-color: $menu-hover;
 
-                        a {
+                        a, span {
                             opacity: 1;
                         }
                     }

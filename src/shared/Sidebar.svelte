@@ -1,5 +1,15 @@
 <script>
+  import { state, chapters, scenes } from "../stores";
+  import { link, push } from "svelte-spa-router";
+  import active from "svelte-spa-router/active";
+  import { setDeep } from 'svelte-extras';
+
+
   export let sidebarState;
+
+  function openChapter(chapterId,i) {
+    console.log($chapters);
+  }
 </script>
 
 <div id="sidebar" class="navigation" class:active={sidebarState}>
@@ -12,39 +22,22 @@
       on:click={() => (sidebarState = false)}>
       <i class="icon icon-close" />
     </a>
-    <li class="parent open">
-      <a class="key" href="#">
-        Chapter 1
-        <i class="icon icon-caret collapse" />
-      </a>
-      <ul>
-        <li>
-          <a href="#">Scene I</a>
-        </li>
-        <li class="active">
-          <a href="#">Scene II</a>
-        </li>
-        <li>
-          <a href="#">Scene III</a>
-        </li>
-      </ul>
-    </li>
-    <li class="parent">
-      <a class="key" href="#">
-        Chapter 2
-        <i class="icon icon-caret collapse" />
-      </a>
-      <ul>
-        <li>
-          <a href="#">Scene I</a>
-        </li>
-        <li>
-          <a href="#">Scene II</a>
-        </li>
-        <li>
-          <a href="#">Scene III</a>
-        </li>
-      </ul>
-    </li>
+    {#each $chapters as chapter, i}
+      <li class="parent" class:open={chapter.ui.open}>
+        <span class="key" on:click={() => openChapter(chapter.id, i)}>
+          {chapter.title}
+          <i class="icon icon-caret collapse" />
+        </span>
+        <ul>
+          {#each $scenes.filter(scene => scene.chapter == chapter.id) as scene}
+            <li
+              use:active={"/write/" + scene.id, "active"}
+              on:click={() => push("/write/" + scene.id)}>
+              <a href="/write/{scene.id}" use:link>{scene.title}</a>
+            </li>
+          {/each}
+        </ul>
+      </li>
+    {/each}
   </ul>
 </div>

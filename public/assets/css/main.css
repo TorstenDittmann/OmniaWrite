@@ -160,7 +160,11 @@ header .navigation ul.menu li.active a {
   overflow-y: auto;
 }
 
-#sidebar ul.menu li a {
+#sidebar ul.menu li {
+  cursor: pointer;
+}
+
+#sidebar ul.menu li a, #sidebar ul.menu li span {
   text-decoration: none;
   opacity: .65;
 }
@@ -194,7 +198,7 @@ header .navigation ul.menu li.active a {
   background-color: #28404d;
 }
 
-#sidebar ul.menu .parent ul li:hover a {
+#sidebar ul.menu .parent ul li:hover a, #sidebar ul.menu .parent ul li:hover span {
   opacity: 1;
 }
 
