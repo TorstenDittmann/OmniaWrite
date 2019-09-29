@@ -1,80 +1,33 @@
 import { writable } from "svelte/store";
 
-export const state = writable({
-    currentProject: 2556,
-    currentUser: "tdittmann-242"
-});
+export const state = writable(
+    JSON.parse(
+        localStorage.getItem("state") || ""
+    ));
 
-export const projects = writable([
-{
-    id: 2556,
-    title: "Mountains of Madness"
-}
-]);
+export const projects = writable(
+    JSON.parse(
+        localStorage.getItem("projects") || ""
+    ));
 
-export const chapters = writable([
-    {
-        id: 1337,
-        project: 2556,
-        title: "Chapter 1",
-        order: 1,
-        ui: {
-            open: true
-        }
-    },
-    {
-        id: 4711,
-        project: 2556,
-        title: "Chapter 2",
-        order: 2,
-        ui: {
-            open: true
-        }
-    }
-]);
+export const chapters = writable(
+    JSON.parse(
+        localStorage.getItem("chapters") || ""
+    ));
 
-export const scenes = writable([
-    {
-        id: 4567,
-        chapter: 1337,
-        title: "Scene I",
-        order: 1,
-        content: "1 - Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem, reiciendis eius? Iusto iste pariatur voluptates at sequi similique, itaque ipsam voluptas molestias id? Aperiam ab dolore optio, quia repellat quidem."
-    },
-    {
-        id: 4568,
-        chapter: 1337,
-        title: "Scene II",
-        order: 2,
-        content: "2 - Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem, reiciendis eius? Iusto iste pariatur voluptates at sequi similique, itaque ipsam voluptas molestias id? Aperiam ab dolore optio, quia repellat quidem."
-    },
-    {
-        id: 4569,
-        chapter: 4711,
-        title: "Scene III",
-        order: 1,
-        content: "3 - Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem, reiciendis eius? Iusto iste pariatur voluptates at sequi similique, itaque ipsam voluptas molestias id? Aperiam ab dolore optio, quia repellat quidem."
-    },
-    {
-        id: 4570,
-        chapter: 4711,
-        title: "Scene IV",
-        order: 2,
-        content: "4 - Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem, reiciendis eius? Iusto iste pariatur voluptates at sequi similique, itaque ipsam voluptas molestias id? Aperiam ab dolore optio, quia repellat quidem."
-    }
-]);
+export const scenes = writable(
+    JSON.parse(
+        localStorage.getItem("scenes") || ""
+    ));
 
-export const tabs = writable([
-    {
-        id: 991,
-        title: "Chapter I - Scene II",
-        project: 2556,
-        link: "/write/4568"
-    },
-    {
-        id: 995,
-        title: "Chapter II - Scene I",
-        project: 2556,
-        link: "/write/4569"
-    }
-]);
+export const tabs = writable(
+    JSON.parse(
+        localStorage.getItem("tabs") || ""
+    ));
+
+
+projects.subscribe(val => localStorage.setItem("projects", JSON.stringify(val)));
+chapters.subscribe(val => localStorage.setItem("chapters", JSON.stringify(val)));
+state.subscribe(val => localStorage.setItem("state", JSON.stringify(val)));
+tabs.subscribe(val => localStorage.setItem("tabs", JSON.stringify(val)));
+scenes.subscribe(val => localStorage.setItem("scenes", JSON.stringify(val)));

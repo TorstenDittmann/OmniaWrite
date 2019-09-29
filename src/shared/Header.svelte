@@ -3,6 +3,9 @@
   import {link} from "svelte-spa-router";
   import active from 'svelte-spa-router/active'
 
+  import { state, tabs } from "../stores";
+
+
   export let navigationState;
 
   const dispatch = createEventDispatcher();
@@ -20,15 +23,15 @@
       on:click={() => dispatch('openSidebar')}>
       <i class="icon icon-menu" />
     </button>
-    <a class="logo-mobile" href="#">
+    <a class="logo-mobile" href="/" use:link>
       <img src="assets/logo.png" alt="OmniaWrite Logo" />
     </a>
     <div id="navigation" class="navigation" class:active={navigationState}>
       <ul class="menu">
         <div class="backdrop" on:click={() => (navigationState = false)} />
-        <a href="#" class="close" on:click={() => (navigationState = false)}>
+        <div class="close" on:click={() => (navigationState = false)}>
           <i class="icon icon-close" />
-        </a>
+        </div>
         <li use:active={'/', 'active'}>
           <a href="/" use:link>
             <img src="assets/logo.png" alt="OmniaWrite Logo" />
@@ -60,14 +63,12 @@
   </nav>
   <div class="tabs">
     <ul>
-      <li class="tab active">
-        <a href="#">Tab 1</a>
+      {#each $tabs.filter(tabs => tabs.project == $state.currentProject) as tab}
+      <li class="tab" use:active={tab.link, 'active'}>
+        <a href={tab.link} use:link>{tab.title}</a>
         <i class="icon icon-close" />
       </li>
-      <li class="tab">
-        <a href="#">Tab 2</a>
-        <i class="icon icon-close" />
-      </li>
+      {/each}
     </ul>
   </div>
 </header>
