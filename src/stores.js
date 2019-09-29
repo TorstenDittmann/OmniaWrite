@@ -2,27 +2,27 @@ import { writable } from "svelte/store";
 
 export const state = writable(
     JSON.parse(
-        localStorage.getItem("state") || "{}"
+        localStorage.getItem("state") || ""
     ));
 
 export const projects = writable(
     JSON.parse(
-        localStorage.getItem("projects") || "{}"
+        localStorage.getItem("projects") || ""
     ));
 
 export const chapters = writable(
     JSON.parse(
-        localStorage.getItem("chapters") || "{}"
+        localStorage.getItem("chapters") || ""
     ));
 
 export const scenes = writable(
     JSON.parse(
-        localStorage.getItem("scenes") || "{}"
+        localStorage.getItem("scenes") || ""
     ));
 
 export const tabs = writable(
     JSON.parse(
-        localStorage.getItem("tabs") || "{}"
+        localStorage.getItem("tabs") || ""
     ));
 
 
