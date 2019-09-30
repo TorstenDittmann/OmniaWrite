@@ -41,6 +41,7 @@
     max-width: 800px;
   }
   .editpane > h1 {
+    font-family: "Source Code Pro", monospace;
     text-align: center;
   }
   .nodeText {

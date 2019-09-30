@@ -1,9 +1,21 @@
+$theme: "dark";
+
 $text-color: #fff;
 $background-color: #1b2a32;
 $primary-color: #5b3451;
 $secondary-color: #17242b;
 $menu-active: #324f62;
 $menu-hover: #28404d;
+
+@if $theme == "light" {
+    $text-color: #575757;
+    $background-color: #fafafa;
+    $primary-color: #5b3451;
+    $secondary-color: #fff;
+    $menu-active: #d8e3e9;
+    $menu-hover: #ededed;
+}
+
 
 body {
     margin: 0;
