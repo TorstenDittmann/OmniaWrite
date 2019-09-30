@@ -1,5 +1,6 @@
 <!doctype html>
 <html>
+
 <head>
 	<meta charset='utf-8'>
 	<meta name='viewport' content='width=device-width'>
@@ -8,11 +9,120 @@
 
 	<link rel='icon' type='image/png' href='/favicon.png'>
 	<link rel='stylesheet' href='/bundle.css'>
-    <link rel="stylesheet" href="/assets/css/main.css">
-    <link rel="stylesheet" href="/assets/css/icons.css">
+	<link rel="stylesheet" href="/assets/css/main.css">
+	<link rel="stylesheet" href="/assets/css/icons.css">
+	<link rel="manifest" href="/OmniaWrite.webmanifest" />
+	<link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png" />
+	<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png" />
+	<link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png" />
+	<link rel="mask-icon" href="/assets/safari-pinned-tab.svg" color="#5bbad5" />
+	<link rel="shortcut icon" href="/assets/favicon.ico" />
+	<meta name="mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-title" content="OmniaWrite" />
+	<meta name="application-name" content="OmniaWrite" />
+	<meta name="msapplication-TileColor" content="#5c3552" />
+	<meta name="msapplication-config" content="/assets/browserconfig.xml" />
+	<meta name="theme-color" content="#5c3552" />
+	<meta name="msapplication-navbutton-color" content="#5c3552" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="#5c3552" />
+	<meta name="description" content="" />
+	<meta name="theme-color" content="#5bd1d7" />
 	<script defer src='/bundle.js'></script>
+	<style type="text/css">
+		body,
+		html {
+			height: 100%;
+		}
+
+		.app-loading {
+			position: relative;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+			height: 100%;
+			background-color: #5c3552;
+		}
+
+		.lds-ellipsis {
+			display: inline-block;
+			position: relative;
+			width: 64px;
+			height: 64px;
+		}
+
+		.lds-ellipsis div {
+			position: absolute;
+			top: 27px;
+			width: 11px;
+			height: 11px;
+			border-radius: 50%;
+			background: #fff;
+			animation-timing-function: cubic-bezier(0, 1, 1, 0);
+		}
+
+		.lds-ellipsis div:nth-child(1) {
+			left: 6px;
+			animation: lds-ellipsis1 0.6s infinite;
+		}
+
+		.lds-ellipsis div:nth-child(2) {
+			left: 6px;
+			animation: lds-ellipsis2 0.6s infinite;
+		}
+
+		.lds-ellipsis div:nth-child(3) {
+			left: 26px;
+			animation: lds-ellipsis2 0.6s infinite;
+		}
+
+		.lds-ellipsis div:nth-child(4) {
+			left: 45px;
+			animation: lds-ellipsis3 0.6s infinite;
+		}
+
+		@keyframes lds-ellipsis1 {
+			0% {
+				transform: scale(0);
+			}
+
+			100% {
+				transform: scale(1);
+			}
+		}
+
+		@keyframes lds-ellipsis3 {
+			0% {
+				transform: scale(1);
+			}
+
+			100% {
+				transform: scale(0);
+			}
+		}
+
+		@keyframes lds-ellipsis2 {
+			0% {
+				transform: translate(0, 0);
+			}
+
+			100% {
+				transform: translate(19px, 0);
+			}
+		}
+	</style>
 </head>
 
 <body>
+		<!--<div class="app-loading">
+				<img src="assets/logo.png" />
+				<div class="lds-ellipsis">
+					<div></div>
+					<div></div>
+					<div></div>
+					<div></div>
+				</div>
+			</div>-->
 </body>
+
 </html>
