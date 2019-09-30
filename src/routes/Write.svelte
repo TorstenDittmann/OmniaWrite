@@ -1,14 +1,15 @@
 <script>
   import { scenes } from "../stores";
   export let params = {};
+  let inputScene;
   let currentScene;
 
-  $: currentScene = $scenes.filter(scene => scene.id == params.sceneId);
+  $: currentScene = $scenes.filter(scene => scene.id == params.sceneId)[0];
 
   function saveScene() {
     $scenes = $scenes.map(scene =>
       scene.id == params.sceneId
-        ? { ...scene, content: currentScene[0].content }
+        ? { ...scene, content: currentScene.content }
         : scene
     );
   }
@@ -20,6 +21,7 @@
   <h1 on:click={saveScene}>Test save</h1>
   <div 
   contenteditable="true"
-  bind:innerHTML={currentScene[0].content}>
+  bind:innerHTML={currentScene.content}
+  onchange="saveScene">
   </div>
 {/if}
