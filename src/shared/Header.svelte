@@ -12,7 +12,7 @@
   const dispatch = createEventDispatcher();
 
   function closeTab(argTabId) {
-    $tabs = $tabs.filter(tab => tab.id != argTabId);
+    tabs.set($tabs.filter(tab => tab.id != argTabId));
   }
 
   function createTab() {
