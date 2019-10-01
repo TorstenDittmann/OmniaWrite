@@ -1,30 +1,40 @@
 <script>
-  import { onMount } from "svelte";
-  import { scenes, chapters, state } from "../stores";
+  import {
+    onMount
+  } from "svelte";
+  import {
+    scenes,
+    chapters,
+    state
+  } from "../stores";
   export let params = {};
   let currentScene;
   let currentChapter;
   let editorHtml;
 
   $: currentScene = $scenes.filter(scene => scene.id == params.sceneId)[0];
-  $: currentChapter = $chapters.filter(chapter => chapter.id == currentScene.chapter)[0];
-  $: $state.currentTitle = currentChapter.title + ' - ' + currentScene.title;
+  $: currentChapter = $chapters.filter(
+    chapter => chapter.id == currentScene.chapter
+  )[0];
+  $: $state.currentTitle = currentChapter.title + " - " + currentScene.title;
 
   onMount(() => {
     if (params.sceneId !== null) {
       editorHtml = document.getElementById("editor");
       editorHtml.addEventListener(
         "input",
-        async function() {
-          $scenes = $scenes.map(scene =>
-            scene.id == params.sceneId
-              ? { ...scene, content: currentScene.content }
-              : scene
-          );
-        },
-        false
+        async function () {
+            $scenes = $scenes.map(scene =>
+              scene.id == params.sceneId ? {
+                ...scene,
+                content: currentScene.content
+              } :
+              scene
+            );
+          },
+          false
       );
-      editorHtml.addEventListener("paste", function(e) {
+      editorHtml.addEventListener("paste", function (e) {
         e.preventDefault();
         let text = (e.originalEvent || e).clipboardData.getData("text/plain");
         document.execCommand("insertHTML", false, text);
@@ -39,32 +49,38 @@
     -webkit-focus-ring-color: rgba(255, 255, 255, 0) !important;
     outline: 0 !important;
   }
+
   .editpane {
     margin: 0 auto;
     max-width: 800px;
   }
-  .editpane > h1 {
+
+  .editpane>h1 {
     font-family: "Source Code Pro", monospace;
     text-align: center;
   }
+
   .nodeText {
     font-family: "Source Code Pro", monospace;
     padding: 5%;
     color: #acbac3;
     font-weight: 400;
-    font-size: .9rem;
+    font-size: 0.9rem;
     line-height: 2rem;
     text-align: justify;
   }
+
   @media (min-width: 1200px) {
     .editpane {
       padding: 10px;
       box-shadow: 0 5px 26px 2px rgba(0, 0, 0, 0.2);
     }
+
     .nodeText {
       line-height: 2.5rem;
     }
   }
+
   @media (max-width: 960px) {
     .nodeText {
       padding: 0 0 100%;

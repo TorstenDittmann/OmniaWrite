@@ -1,5 +1,8 @@
 <script>
-  import { state, projects } from "../stores";
+  import {
+    state,
+    projects
+  } from "../stores";
 </script>
 
 {$state.currentProject}

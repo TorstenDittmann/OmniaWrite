@@ -1,7 +1,10 @@
 <script>
   import Router from "svelte-spa-router";
 
-  import { state, projects } from "./stores";
+  import {
+    state,
+    projects
+  } from "./stores";
 
   import HeaderComponent from "./shared/Header.svelte";
   import SidebarComponent from "./shared/Sidebar.svelte";
@@ -38,14 +41,12 @@
 </style>
 
 <div class="container">
-  <HeaderComponent
-    bind:navigationState
-    on:openSidebar={() => (sidebarState = true)} />
+  <HeaderComponent bind:navigationState on:openSidebar={()=> (sidebarState = true)} />
 
-  <SidebarComponent bind:sidebarState />
-  <div class="content">
-    <div class="inner">
-      <Router {routes} />
+    <SidebarComponent bind:sidebarState />
+    <div class="content">
+      <div class="inner">
+        <Router {routes} />
+      </div>
     </div>
-  </div>
 </div>
