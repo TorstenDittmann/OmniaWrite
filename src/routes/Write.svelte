@@ -1,11 +1,14 @@
 <script>
   import { onMount } from "svelte";
-  import { scenes } from "../stores";
+  import { scenes, chapters, state } from "../stores";
   export let params = {};
   let currentScene;
+  let currentChapter;
   let editorHtml;
 
   $: currentScene = $scenes.filter(scene => scene.id == params.sceneId)[0];
+  $: currentChapter = $chapters.filter(chapter => chapter.id == currentScene.chapter)[0];
+  $: $state.currentTitle = currentChapter.title + ' - ' + currentScene.title;
 
   onMount(() => {
     if (params.sceneId !== null) {

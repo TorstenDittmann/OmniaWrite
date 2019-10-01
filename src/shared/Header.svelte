@@ -1,6 +1,7 @@
 <script>
   import { createEventDispatcher } from "svelte";
-  import {link} from "svelte-spa-router";
+
+  import { link, location } from "svelte-spa-router";
   import active from 'svelte-spa-router/active'
 
   import { state, tabs } from "../stores";
@@ -9,9 +10,27 @@
   export let navigationState;
 
   const dispatch = createEventDispatcher();
+
+  function closeTab(argTabId) {
+    $tabs = $tabs.filter(tab => tab.id != argTabId);
+  }
+
+  function createTab() {
+    tabs.set($tabs.concat([{
+        id: (Math.floor(Math.random() * 999) + 100),
+        title: $state.currentTitle,
+        project: $state.currentProject,
+        link: $location
+      }]));
+    
+  }
 </script>
 
 <style>
+
+.tab-action:hover {
+  color: #4aaed9;
+}
 
 </style>
 
@@ -66,9 +85,12 @@
       {#each $tabs.filter(tabs => tabs.project == $state.currentProject) as tab}
       <li class="tab" use:active={tab.link, 'active'}>
         <a href={tab.link} use:link>{tab.title}</a>
-        <i class="icon icon-close" />
+        <i class="icon icon-close tab-action" on:click={() => closeTab(tab.id)} />
       </li>
       {/each}
+      <li class="tab" on:click={createTab}>
+        <i class="icon icon-arrow-up tab-action" />
+      </li>
     </ul>
   </div>
 </header>

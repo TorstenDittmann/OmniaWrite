@@ -105,6 +105,7 @@ header .navigation ul.menu li.active a {
   -webkit-box-shadow: 0 -1px 0 #495865 inset;
           box-shadow: 0 -1px 0 #495865 inset;
   text-align: left;
+  width: 100vw;
 }
 
 .tabs ul {
@@ -137,6 +138,15 @@ header .navigation ul.menu li.active a {
 
 .tabs ul li.active {
   opacity: 1;
+  -webkit-box-shadow: 0 -3px 0 #4aaed9 inset;
+          box-shadow: 0 -3px 0 #4aaed9 inset;
+  -webkit-transition: -webkit-box-shadow .2s ease-in;
+  transition: -webkit-box-shadow .2s ease-in;
+  transition: box-shadow .2s ease-in;
+  transition: box-shadow .2s ease-in, -webkit-box-shadow .2s ease-in;
+}
+
+.tabs ul li:hover {
   -webkit-box-shadow: 0 -3px 0 #4aaed9 inset;
           box-shadow: 0 -3px 0 #4aaed9 inset;
   -webkit-transition: -webkit-box-shadow .2s ease-in;
