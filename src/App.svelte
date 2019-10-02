@@ -29,11 +29,17 @@
   };
 
   if ("serviceWorker" in navigator) {
-    navigator.serviceWorker.register("/service-worker.js");
+    //navigator.serviceWorker.register("/service-worker.js");
   }
 
-  let sidebarState = false;
-  let navigationState = false;
+  /**
+   * Defines state of sidebar and navigation based on max-width.
+   */
+  let mql = window.matchMedia('(max-width: 960px)');
+  let sidebarState = mql.matches ? false : true;
+  let navigationState = mql.matches ? false : true;
+  mql.addListener((e) => e.matches ? sidebarState = false : sidebarState = true);
+  mql.addListener((e) => e.matches ? navigationState = false : navigationState = true);
 </script>
 
 <style>

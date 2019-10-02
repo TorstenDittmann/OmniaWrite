@@ -4,16 +4,21 @@
   } from "svelte";
 
   import {
+    fade,
+    fly
+  } from 'svelte/transition';
+
+  import {
     link,
     location
   } from "svelte-spa-router";
-  import active from 'svelte-spa-router/active'
+
+  import active from 'svelte-spa-router/active';
 
   import {
     state,
     tabs
   } from "../stores";
-
 
   export let navigationState;
 
@@ -48,34 +53,36 @@
     <a class="logo-mobile" href="/" use:link>
       <img src="assets/logo.png" alt="OmniaWrite Logo" />
     </a>
-    <div id="navigation" class="navigation" class:active={navigationState}>
-      <ul class="menu">
-        <div class="backdrop" on:click={()=> (navigationState = false)} />
-          <div class="close" on:click={()=> (navigationState = false)}>
-            <i class="icon icon-close" />
-          </div>
-          <li use:active={'/', 'active' }>
-            <a href="/" use:link>
-              <img src="assets/logo.png" alt="OmniaWrite Logo" />
-            </a>
-          </li>
-          <li use:active={'/write/*', 'active' }>
-            <a href="/write/" use:link>Write</a>
-          </li>
-          <li use:active={'/database/*', 'active' }>
-            <a href="/database/" use:link>Database</a>
-          </li>
-          <li use:active={'/mindmap/*', 'active' }>
-            <a href="/mindmap/" use:link>Mindmaps</a>
-          </li>
-          <li use:active={'/settings', 'active' }>
-            <a href="/settings" use:link>Settings</a>
-          </li>
-          <li use:active={'/export', 'active' }>
-            <a href="/export" use:link>Export</a>
-          </li>
-      </ul>
-    </div>
+    {#if navigationState}
+      <div id="navigation" class="navigation" class:active={navigationState} in:fly="{{ y: 200, duration: 200 }}" out:fly="{{ y: 200, duration: 200 }}">
+        <ul class="menu">
+          <div class="backdrop" on:click={()=> (navigationState = false)} />
+            <div class="close" on:click={()=> (navigationState = false)}>
+              <i class="icon icon-close" />
+            </div>
+            <li use:active={'/', 'active' }>
+              <a href="/" use:link>
+                <img src="assets/logo.png" alt="OmniaWrite Logo" />
+              </a>
+            </li>
+            <li use:active={'/write/*', 'active' }>
+              <a href="/write/" use:link>Write</a>
+            </li>
+            <li use:active={'/database/*', 'active' }>
+              <a href="/database/" use:link>Database</a>
+            </li>
+            <li use:active={'/mindmap/*', 'active' }>
+              <a href="/mindmap/" use:link>Mindmaps</a>
+            </li>
+            <li use:active={'/settings', 'active' }>
+              <a href="/settings" use:link>Settings</a>
+            </li>
+            <li use:active={'/export', 'active' }>
+              <a href="/export" use:link>Export</a>
+            </li>
+        </ul>
+      </div>
+    {/if}
     <button class="mobile" id="open-navigation" on:click={()=> (navigationState = true)}>
       <i class="icon icon-more-vert" />
     </button>
