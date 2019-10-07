@@ -27,7 +27,7 @@
         transform: translate(-50%, -50%);
         padding: 1em;
         border-radius: 0.2em;
-        background-color: black;
+        background-color: #1b2a32;
     }
 
     button {
