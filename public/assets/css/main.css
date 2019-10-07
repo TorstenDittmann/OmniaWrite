@@ -1,6 +1,7 @@
+@import url("https://fonts.googleapis.com/css?family=Red+Hat+Display:500&display=swap");
 body {
   margin: 0;
-  font-family: Montserrat, sans-serif;
+  font-family: 'Red Hat Display', sans-serif;
   color: #fff;
   background-color: #1b2a32;
   height: 100vh;
@@ -174,7 +175,8 @@ header .navigation ul.menu li.active a {
   cursor: pointer;
 }
 
-#sidebar ul.menu li a, #sidebar ul.menu li span {
+#sidebar ul.menu li a,
+#sidebar ul.menu li span {
   text-decoration: none;
   opacity: .65;
 }
@@ -195,6 +197,10 @@ header .navigation ul.menu li.active a {
           transform: rotate(-90deg);
 }
 
+#sidebar ul.menu .parent .key:hover {
+  background-color: #28404d;
+}
+
 #sidebar ul.menu .parent ul {
   padding: 0;
   display: none;
@@ -208,7 +214,8 @@ header .navigation ul.menu li.active a {
   background-color: #28404d;
 }
 
-#sidebar ul.menu .parent ul li:hover a, #sidebar ul.menu .parent ul li:hover span {
+#sidebar ul.menu .parent ul li:hover a,
+#sidebar ul.menu .parent ul li:hover span {
   opacity: 1;
 }
 

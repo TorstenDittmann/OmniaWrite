@@ -13,15 +13,10 @@
   let editorHtml;
 
   $: currentScene = $scenes.filter(scene => scene.id == params.sceneId)[0];
-  $: currentChapter;
+  $: $state.currentTitle = params.sceneId ? currentScene.title : 'No scene selected!';
 
   onMount(() => {
     if (params.sceneId !== null) {
-      // get current chapter
-      currentChapter = $chapters.filter(chapter => chapter.id == currentScene.chapter)[0];
-      // set state title
-      $state.currentTitle = currentChapter.title + " - " + currentScene.title
-
       editorHtml = document.getElementById("editor");
       editorHtml.addEventListener(
         "input",

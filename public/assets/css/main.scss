@@ -7,7 +7,7 @@ $secondary-color: #17242b;
 $menu-active: #324f62;
 $menu-hover: #28404d;
 
-@if $theme == "light" {
+@if $theme=="light" {
     $text-color: #575757;
     $background-color: #fafafa;
     $primary-color: #5b3451;
@@ -16,10 +16,13 @@ $menu-hover: #28404d;
     $menu-hover: #ededed;
 }
 
+@import url('https://fonts.googleapis.com/css?family=Red+Hat+Display:500&display=swap');
 
 body {
     margin: 0;
-    font-family: Montserrat, sans-serif;
+    font-family: 'Red Hat Display',
+        sans-serif;
+
     color: $text-color;
     background-color: $background-color;
     height: 100vh;
@@ -154,6 +157,7 @@ header {
                 box-shadow: 0 -3px 0 #4aaed9 inset;
                 transition: box-shadow .2s ease-in;
             }
+
             &:hover {
                 box-shadow: 0 -3px 0 #4aaed9 inset;
                 transition: box-shadow .2s ease-in;
@@ -180,7 +184,9 @@ header {
 
         li {
             cursor: pointer;
-            a, span {
+
+            a,
+            span {
                 text-decoration: none;
                 opacity: .65;
             }
@@ -198,6 +204,10 @@ header {
                     float: right;
                     transform: rotate(-90deg)
                 }
+
+                &:hover {
+                    background-color: $menu-hover;
+                }
             }
 
             ul {
@@ -210,7 +220,8 @@ header {
                     &:hover {
                         background-color: $menu-hover;
 
-                        a, span {
+                        a,
+                        span {
                             opacity: 1;
                         }
                     }
