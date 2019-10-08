@@ -35,7 +35,6 @@
       project: $state.currentProject,
       link: $location
     }]));
-
   }
 </script>
 

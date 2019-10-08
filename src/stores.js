@@ -2,8 +2,13 @@ import {
     writable
 } from "svelte/store";
 
+const defaultIntern = {
+    version: "alpha",
+    installed: true
+};
+
 if (localStorage.getItem("intern") === null) {
-    localStorage.setItem("intern", JSON.stringify("{version: 'alpha', installed: true}"));
+    localStorage.setItem("intern", JSON.stringify(defaultIntern));
     localStorage.setItem("state", "[]");
     localStorage.setItem("projects", "[]");
     localStorage.setItem("chapters", "[]");
