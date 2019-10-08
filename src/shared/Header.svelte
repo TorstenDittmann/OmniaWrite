@@ -47,7 +47,7 @@
 <header>
   <nav class="header">
     <button class="burger" id="open-sidebar" on:click={()=> dispatch('openSidebar')}>
-      <i class="icon icon-menu" />
+      <i class="icon-reorder" />
     </button>
     <a class="logo-mobile" href="/" use:link>
       <img src="assets/logo.png" alt="OmniaWrite Logo" />
@@ -57,7 +57,7 @@
         <ul class="menu">
           <div class="backdrop" on:click={()=> (navigationState = false)} />
             <div class="close" on:click={()=> (navigationState = false)}>
-              <i class="icon icon-close" />
+              <i class="icon-cross_mark" />
             </div>
             <li use:active={'/', 'active' }>
               <a href="/" use:link>
@@ -83,7 +83,7 @@
       </div>
     {/if}
     <button class="mobile" id="open-navigation" on:click={()=> (navigationState = true)}>
-      <i class="icon icon-more-vert" />
+      <i class="icon-reorder_square" />
     </button>
   </nav>
   <div class="tabs">
@@ -91,11 +91,11 @@
       {#each $tabs.filter(tabs => tabs.project == $state.currentProject) as tab}
       <li class="tab" use:active={tab.link, 'active'}>
         <a href={tab.link} use:link>{tab.title}</a>
-        <i class="icon icon-close tab-action" on:click={() => closeTab(tab.id)} />
+        <i class="icon-cross_mark tab-action" on:click={() => closeTab(tab.id)} />
       </li>
       {/each}
       <li class="tab" on:click={createTab}>
-        <i class="icon icon-arrow-up tab-action" />
+        <i class="icon-reply tab-action" />
       </li>
     </ul>
   </div>

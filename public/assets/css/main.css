@@ -189,6 +189,7 @@ header .navigation ul.menu li.active a {
 #sidebar ul.menu .parent .key {
   display: block;
   padding: 1rem;
+  font-weight: bold;
 }
 
 #sidebar ul.menu .parent .key .collapse {
@@ -281,6 +282,31 @@ header .navigation ul.menu li.active a {
 
 .content .inner {
   padding: 1rem;
+}
+
+.btn-group button {
+  border: 1px solid;
+  padding: .25em .5em;
+  cursor: pointer;
+  float: left;
+  background-color: #1b2a32;
+  color: #fff;
+  opacity: .65;
+}
+
+.btn-group button:not(:last-child) {
+  border-right: none;
+}
+
+.btn-group:after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.btn-group button:hover {
+  background-color: #28404d;
+  opacity: 1;
 }
 
 ::-webkit-scrollbar {
