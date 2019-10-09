@@ -198,7 +198,15 @@ header .navigation ul.menu li.active a {
           transform: rotate(-90deg);
 }
 
+#sidebar ul.menu .parent .key .action {
+  visibility: visible;
+  float: right;
+  margin-right: 1em;
+  opacity: 0.65;
+}
+
 #sidebar ul.menu .parent .key:hover {
+  opacity: 1;
   background-color: #28404d;
 }
 
@@ -209,6 +217,13 @@ header .navigation ul.menu li.active a {
 
 #sidebar ul.menu .parent ul li {
   padding: .5rem 0 .5rem 2rem;
+}
+
+#sidebar ul.menu .parent ul li .action {
+  visibility: visible;
+  float: right;
+  margin-right: 1em;
+  opacity: 0.65;
 }
 
 #sidebar ul.menu .parent ul li:hover {
@@ -385,6 +400,24 @@ header .navigation ul.menu li.active a {
     height: 100%;
     overflow-y: initial;
     background-color: #17242b;
+  }
+  #sidebar.navigation .menu .parent .key .action {
+    visibility: hidden;
+  }
+  #sidebar.navigation .menu .parent .key:hover .action {
+    visibility: visible;
+  }
+  #sidebar.navigation .menu .parent .key:hover .action:hover {
+    opacity: 1;
+  }
+  #sidebar.navigation .menu .parent ul li .action {
+    visibility: hidden;
+  }
+  #sidebar.navigation .menu .parent ul li:hover .action {
+    visibility: visible;
+  }
+  #sidebar.navigation .menu .parent ul li:hover .action:hover {
+    opacity: 1;
   }
   .content {
     -ms-grid-row: 2;

@@ -63,6 +63,16 @@
     showCreateScene = false;
     createSceneTitle = "";
   }
+
+  function editChapter(event) {
+    window.alert("editChapter");
+    event.stopPropagation();
+  }
+
+  function editScene(event) {
+    window.alert("editScene");
+    event.stopPropagation();
+  }
 </script>
 
 {#if showCreateChapter}
@@ -99,6 +109,7 @@
           <span class="key" on:click={() => openChapter(chapter.id, i)}>
             {chapter.title}
             <i class="icon-chevron_down collapse" />
+            <i class="icon-settings action" on:click="{editChapter}" />
           </span>
           <ul>
             {#each $scenes.filter(scene => scene.chapter == chapter.id) as scene}
@@ -106,15 +117,13 @@
                 use:active={'/write/' + scene.id, 'active'}
                 on:click={() => push('/write/' + scene.id)}>
                 <a href="/write/{scene.id}" use:link>{scene.title}</a>
+                <i class="icon-settings action" on:click="{editScene}" />
               </li>
             {/each}
             <li>
               <div class="btn-group">
                 <button on:click={()=> openCreateScene(chapter.id)}>
                   <i class="icon-plus" /> New
-                </button>
-                <button on:click={()=> void(0)}>
-                  <i class="icon-pen" /> Edit
                 </button>
               </div>
             </li>
