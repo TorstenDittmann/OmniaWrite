@@ -29,7 +29,6 @@
   };
 
   if ("serviceWorker" in navigator && location.hostname != "localhost") {
-    window.alert("register Serviceworker");
     navigator.serviceWorker.register("/service-worker.js");
   }
 
