@@ -204,7 +204,15 @@ header {
                     transform: rotate(-90deg)
                 }
 
+                .action {
+                    visibility: visible;
+                    float: right;
+                    margin-right: 1em;
+                    opacity: 0.65;
+                }
+
                 &:hover {
+                    opacity: 1;
                     background-color: $menu-hover;
                 }
             }
@@ -215,6 +223,13 @@ header {
 
                 li {
                     padding: .5rem 0 .5rem 2rem;
+
+                    .action {
+                        visibility: visible;
+                        float: right;
+                        margin-right: 1em;
+                        opacity: 0.65;
+                    }
 
                     &:hover {
                         background-color: $menu-hover;
@@ -394,6 +409,42 @@ header {
             height: 100%;
             overflow-y: initial;
             background-color: $secondary-color;
+
+            .parent {
+                .key {
+                    .action {
+                        visibility: hidden;
+                    }
+
+                    &:hover {
+                        .action {
+                            visibility: visible;
+
+                            &:hover {
+                                opacity: 1;
+                            }
+                        }
+                    }
+                }
+
+                ul {
+                    li {
+                        .action {
+                            visibility: hidden;
+                        }
+
+                        &:hover {
+                            .action {
+                                visibility: visible;
+
+                                &:hover {
+                                    opacity: 1;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
 
         }
     }
