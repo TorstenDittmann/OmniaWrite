@@ -16,7 +16,7 @@ $menu-hover: #28404d;
     $menu-hover: #ededed;
 }
 
-@import url('https://fonts.googleapis.com/css?family=Red+Hat+Display:500&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Red+Hat+Display&display=swap');
 
 body {
     margin: 0;
@@ -171,6 +171,7 @@ header {
 }
 
 #sidebar {
+
     ul.menu {
         background-color: $background-color;
         margin: 0;
@@ -396,7 +397,7 @@ header {
     }
 
     #sidebar.navigation {
-        background-color: $background-color;
+        background-color: $secondary-color;
         top: 0;
         position: initial;
         visibility: initial;
