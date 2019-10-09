@@ -28,7 +28,7 @@
     "*": OverviewRoute
   };
 
-  if ("serviceWorker" in navigator) {
+  if ("serviceWorker" in navigator && location.hostname != "localhost") {
     navigator.serviceWorker.register("/service-worker.js");
   }
 
