@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css?family=Red+Hat+Display:500&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Red+Hat+Display&display=swap");
 body {
   margin: 0;
   font-family: 'Red Hat Display', sans-serif;
@@ -385,7 +385,7 @@ header .navigation ul.menu li.active a {
     height: 4rem;
   }
   #sidebar.navigation {
-    background-color: #1b2a32;
+    background-color: #17242b;
     top: 0;
     position: initial;
     visibility: initial;
