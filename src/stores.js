@@ -16,10 +16,31 @@ if (localStorage.getItem("intern") === null) {
     localStorage.setItem("tabs", "[]");
 }
 
-export const state = writable(
-    JSON.parse(
+function createState() {
+    const {
+        subscribe,
+        set,
+        update
+    } = writable(JSON.parse(
         localStorage.getItem("state") || ""
     ));
+
+    return {
+        subscribe,
+        setCurrentTitle: (title) => update(n => {
+            n.currentTitle = title;
+            return n;
+        }),
+        setCurrentUser: (user) => update(n => {
+            n.currentUser = user;
+            return n;
+        }),
+        setCurrentProject: (project) => update(n => {
+            n.currentProject = project;
+            return n;
+        })
+    }
+}
 
 export const projects = writable(
     JSON.parse(
@@ -40,6 +61,8 @@ export const tabs = writable(
     JSON.parse(
         localStorage.getItem("tabs") || ""
     ));
+
+export const state = createState();
 
 
 projects.subscribe(val => localStorage.setItem("projects", JSON.stringify(val)));
