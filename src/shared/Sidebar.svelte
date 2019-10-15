@@ -30,15 +30,7 @@
   let createChapterTitle;
 
   function createChapter() {
-    chapters.set($chapters.concat([{
-      id: (Math.floor(Math.random() * 999) + 100),
-      project: $state.currentProject,
-      title: createChapterTitle,
-      order: 3,
-      ui: {
-        open: true
-      }
-    }]));
+    chapters.createChapter($state.currentProject, createChapterTitle);
     showCreateChapter = false;
     createChapterTitle = "";
   }
