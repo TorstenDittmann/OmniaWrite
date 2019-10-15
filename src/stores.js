@@ -16,10 +16,9 @@ if (localStorage.getItem("intern") === null) {
     localStorage.setItem("tabs", "[]");
 }
 
-function createState() {
+function stateState() {
     const {
         subscribe,
-        set,
         update
     } = writable(JSON.parse(
         localStorage.getItem("state") || ""
@@ -42,15 +41,56 @@ function createState() {
     }
 }
 
-export const projects = writable(
-    JSON.parse(
+function stateProjects() {
+    const {
+        subscribe,
+        update
+    } = writable(JSON.parse(
         localStorage.getItem("projects") || ""
     ));
 
-export const chapters = writable(
-    JSON.parse(
+    return {
+        subscribe,
+        createProject: (title) => update(n => {
+            return n.concat([{
+                id: (Math.floor(Math.random() * 999) + 100),
+                title: title
+            }]);
+        })
+    }
+}
+
+function stateChapters() {
+    const {
+        subscribe,
+        update
+    } = writable(JSON.parse(
         localStorage.getItem("chapters") || ""
     ));
+
+    return {
+        subscribe,
+        createChapter: (project, title) => update(n => {
+            console.log(n);
+            return n.concat([{
+                id: (Math.floor(Math.random() * 999) + 100),
+                project: project,
+                title: title,
+                order: n.length,
+                ui: {
+                    open: true
+                }
+            }]);
+        }),
+        setChapterTitle: (id, title) => update(n => {
+            n[n.findIndex(c => c.id == id)].title = title;
+            return n;
+        }),
+        removeChapter: (id) => update(n => {
+            return n.filter(n => n.id !== id)
+        })
+    }
+}
 
 export const scenes = writable(
     JSON.parse(
@@ -62,7 +102,9 @@ export const tabs = writable(
         localStorage.getItem("tabs") || ""
     ));
 
-export const state = createState();
+export const state = stateState();
+export const projects = stateProjects();
+export const chapters = stateChapters();
 
 
 projects.subscribe(val => localStorage.setItem("projects", JSON.stringify(val)));
