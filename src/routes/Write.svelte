@@ -13,7 +13,7 @@
   let editorHtml;
 
   $: currentScene = $scenes.filter(scene => scene.id == params.sceneId)[0];
-  $: $state.currentTitle = params.sceneId ? currentScene.title : 'No scene selected!';
+  $: state.setCurrentTitle(params.sceneId ? currentScene.title : 'No scene selected!');
 
   onMount(() => {
     if (params.sceneId !== null) {
