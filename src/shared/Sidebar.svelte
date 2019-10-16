@@ -22,10 +22,6 @@
 
   export let sidebarState;
 
-  function openChapter(chapterId, i) {
-    $chapters[i].ui.open = !$chapters[i].ui.open;
-  }
-
   let showCreateChapter = false;
   let createChapterTitle;
 
@@ -45,13 +41,7 @@
   }
 
   function createScene() {
-    scenes.set($scenes.concat([{
-      id: (Math.floor(Math.random() * 999) + 100),
-      chapter: createSceneChapter,
-      title: createSceneTitle,
-      order: 3,
-      content: ""
-    }]));
+    chapters.createChapter(createSceneChapter, createSceneTitle);
     showCreateScene = false;
     createSceneTitle = "";
   }
@@ -98,7 +88,7 @@
       </div>
       {#each $chapters.filter(chapter => chapter.project == $state.currentProject) as chapter, i}
         <li class="parent" class:open={chapter.ui.open}>
-          <span class="key" on:click={() => openChapter(chapter.id, i)}>
+          <span class="key" on:click={()=> chapters.toggleChapterInSidebar(chapter.id)}>
             {chapter.title}
             <i class="icon-chevron_down collapse" />
             <i class="icon-settings action" on:click="{editChapter}" />
