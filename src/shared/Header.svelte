@@ -24,17 +24,11 @@
 
   const dispatch = createEventDispatcher();
 
-  function closeTab(argTabId) {
-    tabs.set($tabs.filter(tab => tab.id != argTabId));
-  }
-
   function createTab() {
-    tabs.set($tabs.concat([{
-      id: (Math.floor(Math.random() * 999) + 100),
-      title: $state.currentTitle,
-      project: $state.currentProject,
-      link: $location
-    }]));
+    tabs.createTab(
+      $state.currentProject,
+      $state.currentTitle,
+      $location);
   }
 </script>
 
@@ -91,7 +85,9 @@
       {#each $tabs.filter(tabs => tabs.project == $state.currentProject) as tab}
       <li class="tab" use:active={tab.link, 'active'}>
         <a href={tab.link} use:link>{tab.title}</a>
-        <i class="icon-cross_mark tab-action" on:click={() => closeTab(tab.id)} />
+        <i 
+        class="icon-cross_mark tab-action" 
+        on:click={() => tabs.removeTab(tab.id)} />
       </li>
       {/each}
       <li class="tab" on:click={createTab}>
