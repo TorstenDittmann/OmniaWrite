@@ -41,19 +41,23 @@
   }
 
   function createScene() {
-    chapters.createChapter(createSceneChapter, createSceneTitle);
+    scenes.createScene(createSceneChapter, createSceneTitle);
     showCreateScene = false;
     createSceneTitle = "";
   }
 
-  function editChapter(event) {
-    window.alert("editChapter");
-    event.stopPropagation();
+  let showEditChapter = false;
+  let objEditChapter;
+
+  function editChapter() {
+    window.alert("editChapter " + id);
   }
 
-  function editScene(event) {
-    window.alert("editScene");
-    event.stopPropagation();
+  let showEditScene = false;
+  let objEditScene;
+
+  function editScene() {
+    window.alert("editScene " + id);
   }
 </script>
 
@@ -79,6 +83,38 @@
 	</Modal>
 {/if}
 
+{#if showEditChapter}
+	<Modal on:close="{() => showEditChapter = false}">
+		<h2 slot="header">
+		  Edit "{objEditChapter.title}"<br>
+		  <small><em>noun</em> chap·​ter \ ˈchap-tər</small>
+		</h2>
+    <input bind:value={objEditChapter.title} placeholder="enter your title">
+    <button on:click={editChapter}>Save</button>
+    <button on:click={() => {
+        chapters.removeChapter(objEditChapter.id);
+        showEditChapter = false;
+      }
+    }>! Delete !</button>
+	</Modal>
+{/if}
+
+{#if showEditScene}
+	<Modal on:close="{() => showEditScene = false}">
+		<h2 slot="header">
+			Edit "{objEditScene.title}"<br>
+			<small><em>noun</em> \ ˈsēn </small>
+		</h2>
+    <input bind:value={objEditScene.title} placeholder="enter your title">
+    <button on:click={editScene}>Save</button>
+    <button on:click={()=> {
+      scenes.removeScene(objEditScene.id);
+      showEditScene = false;
+      }
+      }>! Delete !</button>
+	</Modal>
+{/if}
+
 {#if sidebarState}
 <div id="sidebar" class="navigation" class:active={sidebarState} in:fly="{{ y: 200, duration: 200 }}" out:fly="{{ y: 200, duration: 200 }}">
   <ul class="menu">
@@ -91,7 +127,7 @@
           <span class="key" on:click={()=> chapters.toggleChapterInSidebar(chapter.id)}>
             {chapter.title}
             <i class="icon-chevron_down collapse" />
-            <i class="icon-settings action" on:click="{editChapter}" />
+            <i class="icon-settings action" on:click="{() => [showEditChapter, objEditChapter] = [true, chapter]}" />
           </span>
           <ul>
             {#each $scenes.filter(scene => scene.chapter == chapter.id) as scene}
@@ -99,7 +135,7 @@
                 use:active={'/write/' + scene.id, 'active'}
                 on:click={() => push('/write/' + scene.id)}>
                 <a href="/write/{scene.id}" use:link>{scene.title}</a>
-                <i class="icon-settings action" on:click="{editScene}" />
+                <i class="icon-settings action" on:click="{() => [showEditScene, objEditScene] = [true, scene]}" />
               </li>
             {/each}
             <li>
