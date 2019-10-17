@@ -20,14 +20,8 @@
       editorHtml = document.getElementById("editor");
       editorHtml.addEventListener(
         "input",
-        async function () {
-            $scenes = $scenes.map(scene =>
-              scene.id == params.sceneId ? {
-                ...scene,
-                content: currentScene.content
-              } :
-              scene
-            );
+        async () => {
+            scenes.setSceneContent(params.sceneId, currentScene.content);
           },
           false
       );
