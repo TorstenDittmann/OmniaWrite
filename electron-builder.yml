@@ -1,0 +1,10 @@
+appId: com.omniawrite.omniawrite
+productName: OmniaWrite
+asar: true
+
+linux: 
+  target: 
+    - deb
+    - AppImage
+    - snap
+  category: Office
