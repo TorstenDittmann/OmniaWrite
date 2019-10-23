@@ -2,6 +2,17 @@ import {
     writable
 } from "svelte/store";
 
+
+import PouchDB from "pouchdb";
+
+const db = new PouchDB("dbname");
+
+db.put({
+    _id: "dave@gmail.com",
+    name: "David",
+    age: 69
+});
+
 const defaultIntern = {
     version: "alpha",
     installed: true
