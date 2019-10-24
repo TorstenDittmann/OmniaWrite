@@ -3,18 +3,11 @@ import {
 } from "svelte/store";
 
 
-import PouchDB from "pouchdb";
-
-const db = new PouchDB("dbname");
-
-db.put({
-    _id: "dave@gmail.com",
-    name: "David",
-    age: 69
-});
+// import PouchDB from "pouchdb";
 
 const defaultIntern = {
     version: "alpha",
+    lastCloudSave: null,
     installed: true
 };
 
