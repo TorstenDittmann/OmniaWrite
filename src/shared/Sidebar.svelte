@@ -75,7 +75,9 @@
         placeholder="enter your title">
     </div>
     <hr>
-    <button on:click={createChapter}>Create!</button>
+    <div class="btn-group">
+      <button on:click={createChapter}>Create!</button>    
+    </div>
 	</Modal>
 {/if}
 
@@ -87,11 +89,13 @@
 		</h2>
     <div class="field">
       <label for="editChapterInput">Title:</label>
-      <input id="editChapterInput" bind:value={createSceneTitle.title} autocomplete="off"
+      <input id="editChapterInput" bind:value={createSceneTitle} autocomplete="off"
         placeholder="enter your title">
     </div>
     <hr>
-    <button on:click={createScene}>Create!</button>
+    <div class="btn-group">
+      <button on:click={createScene}>Create!</button>
+    </div>
 	</Modal>
 {/if}
 
@@ -106,12 +110,14 @@
       <input id="editChapterInput" bind:value={objEditChapter.title} autocomplete="off" placeholder="enter your title">
     </div>
     <hr>
-    <button on:click={editChapter}>Save</button>
-    <button on:click={() => {
-        chapters.removeChapter(objEditChapter.id);
-        showEditChapter = false;
-      }
-    }>! Delete !</button>
+    <div class="btn-group">
+      <button on:click={editChapter}>Save</button>
+      <button class="warning" on:click={()=> {
+          chapters.removeChapter(objEditChapter.id);
+          showEditChapter = false;
+        }
+      }>! Delete !</button>
+    </div>
 	</Modal>
 {/if}
 
@@ -127,12 +133,14 @@
         placeholder="enter your title">
     </div>
     <hr>
-    <button on:click={editScene}>Save</button>
-    <button on:click={()=> {
-      scenes.removeScene(objEditScene.id);
-      showEditScene = false;
-      }
-      }>! Delete !</button>
+    <div class="btn-group">
+      <button on:click={editScene}>Save</button>
+      <button class="warning" on:click={()=> {
+        scenes.removeScene(objEditScene.id);
+        showEditScene = false;
+        }
+        }>! Delete !</button>
+    </div>
 	</Modal>
 {/if}
 
