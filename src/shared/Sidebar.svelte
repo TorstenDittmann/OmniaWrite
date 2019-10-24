@@ -50,14 +50,16 @@
   let objEditChapter;
 
   function editChapter() {
-    window.alert("editChapter " + id);
+    chapters.setChapterTitle(objEditChapter.id, objEditChapter.title);
+    showEditChapter = false;
   }
 
   let showEditScene = false;
   let objEditScene;
 
   function editScene() {
-    window.alert("editScene " + id);
+    scenes.setSceneTitle(objEditScene.id, objEditScene.title);
+    showEditScene = false;
   }
 </script>
 
@@ -67,7 +69,12 @@
 			New 'chapter'
 			<small><em>noun</em> chap·​ter \ ˈchap-tər</small>
 		</h2>
-    <input bind:value={createChapterTitle} placeholder="enter your title">
+    <div class="field">
+      <label for="editChapterInput">Title:</label>
+      <input id="editChapterInput" bind:value={createChapterTitle} autocomplete="off"
+        placeholder="enter your title">
+    </div>
+    <hr>
     <button on:click={createChapter}>Create!</button>
 	</Modal>
 {/if}
@@ -78,7 +85,12 @@
 			New 'scene'
 			<small><em>noun</em> \ ˈsēn </small>
 		</h2>
-    <input bind:value={createSceneTitle} placeholder="enter your title">
+    <div class="field">
+      <label for="editChapterInput">Title:</label>
+      <input id="editChapterInput" bind:value={createSceneTitle.title} autocomplete="off"
+        placeholder="enter your title">
+    </div>
+    <hr>
     <button on:click={createScene}>Create!</button>
 	</Modal>
 {/if}
@@ -86,10 +98,14 @@
 {#if showEditChapter}
 	<Modal on:close="{() => showEditChapter = false}">
 		<h2 slot="header">
-		  Edit "{objEditChapter.title}"<br>
+		  {objEditChapter.title}<br>
 		  <small><em>noun</em> chap·​ter \ ˈchap-tər</small>
 		</h2>
-    <input bind:value={objEditChapter.title} placeholder="enter your title">
+    <div class="field">
+      <label for="editChapterInput">Title:</label>
+      <input id="editChapterInput" bind:value={objEditChapter.title} autocomplete="off" placeholder="enter your title">
+    </div>
+    <hr>
     <button on:click={editChapter}>Save</button>
     <button on:click={() => {
         chapters.removeChapter(objEditChapter.id);
@@ -102,10 +118,15 @@
 {#if showEditScene}
 	<Modal on:close="{() => showEditScene = false}">
 		<h2 slot="header">
-			Edit "{objEditScene.title}"<br>
+			{objEditScene.title}<br>
 			<small><em>noun</em> \ ˈsēn </small>
 		</h2>
-    <input bind:value={objEditScene.title} placeholder="enter your title">
+    <div class="field">
+      <label for="editChapterInput">Title:</label>
+      <input id="editChapterInput" bind:value={objEditScene.title} autocomplete="off"
+        placeholder="enter your title">
+    </div>
+    <hr>
     <button on:click={editScene}>Save</button>
     <button on:click={()=> {
       scenes.removeScene(objEditScene.id);

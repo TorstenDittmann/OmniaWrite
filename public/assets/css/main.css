@@ -1,4 +1,8 @@
 @import url("https://fonts.googleapis.com/css?family=Red+Hat+Display&display=swap");
+html {
+  -webkit-tap-highlight-color: transparent;
+}
+
 body {
   margin: 0;
   font-family: 'Red Hat Display', sans-serif;
@@ -321,6 +325,56 @@ header .navigation ul.menu li.active a {
 
 .btn-group button:hover {
   background-color: #28404d;
+  opacity: 1;
+}
+
+.field {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.field label {
+  width: 6rem;
+}
+
+.field input {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  -o-appearance: none;
+  margin: 0;
+  padding: 0 .25rem;
+  border: none;
+  border-radius: 0;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  background: 0 0;
+  height: 1.2rem;
+  color: #fff;
+  display: inline-block;
+  border-bottom: 1px solid #999;
+  max-height: 1.2rem;
+  font-size: 1rem;
+  opacity: .65;
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(95%, transparent), color-stop(95%, #0092d1)) no-repeat;
+  background: linear-gradient(to bottom, transparent 95%, #0092d1 95%) no-repeat;
+  background-size: 0 100%;
+  -webkit-transition: background-size .2s ease;
+  transition: background-size .2s ease;
+}
+
+.field input:focus {
+  border-bottom: 1px solid #0092d1;
+  background-size: 100% 100%;
+  outline: 0;
   opacity: 1;
 }
 

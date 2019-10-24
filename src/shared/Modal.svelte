@@ -37,17 +37,25 @@
         z-index: 999;
     }
 
-    button {
-        display: block;
+    .modal-close {
+        float: right;
+        margin-right: 1em;
+        opacity: 0.65;
+        cursor: pointer;
+    }
+
+    .modal-close:hover {
+        opacity: 1;
     }
 </style>
 
 <div class='modal-background' on:click='{() => dispatch("close")}'></div>
 
 <div class='modal' in:fly="{{ y: 200, duration: 200 }}">
+    <div class="modal-close" on:click={()=> dispatch("close")}>
+        <i class="icon-cross_mark" />
+    </div>
     <slot name='header'></slot>
     <hr>
     <slot></slot>
-    <hr>
-    <button on:click='{() => dispatch("close")}'>close modal</button>
 </div>
