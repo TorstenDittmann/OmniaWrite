@@ -223,6 +223,11 @@ header .navigation ul.menu li.active a {
   padding: .5rem 0 .5rem 2rem;
 }
 
+#sidebar ul.menu .parent ul li .btn-group button {
+  font-size: .75rem;
+  border-radius: .125rem;
+}
+
 #sidebar ul.menu .parent ul li .action {
   visibility: visible;
   float: right;
@@ -308,9 +313,24 @@ header .navigation ul.menu li.active a {
   padding: .25em .5em;
   cursor: pointer;
   float: left;
-  background-color: #1b2a32;
+  border-color: #0077b8;
+  background-color: #0077b8;
   color: #fff;
   opacity: .65;
+  font-size: 1rem;
+}
+
+.btn-group button.warning {
+  border-color: #e02200;
+  background-color: #e02200;
+}
+
+.btn-group button.warning:hover {
+  background-color: #c72100;
+}
+
+.btn-group button:hover {
+  opacity: 1;
 }
 
 .btn-group button:not(:last-child) {
@@ -321,11 +341,6 @@ header .navigation ul.menu li.active a {
   content: "";
   clear: both;
   display: table;
-}
-
-.btn-group button:hover {
-  background-color: #28404d;
-  opacity: 1;
 }
 
 .field {
