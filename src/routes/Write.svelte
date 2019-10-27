@@ -47,12 +47,12 @@
   }
 
   .editpane>h1 {
-    font-family: "Source Code Pro", monospace;
+    font-family: 'Roboto Mono', monospace;
     text-align: center;
   }
 
   .nodeText {
-    font-family: "Source Code Pro", monospace;
+    font-family: 'Roboto Mono', monospace;
     padding: 5%;
     color: #acbac3;
     font-weight: 400;

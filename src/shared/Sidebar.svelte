@@ -109,14 +109,14 @@
       <label for="editChapterInput">Title:</label>
       <input id="editChapterInput" bind:value={objEditChapter.title} autocomplete="off" placeholder="enter your title">
     </div>
-    <hr>
+    <br>
     <div class="btn-group">
       <button on:click={editChapter}>Save</button>
-      <button class="warning" on:click={()=> {
-          chapters.removeChapter(objEditChapter.id);
-          showEditChapter = false;
+      <button style="float: right;" class="warning" on:click={()=> {
+        chapters.removeChapter(objEditChapter.id);
+        showEditChapter = false;
         }
-      }>! Delete !</button>
+        }>Delete</button>
     </div>
 	</Modal>
 {/if}
@@ -132,14 +132,14 @@
       <input id="editChapterInput" bind:value={objEditScene.title} autocomplete="off"
         placeholder="enter your title">
     </div>
-    <hr>
+    <br>
     <div class="btn-group">
       <button on:click={editScene}>Save</button>
-      <button class="warning" on:click={()=> {
+      <button style="float: right;" class="warning" on:click={()=> {
         scenes.removeScene(objEditScene.id);
         showEditScene = false;
         }
-        }>! Delete !</button>
+        }>Delete</button>
     </div>
 	</Modal>
 {/if}

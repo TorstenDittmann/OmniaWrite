@@ -1,11 +1,11 @@
-@import url("https://fonts.googleapis.com/css?family=Red+Hat+Display&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Roboto|Roboto+Mono&display=swap");
 html {
   -webkit-tap-highlight-color: transparent;
 }
 
 body {
   margin: 0;
-  font-family: 'Red Hat Display', sans-serif;
+  font-family: 'Roboto', sans-serif;
   color: #fff;
   background-color: #1b2a32;
   height: 100vh;
