@@ -16,7 +16,7 @@ $menu-hover: #28404d;
     $menu-hover: #ededed;
 }
 
-@import url('https://fonts.googleapis.com/css?family=Red+Hat+Display&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Roboto|Roboto+Mono&display=swap');
 
 html {
     -webkit-tap-highlight-color: transparent;
@@ -24,7 +24,8 @@ html {
 
 body {
     margin: 0;
-    font-family: 'Red Hat Display', sans-serif;
+    font-family: 'Roboto',
+        sans-serif;
     color: $text-color;
     background-color: $background-color;
     height: 100vh;
