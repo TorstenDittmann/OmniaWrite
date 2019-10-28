@@ -1,11 +1,11 @@
-@import url("https://fonts.googleapis.com/css?family=Roboto|Roboto+Mono&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Fira+Sans|Fira+Mono&display=swap");
 html {
   -webkit-tap-highlight-color: transparent;
 }
 
 body {
   margin: 0;
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Fira Sans', sans-serif;
   color: #fff;
   background-color: #1b2a32;
   height: 100vh;
@@ -390,6 +390,53 @@ header .navigation ul.menu li.active a {
   border-bottom: 1px solid #0092d1;
   background-size: 100% 100%;
   outline: 0;
+  opacity: 1;
+}
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltip .tooltiptext {
+  font-size: 1rem;
+  visibility: hidden;
+  color: #fff;
+  font-weight: 400;
+  letter-spacing: normal;
+  background: #000;
+  border-radius: 0 .125rem .125rem;
+  line-height: 1rem;
+  margin: .7rem 0 0;
+  padding: .375rem .5rem;
+  width: 10rem;
+  position: absolute;
+  bottom: auto;
+  top: 100%;
+  left: 50%;
+  right: auto;
+  opacity: 0;
+  -webkit-transition: opacity .3s linear;
+  transition: opacity .3s linear;
+  white-space: normal;
+  z-index: 1070;
+}
+
+.tooltip .tooltiptext::after {
+  position: absolute;
+  top: -.35rem;
+  left: 0;
+  bottom: auto;
+  right: auto;
+  content: "";
+  border-left: .25rem solid #000;
+  border-bottom: .2rem solid #000;
+  border-right: .25rem solid transparent;
+  border-top: .2rem solid transparent;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
   opacity: 1;
 }
 
