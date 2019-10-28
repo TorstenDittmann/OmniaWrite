@@ -50,7 +50,7 @@
   <HeaderComponent bind:navigationState on:openSidebar={()=> (sidebarState = true)} />
 
     <SidebarComponent bind:sidebarState />
-    <div class="content">
+    <div id="content" class="content">
       <div class="inner">
         <Router {routes} />
       </div>

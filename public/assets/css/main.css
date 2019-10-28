@@ -1,11 +1,11 @@
-@import url("https://fonts.googleapis.com/css?family=Fira+Sans|Fira+Mono&display=swap");
+@import url("https://fonts.googleapis.com/css?family=IBM+Plex+Sans|IBM+Plex+Mono&display=swap");
 html {
   -webkit-tap-highlight-color: transparent;
 }
 
 body {
   margin: 0;
-  font-family: 'Fira Sans', sans-serif;
+  font-family: 'IBM Plex Sans', sans-serif;
   color: #fff;
   background-color: #1b2a32;
   height: 100vh;
@@ -308,6 +308,16 @@ header .navigation ul.menu li.active a {
   padding: 1rem;
 }
 
+.content.focus {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  background: #1b2a32;
+  z-index: 99;
+}
+
 .btn-group button {
   border: 1px solid;
   padding: .25em .5em;
@@ -396,6 +406,7 @@ header .navigation ul.menu li.active a {
 .tooltip {
   position: relative;
   display: inline-block;
+  overflow: visible;
 }
 
 .tooltip .tooltiptext {
@@ -409,7 +420,6 @@ header .navigation ul.menu li.active a {
   line-height: 1rem;
   margin: .7rem 0 0;
   padding: .375rem .5rem;
-  width: 10rem;
   position: absolute;
   bottom: auto;
   top: 100%;
