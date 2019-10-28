@@ -88,6 +88,12 @@
 
   .toolbar>* {
     margin: 0 .5rem;
+    opacity: .65;
+
+  }
+
+  .toolbar>*:hover {
+    opacity: 1;
   }
 
   .redo:before {
