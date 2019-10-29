@@ -36,6 +36,18 @@
   .tab-action:hover {
     color: #4aaed9;
   }
+
+  .titlebar {
+    float: right;
+    line-height: 4rem;
+    font-size: 1.5rem;
+    padding: 0 1rem;
+    opacity: .65;
+  }
+
+  .titlebar:hover {
+    opacity: 1;
+  }
 </style>
 
 <header>
@@ -74,6 +86,11 @@
               <a href="/export" use:link>Export</a>
             </li>
         </ul>
+        <!--
+        <i class="icon-cross_mark titlebar" />
+        <i class="icon-chevron_up titlebar" />
+        <i class="icon-chevron_down titlebar" />
+        -->
       </div>
     {/if}
     <button class="mobile" id="open-navigation" on:click={()=> (navigationState = true)}>

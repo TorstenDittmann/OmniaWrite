@@ -50,6 +50,8 @@ header {
     background-color: $primary-color;
     grid-area: header;
     text-align: center;
+    -webkit-user-select: none;
+    -webkit-app-region: drag;
 
     .logo-mobile img {
         height: 4rem;
@@ -74,6 +76,8 @@ header {
             overflow-y: auto;
 
             li {
+                -webkit-app-region: no-drag;
+
                 a {
                     font-size: 1rem;
                     text-decoration: none;
@@ -377,6 +381,10 @@ header {
         width: 6rem;
     }
 
+    .big {
+        width: 12rem;
+    }
+
     input {
         -webkit-appearance: none;
         -moz-appearance: none;
@@ -571,6 +579,10 @@ header {
                 }
             }
 
+        }
+
+        &.focus {
+            z-index: 99999;
         }
     }
 

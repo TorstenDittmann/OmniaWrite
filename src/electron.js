@@ -13,7 +13,9 @@ function createWindow() {
     mainWindow = new BrowserWindow({
         width: 900,
         height: 680,
+        //frame: false
     });
+
 
     mainWindow.loadURL(`file://${path.join(__dirname, '../public/index.html')}`);
     mainWindow.on('closed', () => {

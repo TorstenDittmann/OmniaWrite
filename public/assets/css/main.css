@@ -32,6 +32,8 @@ header {
   -ms-grid-column: 1;
   grid-area: header;
   text-align: center;
+  -webkit-user-select: none;
+  -webkit-app-region: drag;
 }
 
 header .logo-mobile img {
@@ -56,6 +58,10 @@ header .navigation ul.menu {
   float: right;
   text-align: center;
   overflow-y: auto;
+}
+
+header .navigation ul.menu li {
+  -webkit-app-region: no-drag;
 }
 
 header .navigation ul.menu li a {
@@ -370,6 +376,10 @@ header .navigation ul.menu li.active a {
   width: 6rem;
 }
 
+.field .big {
+  width: 12rem;
+}
+
 .field input {
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -544,6 +554,9 @@ header .navigation ul.menu li.active a {
   }
   #sidebar.navigation .menu .parent ul li:hover .action:hover {
     opacity: 1;
+  }
+  #sidebar.navigation.focus {
+    z-index: 99999;
   }
   .content {
     -ms-grid-row: 2;
