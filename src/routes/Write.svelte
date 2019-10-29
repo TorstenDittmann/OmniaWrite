@@ -30,6 +30,13 @@
         let text = (e.originalEvent || e).clipboardData.getData("text/plain");
         document.execCommand("insertHTML", false, text);
       });
+      //listen to keyinputs
+      document.onkeydown = function (evt) {
+        evt = evt || window.event;
+        if (evt.keyCode == 27) {
+          document.getElementById("content").classList.remove("focus");
+        }
+      };
     }
   });
 
@@ -44,6 +51,14 @@
 
   function toggleFocus() {
     document.getElementById("content").classList.toggle("focus");
+  }
+
+  function undo() {
+    document.execCommand('undo', false, null);
+  }
+
+  function redo() {
+    document.execCommand('redo', false, null);
   }
 </script>
 
@@ -96,6 +111,10 @@
     opacity: 1;
   }
 
+  .toolbar>span {
+    font-size: 1rem;
+  }
+
   .redo:before {
     display: inline-block;
     transform: scaleX(-1);
@@ -118,11 +137,16 @@
     }
   }
 </style>
+{#if params.sceneId !== null}
 <div class="toolbar">
-  <i class="icon-reply tooltip">
+  <span class="tooltip">
+    {currentScene.content.split(' ').length} words
+    <span class="tooltiptext">{currentScene.content.length} characters</span>
+  </span>
+  <i class="icon-reply tooltip" on:click={undo}>
     <span class="tooltiptext">Undo</span>
   </i>
-  <i class="icon-reply redo tooltip">
+  <i class="icon-reply redo tooltip" on:click={redo}>
     <span class="tooltiptext">Redo</span>
   </i>
   <i class="icon-eye tooltip" on:click={toggleFocus}>
@@ -133,14 +157,11 @@
   </i>
 </div>
 <div class="editpane">
-  {#if params.sceneId == null}
-    No Scene selected
-  {:else}
     <h1 contenteditable="true">{currentScene.title}</h1>
     <div
       id="editor"
       class="nodeText"
       contenteditable="true"
       bind:innerHTML={currentScene.content} />
-  {/if}
 </div>
+{/if}

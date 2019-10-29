@@ -13,7 +13,6 @@
     li {
         display: inline-block;
         vertical-align: middle;
-        float: left;
         clear: left;
         margin-top: 12px;
         margin-bottom: 12px;
