@@ -168,7 +168,9 @@ function storeScenes() {
          * @param title New title of scene.
          */
         setSceneTitle: (id, title) => update(n => {
-            n[n.findIndex(c => c.id == id)].title = title;
+            let index = n.findIndex(c => c.id == id);
+            n[index].title = title;
+            n[index].lastEdit = Math.round((new Date()).getTime() / 1000);
             return n;
         }),
         /**
@@ -177,7 +179,9 @@ function storeScenes() {
          * @param title New content of scene.
          */
         setSceneContent: (id, content) => update(n => {
-            n[n.findIndex(c => c.id == id)].content = content;
+            let index = n.findIndex(c => c.id == id);
+            n[index].content = content;
+            n[index].lastEdit = Math.round((new Date()).getTime() / 1000);
             return n;
         }),
         /**
