@@ -20,6 +20,10 @@ if (localStorage.getItem("intern") === null) {
     localStorage.setItem("tabs", "[]");
 }
 
+function getRandomNumber() {
+    return Math.floor(Math.random() * 999999);
+}
+
 function storeState() {
     const {
         subscribe,
@@ -73,7 +77,7 @@ function storeProjects() {
          */
         createProject: (title) => update(n => {
             return n.concat([{
-                id: (Math.floor(Math.random() * 999) + 100),
+                id: getRandomNumber(),
                 title: title
             }]);
         })
@@ -97,7 +101,7 @@ function storeChapters() {
          */
         createChapter: (project, title) => update(n => {
             return n.concat([{
-                id: (Math.floor(Math.random() * 999) + 100),
+                id: getRandomNumber(),
                 project: project,
                 title: title,
                 order: n.length,
@@ -151,7 +155,7 @@ function storeScenes() {
          */
         createScene: (chapter, title) => update(n => {
             return n.concat([{
-                id: (Math.floor(Math.random() * 999) + 100),
+                id: getRandomNumber(),
                 chapter: chapter,
                 title: title,
                 order: n.length,
@@ -204,7 +208,7 @@ function storeTabs() {
          */
         createTab: (project, title, link) => update(n => {
             return n.concat([{
-                id: (Math.floor(Math.random() * 999) + 100),
+                id: getRandomNumber(),
                 title: title,
                 project: project,
                 link: link
