@@ -7,6 +7,10 @@
     chapters,
     state
   } from "../stores";
+  import {
+    push
+  } from 'svelte-spa-router'
+
   export let params = {};
   let currentScene;
   let currentChapter;
@@ -25,20 +29,26 @@
           },
           false
       );
+
       editorHtml.addEventListener("paste", function (e) {
         e.preventDefault();
         let text = (e.originalEvent || e).clipboardData.getData("text/plain");
         document.execCommand("insertHTML", false, text);
       });
-      //listen to keyinputs
+
       document.onkeydown = function (evt) {
         evt = evt || window.event;
         if (evt.keyCode == 27) {
-          document.getElementById("content").classList.remove("focus");
+          toggleFocus();
         }
       };
     }
   });
+
+  function switchScene(e) {
+    push('/write/' + e.target.value);
+    e.target.selectedIndex = 0;
+  }
 
   function toggleFullscreen() {
     let element = document.documentElement;
@@ -51,6 +61,7 @@
 
   function toggleFocus() {
     document.getElementById("content").classList.toggle("focus");
+    document.getElementById("focusSceneSelect").classList.toggle("active");
   }
 
   function undo() {
@@ -139,6 +150,16 @@
 </style>
 {#if params.sceneId !== null}
 <div class="toolbar">
+  <select id="focusSceneSelect" on:change={switchScene}>
+    <option value="" selected="selected">Switch scene...</option>
+    {#each $chapters.filter(chapter => chapter.project == $state.currentProject) as chapter, i}
+      <optgroup label={chapter.title}>
+        {#each $scenes.filter(scene => scene.chapter == chapter.id) as scene}
+          <option value={scene.id}>{scene.title}</option>
+        {/each}
+      </optgroup>
+    {/each}
+  </select>
   <span class="tooltip">
     {currentScene.content.split(' ').length} words
     <span class="tooltiptext">{currentScene.content.length} characters</span>
