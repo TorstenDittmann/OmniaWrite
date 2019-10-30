@@ -4,15 +4,30 @@ html {
 }
 
 body {
+  --text-color: #fff;
+  --background-color: #1b2a32;
+  --primary-color: #5b3451;
+  --secondary-color: #17242b;
+  --menu-active: #324f62;
+  --menu-hover: #28404d;
   margin: 0;
   font-family: 'IBM Plex Sans', sans-serif;
-  color: #fff;
-  background-color: #1b2a32;
+  color: var(--text-color);
+  background-color: var(--background-color);
   height: 100vh;
 }
 
+body.light {
+  --text-color: #575757;
+  --background-color: #fafafa;
+  --primary-color: #5b3451;
+  --secondary-color: #fff;
+  --menu-active: #d8e3e9;
+  --menu-hover: #ededed;
+}
+
 a {
-  color: #fff;
+  color: var(--text-color);
 }
 
 .container {
@@ -27,7 +42,7 @@ a {
 }
 
 header {
-  background-color: #5b3451;
+  background-color: var(--primary-color);
   -ms-grid-row: 1;
   -ms-grid-column: 1;
   grid-area: header;
@@ -49,7 +64,7 @@ header .navigation {
 }
 
 header .navigation ul.menu {
-  background-color: #1b2a32;
+  background-color: var(--background-color);
   margin: 0;
   padding: 0;
   width: 70%;
@@ -112,7 +127,7 @@ header .navigation ul.menu li.active a {
 }
 
 .tabs {
-  background-color: #17242b;
+  background-color: var(--secondary-color);
   -webkit-box-shadow: 0 -1px 0 #495865 inset;
           box-shadow: 0 -1px 0 #495865 inset;
   text-align: left;
@@ -172,7 +187,7 @@ header .navigation ul.menu li.active a {
 }
 
 #sidebar ul.menu {
-  background-color: #1b2a32;
+  background-color: var(--background-color);
   margin: 0;
   padding: 0;
   width: 70%;
@@ -217,7 +232,7 @@ header .navigation ul.menu li.active a {
 
 #sidebar ul.menu .parent .key:hover {
   opacity: 1;
-  background-color: #28404d;
+  background-color: var(--menu-hover);
 }
 
 #sidebar ul.menu .parent ul {
@@ -242,7 +257,7 @@ header .navigation ul.menu li.active a {
 }
 
 #sidebar ul.menu .parent ul li:hover {
-  background-color: #28404d;
+  background-color: var(--menu-hover);
 }
 
 #sidebar ul.menu .parent ul li:hover a,
@@ -251,7 +266,7 @@ header .navigation ul.menu li.active a {
 }
 
 #sidebar ul.menu .parent ul li.active {
-  background-color: #324f62;
+  background-color: var(--menu-active);
 }
 
 #sidebar ul.menu .parent ul li.active a {
@@ -331,7 +346,7 @@ header .navigation ul.menu li.active a {
   float: left;
   border-color: #0077b8;
   background-color: #0077b8;
-  color: #fff;
+  color: var(--text-color);
   opacity: .65;
   font-size: 1rem;
 }
@@ -411,6 +426,28 @@ header .navigation ul.menu li.active a {
   background-size: 100% 100%;
   outline: 0;
   opacity: 1;
+}
+
+select#focusSceneSelect {
+  display: none;
+  background-color: #1b2a31;
+  width: auto;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #fff;
+  text-align: center;
+  -webkit-appearance: none;
+  border: 0;
+}
+
+select#focusSceneSelect:focus,
+select#focusSceneSelect:active {
+  border: 0;
+  outline: 0;
+}
+
+select#focusSceneSelect.active {
+  display: unset !important;
 }
 
 .tooltip {
@@ -521,7 +558,7 @@ header .navigation ul.menu li.active a {
     height: 4rem;
   }
   #sidebar.navigation {
-    background-color: #17242b;
+    background-color: var(--secondary-color);
     top: 0;
     position: initial;
     visibility: initial;
@@ -535,7 +572,7 @@ header .navigation ul.menu li.active a {
     width: 100%;
     height: 100%;
     overflow-y: initial;
-    background-color: #17242b;
+    background-color: var(--secondary-color);
   }
   #sidebar.navigation .menu .parent .key .action {
     visibility: hidden;

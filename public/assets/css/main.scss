@@ -1,21 +1,3 @@
-$theme: "dark";
-
-$text-color: #fff;
-$background-color: #1b2a32;
-$primary-color: #5b3451;
-$secondary-color: #17242b;
-$menu-active: #324f62;
-$menu-hover: #28404d;
-
-@if $theme=="light" {
-    $text-color: #575757;
-    $background-color: #fafafa;
-    $primary-color: #5b3451;
-    $secondary-color: #fff;
-    $menu-active: #d8e3e9;
-    $menu-hover: #ededed;
-}
-
 //@import url('https://fonts.googleapis.com/css?family=Roboto|Roboto+Mono&display=swap');
 @import url('https://fonts.googleapis.com/css?family=IBM+Plex+Sans|IBM+Plex+Mono&display=swap');
 //@import url('https://fonts.googleapis.com/css?family=PT+Sans|PT+Mono&display=swap');
@@ -27,15 +9,30 @@ html {
 }
 
 body {
+    --text-color: #fff;
+    --background-color: #1b2a32;
+    --primary-color: #5b3451;
+    --secondary-color: #17242b;
+    --menu-active: #324f62;
+    --menu-hover: #28404d;
     margin: 0;
     font-family: 'IBM Plex Sans', sans-serif;
-    color: $text-color;
-    background-color: $background-color;
+    color: var(--text-color);
+    background-color: var(--background-color);
     height: 100vh;
+
+    &.light {
+        --text-color: #575757;
+        --background-color: #fafafa;
+        --primary-color: #5b3451;
+        --secondary-color: #fff;
+        --menu-active: #d8e3e9;
+        --menu-hover: #ededed;
+    }
 }
 
 a {
-    color: $text-color;
+    color: var(--text-color);
 }
 
 .container {
@@ -47,7 +44,7 @@ a {
 }
 
 header {
-    background-color: $primary-color;
+    background-color: var(--primary-color);
     grid-area: header;
     text-align: center;
     -webkit-user-select: none;
@@ -65,7 +62,7 @@ header {
         height: 100vh;
 
         ul.menu {
-            background-color: $background-color;
+            background-color: var(--background-color);
             margin: 0;
             padding: 0;
             width: 70%;
@@ -116,7 +113,7 @@ header {
     width: 4rem;
     border: 0;
     color: #fafafa;
-    background: rgba(0, 0, 0, 0)
+    background: rgba(0, 0, 0, 0);
 }
 
 .mobile {
@@ -126,12 +123,12 @@ header {
     width: 4rem;
     border: 0;
     color: #fafafa;
-    background: rgba(0, 0, 0, 0)
+    background: rgba(0, 0, 0, 0);
 }
 
 
 .tabs {
-    background-color: $secondary-color;
+    background-color: var(--secondary-color);
     box-shadow: 0 -1px 0 #495865 inset;
     text-align: left;
     width: 100vw;
@@ -185,7 +182,7 @@ header {
 #sidebar {
 
     ul.menu {
-        background-color: $background-color;
+        background-color: var(--background-color);
         margin: 0;
         padding: 0;
         width: 70%;
@@ -226,7 +223,7 @@ header {
 
                 &:hover {
                     opacity: 1;
-                    background-color: $menu-hover;
+                    background-color: var(--menu-hover);
                 }
             }
 
@@ -250,7 +247,7 @@ header {
                     }
 
                     &:hover {
-                        background-color: $menu-hover;
+                        background-color: var(--menu-hover);
 
                         a,
                         span {
@@ -259,7 +256,7 @@ header {
                     }
 
                     &.active {
-                        background-color: $menu-active;
+                        background-color: var(--menu-active);
 
                         a {
                             opacity: 1;
@@ -274,7 +271,7 @@ header {
                 }
 
                 .key .collapse {
-                    transform: rotate(0deg)
+                    transform: rotate(0deg);
                 }
             }
         }
@@ -343,7 +340,7 @@ header {
         float: left;
         border-color: #0077b8;
         background-color: #0077b8;
-        color: $text-color;
+        color: var(--text-color);
         opacity: .65;
         font-size: 1rem;
 
@@ -414,6 +411,28 @@ header {
             opacity: 1;
         }
     }
+}
+
+select#focusSceneSelect {
+    display: none;
+    background-color: #1b2a31;
+    width: auto;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #fff;
+    text-align: center;
+    -webkit-appearance: none;
+    border: 0;
+}
+
+select#focusSceneSelect:focus,
+select#focusSceneSelect:active {
+    border: 0;
+    outline: 0;
+}
+
+select#focusSceneSelect.active {
+    display: unset !important;
 }
 
 .tooltip {
@@ -529,7 +548,7 @@ header {
     }
 
     #sidebar.navigation {
-        background-color: $secondary-color;
+        background-color: var(--secondary-color);
         top: 0;
         position: initial;
         visibility: initial;
@@ -541,7 +560,7 @@ header {
             width: 100%;
             height: 100%;
             overflow-y: initial;
-            background-color: $secondary-color;
+            background-color: var(--secondary-color);
 
             .parent {
                 .key {
