@@ -438,6 +438,7 @@ select#focusSceneSelect {
   text-align: center;
   -webkit-appearance: none;
   border: 0;
+  cursor: pointer;
 }
 
 select#focusSceneSelect:focus,
