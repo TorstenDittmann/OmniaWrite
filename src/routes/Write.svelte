@@ -150,16 +150,6 @@
 </style>
 {#if params.sceneId !== null}
 <div class="toolbar">
-  <select id="focusSceneSelect" on:change={switchScene}>
-    <option value="" selected="selected">Switch scene...</option>
-    {#each $chapters.filter(chapter => chapter.project == $state.currentProject) as chapter, i}
-      <optgroup label={chapter.title}>
-        {#each $scenes.filter(scene => scene.chapter == chapter.id) as scene}
-          <option value={scene.id}>{scene.title}</option>
-        {/each}
-      </optgroup>
-    {/each}
-  </select>
   <span class="tooltip">
     {currentScene.content.split(' ').length} words
     <span class="tooltiptext">{currentScene.content.length} characters</span>
@@ -176,6 +166,16 @@
   <i class="icon-more_node_links tooltip" on:click={toggleFullscreen}>
     <span class="tooltiptext">Fullscreen</span>
   </i>
+  <select id="focusSceneSelect" on:change={switchScene}>
+    <option value="" selected="selected">Switch scene...</option>
+    {#each $chapters.filter(chapter => chapter.project == $state.currentProject) as chapter, i}
+      <optgroup label={chapter.title}>
+        {#each $scenes.filter(scene => scene.chapter == chapter.id) as scene}
+          <option value={scene.id}>{scene.title}</option>
+        {/each}
+      </optgroup>
+    {/each}
+  </select>
 </div>
 <div class="editpane">
     <h1 contenteditable="true">{currentScene.title}</h1>
