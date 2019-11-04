@@ -3,61 +3,154 @@
 </script>
 
 <style>
-    ul {
-        min-height: 100%;
-        display: inline-block;
-        vertical-align: middle;
-        list-style: none;
+    * {
+        margin: 0;
+        padding: 0;
     }
 
-    li {
-        display: inline-block;
-        vertical-align: middle;
-        clear: left;
-        margin-top: 12px;
-        margin-bottom: 12px;
-    }
-
-    ul ul {
-        border-left: 1px solid white;
-        border-radius: 16px;
-        padding-left: 16px;
-        margin-left: 16px;
+    .tree ul {
+        padding-top: 20px;
         position: relative;
+
+        transition: all 0.5s;
+        -webkit-transition: all 0.5s;
+        -moz-transition: all 0.5s;
     }
 
-    ul ul:after {
-        width: 16px;
-        height: 16px;
-        /*background-color: red;*/
+    .tree li {
+        float: left;
+        text-align: center;
+        list-style-type: none;
+        position: relative;
+        padding: 20px 5px 0 5px;
+
+        transition: all 0.5s;
+        -webkit-transition: all 0.5s;
+        -moz-transition: all 0.5s;
+    }
+
+
+    .tree li::before,
+    .tree li::after {
+        content: '';
         position: absolute;
-        top: 50%;
-        content: "";
-        left: -11px;
-        margin-top: -6px;
+        top: 0;
+        right: 50%;
+        border-top: 1px solid #ccc;
+        width: 50%;
+        height: 20px;
+    }
+
+    .tree li::after {
+        right: auto;
+        left: 50%;
+        border-left: 1px solid #ccc;
+    }
+
+    .tree li:only-child::after,
+    .tree li:only-child::before {
+        display: none;
+    }
+
+    .tree li:only-child {
+        padding-top: 0;
+    }
+
+    .tree li:first-child::before,
+    .tree li:last-child::after {
+        border: 0 none;
+    }
+
+    .tree li:last-child::before {
+        border-right: 1px solid #ccc;
+        border-radius: 0 5px 0 0;
+        -webkit-border-radius: 0 5px 0 0;
+        -moz-border-radius: 0 5px 0 0;
+    }
+
+    .tree li:first-child::after {
+        border-radius: 5px 0 0 0;
+        -webkit-border-radius: 5px 0 0 0;
+        -moz-border-radius: 5px 0 0 0;
+    }
+
+    .tree ul ul::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 50%;
+        border-left: 1px solid #ccc;
         width: 0;
-        height: 0;
-        border: 4px solid;
-        border-color: white black white white;
+        height: 20px;
+    }
+
+    .tree li span {
+        border: 1px solid #ccc;
+        padding: 5px 10px;
+        text-decoration: none;
+        font-family: arial, verdana, tahoma;
+        font-size: 11px;
+        display: inline-block;
+
+        border-radius: 5px;
+        -webkit-border-radius: 5px;
+        -moz-border-radius: 5px;
+
+        transition: all 0.5s;
+        -webkit-transition: all 0.5s;
+        -moz-transition: all 0.5s;
+    }
+
+    .tree li span:hover,
+    .tree li span:hover+ul li span {
+        background: #c8e4f8;
+        color: #000;
+        border: 1px solid #94a0b4;
+    }
+
+    .tree li span:hover+ul li::after,
+    .tree li span:hover+ul li::before,
+    .tree li span:hover+ul::before,
+    .tree li span:hover+ul ul::before {
+        border-color: #94a0b4;
     }
 </style>
 
-<div class="mindmap">
-    <ul contenteditable="true">
-        <li> item 1
+<div class="tree">
+    <ul>
+        <li>
+            <span>bappy</span>
             <ul>
-                <li>subitem 1
+                <li>
+                    <span>Child</span>
                     <ul>
-                        <li>sub-sub-item</li>
+                        <li>
+                            <span>Grand Child</span>
+                        </li>
                     </ul>
-
                 </li>
-                <li>subitem 2</li>
-                <li>subitem 3</li>
-                <li>subitem 4</li>
-                <li>subitem 5</li>
+                <li>
+                    <span>Child</span>
+                    <ul>
+                        <li><span>Grand Child</span></li>
+                        <li>
+                            <span>Grand Child</span>
+                            <ul>
+                                <li>
+                                    <span>Great Grand Child</span>
+                                </li>
+                                <li>
+                                    <span>Great Grand Child</span>
+                                </li>
+                                <li>
+                                    <span>Great Grand Child</span>
+                                </li>
+                            </ul>
+                        </li>
+                        <li><span>Grand Child</span></li>
+                    </ul>
+                </li>
             </ul>
         </li>
-        <li>item 2 </li>
     </ul>
 </div>
