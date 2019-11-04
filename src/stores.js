@@ -80,7 +80,16 @@ function storeProjects() {
                 id: getRandomNumber(),
                 title: title
             }]);
-        })
+        }),
+        /**
+         * Sets project title.
+         * @param id ID of the project.
+         * @param title New title of project.
+         */
+        setProjectTitle: (id, title) => update(n => {
+            n[n.findIndex(p => p.id == id)].title = title;
+            return n;
+        }),
     }
 }
 
