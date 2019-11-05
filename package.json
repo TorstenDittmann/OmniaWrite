@@ -28,6 +28,8 @@
   "dependencies": {
     "pouchdb": "^7.1.1",
     "pouchdb-browser": "^7.1.1",
+    "remotestorage-widget": "^1.4.0",
+    "remotestoragejs": "^1.2.2",
     "sirv-cli": "^0.4.5",
     "svelte-spa-router": "^1.3.0"
   },
