@@ -2,47 +2,82 @@
     import {
         onMount
     } from "svelte";
-    import RemoteStorage from 'remotestoragejs';
-    import Widget from 'remotestorage-widget';
+    import Backendless from 'backendless';
 
-    const remoteStorage = new RemoteStorage({
-        cache: false
-    });
-    const widget = new Widget(remoteStorage);
+    let currentUser;
+
+
+    const APP_ID = '***REMOVED***';
+    const API_KEY = '***REMOVED***';
+
+    Backendless.serverURL = 'https://api.backendless.com';
+    Backendless.initApp(APP_ID, API_KEY);
+
+
 
     onMount(() => {
-        remoteStorage.setApiKeys({
-            googledrive: '554940208405-hhpi0q02gquvqrps39gptbh5r7e4qlcc.apps.googleusercontent.com'
-        });
-
-        remoteStorage.access.claim('OmniaWriteData', 'rw');
-
-        widget.attach('cloudContainer');
+        Backendless.UserService.isValidLogin()
+            .then(success)
+            .catch(error)
     });
 
-    function saveCloud() {
-        const client = remoteStorage.scope('/OmniaWriteData/');
-
-        client.storeFile('text/plain', 'omniawrite.omniawritedata', JSON.stringify(localStorage))
-            .then(() => console.log("data has been saved"));
+    function success(result) {
+        console.log("Is login valid?: " + result);
+        Backendless.UserService.getCurrentUser()
+            .then(function (curUser) {
+                currentUser = curUser.email;
+            })
+            .catch(function (error) {});
     }
 
-    function getCloud() {
-        const client = remoteStorage.scope('/OmniaWriteData/');
+    function error(err) {
+        console.log(err.message);
+        console.log(err.statusCode);
+    }
 
-        client.getFile('omniawrite.omniawritedata').then(file => {
-            let data = JSON.parse(file.data);
-            Object.keys(data).forEach(function (k) {
-                localStorage.setItem(k, data[k]);
-            });
+    function logout() {
+        Backendless.UserService.logout()
+            .then(function () {})
+            .catch(function (error) {});
+    }
+
+    function saveCloud() {
+        let blob = new Blob(["\ufeff", JSON.stringify(localStorage)], {
+            type: 'application/json'
         });
+        console.log(blob);
+        Backendless.Files.saveFile("testFolder", "t-dittmann.txt", blob, true)
+            .then(function (savedFileURL) {
+                console.log("file has been saved - " + savedFileURL);
+            })
+            .catch(function (error) {
+                console.log("error - " + error.message);
+            });
+    }
+
+    async function getCloud() {
+        const response = await
+        fetch(
+            'https://backendlessappcontent.com/***REMOVED***/***REMOVED***/files/testFolder/t-dittmann.txt'
+        );
+        const data = await response.json();
+        Object.keys(data).forEach(function (k) {
+            localStorage.setItem(k, data[k]);
+        });
+        //console.log(JSON.stringify(myJson));
+    }
+
+    function login() {
+        Backendless.UserService.login("torsten.dittmann@gmail.com", "test123", true)
+            .then(function (loggedInUser) {
+                console.log(loggedInUser);
+            })
+            .catch(function (error) {});
     }
 </script>
 
 <style>
-    #cloudContainer #remotestorage-widget {
-        position: absolute !important;
-    }
+
 </style>
 
 <h1>Settings</h1>
@@ -51,12 +86,13 @@
 <button on:click={saveCloud}>Export</button>
 <button on:click={getCloud}>Import</button>
 <div id="cloudContainer">
-    <div id="remotestorage-widget"></div>
 </div>
 <h2>Account</h2>
 <div class="field">
     <label class="big" for="editChapterInput">Connected Account:</label>
-    <input id="editChapterInput" autocomplete="off" value="test@test.de" readonly>
+    <input id="editChapterInput" autocomplete="off" value={currentUser} readonly>
+    <button on:click={login}>Login</button>
+    <button on:click={logout}>Logout</button>
 </div>
 <h2>Appereance</h2>
 <div class="field">

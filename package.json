@@ -26,6 +26,7 @@
     "svelte": "^3.0.0"
   },
   "dependencies": {
+    "backendless": "^5.4.4",
     "pouchdb": "^7.1.1",
     "pouchdb-browser": "^7.1.1",
     "remotestorage-widget": "^1.4.0",
