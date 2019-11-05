@@ -74,13 +74,18 @@ function storeProjects() {
         /**
          * Creates project.
          * @param title Title of the new project.
+         * @returns ID of the created project.
          */
-        createProject: (title) => update(n => {
-            return n.concat([{
-                id: getRandomNumber(),
-                title: title
-            }]);
-        }),
+        createProject: (title) => {
+            let newProjectId = getRandomNumber();
+            update(n => {
+                return n.concat([{
+                    id: newProjectId,
+                    title: title
+                }]);
+            });
+            return newProjectId;
+        },
         /**
          * Sets project title.
          * @param id ID of the project.
