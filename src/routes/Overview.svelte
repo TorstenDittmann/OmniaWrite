@@ -10,6 +10,12 @@
 
   let showCreateProject = false;
 
+  function createProject() {
+    let retValue = projects.createProject(document.getElementById("createProjectInput").value);
+    showCreateProject = false;
+    changeProject(retValue);
+  }
+
   function changeProject(project) {
     state.setCurrentProject(project);
     location.reload();
@@ -55,13 +61,13 @@
 			<small><em>noun</em> proj·​ect \ ˈprä-ˌjekt</small>
 		</h2>
     <div class="field">
-      <label for="editChapterInput">Title:</label>
-      <input id="editChapterInput" autocomplete="off"
+      <label for="createProjectInput">Title:</label>
+      <input id="createProjectInput" autocomplete="off"
         placeholder="enter your title">
     </div>
     <hr>
     <div class="btn-group">
-      <button>Create!</button>    
+      <button on:click={createProject}>Create!</button>    
     </div>
 	</Modal>
 {/if}
