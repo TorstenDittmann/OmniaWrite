@@ -2,77 +2,69 @@
     import {
         onMount
     } from "svelte";
-    import Backendless from 'backendless';
 
-    let currentUser;
+    import {
+        state
+    } from "../stores";
 
+    import {
+        cloud
+    } from "../cloud";
 
-    const APP_ID = '***REMOVED***';
-    const API_KEY = '***REMOVED***';
+    let exportButtonStatus = true;
+    let importButtonStatus = true;
 
-    Backendless.serverURL = 'https://api.backendless.com';
-    Backendless.initApp(APP_ID, API_KEY);
+    let registerName;
+    let registerUser;
+    let registerPass;
 
+    let loginUser;
+    let loginPass;
 
+    let isUserLoggedIn = false;
 
     onMount(() => {
-        Backendless.UserService.isValidLogin()
-            .then(success)
-            .catch(error)
+        checkLogin();
     });
 
-    function success(result) {
-        console.log("Is login valid?: " + result);
-        Backendless.UserService.getCurrentUser()
-            .then(function (curUser) {
-                currentUser = curUser.email;
-            })
-            .catch(function (error) {});
-    }
-
-    function error(err) {
-        console.log(err.message);
-        console.log(err.statusCode);
-    }
-
-    function logout() {
-        Backendless.UserService.logout()
-            .then(function () {})
-            .catch(function (error) {});
-    }
-
     function saveCloud() {
-        let blob = new Blob(["\ufeff", JSON.stringify(localStorage)], {
-            type: 'application/json'
+        exportButtonStatus = false;
+        cloud.saveToCloud().then((retValue) => {
+            if (retValue == true) {
+                exportButtonStatus = true;
+            }
         });
-        console.log(blob);
-        Backendless.Files.saveFile("testFolder", "t-dittmann.txt", blob, true)
-            .then(function (savedFileURL) {
-                console.log("file has been saved - " + savedFileURL);
-            })
-            .catch(function (error) {
-                console.log("error - " + error.message);
-            });
     }
 
     async function getCloud() {
-        const response = await
-        fetch(
-            'https://backendlessappcontent.com/***REMOVED***/***REMOVED***/files/testFolder/t-dittmann.txt'
-        );
-        const data = await response.json();
-        Object.keys(data).forEach(function (k) {
-            localStorage.setItem(k, data[k]);
-        });
-        //console.log(JSON.stringify(myJson));
+        importButtonStatus = false;
+        cloud.saveFromCloud().then((retValue) => {
+            if (retValue == true) {
+                importButtonStatus = true;
+            }
+        })
     }
 
     function login() {
-        Backendless.UserService.login("torsten.dittmann@gmail.com", "test123", true)
-            .then(function (loggedInUser) {
-                console.log(loggedInUser);
-            })
-            .catch(function (error) {});
+        cloud.login(loginUser, loginPass).then(() => {
+            checkLogin();
+        });
+    }
+
+    function register() {
+        cloud.register(registerName, registerUser, registerPass).then(() => {
+            checkLogin();
+        });
+    }
+
+    function logout() {
+        cloud.logout().then(() => {
+            checkLogin();
+        })
+    }
+
+    async function checkLogin() {
+        isUserLoggedIn = await cloud.isUserLoggedIn()
     }
 </script>
 
@@ -82,18 +74,43 @@
 
 <h1>Settings</h1>
 
-<h2>Cloud</h2>
-<button on:click={saveCloud}>Export</button>
-<button on:click={getCloud}>Import</button>
-<div id="cloudContainer">
-</div>
+{#if isUserLoggedIn}
 <h2>Account</h2>
 <div class="field">
     <label class="big" for="editChapterInput">Connected Account:</label>
-    <input id="editChapterInput" autocomplete="off" value={currentUser} readonly>
-    <button on:click={login}>Login</button>
-    <button on:click={logout}>Logout</button>
+    <input id="editChapterInput" autocomplete="off" value={$state.currentUser} readonly>
 </div>
+<button on:click={logout}>Logout</button>
+<h2>Cloud</h2>
+<button on:click={saveCloud} disabled={!exportButtonStatus}>Export</button>
+<button on:click={getCloud} disabled={!importButtonStatus}>Import</button>
+{:else}
+<h2>Register</h2>
+<div class="field">
+    <label class="big" for="newName">Name:</label>
+    <input id="newName" type="text" autocomplete="off" bind:value={registerName}>
+</div>
+<div class="field">
+    <label class="big" for="newUser">E-Mail:</label>
+    <input id="newUser" type="email" autocomplete="off" bind:value={registerUser}>
+</div>
+<div class="field">
+    <label class="big" for="newPass">Password:</label>
+    <input id="newPass" type="password" autocomplete="off" bind:value={registerPass}>
+</div>
+<button on:click={register}>Register</button>
+<h2>Login</h2>
+<div class="field">
+    <label class="big" for="loginUser">E-Mail:</label>
+    <input id="loginUser" type="email" autocomplete="off" bind:value={loginUser}>
+</div>
+<div class="field">
+    <label class="big" for="loginPass">Password:</label>
+    <input id="loginPass" type="password" autocomplete="off" bind:value={loginPass}>
+</div>
+<button on:click={login}>Login</button>
+{/if}
+
 <h2>Appereance</h2>
 <div class="field">
     <label class="big" for="editChapterInput">Theme:</label>
