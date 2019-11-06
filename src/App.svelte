@@ -40,6 +40,42 @@
   let navigationState = mql.matches ? false : true;
   mql.addListener((e) => e.matches ? sidebarState = false : sidebarState = true);
   mql.addListener((e) => e.matches ? navigationState = false : navigationState = true);
+
+  /**
+   * Swipe detection
+   */
+  document.addEventListener('touchstart', handleTouchStart, false);
+  document.addEventListener('touchmove', handleTouchMove, false);
+
+  let xDown = null;
+  let yDown = null;
+
+  function handleTouchStart(evt) {
+    xDown = evt.touches[0].clientX;
+    yDown = evt.touches[0].clientY;
+  };
+
+  function handleTouchMove(evt) {
+    if (!xDown || !yDown) {
+      return;
+    }
+
+    var xUp = evt.touches[0].clientX;
+    var yUp = evt.touches[0].clientY;
+
+    var xDiff = xDown - xUp;
+    var yDiff = yDown - yUp;
+
+    if (Math.abs(xDiff) > Math.abs(yDiff)) {
+      if (xDiff > 0) {
+        sidebarState = false;
+      } else {
+        sidebarState = true;
+      }
+    }
+    xDown = null;
+    yDown = null;
+  };
 </script>
 
 <style>
