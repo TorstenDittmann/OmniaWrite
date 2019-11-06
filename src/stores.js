@@ -7,7 +7,6 @@ import {
 
 const defaultIntern = {
     version: "alpha",
-    lastCloudSave: null,
     installed: true
 };
 
@@ -56,6 +55,13 @@ function storeState() {
          */
         setCurrentProject: (project) => update(n => {
             n.currentProject = project;
+            return n;
+        }),
+        /**
+         * 
+         */
+        updateCloudTimestamp: () => update(n => {
+            n.lastCloudSave = +new Date;
             return n;
         })
     }
