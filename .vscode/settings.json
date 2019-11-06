@@ -14,4 +14,9 @@
     "editor.defaultFormatter": "HookyQR.beautify",
     "editor.formatOnPaste": true,
     "editor.formatOnSave": true,
+    "files.watcherExclude": {
+        "**/.git/objects/**": true,
+        "**/.git/subtree-cache/**": true,
+        "**/node_modules/*/**": true
+    }
 }
