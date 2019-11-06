@@ -45,8 +45,9 @@ function storeState() {
          * Sets current user ID.
          * @param user User ID.
          */
-        setCurrentUser: (user) => update(n => {
+        setCurrentUser: (user, token) => update(n => {
             n.currentUser = user;
+            n.currentUserToken = token;
             return n;
         }),
         /**

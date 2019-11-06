@@ -7,9 +7,11 @@ const APP_ID = '0CE45A1E-07A9-86CD-FF78-81FCFD46CD00';
 const API_KEY = '5990F07B-D5AA-70CF-FF93-AD29940B8900';
 const API_URL = 'https://backendlessappcontent.com/' + APP_ID + '/' + API_KEY + '/files/userData/';
 let USER_ID;
+let USER_TOKEN;
 
 state.subscribe(value => {
     USER_ID = value.currentUser;
+    USER_TOKEN = value.currentUserToken;
 });
 
 Backendless.serverURL = 'https://api.backendless.com';
@@ -46,7 +48,8 @@ export const cloud = {
     login: (user, pass) => {
         return Backendless.UserService.login(user, pass, true)
             .then((loggedInUser) => {
-                state.setCurrentUser(loggedInUser.objectId);
+                console.log(loggedInUser);
+                state.setCurrentUser(loggedInUser.objectId, loggedInUser['user-token']);
             })
             .catch(error)
     },
@@ -69,7 +72,7 @@ export const cloud = {
             type: 'application/json'
         });
 
-        return Backendless.Files.saveFile("userData", USER_ID + ".txt", blob, true)
+        return Backendless.Files.saveFile("userData", USER_ID + "/data.json", blob, true)
             .then(() => {
                 state.updateCloudTimestamp();
                 return true;
@@ -81,7 +84,12 @@ export const cloud = {
      * @returns Promise<boolean>
      */
     saveFromCloud: async () => {
-        const response = await fetch(API_URL + USER_ID + '.txt');
+        const response = await fetch(API_URL + USER_ID + '/data.json', {
+            headers: {
+                "user-token": USER_TOKEN
+            }
+        });
+        console.log(response);
         const data = await response.json();
         const dataObject = Object.keys(data);
         return new Promise((resolve, reject) => {
