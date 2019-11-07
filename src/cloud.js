@@ -18,6 +18,10 @@ Backendless.serverURL = 'https://api.backendless.com';
 Backendless.initApp(APP_ID, API_KEY);
 
 export const cloud = {
+    /**
+     * Registers new user.
+     * @returns Backendless.User
+     */
     register: (name, email, pass) => {
         let user = new Backendless.User();
         user.email = email;
@@ -48,8 +52,7 @@ export const cloud = {
     login: (user, pass) => {
         return Backendless.UserService.login(user, pass, true)
             .then((loggedInUser) => {
-                console.log(loggedInUser);
-                state.setCurrentUser(loggedInUser.objectId, loggedInUser['user-token']);
+                state.setCurrentUser(loggedInUser.objectId, loggedInUser.email, loggedInUser['user-token']);
             })
             .catch(error)
     },
@@ -89,16 +92,15 @@ export const cloud = {
                 "user-token": USER_TOKEN
             }
         });
-        console.log(response);
         const data = await response.json();
         const dataObject = Object.keys(data);
         return new Promise((resolve, reject) => {
-            dataObject.forEach((k, i) => {
-                localStorage.setItem(k, data[k]);
-                if (i + 1 == dataObject.length) {
-                    resolve(true)
+            dataObject.forEach(k => {
+                if (k != "Backendless") {
+                    localStorage.setItem(k, data[k]);
                 }
             });
+            resolve(true);
         });
     }
 }
