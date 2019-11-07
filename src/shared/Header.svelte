@@ -85,6 +85,9 @@
             <li use:active={'/export', 'active' }>
               <a href="/export" use:link>Export</a>
             </li>
+            <li use:active={'/cloud', 'active' }>
+              <a href="/cloud" use:link>Cloud</a>
+            </li>
         </ul>
         <!--
         <i class="icon-cross_mark titlebar" />

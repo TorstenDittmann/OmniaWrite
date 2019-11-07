@@ -234,9 +234,14 @@ header {
                 li {
                     padding: .5rem 0 .5rem 2rem;
 
-                    .btn-group button {
-                        font-size: .75rem;
-                        border-radius: .125rem;
+                    .btn-group {
+                        margin: 0;
+
+                        button {
+                            font-size: .75rem;
+                            border-radius: .125rem;
+                            height: 1.5rem;
+                        }
                     }
 
                     .action {
@@ -333,9 +338,11 @@ header {
 }
 
 .btn-group {
+    margin: 1rem;
+
     button {
         border: 1px solid;
-        padding: .25em .5em;
+        padding: .25em 1em;
         cursor: pointer;
         float: left;
         border-color: #0077b8;
@@ -343,6 +350,19 @@ header {
         color: var(--text-color);
         opacity: .65;
         font-size: 1rem;
+        height: 2rem;
+
+        .spinner {
+            display: none;
+            -webkit-animation: spin 2s infinite linear;
+            animation: spin 2s infinite linear;
+        }
+
+        &.loading {
+            .spinner {
+                display: inline-block;
+            }
+        }
 
         &.warning {
             border-color: #e02200;
@@ -373,6 +393,7 @@ header {
     display: flex;
     flex-direction: row;
     align-items: center;
+    margin: 1rem 0;
 
     label {
         width: 6rem;
@@ -618,4 +639,83 @@ select#focusSceneSelect.active {
         display: none;
     }
 
+}
+
+@keyframes spin {
+    0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+
+    100% {
+        -webkit-transform: rotate(359deg);
+        transform: rotate(359deg);
+    }
+}
+
+.lds-ellipsis {
+    display: inline-block;
+    position: relative;
+    width: 64px;
+    height: 64px;
+}
+
+.lds-ellipsis div {
+    position: absolute;
+    top: 27px;
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+    background: #fff;
+    animation-timing-function: cubic-bezier(0, 1, 1, 0);
+}
+
+.lds-ellipsis div:nth-child(1) {
+    left: 6px;
+    animation: lds-ellipsis1 0.6s infinite;
+}
+
+.lds-ellipsis div:nth-child(2) {
+    left: 6px;
+    animation: lds-ellipsis2 0.6s infinite;
+}
+
+.lds-ellipsis div:nth-child(3) {
+    left: 26px;
+    animation: lds-ellipsis2 0.6s infinite;
+}
+
+.lds-ellipsis div:nth-child(4) {
+    left: 45px;
+    animation: lds-ellipsis3 0.6s infinite;
+}
+
+@keyframes lds-ellipsis1 {
+    0% {
+        transform: scale(0);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes lds-ellipsis3 {
+    0% {
+        transform: scale(1);
+    }
+
+    100% {
+        transform: scale(0);
+    }
+}
+
+@keyframes lds-ellipsis2 {
+    0% {
+        transform: translate(0, 0);
+    }
+
+    100% {
+        transform: translate(19px, 0);
+    }
 }
