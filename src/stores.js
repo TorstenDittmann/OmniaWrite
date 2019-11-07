@@ -2,7 +2,6 @@ import {
     writable
 } from "svelte/store";
 
-
 // import PouchDB from "pouchdb";
 
 const defaultIntern = {
@@ -12,7 +11,7 @@ const defaultIntern = {
 
 if (localStorage.getItem("intern") === null) {
     localStorage.setItem("intern", JSON.stringify(defaultIntern));
-    localStorage.setItem("state", "[]");
+    localStorage.setItem("state", "{}");
     localStorage.setItem("projects", "[]");
     localStorage.setItem("chapters", "[]");
     localStorage.setItem("scenes", "[]");
@@ -45,9 +44,11 @@ function storeState() {
          * Sets current user ID.
          * @param user User ID.
          */
-        setCurrentUser: (user, token) => update(n => {
+        setCurrentUser: (user, email, token) => update(n => {
             n.currentUser = user;
+            n.currentUserEmail = email;
             n.currentUserToken = token;
+            console.log("hey");
             return n;
         }),
         /**
@@ -62,7 +63,11 @@ function storeState() {
          * 
          */
         updateCloudTimestamp: () => update(n => {
-            n.lastCloudSave = +new Date;
+            n.lastCloudSave = n.lastLocalSave;
+            return n;
+        }),
+        updateLocalTimestamp: () => update(n => {
+            n.lastLocalSave = +new Date;
             return n;
         })
     }
@@ -84,6 +89,7 @@ function storeProjects() {
          * @returns ID of the created project.
          */
         createProject: (title) => {
+            updateLocalTimestamp();
             let newProjectId = getRandomNumber();
             update(n => {
                 return n.concat([{
@@ -99,6 +105,7 @@ function storeProjects() {
          * @param title New title of project.
          */
         setProjectTitle: (id, title) => update(n => {
+            updateLocalTimestamp();
             n[n.findIndex(p => p.id == id)].title = title;
             return n;
         }),
@@ -121,6 +128,7 @@ function storeChapters() {
          * @param title Title of the new chapter.
          */
         createChapter: (project, title) => update(n => {
+            updateLocalTimestamp();
             return n.concat([{
                 id: getRandomNumber(),
                 project: project,
@@ -137,6 +145,7 @@ function storeChapters() {
          * @param title New title of chapter.
          */
         setChapterTitle: (id, title) => update(n => {
+            updateLocalTimestamp();
             n[n.findIndex(c => c.id == id)].title = title;
             return n;
         }),
@@ -145,6 +154,7 @@ function storeChapters() {
          * @param id ID of the chapter.
          */
         removeChapter: (id) => update(n => {
+            updateLocalTimestamp();
             return n.filter(n => n.id !== id)
         }),
         /**
@@ -152,6 +162,7 @@ function storeChapters() {
          * @param id ID of the chapter.
          */
         toggleChapterInSidebar: (id) => update(n => {
+            updateLocalTimestamp();
             let index = n.findIndex(c => c.id == id);
             n[index].ui.open = !n[index].ui.open;
             return n;
@@ -166,7 +177,6 @@ function storeScenes() {
     } = writable(JSON.parse(
         localStorage.getItem("scenes") || ""
     ));
-
     return {
         subscribe,
         /**
@@ -175,6 +185,7 @@ function storeScenes() {
          * @param title Title of the new chapter.
          */
         createScene: (chapter, title) => update(n => {
+            updateLocalTimestamp();
             return n.concat([{
                 id: getRandomNumber(),
                 chapter: chapter,
@@ -189,6 +200,7 @@ function storeScenes() {
          * @param title New title of scene.
          */
         setSceneTitle: (id, title) => update(n => {
+            updateLocalTimestamp();
             let index = n.findIndex(c => c.id == id);
             n[index].title = title;
             n[index].lastEdit = Math.round((new Date()).getTime() / 1000);
@@ -200,6 +212,7 @@ function storeScenes() {
          * @param title New content of scene.
          */
         setSceneContent: (id, content) => update(n => {
+            updateLocalTimestamp();
             let index = n.findIndex(c => c.id == id);
             n[index].content = content;
             n[index].lastEdit = Math.round((new Date()).getTime() / 1000);
@@ -210,6 +223,7 @@ function storeScenes() {
          * @param id ID of the scene.
          */
         removeScene: (id) => update(n => {
+            updateLocalTimestamp();
             return n.filter(n => n.id !== id)
         })
     }
@@ -222,7 +236,6 @@ function storeTabs() {
     } = writable(JSON.parse(
         localStorage.getItem("tabs") || ""
     ));
-
     return {
         subscribe,
         /**
@@ -247,6 +260,10 @@ function storeTabs() {
             return n.filter(n => n.id !== id)
         })
     }
+}
+
+function updateLocalTimestamp() {
+    state.updateLocalTimestamp();
 }
 
 export const state = storeState();
