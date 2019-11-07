@@ -17,7 +17,7 @@ state.subscribe(value => {
 Backendless.serverURL = "https://api.backendless.com";
 Backendless.initApp(APP_ID, API_KEY);
 
-const cloud = {
+export const cloud = {
     /**
      * Registers new user.
      * @returns Backendless.User
@@ -49,7 +49,11 @@ const cloud = {
      * @param pass Password
      */
     login: (user, pass) => {
-        return Backendless.UserService.login(user, pass, true);
+        return Backendless.UserService.login(user, pass, true)
+            .then((loggedInUser) => {
+                state.setCurrentUser(loggedInUser.objectId, loggedInUser.email, loggedInUser['user-token']);
+            })
+            .catch(error)
     },
     /**
      * Logs out user.
@@ -95,15 +99,13 @@ const cloud = {
         });
         const data = await response.json();
         const dataObject = Object.keys(data);
-        return new Promise((resolve) => {
+        return new Promise((resolve, reject) => {
             dataObject.forEach(k => {
                 if (k != "Backendless") {
                     localStorage.setItem(k, data[k]);
                 }
             });
-            cloud.setCloudTimestamp().then(() => {
-                resolve(true);
-            });
+            resolve(true);
         });
     }
 }

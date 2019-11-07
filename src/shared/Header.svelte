@@ -112,7 +112,15 @@
             <li data-deskgap-no-drag>
               <span class="lnr lnr-cloud-upload" />
             </li>
-          {/if}
+            <li use:active={'/settings', 'active' }>
+              <a href="/settings" use:link>Settings</a>
+            </li>
+            <li use:active={'/export', 'active' }>
+              <a href="/export" use:link>Export</a>
+            </li>
+            <li use:active={'/cloud', 'active' }>
+              <a href="/cloud" use:link>Cloud</a>
+            </li>
         </ul>
         {#if isRunningElectron}
           <span
