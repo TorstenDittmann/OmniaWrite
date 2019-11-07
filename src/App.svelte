@@ -14,6 +14,7 @@
   import DatabaseRoute from "./routes/Database.svelte";
   import MindmapRoute from "./routes/Mindmap.svelte";
   import SettingsRoute from "./routes/Settings.svelte";
+  import CloudRoute from "./routes/Cloud.svelte";
   import ExportRoute from "./routes/Export.svelte";
 
   const routes = {
@@ -22,6 +23,7 @@
     "/database/:entryId?": DatabaseRoute,
     "/mindmap/:mapId?": MindmapRoute,
     "/settings": SettingsRoute,
+    "/cloud": CloudRoute,
     "/export": ExportRoute,
 
     // Catch-all
