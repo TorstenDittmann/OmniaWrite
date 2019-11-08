@@ -48,7 +48,6 @@ function storeState() {
             n.currentUser = user;
             n.currentUserEmail = email;
             n.currentUserToken = token;
-            console.log("hey");
             return n;
         }),
         /**
