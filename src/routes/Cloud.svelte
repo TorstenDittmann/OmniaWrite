@@ -3,6 +3,8 @@
         onMount
     } from "svelte";
 
+    import Alert from "../shared/Alert.svelte";
+
     import {
         state
     } from "../stores";
@@ -23,6 +25,10 @@
     let loginPass;
 
     let isUserLoggedIn = false;
+
+    let showAlert = false;
+    let showAlertType;
+    let showAlertText;
 
     onMount(() => {
         checkLogin();
@@ -54,20 +60,39 @@
 
     function login() {
         loginButtonLoading = true;
-        cloud.login(loginUser, loginPass).then(() => {
-            checkLogin();
-            loginButtonLoading = false;
-        });
+        cloud.login(loginUser, loginPass)
+            .then((loggedInUser) => {
+                state.setCurrentUser(loggedInUser.objectId, loggedInUser.email, loggedInUser['user-token']);
+                checkLogin();
+                showAlert = false;
+                loginButtonLoading = false;
+            })
+            .catch((error) => {
+                showAlert = true;
+                showAlertText = error.message
+                loginButtonLoading = false;
+            })
     }
 
     let registerButtonLoading = false;
 
     function register() {
         registerButtonLoading = true;
-        cloud.register(registerName, registerUser, registerPass).then(() => {
-            checkLogin();
-            registerButtonLoading = false;
-        });
+        cloud.register(registerName, registerUser, registerPass)
+            .then((registeredUser) => {
+                return registeredUser;
+            })
+            .then(() => {
+                checkLogin();
+                registerButtonLoading = false;
+                showAlert = true;
+                showAlertText = "Please activate your e-mail adress."
+            })
+            .catch((error) => {
+                showAlert = true;
+                showAlertText = error.message
+                registerButtonLoading = false;
+            })
     }
 
     let logoutButtonLoading = false;
@@ -93,6 +118,11 @@
 
 </style>
 {#if dataLoaded}
+{#if showAlert}
+<Alert danger on:close="{() => showAlert = false}">
+    <i class="icon-warning" slot="title"/>{showAlertText}
+</Alert>
+{/if}
 {#if isUserLoggedIn}
 <h2>Account</h2>
 <div class="field">
