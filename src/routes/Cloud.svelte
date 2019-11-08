@@ -37,6 +37,7 @@
     let loginButtonLoading = false;
     let registerButtonLoading = false;
     let logoutButtonLoading = false;
+    let resetButtonLoading = false;
 
 
     onMount(() => {
@@ -73,7 +74,7 @@
             })
             .catch((error) => {
                 showAlert = true;
-                showAlertText = error.message + (error.code ? " - code: " + error.code : "")
+                showAlertText = error.message + (error.code ? " - code: " + error.code : "");
                 loginButtonLoading = false;
             })
     }
@@ -88,25 +89,27 @@
                 checkLogin();
                 registerButtonLoading = false;
                 showAlert = true;
-                showAlertText = "Please activate your e-mail adress."
+                showAlertText = "Please activate your e-mail adress.";
             })
             .catch((error) => {
                 showAlert = true;
-                showAlertText = error.message + (error.code ? " - code: " + error.code : "")
-                loginButtonLoading = false;
+                showAlertText = error.message + (error.code ? " - code: " + error.code : "");
+                registerButtonLoading = false;
             })
     }
 
     function resetPassword() {
+        resetButtonLoading = true;
         Backendless.UserService.restorePassword(resetUser)
             .then(() => {
                 showAlert = true;
-                showAlertText = "Please check your mail inbox for further instructions."
+                showAlertText = "Please check your mail inbox for further instructions.";
+                resetButtonLoading = false;
             })
             .catch((error) => {
                 showAlert = true;
-                showAlertText = error.message + (error.code ? " - code: " + error.code : "")
-                loginButtonLoading = false;
+                showAlertText = error.message + (error.code ? " - code: " + error.code : "");
+                resetButtonLoading = false;
             });
     }
 
@@ -208,7 +211,8 @@
     <input id="resetUser" type="email" autocomplete="off" bind:value={resetUser}>
 </div>
 <div class="btn-group">
-    <button on:click={resetPassword}>
+    <button on:click={resetPassword} disabled={resetButtonLoading} class:loading={resetButtonLoading}>
+        <i class="icon-spinner_2 spinner" />
         Reset password
     </button>
 </div>
