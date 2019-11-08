@@ -59,12 +59,16 @@ function storeState() {
             return n;
         }),
         /**
-         * 
+         * Updates Cloud timestamp.
          */
-        updateCloudTimestamp: () => update(n => {
-            n.lastCloudSave = n.lastLocalSave;
+        updateCloudTimestamp: (timestamp) => update(n => {
+            n.lastCloudSave = timestamp;
+            n.lastLocalSave = timestamp;
             return n;
         }),
+        /**
+         * Sets Local Timestamp to current time.
+         */
         updateLocalTimestamp: () => update(n => {
             n.lastLocalSave = +new Date;
             return n;

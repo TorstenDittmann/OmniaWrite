@@ -58,6 +58,12 @@ export const cloud = {
             })
             .catch(error)
     },
+    setCloudTimestamp: () => {
+        return Backendless.Files.listing("userData/" + USER_ID, "data.json", false)
+            .then((fileInfoArray) => {
+                state.updateCloudTimestamp(fileInfoArray[0].createdOn);
+            })
+    },
     /**
      * Saves all stores into cloud.
      * @returns Promise<boolean>
@@ -67,9 +73,9 @@ export const cloud = {
             type: 'application/json'
         });
 
-        return Backendless.Files.saveFile("userData", USER_ID + "/data.json", blob, true)
+        return Backendless.Files.saveFile("userData/" + USER_ID, "data.json", blob, true)
             .then(() => {
-                state.updateCloudTimestamp();
+                cloud.setCloudTimestamp();
                 return true;
             })
             .catch(error);
@@ -92,7 +98,9 @@ export const cloud = {
                     localStorage.setItem(k, data[k]);
                 }
             });
-            resolve(true);
+            cloud.setCloudTimestamp().then(() => {
+                resolve(true);
+            });
         });
     }
 }
