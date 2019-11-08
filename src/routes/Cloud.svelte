@@ -24,17 +24,24 @@
     let loginUser;
     let loginPass;
 
+    let resetUser;
+
     let isUserLoggedIn = false;
 
     let showAlert = false;
     let showAlertType;
     let showAlertText;
 
+    let saveCloudButtonLoading = false;
+    let getCloudButtonLoading = false;
+    let loginButtonLoading = false;
+    let registerButtonLoading = false;
+    let logoutButtonLoading = false;
+
+
     onMount(() => {
         checkLogin();
     });
-
-    let saveCloudButtonLoading = false;
 
     function saveCloud() {
         saveCloudButtonLoading = true;
@@ -45,8 +52,6 @@
         });
     }
 
-    let getCloudButtonLoading = false;
-
     async function getCloud() {
         getCloudButtonLoading = true;
         cloud.saveFromCloud().then((retValue) => {
@@ -56,8 +61,6 @@
             }
         })
     }
-
-    let loginButtonLoading = false;
 
     function login() {
         loginButtonLoading = true;
@@ -70,12 +73,10 @@
             })
             .catch((error) => {
                 showAlert = true;
-                showAlertText = error.message
+                showAlertText = error.message + (error.code ? " - code: " + error.code : "")
                 loginButtonLoading = false;
             })
     }
-
-    let registerButtonLoading = false;
 
     function register() {
         registerButtonLoading = true;
@@ -91,12 +92,23 @@
             })
             .catch((error) => {
                 showAlert = true;
-                showAlertText = error.message
-                registerButtonLoading = false;
+                showAlertText = error.message + (error.code ? " - code: " + error.code : "")
+                loginButtonLoading = false;
             })
     }
 
-    let logoutButtonLoading = false;
+    function resetPassword() {
+        Backendless.UserService.restorePassword(resetUser)
+            .then(() => {
+                showAlert = true;
+                showAlertText = "Please check your mail inbox for further instructions."
+            })
+            .catch((error) => {
+                showAlert = true;
+                showAlertText = error.message + (error.code ? " - code: " + error.code : "")
+                loginButtonLoading = false;
+            });
+    }
 
     function logout() {
         logoutButtonLoading = true;
@@ -188,6 +200,16 @@
     <button on:click={register} disabled={registerButtonLoading} class:loading={registerButtonLoading}>
         <i class="icon-spinner_2 spinner"/>
         Register
+    </button>
+</div>
+<h2>Password reset</h2>
+<div class="field">
+    <label class="big" for="resetUser">E-Mail:</label>
+    <input id="resetUser" type="email" autocomplete="off" bind:value={resetUser}>
+</div>
+<div class="btn-group">
+    <button on:click={resetPassword}>
+        Reset password
     </button>
 </div>
 {/if}
