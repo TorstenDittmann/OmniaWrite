@@ -52,6 +52,7 @@
         cloud.saveFromCloud().then((retValue) => {
             if (retValue == true) {
                 getCloudButtonLoading = false;
+                window.location.reload();
             }
         })
     }
