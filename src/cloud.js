@@ -27,11 +27,7 @@ export const cloud = {
         user.email = email;
         user.password = pass;
         user.name = name;
-        return Backendless.UserService.register(user)
-            .then((registeredUser) => {
-                return registeredUser;
-            })
-            .catch(error)
+        return Backendless.UserService.register(user);
     },
     /**
      * Checks if user is logged in.
@@ -50,11 +46,7 @@ export const cloud = {
      * @param pass Password
      */
     login: (user, pass) => {
-        return Backendless.UserService.login(user, pass, true)
-            .then((loggedInUser) => {
-                state.setCurrentUser(loggedInUser.objectId, loggedInUser.email, loggedInUser['user-token']);
-            })
-            .catch(error)
+        return Backendless.UserService.login(user, pass, true);
     },
     /**
      * Logs out user.
@@ -62,7 +54,7 @@ export const cloud = {
     logout: () => {
         return Backendless.UserService.logout()
             .then(() => {
-                state.setCurrentUser(null);
+                state.setCurrentUser(null, null, null);
             })
             .catch(error)
     },
