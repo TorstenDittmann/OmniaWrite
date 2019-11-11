@@ -228,7 +228,23 @@ function storeScenes() {
         removeScene: (id) => update(n => {
             updateLocalTimestamp();
             return n.filter(n => n.id !== id)
-        })
+        }),
+        /**
+         * Orders the position.
+         * @param id id of item
+         * @param direction true = up|false = down
+         */
+        orderScene: (id, direction) => update(n => {
+            let indexWith;
+            let index = n.findIndex(c => c.id == id);
+            if (direction) {
+                indexWith = n.findIndex(c => c.order == (n[index].order - 1) && c.chapter == n[index].chapter);
+            } else {
+                indexWith = n.findIndex(c => c.order == (n[index].order + 1) && c.chapter == n[index].chapter);
+            }
+            [n[index].order, n[indexWith].order] = [n[indexWith].order, n[index].order];
+            return n;
+        }),
     }
 }
 

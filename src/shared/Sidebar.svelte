@@ -17,7 +17,6 @@
 
   import Modal from './Modal.svelte';
 
-
   import active from "svelte-spa-router/active";
 
   export let sidebarState;
@@ -63,6 +62,35 @@
   }
 </script>
 
+<style>
+  .swap-list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .swap-list>li {
+    padding: .5rem 0 .5rem 2rem;
+  }
+
+  .swap-list>li .action {
+    cursor: pointer;
+    opacity: .65;
+  }
+
+  .swap-list>li .action:hover {
+    opacity: 1;
+  }
+
+  .swap-list li:first-child .icon-chevron_up {
+    visibility: hidden;
+  }
+
+  .swap-list li:last-child .icon-chevron_down {
+    visibility: hidden;
+  }
+</style>
+
 {#if showCreateChapter}
 	<Modal on:close="{() => showCreateChapter = false}">
 		<h2 slot="header">
@@ -105,18 +133,30 @@
 		  {objEditChapter.title}<br>
 		  <small><em>noun</em> chap·​ter \ ˈchap-tər</small>
 		</h2>
+    <h3>Edit</h3>
     <div class="field">
       <label for="editChapterInput">Title:</label>
       <input id="editChapterInput" bind:value={objEditChapter.title} autocomplete="off" placeholder="enter your title">
     </div>
-    <br>
+    <h3>Order scenes</h3>
+    <ul class="swap-list">
+      {#each $scenes.filter(scene => scene.chapter == objEditChapter.id).sort((a, b) => a.order - b.order) as scene}
+        <li>
+          <i class="icon-chevron_up action" on:click={()=> {scenes.orderScene(scene.id, true)}}/>
+          <i class="icon-chevron_down action" on:click={()=> {scenes.orderScene(scene.id, false)}}/>
+          <span>{scene.title}</span>
+        </li>
+      {/each}
+    </ul>
     <div class="btn-group">
       <button on:click={editChapter}>Save</button>
-      <button style="float: right;" class="warning" on:click={()=> {
-        chapters.removeChapter(objEditChapter.id);
-        showEditChapter = false;
+      <button style="float: right;" class="warning" on:click={
+          ()=> {
+            chapters.removeChapter(objEditChapter.id);
+            showEditChapter = false;
+          }
         }
-        }>Delete</button>
+        >Delete</button>
     </div>
 	</Modal>
 {/if}
@@ -159,12 +199,13 @@
             <i class="icon-settings action" on:click="{() => [showEditChapter, objEditChapter] = [true, chapter]}" />
           </span>
           <ul>
-            {#each $scenes.filter(scene => scene.chapter == chapter.id) as scene}
+            {#each $scenes.filter(scene => scene.chapter == chapter.id).sort((a, b) => a.order - b.order) as scene}
               <li
                 use:active={'/write/' + scene.id, 'active'}
                 on:click={() => push('/write/' + scene.id)}>
                 <a href="/write/{scene.id}" use:link>{scene.title}</a>
-                <i class="icon-settings action" on:click="{() => [showEditScene, objEditScene] = [true, scene]}" />
+                <i class="icon-settings action"
+                  on:click="{() => [showEditScene, objEditScene] = [true, scene]}" />
               </li>
             {/each}
             <li>
