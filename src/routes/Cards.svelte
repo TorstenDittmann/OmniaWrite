@@ -1,38 +1,108 @@
 <script>
+    import {
+        cards,
+        state
+    } from "../stores";
+    import Modal from '../shared/Modal.svelte';
 
+    let showCreateCard = false;
+    let showEditCard = false;
+    let searchInput = "";
+
+    let newCardObject = {
+        title: null,
+        content: null,
+        showTooltip: false
+    };
+
+    let editCardObject = {
+        id: null,
+        project: null,
+        title: null,
+        content: null,
+        showTooltip: false
+    };
+
+    function createCard() {
+        cards.createCard($state.currentProject, newCardObject.title, newCardObject.content, newCardObject.showTooltip);
+        showCreateCard = false;
+    }
+
+    function editCard() {
+        cards.setCard(editCardObject);
+        showEditCard = false;
+    }
+
+    $: filteredCards = searchInput ?
+        $cards.filter(card => card.project == $state.currentProject &&
+            (
+                card.title.toLowerCase().startsWith(searchInput.toLowerCase()) ||
+                card.content.toLowerCase().includes(searchInput.toLowerCase())
+            )
+        ) :
+        $cards.filter(card => card.project == $state.currentProject);
 </script>
 
-<style>
-    .grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-        /* Umbrechen, sobald die Box 300 Pixel Breite hat */
-    }
+{#if showCreateCard}
+	<Modal on:close="{() => showCreateCard = false}">
+		<h2 slot="header">
+			New 'card'
+			<small><em>noun</em> \ ˈkärd</small>
+		</h2>
+    <div class="field">
+      <label for="createTitle">Title:</label>
+      <input id="createTitle" autocomplete="off"
+        placeholder="enter your title" type="text" bind:value={newCardObject.title}>
+    </div>
+    <div class="field">
+        <label for="createContent">Content:</label>
+        <textarea id="createContent" rows="10" bind:value={newCardObject.content}></textarea>
+    </div>
+    <div class="field">
+        <input type="checkbox" name="createTooltop" id="createTooltop" bind:checked={newCardObject.showTooltip}>
+        <label class="big" for="createTooltop">Show in scenes</label>
+    </div>
+    <div class="btn-group">
+      <button on:click={createCard}>Create</button>
+    </div>
+	</Modal>
+{/if}
 
-    .grid div {
-        background: #257989;
-        border: 2px solid #1d606d;
-        color: white;
-        margin: 1em;
-        padding: 1em;
-    }
-</style>
-
-<div class="grid">
-    <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit facere alias, consequuntur laboriosam fugit,
-        dolor quibusdam, cumque repellat commodi dolorem nemo blanditiis molestias exercitationem obcaecati dolores
-        fugiat pariatur vero vel.</div>
-    <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad fuga commodi minus, fugit porro consectetur
-        corporis esse officia neque nihil facere nulla architecto rerum consequuntur, ipsam ex perspiciatis beatae
-        quae.</div>
-    <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quasi fugiat praesentium unde aspernatur doloribus
-        perferendis dolore iusto nobis esse eum distinctio maxime ipsum, itaque voluptatum, sunt fuga quae libero!
-        Temporibus!</div>
-    <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque cum voluptates aut autem repudiandae saepe
-        quo alias, earum explicabo nobis vel quisquam, rem aperiam maxime sit porro similique. Quos, eius.</div>
-    <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima molestias, mollitia sapiente error natus.
-        Maiores voluptate, nesciunt magnam quos blanditiis, vero sequi enim a non consequuntur at, sit sapiente.
-        Obcaecati.</div>
-    <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sequi vel quibusdam commodi quidem quasi alias, quas
-        hic totam amet, obcaecati odit suscipit dolores iusto aliquam beatae praesentium ipsam velit maxime.</div>
+{#if showEditCard}
+	<Modal on:close="{() => showEditCard = false}">
+		<h2 slot="header">
+			Edit 'card'
+			<small><em>noun</em> \ ˈkärd</small>
+		</h2>
+    <div class="field">
+      <label for="createTitle">Title:</label>
+      <input id="createTitle" autocomplete="off"
+        placeholder="enter your title" type="text" bind:value={editCardObject.title}>
+    </div>
+    <div class="field">
+        <label for="createContent">Content:</label>
+        <textarea id="createContent" rows="10" bind:value={editCardObject.content}></textarea>
+    </div>
+    <div class="field">
+        <input type="checkbox" name="createTooltop" id="createTooltop" bind:checked={editCardObject.showTooltip}>
+        <label class="big" for="createTooltop">Show in scenes</label>
+    </div>
+    <div class="btn-group">
+      <button on:click={editCard}>Save</button>
+    </div>
+	</Modal>
+{/if}
+<div class="field">
+    <input autocomplete="off" placeholder="search here..." type="search" bind:value={searchInput}>
+</div>
+<div id="cards" class="grid">
+    <div class="new" on:click={() => showCreateCard = true}>
+        <i class="icon-plus"></i>
+    </div>
+    {#each filteredCards as card}
+    <div id="card" on:click={() => {[showEditCard, editCardObject] = [true, card]}} >
+        <h2>{#if card.showTooltip}<i class="icon-check_circle" />{/if} {card.title}</h2>
+        {card.content}
+    </div>
+    {/each}
 </div>

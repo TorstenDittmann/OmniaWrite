@@ -7,7 +7,6 @@
 
   import Modal from '../shared/Modal.svelte';
 
-
   let showCreateProject = false;
 
   function createProject() {
@@ -25,34 +24,6 @@
     projects.setProjectTitle(project, document.getElementById("newProjectTitle").value);
   }
 </script>
-
-<style>
-  .grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    /* Umbrechen, sobald die Box 300 Pixel Breite hat */
-  }
-
-  .grid div {
-    background: #28404d;
-    border: 2px solid #495865;
-    color: white;
-    margin: 1em;
-    padding: 1em;
-    cursor: pointer;
-    opacity: .65;
-  }
-
-  .grid .new {
-    text-align: center;
-    font-size: 3rem;
-  }
-
-
-  .grid div:hover {
-    opacity: 1;
-  }
-</style>
 
 {#if showCreateProject}
 	<Modal on:close="{() => showCreateProject = false}">
