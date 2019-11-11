@@ -416,7 +416,7 @@ header .navigation ul.menu li.active a {
   width: 12rem;
 }
 
-.field input {
+.field input[type=text] {
   -webkit-appearance: none;
   -moz-appearance: none;
   -ms-appearance: none;
@@ -442,7 +442,54 @@ header .navigation ul.menu li.active a {
   transition: background-size .2s ease;
 }
 
-.field input:focus {
+.field input[type=text]:focus {
+  border-bottom: 1px solid #0092d1;
+  background-size: 100% 100%;
+  outline: 0;
+  opacity: 1;
+}
+
+.field textarea {
+  max-width: calc(100% - .25rem);
+  width: calc(100% - .25rem);
+  height: auto;
+  resize: vertical;
+  background: none;
+  border: 1px solid #999;
+  color: #fff;
+  border-radius: .125rem;
+  padding: calc(.25rem + 2px) 0.5rem;
+}
+
+.field input[type=search] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  -o-appearance: none;
+  margin: 0;
+  padding: 0 .25rem;
+  border: none;
+  border-radius: 0;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  background: 0 0;
+  height: 1.2rem;
+  color: #fff;
+  display: inline-block;
+  border-bottom: 1px solid #999;
+  max-height: 1.2rem;
+  font-size: 1rem;
+  opacity: .65;
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(95%, transparent), color-stop(95%, #0092d1)) no-repeat;
+  background: linear-gradient(to bottom, transparent 95%, #0092d1 95%) no-repeat;
+  background-size: 0 100%;
+  -webkit-transition: background-size .2s ease;
+  transition: background-size .2s ease;
+  width: 100%;
+  text-align: center;
+}
+
+.field input[type=search]:focus {
   border-bottom: 1px solid #0092d1;
   background-size: 100% 100%;
   outline: 0;
@@ -470,6 +517,37 @@ select#focusSceneSelect:active {
 
 select#focusSceneSelect.active {
   display: unset !important;
+}
+
+.grid {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (minmax(350px, 1fr))[auto-fit];
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+}
+
+.grid > div {
+  background: #28404d;
+  border: 2px solid #495865;
+  color: white;
+  margin: 1em;
+  padding: 1em;
+  cursor: pointer;
+  opacity: .65;
+  white-space: pre-line;
+}
+
+.grid > div h2 {
+  margin: 0 0 1rem 0;
+}
+
+.grid > div.new {
+  text-align: center;
+  font-size: 3rem;
+}
+
+.grid > div:hover {
+  opacity: 1;
 }
 
 .tooltip {
