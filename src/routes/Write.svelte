@@ -9,7 +9,9 @@
   } from "../stores";
   import {
     push
-  } from 'svelte-spa-router'
+  } from 'svelte-spa-router';
+
+  import WriteOverview from './Write/WriteOverview.svelte';
 
   export let params = {};
   let currentScene;
@@ -185,4 +187,6 @@
       contenteditable="true"
       bind:innerHTML={currentScene.content} />
 </div>
+{:else}
+<WriteOverview></WriteOverview>
 {/if}
