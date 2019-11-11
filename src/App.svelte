@@ -11,7 +11,7 @@
 
   import OverviewRoute from "./routes/Overview.svelte";
   import WriteRoute from "./routes/Write.svelte";
-  import DatabaseRoute from "./routes/Database.svelte";
+  import CardsRoute from "./routes/Cards.svelte";
   import MindmapRoute from "./routes/Mindmap.svelte";
   import SettingsRoute from "./routes/Settings.svelte";
   import CloudRoute from "./routes/Cloud.svelte";
@@ -20,7 +20,7 @@
   const routes = {
     "/": OverviewRoute,
     "/write/:sceneId?": WriteRoute,
-    "/database/:entryId?": DatabaseRoute,
+    "/cards": CardsRoute,
     "/mindmap/:mapId?": MindmapRoute,
     "/settings": SettingsRoute,
     "/cloud": CloudRoute,
