@@ -73,10 +73,10 @@
             <li use:active={'/write/*', 'active' }>
               <a href="/write/" use:link>Write</a>
             </li>
-            <li use:active={'/database/*', 'active' }>
-              <a href="/database/" use:link>Database</a>
+            <li use:active={'/cards/', 'active' }>
+              <a href="/cards/" use:link>Cards</a>
             </li>
-            <li use:active={'/mindmap/*', 'active' }>
+            <li use:active={'/mindmap/', 'active' }>
               <a href="/mindmap/" use:link>Mindmaps</a>
             </li>
             <li use:active={'/settings', 'active' }>
