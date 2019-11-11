@@ -16,6 +16,7 @@ if (localStorage.getItem("intern") === null) {
     localStorage.setItem("chapters", "[]");
     localStorage.setItem("scenes", "[]");
     localStorage.setItem("tabs", "[]");
+    localStorage.setItem("cards", "[]");
 }
 
 function getRandomNumber() {
@@ -281,6 +282,80 @@ function storeTabs() {
     }
 }
 
+function storeCards() {
+    const {
+        subscribe,
+        update
+    } = writable(JSON.parse(
+        localStorage.getItem("cards") || ""
+    ));
+    return {
+        subscribe,
+        /**
+         * Creates new tab.
+         * @param project Project ID.
+         * @param title Title.
+         * @param content Content.
+         * @param showTooltip Show tooltip while writing.
+         */
+        createCard: (project, title, content, showTooltip) => update(n => {
+            return n.concat([{
+                id: getRandomNumber(),
+                project: project,
+                title: title,
+                content: content,
+                showTooltip: showTooltip
+            }]);
+        }),
+        setCard: (card) => update(n => {
+            updateLocalTimestamp();
+            let index = n.findIndex(c => c.id == card.id);
+            n[index] = card;
+            return n;
+        }),
+        /**
+         * Sets scene card.
+         * @param id ID of the card.
+         * @param title New title of card.
+         */
+        setCardTitle: (id, title) => update(n => {
+            updateLocalTimestamp();
+            let index = n.findIndex(c => c.id == id);
+            n[index].title = title;
+            return n;
+        }),
+        /**
+         * Sets card content.
+         * @param id ID of the card.
+         * @param title New content of card.
+         */
+        setCardContent: (id, content) => update(n => {
+            updateLocalTimestamp();
+            let index = n.findIndex(c => c.id == id);
+            n[index].content = content;
+            return n;
+        }),
+        /**
+         * Sets card content.
+         * @param id ID of the card.
+         * @param title New content of scene.
+         */
+        setCardContent: (id, boolean) => update(n => {
+            updateLocalTimestamp();
+            let index = n.findIndex(c => c.id == id);
+            n[index].showTooltip = boolean;
+            return n;
+        }),
+        /**
+         * Removes card.
+         * @param id ID of the tab.
+         */
+        removeCard: (id) => update(n => {
+            return n.filter(n => n.id !== id)
+        })
+    }
+}
+
 function updateLocalTimestamp() {
     state.updateLocalTimestamp();
 }
@@ -290,9 +365,11 @@ export const projects = storeProjects();
 export const chapters = storeChapters();
 export const scenes = storeScenes();
 export const tabs = storeTabs();
+export const cards = storeCards();
 
 projects.subscribe(val => localStorage.setItem("projects", JSON.stringify(val)));
 chapters.subscribe(val => localStorage.setItem("chapters", JSON.stringify(val)));
 state.subscribe(val => localStorage.setItem("state", JSON.stringify(val)));
 tabs.subscribe(val => localStorage.setItem("tabs", JSON.stringify(val)));
 scenes.subscribe(val => localStorage.setItem("scenes", JSON.stringify(val)));
+cards.subscribe(val => localStorage.setItem("cards", JSON.stringify(val)));

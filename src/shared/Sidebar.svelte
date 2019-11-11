@@ -100,7 +100,7 @@
     <div class="field">
       <label for="editChapterInput">Title:</label>
       <input id="editChapterInput" bind:value={createChapterTitle} autocomplete="off"
-        placeholder="enter your title">
+        placeholder="enter your title" type="text">
     </div>
     <hr>
     <div class="btn-group">
@@ -118,7 +118,7 @@
     <div class="field">
       <label for="editChapterInput">Title:</label>
       <input id="editChapterInput" bind:value={createSceneTitle} autocomplete="off"
-        placeholder="enter your title">
+        placeholder="enter your title" type="text">
     </div>
     <hr>
     <div class="btn-group">
@@ -136,7 +136,8 @@
     <h3>Edit</h3>
     <div class="field">
       <label for="editChapterInput">Title:</label>
-      <input id="editChapterInput" bind:value={objEditChapter.title} autocomplete="off" placeholder="enter your title">
+      <input id="editChapterInput" bind:value={objEditChapter.title} autocomplete="off" placeholder="enter your title"
+        type="text">
     </div>
     <h3>Order scenes</h3>
     <ul class="swap-list">
@@ -170,7 +171,7 @@
     <div class="field">
       <label for="editChapterInput">Title:</label>
       <input id="editChapterInput" bind:value={objEditScene.title} autocomplete="off"
-        placeholder="enter your title">
+        placeholder="enter your title" type="text">
     </div>
     <br>
     <div class="btn-group">
