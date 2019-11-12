@@ -135,7 +135,7 @@ header {
 
     ul {
         list-style-type: none;
-        overflow: scroll;
+        overflow-y: scroll;
         height: 2rem;
         margin: 0;
         padding: 0;
@@ -180,6 +180,7 @@ header {
 }
 
 #sidebar {
+    scrollbar-color: rgb(13, 19, 22) rgb(25, 38, 44);
 
     ul.menu {
         background-color: var(--background-color);
@@ -320,6 +321,7 @@ header {
 .content {
     grid-area: content;
     overflow: auto;
+    scrollbar-color: rgb(13, 19, 22) rgb(25, 38, 44);
 
     .inner {
         padding: 1rem;
@@ -403,7 +405,9 @@ header {
         width: 12rem;
     }
 
-    input[type=text] {
+    input[type=text],
+    input[type=email],
+    input[type=password] {
         -webkit-appearance: none;
         -moz-appearance: none;
         -ms-appearance: none;
@@ -712,6 +716,32 @@ select#focusSceneSelect.active {
         display: none;
     }
 
+}
+
+#snackbar {
+    /* Hidden by default. Visible on click */
+    min-width: 250px;
+    /* Set a default minimum width */
+    margin-left: -125px;
+    /* Divide value of min-width by 2 */
+    background-color: #333;
+    /* Black background color */
+    color: #fff;
+    /* White text color */
+    text-align: center;
+    /* Centered text */
+    border-radius: 2px;
+    /* Rounded borders */
+    padding: 16px;
+    /* Padding */
+    position: fixed;
+    /* Sit on top of the screen */
+    z-index: 1;
+    /* Add a z-index if needed */
+    left: 50%;
+    /* Center the snackbar */
+    bottom: 30px;
+    /* 30px from the bottom */
 }
 
 @keyframes spin {

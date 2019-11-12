@@ -7,17 +7,22 @@
         fly
     } from 'svelte/transition';
 
-    const dispatch = createEventDispatcher();
+    export let show = false;
 
     export let danger = false;
     export let success = false;
     export let info = false;
     export let warning = false;
 
-    export let duration = 0;
+    export let duration = 10000;
 
-    if (duration > 0) {
-        setTimeout(() => dispatch("close"), (duration * 1000));
+    $: {
+        if (show) {
+            setTimeout(() => {
+                    show = false;
+                },
+                duration)
+        }
     }
 </script>
 <style>
@@ -59,8 +64,10 @@
         opacity: 1;
     }
 </style>
+{#if show}
 <div class="alert" class:danger class:success class:warning class:info>
-    <span class="closebtn" on:click={()=> dispatch("close")}><i class="icon-cross_mark" /></span>
+    <span class="closebtn" on:click={()=> show = false}><i class="icon-cross_mark" /></span>
     <slot name='title'></slot>
     <slot> </slot>
 </div>
+{/if}

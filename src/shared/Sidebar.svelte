@@ -1,147 +1,142 @@
 <script>
-  import {
-    state,
-    chapters,
-    scenes
-  } from "../stores";
+    import {
+        state,
+        chapters,
+        scenes
+    } from "../stores";
 
-  import {
-    link,
-    push
-  } from "svelte-spa-router";
+    import {
+        link,
+        push
+    } from "svelte-spa-router";
 
-  import {
-    fade,
-    fly
-  } from 'svelte/transition';
+    import {
+        fade,
+        fly
+    } from 'svelte/transition';
 
-  import Modal from './Modal.svelte';
+    import Modal from './Modal.svelte';
 
-  import active from "svelte-spa-router/active";
+    import active from "svelte-spa-router/active";
 
-  export let sidebarState;
+    export let sidebarState;
 
-  let showCreateChapter = false;
-  let createChapterTitle;
+    let showCreateChapter = false;
+    let createChapterTitle;
 
-  function createChapter() {
-    chapters.createChapter($state.currentProject, createChapterTitle);
-    showCreateChapter = false;
-    createChapterTitle = "";
-  }
+    function createChapter() {
+        chapters.createChapter($state.currentProject, createChapterTitle);
+        showCreateChapter = false;
+        createChapterTitle = "";
+    }
 
-  let createSceneTitle;
-  let createSceneChapter;
-  let showCreateScene = false;
+    let createSceneTitle;
+    let createSceneChapter;
+    let showCreateScene = false;
 
-  function openCreateScene(chapter) {
-    createSceneChapter = chapter;
-    showCreateScene = true;
-  }
+    function openCreateScene(chapter) {
+        createSceneChapter = chapter;
+        showCreateScene = true;
+    }
 
-  function createScene() {
-    scenes.createScene(createSceneChapter, createSceneTitle);
-    showCreateScene = false;
-    createSceneTitle = "";
-  }
+    function createScene() {
+        scenes.createScene(createSceneChapter, createSceneTitle);
+        showCreateScene = false;
+        createSceneTitle = "";
+    }
 
-  let showEditChapter = false;
-  let objEditChapter;
+    let showEditChapter = false;
+    let objEditChapter;
 
-  function editChapter() {
-    chapters.setChapterTitle(objEditChapter.id, objEditChapter.title);
-    showEditChapter = false;
-  }
+    function editChapter() {
+        chapters.setChapterTitle(objEditChapter.id, objEditChapter.title);
+        showEditChapter = false;
+    }
 
-  let showEditScene = false;
-  let objEditScene;
+    let showEditScene = false;
+    let objEditScene;
 
-  function editScene() {
-    scenes.setSceneTitle(objEditScene.id, objEditScene.title);
-    showEditScene = false;
-  }
+    function editScene() {
+        scenes.setSceneTitle(objEditScene.id, objEditScene.title);
+        showEditScene = false;
+    }
 </script>
 
 <style>
-  .swap-list {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-  }
+    .swap-list {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+    }
 
-  .swap-list>li {
-    padding: .5rem 0 .5rem 2rem;
-  }
+    .swap-list>li {
+        padding: .5rem 0 .5rem 2rem;
+    }
 
-  .swap-list>li .action {
-    cursor: pointer;
-    opacity: .65;
-  }
+    .swap-list>li .action {
+        cursor: pointer;
+        opacity: .65;
+    }
 
-  .swap-list>li .action:hover {
-    opacity: 1;
-  }
+    .swap-list>li .action:hover {
+        opacity: 1;
+    }
 
-  .swap-list li:first-child .icon-chevron_up {
-    visibility: hidden;
-  }
+    .swap-list li:first-child .icon-chevron_up {
+        visibility: hidden;
+    }
 
-  .swap-list li:last-child .icon-chevron_down {
-    visibility: hidden;
-  }
+    .swap-list li:last-child .icon-chevron_down {
+        visibility: hidden;
+    }
 </style>
 
-{#if showCreateChapter}
-	<Modal on:close="{() => showCreateChapter = false}">
-		<h2 slot="header">
-			New 'chapter'
-			<small><em>noun</em> chap·​ter \ ˈchap-tər</small>
-		</h2>
+<Modal bind:show={showCreateChapter}>
+    <h2 slot="header">
+        New 'chapter'
+        <small><em>noun</em> chap·​ter \ ˈchap-tər</small>
+    </h2>
     <div class="field">
-      <label for="editChapterInput">Title:</label>
-      <input id="editChapterInput" bind:value={createChapterTitle} autocomplete="off"
-        placeholder="enter your title" type="text">
+        <label for="editChapterInput">Title:</label>
+        <input id="editChapterInput" bind:value={createChapterTitle} autocomplete="off" placeholder="enter your title"
+            type="text">
     </div>
     <hr>
     <div class="btn-group">
-      <button on:click={createChapter}>Create!</button>    
+        <button on:click={createChapter}>Create!</button>
     </div>
-	</Modal>
-{/if}
+</Modal>
 
-{#if showCreateScene}
-	<Modal on:close="{() => showCreateScene = false}">
-		<h2 slot="header">
-			New 'scene'
-			<small><em>noun</em> \ ˈsēn </small>
-		</h2>
+<Modal bind:show={showCreateScene}>
+    <h2 slot="header">
+        New 'scene'
+        <small><em>noun</em> \ ˈsēn </small>
+    </h2>
     <div class="field">
-      <label for="editChapterInput">Title:</label>
-      <input id="editChapterInput" bind:value={createSceneTitle} autocomplete="off"
-        placeholder="enter your title" type="text">
+        <label for="editChapterInput">Title:</label>
+        <input id="editChapterInput" bind:value={createSceneTitle} autocomplete="off" placeholder="enter your title"
+            type="text">
     </div>
     <hr>
     <div class="btn-group">
-      <button on:click={createScene}>Create!</button>
+        <button on:click={createScene}>Create!</button>
     </div>
-	</Modal>
-{/if}
+</Modal>
 
-{#if showEditChapter}
-	<Modal on:close="{() => showEditChapter = false}">
-		<h2 slot="header">
-		  {objEditChapter.title}<br>
-		  <small><em>noun</em> chap·​ter \ ˈchap-tər</small>
-		</h2>
+<Modal bind:show={showEditChapter}>
+    <h2 slot="header">
+        {objEditChapter.title}<br>
+        <small><em>noun</em> chap·​ter \ ˈchap-tər</small>
+    </h2>
     <h3>Edit</h3>
     <div class="field">
-      <label for="editChapterInput">Title:</label>
-      <input id="editChapterInput" bind:value={objEditChapter.title} autocomplete="off" placeholder="enter your title"
-        type="text">
+        <label for="editChapterInput">Title:</label>
+        <input id="editChapterInput" bind:value={objEditChapter.title} autocomplete="off" placeholder="enter your title"
+            type="text">
     </div>
     <h3>Order scenes</h3>
     <ul class="swap-list">
-      {#each $scenes.filter(scene => scene.chapter == objEditChapter.id).sort((a, b) => a.order - b.order) as scene}
+        {#each $scenes.filter(scene => scene.chapter == objEditChapter.id).sort((a, b) => a.order - b.order) as scene}
         <li>
           <i class="icon-chevron_up action" on:click={()=> {scenes.orderScene(scene.id, true)}}/>
           <i class="icon-chevron_down action" on:click={()=> {scenes.orderScene(scene.id, false)}}/>
@@ -159,31 +154,28 @@
         }
         >Delete</button>
     </div>
-	</Modal>
-{/if}
+</Modal>
 
-{#if showEditScene}
-	<Modal on:close="{() => showEditScene = false}">
-		<h2 slot="header">
-			{objEditScene.title}<br>
-			<small><em>noun</em> \ ˈsēn </small>
-		</h2>
+<Modal bind:show={showEditScene}>
+    <h2 slot="header">
+        {objEditScene.title}<br>
+        <small><em>noun</em> \ ˈsēn </small>
+    </h2>
     <div class="field">
-      <label for="editChapterInput">Title:</label>
-      <input id="editChapterInput" bind:value={objEditScene.title} autocomplete="off"
-        placeholder="enter your title" type="text">
+        <label for="editChapterInput">Title:</label>
+        <input id="editChapterInput" bind:value={objEditScene.title} autocomplete="off"
+            placeholder="enter your title" type="text">
     </div>
     <br>
     <div class="btn-group">
-      <button on:click={editScene}>Save</button>
-      <button style="float: right;" class="warning" on:click={()=> {
-        scenes.removeScene(objEditScene.id);
-        showEditScene = false;
-        }
-        }>Delete</button>
+        <button on:click={editScene}>Save</button>
+        <button style="float: right;" class="warning" on:click={()=> {
+            scenes.removeScene(objEditScene.id);
+            showEditScene = false;
+            }
+            }>Delete</button>
     </div>
-	</Modal>
-{/if}
+</Modal>
 
 {#if sidebarState}
 <div id="sidebar" class="navigation" class:active={sidebarState} in:fly="{{ y: 200, duration: 200 }}" out:fly="{{ y: 200, duration: 200 }}">
