@@ -71,22 +71,22 @@
               </a>
             </li>
             <li use:active={'/write/*', 'active' }>
-              <a href="/write/" use:link>Write</a>
+              <a on:click={()=> navigationState = false} href="/write/" use:link>Write</a>
             </li>
             <li use:active={'/cards/', 'active' }>
-              <a href="/cards/" use:link>Cards</a>
+              <a on:click={()=> navigationState = false} href="/cards/" use:link>Cards</a>
             </li>
             <li use:active={'/mindmap/', 'active' }>
-              <a href="/mindmap/" use:link>Mindmaps</a>
+              <a on:click={()=> navigationState = false} href="/mindmap/" use:link>Mindmaps</a>
             </li>
             <li use:active={'/settings', 'active' }>
-              <a href="/settings" use:link>Settings</a>
+              <a on:click={()=> navigationState = false} href="/settings" use:link>Settings</a>
             </li>
             <li use:active={'/export', 'active' }>
-              <a href="/export" use:link>Export</a>
+              <a on:click={()=> navigationState = false} href="/export" use:link>Export</a>
             </li>
             <li use:active={'/cloud', 'active' }>
-              <a href="/cloud" use:link>Cloud</a>
+              <a on:click={()=> navigationState = false} href="/cloud" use:link>Cloud</a>
             </li>
         </ul>
         <!--
