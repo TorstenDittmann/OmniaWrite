@@ -136,7 +136,7 @@ header .navigation ul.menu li.active a {
 
 .tabs ul {
   list-style-type: none;
-  overflow: scroll;
+  overflow-y: scroll;
   height: 2rem;
   margin: 0;
   padding: 0;
@@ -184,6 +184,10 @@ header .navigation ul.menu li.active a {
 .tabs ul::-webkit-scrollbar {
   width: 0rem;
   height: 0rem;
+}
+
+#sidebar {
+  scrollbar-color: #0d1316 #19262c;
 }
 
 #sidebar ul.menu {
@@ -328,6 +332,7 @@ header .navigation ul.menu li.active a {
   -ms-grid-column: 1;
   grid-area: content;
   overflow: auto;
+  scrollbar-color: #0d1316 #19262c;
 }
 
 .content .inner {
@@ -416,7 +421,9 @@ header .navigation ul.menu li.active a {
   width: 12rem;
 }
 
-.field input[type=text] {
+.field input[type=text],
+.field input[type=email],
+.field input[type=password] {
   -webkit-appearance: none;
   -moz-appearance: none;
   -ms-appearance: none;
@@ -442,7 +449,9 @@ header .navigation ul.menu li.active a {
   transition: background-size .2s ease;
 }
 
-.field input[type=text]:focus {
+.field input[type=text]:focus,
+.field input[type=email]:focus,
+.field input[type=password]:focus {
   border-bottom: 1px solid #0092d1;
   background-size: 100% 100%;
   outline: 0;
@@ -706,6 +715,32 @@ select#focusSceneSelect.active {
   .mobile {
     display: none;
   }
+}
+
+#snackbar {
+  /* Hidden by default. Visible on click */
+  min-width: 250px;
+  /* Set a default minimum width */
+  margin-left: -125px;
+  /* Divide value of min-width by 2 */
+  background-color: #333;
+  /* Black background color */
+  color: #fff;
+  /* White text color */
+  text-align: center;
+  /* Centered text */
+  border-radius: 2px;
+  /* Rounded borders */
+  padding: 16px;
+  /* Padding */
+  position: fixed;
+  /* Sit on top of the screen */
+  z-index: 1;
+  /* Add a z-index if needed */
+  left: 50%;
+  /* Center the snackbar */
+  bottom: 30px;
+  /* 30px from the bottom */
 }
 
 @-webkit-keyframes spin {

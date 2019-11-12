@@ -4,6 +4,7 @@
     } from "svelte";
 
     import Alert from "../shared/Alert.svelte";
+    import Toast from '../shared/Toast.svelte';
 
     import {
         state
@@ -32,6 +33,9 @@
     let showAlertType;
     let showAlertText;
 
+    let showToast = false;
+    let showToastText;
+
     let saveCloudButtonLoading = false;
     let getCloudButtonLoading = false;
     let loginButtonLoading = false;
@@ -49,6 +53,9 @@
         cloud.saveToCloud().then((retValue) => {
             if (retValue == true) {
                 saveCloudButtonLoading = false;
+
+                showToast = true;
+                showToastText = "Saved into cloud.";
             }
         });
     }
@@ -71,6 +78,8 @@
                 checkLogin();
                 showAlert = false;
                 loginButtonLoading = false;
+                showToast = true;
+                showToastText = "Login successful!";
             })
             .catch((error) => {
                 showAlert = true;
@@ -133,12 +142,13 @@
 <style>
 
 </style>
+
+<Toast bind:show={showToast} text={showToastText} />
+
 {#if dataLoaded}
-{#if showAlert}
-<Alert danger on:close="{() => showAlert = false}">
+<Alert danger bind:show={showAlert}>
     <i class="icon-warning" slot="title"/>{showAlertText}
 </Alert>
-{/if}
 {#if isUserLoggedIn}
 <h2>Account</h2>
 <div class="field">
@@ -174,11 +184,11 @@
 <h2>Login</h2>
 <div class="field">
     <label class="big" for="loginUser">E-Mail:</label>
-    <input id="loginUser" type="email" autocomplete="off" bind:value={loginUser}>
+    <input id="loginUser" type="email" placeholder="john.doe@email.tld" bind:value={loginUser}>
 </div>
 <div class="field">
     <label class="big" for="loginPass">Password:</label>
-    <input id="loginPass" type="password" autocomplete="off" bind:value={loginPass}>
+    <input id="loginPass" type="password" autocomplete="off" placeholder="******" bind:value={loginPass}>
 </div>
 <div class="btn-group">
     <button on:click={login} disabled={loginButtonLoading} class:loading={loginButtonLoading}>
@@ -189,15 +199,15 @@
 <h2>Register</h2>
 <div class="field">
     <label class="big" for="newName">Name:</label>
-    <input id="newName" type="text" autocomplete="off" bind:value={registerName}>
+    <input id="newName" type="text" placeholder="John Doe" autocomplete="off" bind:value={registerName}>
 </div>
 <div class="field">
     <label class="big" for="newUser">E-Mail:</label>
-    <input id="newUser" type="email" autocomplete="off" bind:value={registerUser}>
+    <input id="newUser" type="email" placeholder="john.doe@email.tld" autocomplete="off" bind:value={registerUser}>
 </div>
 <div class="field">
     <label class="big" for="newPass">Password:</label>
-    <input id="newPass" type="password" autocomplete="off" bind:value={registerPass}>
+    <input id="newPass" type="password" autocomplete="off" placeholder="******" bind:value={registerPass}>
 </div>
 <div class="btn-group">
     <button on:click={register} disabled={registerButtonLoading} class:loading={registerButtonLoading}>
@@ -208,7 +218,7 @@
 <h2>Password reset</h2>
 <div class="field">
     <label class="big" for="resetUser">E-Mail:</label>
-    <input id="resetUser" type="email" autocomplete="off" bind:value={resetUser}>
+    <input id="resetUser" type="email" placeholder="john.doe@email.tld" autocomplete="off" bind:value={resetUser}>
 </div>
 <div class="btn-group">
     <button on:click={resetPassword} disabled={resetButtonLoading} class:loading={resetButtonLoading}>
