@@ -1,47 +1,44 @@
 <script>
-  import {
-    state,
-    projects,
-    chapters
-  } from "../stores";
+    import {
+        state,
+        projects,
+        chapters
+    } from "../stores";
 
-  import Modal from '../shared/Modal.svelte';
+    import Modal from '../shared/Modal.svelte';
 
-  let showCreateProject = false;
+    let showCreateProject = false;
 
-  function createProject() {
-    let retValue = projects.createProject(document.getElementById("createProjectInput").value);
-    showCreateProject = false;
-    changeProject(retValue);
-  }
+    function createProject() {
+        let retValue = projects.createProject(document.getElementById("createProjectInput").value);
+        showCreateProject = false;
+        changeProject(retValue);
+    }
 
-  function changeProject(project) {
-    state.setCurrentProject(project);
-    location.reload();
-  }
+    function changeProject(project) {
+        state.setCurrentProject(project);
+        location.reload();
+    }
 
-  function setProjectTitle(project) {
-    projects.setProjectTitle(project, document.getElementById("newProjectTitle").value);
-  }
+    function setProjectTitle(project) {
+        projects.setProjectTitle(project, document.getElementById("newProjectTitle").value);
+    }
 </script>
 
-{#if showCreateProject}
-	<Modal on:close="{() => showCreateProject = false}">
-		<h2 slot="header">
-			New 'project'
-			<small><em>noun</em> proj·​ect \ ˈprä-ˌjekt</small>
-		</h2>
+<Modal bind:show={showCreateProject}>
+    <h2 slot="header">
+        New 'project'
+        <small><em>noun</em> proj·​ect \ ˈprä-ˌjekt</small>
+    </h2>
     <div class="field">
-      <label for="createProjectInput">Title:</label>
-      <input id="createProjectInput" autocomplete="off"
-        placeholder="enter your title">
+        <label for="createProjectInput">Title:</label>
+        <input id="createProjectInput" autocomplete="off" placeholder="enter your title">
     </div>
     <hr>
     <div class="btn-group">
-      <button on:click={createProject}>Create!</button>    
+        <button on:click={createProject}>Create!</button>
     </div>
-	</Modal>
-{/if}
+</Modal>
 
 {#each $projects.filter(project => project.id == $state.currentProject) as project}
 <p>Opened project :{project.id}</p>

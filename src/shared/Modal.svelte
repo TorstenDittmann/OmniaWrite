@@ -8,7 +8,7 @@
         fly
     } from 'svelte/transition';
 
-    const dispatch = createEventDispatcher();
+    export let show = false;
 </script>
 
 <style>
@@ -48,14 +48,15 @@
         opacity: 1;
     }
 </style>
-
-<div class='modal-background' on:click='{() => dispatch("close")}'></div>
+{#if show}
+<div class='modal-background' on:click='{() => show = false}'></div>
 
 <div class='modal' in:fly="{{ y: 200, duration: 200 }}">
-    <div class="modal-close" on:click={()=> dispatch("close")}>
+    <div class="modal-close" on:click='{() => show = false}'>
         <i class="icon-cross_mark" />
     </div>
     <slot name='header'></slot>
     <hr>
     <slot></slot>
 </div>
+{/if}

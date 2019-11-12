@@ -4,6 +4,9 @@
         state
     } from "../stores";
     import Modal from '../shared/Modal.svelte';
+    import {
+        createEventDispatcher
+    } from 'svelte';
 
     let showCreateCard = false;
     let showEditCard = false;
@@ -43,16 +46,15 @@
         $cards.filter(card => card.project == $state.currentProject);
 </script>
 
-{#if showCreateCard}
-	<Modal on:close="{() => showCreateCard = false}">
-		<h2 slot="header">
-			New 'card'
-			<small><em>noun</em> \ ˈkärd</small>
-		</h2>
+<Modal bind:show={showCreateCard}>
+    <h2 slot="header">
+        New 'card'
+        <small><em>noun</em> \ ˈkärd</small>
+    </h2>
     <div class="field">
-      <label for="createTitle">Title:</label>
-      <input id="createTitle" autocomplete="off"
-        placeholder="enter your title" type="text" bind:value={newCardObject.title}>
+        <label for="createTitle">Title:</label>
+        <input id="createTitle" autocomplete="off" placeholder="enter your title" type="text"
+            bind:value={newCardObject.title}>
     </div>
     <div class="field">
         <label for="createContent">Content:</label>
@@ -63,21 +65,19 @@
         <label class="big" for="createTooltop">Show in scenes</label>
     </div>
     <div class="btn-group">
-      <button on:click={createCard}>Create</button>
+        <button on:click={createCard}>Create</button>
     </div>
-	</Modal>
-{/if}
+</Modal>
 
-{#if showEditCard}
-	<Modal on:close="{() => showEditCard = false}">
-		<h2 slot="header">
-			Edit 'card'
-			<small><em>noun</em> \ ˈkärd</small>
-		</h2>
+<Modal bind:show={showEditCard}>
+    <h2 slot="header">
+        Edit 'card'
+        <small><em>noun</em> \ ˈkärd</small>
+    </h2>
     <div class="field">
-      <label for="createTitle">Title:</label>
-      <input id="createTitle" autocomplete="off"
-        placeholder="enter your title" type="text" bind:value={editCardObject.title}>
+        <label for="createTitle">Title:</label>
+        <input id="createTitle" autocomplete="off" placeholder="enter your title" type="text"
+            bind:value={editCardObject.title}>
     </div>
     <div class="field">
         <label for="createContent">Content:</label>
@@ -88,15 +88,15 @@
         <label class="big" for="createTooltop">Show in scenes</label>
     </div>
     <div class="btn-group">
-      <button on:click={editCard}>Save</button>
+        <button on:click={editCard}>Save</button>
     </div>
-	</Modal>
-{/if}
+</Modal>
+
 <div class="field">
     <input autocomplete="off" placeholder="search here..." type="search" bind:value={searchInput}>
 </div>
 <div id="cards" class="grid">
-    <div class="new" on:click={() => showCreateCard = true}>
+    <div class="new" on:click={()=> showCreateCard = true}>
         <i class="icon-plus"></i>
     </div>
     {#each filteredCards as card}

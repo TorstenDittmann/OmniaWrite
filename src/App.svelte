@@ -1,96 +1,95 @@
 <script>
-  import Router from "svelte-spa-router";
+    import Router from "svelte-spa-router";
 
-  import {
-    state,
-    projects
-  } from "./stores";
+    import {
+        state,
+        projects
+    } from "./stores";
 
-  import HeaderComponent from "./shared/Header.svelte";
-  import SidebarComponent from "./shared/Sidebar.svelte";
+    import HeaderComponent from "./shared/Header.svelte";
+    import SidebarComponent from "./shared/Sidebar.svelte";
 
-  import OverviewRoute from "./routes/Overview.svelte";
-  import WriteRoute from "./routes/Write.svelte";
-  import CardsRoute from "./routes/Cards.svelte";
-  import MindmapRoute from "./routes/Mindmap.svelte";
-  import SettingsRoute from "./routes/Settings.svelte";
-  import CloudRoute from "./routes/Cloud.svelte";
-  import ExportRoute from "./routes/Export.svelte";
+    import OverviewRoute from "./routes/Overview.svelte";
+    import WriteRoute from "./routes/Write.svelte";
+    import CardsRoute from "./routes/Cards.svelte";
+    import MindmapRoute from "./routes/Mindmap.svelte";
+    import SettingsRoute from "./routes/Settings.svelte";
+    import CloudRoute from "./routes/Cloud.svelte";
+    import ExportRoute from "./routes/Export.svelte";
 
-  const routes = {
-    "/": OverviewRoute,
-    "/write/:sceneId?": WriteRoute,
-    "/cards": CardsRoute,
-    "/mindmap/:mapId?": MindmapRoute,
-    "/settings": SettingsRoute,
-    "/cloud": CloudRoute,
-    "/export": ExportRoute,
+    const routes = {
+        "/": OverviewRoute,
+        "/write/:sceneId?": WriteRoute,
+        "/cards": CardsRoute,
+        "/mindmap/:mapId?": MindmapRoute,
+        "/settings": SettingsRoute,
+        "/cloud": CloudRoute,
+        "/export": ExportRoute,
 
-    // Catch-all
-    "*": OverviewRoute
-  };
+        // Catch-all
+        "*": OverviewRoute
+    };
 
-  if ("serviceWorker" in navigator && location.hostname != "localhost") {
-    navigator.serviceWorker.register("/service-worker.js");
-  }
-
-  /**
-   * Defines state of sidebar and navigation based on max-width.
-   */
-  let mql = window.matchMedia('(max-width: 960px)');
-  let sidebarState = mql.matches ? false : true;
-  let navigationState = mql.matches ? false : true;
-  mql.addListener((e) => e.matches ? sidebarState = false : sidebarState = true);
-  mql.addListener((e) => e.matches ? navigationState = false : navigationState = true);
-
-  /**
-   * Swipe detection
-   */
-  document.addEventListener('touchstart', handleTouchStart, false);
-  document.addEventListener('touchmove', handleTouchMove, false);
-
-  let xDown = null;
-  let yDown = null;
-
-  function handleTouchStart(evt) {
-    xDown = evt.touches[0].clientX;
-    yDown = evt.touches[0].clientY;
-  };
-
-  function handleTouchMove(evt) {
-    if (!xDown || !yDown) {
-      return;
+    if ("serviceWorker" in navigator && location.hostname != "localhost") {
+        navigator.serviceWorker.register("/service-worker.js");
     }
 
-    var xUp = evt.touches[0].clientX;
-    var yUp = evt.touches[0].clientY;
+    /**
+     * Defines state of sidebar and navigation based on max-width.
+     */
+    let mql = window.matchMedia('(max-width: 960px)');
+    let sidebarState = mql.matches ? false : true;
+    let navigationState = mql.matches ? false : true;
+    mql.addListener((e) => e.matches ? sidebarState = false : sidebarState = true);
+    mql.addListener((e) => e.matches ? navigationState = false : navigationState = true);
 
-    var xDiff = xDown - xUp;
-    var yDiff = yDown - yUp;
+    /**
+     * Swipe detection
+     */
+    document.addEventListener('touchstart', handleTouchStart, false);
+    document.addEventListener('touchmove', handleTouchMove, false);
 
-    if (Math.abs(xDiff) > Math.abs(yDiff)) {
-      if (xDiff > 0) {
-        sidebarState = false;
-      } else {
-        sidebarState = true;
-      }
-    }
-    xDown = null;
-    yDown = null;
-  };
+    let xDown = null;
+    let yDown = null;
+
+    function handleTouchStart(evt) {
+        xDown = evt.touches[0].clientX;
+        yDown = evt.touches[0].clientY;
+    };
+
+    function handleTouchMove(evt) {
+        if (!xDown || !yDown) {
+            return;
+        }
+
+        var xUp = evt.touches[0].clientX;
+        var yUp = evt.touches[0].clientY;
+
+        var xDiff = xDown - xUp;
+        var yDiff = yDown - yUp;
+
+        if (Math.abs(xDiff) > Math.abs(yDiff)) {
+            if (xDiff > 0) {
+                sidebarState = false;
+            } else {
+                sidebarState = true;
+            }
+        }
+        xDown = null;
+        yDown = null;
+    };
 </script>
 
 <style>
 
 </style>
-
 <div class="container">
-  <HeaderComponent bind:navigationState on:openSidebar={()=> (sidebarState = true)} />
+    <HeaderComponent bind:navigationState on:openSidebar={()=> (sidebarState = true)} />
 
-    <SidebarComponent bind:sidebarState />
-    <div id="content" class="content">
-      <div class="inner">
-        <Router {routes} />
-      </div>
-    </div>
+        <SidebarComponent bind:sidebarState />
+        <div id="content" class="content">
+            <div class="inner">
+                <Router {routes} />
+            </div>
+        </div>
 </div>
