@@ -20,7 +20,7 @@
     }
 </script>
 {#if show}
-<div id="snackbar" in:fly="{{ y: -100, duration: 500 }}" out:fly="{{ y: -100, duration: 500 }}">
+<div id="snackbar" in:fly="{{ y: -100, duration: 500 }}" out:fly="{{ x: 100, duration: 500 }}">
     {text}
 </div>
 {/if}
