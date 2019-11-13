@@ -194,7 +194,7 @@
           <ul>
             {#each $scenes.filter(scene => scene.chapter == chapter.id).sort((a, b) => a.order - b.order) as scene}
               <li
-                use:active={'/write/' + scene.id, 'active'}
+                use:active={'/write/' + scene.id}
                 on:click={() => push('/write/' + scene.id)}>
                 <a href="/write/{scene.id}" use:link>{scene.title}</a>
                 <i class="icon-settings action"
