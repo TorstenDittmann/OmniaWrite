@@ -196,7 +196,7 @@
               <li
                 use:active={'/write/' + scene.id, 'active'}
                 on:click={() => push('/write/' + scene.id)}>
-                <a on:click={()=> sidebarState = false} href="/write/{scene.id}" use:link>{scene.title}</a>
+                <a href="/write/{scene.id}" use:link>{scene.title}</a>
                 <i class="icon-settings action"
                   on:click="{() => [showEditScene, objEditScene] = [true, scene]}" />
               </li>
