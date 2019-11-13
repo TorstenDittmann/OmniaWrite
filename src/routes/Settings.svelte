@@ -1,5 +1,17 @@
 <script>
-
+    let selectedTheme;
+    $: {
+        switch (selectedTheme) {
+            case "dark":
+                document.body.className = "";
+                break;
+            case "light":
+                document.body.className = "light";
+                break;
+            default:
+                break;
+        }
+    }
 </script>
 
 <style>
@@ -10,10 +22,10 @@
 
 <h2>Appereance</h2>
 <div class="field">
-    <label class="big" for="editChapterInput">Theme:</label>
-    <select id="editChapterInput">
-        <option value="volvo">Dark</option>
-        <option value="saab">Light</option>
+    <label class="big" for="editTheme">Theme:</label>
+    <select id="editTheme" bind:value={selectedTheme}>
+        <option value="dark">Dark</option>
+        <option value="light">Light</option>
     </select>
 </div>
 <h2>Write</h2>
