@@ -65,27 +65,27 @@
             <div class="close" on:click={()=> (navigationState = false)}>
               <i class="icon-cross_mark" />
             </div>
-            <li use:active={'/', 'active' }>
+            <li use:active={'/'}>
               <a href="/" use:link>
                 <img src="assets/logo.png" alt="OmniaWrite Logo" />
               </a>
             </li>
-            <li use:active={'/write/*', 'active' }>
+            <li use:active={'/write/*'}>
               <a href="/write/" use:link>Write</a>
             </li>
-            <li use:active={'/cards/', 'active' }>
+            <li use:active={'/cards/'}>
               <a href="/cards/" use:link>Cards</a>
             </li>
-            <li use:active={'/mindmap/', 'active' }>
+            <li use:active={'/mindmap/'}>
               <a href="/mindmap/" use:link>Mindmaps</a>
             </li>
-            <li use:active={'/settings', 'active' }>
+            <li use:active={'/settings'}>
               <a href="/settings" use:link>Settings</a>
             </li>
-            <li use:active={'/export', 'active' }>
+            <li use:active={'/export'}>
               <a href="/export" use:link>Export</a>
             </li>
-            <li use:active={'/cloud', 'active' }>
+            <li use:active={'/cloud'}>
               <a href="/cloud" use:link>Cloud</a>
             </li>
         </ul>
@@ -103,7 +103,7 @@
   <div class="tabs">
     <ul>
       {#each $tabs.filter(tabs => tabs.project == $state.currentProject) as tab}
-      <li class="tab" use:active={tab.link, 'active'}>
+      <li class="tab" use:active={tab.link}>
         <a href={tab.link} use:link>{tab.title}</a>
         <i 
         class="icon-cross_mark tab-action" 
