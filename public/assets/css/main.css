@@ -627,6 +627,28 @@ select#focusSceneSelect.active {
   text-align: center;
 }
 
+#codex-editor .codex-editor {
+  font-family: 'IBM Plex Mono', monospace;
+  color: var(--editor-color);
+  font-weight: 400;
+  font-size: 0.9rem;
+  line-height: 2rem;
+  text-align: justify;
+}
+
+#codex-editor .codex-editor .ce-block__content {
+  padding: 0;
+  max-width: unset;
+}
+
+#codex-editor .codex-editor .ce-block--focused {
+  background-image: unset;
+}
+
+#codex-editor .codex-editor .ce-paragraph {
+  line-height: 2rem;
+}
+
 .nodeText {
   font-family: 'IBM Plex Mono', monospace;
   padding: 5%;
@@ -647,6 +669,7 @@ select#focusSceneSelect.active {
   font-size: 1.5rem;
   cursor: pointer;
   margin-bottom: 2rem;
+  z-index: 99;
 }
 
 .toolbar > * {
@@ -668,6 +691,15 @@ select#focusSceneSelect.active {
           transform: scaleX(-1);
 }
 
+@media (max-width: 650px) {
+  .ce-block--focused {
+    background-image: none;
+    background-color: rgba(200, 199, 219, 0);
+    margin: 0 -10px;
+    padding: 0 10px;
+  }
+}
+
 @media (min-width: 1200px) {
   .editpane {
     padding: 10px;
@@ -675,6 +707,23 @@ select#focusSceneSelect.active {
             box-shadow: 0 5px 26px 2px rgba(0, 0, 0, 0.2);
   }
   .nodeText {
+    line-height: 2.5rem;
+  }
+  #codex-editor .codex-editor {
+    font-family: 'IBM Plex Mono', monospace;
+    color: var(--editor-color);
+    font-weight: 400;
+    font-size: 0.9rem;
+    text-align: justify;
+  }
+  #codex-editor .codex-editor .ce-block__content {
+    padding: 0 5%;
+    max-width: unset;
+  }
+  #codex-editor .codex-editor .ce-block--focused {
+    background-image: unset;
+  }
+  #codex-editor .codex-editor .ce-paragraph {
     line-height: 2.5rem;
   }
 }

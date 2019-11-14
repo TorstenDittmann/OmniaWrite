@@ -8,6 +8,7 @@
     "url": "https://omniawrite.com"
   },
   "devDependencies": {
+    "@editorjs/editorjs": "^2.15.1",
     "@types/pouchdb": "^6.4.0",
     "electron": "^6.1.4",
     "electron-builder": "^21.2.0",

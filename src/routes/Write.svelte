@@ -8,36 +8,30 @@
     state
   } from "../stores";
   import {
-    push
+    push,
+    location
   } from 'svelte-spa-router';
 
   import WriteOverview from './Write/WriteOverview.svelte';
+  import EditorJS from '@editorjs/editorjs';
+
 
   export let params = {};
   let currentScene;
   let currentChapter;
   let editorHtml;
+  let editor;
 
   $: currentScene = $scenes.filter(scene => scene.id == params.sceneId)[0];
   $: state.setCurrentTitle(params.sceneId ? currentScene.title : 'No scene selected!');
+  $: {
+    if ($location) {
+      init();
+    }
+  }
 
   onMount(() => {
     if (params.sceneId !== null) {
-      editorHtml = document.getElementById("editor");
-      editorHtml.addEventListener(
-        "input",
-        async () => {
-            scenes.setSceneContent(params.sceneId, currentScene.content);
-          },
-          false
-      );
-
-      editorHtml.addEventListener("paste", function (e) {
-        e.preventDefault();
-        let text = (e.originalEvent || e).clipboardData.getData("text/plain");
-        document.execCommand("insertHTML", false, text);
-      });
-
       document.onkeydown = function (evt) {
         evt = evt || window.event;
         if (evt.keyCode == 27) {
@@ -46,6 +40,26 @@
       };
     }
   });
+
+  function init() {
+    if (editor && typeof editor.destroy === 'function') {
+      editor.destroy();
+    }
+
+    editor = new EditorJS({
+      holder: 'codex-editor',
+      placeholder: 'Let`s write an awesome story!',
+      data: currentScene.content
+    });
+  }
+
+  function save() {
+    editor.save().then((outputData) => {
+      scenes.setSceneContent(params.sceneId, outputData)
+    }).catch((error) => {
+      console.log('Saving failed: ', error)
+    });
+  }
 
   function switchScene(e) {
     push('/write/' + e.target.value);
@@ -85,14 +99,17 @@
 {#if params.sceneId !== null}
 <div class="toolbar">
   <span class="tooltip">
-    {currentScene.content.split(' ').length} words
-    <span class="tooltiptext">{currentScene.content.length} characters</span>
+    0 words
+    <span class="tooltiptext">0 characters</span>
   </span>
   <i class="icon-reply tooltip" on:click={undo}>
     <span class="tooltiptext">Undo</span>
   </i>
   <i class="icon-reply redo tooltip" on:click={redo}>
     <span class="tooltiptext">Redo</span>
+  </i>
+  <i class="icon-check_circle tooltip" on:click={save}>
+    <span class="tooltiptext">Save</span>
   </i>
   <i class="icon-eye tooltip" on:click={toggleFocus}>
     <span class="tooltiptext">Focus</span>
@@ -113,11 +130,8 @@
 </div>
 <div class="editpane">
     <h1 contenteditable="true">{currentScene.title}</h1>
-    <div
-      id="editor"
-      class="nodeText"
-      contenteditable="true"
-      bind:innerHTML={currentScene.content} />
+<div id="codex-editor">
+</div>
 </div>
 {:else}
 <WriteOverview></WriteOverview>
