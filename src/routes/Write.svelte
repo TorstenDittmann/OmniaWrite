@@ -14,6 +14,10 @@
 
   import WriteOverview from './Write/WriteOverview.svelte';
   import EditorJS from '@editorjs/editorjs';
+  import Header from '@editorjs/header';
+  import Quote from '@editorjs/quote';
+  import Toast from '../shared/Toast.svelte';
+
 
 
   export let params = {};
@@ -21,6 +25,10 @@
   let currentChapter;
   let editorHtml;
   let editor;
+  let editorChangeHappened;
+
+  let showToast = false;
+  let showToastText;
 
   $: currentScene = $scenes.filter(scene => scene.id == params.sceneId)[0];
   $: state.setCurrentTitle(params.sceneId ? currentScene.title : 'No scene selected!');
@@ -42,20 +50,36 @@
   });
 
   function init() {
-    if (editor && typeof editor.destroy === 'function') {
-      editor.destroy();
-    }
+    editorChangeHappened = false;
+    if (params.sceneId !== null) {
+      if (editor && typeof editor.destroy === 'function') {
+        editor.destroy();
+      }
 
-    editor = new EditorJS({
-      holder: 'codex-editor',
-      placeholder: 'Let`s write an awesome story!',
-      data: currentScene.content
-    });
+      editor = new EditorJS({
+        holder: 'codex-editor',
+        placeholder: 'Let`s write an awesome story!',
+        data: currentScene.content,
+        onChange: () => editorChangeHappened = true,
+        tools: {
+          header: Header,
+          quote: {
+            class: Quote,
+            inlineToolbar: true
+          }
+        }
+      });
+    }
   }
 
   function save() {
+    console.log(editor);
+    delete editor.configuration.tools.link;
     editor.save().then((outputData) => {
-      scenes.setSceneContent(params.sceneId, outputData)
+      scenes.setSceneContent(params.sceneId, outputData);
+      editorChangeHappened = false;
+      showToast = true;
+      showToastText = "Saved!";
     }).catch((error) => {
       console.log('Saving failed: ', error)
     });
@@ -96,6 +120,8 @@
     outline: 0 !important;
   }
 </style>
+<Toast bind:show={showToast} text={showToastText} />
+
 {#if params.sceneId !== null}
 <div class="toolbar">
   <span class="tooltip">
@@ -108,9 +134,11 @@
   <i class="icon-reply redo tooltip" on:click={redo}>
     <span class="tooltiptext">Redo</span>
   </i>
+  {#if editorChangeHappened}
   <i class="icon-check_circle tooltip" on:click={save}>
     <span class="tooltiptext">Save</span>
   </i>
+  {/if}
   <i class="icon-eye tooltip" on:click={toggleFocus}>
     <span class="tooltiptext">Focus</span>
   </i>
