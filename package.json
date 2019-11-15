@@ -11,6 +11,7 @@
     "@editorjs/editorjs": "^2.15.1",
     "@editorjs/header": "^2.3.1",
     "@editorjs/quote": "^2.3.0",
+    "@types/file-saver": "^2.0.1",
     "@types/pouchdb": "^6.4.0",
     "electron": "^6.1.4",
     "electron-builder": "^21.2.0",
@@ -30,6 +31,8 @@
   },
   "dependencies": {
     "backendless": "^5.4.4",
+    "file-saver": "^2.0.2",
+    "jszip": "^3.2.2",
     "pouchdb": "^7.1.1",
     "pouchdb-browser": "^7.1.1",
     "remotestorage-widget": "^1.4.0",
