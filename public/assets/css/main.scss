@@ -548,46 +548,10 @@ select#focusSceneSelect.active {
     overflow: visible;
 
     .tooltiptext {
-        font-family: 'IBM Plex Sans',
-            sans-serif;
-        font-size: 1rem;
-        visibility: hidden;
-        color: var(--text-color);
-        font-weight: 400;
-        letter-spacing: normal;
-        background: #000;
-        border-radius: 0 .125rem .125rem;
-        line-height: 1rem;
-        margin: .7rem 0 0;
-        padding: .375rem .5rem;
-        position: absolute;
-        bottom: auto;
-        top: 100%;
-        left: 50%;
-        right: auto;
-        opacity: 0;
-        transition: opacity .3s linear;
-        white-space: normal;
-        z-index: 1070;
+        display: none;
 
         &::after {
-            position: absolute;
-            top: -.35rem;
-            left: 0;
-            bottom: auto;
-            right: auto;
-            content: "";
-            border-left: .25rem solid #000;
-            border-bottom: .2rem solid #000;
-            border-right: .25rem solid transparent;
-            border-top: .2rem solid transparent;
-        }
-    }
-
-    &:hover {
-        .tooltiptext {
-            visibility: visible;
-            opacity: 1;
+            display: none;
         }
     }
 }
@@ -652,7 +616,7 @@ select#focusSceneSelect.active {
     font-size: 1.5rem;
     cursor: pointer;
     margin-bottom: 2rem;
-    z-index: 99;
+    z-index: 8;
 }
 
 .toolbar>* {
@@ -680,6 +644,12 @@ select#focusSceneSelect.active {
         background-color: rgba(200, 199, 219, 0);
         margin: 0 -10px;
         padding: 0 10px;
+    }
+}
+
+@media (min-width: 651px) {
+    .codex-editor--narrow .codex-editor__redactor {
+        margin: 0;
     }
 }
 
@@ -874,6 +844,57 @@ select#focusSceneSelect.active {
         border-radius: 1rem;
         bottom: 1rem;
         right: 1rem;
+    }
+
+    .tooltip {
+        position: relative;
+        display: inline-block;
+        overflow: visible;
+
+        .tooltiptext {
+            display: initial;
+            font-family: 'IBM Plex Sans',
+                sans-serif;
+            font-size: 1rem;
+            visibility: hidden;
+            color: var(--text-color);
+            font-weight: 400;
+            letter-spacing: normal;
+            background: #000;
+            border-radius: 0 .125rem .125rem;
+            line-height: 1rem;
+            margin: .7rem 0 0;
+            padding: .375rem .5rem;
+            position: absolute;
+            bottom: auto;
+            top: 100%;
+            left: 50%;
+            right: auto;
+            opacity: 0;
+            transition: opacity .3s linear;
+            white-space: normal;
+            z-index: 1070;
+
+            &::after {
+                position: absolute;
+                top: -.35rem;
+                left: 0;
+                bottom: auto;
+                right: auto;
+                content: "";
+                border-left: .25rem solid #000;
+                border-bottom: .2rem solid #000;
+                border-right: .25rem solid transparent;
+                border-top: .2rem solid transparent;
+            }
+        }
+
+        &:hover {
+            .tooltiptext {
+                visibility: visible;
+                opacity: 1;
+            }
+        }
     }
 }
 
