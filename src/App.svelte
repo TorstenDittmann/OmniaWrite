@@ -8,6 +8,8 @@
 
     import HeaderComponent from "./shared/Header.svelte";
     import SidebarComponent from "./shared/Sidebar.svelte";
+    import Toast from './shared/Toast.svelte';
+
 
     import OverviewRoute from "./routes/Overview.svelte";
     import WriteRoute from "./routes/Write.svelte";
@@ -30,8 +32,25 @@
         "*": OverviewRoute
     };
 
+    let updateAvailable = false;
     if ("serviceWorker" in navigator && location.hostname != "localhost") {
-        navigator.serviceWorker.register("/service-worker.js");
+        navigator.serviceWorker.register('/service-worker.js')
+            .then(reg => {
+                reg.onupdatefound = () => {
+                    const installingWorker = reg.installing;
+                    installingWorker.onstatechange = () => {
+                        switch (installingWorker.state) {
+                            case 'installed':
+                                if (navigator.serviceWorker.controller) {
+                                    // new update available
+                                    updateAvailable = true;
+                                }
+                                break;
+                        }
+                    };
+                };
+            })
+            .catch(err => console.error('[SW ERROR]', err));
     }
 
     /**
@@ -88,8 +107,11 @@
 
         <SidebarComponent bind:sidebarState />
         <div id="content" class="content">
-            <div class="inner">
-                <Router {routes} />
-            </div>
+            <Toast bind:show={updateAvailable} text="Update available!<br><br> Click here to reload." on:click={()=>
+                {window.location.reload()}}
+                duration="forever" />
+                <div class="inner">
+                    <Router {routes} />
+                </div>
         </div>
 </div>
