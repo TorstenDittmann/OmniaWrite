@@ -2,6 +2,9 @@
     import {
         generateDownload
     } from '../export';
+    import {
+        state
+    } from "../stores";
 
     let author;
     let downloadButtonLoading = false;
@@ -10,7 +13,7 @@
         downloadButtonLoading = true;
         const file = cover.files[0];
 
-        generateDownload(241781, file, author).then(() => {
+        generateDownload($state.currentProject, file, author).then(() => {
             downloadButtonLoading = false;
         })
     }
