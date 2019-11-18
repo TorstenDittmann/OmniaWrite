@@ -30,6 +30,7 @@ let template = {};
 let projectId;
 let projectImage;
 let projectData;
+let projectAuthor;
 
 async function fetchTemplate() {
     const start = async () => {
@@ -41,7 +42,7 @@ async function fetchTemplate() {
             template.content.getElementById("_title").textContent = projectData.title;
             template.package.getElementById("_title").textContent = projectData.title;
             // set author
-            template.package.getElementById("_author").textContent = "Torsten Dittmann";
+            template.package.getElementById("_author").textContent = projectAuthor;
         }).then(() => {
             // create chapters
             chapters.subscribe(value => {
@@ -108,9 +109,10 @@ async function fetchTemplate() {
     return start();
 }
 
-export async function generateDownload(id, img) {
+export async function generateDownload(id, img, author) {
     projectId = id;
     projectImage = img;
+    projectAuthor = author;
     await projects.subscribe(value => {
         value.filter(e => e.id == id).forEach(project => {
             projectData = project;
