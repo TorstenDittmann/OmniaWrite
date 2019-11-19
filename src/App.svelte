@@ -109,7 +109,7 @@
         <div id="content" class="content">
             <Toast bind:show={updateAvailable} text="Update available!<br><i class='icon-cloud_download icon3x' />"
                 on:click={()=>
-                {window.location.reload(true)}}
+                {document.location.reload(true)}}
                 duration="forever" />
                 <div class="inner">
                     <Router {routes} />
