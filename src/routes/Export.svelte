@@ -1,6 +1,6 @@
 <script>
     import {
-        generateDownload
+        Export
     } from '../export';
     import {
         state
@@ -12,9 +12,11 @@
     function download() {
         downloadButtonLoading = true;
         const file = cover.files[0];
-
-        generateDownload($state.currentProject, file, author).then(() => {
+        let generateDownload = new Export($state.currentProject, file, author);
+        generateDownload.fetchTemplate().then(() => {
             downloadButtonLoading = false;
+        }).finally(() => {
+            generateDownload = null;
         })
     }
 </script>
