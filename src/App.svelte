@@ -37,6 +37,7 @@
     };
 
     let updateAvailable = false;
+    // register service worker
     register('/service-worker.js', {
         registrationOptions: {
             scope: './'
@@ -52,10 +53,10 @@
         },
         updatefound(registration) {
             console.log('New content is downloading.')
-            updateAvailable = true;
         },
         updated(registration) {
             console.log('New content is available; please refresh.')
+            updateAvailable = true;
         },
         offline() {
             console.log('No internet connection found. App is running in offline mode.')
@@ -63,7 +64,7 @@
         error(error) {
             console.error('Error during service worker registration:', error)
         }
-    })
+    });
 
     /**
      * Defines state of sidebar and navigation based on max-width.
@@ -119,9 +120,9 @@
 
         <SidebarComponent bind:sidebarState />
         <div id="content" class="content">
-            <Toast bind:show={updateAvailable} text="Update available!<br><i class='icon-cloud_download icon3x' />"
-                on:click={()=>
-                {document.location.reload(true)}}
+            <Toast bind:show={updateAvailable}
+                text="Reload app for new update!<br><i class='icon-cloud_download icon3x' />" on:click={()=>
+                {window.location.reload()}}
                 duration="forever" />
                 <div class="inner">
                     <Router {routes} />
