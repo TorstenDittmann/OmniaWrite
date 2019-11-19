@@ -41,8 +41,15 @@
 </Modal>
 
 {#each $projects.filter(project => project.id == $state.currentProject) as project}
-<p>Opened project :{project.id}</p>
-<p>Title: <input id="newProjectTitle" type="text" value={project.title}></p>
+<div class="field">
+    <label class="big" for="author">Opened project:</label>
+    <input id="author" type="text"  disabled bind:value={project.id}>
+</div>
+<div class="field">
+    <label class="big" for="author">Title:</label>
+    <input id="author" type="text" placeholder="John Doe" autocomplete="off" bind:value={project.title}>
+</div>
+
 <button on:click={() => setProjectTitle(project.id)}>Save</button>
 <hr>
 {/each}
