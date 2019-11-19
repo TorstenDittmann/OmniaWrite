@@ -34,7 +34,7 @@
 
     let updateAvailable = false;
     if ("serviceWorker" in navigator && location.hostname != "localhost") {
-        navigator.serviceWorker.register('/service-worker.js')
+        navigator.serviceWorker.register('/sw.js')
             .then(reg => {
                 reg.onupdatefound = () => {
                     const installingWorker = reg.installing;
