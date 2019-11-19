@@ -26,6 +26,8 @@
   let editorHtml;
   let editor;
   let editorChangeHappened;
+  let amountWords;
+  let amountChars;
 
   let showToast = false;
   let showToastText;
@@ -55,12 +57,19 @@
       if (editor && typeof editor.destroy === 'function') {
         editor.destroy();
       }
-
       editor = new EditorJS({
         holder: 'codex-editor',
         placeholder: 'Let`s write an awesome story!',
         data: currentScene.content,
-        onChange: () => editorChangeHappened = true,
+        onChange: () => {
+          editorChangeHappened = true;
+          amountChars = document.getElementById("codex-editor").innerText.length;
+          amountWords = document.getElementById("codex-editor").innerText.split(" ").length;
+        },
+        onReady: () => {
+          amountChars = document.getElementById("codex-editor").innerText.length;
+          amountWords = document.getElementById("codex-editor").innerText.split(" ").length;
+        },
         tools: {
           header: Header,
           quote: {
@@ -73,8 +82,6 @@
   }
 
   function save() {
-    console.log(editor);
-    delete editor.configuration.tools.link;
     editor.save().then((outputData) => {
       scenes.setSceneContent(params.sceneId, outputData);
       editorChangeHappened = false;
@@ -125,8 +132,8 @@
 {#if params.sceneId !== null}
 <div class="toolbar">
   <span class="tooltip">
-    0 words
-    <span class="tooltiptext">0 characters</span>
+    {amountWords} words
+    <span class="tooltiptext">{amountChars} characters</span>
   </span>
   <i class="icon-reply tooltip" on:click={undo}>
     <span class="tooltiptext">Undo</span>
