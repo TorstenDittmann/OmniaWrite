@@ -7,6 +7,11 @@ import globals from "rollup-plugin-node-globals";
 import {
 	terser
 } from "rollup-plugin-terser";
+const {
+	generateSW
+} = require('rollup-plugin-workbox');
+
+const workboxConfig = require('./workbox-config.js')
 
 // eslint-disable-next-line no-undef
 const production = !process.env.ROLLUP_WATCH;
@@ -42,6 +47,7 @@ export default {
 		commonjs(),
 		globals(),
 		builtins(),
+		generateSW(workboxConfig),
 
 		// Watch the `public` directory and refresh the
 		// browser on changes when not in production
