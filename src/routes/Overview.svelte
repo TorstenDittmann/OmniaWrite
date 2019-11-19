@@ -42,7 +42,7 @@
 
 {#each $projects.filter(project => project.id == $state.currentProject) as project}
 <div class="field">
-    <label class="big" for="author">ID:</label>
+    <label class="big" for="author">Project ID:</label>
     <input id="author" type="text"  disabled bind:value={project.id}>
 </div>
 <div class="field">

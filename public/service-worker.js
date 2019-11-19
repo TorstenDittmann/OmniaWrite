@@ -1,4 +1,4 @@
-var cacheName = "omniawrite-cache-5";
+var cacheName = "omniawrite-cache-6";
 var filesToCache = [
   "/",
   "/index.html",
