@@ -107,8 +107,9 @@
 
         <SidebarComponent bind:sidebarState />
         <div id="content" class="content">
-            <Toast bind:show={updateAvailable} text="Update available!<br><br> Click here to reload." on:click={()=>
-                {window.location.reload()}}
+            <Toast bind:show={updateAvailable} text="Update available!<br><i class='icon-cloud_download' />"
+                on:click={()=>
+                {window.location.reload(true)}}
                 duration="forever" />
                 <div class="inner">
                     <Router {routes} />
