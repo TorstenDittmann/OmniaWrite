@@ -259,11 +259,11 @@ self.__precacheManifest = [
   },
   {
     "url": "bundle.css",
-    "revision": "17ea7a3456c7acece21a70efa04179da"
+    "revision": "27ecfb98228cd3fc5b8c62f6ffe77909"
   },
   {
     "url": "bundle.js",
-    "revision": "13d6d4c6855428ed2f04c5f14264a3c4"
+    "revision": "95b07a52dac5abf7c5027bc754aceab3"
   },
   {
     "url": "favicon.png",
@@ -308,6 +308,42 @@ self.__precacheManifest = [
   {
     "url": "templates/default/META-INF/container.xml",
     "revision": "a19b1a4dcb899e7c55707fa4250243c6"
+  },
+  {
+    "url": "templates/moby-dick/META-INF/container.xml",
+    "revision": "50bf42c3a6bd3e738f9706a5b5808f22"
+  },
+  {
+    "url": "templates/moby-dick/OPS/chapter.xhtml",
+    "revision": "6cead7d97355892401e3caada04339b8"
+  },
+  {
+    "url": "templates/moby-dick/OPS/copyright.xhtml",
+    "revision": "00b0f6abadce06bc528f8f8483f80c4f"
+  },
+  {
+    "url": "templates/moby-dick/OPS/cover.xhtml",
+    "revision": "55cc8ed83129294e05de198e8d02c94f"
+  },
+  {
+    "url": "templates/moby-dick/OPS/css/stylesheet.css",
+    "revision": "d7588e58b293751fd9d486f9387f07cc"
+  },
+  {
+    "url": "templates/moby-dick/OPS/package.opf",
+    "revision": "b7774c3a000a5a03b3f40e35d1302038"
+  },
+  {
+    "url": "templates/moby-dick/OPS/titlepage.xhtml",
+    "revision": "bda2b4627ab6f92aea93ef36ea9c7078"
+  },
+  {
+    "url": "templates/moby-dick/OPS/toc-short.xhtml",
+    "revision": "9be50b5547253cb76b2d28dea6dc901d"
+  },
+  {
+    "url": "templates/moby-dick/OPS/toc.xhtml",
+    "revision": "93ffee90d5ac3569aee57b7bb4e5e25a"
   }
 ].concat(self.__precacheManifest || []);
 workbox.precaching.precacheAndRoute(self.__precacheManifest, {});
