@@ -1,6 +1,6 @@
 <script>
     import {
-        Export
+        ExportMoby
     } from '../export';
     import {
         state
@@ -12,7 +12,7 @@
     function download() {
         downloadButtonLoading = true;
         const file = cover.files[0];
-        let generateDownload = new Export($state.currentProject, file, author);
+        let generateDownload = new ExportMoby($state.currentProject, file, author);
         generateDownload.fetchTemplate().then(() => {
             downloadButtonLoading = false;
         }).finally(() => {
