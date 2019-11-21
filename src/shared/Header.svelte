@@ -76,9 +76,9 @@
             <li use:active={'/cards/'}>
               <a href="/cards/" use:link>Cards</a>
             </li>
-            <li use:active={'/mindmap/'}>
+            <!--<li use:active={'/mindmap/'}>
               <a href="/mindmap/" use:link>Mindmaps</a>
-            </li>
+            </li>-->
             <li use:active={'/settings'}>
               <a href="/settings" use:link>Settings</a>
             </li>
