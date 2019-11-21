@@ -5,7 +5,8 @@
   import {
     scenes,
     chapters,
-    state
+    state,
+    cards
   } from "../stores";
   import {
     push,
@@ -65,6 +66,7 @@
           editorChangeHappened = true;
           amountChars = document.getElementById("codex-editor").innerText.length;
           amountWords = document.getElementById("codex-editor").innerText.split(" ").length;
+          // highlightCards();
         },
         onReady: () => {
           amountChars = document.getElementById("codex-editor").innerText.length;
@@ -88,8 +90,17 @@
       showToast = true;
       showToastText = "Saved!";
     }).catch((error) => {
-      console.log('Saving failed: ', error)
+      console.error('Saving failed: ', error)
     });
+  }
+
+  function highlightCards() {
+    editorHtml = document.getElementsByClassName("codex-editor__redactor")[0];
+    cards.subscribe(cardsData => {
+      cardsData.filter(fi => fi.project == $state.currentProject && fi.showTooltip).forEach(card => {
+
+      });
+    })
   }
 
   function switchScene(e) {
