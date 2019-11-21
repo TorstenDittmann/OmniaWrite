@@ -1,7 +1,7 @@
 <script>
     import {
-        register
-    } from 'register-service-worker'
+        Workbox
+    } from 'workbox-window';
 
     import Router from "svelte-spa-router";
 
@@ -36,35 +36,27 @@
         "*": OverviewRoute
     };
 
+    const wb = new Workbox('./service-worker.js');
+
     let updateAvailable = false;
     // register service worker
-    register('/service-worker.js', {
-        registrationOptions: {
-            scope: './'
-        },
-        ready(registration) {
-            console.log('Service worker is active.');
-        },
-        registered(registration) {
-            console.log('Service worker has been registered.');
-        },
-        cached(registration) {
-            console.log('Content has been cached for offline use.');
-        },
-        updatefound(registration) {
-            console.log('New content is downloading.');
-        },
-        updated(registration) {
-            console.log('New content is available; please refresh.');
+    if ('serviceWorker' in navigator) {
+        wb.addEventListener('waiting', (event) => {
             updateAvailable = true;
-        },
-        offline() {
-            console.log('No internet connection found. App is running in offline mode.');
-        },
-        error(error) {
-            console.error('Error during service worker registration:', error);
-        }
-    });
+        });
+        wb.register();
+    }
+    /**
+     * Update app
+     */
+    function updateApp() {
+        wb.addEventListener('controlling', (event) => {
+            window.location.reload();
+        });
+        wb.messageSW({
+            type: 'SKIP_WAITING'
+        });
+    }
 
     /**
      * Defines state of sidebar and navigation based on max-width.
@@ -120,12 +112,10 @@
 
         <SidebarComponent bind:sidebarState />
         <div id="content" class="content">
-            <Toast bind:show={updateAvailable}
-                text="Reload app for new update!<br><i class='icon-cloud_download icon3x' />" on:click={()=>
-                {window.location.reload()}}
-                duration="forever" />
-                <div class="inner">
-                    <Router {routes} />
-                </div>
+            <Toast bind:show={updateAvailable} text="New update installed!<br><i class='icon-cloud_download icon3x' />"
+                on:click={updateApp} duration="forever" />
+            <div class="inner">
+                <Router {routes} />
+            </div>
         </div>
 </div>
