@@ -37,9 +37,11 @@
     };
 
     const wb = new Workbox('./service-worker.js');
-
     let updateAvailable = false;
-    // register service worker
+
+    /**
+     * Register Service Worker.
+     */
     if ('serviceWorker' in navigator) {
         wb.addEventListener('waiting', (event) => {
             updateAvailable = true;
@@ -47,7 +49,7 @@
         wb.register();
     }
     /**
-     * Update app
+     * Update app.
      */
     function updateApp() {
         wb.addEventListener('controlling', (event) => {
@@ -68,10 +70,14 @@
     mql.addListener((e) => e.matches ? navigationState = false : navigationState = true);
 
     /**
-     * Swipe detection
+     * Swipe detection.
      */
     document.addEventListener('touchstart', handleTouchStart, false);
     document.addEventListener('touchmove', handleTouchMove, false);
+
+    /**
+     * Handle touch gestures.
+     */
 
     let xDown = null;
     let yDown = null;
@@ -94,9 +100,17 @@
 
         if (Math.abs(xDiff) > Math.abs(yDiff)) {
             if (xDiff > 0) {
-                sidebarState = false;
+                if (sidebarState) {
+                    sidebarState = false;
+                } else {
+                    navigationState = true;
+                }
             } else {
-                sidebarState = true;
+                if (navigationState) {
+                    navigationState = false;
+                } else {
+                    sidebarState = true;
+                }
             }
         }
         xDown = null;
