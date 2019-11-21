@@ -10,8 +10,6 @@
     const dispatch = createEventDispatcher();
 
     export let show = false;
-    export let type = "info";
-    export let icon = "icon-heart";
     export let text = "A notification message..";
     export let duration = 5000;
 
@@ -27,11 +25,6 @@
 <style>
     div {
         cursor: pointer;
-        opacity: .65;
-    }
-
-    div:hover {
-        opacity: 1;
     }
 </style>
 {#if show}
