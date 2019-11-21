@@ -3,6 +3,7 @@
   <metadata xmlns:dc="http://purl.org/dc/elements/1.1/">
     <dc:title id="title"></dc:title>
     <meta refines="#title" property="title-type">main</meta>
+    <dc:identifier id="pub-id">000000000</dc:identifier>
     <dc:creator id="creator"></dc:creator>
     <dc:language>en-US</dc:language>
     <meta property="dcterms:modified">2012-01-18T12:47:00Z</meta>

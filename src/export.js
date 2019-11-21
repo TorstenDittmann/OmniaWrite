@@ -30,6 +30,9 @@ export class Export {
                 name: "toc",
                 path: "templates/moby-dick/OPS/toc.xhtml"
             }, {
+                name: "tocshort",
+                path: "templates/moby-dick/OPS/toc-short.xhtml"
+            }, {
                 name: "content",
                 path: "templates/moby-dick/OPS/chapter.xhtml"
             }, {
@@ -66,6 +69,7 @@ export class Export {
                         template.cover.getElementById("title").textContent =
                         template.titlepage.getElementById("title").textContent =
                         template.toc.getElementById("title").textContent =
+                        template.tocshort.getElementById("title").textContent =
                         template.toc.getElementById("toc-title").textContent =
                         template.package.getElementById("title").textContent = this.projectData.title;
                     // set author
@@ -127,33 +131,37 @@ export class Export {
                     zip.file("mimetype", "application/epub+zip");
                     zip.file("OPS/package.opf", template.package.children[0].outerHTML);
                     zip.file("OPS/toc.xhtml", template.toc.children[0].outerHTML);
+                    zip.file("OPS/toc-short.xhtml", template.tocshort.children[0].outerHTML);
                     zip.file("OPS/cover.xhtml", template.cover.children[0].outerHTML);
                     zip.file("OPS/titlepage.xhtml", template.titlepage.children[0].outerHTML);
                     zip.file("OPS/images/cover.jpg", this.projectImage, {
                         binary: true
                     });
                     zip.file("META-INF/container.xml", template.container.children[0].outerHTML);
-                    this.templateFiles.files.forEach(e => {
-                        fetch("templates/moby-dick/" + e)
-                            .then(res => res.arrayBuffer())
+                    this.templateFiles.fonts.forEach((e, i) => {
+                        fetch("./templates/moby-dick/" + e)
+                            .then(res => res.text())
                             .then(ab => {
-                                zip.file(name, ab);
+                                zip.file(e, ab);
+                            }).then(() => {
+                                if (this.templateFiles.fonts.length == (i + 1)) {
+                                    // generate zip file and save
+                                    zip.generateAsync({
+                                        type: "blob"
+                                    }).then(blob => {
+                                        saveAs.saveAs(blob, this.projectData.title + ".epub");
+                                    }, err => {
+                                        window.alert("error: " + err);
+                                    }).then(() => {
+                                        // clean up
+                                        unsubscribeProject();
+                                        unsubscribeChapters();
+                                        unsubscribeScenes();
+                                    });
+                                }
+
                             })
                     })
-                }).then(() => {
-                    // generate zip file and save
-                    zip.generateAsync({
-                        type: "blob"
-                    }).then(blob => {
-                        saveAs.saveAs(blob, this.projectData.title + ".epub");
-                    }, err => {
-                        window.alert("error: " + err);
-                    });
-                }).then(() => {
-                    // clean up
-                    unsubscribeProject();
-                    unsubscribeChapters();
-                    unsubscribeScenes();
                 })
         }
         return start();
