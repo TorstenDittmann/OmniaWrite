@@ -94,15 +94,6 @@
     });
   }
 
-  function highlightCards() {
-    editorHtml = document.getElementsByClassName("codex-editor__redactor")[0];
-    cards.subscribe(cardsData => {
-      cardsData.filter(fi => fi.project == $state.currentProject && fi.showTooltip).forEach(card => {
-
-      });
-    })
-  }
-
   function switchScene(e) {
     push('/write/' + e.target.value);
     e.target.selectedIndex = 0;
