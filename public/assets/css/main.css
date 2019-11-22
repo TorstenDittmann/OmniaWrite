@@ -713,7 +713,7 @@ select#focusSceneSelect.active {
 
 #snackbar {
   width: 100%;
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: rgba(0, 0, 0, 0.7);
   color: var(--text-color);
   text-align: center;
   padding: 1rem;
@@ -721,6 +721,10 @@ select#focusSceneSelect.active {
   z-index: 9999;
   bottom: 0;
   right: 0;
+}
+
+#snackbar:hover {
+  background-color: black;
 }
 
 ::-webkit-scrollbar {
