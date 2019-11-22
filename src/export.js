@@ -185,3 +185,67 @@ export class Export {
         return String(num).padStart(3, '0')
     }
 }
+
+export class ExportRTF {
+    constructor(id, author) {
+        this.projectId = id;
+        this.projectAuthor = author;
+
+        this.header = "{\\rtf1\\ansi\\deff0{\\fonttbl}\\pard\\qc\\fs120\\b TITLE\\pard\\b0";
+        this.chapter = "\\page\\fs32\\b CHAPTER\\par\\pard \\b0\\fs22 SCENE"
+        this.block = "BLOCK \\par"
+        this.footer = "}";
+    }
+
+    async fetchTemplate() {
+        unsubscribeProject = await projects.subscribe(value => {
+            value.filter(e => e.id == this.projectId).forEach(project => {
+                this.projectData = project;
+            })
+        });
+        let content = "";
+        const start = async () => {
+
+            // set title
+            this.header = this.header.replace("TITLE", this.projectData.title);
+            content += this.header;
+            unsubscribeChapters = chapters.subscribe(value => {
+                value.filter(e => e.project == this.projectId).sort(this.compare).forEach((element, i) => {
+                    let chapterContent = this.chapter;
+                    chapterContent = chapterContent.replace("CHAPTER", element.title);
+
+                    unsubscribeScenes = scenes.subscribe(value => {
+                        value.filter(e => e.chapter == element.id).sort(this.compare).forEach((scene, i) => {
+                            let sceneContent = "";
+                            scene.content.blocks.forEach(block => {
+                                let blockContent = this.block.replace("BLOCK", block.data.text);
+                                sceneContent += blockContent;
+                            })
+                            chapterContent = chapterContent.replace("SCENE", sceneContent);
+                        });
+                        content += chapterContent;
+                    });
+                    if ((i + 1) == value.filter(e => e.project == this.projectId).length) {
+                        content += this.footer;
+                        let blob = new Blob([content], {
+                            type: 'text/plain'
+                        });
+                        saveAs.saveAs(blob, this.projectData.title + ".rtf");
+                    }
+                });
+            });
+        }
+        return start();
+
+    }
+
+    compare(a, b) {
+        if (a.order < b.order) {
+            return -1;
+        }
+        if (a.order > b.order) {
+            return 1;
+        }
+        return 0;
+    }
+}
