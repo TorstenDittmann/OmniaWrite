@@ -234,6 +234,9 @@ export class ExportRTF {
                     }
                 });
             });
+            unsubscribeProject();
+            unsubscribeChapters();
+            unsubscribeScenes();
         }
         return start();
 
