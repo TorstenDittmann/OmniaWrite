@@ -1,6 +1,7 @@
 <script>
   import {
-    onMount
+    onMount,
+    onDestroy
   } from "svelte";
   import {
     scenes,
@@ -24,6 +25,7 @@
   export let params = {};
   let currentScene;
   let currentChapter;
+  let lastScene;
   let editorHtml;
   let editor;
   let editorChangeHappened;
@@ -52,25 +54,34 @@
     }
   });
 
+  onDestroy(() => {
+    if (editorChangeHappened) {
+      save(lastScene);
+    }
+    if (editor && typeof editor.destroy === 'function') {
+      editor.destroy()
+    }
+  })
+
   function init() {
-    editorChangeHappened = false;
     if (params.sceneId !== null) {
       if (editor && typeof editor.destroy === 'function') {
+        if (editorChangeHappened) {
+          save(lastScene);
+        }
         editor.destroy();
       }
+      editorChangeHappened = false;
       editor = new EditorJS({
         holder: 'codex-editor',
         placeholder: 'Let`s write an awesome story!',
         data: currentScene.content,
         onChange: () => {
           editorChangeHappened = true;
-          amountChars = document.getElementById("codex-editor").innerText.length;
-          amountWords = document.getElementById("codex-editor").innerText.split(" ").length;
-          // highlightCards();
+          countWordsAndChars()
         },
         onReady: () => {
-          amountChars = document.getElementById("codex-editor").innerText.length;
-          amountWords = document.getElementById("codex-editor").innerText.split(" ").length;
+          countWordsAndChars()
         },
         tools: {
           header: Header,
@@ -80,18 +91,24 @@
           }
         }
       });
+      lastScene = params.sceneId;
     }
   }
 
-  function save() {
+  function save(param) {
     editor.save().then((outputData) => {
-      scenes.setSceneContent(params.sceneId, outputData);
+      scenes.setSceneContent(param, outputData);
       editorChangeHappened = false;
       showToast = true;
       showToastText = "Saved!";
     }).catch((error) => {
       console.error('Saving failed: ', error)
     });
+  }
+
+  function countWordsAndChars() {
+    amountChars = document.getElementById("codex-editor").innerText.length;
+    amountWords = document.getElementById("codex-editor").innerText.split(" ").length;
   }
 
   function switchScene(e) {
@@ -144,7 +161,7 @@
     <span class="tooltiptext">Redo</span>
   </i>
   {#if editorChangeHappened}
-  <i class="icon-check_circle tooltip" on:click={save}>
+  <i class="icon-check_circle tooltip" on:click={()=> save(params.sceneId)}>
     <span class="tooltiptext">Save</span>
   </i>
   {/if}
