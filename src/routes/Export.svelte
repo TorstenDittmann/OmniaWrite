@@ -47,6 +47,8 @@
         <i class="icon-spinner_2 spinner" />
         Download
     </button>
+</div>
+<div class="btn-group">
     <button on:click={downloadRTF}>
         <i class="icon-spinner_2 spinner" />
         DownloadRTF
