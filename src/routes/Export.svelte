@@ -1,6 +1,7 @@
 <script>
     import {
-        Export
+        Export,
+        ExportRTF
     } from '../export';
     import {
         state
@@ -13,6 +14,15 @@
         downloadButtonLoading = true;
         const file = cover.files[0];
         let generateDownload = new Export($state.currentProject, file, author);
+        generateDownload.fetchTemplate().then(() => {
+            downloadButtonLoading = false;
+        }).finally(() => {
+            generateDownload = null;
+        })
+    }
+
+    function downloadRTF() {
+        let generateDownload = new ExportRTF($state.currentProject, author);
         generateDownload.fetchTemplate().then(() => {
             downloadButtonLoading = false;
         }).finally(() => {
@@ -36,5 +46,9 @@
     <button on:click={download} disabled={downloadButtonLoading} class:loading={downloadButtonLoading}>
         <i class="icon-spinner_2 spinner" />
         Download
+    </button>
+    <button on:click={downloadRTF}>
+        <i class="icon-spinner_2 spinner" />
+        DownloadRTF
     </button>
 </div>
