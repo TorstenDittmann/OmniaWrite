@@ -61,6 +61,19 @@
     }
 
     /**
+     * Set Doorbell API options.
+     */
+    (function (d) {
+        var key = "K7ZnlPekbRGNeYXVD180j3",
+            e = d.createElement("script");
+        e.type = "text/javascript";
+        e.async = true;
+        e.src = "https://cdn.howuku.com/js/howu.js";
+        e.setAttribute("key", key);
+        d.getElementsByTagName("head")[0].appendChild(e);
+    })(document);
+
+    /**
      * Defines state of sidebar and navigation based on max-width.
      */
     let mql = window.matchMedia('(max-width: 960px)');
