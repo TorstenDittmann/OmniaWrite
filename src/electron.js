@@ -11,9 +11,12 @@ let mainWindow;
 function createWindow() {
     const mode = process.env.NODE_ENV;
     mainWindow = new BrowserWindow({
-        width: 900,
+        width: 1024,
         height: 680,
-        //frame: false
+        frame: false,
+        webPreferences: {
+            nodeIntegration: true,
+        }
     });
 
 
