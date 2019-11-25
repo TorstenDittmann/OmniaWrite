@@ -20,9 +20,39 @@
     tabs
   } from "../stores";
 
+  // uncomment for electron
+  /*  import * as path from 'path';
+    import {
+      remote,
+      ipcRenderer
+    } from 'electron';*/
+
   export let navigationState;
 
   const dispatch = createEventDispatcher();
+
+  let userAgent = navigator.userAgent.toLowerCase();
+  let isRunningElectron = false;
+  if (userAgent.indexOf(' electron/') > -1) {
+    isRunningElectron = true;
+  }
+
+  function closeWindow() {
+    remote.BrowserWindow.getFocusedWindow().close();
+  }
+
+  function maximizeWindow() {
+    if (remote.BrowserWindow.getFocusedWindow().isMaximized()) {
+      remote.BrowserWindow.getFocusedWindow().restore();
+    } else {
+      remote.BrowserWindow.getFocusedWindow().maximize();
+    }
+  }
+
+  function minimizeWindow() {
+    remote.BrowserWindow.getFocusedWindow().minimize();
+
+  }
 
   function createTab() {
     tabs.createTab(
@@ -43,10 +73,19 @@
     font-size: 1.5rem;
     padding: 0 1rem;
     opacity: .65;
+    -webkit-app-region: no-drag;
   }
 
   .titlebar:hover {
     opacity: 1;
+  }
+
+  header {
+    -webkit-app-region: drag;
+  }
+
+  .menu li {
+    -webkit-app-region: no-drag;
   }
 </style>
 
@@ -88,15 +127,12 @@
             <li use:active={'/cloud'}>
               <a href="/cloud" use:link>Cloud</a>
             </li>
-            <li use:active={'/feedback'}>
-              <a href="/feedback" use:link>Feedback</a>
-            </li>
         </ul>
-        <!--
-        <i class="icon-cross_mark titlebar" />
-        <i class="icon-chevron_up titlebar" />
-        <i class="icon-chevron_down titlebar" />
-        -->
+        {#if isRunningElectron}
+        <i class="icon-cross_mark titlebar" on:click={closeWindow} />
+        <i class="icon-chevron_up titlebar" on:click={maximizeWindow} />
+        <i class="icon-chevron_down titlebar" on:click={minimizeWindow} />
+        {/if}
       </div>
     {/if}
     <button class="mobile" id="open-navigation" on:click={()=> (navigationState = true)}>
