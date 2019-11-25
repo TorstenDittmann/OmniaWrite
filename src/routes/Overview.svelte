@@ -2,12 +2,29 @@
     import {
         state,
         projects,
-        chapters
+        chapters,
+        scenes
     } from "../stores";
 
     import Modal from '../shared/Modal.svelte';
 
     let showCreateProject = false;
+    let wordCount;
+
+    $: {
+        wordCount = 0;
+        chapters.subscribe(chapters => {
+            chapters.filter(chapter => chapter.project == $state.currentProject).forEach(chapter => {
+                scenes.subscribe(scenes => {
+                    scenes.filter(scene => scene.chapter == chapter.id).forEach(scene => {
+                        scene.content.blocks.forEach(block => {
+                            wordCount += block.data.text.split(" ").length;
+                        })
+                    })
+                })
+            });
+        })
+    }
 
     function createProject() {
         let retValue = projects.createProject(document.getElementById("createProjectInput").value);
@@ -22,6 +39,19 @@
 
     function setProjectTitle(project) {
         projects.setProjectTitle(project, document.getElementById("newProjectTitle").value);
+    }
+
+    function countWords(project) {
+        chapters.subscribe(chapters => {
+            chapters.filter(chapter => chapter.project == project).forEach(chapter => {
+                scenes.subscribe(scenes => {
+                    scenes.filter(scene => scene.chapter == chapter.id).forEach(scene => {
+                        console.log(scene.size);
+                    })
+                })
+            });
+        })
+        return 0;
     }
 </script>
 
@@ -41,16 +71,22 @@
 </Modal>
 
 {#each $projects.filter(project => project.id == $state.currentProject) as project}
+<h1>{project.title}</h1>
 <div class="field">
-    <label class="big" for="author">ID:</label>
-    <input id="author" type="text" disabled bind:value={project.id}>
+    <label class="big" for="author">Project ID:</label>
+    {project.id}
 </div>
 <div class="field">
     <label class="big" for="author">Title:</label>
     <input id="author" type="text" placeholder="John Doe" autocomplete="off" bind:value={project.title}>
 </div>
-
-<button on:click={() => setProjectTitle(project.id)}>Save</button>
+<div class="field">
+    <label for="words" class="big">Words:</label>
+    {wordCount} words
+</div>
+<div class="btn-group">
+    <button on:click={()=> setProjectTitle(project.id)}>Save</button>
+</div>
 <hr>
 {/each}
 <h1>Your projects</h1>
