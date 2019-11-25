@@ -8,3 +8,5 @@ linux:
     - AppImage
     - snap
   category: Office
+  publish:
+    - github
