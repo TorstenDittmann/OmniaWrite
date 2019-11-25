@@ -3,6 +3,7 @@
 
 html {
     -webkit-tap-highlight-color: transparent;
+    position: fixed;
 }
 
 body {
@@ -22,6 +23,7 @@ body {
     color: var(--text-color);
     background-color: var(--background-color);
     height: 100vh;
+    position: fixed;
 
     &.light {
         --text-color: #000;
