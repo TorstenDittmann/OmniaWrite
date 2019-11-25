@@ -7,6 +7,7 @@ linux:
     - deb
     - AppImage
     - snap
+    - rpm
   category: Office
   publish:
     - github
