@@ -20,6 +20,10 @@
     tabs
   } from "../stores";
 
+  import {
+    _
+  } from 'svelte-i18n';
+
   // uncomment for electron
   /*  import * as path from 'path';
     import {
@@ -110,22 +114,22 @@
               </a>
             </li>
             <li use:active={'/write/*'}>
-              <a href="/write/" use:link>Write</a>
+              <a href="/write/" use:link>{$_('header.write.title')}</a>
             </li>
             <li use:active={'/cards/'}>
-              <a href="/cards/" use:link>Cards</a>
+              <a href="/cards/" use:link>{$_('header.cards.title')}</a>
             </li>
             <!--<li use:active={'/mindmap/'}>
               <a href="/mindmap/" use:link>Mindmaps</a>
             </li>-->
             <li use:active={'/settings'}>
-              <a href="/settings" use:link>Settings</a>
+              <a href="/settings" use:link>{$_('header.settings.title')}</a>
             </li>
             <li use:active={'/export'}>
-              <a href="/export" use:link>Export</a>
+              <a href="/export" use:link>{$_('header.export.title')}</a>
             </li>
             <li use:active={'/cloud'}>
-              <a href="/cloud" use:link>Cloud</a>
+              <a href="/cloud" use:link>{$_('header.cloud.title')}</a>
             </li>
         </ul>
         {#if isRunningElectron}

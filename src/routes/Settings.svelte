@@ -1,5 +1,11 @@
 <script>
+    import {
+        _,
+        locale
+    } from 'svelte-i18n';
+
     let selectedTheme;
+    let selectedLanguage;
     $: {
         switch (selectedTheme) {
             case "dark":
@@ -12,24 +18,38 @@
                 break;
         }
     }
+    $: {
+        switch (selectedLanguage) {
+            case "en":
+                locale.set('en')
+                break;
+            case "de":
+                locale.set('de')
+                break;
+            default:
+                break;
+        }
+    }
 </script>
 
 <style>
 
 </style>
 
-<h1>Settings</h1>
+<h1>{$_('settings.title')}</h1>
 
-<h2>Appereance</h2>
+<h2>{$_('settings.appereance.title')}</h2>
 <div class="field">
-    <label class="big" for="editTheme">Theme:</label>
+    <label class="big" for="editTheme">{$_('settings.appereance.theme.title')}</label>
     <select id="editTheme" bind:value={selectedTheme}>
-        <option value="dark">Dark</option>
-        <option value="light">Light</option>
+        <option value="dark">{$_('settings.appereance.theme.dark')}</option>
+        <option value="light">{$_('settings.appereance.theme.light')}</option>
     </select>
 </div>
-<h2>Write</h2>
-<h2>Database</h2>
-<h2>Mindmap</h2>
-<h2>Other</h2>
-<small>Alpha version</small>
+<div class="field">
+    <label class="big" for="editTheme">{$_('settings.appereance.language.title')}</label>
+    <select id="editTheme" bind:value={selectedLanguage}>
+        <option value="en">{$_('settings.appereance.language.en')}</option>
+        <option value="de">{$_('settings.appereance.language.de')}</option>
+    </select>
+</div>

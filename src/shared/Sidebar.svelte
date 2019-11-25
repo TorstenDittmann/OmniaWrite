@@ -15,6 +15,10 @@
     fly
   } from 'svelte/transition';
 
+  import {
+    _
+  } from 'svelte-i18n';
+
   import Modal from './Modal.svelte';
 
   import active from "svelte-spa-router/active";
@@ -93,48 +97,45 @@
 
 <Modal bind:show={showCreateChapter}>
   <h2 slot="header">
-    New 'chapter'
-    <small><em>noun</em> chap·​ter \ ˈchap-tər</small>
+    {$_('sidebar.modal.newChapter.header')}
   </h2>
   <div class="field">
-    <label for="editChapterInput">Title:</label>
+    <label for="editChapterInput">{$_('sidebar.modal.title')}</label>
     <input id="editChapterInput" bind:value={createChapterTitle} autocomplete="off" placeholder="enter your title"
       type="text">
   </div>
   <hr>
   <div class="btn-group">
-    <button on:click={createChapter}>Create!</button>
+    <button on:click={createChapter}>{$_('sidebar.modal.newChapter.button')}</button>
   </div>
 </Modal>
 
 <Modal bind:show={showCreateScene}>
   <h2 slot="header">
-    New 'scene'
-    <small><em>noun</em> \ ˈsēn </small>
+    {$_('sidebar.modal.newScene.header')}
   </h2>
   <div class="field">
-    <label for="editChapterInput">Title:</label>
+    <label for="editChapterInput">{$_('sidebar.modal.title')}</label>
     <input id="editChapterInput" bind:value={createSceneTitle} autocomplete="off" placeholder="enter your title"
       type="text">
   </div>
   <hr>
   <div class="btn-group">
-    <button on:click={createScene}>Create!</button>
+    <button on:click={createScene}>{$_('sidebar.modal.newScene.button')}</button>
   </div>
 </Modal>
 
 <Modal bind:show={showEditChapter}>
   <h2 slot="header">
-    {objEditChapter.title}<br>
-    <small><em>noun</em> chap·​ter \ ˈchap-tər</small>
+    {objEditChapter.title}
   </h2>
   <h3>Edit</h3>
   <div class="field">
-    <label for="editChapterInput">Title:</label>
+    <label for="editChapterInput">{$_('sidebar.modal.title')}</label>
     <input id="editChapterInput" bind:value={objEditChapter.title} autocomplete="off" placeholder="enter your title"
       type="text">
   </div>
-  <h3>Order scenes</h3>
+  <h3>{$_('sidebar.modal.edit.order')}</h3>
   <ul class="swap-list">
     {#each $scenes.filter(scene => scene.chapter == objEditChapter.id).sort((a, b) => a.order - b.order) as scene}
         <li>
@@ -145,35 +146,34 @@
       {/each}
     </ul>
     <div class="btn-group">
-      <button on:click={editChapter}>Save</button>
+      <button on:click={editChapter}>{$_('sidebar.modal.edit.buttonSave')}</button>
       <button style="float: right;" class="warning" on:click={
           ()=> {
             chapters.removeChapter(objEditChapter.id);
             showEditChapter = false;
           }
         }
-        >Delete</button>
+        >{$_('sidebar.modal.edit.buttonDelete')}</button>
     </div>
 </Modal>
 
 <Modal bind:show={showEditScene}>
     <h2 slot="header">
-        {objEditScene.title}<br>
-        <small><em>noun</em> \ ˈsēn </small>
+        {objEditScene.title}
     </h2>
     <div class="field">
-        <label for="editChapterInput">Title:</label>
+        <label for="editChapterInput">{$_('sidebar.modal.title')}</label>
         <input id="editChapterInput" bind:value={objEditScene.title} autocomplete="off"
             placeholder="enter your title" type="text">
     </div>
     <br>
     <div class="btn-group">
-        <button on:click={editScene}>Save</button>
+        <button on:click={editScene}>{$_('sidebar.modal.edit.buttonSave')}</button>
         <button style="float: right;" class="warning" on:click={()=> {
             scenes.removeScene(objEditScene.id);
             showEditScene = false;
             }
-            }>Delete</button>
+            }>{$_('sidebar.modal.edit.buttonDelete')}</button>
     </div>
 </Modal>
 
@@ -204,7 +204,7 @@
             <li>
               <div class="btn-group">
                 <button on:click={()=> openCreateScene(chapter.id)}>
-                  <i class="icon-plus" /> New
+                  <i class="icon-plus" /> {$_('sidebar.createScene')}
                 </button>
               </div>
             </li>
@@ -215,7 +215,7 @@
       <li class="parent">
         <span class="key" on:click="{() => showCreateChapter = true}">
           <i class="icon-plus collapse" />
-          Create Chapter
+          {$_('sidebar.createChapter')}
         </span>
       </li>
   </ul>
