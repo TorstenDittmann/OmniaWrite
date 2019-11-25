@@ -63,15 +63,40 @@
     /**
      * Set Doorbell API options.
      */
-    (function (d) {
-        var key = "K7ZnlPekbRGNeYXVD180j3",
-            e = d.createElement("script");
-        e.type = "text/javascript";
-        e.async = true;
-        e.src = "https://cdn.howuku.com/js/howu.js";
-        e.setAttribute("key", key);
-        d.getElementsByTagName("head")[0].appendChild(e);
-    })(document);
+    window.doorbellOptions = {
+        "id": "11083",
+        "appKey": "L7mreXHsiGLMDgoDA4nAwKF6qVi47ZOCv0uXh1XT3IJmjFnsFBMl4tEBVqt9kx1m"
+    };
+    (function (w, d, t) {
+        var hasLoaded = false;
+
+        function l() {
+            if (hasLoaded) {
+                return;
+            }
+            hasLoaded = true;
+            window.doorbellOptions.windowLoaded = true;
+            var g =
+                d.createElement(t);
+            g.id = 'doorbellScript';
+            g.type = 'text/javascript';
+            g.async = true;
+            g.src =
+                'https://embed.doorbell.io/button/' + window.doorbellOptions['id'] + '?t=' + (new Date().getTime());
+            (d.getElementsByTagName('head')[0] || d.getElementsByTagName('body')[0]).appendChild(g);
+        }
+        if (w.attachEvent) {
+            w.attachEvent('onload', l);
+        } else if (w.addEventListener) {
+            w.addEventListener('load', l,
+                false);
+        } else {
+            l();
+        }
+        if (d.readyState == 'complete') {
+            l();
+        }
+    }(window, document, 'script'));
 
     /**
      * Defines state of sidebar and navigation based on max-width.
