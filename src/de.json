@@ -1,0 +1,128 @@
+{
+    "header": {
+        "write": {
+            "title": "Schreiben"
+        },
+        "cards": {
+            "title": "Karten"
+        },
+        "settings": {
+            "title": "Einstellungen"
+        },
+        "export": {
+            "title": "Exportieren"
+        },
+        "cloud": {
+            "title": "Cloud"
+        }
+    },
+    "write": {
+        "toolbar": {
+            "words": "Wörter",
+            "chars": "Zeichen",
+            "undo": "Rückgängig",
+            "redo": "Wiederholen",
+            "save": "Speichern",
+            "focus": "Fokus",
+            "fullscreen": "Vollbild",
+            "switchScene": "Szene wechseln ..."
+        },
+        "toast": {
+            "saved": "Gespeichert!"
+        },
+        "editor": {
+            "placeholder": "Lass uns eine tolle Geschichte schreiben!"
+        }
+    },
+    "cloud": {
+        "account": {
+            "title": "Account",
+            "connectedAccount": "Verbundener Account:",
+            "logout": "Logout"
+        },
+        "cloud": {
+            "title": "Cloud",
+            "localDataFrom": "Lokale Daten von:",
+            "cloudDataFrom": "Cloud Daten von:",
+            "export": "Export",
+            "import": "Import"
+        },
+        "login": {
+            "title": "Login",
+            "email": "E-Mail:",
+            "password": "Passwort:",
+            "button": "Login"
+        },
+        "register": {
+            "title": "Registrieren",
+            "name": "Name",
+            "button": "Registrieren"
+        },
+        "reset": {
+            "title": "Passwort zurücksetzen",
+            "button": "Passwort zurücksetzen"
+        },
+        "toast": {
+            "savedCloud": "In die Cloud gespeichert.",
+            "loginSuccessful": "Erfolgreich angemeldet!",
+            "activateEmail": "Bitte aktivieren Sie Ihre E - Mail - Adresse.",
+            "resetPassword": "Bitte überprüfen Sie Ihren Posteingang für weitere Anweisungen."
+        }
+    },
+    "cards": {
+        "title": "Karten",
+        "search": "suchen...",
+        "modal": {
+            "newHeader": "Neue Karte",
+            "editHeader": "Bearbeiten",
+            "title": "Titel:",
+            "content": "Inhalt:",
+            "buttonCreate": "Erstellen",
+            "buttonSave": "Speichern",
+            "showInScenes": "In Szenen anzeigen."
+        }
+    },
+    "export": {
+        "title": "Exportieren",
+        "author": "Autor:",
+        "cover": "Cover:",
+        "downloadEpub": "Download als EPUB",
+        "downloadRtf": "Download als RTF"
+    },
+    "sidebar": {
+        "createScene": "Erstellen",
+        "createChapter": "Kapitel erstellen",
+        "modal": {
+            "title": "Titel:",
+            "newChapter": {
+                "header": "Neues Kapitel",
+                "button": "Kapitel erstellen"
+            },
+            "newScene": {
+                "header": "Neue Szene",
+                "button": "Szene erstellen"
+            },
+            "edit": {
+                "order": "Szenen anordnen",
+                "buttonSave": "Szene speichern",
+                "buttonDelete": "Löschen"
+            }
+        }
+    },
+    "settings": {
+        "title": "Einstellungen",
+        "appereance": {
+            "title": "Erscheinungsbild",
+            "theme": {
+                "title": "Theme:",
+                "dark": "Dunkel",
+                "light": "Hell"
+            },
+            "language": {
+                "title": "Sprache",
+                "en": "Englisch",
+                "de": "Deutsch"
+            }
+        }
+    }
+}
