@@ -4,7 +4,6 @@ import commonjs from "rollup-plugin-commonjs";
 import livereload from "rollup-plugin-livereload";
 import builtins from "rollup-plugin-node-builtins";
 import json from '@rollup/plugin-json';
-
 import globals from "rollup-plugin-node-globals";
 import {
 	terser
