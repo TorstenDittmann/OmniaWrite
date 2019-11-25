@@ -14,6 +14,10 @@
         cloud
     } from "../cloud";
 
+    import {
+        _
+    } from 'svelte-i18n';
+
     let dataLoaded = false;
     $: lastCloudSave = new Date($state.lastCloudSave).toLocaleString("en-us");
     $: lastLocalSave = new Date($state.lastLocalSave).toLocaleString("en-us");
@@ -55,7 +59,7 @@
                 saveCloudButtonLoading = false;
 
                 showToast = true;
-                showToastText = "Saved into cloud.";
+                showToastText = $_('cloud.toast.savedCloud');
             }
         });
     }
@@ -79,7 +83,7 @@
                 showAlert = false;
                 loginButtonLoading = false;
                 showToast = true;
-                showToastText = "Login successful!";
+                showToastText = $_('cloud.toast.loginSuccessful');
             })
             .catch((error) => {
                 showAlert = true;
@@ -98,7 +102,7 @@
                 checkLogin();
                 registerButtonLoading = false;
                 showAlert = true;
-                showAlertText = "Please activate your e-mail adress.";
+                showAlertText = $_('cloud.toast.activateEmail');
             })
             .catch((error) => {
                 showAlert = true;
@@ -112,7 +116,7 @@
         Backendless.UserService.restorePassword(resetUser)
             .then(() => {
                 showAlert = true;
-                showAlertText = "Please check your mail inbox for further instructions.";
+                showAlertText = $_('cloud.toast.resetPassword');
                 resetButtonLoading = false;
             })
             .catch((error) => {
@@ -150,80 +154,80 @@
     <i class="icon-warning" slot="title"/>{showAlertText}
 </Alert>
 {#if isUserLoggedIn}
-<h2>Account</h2>
+<h2>{$_('cloud.account.title')}</h2>
 <div class="field">
-    <label class="big" for="editChapterInput">Connected Account:</label>
+    <label class="big" for="editChapterInput">{$_('cloud.account.connectedAccount')}</label>
     {$state.currentUserEmail}
 </div>
 <div class="btn-group">
     <button on:click={logout} disabled={logoutButtonLoading} class:loading={logoutButtonLoading}>
         <i class="icon-spinner_2 spinner" />
-        Logout
+        {$_('cloud.account.logout')}
     </button>
 </div>
-<h2>Cloud</h2>
+<h2>{$_('cloud.cloud.title')}</h2>
 <div class="field">
-    <label class="big" for="localDataFrom">Local data from:</label>
+    <label class="big" for="localDataFrom">{$_('cloud.cloud.localDataFrom')}</label>
     <span id="localDataFrom">{lastLocalSave}</span>
 </div>
 <div class="field">
-    <label class="big" for="newName">Cloud data from:</label>
+    <label class="big" for="newName">{$_('cloud.cloud.cloudDataFrom')}</label>
     <span id="localDataFrom">{lastCloudSave}</span>
 </div>
 <div class="btn-group">
     <button on:click={saveCloud} disabled={saveCloudButtonLoading} class:loading={saveCloudButtonLoading}>
         <i class="icon-spinner_2 spinner" />
-        Export
+        {$_('cloud.cloud.export')}
     </button>
     <button on:click={getCloud} disabled={getCloudButtonLoading} class:loading={getCloudButtonLoading}>
         <i class="icon-spinner_2 spinner" />
-        Import
+        {$_('cloud.cloud.import')}
     </button>
 </div>
 {:else}
-<h2>Login</h2>
+<h2>{$_('cloud.login.title')}</h2>
 <div class="field">
-    <label class="big" for="loginUser">E-Mail:</label>
+    <label class="big" for="loginUser">{$_('cloud.login.email')}</label>
     <input id="loginUser" type="email" placeholder="john.doe@email.tld" bind:value={loginUser}>
 </div>
 <div class="field">
-    <label class="big" for="loginPass">Password:</label>
+    <label class="big" for="loginPass">{$_('cloud.login.password')}</label>
     <input id="loginPass" type="password" autocomplete="off" placeholder="******" bind:value={loginPass}>
 </div>
 <div class="btn-group">
     <button on:click={login} disabled={loginButtonLoading} class:loading={loginButtonLoading}>
         <i class="icon-spinner_2 spinner" />
-        Login
+        {$_('cloud.login.button')}
     </button>
 </div>
-<h2>Register</h2>
+<h2>{$_('cloud.register.title')}</h2>
 <div class="field">
-    <label class="big" for="newName">Name:</label>
+    <label class="big" for="newName">{$_('cloud.register.name')}</label>
     <input id="newName" type="text" placeholder="John Doe" autocomplete="off" bind:value={registerName}>
 </div>
 <div class="field">
-    <label class="big" for="newUser">E-Mail:</label>
+    <label class="big" for="newUser">{$_('cloud.login.email')}</label>
     <input id="newUser" type="email" placeholder="john.doe@email.tld" autocomplete="off" bind:value={registerUser}>
 </div>
 <div class="field">
-    <label class="big" for="newPass">Password:</label>
+    <label class="big" for="newPass">{$_('cloud.login.password')}</label>
     <input id="newPass" type="password" autocomplete="off" placeholder="******" bind:value={registerPass}>
 </div>
 <div class="btn-group">
     <button on:click={register} disabled={registerButtonLoading} class:loading={registerButtonLoading}>
         <i class="icon-spinner_2 spinner"/>
-        Register
+        {$_('cloud.register.button')}
     </button>
 </div>
-<h2>Password reset</h2>
+<h2>{$_('cloud.reset.title')}</h2>
 <div class="field">
-    <label class="big" for="resetUser">E-Mail:</label>
+    <label class="big" for="resetUser">{$_('cloud.login.email')}</label>
     <input id="resetUser" type="email" placeholder="john.doe@email.tld" autocomplete="off" bind:value={resetUser}>
 </div>
 <div class="btn-group">
     <button on:click={resetPassword} disabled={resetButtonLoading} class:loading={resetButtonLoading}>
         <i class="icon-spinner_2 spinner" />
-        Reset password
+        {$_('cloud.reset.button')}
     </button>
 </div>
 {/if}

@@ -1,0 +1,128 @@
+{
+    "header": {
+        "write": {
+            "title": "Write"
+        },
+        "cards": {
+            "title": "Cards"
+        },
+        "settings": {
+            "title": "Settings"
+        },
+        "export": {
+            "title": "Export"
+        },
+        "cloud": {
+            "title": "Cloud"
+        }
+    },
+    "write": {
+        "toolbar": {
+            "words": "words",
+            "chars": "characters",
+            "undo": "Undo",
+            "redo": "Redo",
+            "save": "Save",
+            "focus": "Focus",
+            "fullscreen": "Fullscreen",
+            "switchScene": "Switch scene ..."
+        },
+        "toast": {
+            "saved": "Saved!"
+        },
+        "editor": {
+            "placeholder": "Let`s write an awesome story!"
+        }
+    },
+    "cloud": {
+        "account": {
+            "title": "Account",
+            "connectedAccount": "Connected Account:",
+            "logout": "Logout"
+        },
+        "cloud": {
+            "title": "Cloud",
+            "localDataFrom": "Local data from:",
+            "cloudDataFrom": "Cloud data from:",
+            "export": "Export",
+            "import": "Import"
+        },
+        "login": {
+            "title": "Login",
+            "email": "E-Mail:",
+            "password": "Password:",
+            "button": "Login"
+        },
+        "register": {
+            "title": "Register",
+            "name": "Name",
+            "button": "Register"
+        },
+        "reset": {
+            "title": "Password reset",
+            "button": "Reset password"
+        },
+        "toast": {
+            "savedCloud": "Saved into cloud.",
+            "loginSuccessful": "Login successful!",
+            "activateEmail": "Please activate your e-mail adress.",
+            "resetPassword": "Please check your mail inbox for further instructions."
+        }
+    },
+    "cards": {
+        "title": "Cards",
+        "search": "search here...",
+        "modal": {
+            "newHeader": "New Card",
+            "editHeader": "Edit",
+            "title": "Title:",
+            "content": "Content:",
+            "buttonCreate": "Create",
+            "buttonSave": "Save",
+            "showInScenes": "Show in scenes."
+        }
+    },
+    "export": {
+        "title": "Export",
+        "author": "Author:",
+        "cover": "Cover:",
+        "downloadEpub": "Download as EPUB",
+        "downloadRtf": "Download as RTF"
+    },
+    "sidebar": {
+        "createScene": "New",
+        "createChapter": "Create Chapter",
+        "modal": {
+            "title": "Title:",
+            "newChapter": {
+                "header": "New Chapter",
+                "button": "Create Chapter"
+            },
+            "newScene": {
+                "header": "New Scene",
+                "button": "Create Scene"
+            },
+            "edit": {
+                "order": "Order scenes",
+                "buttonSave": "Save Scene",
+                "buttonDelete": "Delete"
+            }
+        }
+    },
+    "settings": {
+        "title": "Settings",
+        "appereance": {
+            "title": "Appereance",
+            "theme": {
+                "title": "Theme:",
+                "dark": "Dark",
+                "light": "Light"
+            },
+            "language": {
+                "title": "Language",
+                "en": "English",
+                "de": "German"
+            }
+        }
+    }
+}

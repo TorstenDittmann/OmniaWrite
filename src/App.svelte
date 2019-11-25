@@ -25,6 +25,21 @@
     import ExportRoute from "./routes/Export.svelte";
     import FeedbackRoute from "./routes/Feedback.svelte";
 
+    import {
+        addMessages,
+        setInitialLocale
+    } from 'svelte-i18n';
+
+    import en from './en.json'
+    import de from './de.json'
+
+    addMessages('en', en);
+    addMessages('de', de);
+
+    setInitialLocale({
+        fallback: 'en'
+    });
+
     const routes = {
         "/": OverviewRoute,
         "/write/:sceneId?": WriteRoute,
@@ -38,7 +53,6 @@
         // Catch-all
         "*": OverviewRoute
     };
-
     const wb = new Workbox('./service-worker.js');
     let updateAvailable = false;
 
@@ -166,6 +180,7 @@
 <style>
 
 </style>
+
 <div class="container">
     <HeaderComponent bind:navigationState on:openSidebar={()=> (sidebarState = true)} />
 
