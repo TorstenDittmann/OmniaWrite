@@ -88,6 +88,9 @@
             <li use:active={'/cloud'}>
               <a href="/cloud" use:link>Cloud</a>
             </li>
+            <li use:active={'/feedback'}>
+              <a href="/feedback" use:link>Feedback</a>
+            </li>
         </ul>
         <!--
         <i class="icon-cross_mark titlebar" />
