@@ -13,6 +13,9 @@
     push,
     location
   } from 'svelte-spa-router';
+  import {
+    _
+  } from 'svelte-i18n';
 
   import WriteOverview from './Write/WriteOverview.svelte';
   import EditorJS from '@editorjs/editorjs';
@@ -74,7 +77,7 @@
       editorChangeHappened = false;
       editor = new EditorJS({
         holder: 'codex-editor',
-        placeholder: 'Let`s write an awesome story!',
+        placeholder: $_('write.editor.placeholder'),
         data: currentScene.content,
         onChange: () => {
           editorChangeHappened = true;
@@ -100,7 +103,7 @@
       scenes.setSceneContent(param, outputData);
       editorChangeHappened = false;
       showToast = true;
-      showToastText = "Saved!";
+      showToastText = $_('write.toast.saved');
     }).catch((error) => {
       console.error('Saving failed: ', error)
     });
@@ -151,28 +154,28 @@
 {#if params.sceneId !== null}
 <div class="toolbar">
   <span class="tooltip">
-    {amountWords} words
-    <span class="tooltiptext">{amountChars} characters</span>
+    {amountWords} {$_('write.toolbar.words')}
+    <span class="tooltiptext">{amountChars} {$_('write.toolbar.chars')}</span>
   </span>
   <i class="icon-reply tooltip" on:click={undo}>
-    <span class="tooltiptext">Undo</span>
+    <span class="tooltiptext">{$_('write.toolbar.undo')}</span>
   </i>
   <i class="icon-reply redo tooltip" on:click={redo}>
-    <span class="tooltiptext">Redo</span>
+    <span class="tooltiptext">{$_('write.toolbar.redo')}</span>
   </i>
   {#if editorChangeHappened}
   <i class="icon-check_circle tooltip" on:click={()=> save(params.sceneId)}>
-    <span class="tooltiptext">Save</span>
+    <span class="tooltiptext">{$_('write.toolbar.save')}</span>
   </i>
   {/if}
   <i class="icon-eye tooltip" on:click={toggleFocus}>
-    <span class="tooltiptext">Focus</span>
+    <span class="tooltiptext">{$_('write.toolbar.focus')}</span>
   </i>
   <i class="icon-more_node_links tooltip" on:click={toggleFullscreen}>
-    <span class="tooltiptext">Fullscreen</span>
+    <span class="tooltiptext">{$_('write.toolbar.fullscreen')}</span>
   </i>
   <select id="focusSceneSelect" on:change={switchScene}>
-    <option value="" selected="selected">Switch scene...</option>
+    <option value="" selected="selected">{$_('write.toolbar.switchScene')}</option>
     {#each $chapters.filter(chapter => chapter.project == $state.currentProject) as chapter, i}
       <optgroup label={chapter.title}>
         {#each $scenes.filter(scene => scene.chapter == chapter.id) as scene}
