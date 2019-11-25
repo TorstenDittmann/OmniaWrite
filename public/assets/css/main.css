@@ -1,6 +1,7 @@
 @import url("https://fonts.googleapis.com/css?family=IBM+Plex+Sans|IBM+Plex+Mono:400,400i&display=swap");
 html {
   -webkit-tap-highlight-color: transparent;
+  position: fixed;
 }
 
 body {
@@ -20,6 +21,7 @@ body {
   color: var(--text-color);
   background-color: var(--background-color);
   height: 100vh;
+  position: fixed;
 }
 
 body.light {
@@ -604,7 +606,7 @@ select#focusSceneSelect.active {
 }
 
 #codex-editor .codex-editor .ce-block i {
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: 'IBM Plex Mono', monospace;
 }
 
 #codex-editor .codex-editor .ce-block__content {
@@ -687,7 +689,7 @@ select#focusSceneSelect.active {
     line-height: 2.5rem;
   }
   #codex-editor .codex-editor {
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: 'IBM Plex Mono', monospace;
     color: var(--editor-color);
     font-weight: 400;
     font-size: 0.9rem;
@@ -849,7 +851,7 @@ select#focusSceneSelect.active {
   }
   .tooltip .tooltiptext {
     display: initial;
-    font-family: 'IBM Plex Sans', sans-serif;
+    font-family: 'IBM Plex Sans', sans-serif;
     font-size: 1rem;
     visibility: hidden;
     color: var(--text-color);
