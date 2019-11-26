@@ -83,8 +83,11 @@
     let mql = window.matchMedia('(max-width: 960px)');
     let sidebarState = mql.matches ? false : true;
     let navigationState = mql.matches ? false : true;
-    mql.addListener((e) => e.matches ? sidebarState = false : sidebarState = true);
-    mql.addListener((e) => e.matches ? navigationState = false : navigationState = true);
+    mql.addListener((e) => {
+        console.log(e);
+        e.matches ? navigationState = false : navigationState = true
+        e.matches ? sidebarState = false : sidebarState = true
+    });
 
     /**
      * Swipe detection.
