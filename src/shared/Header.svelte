@@ -33,29 +33,29 @@
 
   export let navigationState;
 
+  const {
+    messageUI
+  } = window.deskgap || {};
+
+
   const dispatch = createEventDispatcher();
 
-  let userAgent = navigator.userAgent.toLowerCase();
-  let isRunningElectron = false;
-  if (userAgent.indexOf(' electron/') > -1) {
-    isRunningElectron = true;
-  }
+  let isRunningElectron = true;
 
   function closeWindow() {
-    remote.BrowserWindow.getFocusedWindow().close();
+    messageUI.send('close');
   }
 
   function maximizeWindow() {
     if (remote.BrowserWindow.getFocusedWindow().isMaximized()) {
-      remote.BrowserWindow.getFocusedWindow().restore();
+      messageUI.send('restore');
     } else {
-      remote.BrowserWindow.getFocusedWindow().maximize();
+      messageUI.send('maximize');
     }
   }
 
   function minimizeWindow() {
-    remote.BrowserWindow.getFocusedWindow().minimize();
-
+    messageUI.send('minimize');
   }
 
   function createTab() {
@@ -77,28 +77,19 @@
     font-size: 1.5rem;
     padding: 0 1rem;
     opacity: .65;
-    -webkit-app-region: no-drag;
   }
 
   .titlebar:hover {
     opacity: 1;
   }
-
-  header {
-    -webkit-app-region: drag;
-  }
-
-  .menu li {
-    -webkit-app-region: no-drag;
-  }
 </style>
 
-<header>
+<header data-deskgap-drag>
   <nav class="header">
-    <button class="burger" id="open-sidebar" on:click={()=> dispatch('openSidebar')}>
+    <button class="burger" id="open-sidebar" on:click={()=> dispatch('openSidebar')} data-deskgap-no-drag>
       <i class="icon-reorder" />
     </button>
-    <a class="logo-mobile" href="/" use:link>
+    <a class="logo-mobile" href="/" use:link data-deskgap-no-drag>
       <img src="assets/logo.png" alt="OmniaWrite Logo" />
     </a>
     {#if navigationState}
@@ -108,34 +99,34 @@
             <div class="close" on:click={()=> (navigationState = false)}>
               <i class="icon-cross_mark" />
             </div>
-            <li use:active={'/'}>
+            <li use:active={'/'} data-deskgap-no-drag>
               <a href="/" use:link>
                 <img src="assets/logo.png" alt="OmniaWrite Logo" />
               </a>
             </li>
-            <li use:active={'/write/*'}>
+            <li use:active={'/write/*'} data-deskgap-no-drag>
               <a href="/write/" use:link>{$_('header.write.title')}</a>
             </li>
-            <li use:active={'/cards/'}>
+            <li use:active={'/cards/'} data-deskgap-no-drag>
               <a href="/cards/" use:link>{$_('header.cards.title')}</a>
             </li>
             <!--<li use:active={'/mindmap/'}>
               <a href="/mindmap/" use:link>Mindmaps</a>
             </li>-->
-            <li use:active={'/settings'}>
+            <li use:active={'/settings'} data-deskgap-no-drag>
               <a href="/settings" use:link>{$_('header.settings.title')}</a>
             </li>
-            <li use:active={'/export'}>
+            <li use:active={'/export'} data-deskgap-no-drag>
               <a href="/export" use:link>{$_('header.export.title')}</a>
             </li>
-            <li use:active={'/cloud'}>
+            <li use:active={'/cloud'} data-deskgap-no-drag>
               <a href="/cloud" use:link>{$_('header.cloud.title')}</a>
             </li>
         </ul>
         {#if isRunningElectron}
-        <i class="icon-cross_mark titlebar" on:click={closeWindow} />
-        <i class="icon-chevron_up titlebar" on:click={maximizeWindow} />
-        <i class="icon-chevron_down titlebar" on:click={minimizeWindow} />
+        <i class="icon-cross_mark titlebar" on:click={closeWindow} data-deskgap-no-drag />
+        <i class="icon-chevron_up titlebar" on:click={maximizeWindow} data-deskgap-no-drag />
+        <i class="icon-chevron_down titlebar" on:click={minimizeWindow} data-deskgap-no-drag />
         {/if}
       </div>
     {/if}
