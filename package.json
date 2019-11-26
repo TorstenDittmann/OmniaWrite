@@ -1,7 +1,7 @@
 {
   "name": "omniawrite-app",
   "version": "0.0.4",
-  "main": "./src/electron.js",
+  "main": "./src/deskgap.js",
   "author": {
     "name": "OmniaWrite",
     "email": "info@omniawrite.com",
@@ -13,6 +13,7 @@
     "@editorjs/quote": "^2.3.0",
     "@rollup/plugin-json": "^4.0.0",
     "@types/file-saver": "^2.0.1",
+    "deskgap": "^0.1.0",
     "electron": "^7.1.2",
     "electron-builder": "^21.2.0",
     "eslint": "^6.6.0",
@@ -48,6 +49,7 @@
     "electron": "run-s build pure-electron",
     "pure-electron": "electron .",
     "pack": "electron-builder --dir --config electron-builder.yml",
-    "dist": "electron-builder --config electron-builder.yml"
+    "dist": "electron-builder --config electron-builder.yml",
+    "deskgap": "deskgap ."
   }
 }
