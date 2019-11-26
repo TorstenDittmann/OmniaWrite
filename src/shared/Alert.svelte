@@ -46,7 +46,7 @@
         background-color: #ff9800;
     }
 
-    .alert i {
+    .alert span {
         line-height: normal;
     }
 
@@ -66,7 +66,7 @@
 </style>
 {#if show}
 <div class="alert" class:danger class:success class:warning class:info>
-    <span class="closebtn" on:click={()=> show = false}><i class="icon-cross_mark" /></span>
+    <span class="closebtn" on:click={()=> show = false}><span class="lnr lnr-cross" /></span>
     <slot name='title'></slot>
     <slot> </slot>
 </div>

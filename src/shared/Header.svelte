@@ -24,23 +24,19 @@
     _
   } from 'svelte-i18n';
 
-  // uncomment for electron
-  /*  import * as path from 'path';
-    import {
-      remote,
-      ipcRenderer
-    } from 'electron';*/
-
   export let navigationState;
+
+  let isRunningElectron = false;
 
   const {
     messageUI
   } = window.deskgap || {};
 
+  if (window.deskgap) {
+    isRunningElectron = true;
+  }
 
   const dispatch = createEventDispatcher();
-
-  let isRunningElectron = true;
 
   function closeWindow() {
     messageUI.send('close');
@@ -87,7 +83,7 @@
 <header data-deskgap-drag>
   <nav class="header">
     <button class="burger" id="open-sidebar" on:click={()=> dispatch('openSidebar')} data-deskgap-no-drag>
-      <i class="icon-reorder" />
+      <span class="lnr lnr-menu" />
     </button>
     <a class="logo-mobile" href="/" use:link data-deskgap-no-drag>
       <img src="assets/logo.png" alt="OmniaWrite Logo" />
@@ -97,7 +93,7 @@
         <ul class="menu">
           <div class="backdrop" on:click={()=> (navigationState = false)} />
             <div class="close" on:click={()=> (navigationState = false)}>
-              <i class="icon-cross_mark" />
+              <span class="lnr lnr-cross" />
             </div>
             <li use:active={'/'} data-deskgap-no-drag>
               <a href="/" use:link>
@@ -124,14 +120,14 @@
             </li>
         </ul>
         {#if isRunningElectron}
-        <i class="icon-cross_mark titlebar" on:click={closeWindow} data-deskgap-no-drag />
-        <i class="icon-chevron_up titlebar" on:click={maximizeWindow} data-deskgap-no-drag />
-        <i class="icon-chevron_down titlebar" on:click={minimizeWindow} data-deskgap-no-drag />
+          <span class="lnr lnr-cross titlebar" on:click={closeWindow} data-deskgap-no-drag />
+          <!--<span class="lnr lnr-chevron-up titlebar" on:click={maximizeWindow} data-deskgap-no-drag />-->
+          <span class="lnr lnr-chevron-down titlebar" on:click={minimizeWindow} data-deskgap-no-drag />
         {/if}
       </div>
     {/if}
     <button class="mobile" id="open-navigation" on:click={()=> (navigationState = true)}>
-      <i class="icon-reorder_square" />
+      <span class="lnr lnr-book" />
     </button>
   </nav>
   <div class="tabs">
@@ -139,13 +135,11 @@
       {#each $tabs.filter(tabs => tabs.project == $state.currentProject) as tab}
       <li class="tab" use:active={tab.link}>
         <a href={tab.link} use:link>{tab.title}</a>
-        <i 
-        class="icon-cross_mark tab-action" 
-        on:click={() => tabs.removeTab(tab.id)} />
+        <span class="lnr lnr-cross tab-action" on:click={()=> tabs.removeTab(tab.id)} />
       </li>
       {/each}
       <li class="tab" on:click={createTab}>
-        <i class="icon-reply tab-action" />
+        <span class="lnr lnr-file-add" />
       </li>
     </ul>
   </div>

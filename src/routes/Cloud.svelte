@@ -151,7 +151,7 @@
 
 {#if dataLoaded}
 <Alert danger bind:show={showAlert}>
-    <i class="icon-warning" slot="title"/>{showAlertText}
+    <span class="lnr lnr-warning"> {showAlertText}
 </Alert>
 {#if isUserLoggedIn}
 <h2>{$_('cloud.account.title')}</h2>
@@ -161,7 +161,7 @@
 </div>
 <div class="btn-group">
     <button on:click={logout} disabled={logoutButtonLoading} class:loading={logoutButtonLoading}>
-        <i class="icon-spinner_2 spinner" />
+        <span class="lnr lnr-sync spinner" />
         {$_('cloud.account.logout')}
     </button>
 </div>
@@ -176,11 +176,11 @@
 </div>
 <div class="btn-group">
     <button on:click={saveCloud} disabled={saveCloudButtonLoading} class:loading={saveCloudButtonLoading}>
-        <i class="icon-spinner_2 spinner" />
+        <span class="lnr lnr-sync spinner" />
         {$_('cloud.cloud.export')}
     </button>
     <button on:click={getCloud} disabled={getCloudButtonLoading} class:loading={getCloudButtonLoading}>
-        <i class="icon-spinner_2 spinner" />
+        <span class="lnr lnr-sync spinner" />
         {$_('cloud.cloud.import')}
     </button>
 </div>
@@ -196,7 +196,7 @@
 </div>
 <div class="btn-group">
     <button on:click={login} disabled={loginButtonLoading} class:loading={loginButtonLoading}>
-        <i class="icon-spinner_2 spinner" />
+        <span class="lnr lnr-sync spinner" />
         {$_('cloud.login.button')}
     </button>
 </div>
@@ -215,7 +215,7 @@
 </div>
 <div class="btn-group">
     <button on:click={register} disabled={registerButtonLoading} class:loading={registerButtonLoading}>
-        <i class="icon-spinner_2 spinner"/>
+        <span class="lnr lnr-sync spinner" />
         {$_('cloud.register.button')}
     </button>
 </div>
@@ -226,7 +226,7 @@
 </div>
 <div class="btn-group">
     <button on:click={resetPassword} disabled={resetButtonLoading} class:loading={resetButtonLoading}>
-        <i class="icon-spinner_2 spinner" />
+        <span class="lnr lnr-sync spinner" />
         {$_('cloud.reset.button')}
     </button>
 </div>
