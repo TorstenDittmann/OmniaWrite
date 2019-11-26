@@ -1,18 +1,19 @@
+/* eslint-disable no-undef */
 import svelte from "rollup-plugin-svelte";
 import resolve from "rollup-plugin-node-resolve";
 import commonjs from "rollup-plugin-commonjs";
 import livereload from "rollup-plugin-livereload";
 import builtins from "rollup-plugin-node-builtins";
-import json from '@rollup/plugin-json';
+import json from "@rollup/plugin-json";
 import globals from "rollup-plugin-node-globals";
 import {
 	terser
 } from "rollup-plugin-terser";
 const {
 	generateSW
-} = require('rollup-plugin-workbox');
+} = require("rollup-plugin-workbox");
 
-const workboxConfig = require('./workbox-config.js')
+const workboxConfig = require("./workbox-config.js")
 
 // eslint-disable-next-line no-undef
 const production = !process.env.ROLLUP_WATCH;
@@ -65,9 +66,9 @@ export default {
 	},
 	onwarn(warning, rollupWarn) {
 		if (
-			warning.code !== 'CIRCULAR_DEPENDENCY' &&
-			warning.code !== 'THIS_IS_UNDEFINED' &&
-			warning.code !== 'EVAL'
+			warning.code !== "CIRCULAR_DEPENDENCY" &&
+			warning.code !== "THIS_IS_UNDEFINED" &&
+			warning.code !== "EVAL"
 		) {
 			rollupWarn(warning.code);
 		}
