@@ -17,9 +17,12 @@
             chapters.filter(chapter => chapter.project == $state.currentProject).forEach(chapter => {
                 scenes.subscribe(scenes => {
                     scenes.filter(scene => scene.chapter == chapter.id).forEach(scene => {
-                        scene.content.blocks.forEach(block => {
-                            wordCount += block.data.text.split(" ").length;
-                        })
+                        if (scene.content.block) {
+                            scene.content.blocks.forEach(block => {
+                                wordCount += block.data.text.split(" ").length;
+                            })
+                        }
+
                     })
                 })
             });
