@@ -157,23 +157,23 @@
     {amountWords} {$_('write.toolbar.words')}
     <span class="tooltiptext">{amountChars} {$_('write.toolbar.chars')}</span>
   </span>
-  <i class="icon-reply tooltip" on:click={undo}>
+  <span class="lnr lnr-undo tooltip" on:click={undo}>
     <span class="tooltiptext">{$_('write.toolbar.undo')}</span>
-  </i>
-  <i class="icon-reply redo tooltip" on:click={redo}>
+  </span>
+  <span class="lnr lnr-redo tooltip" on:click={redo}>
     <span class="tooltiptext">{$_('write.toolbar.redo')}</span>
-  </i>
+  </span>
   {#if editorChangeHappened}
-  <i class="icon-check_circle tooltip" on:click={()=> save(params.sceneId)}>
+  <span class="lnr lnr-checkmark-circle tooltip" on:click={()=> save(params.sceneId)}>
     <span class="tooltiptext">{$_('write.toolbar.save')}</span>
-  </i>
+  </span>
   {/if}
-  <i class="icon-eye tooltip" on:click={toggleFocus}>
+  <span class="lnr lnr-eye tooltip" on:click={toggleFocus}>
     <span class="tooltiptext">{$_('write.toolbar.focus')}</span>
-  </i>
-  <i class="icon-more_node_links tooltip" on:click={toggleFullscreen}>
+ </span>
+ <span class="lnr lnr-frame-expand tooltip" on:click={toggleFullscreen}>
     <span class="tooltiptext">{$_('write.toolbar.fullscreen')}</span>
-  </i>
+ </span>
   <select id="focusSceneSelect" on:change={switchScene}>
     <option value="" selected="selected">{$_('write.toolbar.switchScene')}</option>
     {#each $chapters.filter(chapter => chapter.project == $state.currentProject) as chapter, i}

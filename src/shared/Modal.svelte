@@ -53,7 +53,7 @@
 
 <div class='modal' in:fly="{{ y: 200, duration: 200 }}">
     <div class="modal-close" on:click='{() => show = false}'>
-        <i class="icon-cross_mark" />
+        <span class="lnr lnr-cross" />
     </div>
     <slot name='header'></slot>
     <hr>

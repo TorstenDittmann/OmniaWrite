@@ -95,7 +95,7 @@
 <h1>Your projects</h1>
 <div class="grid">
   <div class="new" on:click={() => showCreateProject = true}>
-    <i class="icon-plus"></i>
+    <span class="lnr lnr-plus-circle" />
   </div>
   {#each $projects as project}
     <div on:click={()=> changeProject(project.id)}>
