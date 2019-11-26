@@ -186,7 +186,7 @@
 
         <SidebarComponent bind:sidebarState />
         <div id="content" class="content">
-            <Toast bind:show={updateAvailable} text="New update installed!<br><i class='icon-cloud_download icon3x' />"
+            <Toast bind:show={updateAvailable} text="New update installed!<br>Click here to restart."
                 on:click={updateApp} duration="forever" />
             <div class="inner">
                 <Router {routes} />
