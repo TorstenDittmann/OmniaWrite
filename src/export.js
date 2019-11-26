@@ -7,6 +7,9 @@ import JSZip from 'jszip';
 import saveAs from 'file-saver';
 
 const zip = new JSZip();
+const {
+    messageUI
+} = window.deskgap || {};
 let parser = new DOMParser();
 
 let template = {};
@@ -230,7 +233,11 @@ export class ExportRTF {
                         let blob = new Blob([content], {
                             type: 'text/plain'
                         });
-                        saveAs.saveAs(blob, this.projectData.title + ".rtf");
+                        if (window.deskgap) {
+                            messageUI.send("saveFile", content);
+                        } else {
+                            saveAs.saveAs(blob, this.projectData.title + ".rtf");
+                        }
                     }
                 });
             });
