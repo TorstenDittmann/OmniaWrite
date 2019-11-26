@@ -42,14 +42,6 @@
     messageUI.send('close');
   }
 
-  function maximizeWindow() {
-    if (remote.BrowserWindow.getFocusedWindow().isMaximized()) {
-      messageUI.send('restore');
-    } else {
-      messageUI.send('maximize');
-    }
-  }
-
   function minimizeWindow() {
     messageUI.send('minimize');
   }
@@ -86,7 +78,7 @@
       <span class="lnr lnr-menu" />
     </button>
     <a class="logo-mobile" href="/" use:link data-deskgap-no-drag>
-      <img src="assets/logo.png" alt="OmniaWrite Logo" />
+      <img src="logo.png" alt="OmniaWrite Logo" />
     </a>
     {#if navigationState}
       <div id="navigation" class="navigation" class:active={navigationState} in:fly="{{ y: 200, duration: 200 }}" out:fly="{{ y: 200, duration: 200 }}">
@@ -97,7 +89,7 @@
             </div>
             <li use:active={'/'} data-deskgap-no-drag>
               <a href="/" use:link>
-                <img src="assets/logo.png" alt="OmniaWrite Logo" />
+                <img src="logo.png" alt="OmniaWrite Logo" />
               </a>
             </li>
             <li use:active={'/write/*'} data-deskgap-no-drag>
@@ -121,7 +113,6 @@
         </ul>
         {#if isRunningElectron}
           <span class="lnr lnr-cross titlebar" on:click={closeWindow} data-deskgap-no-drag />
-          <!--<span class="lnr lnr-chevron-up titlebar" on:click={maximizeWindow} data-deskgap-no-drag />-->
           <span class="lnr lnr-chevron-down titlebar" on:click={minimizeWindow} data-deskgap-no-drag />
         {/if}
       </div>

@@ -84,7 +84,6 @@
     let sidebarState = mql.matches ? false : true;
     let navigationState = mql.matches ? false : true;
     mql.addListener((e) => {
-        console.log(e);
         e.matches ? navigationState = false : navigationState = true
         e.matches ? sidebarState = false : sidebarState = true
     });
