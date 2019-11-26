@@ -98,11 +98,11 @@
 </div>
 <div id="cards" class="grid">
     <div class="new" on:click={()=> showCreateCard = true}>
-        <i class="icon-plus"></i>
+        <span class="lnr lnr-plus-circle" />
     </div>
     {#each filteredCards as card}
     <div id="card" on:click={() => {[showEditCard, editCardObject] = [true, card]}} >
-        <h2>{#if card.showTooltip}<i class="icon-check_circle" />{/if} {card.title}</h2>
+        <h2>{#if card.showTooltip}<span class="lnr lnr-checkmark-circle" />{/if} {card.title}</h2>
         {card.content}
     </div>
     {/each}

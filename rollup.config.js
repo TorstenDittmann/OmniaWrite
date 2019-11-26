@@ -59,13 +59,6 @@ export default {
 		// instead of npm run dev), minify
 		production && terser()
 	],
-	/*
-	external: [
-		'electron',
-		'fs',
-		'path',
-		'os'
-	],*/
 	watch: {
 		clearScreen: false
 	}

@@ -86,11 +86,11 @@
     opacity: 1;
   }
 
-  .swap-list li:first-child .icon-chevron_up {
+  .swap-list li:first-child .lnr-chevron-up {
     visibility: hidden;
   }
 
-  .swap-list li:last-child .icon-chevron_down {
+  .swap-list li:last-child .lnr-chevron-down {
     visibility: hidden;
   }
 </style>
@@ -139,8 +139,8 @@
   <ul class="swap-list">
     {#each $scenes.filter(scene => scene.chapter == objEditChapter.id).sort((a, b) => a.order - b.order) as scene}
         <li>
-          <i class="icon-chevron_up action" on:click={()=> {scenes.orderScene(scene.id, true)}}/>
-          <i class="icon-chevron_down action" on:click={()=> {scenes.orderScene(scene.id, false)}}/>
+          <span class="lnr lnr-chevron-up action" on:click={()=> {scenes.orderScene(scene.id, true)}} />
+          <span class="lnr lnr-chevron-down action" on:click={()=> {scenes.orderScene(scene.id, false)}} />
           <span>{scene.title}</span>
         </li>
       {/each}
@@ -182,14 +182,14 @@
   <ul class="menu">
     <div class="backdrop" on:click={()=> (sidebarState = false)} />
       <div id="close-sidebar" class="close" on:click={()=> (sidebarState = false)}>
-        <i class="icon-cross_mark" />
+        <span class="lnr lnr-cross" />
       </div>
       {#each $chapters.filter(chapter => chapter.project == $state.currentProject) as chapter, i}
         <li class="parent" class:open={chapter.ui.open}>
           <span class="key" on:click={()=> chapters.toggleChapterInSidebar(chapter.id)}>
             {chapter.title}
-            <i class="icon-chevron_down collapse" />
-            <i class="icon-settings action" on:click="{() => [showEditChapter, objEditChapter] = [true, chapter]}" />
+            <span class="lnr lnr-chevron-up collapse" />
+            <span class="lnr lnr-cog action" on:click="{() => [showEditChapter, objEditChapter] = [true, chapter]}" />
           </span>
           <ul>
             {#each $scenes.filter(scene => scene.chapter == chapter.id).sort((a, b) => a.order - b.order) as scene}
@@ -197,14 +197,13 @@
                 use:active={'/write/' + scene.id}
                 on:click={() => push('/write/' + scene.id)}>
                 <a href="/write/{scene.id}" use:link>{scene.title}</a>
-                <i class="icon-settings action"
-                  on:click="{() => [showEditScene, objEditScene] = [true, scene]}" />
+                <span class="lnr lnr-cog action" on:click="{() => [showEditScene, objEditScene] = [true, scene]}" />
               </li>
             {/each}
             <li>
               <div class="btn-group">
                 <button on:click={()=> openCreateScene(chapter.id)}>
-                  <i class="icon-plus" /> {$_('sidebar.createScene')}
+                  <span class="lnr lnr-plus-circle" /> {$_('sidebar.createScene')}
                 </button>
               </div>
             </li>
@@ -214,7 +213,7 @@
       <hr class="divider">
       <li class="parent">
         <span class="key" on:click="{() => showCreateChapter = true}">
-          <i class="icon-plus collapse" />
+          <span class="lnr lnr-plus-circle collapse" />
           {$_('sidebar.createChapter')}
         </span>
       </li>

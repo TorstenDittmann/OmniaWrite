@@ -47,13 +47,13 @@
 </div>
 <div class="btn-group">
     <button on:click={download} disabled={downloadButtonLoading} class:loading={downloadButtonLoading}>
-        <i class="icon-spinner_2 spinner" />
+        <span class="lnr lnr-sync spinner" />
         {$_('export.downloadEpub')}
     </button>
 </div>
 <div class="btn-group">
     <button on:click={downloadRTF}>
-        <i class="icon-spinner_2 spinner" />
+        <span class="lnr lnr-sync spinner" />
         {$_('export.downloadRtf')}
     </button>
 </div>
