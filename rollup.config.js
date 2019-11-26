@@ -43,6 +43,7 @@ export default {
 		// https://github.com/rollup/rollup-plugin-commonjs
 		resolve({
 			browser: true,
+			preferBuiltins: true,
 			dedupe: importee => importee === "svelte" || importee.startsWith("svelte/")
 		}),
 		commonjs(),
@@ -61,5 +62,14 @@ export default {
 	],
 	watch: {
 		clearScreen: false
+	},
+	onwarn(warning, rollupWarn) {
+		if (
+			warning.code !== 'CIRCULAR_DEPENDENCY' &&
+			warning.code !== 'THIS_IS_UNDEFINED' &&
+			warning.code !== 'EVAL'
+		) {
+			rollupWarn(warning.code);
+		}
 	}
 };
