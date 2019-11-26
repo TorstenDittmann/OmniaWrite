@@ -657,10 +657,8 @@ select#focusSceneSelect.active {
   font-size: 1rem;
 }
 
-.redo:before {
-  display: inline-block;
-  -webkit-transform: scaleX(-1);
-          transform: scaleX(-1);
+.toolbar > .lnr {
+  font-size: unset;
 }
 
 @media (max-width: 650px) {
