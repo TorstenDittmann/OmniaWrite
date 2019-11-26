@@ -130,7 +130,7 @@
       <span class="lnr lnr-book" />
     </button>
   </nav>
-  <div class="tabs">
+  <div class="tabs" data-deskgap-no-drag>
     <ul>
       {#each $tabs.filter(tabs => tabs.project == $state.currentProject) as tab}
       <li class="tab" use:active={tab.link}>
