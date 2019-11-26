@@ -3,8 +3,8 @@ import {
     chapters,
     scenes
 } from "./stores";
-import JSZip from 'jszip';
-import saveAs from 'file-saver';
+import JSZip from "jszip";
+import saveAs from "file-saver";
 
 const zip = new JSZip();
 const {
@@ -185,7 +185,7 @@ export class Export {
         return 0;
     }
     zeroPad(num) {
-        return String(num).padStart(3, '0')
+        return String(num).padStart(3, "0")
     }
 }
 
@@ -231,7 +231,7 @@ export class ExportRTF {
                     if ((i + 1) == value.filter(e => e.project == this.projectId).length) {
                         content += this.footer;
                         let blob = new Blob([content], {
-                            type: 'text/plain'
+                            type: "text/plain"
                         });
                         if (window.deskgap) {
                             messageUI.send("saveFile", content);
