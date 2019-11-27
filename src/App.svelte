@@ -7,7 +7,8 @@
 
     import {
         state,
-        projects
+        projects,
+        settings
     } from "./stores";
 
     import HeaderComponent from "./shared/Header.svelte";
@@ -27,7 +28,8 @@
 
     import {
         addMessages,
-        setInitialLocale
+        setInitialLocale,
+        locale
     } from 'svelte-i18n';
 
     import en from './en.json'
@@ -36,6 +38,7 @@
     addMessages('en', en);
     addMessages('de', de);
 
+    locale.set($settings.language);
     setInitialLocale({
         fallback: 'en'
     });
@@ -137,12 +140,20 @@
     };
 
     /**
+     * Listen for settings
+     */
+    $: {
+        document.body.className = $settings.theme;
+        locale.set($settings.language);
+    }
+
+    /**
      * Init Doorbell feedback.
      */
     window.doorbellOptions = {
         id: "11083",
         appKey: "L7mreXHsiGLMDgoDA4nAwKF6qVi47ZOCv0uXh1XT3IJmjFnsFBMl4tEBVqt9kx1m",
-        properties: { // Optional, a Javascript object of custom properties you want to set
+        properties: {
             Backendless: localStorage.getItem('Backendless') || "",
             state: localStorage.getItem('state') || ""
         },
