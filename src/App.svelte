@@ -145,6 +145,7 @@
     $: {
         document.body.className = $settings.theme;
         locale.set($settings.language);
+        document.body.style.setProperty('--editor-font-size', $settings.fontsize + 'rem');
     }
 
     /**

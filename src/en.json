@@ -114,7 +114,7 @@
         "appereance": {
             "title": "Appereance",
             "theme": {
-                "title": "Theme:",
+                "title": "Theme",
                 "dark": "Dark",
                 "light": "Light"
             },
@@ -123,6 +123,10 @@
                 "en": "English",
                 "de": "German"
             }
+        },
+        "write": {
+            "autosave": "Autosave",
+            "fontsize": "Fontsize"
         }
     }
 }

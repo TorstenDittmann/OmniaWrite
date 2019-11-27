@@ -9,7 +9,16 @@
     } from "../stores";
 </script>
 
-<style></style>
+<style>
+    .preview {
+        max-width: 800px;
+        padding: 1rem;
+        border-radius: 0px 0px 0px 0px;
+        -moz-border-radius: 0px 0px 0px 0px;
+        -webkit-border-radius: 0px 0px 0px 0px;
+        border: 2px dashed rgba(255, 255, 255, .5);
+    }
+</style>
 
 <h1>{$_('settings.title')}</h1>
 
@@ -23,8 +32,29 @@
 </div>
 <div class="field">
     <label class="big" for="editTheme">{$_('settings.appereance.language.title')}</label>
-    <select id="editTheme" bind:value={$settings.language}>
+    <select id="editLanguage" bind:value={$settings.language}>
         <option value="en">{$_('settings.appereance.language.en')}</option>
         <option value="de">{$_('settings.appereance.language.de')}</option>
     </select>
+</div>
+
+<h2>{$_('header.write.title')}</h2>
+<div class="field">
+    <label class="big" for="autosave">{$_('settings.write.autosave')}</label>
+    <input id="autosave" type="checkbox" bind:checked={$settings.autosave}>
+</div>
+<div class="field">
+    <label class="big" for="fontSize">{$_('settings.write.fontsize')}</label>
+    <input id="fontSize" type="range" bind:value={$settings.fontsize} min=".6" max="1.2" step=".1">
+</div>
+<div id="codex-editor" class="preview">
+    <div class="codex-editor">
+        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
+        dolore
+        magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd
+        gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur
+        sadipscing
+        elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
+        amet.
+    </div>
 </div>
