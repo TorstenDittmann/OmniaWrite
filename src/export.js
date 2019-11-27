@@ -148,19 +148,35 @@ export class Export {
                                 zip.file(e, ab);
                             }).then(() => {
                                 if (this.templateFiles.fonts.length == (i + 1)) {
+                                    if (window.deskgap) {
+                                        zip.generateAsync({
+                                            type: "base64"
+                                        }).then(base64 => {
+                                            messageUI.send("saveFile", base64, this.projectData.title + ".epub");
+                                        }, err => {
+                                            window.alert("error: " + err);
+                                        }).then(() => {
+                                            // clean up
+                                            unsubscribeProject();
+                                            unsubscribeChapters();
+                                            unsubscribeScenes();
+                                        });
+                                    } else {
+                                        zip.generateAsync({
+                                            type: "blob"
+                                        }).then(blob => {
+                                            saveAs.saveAs(blob, this.projectData.title + ".epub");
+                                        }, err => {
+                                            window.alert("error: " + err);
+                                        }).then(() => {
+                                            // clean up
+                                            unsubscribeProject();
+                                            unsubscribeChapters();
+                                            unsubscribeScenes();
+                                        });
+                                    }
                                     // generate zip file and save
-                                    zip.generateAsync({
-                                        type: "blob"
-                                    }).then(blob => {
-                                        saveAs.saveAs(blob, this.projectData.title + ".epub");
-                                    }, err => {
-                                        window.alert("error: " + err);
-                                    }).then(() => {
-                                        // clean up
-                                        unsubscribeProject();
-                                        unsubscribeChapters();
-                                        unsubscribeScenes();
-                                    });
+
                                 }
 
                             })
@@ -218,7 +234,7 @@ export class ExportRTF {
                     chapterContent = chapterContent.replace("CHAPTER", element.title);
 
                     unsubscribeScenes = scenes.subscribe(value => {
-                        value.filter(e => e.chapter == element.id).sort(this.compare).forEach((scene, i) => {
+                        value.filter(e => e.chapter == element.id).sort(this.compare).forEach((scene) => {
                             let sceneContent = "";
                             scene.content.blocks.forEach(block => {
                                 let blockContent = this.block.replace("BLOCK", block.data.text);
@@ -234,7 +250,8 @@ export class ExportRTF {
                             type: "text/plain"
                         });
                         if (window.deskgap) {
-                            messageUI.send("saveFile", content);
+                            let base64 = btoa(unescape(encodeURIComponent(content)));
+                            messageUI.send("saveFile", base64, this.projectData.title + ".rtf");
                         } else {
                             saveAs.saveAs(blob, this.projectData.title + ".rtf");
                         }
