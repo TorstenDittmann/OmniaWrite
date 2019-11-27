@@ -8,6 +8,10 @@
 
     import Modal from '../shared/Modal.svelte';
 
+    const {
+        messageUI
+    } = window.deskgap || {};
+
     let showCreateProject = false;
     let wordCount;
 
@@ -37,7 +41,7 @@
 
     function changeProject(project) {
         state.setCurrentProject(project);
-        location.reload();
+        window.deskgap ? messageUI.send('reload') : window.location.reload();
     }
 
     function setProjectTitle(project) {
