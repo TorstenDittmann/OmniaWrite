@@ -123,6 +123,10 @@
                 "en": "Englisch",
                 "de": "Deutsch"
             }
+        },
+        "write": {
+            "autosave": "Automatisches speichern",
+            "fontsize": "Schriftgröße"
         }
     }
 }
