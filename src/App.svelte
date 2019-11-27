@@ -16,7 +16,6 @@
     import Toast from './shared/Toast.svelte';
     import Modal from './shared/Modal.svelte';
 
-
     import OverviewRoute from "./routes/Overview.svelte";
     import WriteRoute from "./routes/Write.svelte";
     import CardsRoute from "./routes/Cards.svelte";
@@ -31,8 +30,12 @@
         locale
     } from 'svelte-i18n';
 
-    import en from './en.json'
-    import de from './de.json'
+    import en from './en.json';
+    import de from './de.json';
+
+    const {
+        messageUI
+    } = window.deskgap || {};
 
     addMessages('en', en);
     addMessages('de', de);
@@ -71,7 +74,7 @@
      */
     function updateApp() {
         wb.addEventListener('controlling', (event) => {
-            window.location.reload();
+            window.deskgap ? messageUI.send('reload') : window.location.reload();
         });
         wb.messageSW({
             type: 'SKIP_WAITING'
