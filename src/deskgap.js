@@ -10,6 +10,10 @@ const fs = require("fs");
 let win;
 
 app.once("ready", () => {
+    messageNode.on("reload", () => {
+        win.reload();
+        //win.loadFile("public/index.html");
+    });
     messageNode.on("minimize", () => win.minimize());
     messageNode.on("restore", () => void(0));
     messageNode.on("close", () => win.close());
@@ -23,7 +27,7 @@ app.once("ready", () => {
                 alert("Failed to save the file !");
             }
         })
-    })
+    });
 
     win = new BrowserWindow({
         frame: false,

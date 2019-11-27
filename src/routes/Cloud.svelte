@@ -18,6 +18,10 @@
         _
     } from 'svelte-i18n';
 
+    const {
+        messageUI
+    } = window.deskgap || {};
+
     let dataLoaded = false;
     $: lastCloudSave = new Date($state.lastCloudSave).toLocaleString("en-us");
     $: lastLocalSave = new Date($state.lastLocalSave).toLocaleString("en-us");
@@ -69,7 +73,7 @@
         cloud.saveFromCloud().then((retValue) => {
             if (retValue == true) {
                 getCloudButtonLoading = false;
-                window.location.reload();
+                window.deskgap ? messageUI.send('reload') : window.location.reload();
             }
         })
     }
