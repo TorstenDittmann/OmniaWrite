@@ -9,8 +9,14 @@ const defaultIntern = {
     installed: true
 };
 
+const defaultSettings = {
+    theme: "dark",
+    language: "en"
+}
+
 if (localStorage.getItem("intern") === null) {
     localStorage.setItem("intern", JSON.stringify(defaultIntern));
+    localStorage.setItem("settings", JSON.stringify(defaultSettings));
     localStorage.setItem("state", "{}");
     localStorage.setItem("projects", "[]");
     localStorage.setItem("chapters", "[]");
@@ -336,17 +342,6 @@ function storeCards() {
             return n;
         }),
         /**
-         * Sets card content.
-         * @param id ID of the card.
-         * @param title New content of scene.
-         */
-        setCardContent: (id, boolean) => update(n => {
-            updateLocalTimestamp();
-            let index = n.findIndex(c => c.id == id);
-            n[index].showTooltip = boolean;
-            return n;
-        }),
-        /**
          * Removes card.
          * @param id ID of the tab.
          */
@@ -367,9 +362,12 @@ export const scenes = storeScenes();
 export const tabs = storeTabs();
 export const cards = storeCards();
 
+export const settings = writable(JSON.parse(localStorage.getItem("settings") || "{}"));
+
 projects.subscribe(val => localStorage.setItem("projects", JSON.stringify(val)));
 chapters.subscribe(val => localStorage.setItem("chapters", JSON.stringify(val)));
 state.subscribe(val => localStorage.setItem("state", JSON.stringify(val)));
 tabs.subscribe(val => localStorage.setItem("tabs", JSON.stringify(val)));
 scenes.subscribe(val => localStorage.setItem("scenes", JSON.stringify(val)));
 cards.subscribe(val => localStorage.setItem("cards", JSON.stringify(val)));
+settings.subscribe(val => localStorage.setItem("settings", JSON.stringify(val)));
