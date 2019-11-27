@@ -13,15 +13,16 @@ app.once("ready", () => {
     messageNode.on("minimize", () => win.minimize());
     messageNode.on("restore", () => void(0));
     messageNode.on("close", () => win.close());
-    messageNode.on("saveFile", (d, content) => {
-        dialog.showSaveDialogAsync(win, {}).then((e) => {
+    messageNode.on("saveFile", (d, content, fileName) => {
+        dialog.showSaveDialogAsync(win, {
+            defaultPath: fileName
+        }).then((e) => {
             try {
-                fs.writeFileSync(e.filePath, content, "utf-8");
+                fs.writeFileSync(e.filePath, content, "base64");
             } catch (e) {
                 alert("Failed to save the file !");
             }
         })
-
     })
 
     win = new BrowserWindow({
@@ -32,6 +33,10 @@ app.once("ready", () => {
     }).once("ready-to-show", () => {
         win.show();
     });
+
+    if (process.platform !== "win32") {
+        win.webView.setDevToolsEnabled(true);
+    }
 
     win.loadFile("public/index.html");
     win.on("closed", () => {
