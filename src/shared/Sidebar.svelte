@@ -1,143 +1,143 @@
 <script>
-  import {
-    state,
-    chapters,
-    scenes
-  } from "../stores";
+    import {
+        state,
+        chapters,
+        scenes
+    } from "../stores";
 
-  import {
-    link,
-    push
-  } from "svelte-spa-router";
+    import {
+        link,
+        push
+    } from "svelte-spa-router";
 
-  import {
-    fade,
-    fly
-  } from 'svelte/transition';
+    import {
+        fade,
+        fly
+    } from 'svelte/transition';
 
-  import {
-    _
-  } from 'svelte-i18n';
+    import {
+        _
+    } from 'svelte-i18n';
 
-  import Modal from './Modal.svelte';
+    import Modal from './Modal.svelte';
 
-  import active from "svelte-spa-router/active";
+    import active from "svelte-spa-router/active";
 
-  export let sidebarState;
+    export let sidebarState;
 
-  let showCreateChapter = false;
-  let createChapterTitle;
+    let showCreateChapter = false;
+    let createChapterTitle;
 
-  function createChapter() {
-    chapters.createChapter($state.currentProject, createChapterTitle);
-    showCreateChapter = false;
-    createChapterTitle = "";
-  }
+    function createChapter() {
+        chapters.createChapter($state.currentProject, createChapterTitle);
+        showCreateChapter = false;
+        createChapterTitle = "";
+    }
 
-  let createSceneTitle;
-  let createSceneChapter;
-  let showCreateScene = false;
+    let createSceneTitle;
+    let createSceneChapter;
+    let showCreateScene = false;
 
-  function openCreateScene(chapter) {
-    createSceneChapter = chapter;
-    showCreateScene = true;
-  }
+    function openCreateScene(chapter) {
+        createSceneChapter = chapter;
+        showCreateScene = true;
+    }
 
-  function createScene() {
-    scenes.createScene(createSceneChapter, createSceneTitle);
-    showCreateScene = false;
-    createSceneTitle = "";
-  }
+    function createScene() {
+        scenes.createScene(createSceneChapter, createSceneTitle);
+        showCreateScene = false;
+        createSceneTitle = "";
+    }
 
-  let showEditChapter = false;
-  let objEditChapter;
+    let showEditChapter = false;
+    let objEditChapter;
 
-  function editChapter() {
-    chapters.setChapterTitle(objEditChapter.id, objEditChapter.title);
-    showEditChapter = false;
-  }
+    function editChapter() {
+        chapters.setChapterTitle(objEditChapter.id, objEditChapter.title);
+        showEditChapter = false;
+    }
 
-  let showEditScene = false;
-  let objEditScene;
+    let showEditScene = false;
+    let objEditScene;
 
-  function editScene() {
-    scenes.setSceneTitle(objEditScene.id, objEditScene.title);
-    showEditScene = false;
-  }
+    function editScene() {
+        scenes.setSceneTitle(objEditScene.id, objEditScene.title);
+        showEditScene = false;
+    }
 </script>
 
 <style>
-  .swap-list {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-  }
+    .swap-list {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+    }
 
-  .swap-list>li {
-    padding: .5rem 0 .5rem 2rem;
-  }
+    .swap-list>li {
+        padding: .5rem 0 .5rem 2rem;
+    }
 
-  .swap-list>li .action {
-    cursor: pointer;
-    opacity: .65;
-  }
+    .swap-list>li .action {
+        cursor: pointer;
+        opacity: .65;
+    }
 
-  .swap-list>li .action:hover {
-    opacity: 1;
-  }
+    .swap-list>li .action:hover {
+        opacity: 1;
+    }
 
-  .swap-list li:first-child .lnr-chevron-up {
-    visibility: hidden;
-  }
+    .swap-list li:first-child .lnr-chevron-up {
+        visibility: hidden;
+    }
 
-  .swap-list li:last-child .lnr-chevron-down {
-    visibility: hidden;
-  }
+    .swap-list li:last-child .lnr-chevron-down {
+        visibility: hidden;
+    }
 </style>
 
 <Modal bind:show={showCreateChapter}>
-  <h2 slot="header">
-    {$_('sidebar.modal.newChapter.header')}
-  </h2>
-  <div class="field">
-    <label for="editChapterInput">{$_('sidebar.modal.title')}</label>
-    <input id="editChapterInput" bind:value={createChapterTitle} autocomplete="off" placeholder="enter your title"
-      type="text">
-  </div>
-  <hr>
-  <div class="btn-group">
-    <button on:click={createChapter}>{$_('sidebar.modal.newChapter.button')}</button>
-  </div>
+    <h2 slot="header">
+        {$_('sidebar.modal.newChapter.header')}
+    </h2>
+    <div class="field">
+        <label for="editChapterInput">{$_('sidebar.modal.title')}</label>
+        <input id="editChapterInput" bind:value={createChapterTitle} autocomplete="off" placeholder="enter your title"
+            type="text">
+    </div>
+    <hr>
+    <div class="btn-group">
+        <button on:click={createChapter}>{$_('sidebar.modal.newChapter.button')}</button>
+    </div>
 </Modal>
 
 <Modal bind:show={showCreateScene}>
-  <h2 slot="header">
-    {$_('sidebar.modal.newScene.header')}
-  </h2>
-  <div class="field">
-    <label for="editChapterInput">{$_('sidebar.modal.title')}</label>
-    <input id="editChapterInput" bind:value={createSceneTitle} autocomplete="off" placeholder="enter your title"
-      type="text">
-  </div>
-  <hr>
-  <div class="btn-group">
-    <button on:click={createScene}>{$_('sidebar.modal.newScene.button')}</button>
-  </div>
+    <h2 slot="header">
+        {$_('sidebar.modal.newScene.header')}
+    </h2>
+    <div class="field">
+        <label for="editChapterInput">{$_('sidebar.modal.title')}</label>
+        <input id="editChapterInput" bind:value={createSceneTitle} autocomplete="off" placeholder="enter your title"
+            type="text">
+    </div>
+    <hr>
+    <div class="btn-group">
+        <button on:click={createScene}>{$_('sidebar.modal.newScene.button')}</button>
+    </div>
 </Modal>
 
 <Modal bind:show={showEditChapter}>
-  <h2 slot="header">
-    {objEditChapter.title}
-  </h2>
-  <h3>Edit</h3>
-  <div class="field">
-    <label for="editChapterInput">{$_('sidebar.modal.title')}</label>
-    <input id="editChapterInput" bind:value={objEditChapter.title} autocomplete="off" placeholder="enter your title"
-      type="text">
-  </div>
-  <h3>{$_('sidebar.modal.edit.order')}</h3>
-  <ul class="swap-list">
-    {#each $scenes.filter(scene => scene.chapter == objEditChapter.id).sort((a, b) => a.order - b.order) as scene}
+    <h2 slot="header">
+        {objEditChapter.title}
+    </h2>
+    <h3>Edit</h3>
+    <div class="field">
+        <label for="editChapterInput">{$_('sidebar.modal.title')}</label>
+        <input id="editChapterInput" bind:value={objEditChapter.title} autocomplete="off" placeholder="enter your title"
+            type="text">
+    </div>
+    <h3>{$_('sidebar.modal.edit.order')}</h3>
+    <ul class="swap-list">
+        {#each $scenes.filter(scene => scene.chapter == objEditChapter.id).sort((a, b) => a.order - b.order) as scene}
         <li>
           <span class="lnr lnr-chevron-up action" on:click={()=> {scenes.orderScene(scene.id, true)}} />
           <span class="lnr lnr-chevron-down action" on:click={()=> {scenes.orderScene(scene.id, false)}} />
@@ -178,7 +178,7 @@
 </Modal>
 
 {#if sidebarState}
-<div id="sidebar" class="navigation" class:active={sidebarState} in:fly="{{ y: 200, duration: 200 }}" out:fly="{{ y: 200, duration: 200 }}">
+<div id="sidebar" class="navigation noselect" class:active={sidebarState} in:fly="{{ y: 200, duration: 200 }}" out:fly="{{ y: 200, duration: 200 }}">
   <ul class="menu">
     <div class="backdrop" on:click={()=> (sidebarState = false)} />
       <div id="close-sidebar" class="close" on:click={()=> (sidebarState = false)}>
@@ -201,11 +201,9 @@
               </li>
             {/each}
             <li>
-              <div class="btn-group">
-                <button on:click={()=> openCreateScene(chapter.id)}>
-                  <span class="lnr lnr-plus-circle" /> {$_('sidebar.createScene')}
-                </button>
-              </div>
+              <button on:click={()=> openCreateScene(chapter.id)}>
+                <span class="lnr lnr-plus-circle" /> {$_('sidebar.createScene')}
+              </button>
             </li>
           </ul>
         </li>

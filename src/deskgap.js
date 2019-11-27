@@ -29,7 +29,8 @@ app.once("ready", () => {
         frame: false,
         menu: null,
         show: false,
-        resizable: true
+        width: 1280,
+        height: 960,
     }).once("ready-to-show", () => {
         win.show();
     });
