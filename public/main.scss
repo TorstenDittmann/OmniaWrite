@@ -14,6 +14,7 @@ body {
     --select-background: #1b2a31;
     --button-color: #fff;
     --editor-color: #acbac3;
+    --editor-font-size: 0.9rem;
     --input-border-color: #0092d1;
     margin: 0;
     font-family: 'IBM Plex Sans', sans-serif;
@@ -593,7 +594,7 @@ select#focusSceneSelect.active {
         font-family: 'IBM Plex Mono', monospace;
         color: var(--editor-color);
         font-weight: 400;
-        font-size: 0.9rem;
+        font-size: var(--editor-font-size);
         line-height: 2rem;
         text-align: justify;
 
@@ -690,7 +691,7 @@ select#focusSceneSelect.active {
                 monospace;
             color: var(--editor-color);
             font-weight: 400;
-            font-size: 0.9rem;
+            font-size: var(--editor-font-size);
             text-align: justify;
 
             .ce-block__content {
