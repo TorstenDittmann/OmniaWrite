@@ -137,7 +137,7 @@
     };
 
     /**
-     * 
+     * Init Doorbell feedback.
      */
     window.doorbellOptions = {
         id: "11083",
@@ -179,9 +179,7 @@
     }(window, document, 'script'));
 </script>
 
-<style>
-
-</style>
+<style></style>
 
 <div class="container">
     <HeaderComponent bind:navigationState on:openSidebar={()=> (sidebarState = true)} />

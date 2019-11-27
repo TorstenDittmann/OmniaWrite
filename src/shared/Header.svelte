@@ -73,7 +73,7 @@
 </style>
 
 <header data-deskgap-drag>
-  <nav class="header">
+  <nav class="header noselect">
     <button class="burger" id="open-sidebar" on:click={()=> dispatch('openSidebar')} data-deskgap-no-drag>
       <span class="lnr lnr-menu" />
     </button>
