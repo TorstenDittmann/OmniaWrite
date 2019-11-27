@@ -21,6 +21,11 @@ body {
   background-color: var(--background-color);
   height: 100vh;
   position: fixed;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 body.light {
@@ -260,14 +265,21 @@ header .navigation ul.menu li.active a {
   padding: .5rem 0 .5rem 2rem;
 }
 
-#sidebar ul.menu .parent ul li .btn-group {
-  margin: 0;
-}
-
-#sidebar ul.menu .parent ul li .btn-group button {
+#sidebar ul.menu .parent ul li button {
   font-size: .75rem;
   border-radius: .125rem;
-  height: 1.5rem;
+  border: 1px solid;
+  padding: .25em 1em;
+  cursor: pointer;
+  float: left;
+  border-color: #0077b8;
+  background-color: #0077b8;
+  color: var(--button-color);
+  opacity: .85;
+}
+
+#sidebar ul.menu .parent ul li button.hover {
+  opacity: 1;
 }
 
 #sidebar ul.menu .parent ul li .action {
@@ -593,6 +605,14 @@ select#focusSceneSelect.active {
 .editpane > h1 {
   font-family: 'IBM Plex Mono', monospace;
   text-align: center;
+}
+
+#codex-editor > * {
+  -webkit-touch-callout: auto;
+  -webkit-user-select: auto;
+  -moz-user-select: auto;
+  -ms-user-select: auto;
+  user-select: auto;
 }
 
 #codex-editor .codex-editor {
