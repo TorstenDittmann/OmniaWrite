@@ -22,6 +22,13 @@ body {
     height: 100vh;
     position: fixed;
 
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+
     &.light {
         --text-color: #000;
         --background-color: #fafafa;
@@ -242,13 +249,20 @@ header {
                 li {
                     padding: .5rem 0 .5rem 2rem;
 
-                    .btn-group {
-                        margin: 0;
+                    button {
+                        font-size: .75rem;
+                        border-radius: .125rem;
+                        border: 1px solid;
+                        padding: .25em 1em;
+                        cursor: pointer;
+                        float: left;
+                        border-color: #0077b8;
+                        background-color: #0077b8;
+                        color: var(--button-color);
+                        opacity: .85;
 
-                        button {
-                            font-size: .75rem;
-                            border-radius: .125rem;
-                            height: 1.5rem;
+                        &.hover {
+                            opacity: 1;
                         }
                     }
 
@@ -566,6 +580,15 @@ select#focusSceneSelect.active {
 }
 
 #codex-editor {
+    &>* {
+        -webkit-touch-callout: auto;
+        -webkit-user-select: auto;
+        -khtml-user-select: auto;
+        -moz-user-select: auto;
+        -ms-user-select: auto;
+        user-select: auto;
+    }
+
     .codex-editor {
         font-family: 'IBM Plex Mono', monospace;
         color: var(--editor-color);
