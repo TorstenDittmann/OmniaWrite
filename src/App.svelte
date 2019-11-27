@@ -24,7 +24,6 @@
     import SettingsRoute from "./routes/Settings.svelte";
     import CloudRoute from "./routes/Cloud.svelte";
     import ExportRoute from "./routes/Export.svelte";
-    import FeedbackRoute from "./routes/Feedback.svelte";
 
     import {
         addMessages,
@@ -51,7 +50,6 @@
         "/settings": SettingsRoute,
         "/cloud": CloudRoute,
         "/export": ExportRoute,
-        "/feedback": FeedbackRoute,
 
         // Catch-all
         "*": OverviewRoute
