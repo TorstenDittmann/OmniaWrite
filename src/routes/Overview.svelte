@@ -13,13 +13,16 @@
     } = window.deskgap || {};
 
     let showCreateProject = false;
-    let chapterCount = 0;
-    let sceneCount = 0;
-    let wordCount = 0;
-    let charCount = 0;
+    let chapterCount;
+    let sceneCount;
+    let wordCount;
+    let charCount;
 
     $: {
+        chapterCount = 0;
+        sceneCount = 0;
         wordCount = 0;
+        charCount = 0;
         chapters.subscribe(chapters => {
             chapters.filter(chapter => chapter.project == $state.currentProject).forEach(chapter => {
                 chapterCount++;
