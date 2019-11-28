@@ -38,7 +38,7 @@ body {
         --menu-active: #d8e3e9;
         --menu-link: #fafafa;
         --menu-hover: #ededed;
-        --select-background: #1b2a31;
+        --select-background: #fafafa;
         --button-color: #fff;
         --editor-color: #484848;
     }
@@ -75,7 +75,7 @@ header {
         height: 100vh;
 
         ul.menu {
-            background-color: var(--background-color);
+            background-color: var(--primary-color);
             margin: 0;
             padding: 0;
             width: 70%;
