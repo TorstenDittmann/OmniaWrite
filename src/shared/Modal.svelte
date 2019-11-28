@@ -10,6 +10,7 @@
 
     export let show = false;
     export let fullscreen = false;
+    export let persistent = false;
 </script>
 
 <style>
@@ -54,15 +55,18 @@
         height: 100vh;
         max-height: 100vh;
         width: 100vw;
+        text-align: center;
     }
 </style>
 {#if show}
 <div class='modal-background' on:click='{() => show = false}'></div>
 
 <div class='modal' in:fly="{{ y: 200, duration: 200 }}" class:fullscreen="{fullscreen}">
-    <div class="modal-close" on:click='{() => show = false}'>
-        <span class="lnr lnr-cross" />
-    </div>
+    {#if !persistent}
+        <div class="modal-close" on:click='{() => show = false}'>
+            <span class="lnr lnr-cross" />
+        </div>
+    {/if}
     <slot name='header'></slot>
     <hr>
     <slot></slot>

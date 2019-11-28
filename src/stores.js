@@ -6,7 +6,7 @@ import {
 
 const defaultIntern = {
     version: "alpha",
-    installed: true
+    installed: false
 };
 
 const defaultSettings = {
@@ -362,6 +362,8 @@ export const tabs = storeTabs();
 export const cards = storeCards();
 
 export const settings = writable(JSON.parse(localStorage.getItem("settings") || "{}"));
+export const intern = writable(JSON.parse(localStorage.getItem("intern") || "{}"));
+
 
 projects.subscribe(val => localStorage.setItem("projects", JSON.stringify(val)));
 chapters.subscribe(val => localStorage.setItem("chapters", JSON.stringify(val)));
@@ -370,3 +372,4 @@ tabs.subscribe(val => localStorage.setItem("tabs", JSON.stringify(val)));
 scenes.subscribe(val => localStorage.setItem("scenes", JSON.stringify(val)));
 cards.subscribe(val => localStorage.setItem("cards", JSON.stringify(val)));
 settings.subscribe(val => localStorage.setItem("settings", JSON.stringify(val)));
+intern.subscribe(val => localStorage.setItem("intern", JSON.stringify(val)));

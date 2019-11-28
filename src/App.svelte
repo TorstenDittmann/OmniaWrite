@@ -8,13 +8,15 @@
     import {
         state,
         projects,
-        settings
+        settings,
+        intern
     } from "./stores";
 
     import HeaderComponent from "./shared/Header.svelte";
     import SidebarComponent from "./shared/Sidebar.svelte";
     import Toast from './shared/Toast.svelte';
     import Modal from './shared/Modal.svelte';
+    import Install from './shared/Install.svelte';
 
     import OverviewRoute from "./routes/Overview.svelte";
     import WriteRoute from "./routes/Write.svelte";
@@ -205,6 +207,7 @@
 <style></style>
 
 <div class="container">
+    <Install showInstall="{!$intern.installed}" />
     <HeaderComponent bind:navigationState on:openSidebar={()=> (sidebarState = true)} />
 
         <SidebarComponent bind:sidebarState />
