@@ -9,6 +9,7 @@
     } from 'svelte/transition';
 
     export let show = false;
+    export let fullscreen = false;
 </script>
 
 <style>
@@ -47,11 +48,18 @@
     .modal-close:hover {
         opacity: 1;
     }
+
+    .modal.fullscreen {
+        max-width: 100vw;
+        height: 100vh;
+        max-height: 100vh;
+        width: 100vw;
+    }
 </style>
 {#if show}
 <div class='modal-background' on:click='{() => show = false}'></div>
 
-<div class='modal' in:fly="{{ y: 200, duration: 200 }}">
+<div class='modal' in:fly="{{ y: 200, duration: 200 }}" class:fullscreen="{fullscreen}">
     <div class="modal-close" on:click='{() => show = false}'>
         <span class="lnr lnr-cross" />
     </div>
