@@ -95,8 +95,10 @@
     /**
      * Swipe detection.
      */
+    /*
     document.addEventListener('touchstart', handleTouchStart, false);
     document.addEventListener('touchmove', handleTouchMove, false);
+    */
 
     /**
      * Handle touch gestures.
