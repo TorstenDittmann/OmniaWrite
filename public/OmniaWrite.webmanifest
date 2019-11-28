@@ -1,7 +1,7 @@
 {
     "name": "OmniaWrite",
     "short_name": "OmniaWrite",
-    "display": "standalone",
+    "display": "fullscreen",
     "orientation": "portrait",
     "scope": "/",
     "start_url": "/",
