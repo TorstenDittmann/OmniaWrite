@@ -16,6 +16,7 @@ body {
     --editor-color: #acbac3;
     --editor-font-size: 0.9rem;
     --input-border-color: #0092d1;
+    --snackbar: #000;
     margin: 0;
     font-family: 'IBM Plex Sans', sans-serif;
     color: var(--text-color);
@@ -41,6 +42,7 @@ body {
         --select-background: #fafafa;
         --button-color: #fff;
         --editor-color: #484848;
+        --snackbar: #fff;
     }
 }
 
@@ -725,7 +727,7 @@ select#focusSceneSelect:active {
 
 #snackbar {
     width: 100%;
-    background-color: rgba(0, 0, 0, .7);
+    background-color: var(--snackbar);
     color: var(--text-color);
     text-align: center;
     padding: 1rem;
@@ -733,10 +735,6 @@ select#focusSceneSelect:active {
     z-index: 9999;
     bottom: 0;
     right: 0;
-
-    &:hover {
-        background-color: rgba(0, 0, 0, 1);
-    }
 }
 
 ::-webkit-scrollbar {
