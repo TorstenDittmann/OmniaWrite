@@ -471,6 +471,17 @@ header {
         padding: calc(.25rem + 2px) .5rem;
     }
 
+    select {
+        background-color: var(--select-background);
+        width: auto;
+        font-size: 1rem;
+        color: var(--text-color);
+        -webkit-text-fill-color: var(--text-color);
+        text-align: center;
+        border: 0;
+        cursor: pointer;
+    }
+
     input[type=search] {
         -webkit-appearance: none;
         -moz-appearance: none;
@@ -505,7 +516,6 @@ header {
 }
 
 select#focusSceneSelect {
-    display: none;
     background-color: var(--select-background);
     width: auto;
     font-size: 1rem;
@@ -521,10 +531,6 @@ select#focusSceneSelect:focus,
 select#focusSceneSelect:active {
     border: 0;
     outline: 0;
-}
-
-select#focusSceneSelect.active {
-    display: unset !important;
 }
 
 .grid {

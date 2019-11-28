@@ -38,6 +38,8 @@
   let showToast = false;
   let showToastText;
 
+  let focusMode = false;
+
   $: currentScene = $scenes.filter(scene => scene.id == params.sceneId)[0];
   $: state.setCurrentTitle(params.sceneId ? currentScene.title : 'No scene selected!');
   $: {
@@ -129,8 +131,8 @@
   }
 
   function toggleFocus() {
+    focusMode = !focusMode;
     document.getElementById("content").classList.toggle("focus");
-    document.getElementById("focusSceneSelect").classList.toggle("active");
   }
 
   function undo() {
@@ -168,12 +170,13 @@
     <span class="tooltiptext">{$_('write.toolbar.save')}</span>
   </span>
   {/if}
-  <span class="lnr lnr-eye tooltip" on:click={toggleFocus}>
+  <span class="lnr  tooltip" on:click={toggleFocus} class:lnr-eye="{!focusMode}" class:lnr-exit="{focusMode}">
     <span class="tooltiptext">{$_('write.toolbar.focus')}</span>
  </span>
  <span class="lnr lnr-frame-expand tooltip" on:click={toggleFullscreen}>
     <span class="tooltiptext">{$_('write.toolbar.fullscreen')}</span>
  </span>
+ {#if focusMode}
   <select id="focusSceneSelect" on:change={switchScene}>
     <option value="" selected="selected">{$_('write.toolbar.switchScene')}</option>
     {#each $chapters.filter(chapter => chapter.project == $state.currentProject) as chapter, i}
@@ -184,6 +187,7 @@
       </optgroup>
     {/each}
   </select>
+  {/if}
 </div>
 <div class="editpane">
     <h1 contenteditable="true">{currentScene.title}</h1>
