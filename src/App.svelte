@@ -81,6 +81,7 @@
         });
     }
 
+
     /**
      * Defines state of sidebar and navigation based on max-width.
      */
@@ -91,6 +92,13 @@
         e.matches ? navigationState = false : navigationState = true
         e.matches ? sidebarState = false : sidebarState = true
     });
+
+    function routeLoaded(event) {
+        if (mql.matches) {
+            sidebarState = false;
+            navigationState = false;
+        }
+    }
 
     /**
      * Swipe detection.
@@ -204,7 +212,7 @@
             <Toast bind:show={updateAvailable} text="New update installed!<br>Click here to restart."
                 on:click={updateApp} duration="forever" />
             <div class="inner">
-                <Router {routes} />
+                <Router {routes} on:routeLoaded={routeLoaded} />
             </div>
         </div>
 </div>
