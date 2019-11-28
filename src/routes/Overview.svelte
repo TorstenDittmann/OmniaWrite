@@ -13,17 +13,23 @@
     } = window.deskgap || {};
 
     let showCreateProject = false;
-    let wordCount;
+    let chapterCount = 0;
+    let sceneCount = 0;
+    let wordCount = 0;
+    let charCount = 0;
 
     $: {
         wordCount = 0;
         chapters.subscribe(chapters => {
             chapters.filter(chapter => chapter.project == $state.currentProject).forEach(chapter => {
+                chapterCount++;
                 scenes.subscribe(scenes => {
                     scenes.filter(scene => scene.chapter == chapter.id).forEach(scene => {
-                        if (scene.content.block) {
+                        sceneCount++;
+                        if (scene.content) {
                             scene.content.blocks.forEach(block => {
                                 wordCount += block.data.text.split(" ").length;
+                                charCount += block.data.text.length;
                             })
                         }
 
@@ -88,8 +94,20 @@
     <input id="author" type="text" placeholder="John Doe" autocomplete="off" bind:value={project.title}>
 </div>
 <div class="field">
+    <label for="chapters" class="big">Chapters:</label>
+    {chapterCount}
+</div>
+<div class="field">
+    <label for="scenes" class="big">Scenes:</label>
+    {sceneCount}
+</div>
+<div class="field">
     <label for="words" class="big">Words:</label>
-    {wordCount} words
+    {wordCount}
+</div>
+<div class="field">
+    <label for="chars" class="big">Characters:</label>
+    {wordCount}
 </div>
 <div class="btn-group">
     <button on:click={()=> setProjectTitle(project.id)}>Save</button>

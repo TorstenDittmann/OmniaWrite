@@ -83,8 +83,8 @@
     {#if navigationState}
       <div id="navigation" class="navigation" class:active={navigationState} in:fly="{{ y: 200, duration: 200 }}" out:fly="{{ y: 200, duration: 200 }}">
         <ul class="menu">
-          <div class="backdrop" on:click={()=> (navigationState = false)} />
-            <div class="close" on:click={()=> (navigationState = false)}>
+          <div class="backdrop" on:click={()=> (navigationState = false)} data-deskgap-no-drag/>
+            <div class="close" on:click={()=> (navigationState = false)} data-deskgap-no-drag>
               <span class="lnr lnr-cross" />
             </div>
             <li use:active={'/'} data-deskgap-no-drag>
@@ -117,7 +117,7 @@
         {/if}
       </div>
     {/if}
-    <button class="mobile" id="open-navigation" on:click={()=> (navigationState = true)}>
+    <button class="mobile" id="open-navigation" on:click={()=> (navigationState = true)} data-deskgap-no-drag>
       <span class="lnr lnr-book" />
     </button>
   </nav>

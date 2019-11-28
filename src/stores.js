@@ -200,8 +200,7 @@ function storeScenes() {
                 id: getRandomNumber(),
                 chapter: chapter,
                 title: title,
-                order: n.length,
-                content: ""
+                order: n.length
             }]);
         }),
         /**
