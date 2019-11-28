@@ -20,8 +20,6 @@
     }
 </style>
 
-<h1>{$_('settings.title')}</h1>
-
 <h2>{$_('settings.appereance.title')}</h2>
 <div class="field">
     <label class="big" for="editTheme">{$_('settings.appereance.theme.title')}</label>
