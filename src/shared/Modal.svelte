@@ -56,6 +56,7 @@
         max-height: 100vh;
         width: 100vw;
         text-align: center;
+        background-color: var(--secondary-color);
     }
 </style>
 {#if show}
