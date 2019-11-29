@@ -128,5 +128,17 @@
             "autosave": "Automatisches speichern",
             "fontsize": "Schriftgröße"
         }
+    },
+    "install": {
+        "language": "Sprache auswählen",
+        "requirements": {
+            "title": "Systemanforderungen",
+            "internet": "Internet",
+            "browser": "Browser",
+            "serviceWorker": "Service worker"
+        },
+        "start": "Start",
+        "cloud": "von Cloud",
+        "back": "zurück"
     }
 }
