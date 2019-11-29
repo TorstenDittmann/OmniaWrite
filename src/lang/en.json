@@ -128,5 +128,17 @@
             "autosave": "Autosave",
             "fontsize": "Fontsize"
         }
+    },
+    "install": {
+        "language": "Choose language",
+        "requirements": {
+            "title": "Requirements",
+            "internet": "Internet",
+            "browser": "Browser",
+            "serviceWorker": "Service worker"
+        },
+        "start": "Start",
+        "cloud": "From Cloud",
+        "back": "back"
     }
 }

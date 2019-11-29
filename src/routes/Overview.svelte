@@ -6,11 +6,15 @@
         scenes
     } from "../stores";
 
-    import Modal from '../shared/Modal.svelte';
+    import {
+        deskgap
+    } from "../utils";
 
-    const {
-        messageUI
-    } = window.deskgap || {};
+    import {
+        _
+    } from 'svelte-i18n';
+
+    import Modal from '../shared/Modal.svelte';
 
     let showCreateProject = false;
     let chapterCount;
@@ -50,7 +54,7 @@
 
     function changeProject(project) {
         state.setCurrentProject(project);
-        window.deskgap ? messageUI.send('reload') : window.location.reload();
+        deskgap.reload();
     }
 
     function setProjectTitle(project) {
