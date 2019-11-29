@@ -22,6 +22,9 @@
     .install {
         max-width: 640px;
         display: inline-block;
+        margin: 2rem;
+        padding: 2rem;
+        background-color: var(--background-color);
     }
 
     .installIcon {
@@ -79,18 +82,27 @@
             </select>
         </div>
         <h3>{$_('install.requirements.title')}</h3>
-        <div class="field">
-            <label class="big" for="editChapterInput">{$_('install.requirements.internet')}</label>
-            {requirements.steps.internet}
-        </div>
-        <div class="field">
-            <label class="big" for="editChapterInput">{$_('install.requirements.browser')}</label>
-            {requirements.steps.browser}
-        </div>
-        <div class="field">
-            <label class="big" for="editChapterInput">{$_('install.requirements.serviceWorker')}</label>
-            {requirements.steps.serviceWorker}
-        </div>
+        <p>
+            <span 
+                class="lnr" 
+                class:lnr-checkmark-circle="{requirements.steps.internet}"
+                class:lnr-question-circle="{!requirements.steps.internet}" />
+            {$_('install.requirements.internet')}
+         </p>
+        <p>
+            <span 
+                class="lnr" 
+                class:lnr-checkmark-circle="{requirements.steps.browser}"
+                class:lnr-cross-circle="{!requirements.steps.browser}" />
+            {$_('install.requirements.browser')}
+        </p>
+        <p>
+            <span 
+                class="lnr" 
+                class:lnr-checkmark-circle="{requirements.steps.serviceWorker}"
+                class:lnr-question-circle="{!requirements.steps.serviceWorker}" />
+            {$_('install.requirements.serviceWorker')}
+        </p>
         <div class="grid">
             <div on:click={()=> $intern.installed = true}>
                 <span class="lnr lnr-rocket installIcon" /><br>
