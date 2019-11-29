@@ -12,6 +12,10 @@
         intern
     } from "./stores";
 
+    import {
+        deskgap
+    } from "./utils"
+
     import HeaderComponent from "./shared/Header.svelte";
     import SidebarComponent from "./shared/Sidebar.svelte";
     import Toast from './shared/Toast.svelte';
@@ -32,12 +36,8 @@
         locale
     } from 'svelte-i18n';
 
-    import en from './en.json';
-    import de from './de.json';
-
-    const {
-        messageUI
-    } = window.deskgap || {};
+    import en from './lang/en.json';
+    import de from './lang/de.json';
 
     addMessages('en', en);
     addMessages('de', de);
@@ -71,18 +71,18 @@
         });
         wb.register();
     }
+
     /**
      * Update app.
      */
     function updateApp() {
         wb.addEventListener('controlling', (event) => {
-            window.deskgap ? messageUI.send('reload') : window.location.reload();
+            deskgap.reload();
         });
         wb.messageSW({
             type: 'SKIP_WAITING'
         });
     }
-
 
     /**
      * Defines state of sidebar and navigation based on max-width.

@@ -68,7 +68,6 @@
         </div>
     {/if}
     <slot name='header'></slot>
-    <hr>
     <slot></slot>
 </div>
 {/if}
