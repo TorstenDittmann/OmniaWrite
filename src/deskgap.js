@@ -12,7 +12,6 @@ let win;
 app.once("ready", () => {
     messageNode.on("reload", () => {
         win.reload();
-        //win.loadFile("public/index.html");
     });
     messageNode.on("minimize", () => win.minimize());
     messageNode.on("restore", () => void(0));

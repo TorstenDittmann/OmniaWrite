@@ -21,30 +21,18 @@
   } from "../stores";
 
   import {
+    deskgap
+  } from "../utils";
+
+  import {
     _
   } from 'svelte-i18n';
 
   export let navigationState;
 
-  let isRunningElectron = false;
-
-  const {
-    messageUI
-  } = window.deskgap || {};
-
-  if (window.deskgap) {
-    isRunningElectron = true;
-  }
+  const isRunningElectron = deskgap.isRunning();
 
   const dispatch = createEventDispatcher();
-
-  function closeWindow() {
-    messageUI.send('close');
-  }
-
-  function minimizeWindow() {
-    messageUI.send('minimize');
-  }
 
   function createTab() {
     tabs.createTab(
@@ -112,8 +100,8 @@
             </li>
         </ul>
         {#if isRunningElectron}
-          <span class="lnr lnr-cross titlebar" on:click={closeWindow} data-deskgap-no-drag />
-          <span class="lnr lnr-chevron-down titlebar" on:click={minimizeWindow} data-deskgap-no-drag />
+          <span class="lnr lnr-cross titlebar" on:click={deskgap.closeWindow} data-deskgap-no-drag />
+          <span class="lnr lnr-chevron-down titlebar" on:click={deskgap.minimizeWindow} data-deskgap-no-drag />
         {/if}
       </div>
     {/if}

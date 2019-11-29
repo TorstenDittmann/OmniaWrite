@@ -1,11 +1,11 @@
-import Backendless from 'backendless';
+import Backendless from "backendless";
 import {
     state
 } from "./stores";
 
-const APP_ID = '0CE45A1E-07A9-86CD-FF78-81FCFD46CD00';
-const API_KEY = '5990F07B-D5AA-70CF-FF93-AD29940B8900';
-const API_URL = 'https://backendlessappcontent.com/' + APP_ID + '/' + API_KEY + '/files/userData/';
+const APP_ID = "0CE45A1E-07A9-86CD-FF78-81FCFD46CD00";
+const API_KEY = "5990F07B-D5AA-70CF-FF93-AD29940B8900";
+const API_URL = "https://backendlessappcontent.com/" + APP_ID + "/" + API_KEY + "/files/userData/";
 let USER_ID;
 let USER_TOKEN;
 
@@ -14,10 +14,10 @@ state.subscribe(value => {
     USER_TOKEN = value.currentUserToken;
 });
 
-Backendless.serverURL = 'https://api.backendless.com';
+Backendless.serverURL = "https://api.backendless.com";
 Backendless.initApp(APP_ID, API_KEY);
 
-export const cloud = {
+const cloud = {
     /**
      * Registers new user.
      * @returns Backendless.User
@@ -70,7 +70,7 @@ export const cloud = {
      */
     saveToCloud: () => {
         let blob = new Blob(["\ufeff", JSON.stringify(localStorage)], {
-            type: 'application/json'
+            type: "application/json"
         });
 
         return Backendless.Files.saveFile("userData/" + USER_ID, "data.json", blob, true)
@@ -85,14 +85,14 @@ export const cloud = {
      * @returns Promise<boolean>
      */
     saveFromCloud: async () => {
-        const response = await fetch(API_URL + USER_ID + '/data.json', {
+        const response = await fetch(API_URL + USER_ID + "/data.json", {
             headers: {
                 "user-token": USER_TOKEN
             }
         });
         const data = await response.json();
         const dataObject = Object.keys(data);
-        return new Promise((resolve, reject) => {
+        return new Promise((resolve) => {
             dataObject.forEach(k => {
                 if (k != "Backendless") {
                     localStorage.setItem(k, data[k]);
@@ -104,6 +104,8 @@ export const cloud = {
         });
     }
 }
+
+export default cloud;
 
 function error(error) {
     console.log(error.message);
