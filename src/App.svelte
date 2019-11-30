@@ -31,21 +31,10 @@
     import ExportRoute from "./routes/Export.svelte";
 
     import {
-        addMessages,
-        setInitialLocale,
         locale
     } from 'svelte-i18n';
 
-    import en from './lang/en.json';
-    import de from './lang/de.json';
-
-    addMessages('en', en);
-    addMessages('de', de);
-
     locale.set($settings.language);
-    setInitialLocale({
-        fallback: 'en'
-    });
 
     const routes = {
         "/": OverviewRoute,
