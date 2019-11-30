@@ -121,7 +121,6 @@
 </div>
 <hr>
 {/each}
-{#if $projects.length != 0}
 <h1>Your projects</h1>
 <div class="grid">
   <div class="new" on:click={() => showCreateProject = true}>
@@ -134,6 +133,7 @@
       <p>Chapters: {$chapters.filter(n => n.project == project.id).length}</p>
     </div>
   {/each}
+<<<<<<< HEAD
 </div>
 {:else}
 <div class="grid">
@@ -142,3 +142,6 @@
     </div>
 </div>
 {/if}
+=======
+</div>
+>>>>>>> parent of 554c900... create first overview
