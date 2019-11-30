@@ -133,15 +133,4 @@
       <p>Chapters: {$chapters.filter(n => n.project == project.id).length}</p>
     </div>
   {/each}
-<<<<<<< HEAD
 </div>
-{:else}
-<div class="grid">
-    <div class="new" on:click={()=> showCreateProject = true}>
-        <span class="lnr lnr-plus-circle" />
-    </div>
-</div>
-{/if}
-=======
-</div>
->>>>>>> parent of 554c900... create first overview
