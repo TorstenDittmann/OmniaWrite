@@ -121,6 +121,7 @@
 </div>
 <hr>
 {/each}
+{#if $projects.length != 0}
 <h1>Your projects</h1>
 <div class="grid">
   <div class="new" on:click={() => showCreateProject = true}>
@@ -134,3 +135,11 @@
     </div>
   {/each}
 </div>
+{:else}
+<div class="grid">
+    <div class="new" on:click={()=> showCreateProject = true}>
+        <span class="lnr lnr-plus-circle" /><br>
+        Create your first Project!
+    </div>
+</div>
+{/if}
