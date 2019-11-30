@@ -138,8 +138,7 @@
 {:else}
 <div class="grid">
     <div class="new" on:click={()=> showCreateProject = true}>
-        <span class="lnr lnr-plus-circle" /><br>
-        Create your first Project!
+        <span class="lnr lnr-plus-circle" />
     </div>
 </div>
 {/if}
