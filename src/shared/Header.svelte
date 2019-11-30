@@ -53,6 +53,7 @@
     font-size: 1.5rem;
     padding: 0 1rem;
     opacity: .65;
+    cursor: pointer;
   }
 
   .titlebar:hover {
