@@ -18,7 +18,6 @@
     <item id="font.stix.bold.italic" href="fonts/STIXGeneralBolIta.otf"
       media-type="application/vnd.ms-opentype"/>
     <item id="toc" properties="nav" href="toc.xhtml" media-type="application/xhtml+xml"/>
-    <item id="copyright" href="copyright.xhtml" media-type="application/xhtml+xml"/>
     <item id="titlepage" href="titlepage.xhtml" media-type="application/xhtml+xml"/>
     <item id="cover" href="cover.xhtml" media-type="application/xhtml+xml"/>
     <item id="cover-image" properties="cover-image" href="images/cover.jpg" media-type="image/jpeg"/>
@@ -36,7 +35,6 @@
 
     <itemref linear="yes" idref="" id="SPINE_CHAPTER_LOOP"/>
 
-    <itemref idref="copyright" linear="yes"/>
     <itemref idref="toc" linear="no"/>
   </spine>
 </package>
