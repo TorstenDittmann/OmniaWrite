@@ -1,22 +1,17 @@
 {
     "editor.fontFamily": "Fira Code",
+    "editor.fontSize": 14,
     "editor.fontLigatures": true,
     "workbench.editor.highlightModifiedTabs": true,
     "editor.cursorStyle": "block",
     "editor.cursorBlinking": "smooth",
     "files.trimFinalNewlines": true,
-    "svelte.plugin.svelte.format.enable": false,
-    "beautify.language": {
-        "html": [
-            "svelte"
-        ]
-    },
-    "editor.defaultFormatter": "HookyQR.beautify",
     "editor.formatOnPaste": true,
     "editor.formatOnSave": true,
     "files.watcherExclude": {
         "**/.git/objects/**": true,
         "**/.git/subtree-cache/**": true,
         "**/node_modules/*/**": true
-    }
+    },
+    "editor.tabSize": 2
 }
