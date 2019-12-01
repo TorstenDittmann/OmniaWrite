@@ -32,6 +32,9 @@
         },
         "editor": {
             "placeholder": "Lass uns eine tolle Geschichte schreiben!"
+        },
+        "overview": {
+            "opened": "geöffnet"
         }
     },
     "cloud": {
@@ -140,5 +143,19 @@
         "start": "Start",
         "cloud": "von Cloud",
         "back": "zurück"
+    },
+    "overview": {
+        "project": {
+            "title": "Titel",
+            "chapters": "Kapitel",
+            "scenes": "Szenen",
+            "words": "Wörter",
+            "characters": "Zeichen",
+            "save": "Speichern"
+        },
+        "projects": {
+            "title": "Projekte",
+            "opened": "geöffnet"
+        }
     }
 }

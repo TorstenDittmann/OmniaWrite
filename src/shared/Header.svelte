@@ -128,7 +128,7 @@
         </li>
       {/each}
       <li class="tab" on:click={createTab}>
-        <span class="lnr lnr-file-add" />
+        <span class="lnr lnr-plus-circle" />
       </li>
     </ul>
   </div>
