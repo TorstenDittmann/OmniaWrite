@@ -22,6 +22,9 @@
     let wordCount;
     let charCount;
 
+    let firstProject = $projects.length == 0 ? true : false;
+    showCreateProject = firstProject;
+
     $: {
         chapterCount = 0;
         sceneCount = 0;
@@ -75,10 +78,9 @@
     }
 </script>
 
-<Modal bind:show={showCreateProject}>
+<Modal bind:show={showCreateProject} persistent={firstProject}>
     <h2 slot="header">
-        New 'project'
-        <small><em>noun</em> proj·​ect \ ˈprä-ˌjekt</small>
+        New project
     </h2>
     <div class="field">
         <label for="createProjectInput">Title:</label>
