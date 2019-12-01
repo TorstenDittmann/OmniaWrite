@@ -67,7 +67,6 @@ export class Export {
                 template[t.name] = parser.parseFromString(await response.text(), "text/xml");
             }).then(() => {
                 // set project title
-                console.log(template)
                 template.content.getElementById("title").textContent =
                     template.cover.getElementById("title").textContent =
                     template.titlepage.getElementById("title").textContent =
@@ -239,10 +238,7 @@ export class ExportRTF {
                             if (scene.content) {
                                 scene.content.blocks.forEach(block => {
                                     let blockContent = this.block.replace("BLOCK", block.data.text);
-                                    console.log(blockContent);
                                     blockContent = blockContent.replace(/<br>/gi, "\\par");
-                                    console.log(blockContent);
-
                                     sceneContent += blockContent;
                                 })
                                 chapterContent = chapterContent.replace("SCENE", sceneContent);
