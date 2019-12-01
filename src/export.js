@@ -210,7 +210,7 @@ export class ExportRTF {
         this.projectId = id;
         this.projectAuthor = author;
 
-        this.header = "{\\rtf1\\ansi\\deff0{\\fonttbl}\\pard\\qc\\fs120\\b TITLE\\pard\\b0";
+        this.header = "{\\rtf1\\ansicpg65001\\deff0{\\fonttbl}\\pard\\qc\\fs120\\b TITLE\\pard\\b0";
         this.chapter = "\\page\\fs32\\b CHAPTER\\par\\pard \\b0\\fs22 SCENE"
         this.block = "BLOCK \\par"
         this.footer = "}";
@@ -236,11 +236,17 @@ export class ExportRTF {
                     unsubscribeScenes = scenes.subscribe(value => {
                         value.filter(e => e.chapter == element.id).sort(this.compare).forEach((scene) => {
                             let sceneContent = "";
-                            scene.content.blocks.forEach(block => {
-                                let blockContent = this.block.replace("BLOCK", block.data.text);
-                                sceneContent += blockContent;
-                            })
-                            chapterContent = chapterContent.replace("SCENE", sceneContent);
+                            if (scene.content) {
+                                scene.content.blocks.forEach(block => {
+                                    let blockContent = this.block.replace("BLOCK", block.data.text);
+                                    console.log(blockContent);
+                                    blockContent = blockContent.replace(/<br>/gi, "\\par");
+                                    console.log(blockContent);
+
+                                    sceneContent += blockContent;
+                                })
+                                chapterContent = chapterContent.replace("SCENE", sceneContent);
+                            }
                         });
                         content += chapterContent;
                     });

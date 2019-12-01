@@ -8,9 +8,9 @@
   import moment from "moment";
   import "moment/locale/de";
 
-  let sceneData = [];
-
   moment.locale($settings.language);
+
+  let sceneData = [];
 
   $: {
     const unsubscribe = $chapters
@@ -32,7 +32,7 @@
         }
         return 0;
       })
-      .slice(0, 4);
+      .slice(0, 10);
   }
 </script>
 
@@ -40,14 +40,13 @@
 
 </style>
 
-<h1>Write</h1>
-Here will be an overview of scenes ordered by the last edit.
-<h1>last edited</h1>
 <div id="cards" class="grid">
   {#each sceneData as scene}
     <div id="card" on:click={() => push('/write/' + scene.id)}>
       <h2>{scene.title}</h2>
-      <small>{moment(scene.lastEdit, 'X').fromNow()}</small>
+      <small>
+        {$_('write.overview.opened')} {moment(scene.lastEdit, 'X').fromNow()}
+      </small>
     </div>
   {/each}
 </div>

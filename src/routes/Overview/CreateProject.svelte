@@ -1,0 +1,39 @@
+<script>
+  import { projects } from "../../stores";
+  import Modal from "../../shared/Modal.svelte";
+  import { createEventDispatcher } from "svelte";
+
+  const dispatch = createEventDispatcher();
+
+  export let showCreateProject;
+  export let firstProject;
+
+  function createProject() {
+    let retValue = projects.createProject(
+      document.getElementById("createProjectInput").value
+    );
+    showCreateProject = false;
+    dispatch("changeProject", {
+      project: retValue
+    });
+  }
+</script>
+
+<style>
+
+</style>
+
+<Modal bind:show={showCreateProject} persistent={firstProject}>
+  <h2 slot="header">New project</h2>
+  <div class="field">
+    <label for="createProjectInput">Title:</label>
+    <input
+      id="createProjectInput"
+      autocomplete="off"
+      placeholder="enter your title" />
+  </div>
+  <hr />
+  <div class="btn-group">
+    <button on:click={createProject}>Create!</button>
+  </div>
+</Modal>
