@@ -1,210 +1,212 @@
-<script>
-    import {
-        Workbox
-    } from 'workbox-window';
+<script lang="javascript">
+  import { Workbox } from "workbox-window";
 
-    import Router from "svelte-spa-router";
+  import Router from "svelte-spa-router";
 
-    import {
-        state,
-        projects,
-        settings,
-        intern
-    } from "./stores";
+  import { state, projects, settings, intern } from "./stores";
 
-    import {
-        deskgap
-    } from "./utils"
+  import { deskgap } from "./utils";
 
-    import HeaderComponent from "./shared/Header.svelte";
-    import SidebarComponent from "./shared/Sidebar.svelte";
-    import Toast from './shared/Toast.svelte';
-    import Modal from './shared/Modal.svelte';
-    import Install from './shared/Install.svelte';
+  import HeaderComponent from "./shared/Header.svelte";
+  import SidebarComponent from "./shared/Sidebar.svelte";
+  import Toast from "./shared/Toast.svelte";
+  import Modal from "./shared/Modal.svelte";
+  import Install from "./shared/Install.svelte";
 
-    import OverviewRoute from "./routes/Overview.svelte";
-    import WriteRoute from "./routes/Write.svelte";
-    import CardsRoute from "./routes/Cards.svelte";
-    import MindmapRoute from "./routes/Mindmap.svelte";
-    import SettingsRoute from "./routes/Settings.svelte";
-    import CloudRoute from "./routes/Cloud.svelte";
-    import ExportRoute from "./routes/Export.svelte";
+  import OverviewRoute from "./routes/Overview.svelte";
+  import WriteRoute from "./routes/Write.svelte";
+  import CardsRoute from "./routes/Cards.svelte";
+  import MindmapRoute from "./routes/Mindmap.svelte";
+  import SettingsRoute from "./routes/Settings.svelte";
+  import CloudRoute from "./routes/Cloud.svelte";
+  import ExportRoute from "./routes/Export.svelte";
 
-    import {
-        locale
-    } from 'svelte-i18n';
+  import { locale } from "svelte-i18n";
 
-    locale.set($settings.language);
+  locale.set($settings.language);
 
-    const routes = {
-        "/": OverviewRoute,
-        "/write/:sceneId?": WriteRoute,
-        "/cards": CardsRoute,
-        "/mindmap/:mapId?": MindmapRoute,
-        "/settings": SettingsRoute,
-        "/cloud": CloudRoute,
-        "/export": ExportRoute,
+  const routes = {
+    "/": OverviewRoute,
+    "/write/:sceneId?": WriteRoute,
+    "/cards": CardsRoute,
+    "/mindmap/:mapId?": MindmapRoute,
+    "/settings": SettingsRoute,
+    "/cloud": CloudRoute,
+    "/export": ExportRoute,
 
-        // Catch-all
-        "*": OverviewRoute
-    };
-    const wb = new Workbox('./service-worker.js');
-    let updateAvailable = false;
+    // Catch-all
+    "*": OverviewRoute
+  };
+  const wb = new Workbox("./service-worker.js");
+  let updateAvailable = false;
 
-    /**
-     * Register Service Worker.
-     */
-    if ('serviceWorker' in navigator) {
-        wb.addEventListener('waiting', (event) => {
-            updateAvailable = true;
-        });
-        wb.register();
-    }
-
-    /**
-     * Update app.
-     */
-    function updateApp() {
-        wb.addEventListener('controlling', (event) => {
-            deskgap.reload();
-        });
-        wb.messageSW({
-            type: 'SKIP_WAITING'
-        });
-    }
-
-    /**
-     * Defines state of sidebar and navigation based on max-width.
-     */
-    let mql = window.matchMedia('(max-width: 960px)');
-    let sidebarState = mql.matches ? false : true;
-    let navigationState = mql.matches ? false : true;
-    mql.addListener((e) => {
-        e.matches ? navigationState = false : navigationState = true
-        e.matches ? sidebarState = false : sidebarState = true
+  /**
+   * Register Service Worker.
+   */
+  if ("serviceWorker" in navigator) {
+    wb.addEventListener("waiting", event => {
+      updateAvailable = true;
     });
+    wb.register();
+  }
 
-    function routeLoaded(event) {
-        if (mql.matches) {
-            sidebarState = false;
-            navigationState = false;
-        }
+  /**
+   * Update app.
+   */
+  function updateApp() {
+    wb.addEventListener("controlling", event => {
+      deskgap.reload();
+    });
+    wb.messageSW({
+      type: "SKIP_WAITING"
+    });
+  }
+
+  /**
+   * Defines state of sidebar and navigation based on max-width.
+   */
+  let mql = window.matchMedia("(max-width: 960px)");
+  let sidebarState = mql.matches ? false : true;
+  let navigationState = mql.matches ? false : true;
+  mql.addListener(e => {
+    e.matches ? (navigationState = false) : (navigationState = true);
+    e.matches ? (sidebarState = false) : (sidebarState = true);
+  });
+
+  function routeLoaded(event) {
+    if (mql.matches) {
+      sidebarState = false;
+      navigationState = false;
     }
+  }
 
-    /**
-     * Swipe detection.
-     */
-    /*
+  /**
+   * Swipe detection.
+   */
+  /*
     document.addEventListener('touchstart', handleTouchStart, false);
     document.addEventListener('touchmove', handleTouchMove, false);
     */
 
-    /**
-     * Handle touch gestures.
-     */
+  /**
+   * Handle touch gestures.
+   */
 
-    let xDown = null;
-    let yDown = null;
+  let xDown = null;
+  let yDown = null;
 
-    function handleTouchStart(evt) {
-        xDown = evt.touches[0].clientX;
-        yDown = evt.touches[0].clientY;
-    };
+  function handleTouchStart(evt) {
+    xDown = evt.touches[0].clientX;
+    yDown = evt.touches[0].clientY;
+  }
 
-    function handleTouchMove(evt) {
-        if (!xDown || !yDown) {
-            return;
-        }
-
-        var xUp = evt.touches[0].clientX;
-        var yUp = evt.touches[0].clientY;
-
-        var xDiff = xDown - xUp;
-        var yDiff = yDown - yUp;
-
-        if (Math.abs(xDiff) > Math.abs(yDiff)) {
-            if (xDiff > 0) {
-                if (sidebarState) {
-                    sidebarState = false;
-                } else {
-                    navigationState = true;
-                }
-            } else {
-                if (navigationState) {
-                    navigationState = false;
-                } else {
-                    sidebarState = true;
-                }
-            }
-        }
-        xDown = null;
-        yDown = null;
-    };
-
-    /**
-     * Listen for settings
-     */
-    $: {
-        document.body.className = $settings.theme;
-        locale.set($settings.language);
-        document.body.style.setProperty('--editor-font-size', $settings.fontsize + 'rem');
+  function handleTouchMove(evt) {
+    if (!xDown || !yDown) {
+      return;
     }
 
-    /**
-     * Init Doorbell feedback.
-     */
-    window.doorbellOptions = {
-        id: "11083",
-        appKey: "L7mreXHsiGLMDgoDA4nAwKF6qVi47ZOCv0uXh1XT3IJmjFnsFBMl4tEBVqt9kx1m",
-        properties: {
-            Backendless: localStorage.getItem('Backendless') || "",
-            state: localStorage.getItem('state') || ""
-        },
-    };
-    (function (w, d, t) {
-        var hasLoaded = false;
+    var xUp = evt.touches[0].clientX;
+    var yUp = evt.touches[0].clientY;
 
-        function l() {
-            if (hasLoaded) {
-                return;
-            }
-            hasLoaded = true;
-            window.doorbellOptions.windowLoaded = true;
-            var g =
-                d.createElement(t);
-            g.id = 'doorbellScript';
-            g.type = 'text/javascript';
-            g.async = true;
-            g.src =
-                'https://embed.doorbell.io/button/' + window.doorbellOptions['id'] + '?t=' + (new Date().getTime());
-            (d.getElementsByTagName('head')[0] || d.getElementsByTagName('body')[0]).appendChild(g);
-        }
-        if (w.attachEvent) {
-            w.attachEvent('onload', l);
-        } else if (w.addEventListener) {
-            w.addEventListener('load', l,
-                false);
+    var xDiff = xDown - xUp;
+    var yDiff = yDown - yUp;
+
+    if (Math.abs(xDiff) > Math.abs(yDiff)) {
+      if (xDiff > 0) {
+        if (sidebarState) {
+          sidebarState = false;
         } else {
-            l();
+          navigationState = true;
         }
-        if (d.readyState == 'complete') {
-            l();
+      } else {
+        if (navigationState) {
+          navigationState = false;
+        } else {
+          sidebarState = true;
         }
-    }(window, document, 'script'));
+      }
+    }
+    xDown = null;
+    yDown = null;
+  }
+
+  /**
+   * Listen for settings
+   */
+  $: {
+    document.body.className = $settings.theme;
+    locale.set($settings.language);
+    document.body.style.setProperty(
+      "--editor-font-size",
+      $settings.fontsize + "rem"
+    );
+  }
+
+  /**
+   * Init Doorbell feedback.
+   */
+  window.doorbellOptions = {
+    id: "11083",
+    appKey: "L7mreXHsiGLMDgoDA4nAwKF6qVi47ZOCv0uXh1XT3IJmjFnsFBMl4tEBVqt9kx1m",
+    properties: {
+      Backendless: localStorage.getItem("Backendless") || "",
+      state: localStorage.getItem("state") || ""
+    }
+  };
+  (function(w, d, t) {
+    var hasLoaded = false;
+
+    function l() {
+      if (hasLoaded) {
+        return;
+      }
+      hasLoaded = true;
+      window.doorbellOptions.windowLoaded = true;
+      var g = d.createElement(t);
+      g.id = "doorbellScript";
+      g.type = "text/javascript";
+      g.async = true;
+      g.src =
+        "https://embed.doorbell.io/button/" +
+        window.doorbellOptions["id"] +
+        "?t=" +
+        new Date().getTime();
+      (
+        d.getElementsByTagName("head")[0] || d.getElementsByTagName("body")[0]
+      ).appendChild(g);
+    }
+    if (w.attachEvent) {
+      w.attachEvent("onload", l);
+    } else if (w.addEventListener) {
+      w.addEventListener("load", l, false);
+    } else {
+      l();
+    }
+    if (d.readyState == "complete") {
+      l();
+    }
+  })(window, document, "script");
 </script>
 
-<style></style>
+<style type="text/css">
+
+</style>
 
 <div class="container">
-    <Install showInstall="{!$intern.installed}" />
-    <HeaderComponent bind:navigationState on:openSidebar={()=> (sidebarState = true)} />
+  <Install showInstall={!$intern.installed} />
+  <HeaderComponent
+    bind:navigationState
+    on:openSidebar={() => (sidebarState = true)} />
 
-        <SidebarComponent bind:sidebarState />
-        <div id="content" class="content">
-            <Toast bind:show={updateAvailable} text="New update installed!<br>Click here to restart."
-                on:click={updateApp} duration="forever" />
-            <div class="inner">
-                <Router {routes} on:routeLoaded={routeLoaded} />
-            </div>
-        </div>
+  <SidebarComponent bind:sidebarState />
+  <div id="content" class="content">
+    <Toast
+      bind:show={updateAvailable}
+      text="New update installed!<br>Click here to restart."
+      on:click={updateApp}
+      duration="forever" />
+    <div class="inner">
+      <Router {routes} on:routeLoaded={routeLoaded} />
+    </div>
+  </div>
 </div>
