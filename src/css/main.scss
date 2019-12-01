@@ -424,7 +424,6 @@ header {
         font-size: 1rem;
         height: 2rem;
         width: -webkit-fill-available;
-        min-width: 4rem;
 
         .spinner {
             display: none;
@@ -1056,8 +1055,7 @@ span.card {
         margin: 1rem;
 
         button {
-            width: 50%;
-            max-width: 14rem;
+            width: initial;
         }
     }
 }

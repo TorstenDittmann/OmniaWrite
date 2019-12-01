@@ -1,28 +1,16 @@
-<script>
-    import {
-        onMount
-    } from "svelte";
+<script lang="javascript">
+  import { onMount } from "svelte";
+  import { state } from "../stores";
+  import { deskgap } from "../utils";
+  import { _ } from "svelte-i18n";
 
-    import {
-        state
-    } from "../stores";
+  import cloud from "../cloud";
+  import Alert from "../shared/Alert.svelte";
+  import Toast from "../shared/Toast.svelte";
 
-    import {
-        cloud
-    } from "../cloud";
-
-    let dataLoaded = false;
-    $: lastCloudSave = new Date($state.lastCloudSave).toLocaleString("en-us");
-    $: lastLocalSave = new Date($state.lastLocalSave).toLocaleString("en-us");
-
-    let registerName;
-    let registerUser;
-    let registerPass;
-
-    let loginUser;
-    let loginPass;
-
-    let isUserLoggedIn = false;
+  let dataLoaded = false;
+  $: lastCloudSave = new Date($state.lastCloudSave).toLocaleString("en-us");
+  $: lastLocalSave = new Date($state.lastLocalSave).toLocaleString("en-us");
 
     onMount(() => {
         checkLogin();

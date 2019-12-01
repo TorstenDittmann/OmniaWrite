@@ -359,6 +359,7 @@ header .navigation ul.menu li.active a {
   opacity: .65;
   font-size: 1rem;
   height: 2rem;
+  width: -webkit-fill-available;
 }
 
 .btn-group button .spinner {
@@ -468,8 +469,36 @@ select#focusSceneSelect:active {
   outline: 0;
 }
 
-select#focusSceneSelect.active {
-  display: unset !important;
+.grid {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (minmax(20rem, 1fr))[auto-fit];
+      grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+}
+
+.grid > div {
+  background: var(--background-color);
+  border: 2px solid rgba(0, 0, 0, 0.3);
+  color: var(--text-color);
+  margin: 1em;
+  padding: 1em;
+  cursor: pointer;
+  opacity: .65;
+  white-space: pre-line;
+  line-height: 1.5rem;
+}
+
+.grid > div h2 {
+  margin: 0 0 1rem 0;
+}
+
+.grid > div.new {
+  text-align: center;
+  font-size: 3rem;
+}
+
+.grid > div:hover {
+  opacity: 1;
 }
 
 .tooltip {
@@ -627,6 +656,63 @@ select#focusSceneSelect.active {
   .burger,
   .mobile {
     display: none;
+  }
+  #snackbar {
+    width: 18rem;
+    border-radius: 1rem;
+    bottom: 1rem;
+    right: 1rem;
+  }
+  .tooltip {
+    position: relative;
+    display: inline-block;
+    overflow: visible;
+  }
+  .tooltip .tooltiptext {
+    display: initial;
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 1rem;
+    visibility: hidden;
+    color: var(--text-color);
+    font-weight: 400;
+    letter-spacing: normal;
+    background: #000;
+    border-radius: 0 .125rem .125rem;
+    line-height: 1rem;
+    margin: .7rem 0 0;
+    padding: .375rem .5rem;
+    position: absolute;
+    bottom: auto;
+    top: 100%;
+    left: 50%;
+    right: auto;
+    opacity: 0;
+    -webkit-transition: opacity .3s linear;
+    transition: opacity .3s linear;
+    white-space: normal;
+    z-index: 1070;
+  }
+  .tooltip .tooltiptext::after {
+    position: absolute;
+    top: -.35rem;
+    left: 0;
+    bottom: auto;
+    right: auto;
+    content: "";
+    border-left: .25rem solid #000;
+    border-bottom: .2rem solid #000;
+    border-right: .25rem solid transparent;
+    border-top: .2rem solid transparent;
+  }
+  .tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+  }
+  .btn-group {
+    margin: 1rem;
+  }
+  .btn-group button {
+    width: initial;
   }
 }
 

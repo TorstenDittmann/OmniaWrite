@@ -2,7 +2,7 @@
   import { Workbox } from "workbox-window";
   import { state, projects, settings, intern } from "./stores";
   import { deskgap } from "./utils";
-  import { locale, _ } from "svelte-i18n";
+  import { locale } from "svelte-i18n";
 
   import Router from "svelte-spa-router";
 
@@ -18,9 +18,6 @@
   import SettingsRoute from "./routes/Settings.svelte";
   import CloudRoute from "./routes/Cloud.svelte";
   import ExportRoute from "./routes/Export.svelte";
-  import ThirdPartyRoute from "./shared/ThirdParty.svelte";
-  import DisclaimerRoute from "./shared/Disclaimer.svelte";
-  import PolicyRoute from "./routes/Cloud/Policy.svelte";
 
   locale.set($settings.language);
 

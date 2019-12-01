@@ -1,12 +1,11 @@
 <script lang="javascript">
-  import { createEventDispatcher, onMount } from "svelte";
+  import { createEventDispatcher } from "svelte";
   import { fade, fly } from "svelte/transition";
   import { link, location } from "svelte-spa-router";
   import { state, tabs } from "../stores";
   import { deskgap } from "../utils";
   import { _ } from "svelte-i18n";
 
-  import cloud from "../cloud";
   import active from "svelte-spa-router/active";
 
   export let navigationState;

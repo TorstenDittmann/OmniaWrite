@@ -74,12 +74,13 @@
       --secondary-color
     ); /* Black background with opacity */
     z-index: 999999; /* Specify a stack order in case you're using a different order for other elements */
+    cursor: pointer; /* Add a pointer on hover */
     overflow: auto;
   }
   .install {
     max-width: 640px;
     display: inline-block;
-    padding: 1rem;
+    padding: 2rem;
     background-color: var(--background-color);
   }
 
@@ -210,29 +211,7 @@
             {$_('install.disclaimer.show')}
           </button>
         </div>
-        {#if statusDisclaimer}
-          <div class="grid">
-            <div on:click={() => ($intern.installed = true)}>
-              <span class="lnr lnr-rocket installIcon" />
-              <br />
-              {$_('install.start')}
-            </div>
-            <div on:click={() => (choice = 'cloud')}>
-              <span class="lnr lnr-cloud installIcon" />
-              <br />
-              {$_('install.cloud')}
-            </div>
-          </div>
-        {/if}
-        {#if installable}
-          <div class="grid">
-            <div on:click={() => (showInstall = true)}>
-              <span class="lnr lnr-arrow-left-circle" />
-              {$_('install.back')}
-            </div>
-          </div>
-        {/if}
-      {/if}
+      </div>
     {:else}
       <div class="grid">
         <div on:click={() => (choice = 'none')}>

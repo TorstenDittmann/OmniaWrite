@@ -4,16 +4,43 @@
   import { _ } from "svelte-i18n";
 
   import CreateProject from "./Overview/CreateProject.svelte";
-  import ProjectOverview from "./Overview/Project.svelte";
-  import Status from "./Overview/Status.svelte";
-  import Modal from "../shared/Modal.svelte";
   import moment from "moment";
   import "moment/locale/de";
 
   moment.locale($settings.language);
 
   let showCreateProject = false;
-  let showEditProject = false;
+  let chapterCount;
+  let sceneCount;
+  let wordCount;
+  let charCount;
+
+  $: {
+    chapterCount = 0;
+    sceneCount = 0;
+    wordCount = 0;
+    charCount = 0;
+    chapters.subscribe(chapters => {
+      chapters
+        .filter(chapter => chapter.project == $state.currentProject)
+        .forEach(chapter => {
+          chapterCount++;
+          scenes.subscribe(scenes => {
+            scenes
+              .filter(scene => scene.chapter == chapter.id)
+              .forEach(scene => {
+                sceneCount++;
+                if (scene.content) {
+                  scene.content.blocks.forEach(block => {
+                    wordCount += block.data.text.split(" ").length;
+                    charCount += block.data.text.length;
+                  });
+                }
+              });
+          });
+        });
+    });
+  }
 
   function changeProject(project) {
     state.setCurrentProject(project);
@@ -62,7 +89,7 @@
 </style>
 
 <CreateProject
-  bind:showCreateProject
+  {showCreateProject}
   on:changeProject={event => changeProject(event.detail.project)} />
 
 {#each $projects.filter(project => project.id == $state.currentProject) as project}

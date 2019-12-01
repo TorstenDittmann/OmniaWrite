@@ -203,9 +203,9 @@
         class:lnr-exit={focusMode}>
         <span class="tooltiptext">{$_('write.toolbar.focus')}</span>
       </span>
-      <!--<span class="lnr lnr-frame-expand tooltip" on:click={toggleFullscreen}>
+      <span class="lnr lnr-frame-expand tooltip" on:click={toggleFullscreen}>
         <span class="tooltiptext">{$_('write.toolbar.fullscreen')}</span>
-      </span>-->
+      </span>
       {#if focusMode}
         <select id="focusSceneSelect" on:change={switchScene}>
           <option value="" selected="selected">
