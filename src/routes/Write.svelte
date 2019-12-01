@@ -4,7 +4,7 @@
   import { push, location } from "svelte-spa-router";
   import { _ } from "svelte-i18n";
 
-  import WriteOverview from "./Write/WriteOverview.svelte";
+  import Overview from "./Write/Overview.svelte";
   import EditorJS from "@editorjs/editorjs";
   import Header from "@editorjs/header";
   import Quote from "@editorjs/quote";
@@ -194,5 +194,5 @@
     <div id="codex-editor" />
   </div>
 {:else}
-  <WriteOverview />
+  <Overview />
 {/if}

@@ -32,6 +32,9 @@
         },
         "editor": {
             "placeholder": "Let`s write an awesome story!"
+        },
+        "overview": {
+            "opened": "opened"
         }
     },
     "cloud": {
@@ -140,5 +143,19 @@
         "start": "Start",
         "cloud": "From Cloud",
         "back": "back"
+    },
+    "overview": {
+        "project": {
+            "title": "Title",
+            "chapters": "Chapters",
+            "scenes": "Scenes",
+            "words": "Words",
+            "characters": "Characters",
+            "save": "Save"
+        },
+        "projects": {
+            "title": "Projects",
+            "opened": "opened"
+        }
     }
 }
