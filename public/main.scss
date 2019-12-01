@@ -377,6 +377,7 @@ header {
         opacity: .85;
         font-size: 1rem;
         height: 2rem;
+        width: -webkit-fill-available;
 
         .spinner {
             display: none;
@@ -537,7 +538,7 @@ select#focusSceneSelect:active {
 
 .grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
 }
 
 .grid>div {
@@ -925,6 +926,14 @@ select#focusSceneSelect:active {
                 visibility: visible;
                 opacity: 1;
             }
+        }
+    }
+
+    .btn-group {
+        margin: 1rem;
+
+        button {
+            width: initial;
         }
     }
 }

@@ -1,16 +1,12 @@
 <script lang="javascript">
   import { onMount } from "svelte";
-
-  import Alert from "../shared/Alert.svelte";
-  import Toast from "../shared/Toast.svelte";
-
   import { state } from "../stores";
+  import { deskgap } from "../utils";
+  import { _ } from "svelte-i18n";
 
   import cloud from "../cloud";
-
-  import { deskgap } from "../utils";
-
-  import { _ } from "svelte-i18n";
+  import Alert from "../shared/Alert.svelte";
+  import Toast from "../shared/Toast.svelte";
 
   let dataLoaded = false;
   $: lastCloudSave = new Date($state.lastCloudSave).toLocaleString("en-us");

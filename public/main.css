@@ -391,6 +391,7 @@ header .navigation ul.menu li.active a {
   opacity: .85;
   font-size: 1rem;
   height: 2rem;
+  width: -webkit-fill-available;
 }
 
 .btn-group button .spinner {
@@ -564,8 +565,8 @@ select#focusSceneSelect:active {
 .grid {
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: (minmax(350px, 1fr))[auto-fit];
-      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  -ms-grid-columns: (minmax(20rem, 1fr))[auto-fit];
+      grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
 }
 
 .grid > div {
@@ -911,6 +912,12 @@ select#focusSceneSelect:active {
   .tooltip:hover .tooltiptext {
     visibility: visible;
     opacity: 1;
+  }
+  .btn-group {
+    margin: 1rem;
+  }
+  .btn-group button {
+    width: initial;
   }
 }
 

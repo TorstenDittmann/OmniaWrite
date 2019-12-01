@@ -9,6 +9,7 @@
   import Header from "@editorjs/header";
   import Quote from "@editorjs/quote";
   import Toast from "../shared/Toast.svelte";
+  import Placeholder from "../shared/Placeholder.svelte";
 
   export let params = {};
   let currentScene;
@@ -145,54 +146,60 @@
 
 <Toast bind:show={showToast} text={showToastText} />
 
-{#if params.sceneId !== null}
-  <div class="toolbar">
-    <span class="tooltip">
-      {amountWords} {$_('write.toolbar.words')}
-      <span class="tooltiptext">{amountChars} {$_('write.toolbar.chars')}</span>
-    </span>
-    <span class="lnr lnr-undo tooltip" on:click={undo}>
-      <span class="tooltiptext">{$_('write.toolbar.undo')}</span>
-    </span>
-    <span class="lnr lnr-redo tooltip" on:click={redo}>
-      <span class="tooltiptext">{$_('write.toolbar.redo')}</span>
-    </span>
-    {#if editorChangeHappened}
-      <span
-        class="lnr lnr-checkmark-circle tooltip"
-        on:click={() => save(params.sceneId)}>
-        <span class="tooltiptext">{$_('write.toolbar.save')}</span>
+{#if $state.currentProject}
+  {#if params.sceneId !== null}
+    <div class="toolbar">
+      <span class="tooltip">
+        {amountWords} {$_('write.toolbar.words')}
+        <span class="tooltiptext">
+          {amountChars} {$_('write.toolbar.chars')}
+        </span>
       </span>
-    {/if}
-    <span
-      class="lnr tooltip"
-      on:click={toggleFocus}
-      class:lnr-eye={!focusMode}
-      class:lnr-exit={focusMode}>
-      <span class="tooltiptext">{$_('write.toolbar.focus')}</span>
-    </span>
-    <span class="lnr lnr-frame-expand tooltip" on:click={toggleFullscreen}>
-      <span class="tooltiptext">{$_('write.toolbar.fullscreen')}</span>
-    </span>
-    {#if focusMode}
-      <select id="focusSceneSelect" on:change={switchScene}>
-        <option value="" selected="selected">
-          {$_('write.toolbar.switchScene')}
-        </option>
-        {#each $chapters.filter(chapter => chapter.project == $state.currentProject) as chapter, i}
-          <optgroup label={chapter.title}>
-            {#each $scenes.filter(scene => scene.chapter == chapter.id) as scene}
-              <option value={scene.id}>{scene.title}</option>
-            {/each}
-          </optgroup>
-        {/each}
-      </select>
-    {/if}
-  </div>
-  <div class="editpane">
-    <h1 contenteditable="true">{currentScene.title}</h1>
-    <div id="codex-editor" />
-  </div>
+      <span class="lnr lnr-undo tooltip" on:click={undo}>
+        <span class="tooltiptext">{$_('write.toolbar.undo')}</span>
+      </span>
+      <span class="lnr lnr-redo tooltip" on:click={redo}>
+        <span class="tooltiptext">{$_('write.toolbar.redo')}</span>
+      </span>
+      {#if editorChangeHappened}
+        <span
+          class="lnr lnr-checkmark-circle tooltip"
+          on:click={() => save(params.sceneId)}>
+          <span class="tooltiptext">{$_('write.toolbar.save')}</span>
+        </span>
+      {/if}
+      <span
+        class="lnr tooltip"
+        on:click={toggleFocus}
+        class:lnr-eye={!focusMode}
+        class:lnr-exit={focusMode}>
+        <span class="tooltiptext">{$_('write.toolbar.focus')}</span>
+      </span>
+      <span class="lnr lnr-frame-expand tooltip" on:click={toggleFullscreen}>
+        <span class="tooltiptext">{$_('write.toolbar.fullscreen')}</span>
+      </span>
+      {#if focusMode}
+        <select id="focusSceneSelect" on:change={switchScene}>
+          <option value="" selected="selected">
+            {$_('write.toolbar.switchScene')}
+          </option>
+          {#each $chapters.filter(chapter => chapter.project == $state.currentProject) as chapter, i}
+            <optgroup label={chapter.title}>
+              {#each $scenes.filter(scene => scene.chapter == chapter.id) as scene}
+                <option value={scene.id}>{scene.title}</option>
+              {/each}
+            </optgroup>
+          {/each}
+        </select>
+      {/if}
+    </div>
+    <div class="editpane">
+      <h1 contenteditable="true">{currentScene.title}</h1>
+      <div id="codex-editor" />
+    </div>
+  {:else}
+    <Overview />
+  {/if}
 {:else}
-  <Overview />
+  <Placeholder />
 {/if}

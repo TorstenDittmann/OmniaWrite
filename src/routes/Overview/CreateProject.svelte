@@ -1,12 +1,12 @@
 <script>
   import { projects } from "../../stores";
-  import Modal from "../../shared/Modal.svelte";
   import { createEventDispatcher } from "svelte";
+
+  import Modal from "../../shared/Modal.svelte";
 
   const dispatch = createEventDispatcher();
 
   export let showCreateProject;
-  export let firstProject;
 
   function createProject() {
     let retValue = projects.createProject(
@@ -23,7 +23,7 @@
 
 </style>
 
-<Modal bind:show={showCreateProject} persistent={firstProject}>
+<Modal bind:show={showCreateProject}>
   <h2 slot="header">New project</h2>
   <div class="field">
     <label for="createProjectInput">Title:</label>
