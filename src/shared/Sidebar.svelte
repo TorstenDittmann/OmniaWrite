@@ -1,14 +1,11 @@
 <script lang="javascript">
   import { state, chapters, scenes } from "../stores";
-
   import { link, push, replace } from "svelte-spa-router";
-
   import { fade, fly } from "svelte/transition";
-
   import { _ } from "svelte-i18n";
 
   import Modal from "./Modal.svelte";
-
+  import Placeholder from "./Placeholder.svelte";
   import active from "svelte-spa-router/active";
 
   export let sidebarState;
@@ -215,46 +212,50 @@
         data-deskgap-no-drag>
         <span class="lnr lnr-cross" />
       </div>
-      {#each $chapters.filter(chapter => chapter.project == $state.currentProject) as chapter, i}
-        <li class="parent" class:open={chapter.ui.open}>
-          <span
-            class="key"
-            on:click={() => chapters.toggleChapterInSidebar(chapter.id)}>
-            {chapter.title}
-            <span class="lnr lnr-chevron-up collapse" />
+      {#if $state.currentProject}
+        {#each $chapters.filter(chapter => chapter.project == $state.currentProject) as chapter, i}
+          <li class="parent" class:open={chapter.ui.open}>
             <span
-              class="lnr lnr-cog action"
-              on:click={() => ([showEditChapter, objEditChapter] = [true, chapter])} />
-          </span>
-          <ul>
-            {#each $scenes
-              .filter(scene => scene.chapter == chapter.id)
-              .sort((a, b) => a.order - b.order) as scene}
-              <li
-                use:active={'/write/' + scene.id}
-                on:click={() => push('/write/' + scene.id)}>
-                <a href="/write/{scene.id}" use:link>{scene.title}</a>
-                <span
-                  class="lnr lnr-cog action"
-                  on:click={() => ([showEditScene, objEditScene] = [true, scene])} />
+              class="key"
+              on:click={() => chapters.toggleChapterInSidebar(chapter.id)}>
+              {chapter.title}
+              <span class="lnr lnr-chevron-up collapse" />
+              <span
+                class="lnr lnr-cog action"
+                on:click={() => ([showEditChapter, objEditChapter] = [true, chapter])} />
+            </span>
+            <ul>
+              {#each $scenes
+                .filter(scene => scene.chapter == chapter.id)
+                .sort((a, b) => a.order - b.order) as scene}
+                <li
+                  use:active={'/write/' + scene.id}
+                  on:click={() => push('/write/' + scene.id)}>
+                  <a href="/write/{scene.id}" use:link>{scene.title}</a>
+                  <span
+                    class="lnr lnr-cog action"
+                    on:click={() => ([showEditScene, objEditScene] = [true, scene])} />
+                </li>
+              {/each}
+              <li>
+                <button on:click={() => openCreateScene(chapter.id)}>
+                  <span class="lnr lnr-plus-circle" />
+                  {$_('sidebar.createScene')}
+                </button>
               </li>
-            {/each}
-            <li>
-              <button on:click={() => openCreateScene(chapter.id)}>
-                <span class="lnr lnr-plus-circle" />
-                {$_('sidebar.createScene')}
-              </button>
-            </li>
-          </ul>
+            </ul>
+          </li>
+        {/each}
+        <hr class="divider" />
+        <li class="parent">
+          <span class="key" on:click={() => (showCreateChapter = true)}>
+            <span class="lnr lnr-plus-circle collapse" />
+            {$_('sidebar.createChapter')}
+          </span>
         </li>
-      {/each}
-      <hr class="divider" />
-      <li class="parent">
-        <span class="key" on:click={() => (showCreateChapter = true)}>
-          <span class="lnr lnr-plus-circle collapse" />
-          {$_('sidebar.createChapter')}
-        </span>
-      </li>
+      {:else}
+        <Placeholder />
+      {/if}
     </ul>
   </div>
 {/if}

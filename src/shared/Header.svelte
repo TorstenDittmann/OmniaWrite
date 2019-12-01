@@ -1,17 +1,12 @@
 <script lang="javascript">
   import { createEventDispatcher } from "svelte";
-
   import { fade, fly } from "svelte/transition";
-
   import { link, location } from "svelte-spa-router";
+  import { state, tabs } from "../stores";
+  import { deskgap } from "../utils";
+  import { _ } from "svelte-i18n";
 
   import active from "svelte-spa-router/active";
-
-  import { state, tabs } from "../stores";
-
-  import { deskgap } from "../utils";
-
-  import { _ } from "svelte-i18n";
 
   export let navigationState;
 

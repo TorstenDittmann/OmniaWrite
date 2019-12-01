@@ -1,8 +1,6 @@
 <script lang="javascript">
   import { state, chapters, scenes, settings } from "../../stores";
-
   import { push } from "svelte-spa-router";
-
   import { _ } from "svelte-i18n";
 
   import moment from "moment";
