@@ -1,12 +1,9 @@
 <script lang="javascript">
   import { state, projects, chapters, scenes, settings } from "../stores";
-
   import { deskgap } from "../utils";
-
   import { _ } from "svelte-i18n";
 
   import CreateProject from "./Overview/CreateProject.svelte";
-
   import moment from "moment";
   import "moment/locale/de";
 
@@ -17,9 +14,6 @@
   let sceneCount;
   let wordCount;
   let charCount;
-
-  let firstProject = $projects.length == 0 ? true : false;
-  showCreateProject = firstProject;
 
   $: {
     chapterCount = 0;
@@ -74,7 +68,6 @@
 
 <CreateProject
   {showCreateProject}
-  {firstProject}
   on:changeProject={event => changeProject(event.detail.project)} />
 
 {#each $projects.filter(project => project.id == $state.currentProject) as project}
