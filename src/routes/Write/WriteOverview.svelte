@@ -2,14 +2,24 @@
     import {
         state,
         chapters,
-        scenes
+        scenes,
+        settings
     } from "../../stores";
 
     import {
         push
     } from "svelte-spa-router";
 
+    import {
+        _
+    } from 'svelte-i18n';
+
+    import moment from 'moment';
+    import 'moment/locale/de';
+
     let sceneData = [];
+
+    moment.locale($settings.language);
 
     $: {
         const unsubscribe = $chapters.filter(chapter => chapter.project == $state.currentProject).forEach(
@@ -40,6 +50,7 @@ Here will be an overview of scenes ordered by the last edit.
     {#each sceneData as scene}
     <div id="card" on:click={()=> push('/write/' + scene.id)}>
         <h2>{scene.title}</h2>
+        <small>{moment(scene.lastEdit, "X").fromNow()}</small>
     </div>
     {/each}
 </div>
