@@ -1,11 +1,16 @@
 <script lang="javascript">
-  import { state, projects, chapters, scenes } from "../stores";
+  import { state, projects, chapters, scenes, settings } from "../stores";
 
   import { deskgap } from "../utils";
 
   import { _ } from "svelte-i18n";
 
-  import Modal from "../shared/Modal.svelte";
+  import CreateProject from "./Overview/CreateProject.svelte";
+
+  import moment from "moment";
+  import "moment/locale/de";
+
+  moment.locale($settings.language);
 
   let showCreateProject = false;
   let chapterCount;
@@ -43,16 +48,9 @@
     });
   }
 
-  function createProject() {
-    let retValue = projects.createProject(
-      document.getElementById("createProjectInput").value
-    );
-    showCreateProject = false;
-    changeProject(retValue);
-  }
-
   function changeProject(project) {
     state.setCurrentProject(project);
+    projects.updateProjectTimestamp(project);
     deskgap.reload();
   }
 
@@ -63,85 +61,69 @@
     );
   }
 
-  function countWords(project) {
-    chapters.subscribe(chapters => {
-      chapters
-        .filter(chapter => chapter.project == project)
-        .forEach(chapter => {
-          scenes.subscribe(scenes => {
-            scenes
-              .filter(scene => scene.chapter == chapter.id)
-              .forEach(scene => {
-                console.log(scene.size);
-              });
-          });
-        });
-    });
+  function sort(b, a) {
+    if (a.lastOpen < b.lastOpen) {
+      return -1;
+    }
+    if (a.lastOpen > b.lastOpen) {
+      return 1;
+    }
     return 0;
   }
 </script>
 
-<Modal bind:show={showCreateProject} persistent={firstProject}>
-  <h2 slot="header">New project</h2>
-  <div class="field">
-    <label for="createProjectInput">Title:</label>
-    <input
-      id="createProjectInput"
-      autocomplete="off"
-      placeholder="enter your title" />
-  </div>
-  <hr />
-  <div class="btn-group">
-    <button on:click={createProject}>Create!</button>
-  </div>
-</Modal>
+<CreateProject
+  {showCreateProject}
+  {firstProject}
+  on:changeProject={event => changeProject(event.detail.project)} />
 
 {#each $projects.filter(project => project.id == $state.currentProject) as project}
   <h1>{project.title}</h1>
   <div class="field">
-    <label class="big" for="author">Project ID:</label>
-    {project.id}
-  </div>
-  <div class="field">
-    <label class="big" for="author">Title:</label>
+    <label class="big" for="author">{$_('overview.project.title')}:</label>
     <input
       id="author"
       type="text"
-      placeholder="John Doe"
       autocomplete="off"
       bind:value={project.title} />
   </div>
   <div class="field">
-    <label for="chapters" class="big">Chapters:</label>
+    <label for="chapters" class="big">{$_('overview.project.chapters')}:</label>
     {chapterCount}
   </div>
   <div class="field">
-    <label for="scenes" class="big">Scenes:</label>
+    <label for="scenes" class="big">{$_('overview.project.scenes')}:</label>
     {sceneCount}
   </div>
   <div class="field">
-    <label for="words" class="big">Words:</label>
+    <label for="words" class="big">{$_('overview.project.words')}:</label>
     {wordCount}
   </div>
   <div class="field">
-    <label for="chars" class="big">Characters:</label>
-    {wordCount}
+    <label for="chars" class="big">{$_('overview.project.characters')}:</label>
+    {charCount}
   </div>
   <div class="btn-group">
-    <button on:click={() => setProjectTitle(project.id)}>Save</button>
+    <button on:click={() => setProjectTitle(project.id)}>
+      {$_('overview.project.save')}
+    </button>
   </div>
-  <hr />
 {/each}
-<h1>Your projects</h1>
+<h1>{$_('overview.projects.title')}</h1>
 <div class="grid">
   <div class="new" on:click={() => (showCreateProject = true)}>
     <span class="lnr lnr-plus-circle" />
   </div>
-  {#each $projects as project}
+  {#each $projects.sort(sort) as project}
     <div on:click={() => changeProject(project.id)}>
       <h2>{project.title}</h2>
-      <p>ID: {project.id}</p>
-      <p>Chapters: {$chapters.filter(n => n.project == project.id).length}</p>
+      <p>
+        {$_('overview.projects.opened')}
+        {moment(project.lastOpen, 'X').fromNow()}
+      </p>
+      <p>
+        {$_('overview.project.chapters')}: {$chapters.filter(n => n.project == project.id).length}
+      </p>
     </div>
   {/each}
 </div>

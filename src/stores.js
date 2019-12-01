@@ -62,6 +62,7 @@ function storeState() {
          * @param project Project ID.
          */
         setCurrentProject: (project) => update(n => {
+
             n.currentProject = project;
             return n;
         }),
@@ -119,6 +120,14 @@ function storeProjects() {
             n[n.findIndex(p => p.id == id)].title = title;
             return n;
         }),
+        /**
+         * Sets project last opened timestamp.
+         * @param id ID of the project.
+         */
+        updateProjectTimestamp: (id) => update(n => {
+            n[n.findIndex(p => p.id == id)].lastOpen = Math.round((new Date()).getTime() / 1000);
+            return n;
+        })
     }
 }
 
