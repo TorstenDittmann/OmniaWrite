@@ -3,8 +3,20 @@
   import { state } from "../stores";
   import { _ } from "svelte-i18n";
 
-  let author;
+  import Placeholder from "../shared/Placeholder.svelte";
+
+  let author = "";
+  let coverImage = "";
   let downloadButtonLoading = false;
+  let downloadButtonDisabled = true;
+
+  $: {
+    if (author.length == 0 && coverImage.length == 0) {
+      downloadButtonDisabled = true;
+    } else {
+      downloadButtonDisabled = false;
+    }
+  }
 
   function download() {
     downloadButtonLoading = true;
@@ -13,7 +25,7 @@
     generateDownload
       .fetchTemplate()
       .then(() => {
-        downloadButtonLoading = false;
+        downloadButtonLoading = downloadButtonDisabled = false;
       })
       .finally(() => {
         generateDownload = null;
@@ -25,7 +37,7 @@
     generateDownload
       .fetchTemplate()
       .then(() => {
-        downloadButtonLoading = false;
+        downloadButtonLoading = downloadButtonDisabled = false;
       })
       .finally(() => {
         generateDownload = null;
@@ -37,32 +49,37 @@
 
 </style>
 
-<h2>{$_('export.title')}</h2>
-<div class="field">
-  <label class="big" for="author">{$_('export.author')}</label>
-  <input
-    id="author"
-    type="text"
-    placeholder="John Doe"
-    autocomplete="off"
-    bind:value={author} />
-</div>
-<div class="field">
-  <label class="big" for="cover">{$_('export.cover')}</label>
-  <input id="cover" type="file" />
-</div>
-<div class="btn-group">
-  <button
-    on:click={download}
-    disabled={downloadButtonLoading}
-    class:loading={downloadButtonLoading}>
-    <span class="lnr lnr-sync spinner" />
-    {$_('export.downloadEpub')}
-  </button>
-</div>
-<div class="btn-group">
-  <button on:click={downloadRTF}>
-    <span class="lnr lnr-sync spinner" />
-    {$_('export.downloadRtf')}
-  </button>
-</div>
+{#if $state.currentProject}
+  <h2>{$_('export.title')}</h2>
+  <div class="btn-group">
+    <button on:click={downloadRTF}>
+      <span class="lnr lnr-sync spinner" />
+      {$_('export.downloadRtf')}
+    </button>
+  </div>
+  <hr />
+  <div class="field">
+    <label class="big" for="author">{$_('export.author')}</label>
+    <input
+      id="author"
+      type="text"
+      placeholder="John Doe"
+      autocomplete="off"
+      bind:value={author} />
+  </div>
+  <div class="field">
+    <label class="big" for="cover">{$_('export.cover')}</label>
+    <input id="cover" type="file" bind:files={coverImage} accept=".jpg,.jpeg" />
+  </div>
+  <div class="btn-group">
+    <button
+      on:click={download}
+      disabled={downloadButtonDisabled}
+      class:loading={downloadButtonLoading}>
+      <span class="lnr lnr-sync spinner" />
+      {$_('export.downloadEpub')}
+    </button>
+  </div>
+{:else}
+  <Placeholder />
+{/if}

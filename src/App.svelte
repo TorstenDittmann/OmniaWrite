@@ -1,11 +1,10 @@
 <script lang="javascript">
   import { Workbox } from "workbox-window";
+  import { state, projects, settings, intern } from "./stores";
+  import { deskgap } from "./utils";
+  import { locale } from "svelte-i18n";
 
   import Router from "svelte-spa-router";
-
-  import { state, projects, settings, intern } from "./stores";
-
-  import { deskgap } from "./utils";
 
   import HeaderComponent from "./shared/Header.svelte";
   import SidebarComponent from "./shared/Sidebar.svelte";
@@ -16,12 +15,9 @@
   import OverviewRoute from "./routes/Overview.svelte";
   import WriteRoute from "./routes/Write.svelte";
   import CardsRoute from "./routes/Cards.svelte";
-  import MindmapRoute from "./routes/Mindmap.svelte";
   import SettingsRoute from "./routes/Settings.svelte";
   import CloudRoute from "./routes/Cloud.svelte";
   import ExportRoute from "./routes/Export.svelte";
-
-  import { locale } from "svelte-i18n";
 
   locale.set($settings.language);
 
@@ -29,7 +25,6 @@
     "/": OverviewRoute,
     "/write/:sceneId?": WriteRoute,
     "/cards": CardsRoute,
-    "/mindmap/:mapId?": MindmapRoute,
     "/settings": SettingsRoute,
     "/cloud": CloudRoute,
     "/export": ExportRoute,
@@ -37,6 +32,7 @@
     // Catch-all
     "*": OverviewRoute
   };
+
   const wb = new Workbox("./service-worker.js");
   let updateAvailable = false;
 
@@ -193,7 +189,9 @@
 </style>
 
 <div class="container">
-  <Install showInstall={!$intern.installed} />
+  {#if !$intern.installed}
+    <Install />
+  {/if}
   <HeaderComponent
     bind:navigationState
     on:openSidebar={() => (sidebarState = true)} />

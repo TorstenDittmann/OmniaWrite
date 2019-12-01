@@ -2,19 +2,35 @@
   import { intern, settings } from "../stores";
   import { checkRequirements, deskgap } from "../utils";
   import { _ } from "svelte-i18n";
+
   import Modal from "./Modal.svelte";
   import Cloud from "../routes/Cloud.svelte";
 
-  export let showInstall = false;
   let choice = "none";
   let requirements = checkRequirements();
 </script>
 
 <style type="text/css">
+  .overlay {
+    position: fixed; /* Sit on top of the page content */
+    display: block; /* Hidden by default */
+    width: 100%; /* Full width (cover the whole page) */
+    height: 100%; /* Full height (cover the whole page) */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    text-align: center;
+    background-color: var(
+      --secondary-color
+    ); /* Black background with opacity */
+    z-index: 999999; /* Specify a stack order in case you're using a different order for other elements */
+    cursor: pointer; /* Add a pointer on hover */
+    overflow: auto;
+  }
   .install {
     max-width: 640px;
     display: inline-block;
-    margin: 2rem;
     padding: 2rem;
     background-color: var(--background-color);
   }
@@ -54,13 +70,9 @@
   }
 </style>
 
-<Modal bind:show={showInstall} fullscreen="true" persistent>
+<div class="overlay">
 
-  <div
-    class:show={deskgap.isRunning()}
-    class="installHeader"
-    slot="header"
-    data-deskgap-drag>
+  <div class:show={deskgap.isRunning()} class="installHeader" data-deskgap-drag>
     <span
       class="lnr lnr-cross control"
       on:click={deskgap.closeWindow}
@@ -116,10 +128,6 @@
           <br />
           {$_('install.cloud')}
         </div>
-        <!--<div>
-                <span class="lnr lnr-file-empty installIcon" />
-                {$_('install.sampleProject')}
-            </div>-->
       </div>
     {:else}
       <div class="grid">
@@ -134,4 +142,4 @@
       <Cloud />
     {/if}
   </div>
-</Modal>
+</div>

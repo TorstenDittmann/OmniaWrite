@@ -1,6 +1,5 @@
 <script lang="javascript">
   import { createEventDispatcher } from "svelte";
-
   import { fade, fly } from "svelte/transition";
 
   export let show = false;
