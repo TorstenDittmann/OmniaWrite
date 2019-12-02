@@ -21,6 +21,9 @@
 
   locale.set($settings.language);
 
+  export let version;
+  console.log(version);
+
   const routes = {
     "/": OverviewRoute,
     "/write/:sceneId?": WriteRoute,
@@ -61,7 +64,7 @@
   /**
    * Defines state of sidebar and navigation based on max-width.
    */
-  let mql = window.matchMedia("(max-width: 960px)");
+  let mql = window.matchMedia("(max-width: 959px)");
   let sidebarState = mql.matches ? false : true;
   let navigationState = mql.matches ? false : true;
   mql.addListener(e => {
@@ -74,56 +77,6 @@
       sidebarState = false;
       navigationState = false;
     }
-  }
-
-  /**
-   * Swipe detection.
-   */
-  /*
-    document.addEventListener('touchstart', handleTouchStart, false);
-    document.addEventListener('touchmove', handleTouchMove, false);
-    */
-
-  /**
-   * Handle touch gestures.
-   */
-
-  let xDown = null;
-  let yDown = null;
-
-  function handleTouchStart(evt) {
-    xDown = evt.touches[0].clientX;
-    yDown = evt.touches[0].clientY;
-  }
-
-  function handleTouchMove(evt) {
-    if (!xDown || !yDown) {
-      return;
-    }
-
-    var xUp = evt.touches[0].clientX;
-    var yUp = evt.touches[0].clientY;
-
-    var xDiff = xDown - xUp;
-    var yDiff = yDown - yUp;
-
-    if (Math.abs(xDiff) > Math.abs(yDiff)) {
-      if (xDiff > 0) {
-        if (sidebarState) {
-          sidebarState = false;
-        } else {
-          navigationState = true;
-        }
-      } else {
-        if (navigationState) {
-          navigationState = false;
-        } else {
-          sidebarState = true;
-        }
-      }
-    }
-    xDown = null;
-    yDown = null;
   }
 
   /**
