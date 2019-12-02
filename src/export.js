@@ -209,9 +209,9 @@ export class ExportRTF {
         this.projectId = id;
         this.projectAuthor = author;
 
-        this.header = "{\\rtf1\\ansicpg65001\\deff0{\\fonttbl}\\pard\\qc\\fs120\\b TITLE\\pard\\b0";
-        this.chapter = "\\page\\fs32\\b CHAPTER\\par\\pard \\b0\\fs22 SCENE"
-        this.block = "BLOCK \\par"
+        this.header = "{\\rtf1\\ansicpg65001\\deff0{\\fonttbl}\\pard\\qc\\fs120\\b TITLE\\pard\\b0 ";
+        this.chapter = "\\page\\fs32\\b CHAPTER\\par\\pard \\b0\\fs22 "
+        this.block = "BLOCK \\par "
         this.footer = "}";
     }
 
@@ -241,7 +241,7 @@ export class ExportRTF {
                                     blockContent = blockContent.replace(/<br>/gi, "\\par");
                                     sceneContent += blockContent;
                                 })
-                                chapterContent = chapterContent.replace("SCENE", sceneContent);
+                                chapterContent += sceneContent;
                             }
                         });
                         content += chapterContent;
