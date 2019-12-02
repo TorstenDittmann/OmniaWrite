@@ -31,6 +31,7 @@
     padding: 0 1rem;
     opacity: 0.65;
     cursor: pointer;
+    color: var(--menu-link);
   }
 
   .titlebar:hover {
