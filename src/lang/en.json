@@ -140,9 +140,13 @@
             "browser": "Browser",
             "serviceWorker": "Service worker"
         },
-        "start": "Start",
+        "start": "Fresh start",
         "cloud": "From Cloud",
-        "back": "back"
+        "back": "back",
+        "install": {
+            "install": "Install",
+            "browser": "Run in browser"
+        }
     },
     "overview": {
         "project": {
