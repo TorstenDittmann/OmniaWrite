@@ -100,8 +100,10 @@
 
   function shortcutListener(evt) {
     evt = evt || window.event;
+
     // Escape => Toggle focus mode
     if (evt.keyCode == 27) {
+      evt.preventDefault();
       toggleFocus();
     }
     // CTRL/CMD + S => Save
