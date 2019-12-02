@@ -38,16 +38,12 @@
 
   onMount(() => {
     if (params.sceneId !== null) {
-      document.onkeydown = function(evt) {
-        evt = evt || window.event;
-        if (evt.keyCode == 27) {
-          toggleFocus();
-        }
-      };
+      document.addEventListener("keydown", shortcutListener, false);
     }
   });
 
   onDestroy(() => {
+    document.removeEventListener("keydown", shortcutListener);
     if (editorChangeHappened) {
       save(lastScene);
     }
@@ -100,6 +96,22 @@
       .catch(error => {
         console.error("Saving failed: ", error);
       });
+  }
+
+  function shortcutListener(evt) {
+    evt = evt || window.event;
+    // Escape => Toggle focus mode
+    if (evt.keyCode == 27) {
+      toggleFocus();
+    }
+    // CTRL/CMD + S => Save
+    if (
+      (window.navigator.platform.match("Mac") ? evt.metaKey : evt.ctrlKey) &&
+      evt.keyCode == 83
+    ) {
+      evt.preventDefault();
+      save(params.sceneId);
+    }
   }
 
   function countWordsAndChars() {
