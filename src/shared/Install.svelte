@@ -1,6 +1,7 @@
 <script lang="javascript">
   import { intern, settings } from "../stores";
   import { checkRequirements, deskgap } from "../utils";
+  import { onMount } from "svelte";
   import { _ } from "svelte-i18n";
 
   import Modal from "./Modal.svelte";
@@ -8,6 +9,51 @@
 
   let choice = "none";
   let requirements = checkRequirements();
+  let installed = false;
+  let installable = false;
+  let showInstall = false;
+
+  onMount(() => {
+    // variable store event
+    window.deferredPrompt = {};
+
+    // if the app can be installed emit beforeinstallprompt
+    window.addEventListener("beforeinstallprompt", e => {
+      installable = showInstall = true;
+
+      // prevent default event
+      e.preventDefault();
+
+      // store install avaliable event
+      window.deferredPrompt = e;
+    });
+
+    // if are standalone android OR safari
+    if (
+      window.matchMedia("(display-mode: standalone)").matches ||
+      window.navigator.standalone === true
+    ) {
+      installable = showInstall = false;
+    }
+
+    // do action when finished install
+    window.addEventListener("appinstalled", e => {
+      console.log("success app install!");
+    });
+  });
+
+  function install(e) {
+    window.deferredPrompt.prompt();
+    window.deferredPrompt.userChoice.then(choiceResult => {
+      if (choiceResult.outcome === "accepted") {
+        showInstall = false;
+        installed = true;
+      } else {
+        console.log("User dismissed the prompt");
+      }
+      window.deferredPrompt = null;
+    });
+  }
 </script>
 
 <style type="text/css">
@@ -31,7 +77,7 @@
   .install {
     max-width: 640px;
     display: inline-block;
-    padding: 2rem;
+    padding: 1rem;
     background-color: var(--background-color);
   }
 
@@ -95,43 +141,66 @@
           <option value="de">{$_('settings.appereance.language.de')}</option>
         </select>
       </div>
-      <h3>{$_('install.requirements.title')}</h3>
-      <p>
-        <span
-          class="lnr"
-          class:lnr-checkmark-circle={requirements.steps.internet}
-          class:lnr-question-circle={!requirements.steps.internet} />
-        {$_('install.requirements.internet')}
-      </p>
-      <p>
-        <span
-          class="lnr"
-          class:lnr-checkmark-circle={requirements.steps.browser}
-          class:lnr-cross-circle={!requirements.steps.browser} />
-        {$_('install.requirements.browser')}
-      </p>
-      <p>
-        <span
-          class="lnr"
-          class:lnr-checkmark-circle={requirements.steps.serviceWorker}
-          class:lnr-question-circle={!requirements.steps.serviceWorker} />
-        {$_('install.requirements.serviceWorker')}
-      </p>
-      <div class="grid">
-        <div on:click={() => ($intern.installed = true)}>
-          <span class="lnr lnr-rocket installIcon" />
-          <br />
-          {$_('install.start')}
+      {#if showInstall}
+        <h3>{$_('install.requirements.title')}</h3>
+        <p>
+          <span
+            class="lnr"
+            class:lnr-checkmark-circle={requirements.steps.internet}
+            class:lnr-question-circle={!requirements.steps.internet} />
+          {$_('install.requirements.internet')}
+        </p>
+        <p>
+          <span
+            class="lnr"
+            class:lnr-checkmark-circle={requirements.steps.browser}
+            class:lnr-cross-circle={!requirements.steps.browser} />
+          {$_('install.requirements.browser')}
+        </p>
+        <p>
+          <span
+            class="lnr"
+            class:lnr-checkmark-circle={requirements.steps.serviceWorker}
+            class:lnr-question-circle={!requirements.steps.serviceWorker} />
+          {$_('install.requirements.serviceWorker')}
+        </p>
+        <div class="grid">
+          <div on:click={install}>
+            <span class="lnr lnr-download installIcon" />
+            <br />
+            {$_('install.install.install')}
+          </div>
+          <div on:click={() => (showInstall = false)}>
+            <span class="lnr lnr-cloud installIcon" />
+            <br />
+            {$_('install.install.browser')}
+          </div>
         </div>
-        <div on:click={() => (choice = 'cloud')}>
-          <span class="lnr lnr-cloud installIcon" />
-          <br />
-          {$_('install.cloud')}
+      {:else}
+        {#if !installed}
+          <div class="grid">
+            <div on:click={() => (showInstall = true)}>
+              <span class="lnr lnr-arrow-left-circle" />
+              {$_('install.back')}
+            </div>
+          </div>
+        {/if}
+        <div class="grid">
+          <div on:click={() => ($intern.installed = true)}>
+            <span class="lnr lnr-rocket installIcon" />
+            <br />
+            {$_('install.start')}
+          </div>
+          <div on:click={() => (choice = 'cloud')}>
+            <span class="lnr lnr-cloud installIcon" />
+            <br />
+            {$_('install.cloud')}
+          </div>
         </div>
-      </div>
+      {/if}
     {:else}
       <div class="grid">
-        <div class="" on:click={() => (choice = 'none')}>
+        <div on:click={() => (choice = 'none')}>
           <span class="lnr lnr-arrow-left-circle" />
           {$_('install.back')}
         </div>
