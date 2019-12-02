@@ -36,6 +36,10 @@
   .titlebar:hover {
     opacity: 1;
   }
+
+  .tab.new {
+    cursor: pointer;
+  }
 </style>
 
 <header data-deskgap-drag>
@@ -122,9 +126,11 @@
             on:click={() => tabs.removeTab(tab.id)} />
         </li>
       {/each}
-      <li class="tab" on:click={createTab}>
-        <span class="lnr lnr-plus-circle" />
-      </li>
+      {#if $location != '/write/' && $location.includes('write')}
+        <li class="tab new" on:click={createTab}>
+          <span class="lnr lnr-plus-circle" />
+        </li>
+      {/if}
     </ul>
   </div>
 </header>
