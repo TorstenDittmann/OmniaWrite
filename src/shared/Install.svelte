@@ -14,32 +14,36 @@
   let showInstall = false;
 
   onMount(() => {
-    // variable store event
-    window.deferredPrompt = {};
-
-    // if the app can be installed emit beforeinstallprompt
-    window.addEventListener("beforeinstallprompt", e => {
-      installable = showInstall = true;
-
-      // prevent default event
-      e.preventDefault();
-
-      // store install avaliable event
-      window.deferredPrompt = e;
-    });
-
-    // if are standalone android OR safari
     if (
-      window.matchMedia("(display-mode: standalone)").matches ||
-      window.navigator.standalone === true
+      !navigator.userAgent.match(/(iPad)|(iPhone)|(iPod)|(android)|(webOS)/i)
     ) {
-      installable = showInstall = false;
-    }
+      // variable store event
+      window.deferredPrompt = {};
 
-    // do action when finished install
-    window.addEventListener("appinstalled", e => {
-      console.log("success app install!");
-    });
+      // if the app can be installed emit beforeinstallprompt
+      window.addEventListener("beforeinstallprompt", e => {
+        installable = showInstall = true;
+
+        // prevent default event
+        e.preventDefault();
+
+        // store install avaliable event
+        window.deferredPrompt = e;
+      });
+
+      // if are standalone android OR safari
+      if (
+        window.matchMedia("(display-mode: standalone)").matches ||
+        window.navigator.standalone === true
+      ) {
+        installable = showInstall = false;
+      }
+
+      // do action when finished install
+      window.addEventListener("appinstalled", e => {
+        console.log("success app install!");
+      });
+    }
   });
 
   function install(e) {
