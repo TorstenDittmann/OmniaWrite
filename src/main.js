@@ -16,7 +16,10 @@ init({
 });
 
 const app = new App({
-	target: document.body
+	target: document.body,
+	props: {
+		version: "0.0.1"
+	}
 });
 
 export default app;
