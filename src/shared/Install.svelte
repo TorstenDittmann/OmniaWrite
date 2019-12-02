@@ -40,6 +40,9 @@
     window.addEventListener("appinstalled", e => {
       console.log("success app install!");
     });
+    console.log(installed);
+    console.log(installable);
+    console.log(showInstall);
   });
 
   function install(e) {
@@ -177,7 +180,7 @@
           </div>
         </div>
       {:else}
-        {#if !installed}
+        {#if installable}
           <div class="grid">
             <div on:click={() => (showInstall = true)}>
               <span class="lnr lnr-arrow-left-circle" />
