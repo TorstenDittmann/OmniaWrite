@@ -119,6 +119,7 @@
 
   .disclaimer-check {
     width: 3rem;
+    min-width: 3rem;
     margin-right: 1rem;
   }
 
