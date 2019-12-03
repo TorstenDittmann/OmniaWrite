@@ -5,6 +5,7 @@
   import { _ } from "svelte-i18n";
 
   import Modal from "./Modal.svelte";
+  import Disclaimer from "./Disclaimer.svelte";
   import Cloud from "../routes/Cloud.svelte";
 
   let choice = "none";
@@ -12,6 +13,8 @@
   let installed = false;
   let installable = false;
   let showInstall = false;
+  let showDisclaimer = false;
+  let statusDisclaimer = false;
 
   onMount(() => {
     // variable store event
@@ -40,9 +43,6 @@
     window.addEventListener("appinstalled", e => {
       console.log("success app install!");
     });
-    console.log(installed);
-    console.log(installable);
-    console.log(showInstall);
   });
 
   function install(e) {
@@ -74,7 +74,6 @@
       --secondary-color
     ); /* Black background with opacity */
     z-index: 999999; /* Specify a stack order in case you're using a different order for other elements */
-    cursor: pointer; /* Add a pointer on hover */
     overflow: auto;
   }
   .install {
@@ -117,6 +116,15 @@
   select#language {
     width: 100%;
   }
+
+  .disclaimer-check {
+    width: 3rem;
+    margin-right: 1rem;
+  }
+
+  .disclaimer-button {
+    width: calc(100% - 4rem);
+  }
 </style>
 
 <div class="overlay">
@@ -134,7 +142,6 @@
 
   <div class="install">
     <img src="logo.png" alt="OmniaWrite Logo" />
-    <h1>OmniaWrite</h1>
     <hr />
     {#if choice == 'none'}
       <h3>{$_('install.language')}</h3>
@@ -180,6 +187,40 @@
           </div>
         </div>
       {:else}
+        <Modal bind:show={showDisclaimer}>
+          <h2 slot="header">{$_('install.disclaimer.title')}</h2>
+          <Disclaimer />
+        </Modal>
+        <h3>{$_('install.disclaimer.action')}</h3>
+        <div class="btn-group">
+          <button
+            class="disclaimer-check"
+            on:click={() => (statusDisclaimer = !statusDisclaimer)}>
+            <span
+              class="lnr"
+              class:lnr-cross-circle={!statusDisclaimer}
+              class:lnr-checkmark-circle={statusDisclaimer} />
+          </button>
+          <button
+            class="disclaimer-button"
+            on:click={() => (showDisclaimer = !showDisclaimer)}>
+            {$_('install.disclaimer.show')}
+          </button>
+        </div>
+        {#if statusDisclaimer}
+          <div class="grid">
+            <div on:click={() => ($intern.installed = true)}>
+              <span class="lnr lnr-rocket installIcon" />
+              <br />
+              {$_('install.start')}
+            </div>
+            <div on:click={() => (choice = 'cloud')}>
+              <span class="lnr lnr-cloud installIcon" />
+              <br />
+              {$_('install.cloud')}
+            </div>
+          </div>
+        {/if}
         {#if installable}
           <div class="grid">
             <div on:click={() => (showInstall = true)}>
@@ -188,18 +229,6 @@
             </div>
           </div>
         {/if}
-        <div class="grid">
-          <div on:click={() => ($intern.installed = true)}>
-            <span class="lnr lnr-rocket installIcon" />
-            <br />
-            {$_('install.start')}
-          </div>
-          <div on:click={() => (choice = 'cloud')}>
-            <span class="lnr lnr-cloud installIcon" />
-            <br />
-            {$_('install.cloud')}
-          </div>
-        </div>
       {/if}
     {:else}
       <div class="grid">
