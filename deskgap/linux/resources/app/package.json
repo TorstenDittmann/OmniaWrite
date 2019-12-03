@@ -1,0 +1,5 @@
+{
+	"name": "omniawrite",
+	"productName": "OmniaWrite",
+	"main": "deskgap.js"
+}
