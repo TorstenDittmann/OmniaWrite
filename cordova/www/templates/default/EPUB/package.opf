@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package xmlns="http://www.idpf.org/2007/opf"
+         version="3.0"
+         xml:lang="en-US">
+   <metadata xmlns:dc="http://purl.org/dc/elements/1.1/">
+      <dc:title id="_title">PROJECT_TITLE</dc:title>
+      <dc:creator id="_author">AUTHOR</dc:creator>
+      <dc:language>en</dc:language>
+      <dc:date>2011-09-01</dc:date>
+      <meta name="cover" content="cover"/>
+   </metadata>
+   <manifest>
+      <item id="nav" href="nav.xhtml" media-type="application/xhtml+xml" properties="nav"/>
+      <item id="css" href="css/epub.css" media-type="text/css"/>
+      <item id="cover" href="images/cover.png" media-type="image/png" properties="cover-image"/>   
+      <item id="page" href="content.xhtml" media-type="application/xhtml+xml"/>
+   </manifest>
+   <spine>
+      <itemref idref="cover" linear="no" />
+      <itemref idref="page"/>
+   </spine>
+</package>
