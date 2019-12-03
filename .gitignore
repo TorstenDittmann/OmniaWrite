@@ -6,3 +6,4 @@ public/service-worker.js
 cordova/www/service-worker.js
 cordova/www/bundle.js
 cordova/www/bundle.css
+src/licenses.json
