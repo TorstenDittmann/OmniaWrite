@@ -30,8 +30,10 @@
     <input
       id="createProjectInput"
       autocomplete="off"
-      placeholder="enter your title" />
+      placeholder="enter your title"
+      type="text" />
   </div>
+
   <hr />
   <div class="btn-group">
     <button on:click={createProject}>Create!</button>
