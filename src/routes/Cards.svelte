@@ -79,6 +79,9 @@
       </button>
     </div>
   </div>
+  <div class="btn-group">
+    <button on:click={createCard}>{$_('cards.modal.buttonSave')}</button>
+  </div>
   {#if newCardObject.title.length > 0}
     <div class="btn-group">
       <button on:click={createCard}>{$_('cards.modal.buttonSave')}</button>
@@ -118,6 +121,9 @@
           class:lnr-checkmark-circle={editCardObject.showTooltip} />
       </button>
     </div>
+  </div>
+  <div class="btn-group">
+    <button on:click={editCard}>{$_('cards.modal.buttonSave')}</button>
   </div>
   {#if editCardObject.title.length > 0}
     <div class="btn-group">

@@ -1,4 +1,6 @@
-<script>
+<script lang="javascript">
+  import { _, locale } from "svelte-i18n";
+  import { push } from "svelte-spa-router";
 
 </script>
 
@@ -10,6 +12,12 @@
     -moz-border-radius: 0px 0px 0px 0px;
     -webkit-border-radius: 0px 0px 0px 0px;
     border: 2px dashed var(--editor-color);
+  }
+  .link {
+    cursor: pointer;
+  }
+  .link:hover {
+    text-decoration: underline;
   }
   .link {
     cursor: pointer;
@@ -32,12 +40,4 @@
 <br />
 <small class="link" on:click={() => push('/thirdparty')}>
   {$_('settings.thirdparty')}
-</small>
-|
-<small class="link" on:click={() => push('/policy')}>
-  {$_('cloud.privacy.show')}
-</small>
-|
-<small class="link" on:click={() => push('/disclaimer')}>
-  {$_('install.disclaimer.show')}
 </small>

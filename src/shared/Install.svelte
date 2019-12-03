@@ -74,7 +74,6 @@
       --secondary-color
     ); /* Black background with opacity */
     z-index: 999999; /* Specify a stack order in case you're using a different order for other elements */
-    cursor: pointer; /* Add a pointer on hover */
     overflow: auto;
   }
   .install {
@@ -120,7 +119,6 @@
 
   .disclaimer-check {
     width: 3rem;
-    min-width: 3rem;
     margin-right: 1rem;
   }
 
@@ -197,8 +195,6 @@
         <div class="btn-group">
           <button
             class="disclaimer-check"
-            class:red={!statusDisclaimer}
-            class:green={statusDisclaimer}
             on:click={() => (statusDisclaimer = !statusDisclaimer)}>
             <span
               class="lnr"
@@ -206,12 +202,34 @@
               class:lnr-checkmark-circle={statusDisclaimer} />
           </button>
           <button
-            class="disclaimer-button outline"
+            class="disclaimer-button"
             on:click={() => (showDisclaimer = !showDisclaimer)}>
             {$_('install.disclaimer.show')}
           </button>
         </div>
-      </div>
+        {#if statusDisclaimer}
+          <div class="grid">
+            <div on:click={() => ($intern.installed = true)}>
+              <span class="lnr lnr-rocket installIcon" />
+              <br />
+              {$_('install.start')}
+            </div>
+            <div on:click={() => (choice = 'cloud')}>
+              <span class="lnr lnr-cloud installIcon" />
+              <br />
+              {$_('install.cloud')}
+            </div>
+          </div>
+        {/if}
+        {#if installable}
+          <div class="grid">
+            <div on:click={() => (showInstall = true)}>
+              <span class="lnr lnr-arrow-left-circle" />
+              {$_('install.back')}
+            </div>
+          </div>
+        {/if}
+      {/if}
     {:else}
       <div class="grid">
         <div on:click={() => (choice = 'none')}>

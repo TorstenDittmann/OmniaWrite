@@ -51,16 +51,13 @@
   },
   "scripts": {
     "build": "run-s license svelte-build",
-    "build-cordova": "run-s license svelte-cordova",
-    "build-deskgap": "run-s license svelte-deskgap",
     "svelte-build": "rollup -c",
-    "svelte-cordova": "rollup -c --config-cordova",
-    "svelte-deskgap": "rollup -c --config-deskgap",
     "autobuild": "rollup -c -w",
     "dev": "run-p start:dev autobuild",
     "start": "sirv public --single",
     "start:dev": "sirv public --single --dev",
     "deskgap": "deskgap .",
-    "license": "license-checker --exclude \"MIT\" --production --json --customPath ./src/licenses.json > ./src/licenses.json"
+    "build-deskgap": "run-s build deskgap",
+    "license": "license-checker --production --json --customPath ./src/licenses.json > ./src/licenses.json"
   }
 }

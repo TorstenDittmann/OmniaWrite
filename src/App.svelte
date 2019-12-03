@@ -18,6 +18,7 @@
   import SettingsRoute from "./routes/Settings.svelte";
   import CloudRoute from "./routes/Cloud.svelte";
   import ExportRoute from "./routes/Export.svelte";
+  import ThirdPartyRoute from "./shared/ThirdParty.svelte";
 
   locale.set($settings.language);
 
@@ -31,6 +32,7 @@
     "/settings": SettingsRoute,
     "/cloud": CloudRoute,
     "/export": ExportRoute,
+    "/thirdparty": ThirdPartyRoute,
 
     // Non header route
     "/thirdparty": ThirdPartyRoute,
