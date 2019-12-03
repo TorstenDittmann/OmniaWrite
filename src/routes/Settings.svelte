@@ -1,5 +1,6 @@
 <script lang="javascript">
   import { _, locale } from "svelte-i18n";
+  import { push } from "svelte-spa-router";
 
   import { settings } from "../stores";
 </script>
@@ -12,6 +13,12 @@
     -moz-border-radius: 0px 0px 0px 0px;
     -webkit-border-radius: 0px 0px 0px 0px;
     border: 2px dashed rgba(255, 255, 255, 0.5);
+  }
+  .link {
+    cursor: pointer;
+  }
+  .link:hover {
+    text-decoration: underline;
   }
 </style>
 
@@ -61,3 +68,7 @@
     diam voluptua. amet.
   </div>
 </div>
+<br />
+<small class="link" on:click={() => push('/thirdparty')}>
+  {$_('settings.thirdparty')}
+</small>

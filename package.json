@@ -16,6 +16,7 @@
     "deskgap": "^0.1.0",
     "eslint": "^6.7.2",
     "eslint-plugin-svelte3": "^2.7.3",
+    "license-checker": "^25.0.1",
     "npm-run-all": "^4.1.5",
     "rollup": "^1.27.8",
     "rollup-plugin-commonjs": "^10.1.0",
@@ -40,12 +41,14 @@
     "workbox-window": "^4.3.1"
   },
   "scripts": {
-    "build": "rollup -c",
+    "build": "run-s license svelte-build",
+    "svelte-build": "rollup -c",
     "autobuild": "rollup -c -w",
     "dev": "run-p start:dev autobuild",
     "start": "sirv public --single",
     "start:dev": "sirv public --single --dev",
     "deskgap": "deskgap .",
-    "build-deskgap": "run-s build deskgap"
+    "build-deskgap": "run-s build deskgap",
+    "license": "license-checker --production --json --customPath ./src/licenses.json > ./src/licenses.json"
   }
 }

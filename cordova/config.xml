@@ -1,10 +1,10 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.omniawrite.app" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="com.omniawrite.app" android-versionCode="50" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>OmniaWrite</name>
     <description>
-        A sample Apache Cordova application that responds to the deviceready event.
+        OmniaWrite is a next-generation plain text editor engineered for creative writing. It is perfect for writing novels, lyrics, poems, essays, drafts and screenplays.
     </description>
-    <author email="dev@cordova.apache.org" href="http://cordova.io">
+    <author email="info@omniawrite.com" href="https://omniawrite.com">
         Apache Cordova Team
     </author>
     <content src="index.html" />
