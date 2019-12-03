@@ -14,7 +14,7 @@ app.once("ready", () => {
         win.reload();
     });
     messageNode.on("minimize", () => win.minimize());
-    messageNode.on("restore", () => void (0));
+    messageNode.on("restore", () => void(0));
     messageNode.on("close", () => win.close());
     messageNode.on("saveFile", (d, content, fileName) => {
         dialog.showSaveDialogAsync(win, {
