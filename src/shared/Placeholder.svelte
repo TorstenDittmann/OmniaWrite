@@ -1,5 +1,5 @@
 <script>
-
+  import { _ } from "svelte-i18n";
 </script>
 
 <style>
@@ -12,4 +12,4 @@
   }
 </style>
 
-<div class="placeholder">No project selected</div>
+<div class="placeholder">{$_('common.no-project-selected')}</div>

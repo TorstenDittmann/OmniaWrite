@@ -392,6 +392,7 @@ header .navigation ul.menu li.active a {
   font-size: 1rem;
   height: 2rem;
   width: -webkit-fill-available;
+  min-width: 4rem;
 }
 
 .btn-group button .spinner {
@@ -425,6 +426,16 @@ header .navigation ul.menu li.active a {
   content: "";
   clear: both;
   display: table;
+}
+
+.btn-group button.green {
+  border-color: #2e8500;
+  background-color: #2e8500;
+}
+
+.btn-group button.red {
+  border-color: #e02200;
+  background-color: #e02200;
 }
 
 .field {
@@ -637,7 +648,7 @@ select#focusSceneSelect:active {
 }
 
 #codex-editor .codex-editor .ce-block i {
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: 'IBM Plex Mono', monospace;
 }
 
 #codex-editor .codex-editor .ce-block__content {
@@ -718,7 +729,7 @@ select#focusSceneSelect:active {
     line-height: 2.5rem;
   }
   #codex-editor .codex-editor {
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: 'IBM Plex Mono', monospace;
     color: var(--editor-color);
     font-weight: 400;
     font-size: var(--editor-font-size);
@@ -876,7 +887,7 @@ select#focusSceneSelect:active {
   }
   .tooltip .tooltiptext {
     display: initial;
-    font-family: 'IBM Plex Sans', sans-serif;
+    font-family: 'IBM Plex Sans', sans-serif;
     font-size: 1rem;
     visibility: hidden;
     color: #fafafa;
@@ -918,7 +929,8 @@ select#focusSceneSelect:active {
     margin: 1rem;
   }
   .btn-group button {
-    width: initial;
+    width: 50%;
+    max-width: 14rem;
   }
 }
 

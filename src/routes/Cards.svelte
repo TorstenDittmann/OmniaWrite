@@ -65,14 +65,19 @@
     <textarea id="createContent" rows="10" bind:value={newCardObject.content} />
   </div>
   <div class="field">
-    <input
-      type="checkbox"
-      name="createTooltop"
-      id="createTooltop"
-      bind:checked={newCardObject.showTooltip} />
-    <label class="big" for="createTooltop">
-      {$_('cards.modal.showInScenes')}
-    </label>
+    <label for="showTooltip">{$_('cards.modal.showInScenes')}</label>
+    <div class="btn-group">
+      <button
+        id="showTooltip"
+        class:green={newCardObject.showTooltip}
+        class:red={!newCardObject.showTooltip}
+        on:click={() => (newCardObject.showTooltip = !newCardObject.showTooltip)}>
+        <span
+          class="lnr"
+          class:lnr-cross-circle={!newCardObject.showTooltip}
+          class:lnr-checkmark-circle={newCardObject.showTooltip} />
+      </button>
+    </div>
   </div>
   <div class="btn-group">
     <button on:click={createCard}>{$_('cards.modal.buttonSave')}</button>
@@ -98,14 +103,19 @@
       bind:value={editCardObject.content} />
   </div>
   <div class="field">
-    <input
-      type="checkbox"
-      name="createTooltop"
-      id="createTooltop"
-      bind:checked={editCardObject.showTooltip} />
-    <label class="big" for="createTooltop">
-      {$_('cards.modal.showInScenes')}
-    </label>
+    <label for="showTooltip">{$_('cards.modal.showInScenes')}</label>
+    <div class="btn-group">
+      <button
+        id="showTooltip"
+        class:green={editCardObject.showTooltip}
+        class:red={!editCardObject.showTooltip}
+        on:click={() => (editCardObject.showTooltip = !editCardObject.showTooltip)}>
+        <span
+          class="lnr"
+          class:lnr-cross-circle={!editCardObject.showTooltip}
+          class:lnr-checkmark-circle={editCardObject.showTooltip} />
+      </button>
+    </div>
   </div>
   <div class="btn-group">
     <button on:click={editCard}>{$_('cards.modal.buttonSave')}</button>
