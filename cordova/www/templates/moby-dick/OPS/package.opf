@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package xmlns="http://www.idpf.org/2007/opf" version="3.0" xml:lang="en" unique-identifier="pub-id" prefix="cc: http://creativecommons.org/ns#">
+  <metadata xmlns:dc="http://purl.org/dc/elements/1.1/">
+    <dc:title id="title"></dc:title>
+    <meta refines="#title" property="title-type">main</meta>
+    <dc:identifier id="pub-id">000000000</dc:identifier>
+    <dc:creator id="creator"></dc:creator>
+    <dc:language>en-US</dc:language>
+    <meta property="dcterms:modified">2012-01-18T12:47:00Z</meta>
+  </metadata>
+  <manifest>
+    <item id="font.stix.regular" href="fonts/STIXGeneral.otf"
+      media-type="application/vnd.ms-opentype"/>
+    <item id="font.stix.italic" href="fonts/STIXGeneralItalic.otf"
+      media-type="application/vnd.ms-opentype"/>
+    <item id="font.stix.bold" href="fonts/STIXGeneralBol.otf"
+      media-type="application/vnd.ms-opentype"/>
+    <item id="font.stix.bold.italic" href="fonts/STIXGeneralBolIta.otf"
+      media-type="application/vnd.ms-opentype"/>
+    <item id="toc" properties="nav" href="toc.xhtml" media-type="application/xhtml+xml"/>
+    <item id="titlepage" href="titlepage.xhtml" media-type="application/xhtml+xml"/>
+    <item id="cover" href="cover.xhtml" media-type="application/xhtml+xml"/>
+    <item id="cover-image" properties="cover-image" href="images/cover.jpg" media-type="image/jpeg"/>
+    <item id="style" href="css/stylesheet.css" media-type="text/css"/>
+    <item id="cover_title_page" href="images/cover.jpg" media-type="image/jpeg"/>
+
+    <item id="CHAPTER_LOOP" href="chapter_001.xhtml" media-type="application/xhtml+xml"/>
+
+    <item id="brief-toc" href="toc-short.xhtml" media-type="application/xhtml+xml"/>
+  </manifest>
+  <spine>
+    <itemref idref="cover" linear="no"/>
+    <itemref idref="titlepage" linear="yes"/>
+    <itemref idref="brief-toc" linear="yes"/>
+
+    <itemref linear="yes" idref="" id="SPINE_CHAPTER_LOOP"/>
+
+    <itemref idref="toc" linear="no"/>
+  </spine>
+</package>
