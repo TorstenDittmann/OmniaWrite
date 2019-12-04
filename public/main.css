@@ -364,6 +364,7 @@ header .navigation ul.menu li.active a {
 
 .content .inner {
   padding: 1rem;
+  text-align: center;
 }
 
 .content.focus {
@@ -604,6 +605,9 @@ select#focusSceneSelect:active {
 
 .grid > div:hover {
   opacity: 1;
+  -webkit-transform: scale(1.05);
+          transform: scale(1.05);
+  z-index: 999;
 }
 
 .tooltip {
@@ -868,6 +872,9 @@ select#focusSceneSelect:active {
     -ms-grid-column: 2;
     grid-area: content;
     overflow: auto;
+  }
+  .content .inner {
+    text-align: initial;
   }
   .close,
   .burger,
