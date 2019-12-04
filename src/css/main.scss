@@ -471,6 +471,10 @@ header {
         border-color: #e02200;
         background-color: #e02200;
     }
+
+    button.outline {
+        background-color: var(--background-color);
+    }
 }
 
 .field {

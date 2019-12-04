@@ -82,7 +82,7 @@ function storeState() {
             return n;
         }),
         updateLocalTimestamp: () => update(n => {
-            n.lastLocalSave = +new Date;
+            n.lastLocalSave = (+new Date) / 1000;
             return n;
         })
     }

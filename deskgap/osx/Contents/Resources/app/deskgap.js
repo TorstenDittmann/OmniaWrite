@@ -1,49 +1,27 @@
-/* eslint-disable no-undef */
-const {
-    app,
-    BrowserWindow,
-    messageNode,
-    dialog
-} = require("deskgap");
 
-const fs = require("fs");
-let win;
+OmniaWrite ist ein Schreibwerkzeug der nächsten Generation welches für kreatives Schreiben entwickelt wurde. Die saubere Benutzeroberfläche ist perfekt zum Schreiben von Romanen, Texten, Gedichten, Essays, Entwürfen und Drehbüchern.
+Um Ihren Text strukturiert und übersichtlich zu gestalten, werden alle Texte in Kapitel, Szenen und Blöcken unterteilt.
 
-app.once("ready", () => {
-    messageNode.on("reload", () => {
-        win.reload();
-    });
-    messageNode.on("minimize", () => win.minimize());
-    messageNode.on("restore", () => void (0));
-    messageNode.on("close", () => win.close());
-    messageNode.on("saveFile", (d, content, fileName) => {
-        dialog.showSaveDialogAsync(win, {
-            defaultPath: fileName
-        }).then((e) => {
-            try {
-                fs.writeFileSync(e.filePath, content, "base64");
-            } catch (e) {
-                alert("Failed to save the file !");
-            }
-        })
-    });
+Da OmniaWrite auf Funktionalität und Einfachheit ausgerichtet ist, wird die Aufmerksamkeit des Benutzers nicht mit dekorativen Elementen, Schattierungen, Farben, Details und Bewegungen überlastet. 
 
-    win = new BrowserWindow({
-        frame: false,
-        menu: null,
-        show: false,
-        width: 1280,
-        height: 960
-    }).once("ready-to-show", () => {
-        win.show();
-    });
+Im Dezember diesen Jahres wird im Rahmen einer Beta-Phase eine Testversion zum Download zur Verfügung gestellt.
 
-    if (process.platform !== "win32") {
-        win.webView.setDevToolsEnabled(true);
-    }
+Darüber hinaus wird unsere Cloud Integration für jeden kostenlos zur Verfügung stehen.
 
-    win.loadFile("index.html");
-    win.on("closed", () => {
-        win = null;
-    });
-});
+Plattformen
+
+Die folgenden Versionen werden verfügbar sein:
+
+Web-Version (Chrome, Firefox, Edge, Safari)
+Windows (7, 8, 10)
+macOS
+Linux (AppImage, snap, deb, rpm, freebsd, pacman)
+Android
+iOS
+Es ist noch nicht sicher, ob die Distribution während der Testphase über App Stores läuft. Da es aufgrund des Fehlens von Testgeräten meinerseits auch schwierig sein wird, die iPhone App in den App Store zu bekommen, werden Apple-Geräte vorerst nur die Web-Version nutzen können (außer für macOS, dort wird es eine native Version geben).
+
+Sprache
+Geplant ist, dass die App in zwei Sprachen verfügbar ist:
+
+Englisch
+Deutsch
