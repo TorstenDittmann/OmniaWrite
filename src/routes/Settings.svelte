@@ -12,7 +12,7 @@
     border-radius: 0px 0px 0px 0px;
     -moz-border-radius: 0px 0px 0px 0px;
     -webkit-border-radius: 0px 0px 0px 0px;
-    border: 2px dashed rgba(255, 255, 255, 0.5);
+    border: 2px dashed var(--editor-color);
   }
   .link {
     cursor: pointer;
