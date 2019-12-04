@@ -131,6 +131,7 @@
 <div class="overlay">
 
   <div class:show={deskgap.isRunning()} class="installHeader" data-deskgap-drag>
+    Installation
     <span
       class="lnr lnr-cross control"
       on:click={deskgap.closeWindow}
@@ -205,7 +206,7 @@
               class:lnr-checkmark-circle={statusDisclaimer} />
           </button>
           <button
-            class="disclaimer-button"
+            class="disclaimer-button outline"
             on:click={() => (showDisclaimer = !showDisclaimer)}>
             {$_('install.disclaimer.show')}
           </button>
