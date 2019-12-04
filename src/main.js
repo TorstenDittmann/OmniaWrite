@@ -1,3 +1,6 @@
+import "normalize.css";
+import "./css/index.scss";
+
 import App from "./App.svelte";
 
 import {
