@@ -196,6 +196,8 @@
         <div class="btn-group">
           <button
             class="disclaimer-check"
+            class:red={!statusDisclaimer}
+            class:green={statusDisclaimer}
             on:click={() => (statusDisclaimer = !statusDisclaimer)}>
             <span
               class="lnr"

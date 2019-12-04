@@ -349,7 +349,7 @@ header {
 
     .inner {
         padding: 1rem;
-
+        text-align: center;
     }
 
     &.focus {
@@ -575,6 +575,8 @@ select#focusSceneSelect:active {
 
     &:hover {
         opacity: 1;
+        transform: scale(1.05);
+        z-index: 999;
     }
 }
 
@@ -875,6 +877,9 @@ select#focusSceneSelect:active {
         grid-area: content;
         overflow: auto;
 
+        .inner {
+            text-align: initial;
+        }
     }
 
     .close,
