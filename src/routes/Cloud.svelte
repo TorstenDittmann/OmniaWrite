@@ -103,7 +103,7 @@
         .then(registeredUser => {
           return registeredUser;
         })
-        .then(() => {
+        .then(registeredUser => {
           checkLogin();
           registerButtonLoading = false;
           showAlert = true;
