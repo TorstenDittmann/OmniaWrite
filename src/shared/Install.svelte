@@ -131,7 +131,6 @@
 <div class="overlay">
 
   <div class:show={deskgap.isRunning()} class="installHeader" data-deskgap-drag>
-    Installation
     <span
       class="lnr lnr-cross control"
       on:click={deskgap.closeWindow}

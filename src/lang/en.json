@@ -17,7 +17,8 @@
         }
     },
     "common": {
-        "no-project-selected": "No project selected"
+        "no-project-selected": "No project selected",
+        "update-toast": "New update installed!<br>Click here to restart."
     },
     "write": {
         "toolbar": {
