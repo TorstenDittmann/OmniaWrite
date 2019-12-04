@@ -15,6 +15,8 @@
 
   moment.locale($settings.language);
 
+  export let hideExport = false;
+
   let dataLoaded = false;
 
   let registerName;
@@ -209,13 +211,15 @@
       </span>
     </div>
     <div class="btn-group">
-      <button
-        on:click={saveCloud}
-        disabled={saveCloudButtonLoading}
-        class:loading={saveCloudButtonLoading}>
-        <span class="lnr lnr-sync spinner" />
-        {$_('cloud.cloud.export')}
-      </button>
+      {#if hideExport}
+        <button
+          on:click={saveCloud}
+          disabled={saveCloudButtonLoading}
+          class:loading={saveCloudButtonLoading}>
+          <span class="lnr lnr-sync spinner" />
+          {$_('cloud.cloud.export')}
+        </button>
+      {/if}
       <button
         on:click={getCloud}
         disabled={getCloudButtonLoading}
