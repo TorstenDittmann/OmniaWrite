@@ -3,6 +3,7 @@
   import { scenes, chapters, state, cards } from "../stores";
   import { push, location } from "svelte-spa-router";
   import { _ } from "svelte-i18n";
+  import { Paragraph }  from "@editorjs/paragraph";
 
   import Overview from "./Write/Overview.svelte";
   import EditorJS from "@editorjs/editorjs";
@@ -18,8 +19,8 @@
   let editorHtml;
   let editor;
   let editorChangeHappened;
-  let amountWords;
-  let amountChars;
+  let amountWords = 0;
+  let amountChars = 0;
 
   let showToast = false;
   let showToastText;
@@ -73,13 +74,14 @@
           countWordsAndChars();
         },
         tools: {
-          header: Header,
-          quote: {
-            class: Quote,
-            inlineToolbar: true
+          paragraph: {
+            header: Paragraph,
+            inlineToolbar: false
           }
-        }
+        },
+        logLevel: "ERROR"
       });
+      editor.tools
       lastScene = params.sceneId;
     }
   }

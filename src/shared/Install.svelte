@@ -243,7 +243,7 @@
     {/if}
 
     {#if choice == 'cloud'}
-      <Cloud />
+      <Cloud hideExport="true" />
     {/if}
   </div>
 </div>

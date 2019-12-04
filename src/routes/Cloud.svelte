@@ -16,6 +16,7 @@
   moment.locale($settings.language);
 
   export let hideExport = false;
+  export let params;
 
   let dataLoaded = false;
 
@@ -211,7 +212,7 @@
       </span>
     </div>
     <div class="btn-group">
-      {#if hideExport}
+      {#if !hideExport}
         <button
           on:click={saveCloud}
           disabled={saveCloudButtonLoading}
