@@ -49,6 +49,6 @@
     "start:dev": "sirv public --single --dev",
     "deskgap": "deskgap .",
     "build-deskgap": "run-s build deskgap",
-    "license": "license-checker --production --json --customPath ./src/licenses.json > ./src/licenses.json"
+    "license": "license-checker --exclude 'MIT' --production --json --customPath ./src/licenses.json > ./src/licenses.json"
   }
 }
