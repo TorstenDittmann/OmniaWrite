@@ -326,6 +326,10 @@ header .navigation ul.menu li.active a {
   right: 1.5rem;
 }
 
+#sidebar ul.menu hr {
+  border-color: var(--menu-hover);
+}
+
 .navigation {
   overflow-y: auto;
   width: 100%;
@@ -657,7 +661,7 @@ select#focusSceneSelect:active {
 }
 
 #codex-editor .codex-editor .ce-block i {
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: 'IBM Plex Mono', monospace;
 }
 
 #codex-editor .codex-editor .ce-block__content {
@@ -738,7 +742,7 @@ select#focusSceneSelect:active {
     line-height: 2.5rem;
   }
   #codex-editor .codex-editor {
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: 'IBM Plex Mono', monospace;
     color: var(--editor-color);
     font-weight: 400;
     font-size: var(--editor-font-size);
@@ -899,7 +903,7 @@ select#focusSceneSelect:active {
   }
   .tooltip .tooltiptext {
     display: initial;
-    font-family: 'IBM Plex Sans', sans-serif;
+    font-family: 'IBM Plex Sans', sans-serif;
     font-size: 1rem;
     visibility: hidden;
     color: #fafafa;
