@@ -2,11 +2,9 @@
     "recommendations": [
         "dbaeumer.vscode-eslint",
         "Equinusocio.vsc-material-theme",
-        "HookyQR.beautify",
         "JamesBirtles.svelte-vscode",
         "PKief.material-icon-theme",
         "ritwickdey.live-sass",
-        "ritwickdey.LiveServer",
         "samundrak.esdoc-mdn"
     ]
 }

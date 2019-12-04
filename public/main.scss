@@ -313,6 +313,10 @@ header {
             top: .5rem;
             right: 1.5rem;
         }
+
+        hr {
+            border-color: var(--menu-hover);
+        }
     }
 }
 
