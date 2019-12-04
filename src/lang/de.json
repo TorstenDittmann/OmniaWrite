@@ -68,11 +68,15 @@
             "title": "Passwort zurücksetzen",
             "button": "Passwort zurücksetzen"
         },
+        "privacy": {
+            "show": "Datenschutz"
+        },
         "toast": {
             "savedCloud": "In die Cloud gespeichert.",
             "loginSuccessful": "Erfolgreich angemeldet!",
-            "activateEmail": "Bitte aktivieren Sie Ihre E - Mail - Adresse.",
-            "resetPassword": "Bitte überprüfen Sie Ihren Posteingang für weitere Anweisungen."
+            "activateEmail": "Bitte aktivieren Sie Ihre E-Mail Adresse.",
+            "resetPassword": "Bitte überprüfen Sie Ihren Posteingang für weitere Anweisungen.",
+            "acceptPolicy": "Bitte akzeptieren Sie unsere Datenschutzbestimmungen."
         }
     },
     "cards": {

@@ -70,15 +70,15 @@ function storeState() {
          * Updates Cloud timestamp.
          */
         updateCloudTimestamp: (timestamp) => update(n => {
-            n.lastCloudSave = timestamp;
-            n.lastLocalSave = timestamp;
+            n.lastCloudSave = timestamp / 1000;
+            n.lastLocalSave = timestamp / 1000;
             return n;
         }),
         /**
          * Sets Local Timestamp to current time.
          */
         updateLocalTimestamp: () => update(n => {
-            n.lastLocalSave = +new Date;
+            n.lastLocalSave = (+new Date) / 1000;
             return n;
         })
     }

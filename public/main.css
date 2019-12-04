@@ -1,6 +1,7 @@
 html {
   -webkit-tap-highlight-color: transparent;
   position: fixed;
+  cursor: default;
 }
 
 body {
@@ -437,6 +438,10 @@ header .navigation ul.menu li.active a {
 .btn-group button.red {
   border-color: #e02200;
   background-color: #e02200;
+}
+
+.btn-group button.outline {
+  background-color: var(--background-color);
 }
 
 .field {
