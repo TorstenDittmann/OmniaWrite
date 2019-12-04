@@ -1,6 +1,7 @@
 html {
     -webkit-tap-highlight-color: transparent;
     position: fixed;
+    cursor: default;
 }
 
 body {
@@ -424,6 +425,10 @@ header {
     button.red {
         border-color: #e02200;
         background-color: #e02200;
+    }
+
+    button.outline {
+        background-color: var(--background-color);
     }
 }
 

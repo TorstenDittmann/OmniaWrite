@@ -68,11 +68,15 @@
             "title": "Password reset",
             "button": "Reset password"
         },
+        "privacy": {
+            "show": "Privacy Policy"
+        },
         "toast": {
             "savedCloud": "Saved into cloud.",
             "loginSuccessful": "Login successful!",
             "activateEmail": "Please activate your e-mail adress.",
-            "resetPassword": "Please check your mail inbox for further instructions."
+            "resetPassword": "Please check your mail inbox for further instructions.",
+            "acceptPolicy": "Please agree to our Privacy Policy."
         }
     },
     "cards": {

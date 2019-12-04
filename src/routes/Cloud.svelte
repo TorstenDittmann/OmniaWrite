@@ -1,16 +1,21 @@
 <script lang="javascript">
   import { onMount } from "svelte";
-  import { state } from "../stores";
+  import { state, settings } from "../stores";
   import { deskgap } from "../utils";
   import { _ } from "svelte-i18n";
 
   import cloud from "../cloud";
   import Alert from "../shared/Alert.svelte";
   import Toast from "../shared/Toast.svelte";
+  import Modal from "../shared/Modal.svelte";
+  import Policy from "./Cloud/Policy.svelte";
+
+  import moment from "moment";
+  import "moment/locale/de";
+
+  moment.locale($settings.language);
 
   let dataLoaded = false;
-  $: lastCloudSave = new Date($state.lastCloudSave).toLocaleString("en-us");
-  $: lastLocalSave = new Date($state.lastLocalSave).toLocaleString("en-us");
 
   let registerName;
   let registerUser;
@@ -29,6 +34,9 @@
 
   let showToast = false;
   let showToastText;
+
+  let statusPrivacyPolicy;
+  let showPrivacyPolicy;
 
   let saveCloudButtonLoading = false;
   let getCloudButtonLoading = false;
@@ -89,23 +97,29 @@
 
   function register() {
     registerButtonLoading = true;
-    cloud
-      .register(registerName, registerUser, registerPass)
-      .then(registeredUser => {
-        return registeredUser;
-      })
-      .then(() => {
-        checkLogin();
-        registerButtonLoading = false;
-        showAlert = true;
-        showAlertText = $_("cloud.toast.activateEmail");
-      })
-      .catch(error => {
-        showAlert = true;
-        showAlertText =
-          error.message + (error.code ? " - code: " + error.code : "");
-        registerButtonLoading = false;
-      });
+    if (statusPrivacyPolicy) {
+      cloud
+        .register(registerName, registerUser, registerPass)
+        .then(registeredUser => {
+          return registeredUser;
+        })
+        .then(() => {
+          checkLogin();
+          registerButtonLoading = false;
+          showAlert = true;
+          showAlertText = $_("cloud.toast.activateEmail");
+        })
+        .catch(error => {
+          showAlert = true;
+          showAlertText =
+            error.message + (error.code ? " - code: " + error.code : "");
+          registerButtonLoading = false;
+        });
+    } else {
+      registerButtonLoading = false;
+      showAlert = true;
+      showAlertText = $_("cloud.toast.acceptPolicy");
+    }
   }
 
   function resetPassword() {
@@ -142,11 +156,22 @@
 </script>
 
 <style type="text/css">
+  .disclaimer-check {
+    width: 3rem;
+    min-width: 3rem;
+    margin-right: 1rem;
+  }
 
+  .disclaimer-button {
+    width: calc(100% - 4rem);
+  }
 </style>
 
 <Toast bind:show={showToast} text={showToastText} />
-
+<Modal bind:show={showPrivacyPolicy}>
+  <h2 slot="header">{$_('cloud.privacy.show')}</h2>
+  <Policy />
+</Modal>
 {#if dataLoaded}
   <Alert danger bind:show={showAlert}>
     <span class="lnr lnr-warning">{showAlertText}</span>
@@ -173,11 +198,15 @@
       <label class="big" for="localDataFrom">
         {$_('cloud.cloud.localDataFrom')}
       </label>
-      <span id="localDataFrom">{lastLocalSave}</span>
+      <span id="localDataFrom">
+        {moment($state.lastLocalSave, 'X').fromNow()}
+      </span>
     </div>
     <div class="field">
       <label class="big" for="newName">{$_('cloud.cloud.cloudDataFrom')}</label>
-      <span id="localDataFrom">{lastCloudSave}</span>
+      <span id="localDataFrom">
+        {moment($state.lastCloudSave, 'X').fromNow()}
+      </span>
     </div>
     <div class="btn-group">
       <button
@@ -250,6 +279,23 @@
         autocomplete="off"
         placeholder="******"
         bind:value={registerPass} />
+    </div>
+    <div class="btn-group">
+      <button
+        class="disclaimer-check"
+        class:red={!statusPrivacyPolicy}
+        class:green={statusPrivacyPolicy}
+        on:click={() => (statusPrivacyPolicy = !statusPrivacyPolicy)}>
+        <span
+          class="lnr"
+          class:lnr-cross-circle={!statusPrivacyPolicy}
+          class:lnr-checkmark-circle={statusPrivacyPolicy} />
+      </button>
+      <button
+        class="disclaimer-button outline"
+        on:click={() => (showPrivacyPolicy = true)}>
+        {$_('cloud.privacy.show')}
+      </button>
     </div>
     <div class="btn-group">
       <button
