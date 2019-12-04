@@ -65,10 +65,18 @@
     clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit
     amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
     nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed
-    diam voluptua. amet.
+    diam voluptua amet.
   </div>
 </div>
 <br />
 <small class="link" on:click={() => push('/thirdparty')}>
   {$_('settings.thirdparty')}
+</small>
+|
+<small class="link" on:click={() => push('/policy')}>
+  {$_('cloud.privacy.show')}
+</small>
+|
+<small class="link" on:click={() => push('/disclaimer')}>
+  {$_('install.disclaimer.show')}
 </small>
