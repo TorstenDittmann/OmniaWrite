@@ -4,43 +4,15 @@
   import { _ } from "svelte-i18n";
 
   import CreateProject from "./Overview/CreateProject.svelte";
+  import ProjectOverview from "./Overview/Project.svelte";
+  import Modal from "../shared/Modal.svelte";
   import moment from "moment";
   import "moment/locale/de";
 
   moment.locale($settings.language);
 
   let showCreateProject = false;
-  let chapterCount;
-  let sceneCount;
-  let wordCount;
-  let charCount;
-
-  $: {
-    chapterCount = 0;
-    sceneCount = 0;
-    wordCount = 0;
-    charCount = 0;
-    chapters.subscribe(chapters => {
-      chapters
-        .filter(chapter => chapter.project == $state.currentProject)
-        .forEach(chapter => {
-          chapterCount++;
-          scenes.subscribe(scenes => {
-            scenes
-              .filter(scene => scene.chapter == chapter.id)
-              .forEach(scene => {
-                sceneCount++;
-                if (scene.content) {
-                  scene.content.blocks.forEach(block => {
-                    wordCount += block.data.text.split(" ").length;
-                    charCount += block.data.text.length;
-                  });
-                }
-              });
-          });
-        });
-    });
-  }
+  let showEditProject = false;
 
   function changeProject(project) {
     state.setCurrentProject(project);
@@ -66,41 +38,41 @@
   }
 </script>
 
+<style>
+  .projectTitle {
+    cursor: pointer;
+  }
+
+  .projectTitle:hover {
+    text-decoration: underline;
+    text-decoration-style: dashed;
+  }
+</style>
+
 <CreateProject
   {showCreateProject}
   on:changeProject={event => changeProject(event.detail.project)} />
 
 {#each $projects.filter(project => project.id == $state.currentProject) as project}
-  <h1>{project.title}</h1>
-  <div class="field">
-    <label class="big" for="author">{$_('overview.project.title')}:</label>
-    <input
-      id="author"
-      type="text"
-      autocomplete="off"
-      bind:value={project.title} />
-  </div>
-  <div class="field">
-    <label for="chapters" class="big">{$_('overview.project.chapters')}:</label>
-    {chapterCount}
-  </div>
-  <div class="field">
-    <label for="scenes" class="big">{$_('overview.project.scenes')}:</label>
-    {sceneCount}
-  </div>
-  <div class="field">
-    <label for="words" class="big">{$_('overview.project.words')}:</label>
-    {wordCount}
-  </div>
-  <div class="field">
-    <label for="chars" class="big">{$_('overview.project.characters')}:</label>
-    {charCount}
-  </div>
-  <div class="btn-group">
-    <button on:click={() => setProjectTitle(project.id)}>
-      {$_('overview.project.save')}
-    </button>
-  </div>
+  <h1 class="projectTitle" on:click={() => (showEditProject = true)}>
+    {project.title}
+  </h1>
+  <ProjectOverview />
+  <Modal bind:show={showEditProject}>
+    <div class="field">
+      <label class="big" for="author">{$_('overview.project.title')}:</label>
+      <input
+        id="author"
+        type="text"
+        autocomplete="off"
+        bind:value={project.title} />
+    </div>
+    <div class="btn-group">
+      <button on:click={() => setProjectTitle(project.id)}>
+        {$_('overview.project.save')}
+      </button>
+    </div>
+  </Modal>
 {/each}
 <h1>{$_('overview.projects.title')}</h1>
 <div class="grid">
