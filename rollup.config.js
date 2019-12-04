@@ -6,6 +6,8 @@ import livereload from "rollup-plugin-livereload";
 import builtins from "rollup-plugin-node-builtins";
 import json from "@rollup/plugin-json";
 import globals from "rollup-plugin-node-globals";
+import scss from "rollup-plugin-scss";
+
 import {
 	terser
 } from "rollup-plugin-terser";
@@ -36,6 +38,10 @@ export default {
 				css.write("public/bundle.css");
 			}
 		}),
+		scss({
+			output: "public/main.css"
+		}),
+
 
 		// If you have external dependencies installed from
 		// npm, you'll most likely need these plugins. In
