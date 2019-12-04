@@ -2,7 +2,7 @@
   import { Workbox } from "workbox-window";
   import { state, projects, settings, intern } from "./stores";
   import { deskgap } from "./utils";
-  import { locale } from "svelte-i18n";
+  import { locale, _ } from "svelte-i18n";
 
   import Router from "svelte-spa-router";
 
@@ -161,7 +161,7 @@
   <div id="content" class="content">
     <Toast
       bind:show={updateAvailable}
-      text="New update installed!<br>Click here to restart."
+      text={$_('common.update-toast')}
       on:click={updateApp}
       duration="forever" />
     <div class="inner">
