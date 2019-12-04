@@ -19,6 +19,8 @@
   import CloudRoute from "./routes/Cloud.svelte";
   import ExportRoute from "./routes/Export.svelte";
   import ThirdPartyRoute from "./shared/ThirdParty.svelte";
+  import DisclaimerRoute from "./shared/Disclaimer.svelte";
+  import PolicyRoute from "./routes/Cloud/Policy.svelte";
 
   locale.set($settings.language);
 
@@ -32,7 +34,11 @@
     "/settings": SettingsRoute,
     "/cloud": CloudRoute,
     "/export": ExportRoute,
+
+    // Non header route
     "/thirdparty": ThirdPartyRoute,
+    "/policy": PolicyRoute,
+    "/disclaimer": DisclaimerRoute,
 
     // Catch-all
     "*": OverviewRoute
