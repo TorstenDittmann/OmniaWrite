@@ -21,10 +21,11 @@
 
 <div class="licenses">
   {#each licenseData as item}
-    <p>{item.name}</p>
+    <b>{item.name}</b>
+    <br />
     <small>{item.license}</small>
     <br />
     <small>{item.text}</small>
-    <br />
+    <hr />
   {/each}
 </div>
