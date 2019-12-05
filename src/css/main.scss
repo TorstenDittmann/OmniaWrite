@@ -610,53 +610,47 @@ span.card {
     text-decoration-style: double;
     font-weight: bold;
     line-break: auto;
-}
 
-span.card:after {
-    content: attr(data-card);
-    position: absolute;
-    bottom: 130%;
-    left: -20%;
-    background: var(--primary-color);
-    padding: 5px 15px;
-    color: var(--text-color);
-    opacity: 0;
-    -webkit-transition: all 0.4s ease;
-    -moz-transition: all 0.4s ease;
-    transition: all 0.4s ease;
-    line-height: 1rem;
-    min-width: 12rem;
-    text-align: left;
-    font-size: .8rem;
-}
+    &:after {
+        content: attr(data-card);
+        position: absolute;
+        bottom: 130%;
+        left: -20%;
+        background: var(--primary-color);
+        padding: .5rem;
+        color: var(--menu-link);
+        display: none;
+        line-height: 1rem;
+        min-width: 12rem;
+        text-align: left;
+        font-size: .8rem;
+    }
 
-span.card:before {
-    content: "";
-    position: absolute;
-    width: 0;
-    height: 0;
-    border-top: 20px solid #ffcb66;
-    border-left: 20px solid transparent;
-    border-right: 20px solid transparent;
-    -webkit-transition: all 0.4s ease;
-    -moz-transition: all 0.4s ease;
-    transition: all 0.4s ease;
-    opacity: 0;
-    left: 30%;
-    bottom: 90%;
-}
+    &:before {
+        content: "";
+        position: absolute;
+        width: 0;
+        height: 0;
+        border-top: 1rem solid var(--primary-color);
+        border-left: 1rem solid transparent;
+        border-right: 1rem solid transparent;
+        display: none;
+        left: 30%;
+        bottom: 90%;
+    }
 
-span.card:hover:after {
-    bottom: 100%;
-}
+    &:hover {
 
-span.card:hover:before {
-    bottom: 70%;
-}
+        &:after {
+            bottom: 1.5rem;
+            display: inline;
+        }
 
-span.card:hover:after,
-a:hover:before {
-    opacity: 1;
+        &:before {
+            bottom: 1.1rem;
+            display: block;
+        }
+    }
 }
 
 .editpane {
