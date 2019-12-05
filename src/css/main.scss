@@ -585,7 +585,7 @@ select#focusSceneSelect:active {
     &:hover {
         opacity: 1;
         transform: scale(1.05);
-        z-index: 999;
+        z-index: 997;
     }
 }
 
@@ -601,6 +601,62 @@ select#focusSceneSelect:active {
             display: none;
         }
     }
+}
+
+span.card {
+    position: relative;
+    text-decoration: none;
+    text-decoration: underline;
+    text-decoration-style: double;
+    font-weight: bold;
+    line-break: auto;
+}
+
+span.card:after {
+    content: attr(data-card);
+    position: absolute;
+    bottom: 130%;
+    left: -20%;
+    background: var(--primary-color);
+    padding: 5px 15px;
+    color: var(--text-color);
+    opacity: 0;
+    -webkit-transition: all 0.4s ease;
+    -moz-transition: all 0.4s ease;
+    transition: all 0.4s ease;
+    line-height: 1rem;
+    min-width: 12rem;
+    text-align: left;
+    font-size: .8rem;
+}
+
+span.card:before {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-top: 20px solid #ffcb66;
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    -webkit-transition: all 0.4s ease;
+    -moz-transition: all 0.4s ease;
+    transition: all 0.4s ease;
+    opacity: 0;
+    left: 30%;
+    bottom: 90%;
+}
+
+span.card:hover:after {
+    bottom: 100%;
+}
+
+span.card:hover:before {
+    bottom: 70%;
+}
+
+span.card:hover:after,
+a:hover:before {
+    opacity: 1;
 }
 
 .editpane {
