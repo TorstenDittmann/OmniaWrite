@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="feed.xsl"?>
+<interface xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://zero-install.sourceforge.net/2004/injector/interface http://0install.de/schema/injector/interface/interface.xsd http://0install.de/schema/desktop-integration/capabilities http://0install.de/schema/desktop-integration/capabilities/capabilities.xsd" uri="http://backend.omniawrite.com/OmniaWrite.xml" xmlns="http://zero-install.sourceforge.net/2004/injector/interface">
+  <name>OmniaWrite</name>
+  <summary xml:lang="en">OmniaWrite</summary>
+  <icon href="https://app.omniawrite.com/favicon.ico" type="image/vnd.microsoft.icon" />
+  <icon href="https://app.omniawrite.com/apple-touch-icon.png" type="image/png" />
+  <category>Office</category>
+  <implementation arch="Windows-*" version="0.0.2" id="sha1new=6a6c7efe6b3a57a2ef7596afd7648251e389b1c7">
+    <command name="run" path="OmniaWrite.exe" />
+    <manifest-digest sha256new="WBLZTAJ7EMTH7NJ5BLOMMZPQJNOVCYLZXTVMVF7KGSZH36FTMOKA" />
+    <archive href="http://backend.omniawrite.com/OmniaWrite.zip" size="12316798" type="application/zip" />
+  </implementation>
+  <entry-point command="run" binary-name="OmniaWrite" />
+</interface>
+<!-- Base64 Signature
+iQEcBAABAgAGBQJd6VlVAAoJEAOhPUlgvD1WY3kH/jFB8CLg8KHVariYOrxtGI1ovT01o/VkN/+OPPKWpy7lMdYPER73wcE0YUqOxIiF1D/3KGlhdfmAlL7fsPJZiGi2N9bH4F4CDt/Taeo4oCwmWbc6xtA4WoPTkkifcDC8YumRAFLDGf/e1usHYRIRSqWuCE+0dvOGSQIZtMDWeeBoJUznerQKgn5SkHNG1WG0oENGYg/FuYLR+bz3Cbc4EVv1rsx2SnF066NKesQ6bGWYCSbzstZFQtidm6sW++X4FCSI4w1IzN4SPNag9PawdSfq4Uc7n2rMFQ8B5GMF6Atf0QEhB5Wnr+jbOXbwYwi77NwnbQnSedk5wyWEanlhpc4=
+
+-->
