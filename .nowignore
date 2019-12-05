@@ -2,5 +2,4 @@
 node_modules
 public/bundle.*
 dist/
-public/service-worker.js
 cordova/
