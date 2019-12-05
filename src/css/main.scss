@@ -605,11 +605,8 @@ select#focusSceneSelect:active {
 
 span.card {
     position: relative;
-    text-decoration: none;
-    text-decoration: underline;
-    text-decoration-style: double;
-    font-weight: bold;
     line-break: auto;
+    border-bottom: 5px dotted var(--primary-color);
 
     &:after {
         content: attr(data-card);
@@ -623,7 +620,8 @@ span.card {
         line-height: 1rem;
         min-width: 12rem;
         text-align: left;
-        font-size: .8rem;
+        font-size: .8rem; 
+
     }
 
     &:before {
