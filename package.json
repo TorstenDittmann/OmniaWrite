@@ -51,7 +51,9 @@
   },
   "scripts": {
     "build": "run-s license svelte-build",
+    "build-cordova": "run-s license svelte-cordova",
     "svelte-build": "rollup -c",
+    "svelte-cordova": "rollup -c --config-cordova",
     "autobuild": "rollup -c -w",
     "dev": "run-p start:dev autobuild",
     "start": "sirv public --single",

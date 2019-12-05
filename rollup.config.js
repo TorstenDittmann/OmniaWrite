@@ -9,9 +9,8 @@ import globals from "rollup-plugin-node-globals";
 import scss from "rollup-plugin-scss";
 import copy from "rollup-plugin-copy";
 import conditional from "rollup-plugin-conditional";
-import replace from '@rollup/plugin-replace';
 
-console.log(process.env.API_KEY)
+
 
 import {
 	terser
@@ -96,28 +95,6 @@ export default {
 				{
 					src: "public/templates/",
 					dest: "cordova/www"
-				}
-				]
-			})
-		]),
-		conditional(isDeskgap, [
-			copy({
-				targets: [{
-					src: "public/index_cordova.html",
-					dest: "deskgap",
-					rename: "index.html"
-				},
-				{
-					src: ["public/*.woff", "public/*.woff2", "public/*.eot", "public/*.svg", "public/*.ttf", "public/*.eot"],
-					dest: "deskgap",
-				},
-				{
-					src: ["public/bundle.js", "public/main.css", "public/bundle.css", "public/logo.png"],
-					dest: "deskgap",
-				},
-				{
-					src: "public/templates/",
-					dest: "deskgap",
 				}
 				]
 			})
