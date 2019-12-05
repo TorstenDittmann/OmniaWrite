@@ -50,7 +50,7 @@
   /**
    * Register Service Worker.
    */
-  if ("serviceWorker" in navigator) {
+  if ("serviceWorker" in navigator && !window.hasOwnProperty("cordova")) {
     wb.addEventListener("waiting", event => {
       updateAvailable = true;
     });
