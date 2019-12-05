@@ -79,11 +79,12 @@
             inlineToolbar: false,
             config: {
               project: $state.currentProject,
-              cards: $cards.filter(
-                card =>
+              cards: $cards.filter(card => {
+                return (
                   card.project == $state.currentProject &&
                   card.showTooltip == true
-              )
+                );
+              })
             }
           }
         },

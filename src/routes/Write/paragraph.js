@@ -19,7 +19,6 @@ export default class Paragraph {
    */
   constructor({ data, config, api }) {
     this.api = api;
-    console.log(config.cards);
     config.cards.forEach(element => {
       let re = new RegExp(`\\b(${element.title})\\b`, "gi");
       let tooltip = element.content.replace(/"/g, "&quot;");
