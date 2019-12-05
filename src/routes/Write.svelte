@@ -3,7 +3,7 @@
   import { scenes, chapters, state, cards } from "../stores";
   import { push, location } from "svelte-spa-router";
   import { _ } from "svelte-i18n";
-  import { Paragraph }  from "@editorjs/paragraph";
+  import Paragraph from "./Write/paragraph";
 
   import Overview from "./Write/Overview.svelte";
   import EditorJS from "@editorjs/editorjs";
@@ -75,13 +75,21 @@
         },
         tools: {
           paragraph: {
-            header: Paragraph,
-            inlineToolbar: false
+            class: Paragraph,
+            inlineToolbar: false,
+            config: {
+              project: $state.currentProject,
+              cards: $cards.filter(
+                card =>
+                  card.project == $state.currentProject &&
+                  card.showTooltip == true
+              )
+            }
           }
         },
         logLevel: "ERROR"
       });
-      editor.tools
+      editor.tools;
       lastScene = params.sceneId;
     }
   }
