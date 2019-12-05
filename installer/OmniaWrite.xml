@@ -1,19 +1,36 @@
-<?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="feed.xsl"?>
-<interface xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://zero-install.sourceforge.net/2004/injector/interface http://0install.de/schema/injector/interface/interface.xsd http://0install.de/schema/desktop-integration/capabilities http://0install.de/schema/desktop-integration/capabilities/capabilities.xsd" uri="http://backend.omniawrite.com/OmniaWrite.xml" xmlns="http://zero-install.sourceforge.net/2004/injector/interface">
+<?xml version="1.0" ?>
+<?xml-stylesheet type='text/xsl' href='interface.xsl'?>
+<interface uri="http://backend.omniawrite.com/OmniaWrite.xml" xmlns="http://zero-install.sourceforge.net/2004/injector/interface" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://zero-install.sourceforge.net/2004/injector/interface http://0install.de/schema/injector/interface/interface.xsd http://0install.de/schema/desktop-integration/capabilities http://0install.de/schema/desktop-integration/capabilities/capabilities.xsd">
   <name>OmniaWrite</name>
   <summary xml:lang="en">OmniaWrite</summary>
-  <icon href="https://app.omniawrite.com/favicon.ico" type="image/vnd.microsoft.icon" />
-  <icon href="https://app.omniawrite.com/apple-touch-icon.png" type="image/png" />
+  <icon href="https://app.omniawrite.com/favicon.ico" type="image/vnd.microsoft.icon"/>
+  <icon href="https://app.omniawrite.com/apple-touch-icon.png" type="image/png"/>
   <category>Office</category>
-  <implementation arch="Windows-*" version="0.0.2" id="sha1new=6a6c7efe6b3a57a2ef7596afd7648251e389b1c7">
-    <command name="run" path="OmniaWrite.exe" />
-    <manifest-digest sha256new="WBLZTAJ7EMTH7NJ5BLOMMZPQJNOVCYLZXTVMVF7KGSZH36FTMOKA" />
-    <archive href="http://backend.omniawrite.com/OmniaWrite.zip" size="12316798" type="application/zip" />
+  <description>
+</description>
+  <entry-point binary-name="OmniaWrite" command="run"/>
+  <homepage>https://www.omniawrite.com</homepage>
+  <implementation arch="Linux-*" id="sha1new=306857a4f77bfc450769a48ed2252fa228c14557" main="OmniaWrite" released="2019-12-05" stability="testing" version="0.0.3">
+    <archive extract="OmniaWrite-0.0.3-linux" href="http://backend.omniawrite.com/OmniaWrite-0.0.3-linux.zip" size="27211310" type="application/zip"/>
   </implementation>
-  <entry-point command="run" binary-name="OmniaWrite" />
+  <implementation arch="Windows-*" id="sha1new=ca3582adccae258d34bbf8d0abeabe401897a7b5" main="OmniaWrite.exe" released="2019-12-05" stability="testing" version="0.0.3">
+    <archive extract="OmniaWrite-0.0.3-windows" href="http://backend.omniawrite.com/OmniaWrite-0.0.3-windows.zip" size="12156271" type="application/zip"/>
+  </implementation>
+  <implementation arch="Linux-*" id="sha1new=02b9b73cc5a96c031556889fb54b68f08d2284e2" main="OmniaWrite" released="2019-12-05" stability="testing" version="0.0.2">
+    <archive href="http://backend.omniawrite.com/OmniaWrite-0.0.2-linux.zip" size="27661654" type="application/zip"/>
+  </implementation>
+  <implementation arch="Windows-*" id="sha1new=3df9ae162d00b4527828ecfa0344915e4f0b6650" main="OmniaWrite.exe" released="2019-12-05" stability="testing" version="0.0.2">
+    <archive href="http://backend.omniawrite.com/OmniaWrite-0.0.2-windows.zip" size="12395322" type="application/zip"/>
+  </implementation>
 </interface>
 <!-- Base64 Signature
-iQEcBAABAgAGBQJd6VlVAAoJEAOhPUlgvD1WY3kH/jFB8CLg8KHVariYOrxtGI1ovT01o/VkN/+OPPKWpy7lMdYPER73wcE0YUqOxIiF1D/3KGlhdfmAlL7fsPJZiGi2N9bH4F4CDt/Taeo4oCwmWbc6xtA4WoPTkkifcDC8YumRAFLDGf/e1usHYRIRSqWuCE+0dvOGSQIZtMDWeeBoJUznerQKgn5SkHNG1WG0oENGYg/FuYLR+bz3Cbc4EVv1rsx2SnF066NKesQ6bGWYCSbzstZFQtidm6sW++X4FCSI4w1IzN4SPNag9PawdSfq4Uc7n2rMFQ8B5GMF6Atf0QEhB5Wnr+jbOXbwYwi77NwnbQnSedk5wyWEanlhpc4=
+iQGzBAABCgAdFiEEa5r4ZZYiZXH7Nj7F95IZqrexNwwFAl3phLgACgkQ95IZqrexNwz50gwAsh/T
+8cKXNBg5eHohG0pH3hfK/6tkD1q36jLjYc/Ch4zmLQqzMr4H4uqQU9iIgoRoXGzq+zvfmB/ojSHT
+h7XUp+t2YmujXFhjoj7nqkdu5R/76U6NMxSJG9fVpTVAwBuBaLilWVYDSC7NZqw1IQ5rifb96jAE
++L8zHPgzV1TJbhle+feG1qt3+azBqLFkEC6M38TdqFViEabIqjDfv8BsE1htd42ixy5AgMcLJfAu
+38uIXT7be1KDuqHg2/4GC1laEupu8KnUmWtqEbeUiFb5LI1q+8frfdVuS7MZQBHPqtSi/h/iSl2C
+vFrjXaxEgn1421NdgqmSEtcyAASRSC95mi4om8SMoHDPiJYvjTr70CBq9XXyQdf27ElCEmBg/UqS
+HYbanXynQiR6hSTNWPIkmhOOH4XiBmuAQ2uD/z35RrT7065tNOWLkVCSrd5MGfCvj29X5qlRbune
+PRtFrKm3ZWRFzD8DALd5idgTPr0FXy5XespF8X+eQ3EeyfX2hRsq
 
 -->
