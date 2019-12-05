@@ -7,6 +7,10 @@ import builtins from "rollup-plugin-node-builtins";
 import json from "@rollup/plugin-json";
 import globals from "rollup-plugin-node-globals";
 import scss from "rollup-plugin-scss";
+import copy from "rollup-plugin-copy";
+import conditional from "rollup-plugin-conditional";
+
+
 
 import {
 	terser
@@ -19,6 +23,8 @@ const workboxConfig = require("./workbox-config.js")
 
 // eslint-disable-next-line no-undef
 const production = !process.env.ROLLUP_WATCH;
+const isCordova = process.argv.includes("--config-cordova");
+const isDeskgap = process.argv.includes("--config-deskgap");
 
 export default {
 	input: "src/main.js",
@@ -65,7 +71,30 @@ export default {
 
 		// If we're building for production (npm run build
 		// instead of npm run dev), minify
-		production && terser()
+		production && terser(),
+
+		conditional(isCordova, [
+			copy({
+				targets: [{
+					src: "public/index_cordova.html",
+					dest: "cordova/www",
+					rename: "index.html"
+				},
+				{
+					src: ["public/*.woff", "public/*.woff2", "public/*.eot", "public/*.svg", "public/*.ttf", "public/*.eot"],
+					dest: "cordova/www",
+				},
+				{
+					src: ["public/bundle.js", "public/main.css", "public/bundle.css", "public/logo.png"],
+					dest: "cordova/www"
+				},
+				{
+					src: "public/templates/",
+					dest: "cordova/www"
+				}
+				]
+			})
+		])
 	],
 	watch: {
 		clearScreen: false

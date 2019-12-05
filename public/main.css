@@ -470,7 +470,7 @@ select#focusSceneSelect:active {
   line-height: 2rem;
   text-align: justify; }
   #codex-editor .codex-editor .ce-block i {
-    font-family: 'IBM Plex Mono', monospace; }
+    font-family: 'IBM Plex Mono', monospace; }
   #codex-editor .codex-editor .ce-block__content {
     padding: 0;
     max-width: unset; }
@@ -531,7 +531,7 @@ select#focusSceneSelect:active {
   .nodeText {
     line-height: 2.5rem; }
   #codex-editor .codex-editor {
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: 'IBM Plex Mono', monospace;
     color: var(--editor-color);
     font-weight: 400;
     font-size: var(--editor-font-size);
@@ -649,7 +649,7 @@ select#focusSceneSelect:active {
     overflow: visible; }
     .tooltip .tooltiptext {
       display: initial;
-      font-family: 'IBM Plex Sans', sans-serif;
+      font-family: 'IBM Plex Sans', sans-serif;
       font-size: 1rem;
       visibility: hidden;
       color: #fafafa;
