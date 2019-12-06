@@ -1,15 +1,13 @@
 <script lang="javascript">
   import { state, projects, chapters, scenes, settings } from "../../stores";
   import { _ } from "svelte-i18n";
-  let chapterCount;
-  let sceneCount;
-  let wordCount;
-  let charCount;
+
+  let chapterCount = 0;
+  let sceneCount = 0;
+  let wordCount = 0;
+  let charCount = 0;
+
   $: {
-    chapterCount = 0;
-    sceneCount = 0;
-    wordCount = 0;
-    charCount = 0;
     chapters.subscribe(chapters => {
       chapters
         .filter(chapter => chapter.project == $state.currentProject)
