@@ -79,9 +79,11 @@
       </button>
     </div>
   </div>
-  <div class="btn-group">
-    <button on:click={createCard}>{$_('cards.modal.buttonSave')}</button>
-  </div>
+  {#if newCardObject.title.length > 0}
+    <div class="btn-group">
+      <button on:click={createCard}>{$_('cards.modal.buttonSave')}</button>
+    </div>
+  {/if}
 </Modal>
 
 <Modal bind:show={showEditCard}>
@@ -117,9 +119,11 @@
       </button>
     </div>
   </div>
-  <div class="btn-group">
-    <button on:click={editCard}>{$_('cards.modal.buttonSave')}</button>
-  </div>
+  {#if editCardObject.title.length > 0}
+    <div class="btn-group">
+      <button on:click={editCard}>{$_('cards.modal.buttonSave')}</button>
+    </div>
+  {/if}
 </Modal>
 
 {#if $state.currentProject}

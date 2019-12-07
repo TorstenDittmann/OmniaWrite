@@ -8,6 +8,8 @@
 
   export let showCreateProject;
 
+  let createProjectInput = "";
+
   function createProject() {
     let retValue = projects.createProject(
       document.getElementById("createProjectInput").value
@@ -28,14 +30,16 @@
   <div class="field">
     <label for="createProjectInput">Title:</label>
     <input
-      id="createProjectInput"
+      bind:value={createProjectInput}
       autocomplete="off"
       placeholder="enter your title"
       type="text" />
   </div>
 
   <hr />
-  <div class="btn-group">
-    <button on:click={createProject}>Create!</button>
-  </div>
+  {#if createProjectInput.length > 0}
+    <div class="btn-group">
+      <button on:click={createProject}>Create!</button>
+    </div>
+  {/if}
 </Modal>
