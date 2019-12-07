@@ -50,7 +50,7 @@
 </style>
 
 <CreateProject
-  {showCreateProject}
+  bind:showCreateProject={showCreateProject}
   on:changeProject={event => changeProject(event.detail.project)} />
 
 {#each $projects.filter(project => project.id == $state.currentProject) as project}
