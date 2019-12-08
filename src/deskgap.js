@@ -1,12 +1,12 @@
 /* eslint-disable no-undef */
-const {
+let {
     app,
     BrowserWindow,
     messageNode,
     dialog
 } = require("deskgap");
 
-const fs = require("fs");
+let fs = require("fs");
 let win;
 
 app.once("ready", () => {

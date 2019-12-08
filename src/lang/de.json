@@ -43,6 +43,7 @@
         }
     },
     "cloud": {
+        "updated": "aktualisiert",
         "account": {
             "title": "Account",
             "connectedAccount": "Verbundener Account:",
@@ -50,8 +51,6 @@
         },
         "cloud": {
             "title": "Cloud",
-            "localDataFrom": "Lokale Daten von:",
-            "cloudDataFrom": "Cloud Daten von:",
             "export": "Export",
             "import": "Import"
         },

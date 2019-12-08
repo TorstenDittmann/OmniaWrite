@@ -94,6 +94,28 @@ export default {
 				}
 				]
 			})
+		]),
+		conditional(isDeskgap, [
+			copy({
+				targets: [{
+					src: "public/index_cordova.html",
+					dest: "deskgap",
+					rename: "index.html"
+				},
+				{
+					src: ["public/*.woff", "public/*.woff2", "public/*.eot", "public/*.svg", "public/*.ttf", "public/*.eot"],
+					dest: "deskgap",
+				},
+				{
+					src: ["public/bundle.js", "public/main.css", "public/bundle.css", "public/logo.png"],
+					dest: "deskgap",
+				},
+				{
+					src: "public/templates/",
+					dest: "deskgap",
+				}
+				]
+			})
 		])
 	],
 	watch: {

@@ -8,6 +8,10 @@
   let charCount = 0;
 
   $: {
+    chapterCount = 0;
+    sceneCount = 0;
+    wordCount = 0;
+    charCount = 0;
     chapters.subscribe(chapters => {
       chapters
         .filter(chapter => chapter.project == $state.currentProject)

@@ -6,3 +6,6 @@ public/service-worker.js
 src/licenses.json
 public/main.css
 installer/OmniaWrite-*
+deskgap/*
+!deskgap/deskgap.js
+!deskgap/package.json
