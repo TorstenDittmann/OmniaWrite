@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type='text/xsl' href='resources/catalog.xsl'?>
+<c:catalog xmlns="http://zero-install.sourceforge.net/2004/injector/interface" xmlns:c="http://0install.de/schema/injector/catalog"><interface uri="http://backend.omniawrite.com/OmniaWrite.xml"><name>OmniaWrite</name><summary>OmniaWrite is a next-generation plain text editor engineered for creative writing.</summary><description>
+    A longer description goes here.
+
+    You can include multiple paragraphs too.
+  </description><homepage>https://omniawrite.com</homepage><entry-point binary-name="OmniaWrite" command="run"/></interface></c:catalog>
+<!-- Base64 Signature
+iQGzBAABCgAdFiEEa5r4ZZYiZXH7Nj7F95IZqrexNwwFAl3sS08ACgkQ95IZqrexNwycUgwAg77H
+oRrKQKW+NhcgXGjH7wfBwMuS7PYtV9LnP1u16RVzYdoLxonH+3kizc+ReYUQEe7jNQJEmWPxoJ0P
+Sv9U/cDFTXYSaJ5UMHjoXgtCPFnopIvNtdijw064RA6yj3dQkoL755K2AL9RafwMX1Lm4Zyv0tgu
+VhCnzMIq5xQGQGUv/ggB/MAncCdFNKSZ8IrtNmA29tQ0fjumklVmToHObdXBNoLORCUzqwMabVjC
+xjZl0ZEtYCr+HGh+ualr57xNWKj9ZNRhfQ34cBnKJeUU5ZwYGn16BRodRXQf4UEbbD3dTEaDozC5
+S+mCBFvJDt4jLNmQ18dAT5l4VbSMym5ZKirfiR+ixAzOztecQN4k+Eh9/NjyPK5rJJADaKapOMec
+RHetAVp8cJymG2sMeFuvqAiUdoUH03CGzU5Bgv+XofCaQn7ZK940XbcE8/IWLtME+y7wo1L0XcZ3
+geDgBoxkdwS5rDeNLB5E1ccaid/+36AaBi6qUK/yydRrfurO4Lcu
+
+-->

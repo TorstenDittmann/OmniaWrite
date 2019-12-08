@@ -5,3 +5,5 @@ dist/
 public/service-worker.js
 cordova/www/
 src/licenses.json
+public/main.css
+installer/OmniaWrite-*

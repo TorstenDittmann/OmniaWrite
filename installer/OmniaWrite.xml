@@ -2,7 +2,7 @@
 <?xml-stylesheet type='text/xsl' href='interface.xsl'?>
 <interface uri="http://backend.omniawrite.com/OmniaWrite.xml" xmlns="http://zero-install.sourceforge.net/2004/injector/interface" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://zero-install.sourceforge.net/2004/injector/interface http://0install.de/schema/injector/interface/interface.xsd http://0install.de/schema/desktop-integration/capabilities http://0install.de/schema/desktop-integration/capabilities/capabilities.xsd">
   <name>OmniaWrite</name>
-  <summary xml:lang="en">OmniaWrite</summary>
+  <summary xml:lang="en">OmniaWrite is a next-generation plain text editor engineered for creative writing.</summary>
   <icon href="https://app.omniawrite.com/favicon.ico" type="image/vnd.microsoft.icon"/>
   <icon href="https://app.omniawrite.com/apple-touch-icon.png" type="image/png"/>
   <category>Office</category>
@@ -24,13 +24,13 @@
   </implementation>
 </interface>
 <!-- Base64 Signature
-iQGzBAABCgAdFiEEa5r4ZZYiZXH7Nj7F95IZqrexNwwFAl3phLgACgkQ95IZqrexNwz50gwAsh/T
-8cKXNBg5eHohG0pH3hfK/6tkD1q36jLjYc/Ch4zmLQqzMr4H4uqQU9iIgoRoXGzq+zvfmB/ojSHT
-h7XUp+t2YmujXFhjoj7nqkdu5R/76U6NMxSJG9fVpTVAwBuBaLilWVYDSC7NZqw1IQ5rifb96jAE
-+L8zHPgzV1TJbhle+feG1qt3+azBqLFkEC6M38TdqFViEabIqjDfv8BsE1htd42ixy5AgMcLJfAu
-38uIXT7be1KDuqHg2/4GC1laEupu8KnUmWtqEbeUiFb5LI1q+8frfdVuS7MZQBHPqtSi/h/iSl2C
-vFrjXaxEgn1421NdgqmSEtcyAASRSC95mi4om8SMoHDPiJYvjTr70CBq9XXyQdf27ElCEmBg/UqS
-HYbanXynQiR6hSTNWPIkmhOOH4XiBmuAQ2uD/z35RrT7065tNOWLkVCSrd5MGfCvj29X5qlRbune
-PRtFrKm3ZWRFzD8DALd5idgTPr0FXy5XespF8X+eQ3EeyfX2hRsq
+iQGzBAABCgAdFiEEa5r4ZZYiZXH7Nj7F95IZqrexNwwFAl3sBt4ACgkQ95IZqrexNwxaGQv/T6F5
+FeWna+laJDuz8RgVn6LgyjEMwJyO64g1IztScW+u9ehIlbNCR4r//HN71GdV99RuvZ3cklh85UI8
+SUGwDL/+2bjLerz+iMSHcUvOkJ+TKFU2Oan0KZoNC90VeVI+koFH8prQb8ZpwBXVInZ6aBlnudRs
++jX9LDCpNXEk4/vjJ3IitFyw2NXI/cyZziOWd5au0YCeDRDabgJ7kfVm2TRrOOjAbYSt1yyLe1Qp
+7GNKNpg8jOq5K2KF5VuGkAirFnTrNEWU0Kn8MRT7XcszHwSrRhhrd6jYfuavvOuA4MDtQAVebab7
+4JSz+kN9Xyuq0hpv+S9s1d0+E9C3x+HQpJLtoeD97pPAUKB54Irdp/GKqKKNx6mSi+v0b0QRYInZ
+D+oMI161dIIVlQFwHIej5UveX0FTRgxXqaJ5CtbgHKuCo0SsNTlTLUHM4ySWa8+KOXATps0uSLb/
+HAzxxyu9lHrTyS9Lc6VoI3tZqPSqLZ542phPaOGBcNk6UXVihjeo
 
 -->
