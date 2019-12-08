@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<interface xmlns="http://zero-install.sourceforge.net/2004/injector/interface">
+  <name>OmniaWrite</name>
+  <summary>OmniaWrite is a next-generation plain text editor engineered for creative writing.</summary>
+  <description>
+    A longer description goes here.
+
+    You can include multiple paragraphs too.
+  </description>
+
+  <homepage>https://omniawrite.com</homepage>
+
+  <feed-for interface="http://backend.omniawrite.com/OmniaWrite.xml"/>
+  <entry-point binary-name="OmniaWrite" command="run"/>
+
+  <group license="All Rights Reserved by OmniaWrite">
+    <implementation arch="Linux-*" main="OmniaWrite" version="{version}">
+      <manifest-digest/>
+      <archive extract="OmniaWrite-{version}-linux" href="http://backend.omniawrite.com/OmniaWrite-{version}-linux.zip"/>
+    </implementation>
+    <implementation arch="Windows-*" main="OmniaWrite.exe" version="{version}">
+      <manifest-digest/>
+      <archive extract="OmniaWrite-{version}-windows" href="http://backend.omniawrite.com/OmniaWrite-{version}-windows.zip"/>
+    </implementation>
+  </group>
+</interface>

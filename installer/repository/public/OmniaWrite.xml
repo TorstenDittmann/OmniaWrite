@@ -1,0 +1,36 @@
+<?xml version="1.0" ?>
+<?xml-stylesheet type='text/xsl' href='resources/feed.xsl'?>
+<interface uri="http://backend.omniawrite.com/OmniaWrite.xml" xmlns="http://zero-install.sourceforge.net/2004/injector/interface">
+  <name>OmniaWrite</name>
+  <summary>OmniaWrite is a next-generation plain text editor engineered for creative writing.</summary>
+  <description>
+    A longer description goes here.
+
+    You can include multiple paragraphs too.
+  </description>
+
+  <homepage>https://omniawrite.com</homepage>
+  <entry-point binary-name="OmniaWrite" command="run"/>
+
+  <group license="All Rights Reserved by OmniaWrite">
+    <implementation arch="Linux-*" id="sha1new=306857a4f77bfc450769a48ed2252fa228c14557" main="OmniaWrite" released="2019-12-08" version="0.0.3">
+      <manifest-digest sha256new="XNMCDVDNTNSISEDMT43CV2KENS3Q6NBEXEVMTSMSQ4FAJUFV6NUA"/>
+      <archive extract="OmniaWrite-0.0.3-linux" href="http://backend.omniawrite.com/OmniaWrite-0.0.3-linux.zip" size="27211310"/>
+    </implementation>
+    <implementation arch="Windows-*" id="sha1new=ca3582adccae258d34bbf8d0abeabe401897a7b5" main="OmniaWrite.exe" released="2019-12-08" version="0.0.3">
+      <manifest-digest sha256new="7LIMSTGQ2OGGER2G6DM32ERE2BVIHAWYGCOGBPVLONTDPZBKP2AA"/>
+      <archive extract="OmniaWrite-0.0.3-windows" href="http://backend.omniawrite.com/OmniaWrite-0.0.3-windows.zip" size="12156271"/>
+    </implementation>
+  </group>
+</interface>
+<!-- Base64 Signature
+iQGzBAABCgAdFiEEa5r4ZZYiZXH7Nj7F95IZqrexNwwFAl3sS04ACgkQ95IZqrexNwzoBQv9Ev3Z
+KmVKdUlbwrNmF4iA8nUL9/nBzATlsmK4NnuvzwcG1YCD3f02fILKbUFWEFaucw6jNhldsshb4GHo
+pw0ox+yOcw3iqYuBEY56rUvEIMSQUR2+eSmI1IXg57ZJnc/EO+RVzV5ElwXSLWLhc4faqV48b6bo
+9LnmYjxdN9rrOLmOXHLLb6bjfeWchL8sprN1ZZTMhnqpOmEuqPeP5B71+xTnwahk13IyzGaKFueF
+3mA/wvsXpIYeFejT4FvxvJl491cgJ8Q+IiH43CHgmMWaxi1+qfhYGFRefWV721hYao0MgN+cqhmc
+IREVTxsXYx4Sxoz893VugXAaSKTbg1TGhgxJeajunedKYkj/n+ZQ6hNW1PkZG8pOUvlCoU9DQsJU
+2nKF+ITm9hNaLa1puRHoi5jPh5vpwHcxI2trb7VS9CQaDEZvcV46ZJjQJf7Co95uv6uUpQAzi5AI
+CPkOPTvHrOGG/lcYQgX/CADp6NhX89aZFeI5LCEL8KFKb+HPkaCQ
+
+-->
