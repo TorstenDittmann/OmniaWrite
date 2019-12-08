@@ -1,0 +1,3 @@
+# Records the absolute URL of all known archives.
+# To relocate archives, edit this file to contain the new addresses and run '0repo'.
+# Each line is 'basename SHA1 URL'

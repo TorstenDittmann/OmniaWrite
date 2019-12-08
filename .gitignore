@@ -5,3 +5,4 @@ dist/
 public/service-worker.js
 src/licenses.json
 public/main.css
+installer/OmniaWrite-*
