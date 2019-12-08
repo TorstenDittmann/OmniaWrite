@@ -29,16 +29,32 @@
       <manifest-digest sha256new="37MULG66J2BUMWJE5NF2CAOCUP3NMBCHPCY2LAQ33BSMEJCKZW6Q"/>
       <archive extract="OmniaWrite-0.0.4-windows" href="http://backend.omniawrite.com/OmniaWrite-0.0.4-windows.zip" size="12156682"/>
     </implementation>
+    <implementation arch="Linux-*" id="sha1new=016626a5836d0a875f606d934b0ccead10b7bea5" main="OmniaWrite" released="2019-12-08" stability="buggy" version="0.0.5">
+      <manifest-digest sha256new="CJPSPHXUVHACCP232ETNTHIMWTBG44TPP23NPWTECGRSRYUF4EHA"/>
+      <archive extract="OmniaWrite-0.0.5-linux" href="http://backend.omniawrite.com/OmniaWrite-0.0.5-linux.zip" size="15650423"/>
+    </implementation>
+    <implementation arch="Windows-*" id="sha1new=bffd51b8d9b55bbc261edf00fb30075229281ff5" main="OmniaWrite.exe" released="2019-12-08" stability="buggy" version="0.0.5">
+      <manifest-digest sha256new="7JEDSD4YKFQK3ZPEEDRSS6YRJWK3QCABXB7MSUWLSGOWFWZXPKYQ"/>
+      <archive extract="OmniaWrite-0.0.5-windows" href="http://backend.omniawrite.com/OmniaWrite-0.0.5-windows.zip" size="11282647"/>
+    </implementation>
+    <implementation arch="Linux-*" id="sha1new=15124b1b2246a15c7fe8df0f7f1cca8c3d88834e" main="OmniaWrite" released="2019-12-08" version="0.0.6">
+      <manifest-digest sha256new="JRJVKGDKR5JOIFPML6GKEQ3ZNZYISG6LXZLF24CKTY67QQASPQ7A"/>
+      <archive extract="OmniaWrite-0.0.6-linux" href="http://backend.omniawrite.com/OmniaWrite-0.0.6-linux.zip" size="15644293"/>
+    </implementation>
+    <implementation arch="Windows-*" id="sha1new=88639f2f574c0abbf4bd23a73b12c43a7aa68ff4" main="OmniaWrite.exe" released="2019-12-08" version="0.0.6">
+      <manifest-digest sha256new="2FOBQRX6XJU2LK57NXMEET5PNDF7TZI2Y3455ZYIYJE2KLUHZRNA"/>
+      <archive extract="OmniaWrite-0.0.6-windows" href="http://backend.omniawrite.com/OmniaWrite-0.0.6-windows.zip" size="11282653"/>
+    </implementation>
   </group>
 </interface>
 <!-- Base64 Signature
-iQGzBAABCgAdFiEEa5r4ZZYiZXH7Nj7F95IZqrexNwwFAl3sTi0ACgkQ95IZqrexNwyjRwwAlPd0
-HtdzZjRfJcoAQiIlw4k8Dmm1E64DtrriTPOhmTqKwUnKv9CSHXofZrgEvyBr6B/GLaUJKoSCZOOX
-n6BDMYBgomGoWlwcOFLrIOak2zVmyzLYX+QpmpP3k4DhDvoZV2AMmoLhvVakhkGbnfcJSoMBCbCG
-XRARvcsAKx7enTdLg1sL70s5O9mudNy4DEgSCgZWNjIK+R268m65K0qGWJRd22jsOqED8FYh6ai2
-kzpdZmfOJtDBHhu6zRwfe3gb/TRaYoHOn6aA+LMAaz1shnTD8rt8pPv0BmThzubYeBezUQNAgEdV
-bRT3CCeWE/C0ReGp7CKo1ZGMCzzZAofufUAndWtHLr/bUcrl+abJWlDwqUtBeRVnJFKsdEKaWyG0
-CBW/dSBQOt2BmPkWuu+me6pZblKDlFU/FMLIZ0HWBKGwnXNbVuD9MzniCRhNPoeR3tIP3i0nJrV3
-81JomHR2X0SgUrJjNBsFXwV9hunr6vcjr3a6zFUPODKVqJfGNzU8
+iQGzBAABCgAdFiEEa5r4ZZYiZXH7Nj7F95IZqrexNwwFAl3tJ10ACgkQ95IZqrexNww5AQv+IAuo
+yX0IQaWXVWCTuGCi2M+HlJje4UkPTZZbiRLYP9cF10O0It/RqNjBTW2Vp0M6WEz+Q1+L5tuWwYTX
+o8rYSt7AvlG7gmxytSPJU1lPWMTbnOV784vMROFK2+Jnco9Rfkvp6gF+ZQ5qDW7xpOXV2kCHvxZP
+RfvoBWtcpXCBs7tpdswPt/i8usEPtgZKew/H5JlezIPBsIAI8zVjpxxej/8zQ6XiYR70AvX5ItbQ
+8wl5O7G+DkG24gII9iI5h1gWrKVZiET0mHUrszSJU0Wv7IDQwmErXh9eLFk2GkIN7GLFz0dfHeGS
+5CrsXqTUHkTFUZ+oxEkEXcOiit5ZwiUgOy76KhQAXw47L83faXQmH7vOEZpawByqW1E/VnRbzLu3
+W3eU+ztqaz64y5Xb526HcrpXixmWs9Pe8eq3mZPeucC5b2+fBn/dALthp3m/PyavPLAhsFT010x4
+OpZjNHaFtOFLb8joe2tDADAHRN6kgZ4T0F7fB87D26EgCNS7ZlxQ
 
 -->
