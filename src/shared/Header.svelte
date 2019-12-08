@@ -1,11 +1,12 @@
 <script lang="javascript">
-  import { createEventDispatcher } from "svelte";
+  import { createEventDispatcher, onMount } from "svelte";
   import { fade, fly } from "svelte/transition";
   import { link, location } from "svelte-spa-router";
   import { state, tabs } from "../stores";
   import { deskgap } from "../utils";
   import { _ } from "svelte-i18n";
 
+  import cloud from "../cloud";
   import active from "svelte-spa-router/active";
 
   export let navigationState;
@@ -13,7 +14,7 @@
   const isRunningElectron = deskgap.isRunning();
   const dispatch = createEventDispatcher();
 
-  //let isValidLogin = cloud.isValidLogin();
+  let isValidLogin = cloud.isValidLogin();
   let cloudSyncState = false;
   let syncState = false;
 
@@ -111,15 +112,7 @@
             <li data-deskgap-no-drag>
               <span class="lnr lnr-cloud-upload" />
             </li>
-            <li use:active={'/settings', 'active' }>
-              <a href="/settings" use:link>Settings</a>
-            </li>
-            <li use:active={'/export', 'active' }>
-              <a href="/export" use:link>Export</a>
-            </li>
-            <li use:active={'/cloud', 'active' }>
-              <a href="/cloud" use:link>Cloud</a>
-            </li>
+          {/if}
         </ul>
         {#if isRunningElectron}
           <span
