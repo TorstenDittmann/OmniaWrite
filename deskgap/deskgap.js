@@ -1,12 +1,12 @@
 /* eslint-disable no-undef */
-let {
+const {
     app,
     BrowserWindow,
     messageNode,
     dialog
 } = require("deskgap");
 
-let fs = require("fs");
+const fs = require("fs");
 let win;
 
 app.once("ready", () => {
@@ -34,7 +34,7 @@ app.once("ready", () => {
         show: false,
         width: 1280,
         height: 960,
-        icon: "public/apple-touch-icon.png"
+        icon: __dirname + "/apple-touch-icon.png"
     }).once("ready-to-show", () => {
         win.show();
     });
@@ -43,7 +43,7 @@ app.once("ready", () => {
         win.webView.setDevToolsEnabled(true);
     }
 
-    win.loadFile("public/index.html");
+    win.loadFile(__dirname + "/index.html");
     win.on("closed", () => {
         win = null;
     });

@@ -168,6 +168,18 @@
   .disclaimer-button {
     width: calc(100% - 4rem);
   }
+
+  .cloud-container {
+    max-width: 800px;
+  }
+
+  .grid .cloud {
+    text-align: center;
+  }
+
+  .grid .cloud .lnr {
+    font-size: 3rem;
+  }
 </style>
 
 <Toast bind:show={showToast} text={showToastText} />
@@ -175,167 +187,169 @@
   <h2 slot="header">{$_('cloud.privacy.show')}</h2>
   <Policy />
 </Modal>
-{#if dataLoaded}
-  <Alert danger bind:show={showAlert}>
-    <span class="lnr lnr-warning">{showAlertText}</span>
-  </Alert>
-  {#if isUserLoggedIn}
-    <h2>{$_('cloud.account.title')}</h2>
-    <div class="field">
-      <label class="big" for="editChapterInput">
-        {$_('cloud.account.connectedAccount')}
-      </label>
-      {$state.currentUserEmail}
-    </div>
-    <div class="btn-group">
-      <button
-        on:click={logout}
-        disabled={logoutButtonLoading}
-        class:loading={logoutButtonLoading}>
-        <span class="lnr lnr-sync spinner" />
-        {$_('cloud.account.logout')}
-      </button>
-    </div>
-    <h2>{$_('cloud.cloud.title')}</h2>
-    <div class="field">
-      <label class="big" for="localDataFrom">
-        {$_('cloud.cloud.localDataFrom')}
-      </label>
-      <span id="localDataFrom">
-        {moment($state.lastLocalSave, 'X').fromNow()}
-      </span>
-    </div>
-    <div class="field">
-      <label class="big" for="newName">{$_('cloud.cloud.cloudDataFrom')}</label>
-      <span id="localDataFrom">
-        {moment($state.lastCloudSave, 'X').fromNow()}
-      </span>
-    </div>
-    <div class="btn-group">
-      {#if !hideExport}
+<div class="cloud-container">
+  {#if dataLoaded}
+    <Alert danger bind:show={showAlert}>
+      <span class="lnr lnr-warning">{showAlertText}</span>
+    </Alert>
+    {#if isUserLoggedIn}
+      <h2>{$_('cloud.cloud.title')}</h2>
+      <div id="cards" class="grid">
+        {#if saveCloudButtonLoading || getCloudButtonLoading}
+          <div class="cloud">
+            <span class="lnr lnr-sync spinner loading" />
+          </div>
+        {:else}
+          {#if $state.lastCloudSave < $state.lastLocalSave}
+            <div class="cloud" on:click={saveCloud}>
+              <span class="lnr lnr-cloud-upload" />
+              Upload
+              <small>
+                <i>
+                  {$_('cloud.updated')}
+                  {moment($state.lastLocalSave, 'X').fromNow()}
+                </i>
+              </small>
+            </div>
+          {/if}
+          <div class="cloud" on:click={getCloud}>
+            <span class="lnr lnr-cloud-download" />
+            Download
+            <small>
+              <i>
+                {$_('cloud.updated')}
+                {moment($state.lastCloudSave, 'X').fromNow()}
+              </i>
+            </small>
+          </div>
+        {/if}
+      </div>
+      <h2>{$_('cloud.account.title')}</h2>
+      <div class="field">
+        <label class="big" for="editChapterInput">
+          {$_('cloud.account.connectedAccount')}
+        </label>
+        {$state.currentUserEmail}
+      </div>
+      <div class="btn-group">
         <button
-          on:click={saveCloud}
-          disabled={saveCloudButtonLoading}
-          class:loading={saveCloudButtonLoading}>
+          on:click={logout}
+          disabled={logoutButtonLoading}
+          class:loading={logoutButtonLoading}>
           <span class="lnr lnr-sync spinner" />
-          {$_('cloud.cloud.export')}
+          {$_('cloud.account.logout')}
         </button>
+      </div>
+    {:else}
+      <h2>{$_('cloud.login.title')}</h2>
+      <div class="field">
+        <label class="big" for="loginUser">{$_('cloud.login.email')}</label>
+        <input
+          id="loginUser"
+          type="email"
+          placeholder="john.doe@email.tld"
+          bind:value={loginUser} />
+      </div>
+      <div class="field">
+        <label class="big" for="loginPass">{$_('cloud.login.password')}</label>
+        <input
+          id="loginPass"
+          type="password"
+          autocomplete="off"
+          placeholder="******"
+          bind:value={loginPass} />
+      </div>
+      <div class="btn-group">
+        <button
+          on:click={login}
+          disabled={loginButtonLoading}
+          class:loading={loginButtonLoading}>
+          <span class="lnr lnr-sync spinner" />
+          {$_('cloud.login.button')}
+        </button>
+      </div>
+      {#if !hideExport}
+        <h2>{$_('cloud.register.title')}</h2>
+        <div class="field">
+          <label class="big" for="newName">{$_('cloud.register.name')}</label>
+          <input
+            id="newName"
+            type="text"
+            placeholder="John Doe"
+            autocomplete="off"
+            bind:value={registerName} />
+        </div>
+        <div class="field">
+          <label class="big" for="newUser">{$_('cloud.login.email')}</label>
+          <input
+            id="newUser"
+            type="email"
+            placeholder="john.doe@email.tld"
+            autocomplete="off"
+            bind:value={registerUser} />
+        </div>
+        <div class="field">
+          <label class="big" for="newPass">{$_('cloud.login.password')}</label>
+          <input
+            id="newPass"
+            type="password"
+            autocomplete="off"
+            placeholder="******"
+            bind:value={registerPass} />
+        </div>
+        <div class="btn-group">
+          <button
+            class="disclaimer-check"
+            class:red={!statusPrivacyPolicy}
+            class:green={statusPrivacyPolicy}
+            on:click={() => (statusPrivacyPolicy = !statusPrivacyPolicy)}>
+            <span
+              class="lnr"
+              class:lnr-cross-circle={!statusPrivacyPolicy}
+              class:lnr-checkmark-circle={statusPrivacyPolicy} />
+          </button>
+          <button
+            class="disclaimer-button outline"
+            on:click={() => (showPrivacyPolicy = true)}>
+            {$_('cloud.privacy.show')}
+          </button>
+        </div>
+        <div class="btn-group">
+          <button
+            on:click={register}
+            disabled={registerButtonLoading}
+            class:loading={registerButtonLoading}>
+            <span class="lnr lnr-sync spinner" />
+            {$_('cloud.register.button')}
+          </button>
+        </div>
       {/if}
-      <button
-        on:click={getCloud}
-        disabled={getCloudButtonLoading}
-        class:loading={getCloudButtonLoading}>
-        <span class="lnr lnr-sync spinner" />
-        {$_('cloud.cloud.import')}
-      </button>
-    </div>
+      <h2>{$_('cloud.reset.title')}</h2>
+      <div class="field">
+        <label class="big" for="resetUser">{$_('cloud.login.email')}</label>
+        <input
+          id="resetUser"
+          type="email"
+          placeholder="john.doe@email.tld"
+          autocomplete="off"
+          bind:value={resetUser} />
+      </div>
+      <div class="btn-group">
+        <button
+          on:click={resetPassword}
+          disabled={resetButtonLoading}
+          class:loading={resetButtonLoading}>
+          <span class="lnr lnr-sync spinner" />
+          {$_('cloud.reset.button')}
+        </button>
+      </div>
+    {/if}
   {:else}
-    <h2>{$_('cloud.login.title')}</h2>
-    <div class="field">
-      <label class="big" for="loginUser">{$_('cloud.login.email')}</label>
-      <input
-        id="loginUser"
-        type="email"
-        placeholder="john.doe@email.tld"
-        bind:value={loginUser} />
-    </div>
-    <div class="field">
-      <label class="big" for="loginPass">{$_('cloud.login.password')}</label>
-      <input
-        id="loginPass"
-        type="password"
-        autocomplete="off"
-        placeholder="******"
-        bind:value={loginPass} />
-    </div>
-    <div class="btn-group">
-      <button
-        on:click={login}
-        disabled={loginButtonLoading}
-        class:loading={loginButtonLoading}>
-        <span class="lnr lnr-sync spinner" />
-        {$_('cloud.login.button')}
-      </button>
-    </div>
-    <h2>{$_('cloud.register.title')}</h2>
-    <div class="field">
-      <label class="big" for="newName">{$_('cloud.register.name')}</label>
-      <input
-        id="newName"
-        type="text"
-        placeholder="John Doe"
-        autocomplete="off"
-        bind:value={registerName} />
-    </div>
-    <div class="field">
-      <label class="big" for="newUser">{$_('cloud.login.email')}</label>
-      <input
-        id="newUser"
-        type="email"
-        placeholder="john.doe@email.tld"
-        autocomplete="off"
-        bind:value={registerUser} />
-    </div>
-    <div class="field">
-      <label class="big" for="newPass">{$_('cloud.login.password')}</label>
-      <input
-        id="newPass"
-        type="password"
-        autocomplete="off"
-        placeholder="******"
-        bind:value={registerPass} />
-    </div>
-    <div class="btn-group">
-      <button
-        class="disclaimer-check"
-        class:red={!statusPrivacyPolicy}
-        class:green={statusPrivacyPolicy}
-        on:click={() => (statusPrivacyPolicy = !statusPrivacyPolicy)}>
-        <span
-          class="lnr"
-          class:lnr-cross-circle={!statusPrivacyPolicy}
-          class:lnr-checkmark-circle={statusPrivacyPolicy} />
-      </button>
-      <button
-        class="disclaimer-button outline"
-        on:click={() => (showPrivacyPolicy = true)}>
-        {$_('cloud.privacy.show')}
-      </button>
-    </div>
-    <div class="btn-group">
-      <button
-        on:click={register}
-        disabled={registerButtonLoading}
-        class:loading={registerButtonLoading}>
-        <span class="lnr lnr-sync spinner" />
-        {$_('cloud.register.button')}
-      </button>
-    </div>
-    <h2>{$_('cloud.reset.title')}</h2>
-    <div class="field">
-      <label class="big" for="resetUser">{$_('cloud.login.email')}</label>
-      <input
-        id="resetUser"
-        type="email"
-        placeholder="john.doe@email.tld"
-        autocomplete="off"
-        bind:value={resetUser} />
-    </div>
-    <div class="btn-group">
-      <button
-        on:click={resetPassword}
-        disabled={resetButtonLoading}
-        class:loading={resetButtonLoading}>
-        <span class="lnr lnr-sync spinner" />
-        {$_('cloud.reset.button')}
-      </button>
+    <div class="lds-ellipsis">
+      <div />
+      <div />
+      <div />
+      <div />
     </div>
   {/if}
-{:else}
-  <div class="lds-ellipsis">
-    <div />
-    <div />
-    <div />
-    <div />
-  </div>
-{/if}
+</div>
