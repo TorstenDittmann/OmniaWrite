@@ -93,9 +93,11 @@
   </div>
   <hr />
   <div class="btn-group">
-    <button on:click={createChapter}>
-      {$_('sidebar.modal.newChapter.button')}
-    </button>
+    {#if createChapterTitle.length > 0}
+      <button on:click={createChapter}>
+        {$_('sidebar.modal.newChapter.button')}
+      </button>
+    {/if}
   </div>
 </Modal>
 
@@ -112,9 +114,11 @@
   </div>
   <hr />
   <div class="btn-group">
-    <button on:click={createScene}>
-      {$_('sidebar.modal.newScene.button')}
-    </button>
+    {#if createSceneTitle.length > 0}
+      <button on:click={createScene}>
+        {$_('sidebar.modal.newScene.button')}
+      </button>
+    {/if}
   </div>
 </Modal>
 
@@ -151,9 +155,11 @@
     {/each}
   </ul>
   <div class="btn-group">
-    <button on:click={editChapter}>
-      {$_('sidebar.modal.edit.buttonSave')}
-    </button>
+    {#if objEditChapter.title.length > 0}
+      <button on:click={editChapter}>
+        {$_('sidebar.modal.edit.buttonSave')}
+      </button>
+    {/if}
     <button
       style="float: right;"
       class="warning"
@@ -179,7 +185,11 @@
   </div>
   <br />
   <div class="btn-group">
-    <button on:click={editScene}>{$_('sidebar.modal.edit.buttonSave')}</button>
+    {#if objEditScene.title.length > 0}
+      <button on:click={editScene}>
+        {$_('sidebar.modal.edit.buttonSave')}
+      </button>
+    {/if}
     <button
       style="float: right;"
       class="warning"
