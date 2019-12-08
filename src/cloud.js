@@ -40,6 +40,9 @@ const cloud = {
             })
             .catch(error)
     },
+    isValidLogin: () => {
+        return Backendless.UserService.isValidLoginSync();
+    },
     /**
      * Login user and sets user ID in state.
      * @param user E-Mail

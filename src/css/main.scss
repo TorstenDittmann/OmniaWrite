@@ -103,6 +103,19 @@ header {
                         opacity: 1;
                     }
                 }
+
+                span {
+                    color: var(--menu-link);
+                    font-size: 1.5rem;
+                    text-decoration: none;
+                    display: block;
+                    padding: 1.5rem 1rem;
+                    opacity: .65;
+
+                    &:hover {
+                        opacity: 1;
+                    }
+                }
             }
 
             .close {
@@ -368,6 +381,16 @@ header {
     }
 }
 
+.lnr.spinner {
+    display: none;
+    -webkit-animation: spin 2s infinite linear;
+    animation: spin 2s infinite linear;
+
+    &.loading {
+        display: inline-block;
+    }
+}
+
 .btn-group {
     margin: 1rem;
 
@@ -620,7 +643,7 @@ span.card {
         line-height: 1rem;
         min-width: 12rem;
         text-align: left;
-        font-size: .8rem; 
+        font-size: .8rem;
 
     }
 
