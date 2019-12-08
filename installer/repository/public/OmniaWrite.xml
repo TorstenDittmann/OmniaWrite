@@ -21,16 +21,24 @@
       <manifest-digest sha256new="7LIMSTGQ2OGGER2G6DM32ERE2BVIHAWYGCOGBPVLONTDPZBKP2AA"/>
       <archive extract="OmniaWrite-0.0.3-windows" href="http://backend.omniawrite.com/OmniaWrite-0.0.3-windows.zip" size="12156271"/>
     </implementation>
+    <implementation arch="Linux-*" id="sha1new=5046779bdaa398f74e17b4569f915d3d07470f5f" main="OmniaWrite" released="2019-12-08" version="0.0.4">
+      <manifest-digest sha256new="UHM3WLBLSS57KXYZ5KAHCYAW6PF32DSQDC4YZ7M6LBMBT2M75L3Q"/>
+      <archive extract="OmniaWrite-0.0.4-linux" href="http://backend.omniawrite.com/OmniaWrite-0.0.4-linux.zip" size="27211721"/>
+    </implementation>
+    <implementation arch="Windows-*" id="sha1new=01fef3ac836fc0964581822d5a637d3ac57562fe" main="OmniaWrite.exe" released="2019-12-08" version="0.0.4">
+      <manifest-digest sha256new="37MULG66J2BUMWJE5NF2CAOCUP3NMBCHPCY2LAQ33BSMEJCKZW6Q"/>
+      <archive extract="OmniaWrite-0.0.4-windows" href="http://backend.omniawrite.com/OmniaWrite-0.0.4-windows.zip" size="12156682"/>
+    </implementation>
   </group>
 </interface>
 <!-- Base64 Signature
-iQGzBAABCgAdFiEEa5r4ZZYiZXH7Nj7F95IZqrexNwwFAl3sS04ACgkQ95IZqrexNwzoBQv9Ev3Z
-KmVKdUlbwrNmF4iA8nUL9/nBzATlsmK4NnuvzwcG1YCD3f02fILKbUFWEFaucw6jNhldsshb4GHo
-pw0ox+yOcw3iqYuBEY56rUvEIMSQUR2+eSmI1IXg57ZJnc/EO+RVzV5ElwXSLWLhc4faqV48b6bo
-9LnmYjxdN9rrOLmOXHLLb6bjfeWchL8sprN1ZZTMhnqpOmEuqPeP5B71+xTnwahk13IyzGaKFueF
-3mA/wvsXpIYeFejT4FvxvJl491cgJ8Q+IiH43CHgmMWaxi1+qfhYGFRefWV721hYao0MgN+cqhmc
-IREVTxsXYx4Sxoz893VugXAaSKTbg1TGhgxJeajunedKYkj/n+ZQ6hNW1PkZG8pOUvlCoU9DQsJU
-2nKF+ITm9hNaLa1puRHoi5jPh5vpwHcxI2trb7VS9CQaDEZvcV46ZJjQJf7Co95uv6uUpQAzi5AI
-CPkOPTvHrOGG/lcYQgX/CADp6NhX89aZFeI5LCEL8KFKb+HPkaCQ
+iQGzBAABCgAdFiEEa5r4ZZYiZXH7Nj7F95IZqrexNwwFAl3sTi0ACgkQ95IZqrexNwyjRwwAlPd0
+HtdzZjRfJcoAQiIlw4k8Dmm1E64DtrriTPOhmTqKwUnKv9CSHXofZrgEvyBr6B/GLaUJKoSCZOOX
+n6BDMYBgomGoWlwcOFLrIOak2zVmyzLYX+QpmpP3k4DhDvoZV2AMmoLhvVakhkGbnfcJSoMBCbCG
+XRARvcsAKx7enTdLg1sL70s5O9mudNy4DEgSCgZWNjIK+R268m65K0qGWJRd22jsOqED8FYh6ai2
+kzpdZmfOJtDBHhu6zRwfe3gb/TRaYoHOn6aA+LMAaz1shnTD8rt8pPv0BmThzubYeBezUQNAgEdV
+bRT3CCeWE/C0ReGp7CKo1ZGMCzzZAofufUAndWtHLr/bUcrl+abJWlDwqUtBeRVnJFKsdEKaWyG0
+CBW/dSBQOt2BmPkWuu+me6pZblKDlFU/FMLIZ0HWBKGwnXNbVuD9MzniCRhNPoeR3tIP3i0nJrV3
+81JomHR2X0SgUrJjNBsFXwV9hunr6vcjr3a6zFUPODKVqJfGNzU8
 
 -->
