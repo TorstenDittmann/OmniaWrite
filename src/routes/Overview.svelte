@@ -5,6 +5,7 @@
 
   import CreateProject from "./Overview/CreateProject.svelte";
   import ProjectOverview from "./Overview/Project.svelte";
+  import Status from "./Overview/Status.svelte";
   import Modal from "../shared/Modal.svelte";
   import moment from "moment";
   import "moment/locale/de";
@@ -50,8 +51,9 @@
 </style>
 
 <CreateProject
-  bind:showCreateProject={showCreateProject}
+  bind:showCreateProject
   on:changeProject={event => changeProject(event.detail.project)} />
+<Status />
 
 {#each $projects.filter(project => project.id == $state.currentProject) as project}
   <h1 class="projectTitle" on:click={() => (showEditProject = true)}>
