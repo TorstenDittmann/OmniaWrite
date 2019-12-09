@@ -19,11 +19,15 @@ export default class Paragraph {
    */
   constructor({ data, config, api }) {
     this.api = api;
+    console.log(data);
+
     config.cards.forEach(element => {
       let re = new RegExp(`\\b(${element.title})\\b`, "gi");
       let tooltip = element.content.replace(/"/g, "&quot;");
       let template = "<span class=\"card\" data-card=\"" + tooltip + "\">$1</span >";
-      data.text = data.text.replace(re, template);
+      if (data.text) {
+        data.text = data.text.replace(re, template);
+      }
     });
 
     this._CSS = {
