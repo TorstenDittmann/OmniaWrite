@@ -8,7 +8,8 @@
 
     You can include multiple paragraphs too.
   </description>
-
+  <icon href="https://app.omniawrite.com/favicon.ico" type="image/vnd.microsoft.icon"/>
+  <icon href="https://app.omniawrite.com/apple-touch-icon.png" type="image/png"/>
   <homepage>https://omniawrite.com</homepage>
   <entry-point binary-name="OmniaWrite" command="run"/>
 
@@ -45,16 +46,24 @@
       <manifest-digest sha256new="2FOBQRX6XJU2LK57NXMEET5PNDF7TZI2Y3455ZYIYJE2KLUHZRNA"/>
       <archive extract="OmniaWrite-0.0.6-windows" href="http://backend.omniawrite.com/OmniaWrite-0.0.6-windows.zip" size="11282653"/>
     </implementation>
+    <implementation arch="Linux-*" id="sha1new=a18c0ebf05c0714421a42fe75d4933bf4bf0a1fe" main="OmniaWrite" released="2019-12-09" version="0.1.0">
+      <manifest-digest sha256new="Z2KNXJAHWF4NTLXC7UFHNTJPDQ2RMXBYCK6CE4NN3RJVCEDPCC7Q"/>
+      <archive extract="OmniaWrite-0.1.0-linux" href="http://backend.omniawrite.com/OmniaWrite-0.1.0-linux.zip" size="15172408"/>
+    </implementation>
+    <implementation arch="Windows-*" id="sha1new=1652c35f3a41bae57e373ad4be84359583ee72f7" main="OmniaWrite.exe" released="2019-12-09" version="0.1.0">
+      <manifest-digest sha256new="KDT5VDSZ76D5ZHXEYGKWHP52M3EHO6K3R6DMBTIGIA26RASFCZ5A"/>
+      <archive extract="OmniaWrite-0.1.0-windows" href="http://backend.omniawrite.com/OmniaWrite-0.1.0-windows.zip" size="11206592"/>
+    </implementation>
   </group>
 </interface>
 <!-- Base64 Signature
-iQGzBAABCgAdFiEEa5r4ZZYiZXH7Nj7F95IZqrexNwwFAl3tJ10ACgkQ95IZqrexNww5AQv+IAuo
-yX0IQaWXVWCTuGCi2M+HlJje4UkPTZZbiRLYP9cF10O0It/RqNjBTW2Vp0M6WEz+Q1+L5tuWwYTX
-o8rYSt7AvlG7gmxytSPJU1lPWMTbnOV784vMROFK2+Jnco9Rfkvp6gF+ZQ5qDW7xpOXV2kCHvxZP
-RfvoBWtcpXCBs7tpdswPt/i8usEPtgZKew/H5JlezIPBsIAI8zVjpxxej/8zQ6XiYR70AvX5ItbQ
-8wl5O7G+DkG24gII9iI5h1gWrKVZiET0mHUrszSJU0Wv7IDQwmErXh9eLFk2GkIN7GLFz0dfHeGS
-5CrsXqTUHkTFUZ+oxEkEXcOiit5ZwiUgOy76KhQAXw47L83faXQmH7vOEZpawByqW1E/VnRbzLu3
-W3eU+ztqaz64y5Xb526HcrpXixmWs9Pe8eq3mZPeucC5b2+fBn/dALthp3m/PyavPLAhsFT010x4
-OpZjNHaFtOFLb8joe2tDADAHRN6kgZ4T0F7fB87D26EgCNS7ZlxQ
+iQGzBAABCgAdFiEEa5r4ZZYiZXH7Nj7F95IZqrexNwwFAl3ule0ACgkQ95IZqrexNwyQ8Qv/T/dZ
+hftKWNdrgEHQOY8KqcYy+/jAMfKocvhNHMy4hf3WoivySCXI4vuwubqnboNouZyxNiU34d3TqiI4
+dv5iJlFZXt/mDxMmi87o5t5xJPmFUxSnbopcP0jEJwa/EDGZmO4rNx41zmmrSFDAMbr6spTUcfFD
+CKV0u9FXTmSnisGitMuBfGSJHjJHBwBbOx5fUmWux3DAntX6tYCJDoq4HssQ6Nxr4ttsoeDBJebA
+Bjk5H45MuSjNaRFdcaI5zU4aaH2iIbwOperyRs3vgeWYGtAuLVZCh6E+9nYFAwPW5wFSUK6PjI7O
+4fxrfqzb14dnguChsBHeyhHb9tY71Dzp4di3b5kEQevrVON/8p4kbhYmdg5wfOsm3bpvnci8w6Lx
+Udf701BP9wFZWplVCnQ/i0wYn/V8dtzjvLFNRo2cDU/2ePocyNf+fAvEu8EsfVAWTL2hFyRTA2u1
+1ewFCOlWbG2y4/BRKmeK0xUx401EQ4a6aetUG9Ag9rSoPdhnITdQ
 
 -->

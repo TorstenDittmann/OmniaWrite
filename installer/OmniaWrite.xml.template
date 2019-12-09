@@ -7,7 +7,8 @@
 
     You can include multiple paragraphs too.
   </description>
-
+  <icon href="https://app.omniawrite.com/favicon.ico" type="image/vnd.microsoft.icon"/>
+  <icon href="https://app.omniawrite.com/apple-touch-icon.png" type="image/png"/>
   <homepage>https://omniawrite.com</homepage>
 
   <feed-for interface="http://backend.omniawrite.com/OmniaWrite.xml"/>
