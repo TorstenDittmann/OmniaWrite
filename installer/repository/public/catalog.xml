@@ -4,15 +4,15 @@
     A longer description goes here.
 
     You can include multiple paragraphs too.
-  </description><homepage>https://omniawrite.com</homepage><entry-point binary-name="OmniaWrite" command="run"/></interface></c:catalog>
+  </description><icon href="https://app.omniawrite.com/favicon.ico" type="image/vnd.microsoft.icon"/><icon href="https://app.omniawrite.com/apple-touch-icon.png" type="image/png"/><homepage>https://omniawrite.com</homepage><entry-point binary-name="OmniaWrite" command="run"/></interface></c:catalog>
 <!-- Base64 Signature
-iQGzBAABCgAdFiEEa5r4ZZYiZXH7Nj7F95IZqrexNwwFAl3sS08ACgkQ95IZqrexNwycUgwAg77H
-oRrKQKW+NhcgXGjH7wfBwMuS7PYtV9LnP1u16RVzYdoLxonH+3kizc+ReYUQEe7jNQJEmWPxoJ0P
-Sv9U/cDFTXYSaJ5UMHjoXgtCPFnopIvNtdijw064RA6yj3dQkoL755K2AL9RafwMX1Lm4Zyv0tgu
-VhCnzMIq5xQGQGUv/ggB/MAncCdFNKSZ8IrtNmA29tQ0fjumklVmToHObdXBNoLORCUzqwMabVjC
-xjZl0ZEtYCr+HGh+ualr57xNWKj9ZNRhfQ34cBnKJeUU5ZwYGn16BRodRXQf4UEbbD3dTEaDozC5
-S+mCBFvJDt4jLNmQ18dAT5l4VbSMym5ZKirfiR+ixAzOztecQN4k+Eh9/NjyPK5rJJADaKapOMec
-RHetAVp8cJymG2sMeFuvqAiUdoUH03CGzU5Bgv+XofCaQn7ZK940XbcE8/IWLtME+y7wo1L0XcZ3
-geDgBoxkdwS5rDeNLB5E1ccaid/+36AaBi6qUK/yydRrfurO4Lcu
+iQGzBAABCgAdFiEEa5r4ZZYiZXH7Nj7F95IZqrexNwwFAl3ule0ACgkQ95IZqrexNwxSsAv/dLMk
+4QwV8WVV46zeJPfTfUJmSb6812nsV+6DQqztIs6HtgDTywH/8gVqD/iJPniz6NmiU/sfOYzuHUCI
+9A7UYGHLM6JUdjJ0PVhzcBOHZQ6avxxvcMsEmfVyml2XpaAyb3Qp0WyOdJwxE0bSwPquxnKnic03
+vN84wBrsvyBotd86ObrlgotYqFweWCNNu8mbKlgAYDy5A6D7cjyVfZ2uWEhvzRbvMhq+ACyA3id9
+xczVEc9ck0LNLRsnnsYseFEpSE61f8mnCMQ/WQun2JJ9oV1yj72pI54Dw49J0rC5mMPkTSln8xMI
+EViLtHQ/LGEdHITAsxyY2lvkTlEvC5Cb4lZv9hFhcHlpZTC3ETLt5XxRNxKZYsn2d0SuoxdJQ08b
+bdkM5BZcMXw4NmPLQclWM+6X05IqF0VbpBt72dkAcGFD8sw+/QhTaqMwQQOs6CZHvDut+soQ2nsg
+E9qf4b7QKJ/kVGc3LaUBs8veorHODU8hblFbz8aozQqtjrcyEtMz
 
 -->
