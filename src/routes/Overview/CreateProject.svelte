@@ -11,9 +11,7 @@
   let createProjectInput = "";
 
   function createProject() {
-    let retValue = projects.createProject(
-      document.getElementById("createProjectInput").value
-    );
+    let retValue = projects.createProject(createProjectInput);
     showCreateProject = false;
     dispatch("changeProject", {
       project: retValue
