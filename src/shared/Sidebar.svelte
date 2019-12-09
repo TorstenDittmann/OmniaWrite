@@ -11,7 +11,7 @@
   export let sidebarState;
 
   let showCreateChapter = false;
-  let createChapterTitle;
+  let createChapterTitle = "";
 
   function createChapter() {
     chapters.createChapter($state.currentProject, createChapterTitle);
@@ -19,7 +19,7 @@
     createChapterTitle = "";
   }
 
-  let createSceneTitle;
+  let createSceneTitle = "";
   let createSceneChapter;
   let showCreateScene = false;
 
