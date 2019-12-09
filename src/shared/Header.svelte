@@ -14,7 +14,7 @@
   const isRunningElectron = deskgap.isRunning();
   const dispatch = createEventDispatcher();
 
-  let isValidLogin = cloud.isValidLogin();
+  //let isValidLogin = cloud.isValidLogin();
   let cloudSyncState = false;
   let syncState = false;
 
