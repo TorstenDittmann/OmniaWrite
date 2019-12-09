@@ -11,17 +11,17 @@
   let searchInput = "";
 
   let newCardObject = {
-    title: null,
-    content: null,
-    showTooltip: false
+    title: "",
+    content: "",
+    showTooltip: ""
   };
 
   let editCardObject = {
     id: null,
     project: null,
-    title: null,
-    content: null,
-    showTooltip: false
+    title: "",
+    content: "",
+    showTooltip: ""
   };
 
   function createCard() {
