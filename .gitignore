@@ -9,3 +9,4 @@ installer/OmniaWrite-*
 deskgap/*
 !deskgap/deskgap.js
 !deskgap/package.json
+!installer/repository/feeds/.git/
