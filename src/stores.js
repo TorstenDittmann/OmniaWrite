@@ -176,6 +176,14 @@ function storeChapters() {
             updateLocalTimestamp();
             return n.filter(n => n.id !== id)
         }),
+        moveChapter: (project, from, to) => update(n => {
+            let temp = n.filter(p => p.project == project).sort((a, b) => a.order - b.order);
+            temp.splice(temp.findIndex(a => a.id == to), 0, temp.splice(temp.findIndex(a => a.id == from), 1)[0]);
+            temp.forEach((ele, i) => {
+                n[n.findIndex(a => ele.id == a.id && project == a.project)].order = i;
+            });
+            return n;
+        }),
         /**
          * Toggles sidebar state of a chapter => Open/Closed.
          * @param id ID of the chapter.
@@ -243,6 +251,9 @@ function storeScenes() {
         removeScene: (id) => update(n => {
             updateLocalTimestamp();
             return n.filter(n => n.id !== id)
+        }),
+        moveScene: (from, to) => update(n => {
+            return n;
         }),
         /**
          * Orders the position.
