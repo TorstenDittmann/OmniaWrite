@@ -1,5 +1,6 @@
 <script lang="javascript">
   import { state, chapters, scenes } from "../stores";
+  import { onMount } from "svelte";
   import { link, push, replace } from "svelte-spa-router";
   import { fade, fly } from "svelte/transition";
   import { _ } from "svelte-i18n";
@@ -7,6 +8,7 @@
   import Modal from "./Modal.svelte";
   import Placeholder from "./Placeholder.svelte";
   import active from "svelte-spa-router/active";
+  import { initDraggable } from "./Sidebar/draggable";
 
   export let sidebarState;
 
@@ -49,6 +51,11 @@
     scenes.setSceneTitle(objEditScene.id, objEditScene.title);
     showEditScene = false;
   }
+
+  onMount(() => {
+    initDraggable(document.querySelectorAll(".menu .parent"));
+    initDraggable(document.querySelectorAll(".scenes .sceneDrag"));
+  });
 </script>
 
 <style type="text/css">
@@ -77,6 +84,15 @@
 
   .swap-list li:last-child .lnr-chevron-down {
     visibility: hidden;
+  }
+
+  [draggable] {
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+    -khtml-user-drag: element;
+    -webkit-user-drag: element;
   }
 </style>
 
@@ -223,8 +239,16 @@
         <span class="lnr lnr-cross" />
       </div>
       {#if $state.currentProject}
-        {#each $chapters.filter(chapter => chapter.project == $state.currentProject) as chapter, i}
-          <li class="parent" class:open={chapter.ui.open}>
+        {#each $chapters
+          .filter(chapter => chapter.project == $state.currentProject)
+          .sort((a, b) => a.order - b.order) as chapter, i}
+          <li
+            class="parent"
+            class:open={chapter.ui.open}
+            draggable="true"
+            data-type="chapter"
+            data-id={chapter.id}
+            data-project={chapter.project}>
             <span
               class="key"
               on:click={() => chapters.toggleChapterInSidebar(chapter.id)}>
@@ -234,13 +258,17 @@
                 class="lnr lnr-cog action"
                 on:click={() => ([showEditChapter, objEditChapter] = [true, chapter])} />
             </span>
-            <ul>
+            <ul class="scenes">
               {#each $scenes
                 .filter(scene => scene.chapter == chapter.id)
                 .sort((a, b) => a.order - b.order) as scene}
                 <li
+                  class="sceneDrag"
                   use:active={'/write/' + scene.id}
-                  on:click={() => push('/write/' + scene.id)}>
+                  on:click={() => push('/write/' + scene.id)}
+                  draggable="true"
+                  data-type="scene"
+                  data-id={scene.id}>
                   <a href="/write/{scene.id}" use:link>{scene.title}</a>
                   <span
                     class="lnr lnr-cog action"
