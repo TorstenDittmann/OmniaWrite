@@ -1,5 +1,4 @@
 import {
-  state,
   scenes,
   chapters
 } from "../../stores";
@@ -45,15 +44,19 @@ function handleDrop(e) {
   if (e.stopPropagation) {
     e.stopPropagation();
   }
-  if (dragSourceElement != this && typeof e.srcElement.parentElement.dataset.id !== "undefined") {
+
+  let srcElement = "undefined";
+  if (typeof e.srcElement.parentElement.dataset.id !== "undefined") {
+    srcElement = e.srcElement.parentElement;
+  } else if (typeof e.srcElement.dataset.id !== "undefined") {
+    srcElement = e.srcElement;
+  }
+
+  if (dragSourceElement != this && srcElement != undefined) {
     if (dragSourceType == "chapter") {
-      chapters.moveChapter(dragSourceElement.dataset.project, dragSourceElement.dataset.id, e.srcElement.parentElement.dataset.id);
+      chapters.moveChapter(dragSourceElement.dataset.project, dragSourceElement.dataset.id, srcElement.dataset.id);
     } else if (dragSourceType == "scene") {
-      console.log("fromChapter: " + dragSourceElement.dataset.chapter)
-      console.log("fromId: " + dragSourceElement.dataset.id)
-      console.log("toChapter: " + e.srcElement.parentElement.dataset.chapter)
-      console.log("toId: " + e.srcElement.parentElement.dataset.id)
-      scenes.moveScene(dragSourceElement.dataset.chapter, dragSourceElement.dataset.id, e.srcElement.parentElement.dataset.chapter, e.srcElement.parentElement.dataset.id);
+      scenes.moveScene(dragSourceElement.dataset.chapter, dragSourceElement.dataset.id, srcElement.dataset.chapter, srcElement.dataset.id);
     }
   }
   this.classList.remove("over");
