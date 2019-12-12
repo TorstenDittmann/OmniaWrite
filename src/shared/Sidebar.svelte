@@ -268,7 +268,8 @@
                   on:click={() => push('/write/' + scene.id)}
                   draggable="true"
                   data-type="scene"
-                  data-id={scene.id}>
+                  data-id={scene.id}
+                  data-chapter={scene.chapter}>
                   <a href="/write/{scene.id}" use:link>{scene.title}</a>
                   <span
                     class="lnr lnr-cog action"
