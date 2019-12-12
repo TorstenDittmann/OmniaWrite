@@ -5,6 +5,8 @@ import {
 } from "../../stores";
 
 let dragSourceElement = null;
+let dragSourceType = null;
+let isDragging = false;
 
 
 export function initDraggable(listItems) {
@@ -14,19 +16,13 @@ export function initDraggable(listItems) {
 }
 
 function handleStart(e) {
-  dragSourceElement = this;
-  e.dataTransfer.effectAllowed = "move";
-  e.dataTransfer.setData("text", this.outerHTML);
-  this.classList.add("draggingElement");
-  if (dragSourceElement.dataset.type == "chapter") {
-    document.querySelectorAll("[data-type=\"scene\"]").forEach(ele => {
-      console.log("hier")
-      ele.setAttribute("draggable", "false");
-    });
-  } else if (dragSourceElement.dataset.type == "scene") {
-    document.querySelectorAll("[data-type=\"chapter\"]").forEach(ele => {
-      ele.setAttribute("draggable", "false");
-    });
+  if (!isDragging) {
+    isDragging = true;
+    dragSourceElement = this;
+    dragSourceType = this.dataset.type;
+    e.dataTransfer.effectAllowed = "move";
+    e.dataTransfer.setData("text", this.outerHTML);
+    this.classList.add("draggingElement");
   }
 }
 
@@ -34,9 +30,10 @@ function handleOver(e) {
   if (e.preventDefault) {
     e.preventDefault();
   }
-  e.preventDefault();
-  this.classList.add("over");
-  e.dataTransfer.dropEffect = "move";
+  if (dragSourceType == this.dataset.type) {
+    this.classList.add("over");
+    e.dataTransfer.dropEffect = "move";
+  }
   return false;
 }
 
@@ -49,10 +46,14 @@ function handleDrop(e) {
     e.stopPropagation();
   }
   if (dragSourceElement != this && typeof e.srcElement.parentElement.dataset.id !== "undefined") {
-    if (dragSourceElement.dataset.type == "chapter") {
+    if (dragSourceType == "chapter") {
       chapters.moveChapter(dragSourceElement.dataset.project, dragSourceElement.dataset.id, e.srcElement.parentElement.dataset.id);
-    } else if (dragSourceElement.dataset.type == "scene") {
-      console.log("a");
+    } else if (dragSourceType == "scene") {
+      console.log("fromChapter: " + dragSourceElement.dataset.chapter)
+      console.log("fromId: " + dragSourceElement.dataset.id)
+      console.log("toChapter: " + e.srcElement.parentElement.dataset.chapter)
+      console.log("toId: " + e.srcElement.parentElement.dataset.id)
+      scenes.moveScene(dragSourceElement.dataset.chapter, dragSourceElement.dataset.id, e.srcElement.parentElement.dataset.chapter, e.srcElement.parentElement.dataset.id);
     }
   }
   this.classList.remove("over");
@@ -60,6 +61,7 @@ function handleDrop(e) {
 }
 
 function handleEnd(e) {
+  isDragging = false;
   this.classList.remove("over");
   this.classList.remove("draggingElement");
 }
