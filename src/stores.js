@@ -255,16 +255,14 @@ function storeScenes() {
         moveScene: (fromChapter, fromId, toChapter, toId) => update(n => {
             let tempFrom = n.filter(p => p.chapter == fromChapter).sort((a, b) => a.order - b.order);
             let tempTo = n.filter(p => p.chapter == toChapter).sort((a, b) => a.order - b.order);
-            console.log(tempTo)
-            let tempScene = tempTo.splice(tempFrom.findIndex(a => a.id == fromId), 1)[0];
-            console.log(tempScene)
+
+            let tempScene = tempFrom.splice(tempFrom.findIndex(a => a.id == fromId), 1)[0];
+            if (fromChapter == toChapter) {
+                tempTo.splice(tempTo.findIndex(a => a.id == fromId), 1);
+            }
             tempTo.splice(tempTo.findIndex(a => a.id == toId), 0, tempScene);
 
-            console.log(tempTo);
-
-            console.log(n[n.findIndex(a => fromId == a.id && fromChapter == a.chapter)]);
             n[n.findIndex(a => fromId == a.id && fromChapter == a.chapter)].chapter = toChapter;
-
             tempTo.forEach((ele, i) => {
                 n[n.findIndex(a => ele.id == a.id && toChapter == a.chapter)].order = i;
             });
