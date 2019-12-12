@@ -306,6 +306,14 @@ header {
                             opacity: 1;
                         }
                     }
+
+                    &.draggingElement {
+                        opacity: 0.4;
+                    }
+
+                    &.over {
+                        border-top: 4px solid var(--primary-color);
+                    }
                 }
             }
 

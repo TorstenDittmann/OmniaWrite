@@ -19,7 +19,6 @@ export default class Paragraph {
    */
   constructor({ data, config, api }) {
     this.api = api;
-    console.log(data);
 
     config.cards.forEach(element => {
       let re = new RegExp(`\\b(${element.title})\\b`, "gi");
