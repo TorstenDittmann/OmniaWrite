@@ -56,6 +56,13 @@
     initDraggable(document.querySelectorAll(".menu .parent"));
     initDraggable(document.querySelectorAll(".scenes .sceneDrag"));
   });
+
+  function startDrag(e) {
+    e.target.parentNode.parentNode.setAttribute("draggable", true);
+  }
+  function startDragScene(e) {
+    e.target.parentNode.setAttribute("draggable", true);
+  }
 </script>
 
 <style type="text/css">
@@ -243,9 +250,10 @@
           .filter(chapter => chapter.project == $state.currentProject)
           .sort((a, b) => a.order - b.order) as chapter, i}
           <li
+            id="chapter-{chapter.id}"
             class="parent"
             class:open={chapter.ui.open}
-            draggable="true"
+            draggable="false"
             data-type="chapter"
             data-id={chapter.id}
             data-project={chapter.project}>
@@ -257,6 +265,10 @@
               <span
                 class="lnr lnr-cog action"
                 on:click={() => ([showEditChapter, objEditChapter] = [true, chapter])} />
+              <span
+                class="lnr lnr-line-spacing action"
+                on:mousedown={startDrag}
+                style="cursor: grab;" />
             </span>
             <ul class="scenes">
               {#each $scenes
@@ -266,7 +278,6 @@
                   class="sceneDrag"
                   use:active={'/write/' + scene.id}
                   on:click={() => push('/write/' + scene.id)}
-                  draggable="true"
                   data-type="scene"
                   data-id={scene.id}
                   data-chapter={scene.chapter}>
@@ -274,6 +285,10 @@
                   <span
                     class="lnr lnr-cog action"
                     on:click={() => ([showEditScene, objEditScene] = [true, scene])} />
+                  <span
+                    class="lnr lnr-line-spacing action"
+                    on:mousedown={startDragScene}
+                    style="cursor: grab;" />
                 </li>
               {/each}
               <li>

@@ -15,7 +15,12 @@ export function initDraggable(listItems) {
 }
 
 function handleStart(e) {
+  console.log(this)
   if (!isDragging) {
+    if (!this.draggable) {
+      e.preventDefault();
+      return;
+    }
     isDragging = true;
     dragSourceElement = this;
     dragSourceType = this.dataset.type;
@@ -41,6 +46,7 @@ function handleLeave(e) {
 }
 
 function handleDrop(e) {
+  console.log("drop");
   if (e.stopPropagation) {
     e.stopPropagation();
   }
@@ -60,13 +66,21 @@ function handleDrop(e) {
     }
   }
   this.classList.remove("over");
+  this.setAttribute("draggable", false);
   return false;
 }
 
 function handleEnd(e) {
+
   isDragging = false;
   this.classList.remove("over");
   this.classList.remove("draggingElement");
+  this.setAttribute("draggable", false);
+}
+
+function handleOnDrop(e) {
+  e.preventDefault();
+  e.stopPropagation();
 }
 
 function addDnDHandlers(elem) {
@@ -74,6 +88,7 @@ function addDnDHandlers(elem) {
   elem.addEventListener("dragover", handleOver, false);
   elem.addEventListener("dragleave", handleLeave, false);
   elem.addEventListener("drop", handleDrop, false);
+  elem.addEventListener("ondrop", handleOnDrop, false);
   elem.addEventListener("dragend", handleEnd, false);
 
 }
