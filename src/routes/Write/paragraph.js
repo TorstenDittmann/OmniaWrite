@@ -219,51 +219,72 @@ export default class Paragraph {
 }
 
 export class QuoteTool {
+
   static get isInline() {
     return true;
   }
-  constructor() {
+
+  get state() {
+    return this._state;
+  }
+
+  set state(state) {
+    this._state = state;
+
+    this.button.classList.toggle(this.api.styles.inlineToolButtonActive, state);
+  }
+
+  constructor({ api }) {
+    this.api = api;
     this.button = null;
-    this.state = false;
+    this._state = false;
+
+    this.tag = "Q";
+    this.class = "cdx-quote";
   }
 
   render() {
     this.button = document.createElement("button");
-    this.button.classList.add("ce-inline-tool");
     this.button.type = "button";
     this.button.innerHTML = "<span class=\"lnr lnr-bubble\"></span>";
+    this.button.classList.add(this.api.styles.inlineToolButton);
 
     return this.button;
   }
 
   surround(range) {
     if (this.state) {
-      // If highlights is already applied, do nothing for now
+      this.unwrap(range);
       return;
     }
 
+    this.wrap(range);
+  }
+
+  wrap(range) {
     const selectedText = range.extractContents();
+    const mark = document.createElement(this.tag);
 
-    // Create MARK element
-    const mark = document.createElement("Q");
-
-    // Append to the MARK element selected TextNode
+    mark.classList.add(this.class);
     mark.appendChild(selectedText);
-
-    // Insert new element
     range.insertNode(mark);
+
+    this.api.selection.expandToTag(mark);
+  }
+
+  unwrap(range) {
+    const mark = this.api.selection.findParentTag(this.tag, this.class);
+    const text = range.extractContents();
+
+    mark.remove();
+
+    range.insertNode(text);
   }
 
 
-  checkState(selection) {
-    const text = selection.anchorNode;
+  checkState() {
+    const mark = this.api.selection.findParentTag(this.tag);
 
-    if (!text) {
-      return;
-    }
-
-    const anchorElement = text instanceof Element ? text : text.parentElement;
-
-    this.state = !!anchorElement.closest("Q");
+    this.state = !!mark;
   }
 }
