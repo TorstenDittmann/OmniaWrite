@@ -737,6 +737,10 @@ span.card {
         .ce-paragraph {
             line-height: 2rem;
         }
+
+        .ce-inline-toolbar__dropdown {
+            display: none;
+        }
     }
 }
 
