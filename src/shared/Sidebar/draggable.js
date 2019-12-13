@@ -9,13 +9,13 @@ let isDragging = false;
 
 
 export function initDraggable(listItems) {
+  console.log(listItems);
   listItems.forEach(item => {
     addDnDHandlers(item);
   })
 }
 
 function handleStart(e) {
-  console.log(this)
   if (!isDragging) {
     if (!this.draggable) {
       e.preventDefault();
@@ -31,6 +31,7 @@ function handleStart(e) {
 }
 
 function handleOver(e) {
+  console.log(e)
   if (e.preventDefault) {
     e.preventDefault();
   }
@@ -46,10 +47,9 @@ function handleLeave(e) {
 }
 
 function handleDrop(e) {
-  console.log("drop");
-  if (e.stopPropagation) {
-    e.stopPropagation();
-  }
+  console.log(e);
+  if (e.preventDefault) { e.preventDefault(); }
+  if (e.stopPropagation) { e.stopPropagation(); }
 
   let srcElement = "undefined";
   if (typeof e.srcElement.parentElement.dataset.id !== "undefined") {
@@ -78,17 +78,11 @@ function handleEnd(e) {
   this.setAttribute("draggable", false);
 }
 
-function handleOnDrop(e) {
-  e.preventDefault();
-  e.stopPropagation();
-}
-
 function addDnDHandlers(elem) {
   elem.addEventListener("dragstart", handleStart, false);
   elem.addEventListener("dragover", handleOver, false);
   elem.addEventListener("dragleave", handleLeave, false);
   elem.addEventListener("drop", handleDrop, false);
-  elem.addEventListener("ondrop", handleOnDrop, false);
   elem.addEventListener("dragend", handleEnd, false);
 
 }
