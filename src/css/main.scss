@@ -364,6 +364,7 @@ header {
     grid-area: content;
     overflow: auto;
     scrollbar-color: rgb(13, 19, 22) rgb(25, 38, 44);
+    height: 90vh;
 
     .inner {
         padding: 1rem;
