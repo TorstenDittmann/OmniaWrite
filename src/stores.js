@@ -176,6 +176,14 @@ function storeChapters() {
             updateLocalTimestamp();
             return n.filter(n => n.id !== id)
         }),
+        moveChapter: (project, from, to) => update(n => {
+            let temp = n.filter(p => p.project == project).sort((a, b) => a.order - b.order);
+            temp.splice(temp.findIndex(a => a.id == to), 0, temp.splice(temp.findIndex(a => a.id == from), 1)[0]);
+            temp.forEach((ele, i) => {
+                n[n.findIndex(a => ele.id == a.id && project == a.project)].order = i;
+            });
+            return n;
+        }),
         /**
          * Toggles sidebar state of a chapter => Open/Closed.
          * @param id ID of the chapter.
@@ -243,6 +251,23 @@ function storeScenes() {
         removeScene: (id) => update(n => {
             updateLocalTimestamp();
             return n.filter(n => n.id !== id)
+        }),
+        moveScene: (fromChapter, fromId, toChapter, toId) => update(n => {
+            let tempFrom = n.filter(p => p.chapter == fromChapter).sort((a, b) => a.order - b.order);
+            let tempTo = n.filter(p => p.chapter == toChapter).sort((a, b) => a.order - b.order);
+
+            let tempScene = tempFrom.splice(tempFrom.findIndex(a => a.id == fromId), 1)[0];
+            if (fromChapter == toChapter) {
+                tempTo.splice(tempTo.findIndex(a => a.id == fromId), 1);
+            }
+            tempTo.splice(tempTo.findIndex(a => a.id == toId), 0, tempScene);
+
+            n[n.findIndex(a => fromId == a.id && fromChapter == a.chapter)].chapter = toChapter;
+            tempTo.forEach((ele, i) => {
+                n[n.findIndex(a => ele.id == a.id && toChapter == a.chapter)].order = i;
+            });
+
+            return n;
         }),
         /**
          * Orders the position.
