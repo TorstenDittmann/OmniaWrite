@@ -9,7 +9,6 @@ let isDragging = false;
 
 
 export function initDraggable(listItems) {
-  console.log(listItems);
   listItems.forEach(item => {
     addDnDHandlers(item);
   })
@@ -31,7 +30,6 @@ function handleStart(e) {
 }
 
 function handleOver(e) {
-  console.log(e)
   if (e.preventDefault) {
     e.preventDefault();
   }
@@ -47,7 +45,6 @@ function handleLeave(e) {
 }
 
 function handleDrop(e) {
-  console.log(e);
   if (e.preventDefault) { e.preventDefault(); }
   if (e.stopPropagation) { e.stopPropagation(); }
 
@@ -60,7 +57,11 @@ function handleDrop(e) {
 
   if (dragSourceElement != this && srcElement != undefined) {
     if (dragSourceType == "chapter") {
-      chapters.moveChapter(dragSourceElement.dataset.project, dragSourceElement.dataset.id, srcElement.dataset.id);
+      if (e.srcElement.dataset.type == "scene") {
+        chapters.moveChapter(dragSourceElement.dataset.project, dragSourceElement.dataset.id, srcElement.dataset.chapter);
+      } else {
+        chapters.moveChapter(dragSourceElement.dataset.project, dragSourceElement.dataset.id, srcElement.dataset.id);
+      }
     } else if (dragSourceType == "scene") {
       scenes.moveScene(dragSourceElement.dataset.chapter, dragSourceElement.dataset.id, srcElement.dataset.chapter, srcElement.dataset.id);
     }
@@ -71,7 +72,6 @@ function handleDrop(e) {
 }
 
 function handleEnd(e) {
-
   isDragging = false;
   this.classList.remove("over");
   this.classList.remove("draggingElement");

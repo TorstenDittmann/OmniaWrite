@@ -157,26 +157,6 @@
       placeholder="enter your title"
       type="text" />
   </div>
-  <h3>{$_('sidebar.modal.edit.order')}</h3>
-  <ul class="swap-list">
-    {#each $scenes
-      .filter(scene => scene.chapter == objEditChapter.id)
-      .sort((a, b) => a.order - b.order) as scene}
-      <li>
-        <span
-          class="lnr lnr-chevron-up action"
-          on:click={() => {
-            scenes.orderScene(scene.id, true);
-          }} />
-        <span
-          class="lnr lnr-chevron-down action"
-          on:click={() => {
-            scenes.orderScene(scene.id, false);
-          }} />
-        <span>{scene.title}</span>
-      </li>
-    {/each}
-  </ul>
   <div class="btn-group">
     {#if objEditChapter.title.length > 0}
       <button on:click={editChapter}>
