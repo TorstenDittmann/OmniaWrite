@@ -19,7 +19,6 @@ export default class Paragraph {
    */
   constructor({ data, config, api }) {
     this.api = api;
-    console.log(data);
 
     config.cards.forEach(element => {
       let re = new RegExp(`\\b(${element.title})\\b`, "gi");
@@ -163,6 +162,8 @@ export default class Paragraph {
     return {
       text: {
         br: true,
+        q: true,
+        span: false
       }
     };
   }
@@ -216,5 +217,76 @@ export default class Paragraph {
       icon: "",
       title: "Text"
     };
+  }
+}
+
+export class QuoteTool {
+
+  static get isInline() {
+    return true;
+  }
+
+  get state() {
+    return this._state;
+  }
+
+  set state(state) {
+    this._state = state;
+
+    this.button.classList.toggle(this.api.styles.inlineToolButtonActive, state);
+  }
+
+  constructor({ api }) {
+    this.api = api;
+    this.button = null;
+    this._state = false;
+
+    this.tag = "Q";
+    this.class = "cdx-quote";
+  }
+
+  render() {
+    this.button = document.createElement("button");
+    this.button.type = "button";
+    this.button.innerHTML = "<span class=\"lnr lnr-bubble\"></span>";
+    this.button.classList.add(this.api.styles.inlineToolButton);
+
+    return this.button;
+  }
+
+  surround(range) {
+    if (this.state) {
+      this.unwrap(range);
+      return;
+    }
+
+    this.wrap(range);
+  }
+
+  wrap(range) {
+    const selectedText = range.extractContents();
+    const mark = document.createElement(this.tag);
+
+    mark.classList.add(this.class);
+    mark.appendChild(selectedText);
+    range.insertNode(mark);
+
+    this.api.selection.expandToTag(mark);
+  }
+
+  unwrap(range) {
+    const mark = this.api.selection.findParentTag(this.tag, this.class);
+    const text = range.extractContents();
+
+    mark.remove();
+
+    range.insertNode(text);
+  }
+
+
+  checkState() {
+    const mark = this.api.selection.findParentTag(this.tag);
+
+    this.state = !!mark;
   }
 }

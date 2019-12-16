@@ -3,7 +3,7 @@
   import { scenes, chapters, state, cards } from "../stores";
   import { push, location } from "svelte-spa-router";
   import { _ } from "svelte-i18n";
-  import Paragraph from "./Write/paragraph";
+  import Paragraph, { QuoteTool } from "./Write/paragraph";
 
   import Overview from "./Write/Overview.svelte";
   import EditorJS from "@editorjs/editorjs";
@@ -74,9 +74,12 @@
           countWordsAndChars();
         },
         tools: {
+          quote: {
+            class: QuoteTool
+          },
           paragraph: {
             class: Paragraph,
-            inlineToolbar: false,
+            inlineToolbar: ["bold", "italic", "quote"],
             config: {
               project: $state.currentProject,
               cards: $cards.filter(card => {

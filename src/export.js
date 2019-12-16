@@ -112,7 +112,7 @@ export class Export {
                                     let blockTemplateBefore = chapterTemplate.getElementById("BLOCK");
                                     let blockTemplate = chapterTemplate.getElementById("BLOCK").cloneNode(true);
                                     blockTemplate.id = "block_" + i + "_" + j;
-                                    blockTemplate.textContent = block.data.text;
+                                    blockTemplate.insertAdjacentHTML("afterbegin", block.data.text);
                                     blockTemplateBefore.parentNode.insertBefore(blockTemplate, blockTemplateBefore);
                                 })
                             });
@@ -238,7 +238,18 @@ export class ExportRTF {
                             if (scene.content) {
                                 scene.content.blocks.forEach(block => {
                                     let blockContent = this.block.replace("BLOCK", block.data.text);
-                                    blockContent = blockContent.replace(/<br>/gi, "\\par");
+                                    blockContent = blockContent.replace(/<br>/gi, "\\par ");
+
+                                    blockContent = blockContent.replace(/<b>/gi, "\\b ");
+                                    blockContent = blockContent.replace(/<\/b>/gi, "\\b0 ");
+
+                                    blockContent = blockContent.replace(/<i>/gi, "\\i ");
+                                    blockContent = blockContent.replace(/<\/i>/gi, "\\i0 ");
+
+
+                                    blockContent = blockContent.replace(/<q class="cdx-quote">/gi, "\\ldblquote ");
+                                    blockContent = blockContent.replace(/<\/q>/gi, "\\rdblquote	");
+
                                     sceneContent += blockContent;
                                 })
                                 chapterContent += sceneContent;

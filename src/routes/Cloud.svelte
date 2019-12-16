@@ -16,7 +16,6 @@
   moment.locale($settings.language);
 
   export let hideExport = false;
-  export let params;
 
   let dataLoaded = false;
 
