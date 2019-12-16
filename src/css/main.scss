@@ -265,6 +265,7 @@ header {
 
                 li {
                     padding: .5rem 0 .5rem 2rem;
+                    -webkit-user-drag: element;
 
                     button {
                         font-size: .75rem;
@@ -306,6 +307,14 @@ header {
                             opacity: 1;
                         }
                     }
+
+                    &.draggingElement {
+                        opacity: 0.4;
+                    }
+
+                    &.over {
+                        border-top: 4px solid var(--primary-color);
+                    }
                 }
             }
 
@@ -317,6 +326,14 @@ header {
                 .key .collapse {
                     transform: rotate(0deg);
                 }
+            }
+
+            &.draggingElement {
+                opacity: 0.4;
+            }
+
+            &.over {
+                border-top: 4px solid var(--primary-color);
             }
         }
 
@@ -720,6 +737,14 @@ span.card {
 
         .ce-paragraph {
             line-height: 2rem;
+
+            q {
+                quotes: "„""“"
+            }
+        }
+
+        .ce-inline-toolbar__dropdown {
+            display: none;
         }
     }
 }
