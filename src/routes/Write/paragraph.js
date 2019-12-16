@@ -162,6 +162,8 @@ export default class Paragraph {
     return {
       text: {
         br: true,
+        q: true,
+        span: false
       }
     };
   }
