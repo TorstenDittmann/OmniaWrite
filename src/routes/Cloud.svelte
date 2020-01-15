@@ -199,7 +199,7 @@
             <span class="lnr lnr-sync spinner loading" />
           </div>
         {:else}
-          {#if $state.lastCloudSave < $state.lastLocalSave}
+          {#if !$state.lastCloudSave || $state.lastCloudSave < $state.lastLocalSave}
             <div class="cloud" on:click={saveCloud}>
               <span class="lnr lnr-cloud-upload" />
               Upload
@@ -211,16 +211,18 @@
               </small>
             </div>
           {/if}
-          <div class="cloud" on:click={getCloud}>
-            <span class="lnr lnr-cloud-download" />
-            Download
-            <small>
-              <i>
-                {$_('cloud.updated')}
-                {moment($state.lastCloudSave, 'X').fromNow()}
-              </i>
-            </small>
-          </div>
+          {#if $state.lastCloudSave}
+            <div class="cloud" on:click={getCloud}>
+              <span class="lnr lnr-cloud-download" />
+              Download
+              <small>
+                <i>
+                  {$_('cloud.updated')}
+                  {moment($state.lastCloudSave, 'X').fromNow()}
+                </i>
+              </small>
+            </div>
+          {/if}
         {/if}
       </div>
       <h2>{$_('cloud.account.title')}</h2>
