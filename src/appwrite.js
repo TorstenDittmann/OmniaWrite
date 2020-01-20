@@ -3,7 +3,7 @@ import {
     state
 } from "./stores";
 
-const APP_ENDPOINT = "http://9680b3e.online-server.cloud/v1";
+const APP_ENDPOINT = "https://appwrite.omniawrite.com/v1";
 const APP_PROJECT = "5e206befb11db";
 const APP_HOST = "http://localhost:5000"
 
