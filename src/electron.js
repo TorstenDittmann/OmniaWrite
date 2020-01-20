@@ -9,10 +9,9 @@ const ipc = require("electron").ipcMain
 let mainWindow;
 
 function createWindow() {
-  const mode = process.env.NODE_ENV;
   mainWindow = new BrowserWindow({
-    width: 900,
-    height: 680,
+    width: 1280,
+    height: 800,
     frame: false,
     webPreferences: {
       nodeIntegration: true
@@ -47,6 +46,26 @@ app.on("activate", () => {
   }
 });
 
+ipc.on("minimize", () => {
+  mainWindow.minimize();
+});
+
 ipc.on("maximize", () => {
   mainWindow.maximize();
+});
+
+ipc.on("restore", () => {
+  mainWindow.restore();
+});
+
+ipc.on("close", () => {
+  mainWindow.close();
+});
+
+ipc.on("resize", () => {
+  if (mainWindow.isMaximized()) {
+    mainWindow.restore();
+  } else {
+    mainWindow.maximize();
+  }
 })

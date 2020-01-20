@@ -14,11 +14,15 @@ class Deskgap {
     }
 
     closeWindow() {
-        messageUI.send("close");
+        ipcRenderer.send("close");
+    }
+
+    resizeWindow() {
+        ipcRenderer.send("resize");
     }
 
     minimizeWindow() {
-        ipcRenderer.send("maximize");
+        ipcRenderer.send("minimize");
     }
 }
 
