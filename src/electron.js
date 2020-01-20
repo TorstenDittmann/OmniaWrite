@@ -46,6 +46,10 @@ app.on("activate", () => {
   }
 });
 
+ipc.on("reload", () => {
+  mainWindow.reload();
+});
+
 ipc.on("minimize", () => {
   mainWindow.minimize();
 });

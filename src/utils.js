@@ -1,16 +1,10 @@
-const {
-    messageUI
-} = window.deskgap || {};
-const isElectron = true;
-const { ipcRenderer } = isElectron ? require('electron') : undefined;
+export const isRunningElectron = window && window.process && window.process.type;
+// eslint-disable-next-line no-undef
+const { ipcRenderer } = isRunningElectron ? require("electron") : {};
 
 class Deskgap {
-    isRunning() {
-        return typeof navigator === "object" && typeof navigator.userAgent === "string" && navigator.userAgent.indexOf("Electron");
-    }
-
     reload() {
-        return window.deskgap ? messageUI.send("reload") : window.location.reload();
+        return isRunningElectron ? ipcRenderer.send("reload") : window.location.reload();
     }
 
     closeWindow() {

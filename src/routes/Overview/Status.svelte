@@ -1,6 +1,6 @@
 <script>
   import { _ } from "svelte-i18n";
-  import { deskgap } from "../../utils";
+  import { deskgap, isRunningElectron } from "../../utils";
 </script>
 
 <style>
@@ -12,7 +12,7 @@
   }
 </style>
 
-{#if !deskgap.isRunning()}
+{#if !isRunningElectron}
   <div id="cards" class="grid">
 
     <div class="new">
