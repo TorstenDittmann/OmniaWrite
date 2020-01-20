@@ -111,23 +111,25 @@
 
 <Modal bind:show={showCreateScene}>
   <h2 slot="header">{$_('sidebar.modal.newScene.header')}</h2>
-  <div class="field">
-    <label for="editChapterInput">{$_('sidebar.modal.title')}</label>
-    <input
-      id="editChapterInput"
-      bind:value={createSceneTitle}
-      autocomplete="off"
-      placeholder="enter your title"
-      type="text" />
-  </div>
-  <hr />
-  <div class="btn-group">
-    {#if createSceneTitle.length > 0}
-      <button on:click={createScene}>
-        {$_('sidebar.modal.newScene.button')}
-      </button>
-    {/if}
-  </div>
+  <form on:submit|preventDefault={createScene}>
+    <div class="field">
+      <label for="editChapterInput">{$_('sidebar.modal.title')}</label>
+      <input
+        id="editChapterInput"
+        bind:value={createSceneTitle}
+        autocomplete="off"
+        placeholder="enter your title"
+        type="text" />
+    </div>
+    <hr />
+    <div class="btn-group">
+      {#if createSceneTitle.length > 0}
+        <button on:click={createScene}>
+          {$_('sidebar.modal.newScene.button')}
+        </button>
+      {/if}
+    </div>
+  </form>
 </Modal>
 
 <Modal bind:show={showEditChapter}>

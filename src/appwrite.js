@@ -1,13 +1,13 @@
-import * as Appwrite from "appwrite";
+import Appwrite from "appwrite";
 import {
     state
 } from "./stores";
 
 const APP_ENDPOINT = "https://appwrite.omniawrite.com/v1";
 const APP_PROJECT = "5e206befb11db";
-const APP_HOST = "https://omniawrite-git-appwrite.torstendittmann.now.sh/"
+const APP_HOST = window.location.origin + "/";
 
-const SDK = new window.Appwrite();
+const SDK = new Appwrite();
 
 SDK.setEndpoint(APP_ENDPOINT).setProject(APP_PROJECT);
 
