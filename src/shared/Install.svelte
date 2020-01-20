@@ -129,16 +129,18 @@
 
 <div class="overlay">
 
-  <div class:show={deskgap.isRunning()} class="installHeader" data-deskgap-drag>
-    Installation
+  <div
+    class:show={deskgap.isRunning()}
+    class="installHeader"
+    style="-webkit-app-region: drag">
     <span
       class="lnr lnr-cross control"
       on:click={deskgap.closeWindow}
-      data-deskgap-no-drag />
+      style="-webkit-app-region: drag" />
     <span
       class="lnr lnr-chevron-down control"
       on:click={deskgap.minimizeWindow}
-      data-deskgap-no-drag />
+      style="-webkit-app-region: drag" />
   </div>
 
   <div class="install">

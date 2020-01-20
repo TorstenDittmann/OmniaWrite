@@ -3,7 +3,6 @@ import svelte from "rollup-plugin-svelte";
 import resolve from "rollup-plugin-node-resolve";
 import commonjs from "rollup-plugin-commonjs";
 import livereload from "rollup-plugin-livereload";
-import builtins from "rollup-plugin-node-builtins";
 import json from "@rollup/plugin-json";
 import globals from "rollup-plugin-node-globals";
 import scss from "rollup-plugin-scss";
@@ -60,12 +59,11 @@ export default {
 		// https://github.com/rollup/rollup-plugin-commonjs
 		resolve({
 			browser: true,
-			preferBuiltins: true,
+			preferBuiltins: false,
 			dedupe: importee => importee === "svelte" || importee.startsWith("svelte/")
 		}),
 		commonjs(),
 		globals(),
-		builtins(),
 		json(),
 		generateSW(workboxConfig),
 
