@@ -33,8 +33,7 @@ app.once("ready", () => {
         menu: null,
         show: false,
         width: 1280,
-        height: 960,
-        icon: "public/apple-touch-icon.png"
+        height: 960
     }).once("ready-to-show", () => {
         win.show();
     });
