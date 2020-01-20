@@ -1,9 +1,12 @@
 const {
     messageUI
 } = window.deskgap || {};
+const isElectron = true;
+const { ipcRenderer } = isElectron ? require('electron') : undefined;
+
 class Deskgap {
     isRunning() {
-        return window.deskgap ? true : false;
+        return typeof navigator === "object" && typeof navigator.userAgent === "string" && navigator.userAgent.indexOf("Electron");
     }
 
     reload() {
@@ -15,7 +18,7 @@ class Deskgap {
     }
 
     minimizeWindow() {
-        messageUI.send("minimize");
+        ipcRenderer.send("maximize");
     }
 }
 
