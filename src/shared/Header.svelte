@@ -124,6 +124,10 @@
             on:click={deskgap.closeWindow}
             style="-webkit-app-region: no-drag" />
           <span
+            class="lnr lnr-frame-expand titlebar"
+            on:click={deskgap.resizeWindow}
+            style="-webkit-app-region: no-drag" />
+          <span
             class="lnr lnr-chevron-down titlebar"
             on:click={deskgap.minimizeWindow}
             style="-webkit-app-region: no-drag" />
