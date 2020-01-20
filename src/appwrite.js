@@ -5,7 +5,7 @@ import {
 
 const APP_ENDPOINT = "https://appwrite.omniawrite.com/v1";
 const APP_PROJECT = "5e206befb11db";
-const APP_HOST = "http://localhost:5000"
+const APP_HOST = "https://omniawrite-git-appwrite.torstendittmann.now.sh/"
 
 const SDK = new window.Appwrite();
 
@@ -21,9 +21,9 @@ const cloud = {
         SDK.auth.register(
             email,
             pass,
-            "http://localhost:5000/#/cloud/confirm/",
-            "http://localhost:5000/#/cloud/success/", // required for JS SDK
-            "http://localhost:5000/#/cloud/failure/", // required for JS SDK
+            APP_HOST + "#/cloud/confirm/",
+            APP_HOST + "#/cloud/success/", // required for JS SDK
+            APP_HOST + "#/cloud/failure/", // required for JS SDK
             name
         );
     },
@@ -37,7 +37,7 @@ const cloud = {
     recoverPassword: (user) => {
         return SDK.auth.recovery(
             user,
-            "http://localhost:5000/#/cloud/recovery/"
+            APP_HOST + "#/cloud/recovery/"
         );
     },
     confirm: (id, token) => {
@@ -52,8 +52,8 @@ const cloud = {
         SDK.auth.login(
             user,
             pass,
-            "http://localhost:5000/#/cloud/success/", // required for JS SDK
-            "http://localhost:5000/#/cloud/failure/" // required for JS SDK
+            APP_HOST + "#/cloud/success/", // required for JS SDK
+            APP_HOST + "#/cloud/failure/" // required for JS SDK
         );
     },
     /**
