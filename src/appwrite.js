@@ -121,6 +121,16 @@ const cloud = {
     },
     getSettings: () => {
         return SDK.account.getPrefs()
+    },
+    getFile: () => {
+        SDK.storage.getFileDownload("5e26f5eb0536c").then(response => {
+            console.log(response);
+        })
+    },
+    getFiles: () => {
+        SDK.storage.listFiles("", 1, 0, "DESC").then(response => {
+            console.log(response);
+        })
     }
 }
 
