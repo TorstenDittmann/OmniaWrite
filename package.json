@@ -7,6 +7,9 @@
     "email": "info@omniawrite.com",
     "url": "https://omniawrite.com"
   },
+  "description": "Writing Tool.",
+  "homepage": "https://www.omniawrite.com/",
+  "license": "All rights reserved.",
   "devDependencies": {
     "@editorjs/editorjs": "^2.16.1",
     "@editorjs/header": "^2.3.2",
@@ -16,6 +19,7 @@
     "@types/file-saver": "^2.0.1",
     "deskgap": "^0.2.0",
     "electron": "^7.1.9",
+    "electron-builder": "^22.2.0",
     "eslint": "^6.8.0",
     "eslint-plugin-svelte3": "^2.7.3",
     "license-checker": "^25.0.1",
@@ -62,6 +66,17 @@
     "deskgap": "deskgap .",
     "license": "license-checker --exclude \"MIT\" --production --json --customPath ./src/licenses.json > ./src/licenses.json",
     "electron": "run-s build pure-electron",
-    "pure-electron": "electron ."
+    "pure-electron": "electron .",
+    "electron-builder": "electron-builder build --dir --linux deb rpm snap AppImage tar.gz"
+  },
+  "build": {
+    "appId": "com.omniawrite.app",
+    "compression": "normal",
+    "asar": true,
+    "linux": {
+      "target": [
+        "AppImage, snap"
+      ]
+    }
   }
 }
