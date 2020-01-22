@@ -67,7 +67,7 @@
     "license": "license-checker --exclude \"MIT\" --production --json --customPath ./src/licenses.json > ./src/licenses.json",
     "electron": "run-s build pure-electron",
     "pure-electron": "electron .",
-    "electron-builder": "electron-builder build --dir --linux deb rpm snap AppImage tar.gz"
+    "electron-builder": "electron-builder build --dir --linux AppImage snap"
   },
   "build": {
     "appId": "com.omniawrite.app",
@@ -75,7 +75,7 @@
     "asar": true,
     "linux": {
       "target": [
-        "AppImage, snap"
+        "AppImage"
       ]
     }
   }

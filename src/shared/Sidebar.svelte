@@ -217,12 +217,12 @@
       <div
         class="backdrop"
         on:click={() => (sidebarState = false)}
-        style="-webkit-app-region: drag" />
+        style="-webkit-app-region: no-drag" />
       <div
         id="close-sidebar"
         class="close"
         on:click={() => (sidebarState = false)}
-        style="-webkit-app-region: drag">
+        style="-webkit-app-region: no-drag">
         <span class="lnr lnr-cross" />
       </div>
       {#if $state.currentProject}
