@@ -1,17 +1,18 @@
-import * as Appwrite from "appwrite";
+import Appwrite from "appwrite";
 import {
     state
 } from "./stores";
 
-const APP_ENDPOINT = "http://9680b3e.online-server.cloud/v1";
+const APP_ENDPOINT = "https://appwrite.omniawrite.com/v1";
 const APP_PROJECT = "5e206befb11db";
-const APP_HOST = "http://localhost:5000"
+const APP_HOST = window.location.origin + "/";
 
-const SDK = new window.Appwrite();
+const SDK = new Appwrite();
 
 SDK.setEndpoint(APP_ENDPOINT).setProject(APP_PROJECT);
 
 const cloud = {
+    currentUser: "5e2343da0c514",
     /**
      * Registers new user.
      * @returns Backendless.User
@@ -20,9 +21,9 @@ const cloud = {
         SDK.auth.register(
             email,
             pass,
-            encodeURI("http://localhost:5000/#/cloud/confirm/"),
-            encodeURI("http://localhost:5000/#/cloud/success/"), // required for JS SDK
-            encodeURI("http://localhost:5000/#/cloud/failure/"), // required for JS SDK
+            APP_HOST + "#/cloud/confirm/",
+            APP_HOST + "#/cloud/success/", // required for JS SDK
+            APP_HOST + "#/cloud/failure/", // required for JS SDK
             name
         );
     },
@@ -36,11 +37,11 @@ const cloud = {
     recoverPassword: (user) => {
         return SDK.auth.recovery(
             user,
-            "http://localhost:5000/#/cloud/recovery/"
+            APP_HOST + "#/cloud/recovery/"
         );
     },
     confirm: (id, token) => {
-        return sdk.auth.confirm(id, token);
+        return SDK.auth.confirm(id, token);
     },
     /**
      * Login user and sets user ID in state.
@@ -51,8 +52,8 @@ const cloud = {
         SDK.auth.login(
             user,
             pass,
-            "http://localhost:5000/#/cloud/success/", // required for JS SDK
-            "http://localhost:5000/#/cloud/failure/" // required for JS SDK
+            APP_HOST + "#/cloud/success/", // required for JS SDK
+            APP_HOST + "#/cloud/failure/" // required for JS SDK
         );
     },
     /**
@@ -72,16 +73,11 @@ const cloud = {
      * @returns Promise<boolean>
      */
     saveToCloud: () => {
-        /* let blob = new Blob(["\ufeff", JSON.stringify(localStorage)], {
-             type: "application/json"
-         });
- 
-         return Backendless.Files.saveFile("userData/" + USER_ID, "data.json", blob, true)
-             .then(() => {
-                 cloud.setCloudTimestamp();
-                 return true;
-             })
-             .catch(error);*/
+        let blob = new Blob(["\ufeff", JSON.stringify(localStorage)], {
+            type: "application/json"
+        });
+
+        return SDK.storage.createFile(new File([blob], "user:" + cloud.currentUser + ".json"), ["user:" + cloud.currentUser], ["user:" + cloud.currentUser], "user:" + cloud.currentUser);
     },
     /**
      * Fetches all stores from cloud.
@@ -105,6 +101,36 @@ const cloud = {
                 resolve(true);
             });
         });*/
+    },
+    getSecurityLog: () => {
+        return SDK.account.getSecurity();
+    },
+    createCollection: (name) => {
+        return SDK.database.createCollection(name, ["user:" + cloud.currentUser], ["user:" + cloud.currentUser], []);
+    },
+    uploadSettings: () => {
+        return SDK.account.updatePrefs(JSON.parse(localStorage.getItem("settings")))
+    },
+    deleteSettings: () => {
+        SDK.account.updatePrefs({}).then(
+            response => {
+                console.log(response);
+            }, error => {
+                console.log(error)
+            });
+    },
+    getSettings: () => {
+        return SDK.account.getPrefs()
+    },
+    getFile: () => {
+        SDK.storage.getFileDownload("5e26f5eb0536c").then(response => {
+            console.log(response);
+        })
+    },
+    getFiles: () => {
+        SDK.storage.listFiles("", 1, 0, "DESC").then(response => {
+            console.log(response);
+        })
     }
 }
 
