@@ -1,8 +1,8 @@
 <script lang="javascript">
   import { Workbox } from "workbox-window";
   import { state, projects, settings, intern } from "./stores";
-  import { deskgap } from "./utils";
-  import { locale } from "svelte-i18n";
+  import { deskgap, isRunningElectron } from "./utils";
+  import { locale, _ } from "svelte-i18n";
 
   import Router from "svelte-spa-router";
 
@@ -49,7 +49,11 @@
   /**
    * Register Service Worker.
    */
-  if ("serviceWorker" in navigator && !window.hasOwnProperty("cordova")) {
+  if (
+    "serviceWorker" in navigator &&
+    !window.hasOwnProperty("cordova") &&
+    !isRunningElectron
+  ) {
     wb.addEventListener("waiting", event => {
       updateAvailable = true;
     });
