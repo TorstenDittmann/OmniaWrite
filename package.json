@@ -52,10 +52,8 @@
   "scripts": {
     "build": "run-s license svelte-build",
     "build-cordova": "run-s license svelte-cordova",
-    "build-deskgap": "run-s license svelte-deskgap",
+    "build-electron": "run-s svelte-build electron-builder",
     "svelte-build": "cross-env NODE_ENV=production webpack",
-    "svelte-cordova": "rollup -c --config-cordova",
-    "svelte-deskgap": "rollup -c --config-deskgap",
     "dev": "webpack-dev-server --content-base public",
     "license": "license-checker --exclude \"MIT\" --production --json --customPath ./src/licenses.json > ./src/licenses.json",
     "electron": "run-s build pure-electron",
