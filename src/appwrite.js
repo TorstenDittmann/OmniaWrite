@@ -49,7 +49,7 @@ const cloud = {
      * @param pass Password
      */
     login: (user, pass) => {
-        SDK.auth.login(
+        return SDK.auth.login(
             user,
             pass,
             APP_HOST + "#/cloud/success/", // required for JS SDK
