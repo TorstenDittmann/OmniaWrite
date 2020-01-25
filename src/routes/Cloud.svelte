@@ -11,6 +11,8 @@
   import Modal from "../shared/Modal.svelte";
   import Policy from "./Cloud/Policy.svelte";
 
+  import Login from "./Cloud/Login.svelte";
+
   import moment from "moment";
   import "moment/locale/de";
 
@@ -147,33 +149,7 @@
 <div class="cloud-container">
   {#if !loading}
     {#if !isUserLoggedIn}
-      <h2>{$_('cloud.login.title')}</h2>
-      <div class="field">
-        <label class="big" for="loginUser">{$_('cloud.login.email')}</label>
-        <input
-          id="loginUser"
-          type="email"
-          placeholder="john.doe@email.tld"
-          bind:value={loginUser} />
-      </div>
-      <div class="field">
-        <label class="big" for="loginPass">{$_('cloud.login.password')}</label>
-        <input
-          id="loginPass"
-          type="password"
-          autocomplete="off"
-          placeholder="******"
-          bind:value={loginPass} />
-      </div>
-      <div class="btn-group">
-        <button
-          on:click={login}
-          disabled={loginButtonLoading}
-          class:loading={loginButtonLoading}>
-          <span class="lnr lnr-sync spinner" />
-          {$_('cloud.login.button')}
-        </button>
-      </div>
+      <Login />
       <div class="btn-group">
         <button on:click={recover}>Recover</button>
       </div>
