@@ -5,7 +5,8 @@ dist/
 public/service-worker.js
 cordova/www/
 src/licenses.json
-public/main.css
+public/precache-manifest.*
+public/fonts
 installer/OmniaWrite-*
 deskgap/*
 !deskgap/deskgap.js

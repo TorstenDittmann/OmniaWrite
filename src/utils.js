@@ -1,6 +1,5 @@
 export const isRunningElectron = window && window.process && window.process.type;
-// eslint-disable-next-line no-undef
-const { ipcRenderer } = isRunningElectron ? require("electron") : {};
+const { ipcRenderer } = isRunningElectron ? window.require("electron") : {};
 
 class Deskgap {
     reload() {

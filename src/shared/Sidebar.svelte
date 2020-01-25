@@ -65,16 +65,6 @@
 </script>
 
 <style type="text/css">
-  .swap-list {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-  }
-
-  .swap-list > li {
-    padding: 0.5rem 0 0.5rem 2rem;
-  }
-
   .swap-list > li .action {
     cursor: pointer;
     opacity: 0.65;
@@ -85,10 +75,6 @@
   }
 
   .swap-list li:first-child .lnr-chevron-up {
-    visibility: hidden;
-  }
-
-  .swap-list li:last-child .lnr-chevron-down {
     visibility: hidden;
   }
 

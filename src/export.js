@@ -4,8 +4,9 @@ import {
     scenes
 } from "./stores";
 import saveAs from "file-saver";
+import JSZip from "jszip";
 
-const zip = {};
+const zip = new JSZip();
 const {
     messageUI
 } = window.deskgap || {};
