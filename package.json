@@ -30,6 +30,7 @@
     "webpack": "^4.41.5"
   },
   "dependencies": {
+    "appwrite": "^1.0.28",
     "backendless": "^5.7.1",
     "cross-env": "^6.0.3",
     "css-loader": "^3.4.2",

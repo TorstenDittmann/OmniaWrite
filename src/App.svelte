@@ -32,7 +32,7 @@
     "/write/:sceneId?": WriteRoute,
     "/cards": CardsRoute,
     "/settings": SettingsRoute,
-    "/cloud": CloudRoute,
+    "/cloud/:loginReturn?": CloudRoute,
     "/export": ExportRoute,
 
     // Non header route
