@@ -21,9 +21,9 @@ const cloud = {
         SDK.auth.register(
             email,
             pass,
-            APP_HOST + "#/cloud/confirm/",
-            APP_HOST + "#/cloud/success/", // required for JS SDK
-            APP_HOST + "#/cloud/failure/", // required for JS SDK
+            APP_HOST + "#/cloud/register-confirm/",
+            APP_HOST + "#/cloud/register-success/",
+            APP_HOST + "#/cloud/register-failure/",
             name
         );
     },
@@ -52,8 +52,8 @@ const cloud = {
         return SDK.auth.login(
             user,
             pass,
-            APP_HOST + "#/cloud/success/", // required for JS SDK
-            APP_HOST + "#/cloud/failure/" // required for JS SDK
+            APP_HOST + "#/cloud/login-success/",
+            APP_HOST + "#/cloud/login-failure/"
         );
     },
     /**
@@ -77,7 +77,11 @@ const cloud = {
             type: "application/json"
         });
 
-        return SDK.storage.createFile(new File([blob], "user:" + cloud.currentUser + ".json"), ["user:" + cloud.currentUser], ["user:" + cloud.currentUser], "user:" + cloud.currentUser);
+        return SDK.storage.createFile(
+            new File([blob], "user:" + cloud.currentUser + ".json"),
+            ["user:" + cloud.currentUser],
+            ["user:" + cloud.currentUser],
+            "user:" + cloud.currentUser);
     },
     /**
      * Fetches all stores from cloud.
