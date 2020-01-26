@@ -48,14 +48,10 @@
 
     checkLogin();
     if (params.loginReturn == "confirm") {
-      console.log("gogo");
       cloud
         .confirm(query.get("userId"), query.get("token"))
         .then(response => console.log, error => console.log);
     }
-    cloud.getSecurityLog().then(response => {
-      console.log(response);
-    });
   });
 
   function logout() {
@@ -80,16 +76,14 @@
     loading = true;
     cloud.isUserLoggedIn().then(
       response => {
-        console.log(response);
-        loading = false;
         isUserLoggedIn = response.$uid ? true : false;
       },
       error => {
-        console.log(error);
-        loading = false;
         isUserLoggedIn = false;
       }
-    );
+    ).finally(() => {
+      loading = false;
+    });
   }
 </script>
 
@@ -131,15 +125,6 @@
       </div>
     {/if}
     <Router {routes} {prefix} />
-    <div class="btn-group">
-      <button on:click={cColl}>create Collection</button>
-      <button on:click={cDocu}>create Document</button>
-      <button on:click={cloud.uploadSettings}>uplaod Settings</button>
-      <button on:click={cloud.deleteSettings}>del Settings</button>
-      <button on:click={saveToCloud}>save to cloud</button>
-      <button on:click={cloud.getFile}>get file</button>
-      <button on:click={cloud.getFiles}>get files</button>
-    </div>
   {:else}
     <div class="lds-ellipsis">
       <div />

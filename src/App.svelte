@@ -52,7 +52,8 @@
   if (
     "serviceWorker" in navigator &&
     !window.hasOwnProperty("cordova") &&
-    !isRunningElectron
+    !isRunningElectron &&
+    window.location.hostname !== "localhost"
   ) {
     wb.addEventListener("waiting", event => {
       updateAvailable = true;
