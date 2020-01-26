@@ -411,7 +411,9 @@ header {
 
 .btn-group {
     margin: 1rem;
-
+    justify-content: center;
+    display: flex;
+    
     button {
         border: 1px solid;
         padding: .25em 1em;
@@ -481,6 +483,7 @@ header {
     display: flex;
     flex-direction: row;
     align-items: center;
+    justify-content: center;
     margin: 1rem 0;
 
     label {
