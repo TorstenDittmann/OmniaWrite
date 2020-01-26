@@ -3,59 +3,49 @@
   import { state, settings } from "../stores";
   import { deskgap } from "../utils";
   import { _ } from "svelte-i18n";
-  import { querystring } from "svelte-spa-router";
+  import { querystring, push } from "svelte-spa-router";
+  import Router from "svelte-spa-router";
 
   import cloud from "../appwrite";
-  import Alert from "../shared/Alert.svelte";
   import Toast from "../shared/Toast.svelte";
-  import Modal from "../shared/Modal.svelte";
-  import Policy from "./Cloud/Policy.svelte";
 
   import Login from "./Cloud/Login.svelte";
+  import Register from "./Cloud/Register.svelte";
+  import Security from "./Cloud/Security.svelte";
+  import Profile from "./Cloud/Profile.svelte";
+  import Backups from "./Cloud/Backups.svelte";
+  import ResetPassword from "./Cloud/ResetPassword.svelte";
 
   import moment from "moment";
   import "moment/locale/de";
 
   moment.locale($settings.language);
 
-  export let hideExport = false;
   export let params = {};
+
+  const prefix = "/cloud";
+  const routes = {
+    "/login": Login,
+    "/register": Register,
+    "/security": Security,
+    "/profile": Profile,
+    "/reset-password": ResetPassword,
+    "/backups": Backups
+  };
 
   let loading = true;
 
-  let registerName;
-  let registerUser;
-  let registerPass;
-
-  let loginUser;
-  let loginPass;
-
-  let resetUser;
-
   let isUserLoggedIn = false;
-
-  let showAlert = false;
-  let showAlertType;
-  let showAlertText;
 
   let showToast = false;
   let showToastText;
 
-  let statusPrivacyPolicy;
-  let showPrivacyPolicy;
-
   let saveCloudButtonLoading = false;
   let getCloudButtonLoading = false;
-  let loginButtonLoading = false;
-  let registerButtonLoading = false;
-  let logoutButtonLoading = false;
-  let resetButtonLoading = false;
 
   onMount(() => {
     let query = new URLSearchParams(window.location.search);
-    console.log(query.get("userId"));
-    console.log(query.get("token"));
-    console.log(params);
+
     checkLogin();
     if (params.loginReturn == "confirm") {
       console.log("gogo");
@@ -68,22 +58,8 @@
     });
   });
 
-  function login() {
-    cloud.login(loginUser, loginPass);
-  }
-
-  function recover() {
-    cloud.recoverPassword(loginUser).then(response => {
-      console.log(response);
-    });
-  }
-
   function logout() {
     cloud.logout().then(checkLogin());
-  }
-
-  function register() {
-    cloud.register(registerName, registerUser, registerPass);
   }
 
   function cColl() {
@@ -118,133 +94,52 @@
 </script>
 
 <style type="text/css">
-  .disclaimer-check {
-    width: 3rem;
-    min-width: 3rem;
-    margin-right: 1rem;
-  }
-
-  .disclaimer-button {
-    width: calc(100% - 4rem);
-  }
-
   .cloud-container {
     max-width: 800px;
-  }
-
-  .grid .cloud {
+    margin: auto;
     text-align: center;
-  }
-
-  .grid .cloud .lnr {
-    font-size: 3rem;
   }
 </style>
 
 <Toast bind:show={showToast} text={showToastText} />
-<Modal bind:show={showPrivacyPolicy}>
-  <h2 slot="header">{$_('cloud.privacy.show')}</h2>
-  <Policy />
-</Modal>
+
 <div class="cloud-container">
   {#if !loading}
     {#if !isUserLoggedIn}
-      <Login />
-      <div class="btn-group">
-        <button on:click={recover}>Recover</button>
-      </div>
-      <h2>{$_('cloud.register.title')}</h2>
-      <div class="field">
-        <label class="big" for="newName">{$_('cloud.register.name')}</label>
-        <input
-          id="newName"
-          type="text"
-          placeholder="John Doe"
-          autocomplete="off"
-          bind:value={registerName} />
-      </div>
-      <div class="field">
-        <label class="big" for="newUser">{$_('cloud.login.email')}</label>
-        <input
-          id="newUser"
-          type="email"
-          placeholder="john.doe@email.tld"
-          autocomplete="off"
-          bind:value={registerUser} />
-      </div>
-      <div class="field">
-        <label class="big" for="newPass">{$_('cloud.login.password')}</label>
-        <input
-          id="newPass"
-          type="password"
-          autocomplete="off"
-          placeholder="******"
-          bind:value={registerPass} />
-      </div>
-      <div class="btn-group">
-        <button
-          class="disclaimer-check"
-          class:red={!statusPrivacyPolicy}
-          class:green={statusPrivacyPolicy}
-          on:click={() => (statusPrivacyPolicy = !statusPrivacyPolicy)}>
-          <span
-            class="lnr"
-            class:lnr-cross-circle={!statusPrivacyPolicy}
-            class:lnr-checkmark-circle={statusPrivacyPolicy} />
-        </button>
-        <button
-          class="disclaimer-button outline"
-          on:click={() => (showPrivacyPolicy = true)}>
-          {$_('cloud.privacy.show')}
-        </button>
-      </div>
-      <div class="btn-group">
-        <button
-          on:click={register}
-          disabled={registerButtonLoading}
-          class:loading={registerButtonLoading}>
-          <span class="lnr lnr-sync spinner" />
-          {$_('cloud.register.button')}
-        </button>
+      <div id="cards" class="grid">
+        <div class="card" on:click={() => push('/cloud/login')}>
+          <h2>Login</h2>
+        </div>
+        <div class="card" on:click={() => push('/cloud/register')}>
+          <h2>Register</h2>
+        </div>
       </div>
     {:else}
-      {#await cloud.getSecurityLog()}
-        <p>...waiting</p>
-      {:then logs}
-        <ul>
-          {#each logs as log}
-            <li>{log.event}</li>
-          {/each}
-        </ul>
-      {:catch error}
-        <p style="color: red">{error.message}</p>
-      {/await}
-      <div class="btn-group">
-        <button
-          on:click={logout}
-          disabled={logoutButtonLoading}
-          class:loading={logoutButtonLoading}>
-          <span class="lnr lnr-sync spinner" />
-          {$_('cloud.account.logout')}
-        </button>
+      <div id="cards" class="grid">
+        <div id="card" on:click={() => push('/cloud/backups')}>
+          <h2>Backups</h2>
+        </div>
+        <div id="card" on:click={() => push('/cloud/security')}>
+          <h2>Security</h2>
+        </div>
+        <div id="card" on:click={() => push('/cloud/update')}>
+          <h2>Profile</h2>
+        </div>
+        <div id="card" on:click={logout}>
+          <h2>Logout</h2>
+        </div>
       </div>
-      <div class="btn-group">
-        <button on:click={cColl}>create Collection</button>
-        <button on:click={cDocu}>create Document</button>
-        <button on:click={cloud.uploadSettings}>uplaod Settings</button>
-        <button on:click={cloud.deleteSettings}>del Settings</button>
-        <button on:click={saveToCloud}>save to cloud</button>
-        <button on:click={cloud.getFile}>get file</button>
-        <button on:click={cloud.getFiles}>get files</button>
-      </div>
-      {#await cloud.getSettings()}
-        <p>...waiting</p>
-      {:then settings}
-        <p>{settings.language}</p>
-      {:catch error}
-        <p style="color: red">{error.message}</p>
-      {/await}
     {/if}
+    <Router {routes} {prefix} />
+    <div class="btn-group">
+      <button on:click={cColl}>create Collection</button>
+      <button on:click={cDocu}>create Document</button>
+      <button on:click={cloud.uploadSettings}>uplaod Settings</button>
+      <button on:click={cloud.deleteSettings}>del Settings</button>
+      <button on:click={saveToCloud}>save to cloud</button>
+      <button on:click={cloud.getFile}>get file</button>
+      <button on:click={cloud.getFiles}>get files</button>
+    </div>
   {:else}
     <div class="lds-ellipsis">
       <div />

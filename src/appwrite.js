@@ -105,6 +105,9 @@ const cloud = {
     getSecurityLog: () => {
         return SDK.account.getSecurity();
     },
+    getSessions: () => {
+        return SDK.account.getSessions();
+    },
     createCollection: (name) => {
         return SDK.database.createCollection(name, ["user:" + cloud.currentUser], ["user:" + cloud.currentUser], []);
     },
