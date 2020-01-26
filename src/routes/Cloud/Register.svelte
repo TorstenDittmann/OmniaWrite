@@ -68,6 +68,7 @@
   <div class="btn-group">
     <button
       class="disclaimer-check"
+      type="button"
       class:red={!statusPrivacyPolicy}
       class:green={statusPrivacyPolicy}
       on:click={() => (statusPrivacyPolicy = !statusPrivacyPolicy)}>
@@ -78,12 +79,14 @@
     </button>
     <button
       class="disclaimer-button outline"
+      type="button"
       on:click={() => (showPrivacyPolicy = true)}>
       {$_('cloud.privacy.show')}
     </button>
   </div>
   <div class="btn-group">
     <button
+      type="submit"
       on:click={register}
       disabled={registerButtonLoading}
       class:loading={registerButtonLoading}>

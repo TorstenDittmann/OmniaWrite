@@ -7,6 +7,8 @@ const path = require("path");
 const mode = process.env.NODE_ENV || "development";
 const prod = mode === "production";
 
+console.log(prod);
+
 module.exports = {
   entry: {
     bundle: ["./src/main.js"]
