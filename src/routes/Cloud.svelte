@@ -10,11 +10,19 @@
   import Toast from "../shared/Toast.svelte";
 
   import Login from "./Cloud/Login.svelte";
+  import LoginSuccess from "./Cloud/Login/Success.svelte";
+  import LoginFailure from "./Cloud/Login/Failure.svelte";
+
   import Register from "./Cloud/Register.svelte";
+  import RegisterConfirm from "./Cloud/Register/Confirm.svelte";
+  import RegisterSuccess from "./Cloud/Register/Success.svelte";
+  import RegisterFailure from "./Cloud/Register/Failure.svelte";
+
   import Security from "./Cloud/Security.svelte";
   import Profile from "./Cloud/Profile.svelte";
   import Backups from "./Cloud/Backups.svelte";
   import ResetPassword from "./Cloud/ResetPassword.svelte";
+  import Logout from "./Cloud/Logout.svelte";
 
   import moment from "moment";
   import "moment/locale/de";
@@ -26,11 +34,19 @@
   const prefix = "/cloud";
   const routes = {
     "/login": Login,
+    "/login-success": LoginSuccess,
+    "/login-failure": LoginFailure,
+
     "/register": Register,
+    "/register-confirm": RegisterConfirm,
+    "/register-success": RegisterSuccess,
+    "/register-failure": RegisterFailure,
+
     "/security": Security,
     "/profile": Profile,
     "/reset-password": ResetPassword,
-    "/backups": Backups
+    "/backups": Backups,
+    "/logout": Logout
   };
 
   let loading = true;
@@ -57,20 +73,6 @@
   function logout() {
     cloud.logout().then(checkLogin());
   }
-
-  function cColl() {
-    cloud.createCollection("test").then(response => {
-      console.log(response);
-    });
-  }
-
-  function saveToCloud() {
-    cloud.saveToCloud().then(response => {
-      console.log(response);
-    });
-  }
-
-  function cDocu() {}
 
   function checkLogin() {
     loading = true;
@@ -119,7 +121,7 @@
         <div id="card" on:click={() => push('/cloud/update')}>
           <h2>Profile</h2>
         </div>
-        <div id="card" on:click={logout}>
+        <div id="card" on:click={() => push('/cloud/logout')}>
           <h2>Logout</h2>
         </div>
       </div>
