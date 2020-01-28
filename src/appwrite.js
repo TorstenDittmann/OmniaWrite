@@ -12,7 +12,7 @@ const SDK = new Appwrite();
 SDK.setEndpoint(APP_ENDPOINT).setProject(APP_PROJECT);
 
 const cloud = {
-    currentUser: "5e2343da0c514",
+    currentUser: null,
     /**
      * Registers new user.
      * @returns Backendless.User
@@ -31,8 +31,11 @@ const cloud = {
      * Checks if user is logged in.
      * @returns Promise<boolean>
      */
-    isUserLoggedIn: () => {
-        return SDK.account.get();
+    isUserLoggedIn: async () => {
+        return SDK.account.get().then(account => {
+            cloud.currentUser = account.$uid;
+            return account;
+        });
     },
     recoverPassword: (user) => {
         return SDK.auth.recovery(
@@ -62,11 +65,10 @@ const cloud = {
     logout: () => {
         return SDK.auth.logout();
     },
-    setCloudTimestamp: () => {
-        /*return Backendless.Files.listing("userData/" + USER_ID, "data.json", false)
-            .then((fileInfoArray) => {
-                state.updateCloudTimestamp(fileInfoArray[0].createdOn);
-            })*/
+    setCloudTimestamp: (id) => {
+        return SDK.storage.getFile(id).then(response => {
+            state.updateCloudTimestamp(response.dateCreated);
+        });
     },
     /**
      * Saves all stores into cloud.
@@ -81,7 +83,10 @@ const cloud = {
             new File([blob], "user:" + cloud.currentUser + ".json"),
             ["user:" + cloud.currentUser],
             ["user:" + cloud.currentUser],
-            "user:" + cloud.currentUser);
+            "user:" + cloud.currentUser).then(response => {
+                state.updateCloudTimestamp(response[0].dateCreated);
+                return response;
+            });
     },
     /**
      * Fetches all stores from cloud.
@@ -129,13 +134,21 @@ const cloud = {
     getSettings: () => {
         return SDK.account.getPrefs()
     },
-    getFile: () => {
-        SDK.storage.getFileDownload("5e26f5eb0536c").then(response => {
-            console.log(response);
+    restoreBackup: (id) => {
+        return SDK.storage.getFileDownload(id).then(response => {
+            const data = JSON.parse(response);
+            const dataObject = Object.keys(data);
+            return new Promise((resolve) => {
+                dataObject.forEach(k => localStorage.setItem(k, data[k]));
+                cloud.setCloudTimestamp(id).then(() => resolve(true));
+            });
         })
     },
-    getFiles: () => {
-        SDK.storage.listFiles("", 1, 0, "DESC").then(response => {
+    getAllBackups: () => {
+        return SDK.storage.listFiles("user:" + cloud.currentUser + ".json", 25, 0, "DESC");
+    },
+    getLatestBackup: () => {
+        return SDK.storage.listFiles("", 1, 0, "DESC").then(response => {
             console.log(response);
         })
     }
