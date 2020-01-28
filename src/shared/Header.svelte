@@ -6,27 +6,32 @@
   import { deskgap, isRunningElectron } from "../utils";
   import { _ } from "svelte-i18n";
 
-  import cloud from "../cloud";
+  import cloud from "../appwrite";
   import active from "svelte-spa-router/active";
 
   export let navigationState;
 
   const dispatch = createEventDispatcher();
 
-  //let isValidLogin = cloud.isValidLogin();
+  let isValidLogin = cloud.isUserLoggedIn();
   let cloudSyncState = false;
-  let syncState = false;
 
-  /*$: {
-    if ($state.lastCloudSave < $state.lastLocalSave && isValidLogin) {
-      cloudSyncState = true;
-    } else {
-      cloudSyncState = false;
-    }
-  }*/
+  $: {
+    cloud.isUserLoggedIn().then(user => {
+      if ($state.lastCloudSave < $state.lastLocalSave && user.$uid) {
+        cloudSyncState = true;
+      } else {
+        cloudSyncState = false;
+      }
+    });
+  }
 
   function createTab() {
     tabs.createTab($state.currentProject, $state.currentTitle, $location);
+  }
+
+  function syncCloud() {
+    cloud.saveToCloud();
   }
 </script>
 
@@ -112,8 +117,8 @@
             <a href="/cloud" use:link>{$_('header.cloud.title')}</a>
           </li>
           {#if cloudSyncState}
-            <li style="-webkit-app-region: no-drag">
-              <span class="lnr lnr-cloud-upload" />
+            <li on:click={syncCloud} style="-webkit-app-region: no-drag">
+              <span class="lnr lnr-cloud-sync" />
             </li>
           {/if}
         </ul>
