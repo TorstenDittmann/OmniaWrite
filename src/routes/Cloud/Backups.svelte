@@ -18,8 +18,6 @@
       f = Math.floor(Math.log(a) / Math.log(c));
     return parseFloat((a / Math.pow(c, f)).toFixed(d)) + " " + e[f];
   }
-
-  cloud.getAllBackups().then(res => console.log(res));
 </script>
 
 <style>
