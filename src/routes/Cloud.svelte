@@ -30,7 +30,7 @@
   moment.locale($settings.language);
 
   export let params = {};
-  console.log(params);
+
   const prefix = "/cloud";
   const routes = {
     "/login": Login,

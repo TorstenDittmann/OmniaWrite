@@ -65,6 +65,12 @@ const cloud = {
     logout: () => {
         return SDK.auth.logout();
     },
+    /**
+     * Logs out session form user.
+     */
+    logoutSession: (id) => {
+        return SDK.auth.logoutBySession(id);
+    },
     setCloudTimestamp: (id) => {
         return SDK.storage.getFile(id).then(response => {
             state.updateCloudTimestamp(response.dateCreated);
