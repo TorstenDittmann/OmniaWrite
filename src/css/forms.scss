@@ -1,0 +1,113 @@
+.field {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin: 1rem 0;
+
+  label {
+    flex: 1;
+    min-width: 6rem;
+    padding-right: 1rem;
+    text-align: left;
+  }
+
+  .big {
+    min-width: 8rem;
+    max-width: fit-content;
+  }
+
+  input,
+  select {
+    flex: 2;
+    min-width: 8rem;
+    max-width: 14rem;
+  }
+
+  input[type=text],
+  input[type=email],
+  input[type=password] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -ms-appearance: none;
+    -o-appearance: none;
+    margin: 0;
+    padding: 0 .25rem;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+    background: 0 0;
+    height: 1.2rem;
+    color: var(--text-color);
+    display: inline-block;
+    border-bottom: 1px solid #999;
+    max-height: 1.2rem;
+    font-size: 1rem;
+    opacity: .65;
+    background: linear-gradient(to bottom, transparent 95%, var(--input-border-color) 95%) no-repeat;
+    background-size: 0 100%;
+    transition: background-size .2s ease;
+
+    &:focus {
+      border-bottom: 1px solid var(--input-border-color);
+      background-size: 100% 100%;
+      outline: 0;
+      opacity: 1;
+    }
+  }
+
+  textarea {
+    max-width: calc(100% - .25rem);
+    width: calc(100% - .25rem);
+    height: auto;
+    resize: vertical;
+    background: none;
+    border: 1px solid #999;
+    color: var(--text-color);
+    border-radius: .125rem;
+    padding: calc(.25rem + 2px) .5rem;
+  }
+
+  select {
+    background-color: var(--select-background);
+    width: auto;
+    font-size: 1rem;
+    color: var(--text-color);
+    -webkit-text-fill-color: var(--text-color);
+    text-align: center;
+    border: 0;
+    cursor: pointer;
+  }
+
+  input[type=search] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -ms-appearance: none;
+    -o-appearance: none;
+    margin: 0;
+    padding: 0 .25rem;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+    background: 0 0;
+    height: 2rem;
+    color: var(--text-color);
+    display: inline-block;
+    border-bottom: 1px solid #999;
+    max-height: 2rem;
+    font-size: 1.5rem;
+    opacity: .85;
+    background: linear-gradient(to bottom, transparent 95%, var(--input-border-color) 95%) no-repeat;
+    background-size: 0 100%;
+    transition: background-size .2s ease;
+    width: 100%;
+    text-align: center;
+
+    &:focus {
+      border-bottom: 1px solid var(--input-border-color);
+      background-size: 100% 100%;
+      outline: 0;
+      opacity: 1;
+    }
+  }
+}
