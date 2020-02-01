@@ -30,7 +30,7 @@
   moment.locale($settings.language);
 
   export let params = {};
-
+  console.log(params);
   const prefix = "/cloud";
   const routes = {
     "/login": Login,
@@ -76,16 +76,19 @@
 
   function checkLogin() {
     loading = true;
-    cloud.isUserLoggedIn().then(
-      response => {
-        isUserLoggedIn = response.$uid ? true : false;
-      },
-      error => {
-        isUserLoggedIn = false;
-      }
-    ).finally(() => {
-      loading = false;
-    });
+    cloud
+      .isUserLoggedIn()
+      .then(
+        response => {
+          isUserLoggedIn = response.$uid ? true : false;
+        },
+        error => {
+          isUserLoggedIn = false;
+        }
+      )
+      .finally(() => {
+        loading = false;
+      });
   }
 </script>
 
@@ -112,18 +115,25 @@
       </div>
     {:else}
       <div id="cards" class="grid">
-        <div id="card" on:click={() => push('/cloud/backups')}>
-          <h2>Backups</h2>
-        </div>
-        <div id="card" on:click={() => push('/cloud/security')}>
-          <h2>Security</h2>
-        </div>
-        <div id="card" on:click={() => push('/cloud/update')}>
-          <h2>Profile</h2>
-        </div>
-        <div id="card" on:click={() => push('/cloud/logout')}>
-          <h2>Logout</h2>
-        </div>
+        {#if !params.loginReturn}
+          <div id="card" on:click={() => push('/cloud/backups')}>
+            <h2>Backups</h2>
+          </div>
+          <div id="card" on:click={() => push('/cloud/security')}>
+            <h2>Security</h2>
+          </div>
+          <div id="card" on:click={() => push('/cloud/update')}>
+            <h2>Profile</h2>
+          </div>
+          <div id="card" on:click={() => push('/cloud/logout')}>
+            <h2>Logout</h2>
+          </div>
+        {:else}
+          <div id="card" on:click={() => push('/cloud')}>
+            <span class="lnr lnr-arrow-left-circle" />
+            {$_('install.back')}
+          </div>
+        {/if}
       </div>
     {/if}
     <Router {routes} {prefix} />
