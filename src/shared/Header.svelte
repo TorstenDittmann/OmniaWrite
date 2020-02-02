@@ -9,19 +9,23 @@
   import cloud from "../appwrite";
   import active from "svelte-spa-router/active";
 
+  import Toast from "../shared/Toast.svelte";
+
   export let navigationState;
 
   const dispatch = createEventDispatcher();
 
   let isValidLogin = cloud.isUserLoggedIn();
-  let cloudSyncState = false;
+  let showCloudUpload = false;
+  let isCloudUploading = false;
+  let showCloudToast = false;
 
   $: {
     cloud.isUserLoggedIn().then(user => {
       if ($state.lastCloudSave < $state.lastLocalSave && user.$uid) {
-        cloudSyncState = true;
+        showCloudUpload = true;
       } else {
-        cloudSyncState = false;
+        showCloudUpload = false;
       }
     });
   }
@@ -31,7 +35,12 @@
   }
 
   function syncCloud() {
-    cloud.saveToCloud();
+    showCloudUpload = false;
+    isCloudUploading = true;
+    cloud.saveToCloud().then(response => {
+      isCloudUploading = false;
+      showCloudToast = true;
+    });
   }
 </script>
 
@@ -104,9 +113,6 @@
           <li use:active={'/cards/'} style="-webkit-app-region: no-drag">
             <a href="/cards/" use:link>{$_('header.cards.title')}</a>
           </li>
-          <!--<li use:active={'/mindmap/'}>
-              <a href="/mindmap/" use:link>Mindmaps</a>
-            </li>-->
           <li use:active={'/settings'} style="-webkit-app-region: no-drag">
             <a href="/settings" use:link>{$_('header.settings.title')}</a>
           </li>
@@ -116,9 +122,20 @@
           <li use:active={'/cloud'} style="-webkit-app-region: no-drag">
             <a href="/cloud" use:link>{$_('header.cloud.title')}</a>
           </li>
-          {#if cloudSyncState}
+          {#if showCloudUpload}
             <li on:click={syncCloud} style="-webkit-app-region: no-drag">
-              <span class="lnr lnr-cloud-sync" />
+              <span class="lnr lnr-cloud-upload" />
+            </li>
+          {/if}
+          {#if isCloudUploading}
+            <li>
+              <div class="lds-ellipsis">
+                <div />
+                <div />
+                <div />
+                <div />
+              </div>
+
             </li>
           {/if}
         </ul>
@@ -164,3 +181,7 @@
     </ul>
   </div>
 </header>
+<Toast
+  bind:show={showCloudToast}
+  text={$_('cloud.toast.savedCloud')}
+  on:click={() => (showCloudToast = false)} />

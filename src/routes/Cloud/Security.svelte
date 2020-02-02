@@ -37,6 +37,7 @@
     margin-block-start: 0;
     margin-block-end: 0;
   }
+
   ul li {
     padding: 2rem 1rem;
     display: flex;
@@ -69,9 +70,6 @@
   <ul>
     {#each devices as device}
       <li>
-        {#if device.current}
-          <span class="lnr lnr-map-marker" />
-        {/if}
         <span>{device.OS.name}</span>
         <span>{device.geo.country}</span>
         <span>{device.ip}</span>
@@ -94,11 +92,13 @@
 {:then logs}
   <ul>
     {#each logs as log}
-      <li>
-        <b>{codeToString(log.event)}</b>
-        <span>{log.OS.name}</span>
-        <span>{moment(log.time, 'X').fromNow()}</span>
-        <span>{moment(log.time, 'X').format('MMMM Do YYYY, h:mm:ss a')}</span>
+      <li class="flex-container">
+        <b class="flex-item">{codeToString(log.event)}</b>
+        <span class="flex-item">{log.OS.name}</span>
+        <span class="flex-item">{moment(log.time, 'X').fromNow()}</span>
+        <span class="flex-item">
+          {moment(log.time, 'X').format('MMMM Do YYYY, h:mm:ss a')}
+        </span>
       </li>
     {/each}
   </ul>

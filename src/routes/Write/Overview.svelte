@@ -11,6 +11,7 @@
   let sceneData = [];
 
   $: {
+    sceneData = [];
     const unsubscribe = $chapters
       .filter(chapter => chapter.project == $state.currentProject)
       .forEach(chapter => {

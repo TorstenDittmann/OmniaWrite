@@ -90,6 +90,7 @@ header {
 
             li {
                 -webkit-app-region: no-drag;
+                cursor: pointer;
 
                 a {
                     color: var(--menu-link);
@@ -115,6 +116,10 @@ header {
                     &:hover {
                         opacity: 1;
                     }
+                }
+
+                .lnr {
+                    padding: 1.25rem 1rem;
                 }
             }
 
