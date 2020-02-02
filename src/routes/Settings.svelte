@@ -51,7 +51,10 @@
   <h2>{$_('header.write.title')}</h2>
   <div class="field">
     <label class="big" for="autosave">{$_('settings.write.autosave')}</label>
-    <input id="autosave" type="checkbox" bind:checked={$settings.autosave} />
+    <p>
+      <input id="autosave" type="checkbox" bind:checked={$settings.autosave} />
+      <label for="autosave" />
+    </p>
   </div>
   <div class="field">
     <label class="big" for="fontSize">{$_('settings.write.fontsize')}</label>

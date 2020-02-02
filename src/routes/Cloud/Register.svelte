@@ -29,6 +29,12 @@
   .disclaimer-button {
     width: calc(100% - 4rem);
   }
+  .link {
+    cursor: pointer;
+  }
+  .link:hover {
+    text-decoration: underline;
+  }
 </style>
 
 <Modal bind:show={showPrivacyPolicy}>
@@ -65,25 +71,18 @@
       placeholder="******"
       bind:value={registerPass} />
   </div>
-  <div class="btn-group">
-    <button
-      class="disclaimer-check"
-      type="button"
-      class:red={!statusPrivacyPolicy}
-      class:green={statusPrivacyPolicy}
-      on:click={() => (statusPrivacyPolicy = !statusPrivacyPolicy)}>
-      <span
-        class="lnr"
-        class:lnr-cross-circle={!statusPrivacyPolicy}
-        class:lnr-checkmark-circle={statusPrivacyPolicy} />
-    </button>
-    <button
-      class="disclaimer-button outline"
-      type="button"
-      on:click={() => (showPrivacyPolicy = true)}>
-      {$_('cloud.privacy.show')}
-    </button>
-  </div>
+  <p>
+    <input
+      id="PrivacyPolicy"
+      type="checkbox"
+      bind:checked={statusPrivacyPolicy} />
+    <label for="PrivacyPolicy">
+      I agree to the
+      <span class="link" on:click={() => (showPrivacyPolicy = true)}>
+        {' ' + $_('cloud.privacy.show')}
+      </span>
+    </label>
+  </p>
   <div class="btn-group">
     <button
       type="submit"
