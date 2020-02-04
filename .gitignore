@@ -6,6 +6,7 @@ public/service-worker.js
 cordova/www/
 src/licenses.json
 public/precache-manifest.*
+public/workbox-*
 public/fonts
 installer/OmniaWrite-*
 deskgap/*
