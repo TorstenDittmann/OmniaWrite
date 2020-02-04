@@ -111,6 +111,14 @@ function storeProjects() {
             return newProjectId;
         },
         /**
+         * Removes project.
+         * @param id ID of the project.
+         */
+        removeProject: (id) => update(n => {
+            updateLocalTimestamp();
+            return n.filter(n => n.id !== id)
+        }),
+        /**
          * Sets project title.
          * @param id ID of the project.
          * @param title New title of project.
@@ -175,6 +183,14 @@ function storeChapters() {
         removeChapter: (id) => update(n => {
             updateLocalTimestamp();
             return n.filter(n => n.id !== id)
+        }),
+        /**
+         * Removes all chapters from project.
+         * @param id ID of the chapter.
+         */
+        removeAllChapters: (id) => update(n => {
+            updateLocalTimestamp();
+            return n.filter(n => n.project !== id)
         }),
         moveChapter: (project, from, to) => update(n => {
             let temp = n.filter(p => p.project == project).sort((a, b) => a.order - b.order);
@@ -251,6 +267,14 @@ function storeScenes() {
         removeScene: (id) => update(n => {
             updateLocalTimestamp();
             return n.filter(n => n.id !== id)
+        }),
+        /**
+         * Removes all scenes from chapter.
+         * @param id ID of the chapter.
+         */
+        removeAllScenes: (id) => update(n => {
+            updateLocalTimestamp();
+            return n.filter(n => n.chapter !== id)
         }),
         moveScene: (fromChapter, fromId, toChapter, toId) => update(n => {
             let tempFrom = n.filter(p => p.chapter == fromChapter).sort((a, b) => a.order - b.order);

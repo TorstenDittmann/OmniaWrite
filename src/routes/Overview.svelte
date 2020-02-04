@@ -28,6 +28,17 @@
     );
   }
 
+  function removeProject(project) {
+    let confirmed = confirm($_("overview.project.confirmDelete"));
+    if (confirmed == true) {
+      projects.removeProject(project);
+      chapters.removeChapter(project);
+      scenes.removeAllScenes(project);
+      state.setCurrentProject("");
+      deskgap.reload();
+    }
+  }
+
   function sort(b, a) {
     if (a.lastOpen < b.lastOpen) {
       return -1;
@@ -72,6 +83,12 @@
     <div class="btn-group">
       <button on:click={() => setProjectTitle(project.id)}>
         {$_('overview.project.save')}
+      </button>
+      <button
+        on:click={() => removeProject(project.id)}
+        style="float: right;"
+        class="warning">
+        {$_('overview.project.delete')}
       </button>
     </div>
   </Modal>
