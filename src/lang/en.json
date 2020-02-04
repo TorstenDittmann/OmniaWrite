@@ -174,7 +174,9 @@
             "scenes": "Scenes",
             "words": "Words",
             "characters": "Characters",
-            "save": "Save"
+            "save": "Save",
+            "delete": "Delete",
+            "confirmDelete": "Are you sure you want to delete this project?"
         },
         "projects": {
             "title": "Projects",

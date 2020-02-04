@@ -174,7 +174,9 @@
             "scenes": "Szenen",
             "words": "Wörter",
             "characters": "Zeichen",
-            "save": "Speichern"
+            "save": "Löschen",
+            "delete": "Delete",
+            "confirmDelete": "Sind Sie sicher, dass Sie dieses Projekt löschen wollen?"
         },
         "projects": {
             "title": "Projekte",
