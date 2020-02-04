@@ -168,6 +168,7 @@
       class="warning"
       on:click={() => {
         chapters.removeChapter(objEditChapter.id);
+        scenes.removeAllScenes(objEditChapter.id);
         showEditChapter = false;
       }}>
       {$_('sidebar.modal.edit.buttonDelete')}
