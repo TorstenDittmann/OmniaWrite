@@ -36,8 +36,6 @@
 
 ## About OmniaWrite
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
-
 OmniaWrite is a next-generation plain text editor engineered for creative writing. It is perfect for writing novels, lyrics, poems, essays, drafts and screenplays.
 
 Writing a good story is one of the most challenging things in life. But for many it is a dream worth pursuing.
@@ -46,8 +44,10 @@ OmniaWrite doesn't help you create a novel out of nothing, but is a faithful com
 
 #### Full Featured Text Editor
 Everything you need. Nothing you don’t.
+
 #### Chapters and Scenes
 Write in chapters and scenes to give your text more structure and add manageability. You can move and rearrange scenes at will without having to break your structure.
+
 #### Anywhere
 OmniaWrite will support Windows, Linux, macOS, Android, iOS and can also run in any modern browser.
 
