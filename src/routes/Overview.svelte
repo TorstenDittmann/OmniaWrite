@@ -64,7 +64,6 @@
 <CreateProject
   bind:showCreateProject
   on:changeProject={event => changeProject(event.detail.project)} />
-<Status />
 
 {#each $projects.filter(project => project.id == $state.currentProject) as project}
   <h1 class="projectTitle" on:click={() => (showEditProject = true)}>
