@@ -13,6 +13,7 @@
     "@editorjs/paragraph": "^2.6.1",
     "@editorjs/quote": "^2.3.0",
     "@rollup/plugin-json": "^4.0.1",
+    "@sentry/webpack-plugin": "^1.10.0",
     "@types/file-saver": "^2.0.1",
     "deskgap": "^0.2.0",
     "eslint": "^6.8.0",
@@ -33,6 +34,7 @@
     "svelte": "^3.17.1"
   },
   "dependencies": {
+    "@sentry/browser": "^5.12.1",
     "backendless": "^5.7.1",
     "file-saver": "^2.0.2",
     "jszip": "^3.2.2",
