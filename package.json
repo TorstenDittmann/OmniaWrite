@@ -30,6 +30,7 @@
     "webpack": "^4.41.5"
   },
   "dependencies": {
+    "@sentry/browser": "^5.12.1",
     "appwrite": "^1.0.28",
     "backendless": "^5.7.1",
     "cross-env": "^7.0.0",
