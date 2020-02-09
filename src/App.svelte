@@ -5,6 +5,7 @@
   import { locale, _ } from "svelte-i18n";
 
   import Router from "svelte-spa-router";
+  import * as Sentry from "@sentry/browser";
 
   import HeaderComponent from "./shared/Header.svelte";
   import SidebarComponent from "./shared/Sidebar.svelte";
@@ -43,6 +44,10 @@
     // Catch-all
     "*": OverviewRoute
   };
+
+  Sentry.init({
+    dsn: "https://23916d0950d744b49ded80f0177467a5@sentry.io/2319182"
+  });
 
   const wb = new Workbox("./service-worker.js");
   let updateAvailable = false;
