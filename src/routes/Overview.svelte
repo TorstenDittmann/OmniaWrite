@@ -56,6 +56,7 @@
 {#each $projects.filter(project => project.id == $state.currentProject) as project}
   <h1 class="projectTitle" on:click={() => (showEditProject = true)}>
     {project.title}
+    <span class="lnr lnr-cog" />
   </h1>
   <ProjectOverview />
   <Modal bind:show={showEditProject}>

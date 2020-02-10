@@ -20,15 +20,6 @@
 </script>
 
 <style>
-  .disclaimer-check {
-    width: 3rem;
-    min-width: 3rem;
-    margin-right: 1rem;
-  }
-
-  .disclaimer-button {
-    width: calc(100% - 4rem);
-  }
   .link {
     cursor: pointer;
   }
