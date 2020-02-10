@@ -5,10 +5,18 @@
   import moment from "moment";
   import "moment/locale/de";
 
+  import Spinner from "../../shared/Spinner.svelte";
+
   moment.locale($settings.language);
 
+  let isLoadingBackup = false;
+
   function restoreBackup(id) {
-    cloud.restoreBackup(id).then(response => deskgap.reload());
+    isLoadingBackup = true;
+    cloud.restoreBackup(id).then(response => {
+      isLoadingBackup = false;
+      deskgap.reload();
+    });
   }
   function formatBytes(a, b) {
     if (0 == a) return "0 Bytes";
@@ -62,29 +70,30 @@
   }
 </style>
 
-<h2>Backups</h2>
-{#await cloud.getAllBackups()}
-  <div class="lds-ellipsis">
-    <div />
-    <div />
-    <div />
-    <div />
-  </div>
-{:then backups}
-  <ul>
-    {#each backups.files as backup}
-      <li on:click={() => restoreBackup(backup.$uid)}>
-        <span class="from-now">
-          {moment(backup.dateCreated, 'X').fromNow()}
-        </span>
-        <span class="date">
-          {moment(backup.dateCreated, 'X').format('MMMM Do YYYY, h:mm:ss a')}
-        </span>
-        <span class="file-size">{formatBytes(backup.sizeOriginal)}</span>
-        <span class="lnr lnr-cloud-download" />
-      </li>
-    {/each}
-  </ul>
-{:catch error}
-  <p style="color: red">{error.message}</p>
-{/await}
+{#if isLoadingBackup}
+  <Spinner />
+  <br />
+  <i>Migrating backup</i>
+{:else}
+  <h2>Backups</h2>
+  {#await cloud.getAllBackups()}
+    <Spinner />
+  {:then backups}
+    <ul>
+      {#each backups.files as backup}
+        <li on:click={() => restoreBackup(backup.$uid)}>
+          <span class="from-now">
+            {moment(backup.dateCreated, 'X').fromNow()}
+          </span>
+          <span class="date">
+            {moment(backup.dateCreated, 'X').format('MMMM Do YYYY, h:mm:ss a')}
+          </span>
+          <span class="file-size">{formatBytes(backup.sizeOriginal)}</span>
+          <span class="lnr lnr-cloud-download" />
+        </li>
+      {/each}
+    </ul>
+  {:catch error}
+    <p style="color: red">{error.message}</p>
+  {/await}
+{/if}

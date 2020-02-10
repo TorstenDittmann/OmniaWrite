@@ -11,7 +11,6 @@
       text: licenses[key].licenseText
     });
   });
-  console.log(licenseData);
 </script>
 
 <style>

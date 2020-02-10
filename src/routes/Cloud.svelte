@@ -8,6 +8,7 @@
 
   import cloud from "../appwrite";
   import Toast from "../shared/Toast.svelte";
+  import Spinner from "../shared/Spinner.svelte";
 
   import Login from "./Cloud/Login.svelte";
   import LoginSuccess from "./Cloud/Login/Success.svelte";
@@ -138,11 +139,6 @@
     {/if}
     <Router {routes} {prefix} />
   {:else}
-    <div class="lds-ellipsis">
-      <div />
-      <div />
-      <div />
-      <div />
-    </div>
+    <Spinner />
   {/if}
 </div>

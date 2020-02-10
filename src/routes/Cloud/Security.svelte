@@ -4,27 +4,9 @@
   import moment from "moment";
   import "moment/locale/de";
 
+  import Spinner from "../../shared/Spinner.svelte";
+
   moment.locale($settings.language);
-
-  cloud.getSessions().then(res => {
-    console.log(res);
-  });
-
-  function codeToString(code) {
-    switch (code) {
-      case "auth.login":
-        return "Login";
-        break;
-
-      case "auth.logout":
-        return "Logout";
-        break;
-
-      default:
-        return code;
-        break;
-    }
-  }
 
   function logoutSession(id) {
     cloud.logoutSession(id);
@@ -60,16 +42,14 @@
     margin-top: -0.5rem;
     cursor: pointer;
   }
+  span.flex-item {
+    font-size: 0.8rem;
+  }
 </style>
 
 <h2>Devices</h2>
 {#await cloud.getSessions()}
-  <div class="lds-ellipsis">
-    <div />
-    <div />
-    <div />
-    <div />
-  </div>
+  <Spinner />
 {:then devices}
   <ul>
     {#each devices as device}
@@ -87,12 +67,7 @@
 
 <h2>Activity logs</h2>
 {#await cloud.getSecurityLog()}
-  <div class="lds-ellipsis">
-    <div />
-    <div />
-    <div />
-    <div />
-  </div>
+  <Spinner />
 {:then logs}
   <ul>
     {#each logs as log}

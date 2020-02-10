@@ -6,10 +6,11 @@
   import { deskgap, isRunningElectron } from "../utils";
   import { _ } from "svelte-i18n";
 
-  import cloud from "../appwrite";
   import active from "svelte-spa-router/active";
 
+  import cloud from "../appwrite";
   import Toast from "../shared/Toast.svelte";
+  import Spinner from "../shared/Spinner.svelte";
 
   export let navigationState;
 
@@ -134,16 +135,10 @@
             {/if}
             {#if isCloudUploading}
               <li>
-                <div class="lds-ellipsis">
-                  <div />
-                  <div />
-                  <div />
-                  <div />
-                </div>
-
+                <Spinner />
               </li>
             {/if}
-          {:else}{/if}
+          {/if}
         </ul>
         {#if isRunningElectron}
           <span
