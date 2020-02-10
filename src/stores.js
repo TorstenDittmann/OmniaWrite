@@ -80,6 +80,10 @@ function storeState() {
         updateLocalTimestamp: () => update(n => {
             n.lastLocalSave = (+new Date) / 1000;
             return n;
+        }),
+        setLogin: (bool) => update(n => {
+            n.isUserLoggedIn = bool;
+            return n;
         })
     }
 }
