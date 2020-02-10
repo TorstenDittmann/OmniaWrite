@@ -44,12 +44,29 @@
     showEditChapter = false;
   }
 
+  function removeChapter(chapterId) {
+    let confirmed = confirm($_("overview.chapter.confirmDelete"));
+    if (confirmed == true) {
+      chapters.removeChapter(chapterId);
+      showEditChapter = false;
+    }
+  }
+
   let showEditScene = false;
   let objEditScene;
 
   function editScene() {
     scenes.setSceneTitle(objEditScene.id, objEditScene.title);
     showEditScene = false;
+  }
+
+  function removeScene(sceneId) {
+    let confirmed = confirm($_("overview.scene.confirmDelete"));
+    if (confirmed == true) {
+      showEditScene = false;
+      push("/write");
+      window.setTimeout(() => scenes.removeScene(sceneId), 200);
+    }
   }
 
   onMount(() => {
@@ -156,10 +173,7 @@
       <button
         style="float: right;"
         class="warning"
-        on:click={() => {
-          chapters.removeChapter(objEditChapter.id);
-          showEditChapter = false;
-        }}>
+        on:click={() => removeChapter(objEditChapter.id)}>
         {$_('sidebar.modal.edit.buttonDelete')}
       </button>
     </div>
@@ -188,11 +202,7 @@
       <button
         style="float: right;"
         class="warning"
-        on:click={() => {
-          showEditScene = false;
-          push('/write');
-          window.setTimeout(() => scenes.removeScene(objEditScene.id), 200);
-        }}>
+        on:click={() => removeScene(objEditScene.id)}>
         {$_('sidebar.modal.edit.buttonDelete')}
       </button>
     </div>
