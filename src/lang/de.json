@@ -94,7 +94,10 @@
         }
     },
     "export": {
-        "title": "Exportieren",
+        "title": {
+            "rtf": "RTF",
+            "epub": "EPUB"
+        },
         "author": "Autor:",
         "cover": "Cover:",
         "downloadEpub": "Download als EPUB",

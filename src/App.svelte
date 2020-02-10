@@ -2,6 +2,7 @@
   import { Workbox } from "workbox-window";
   import { state, projects, settings, intern } from "./stores";
   import { deskgap, isRunningElectron } from "./utils";
+  import cloud from "./appwrite";
   import { locale, _ } from "svelte-i18n";
 
   import Router from "svelte-spa-router";
@@ -95,6 +96,22 @@
       navigationState = false;
     }
   }
+
+  /**
+   * Check for login
+   */
+  cloud.isUserLoggedIn().then(
+    user => {
+      if (user["$uid"]) {
+        $state.isUserLoggedIn = true;
+      } else {
+        $state.isUserLoggedIn = false;
+      }
+    },
+    err => {
+      $state.isUserLoggedIn = false;
+    }
+  );
 
   /**
    * Listen for settings

@@ -6,7 +6,7 @@
   margin: 1rem 0;
 
   label {
-    flex: 1;
+    flex: 0 1 12rem;
     min-width: 6rem;
     padding-right: 1rem;
     text-align: left;
@@ -18,10 +18,9 @@
   }
 
   input,
-  select {
-    flex: 2;
-    min-width: 8rem;
-    max-width: 14rem;
+  select,
+  p {
+    flex: 0 1 12rem;
   }
 
   input[type=text],

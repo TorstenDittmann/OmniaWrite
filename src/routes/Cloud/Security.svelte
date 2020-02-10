@@ -21,7 +21,7 @@
         break;
 
       default:
-        return "-";
+        return code;
         break;
     }
   }
@@ -45,6 +45,10 @@
     opacity: 1;
     transition: all 0.5s ease;
     max-width: 800px;
+  }
+
+  li span {
+    flex: 1 1;
   }
 
   ul li:hover {
@@ -93,7 +97,7 @@
   <ul>
     {#each logs as log}
       <li class="flex-container">
-        <b class="flex-item">{codeToString(log.event)}</b>
+        <b class="flex-item">{log.event}</b>
         <span class="flex-item">{log.OS.name}</span>
         <span class="flex-item">{moment(log.time, 'X').fromNow()}</span>
         <span class="flex-item">

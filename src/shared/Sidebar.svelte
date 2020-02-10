@@ -90,23 +90,25 @@
 
 <Modal bind:show={showCreateChapter}>
   <h2 slot="header">{$_('sidebar.modal.newChapter.header')}</h2>
-  <div class="field">
-    <label for="editChapterInput">{$_('sidebar.modal.title')}</label>
-    <input
-      id="editChapterInput"
-      bind:value={createChapterTitle}
-      autocomplete="off"
-      placeholder="enter your title"
-      type="text" />
-  </div>
-  <hr />
-  <div class="btn-group">
-    {#if createChapterTitle.length > 0}
-      <button on:click={createChapter}>
-        {$_('sidebar.modal.newChapter.button')}
-      </button>
-    {/if}
-  </div>
+  <form on:submit|preventDefault={createChapter}>
+    <div class="field">
+      <label for="editChapterInput">{$_('sidebar.modal.title')}</label>
+      <input
+        id="editChapterInput"
+        bind:value={createChapterTitle}
+        autocomplete="off"
+        placeholder="enter your title"
+        type="text" />
+    </div>
+    <hr />
+    <div class="btn-group">
+      {#if createChapterTitle.length > 0}
+        <button on:click={createChapter}>
+          {$_('sidebar.modal.newChapter.button')}
+        </button>
+      {/if}
+    </div>
+  </form>
 </Modal>
 
 <Modal bind:show={showCreateScene}>
@@ -134,64 +136,66 @@
 
 <Modal bind:show={showEditChapter}>
   <h2 slot="header">{objEditChapter.title}</h2>
-  <h3>Edit</h3>
-  <div class="field">
-    <label for="editChapterInput">{$_('sidebar.modal.title')}</label>
-    <input
-      id="editChapterInput"
-      bind:value={objEditChapter.title}
-      autocomplete="off"
-      placeholder="enter your title"
-      type="text" />
-  </div>
-  <div class="btn-group">
-    {#if objEditChapter.title.length > 0}
-      <button on:click={editChapter}>
-        {$_('sidebar.modal.edit.buttonSave')}
+  <form on:submit|preventDefault={editChapter}>
+    <div class="field">
+      <label for="editChapterInput">{$_('sidebar.modal.title')}</label>
+      <input
+        id="editChapterInput"
+        bind:value={objEditChapter.title}
+        autocomplete="off"
+        placeholder="enter your title"
+        type="text" />
+    </div>
+    <div class="btn-group">
+      {#if objEditChapter.title.length > 0}
+        <button on:click={editChapter} type="submit">
+          {$_('sidebar.modal.edit.buttonSave')}
+        </button>
+      {/if}
+      <button
+        style="float: right;"
+        class="warning"
+        on:click={() => {
+          chapters.removeChapter(objEditChapter.id);
+          showEditChapter = false;
+        }}>
+        {$_('sidebar.modal.edit.buttonDelete')}
       </button>
-    {/if}
-    <button
-      style="float: right;"
-      class="warning"
-      on:click={() => {
-        chapters.removeChapter(objEditChapter.id);
-        scenes.removeAllScenes(objEditChapter.id);
-        showEditChapter = false;
-      }}>
-      {$_('sidebar.modal.edit.buttonDelete')}
-    </button>
-  </div>
+    </div>
+  </form>
 </Modal>
 
 <Modal bind:show={showEditScene}>
   <h2 slot="header">{objEditScene.title}</h2>
-  <div class="field">
-    <label for="editChapterInput">{$_('sidebar.modal.title')}</label>
-    <input
-      id="editChapterInput"
-      bind:value={objEditScene.title}
-      autocomplete="off"
-      placeholder="enter your title"
-      type="text" />
-  </div>
-  <br />
-  <div class="btn-group">
-    {#if objEditScene.title.length > 0}
-      <button on:click={editScene}>
-        {$_('sidebar.modal.edit.buttonSave')}
+  <form on:submit|preventDefault={editScene}>
+    <div class="field">
+      <label for="editChapterInput">{$_('sidebar.modal.title')}</label>
+      <input
+        id="editChapterInput"
+        bind:value={objEditScene.title}
+        autocomplete="off"
+        placeholder="enter your title"
+        type="text" />
+    </div>
+    <br />
+    <div class="btn-group">
+      {#if objEditScene.title.length > 0}
+        <button on:click={editScene} type="submit">
+          {$_('sidebar.modal.edit.buttonSave')}
+        </button>
+      {/if}
+      <button
+        style="float: right;"
+        class="warning"
+        on:click={() => {
+          showEditScene = false;
+          push('/write');
+          window.setTimeout(() => scenes.removeScene(objEditScene.id), 200);
+        }}>
+        {$_('sidebar.modal.edit.buttonDelete')}
       </button>
-    {/if}
-    <button
-      style="float: right;"
-      class="warning"
-      on:click={() => {
-        showEditScene = false;
-        push('/write');
-        window.setTimeout(() => scenes.removeScene(objEditScene.id), 200);
-      }}>
-      {$_('sidebar.modal.edit.buttonDelete')}
-    </button>
-  </div>
+    </div>
+  </form>
 </Modal>
 
 {#if sidebarState}

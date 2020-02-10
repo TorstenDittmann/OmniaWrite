@@ -15,19 +15,19 @@
 
   const dispatch = createEventDispatcher();
 
-  let isValidLogin = cloud.isUserLoggedIn();
+  let isValidLogin = $state.isUserLoggedIn;
   let showCloudUpload = false;
   let isCloudUploading = false;
   let showCloudToast = false;
 
   $: {
-    cloud.isUserLoggedIn().then(user => {
-      if ($state.lastCloudSave < $state.lastLocalSave && user.$uid) {
+    if (isValidLogin) {
+      if ($state.lastCloudSave < $state.lastLocalSave) {
         showCloudUpload = true;
       } else {
         showCloudUpload = false;
       }
-    });
+    }
   }
 
   function createTab() {
@@ -122,22 +122,28 @@
           <li use:active={'/cloud'} style="-webkit-app-region: no-drag">
             <a href="/cloud" use:link>{$_('header.cloud.title')}</a>
           </li>
-          {#if showCloudUpload}
-            <li on:click={syncCloud} style="-webkit-app-region: no-drag">
-              <span class="lnr lnr-cloud-upload" />
-            </li>
-          {/if}
-          {#if isCloudUploading}
-            <li>
-              <div class="lds-ellipsis">
-                <div />
-                <div />
-                <div />
-                <div />
-              </div>
+          {#if isValidLogin}
+            {#if showCloudUpload}
+              <li on:click={syncCloud} style="-webkit-app-region: no-drag">
+                <span class="lnr lnr-cloud-upload" />
+              </li>
+            {:else}
+              <li>
+                <span class="lnr lnr-cloud-check" />
+              </li>
+            {/if}
+            {#if isCloudUploading}
+              <li>
+                <div class="lds-ellipsis">
+                  <div />
+                  <div />
+                  <div />
+                  <div />
+                </div>
 
-            </li>
-          {/if}
+              </li>
+            {/if}
+          {:else}{/if}
         </ul>
         {#if isRunningElectron}
           <span
