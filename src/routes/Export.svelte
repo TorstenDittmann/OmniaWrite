@@ -1,7 +1,8 @@
-<script>
-    function rNr() {
-        return Math.floor(Math.random() * 100000);
-    }
+<script lang="javascript">
+  import { fade } from "svelte/transition";
+  import { Export, ExportRTF } from "../export";
+  import { state } from "../stores";
+  import { _ } from "svelte-i18n";
 
   import Placeholder from "../shared/Placeholder.svelte";
   import RTF from "./Export/RTF.svelte";
@@ -16,7 +17,7 @@
   }
 </style>
 
-<div class="export-container">
+<div class="export-container" in:fade={{ duration: 100 }}>
   {#if !window.hasOwnProperty('cordova')}
     {#if $state.currentProject}
       <RTF />

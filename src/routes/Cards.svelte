@@ -1,4 +1,5 @@
 <script lang="javascript">
+  import { fade } from "svelte/transition";
   import { cards, state } from "../stores";
   import { createEventDispatcher } from "svelte";
   import { _ } from "svelte-i18n";
@@ -131,34 +132,36 @@
   </form>
 </Modal>
 
-{#if $state.currentProject}
-  <div class="field">
-    <input
-      autocomplete="off"
-      placeholder={$_('cards.search')}
-      type="search"
-      bind:value={searchInput} />
-  </div>
-  <div id="cards" class="grid">
-    <div class="new" on:click={() => (showCreateCard = true)}>
-      <span class="lnr lnr-plus-circle" />
+<div in:fade={{ duration: 100 }}>
+  {#if $state.currentProject}
+    <div class="field">
+      <input
+        autocomplete="off"
+        placeholder={$_('cards.search')}
+        type="search"
+        bind:value={searchInput} />
     </div>
-    {#each filteredCards as card}
-      <div
-        id="card"
-        on:click={() => {
-          [showEditCard, editCardObject] = [true, card];
-        }}>
-        <h2>
-          {#if card.showTooltip}
-            <span class="lnr lnr-checkmark-circle" />
-          {/if}
-          {card.title}
-        </h2>
-        {card.content}
+    <div id="cards" class="grid">
+      <div class="new" on:click={() => (showCreateCard = true)}>
+        <span class="lnr lnr-plus-circle" />
       </div>
-    {/each}
-  </div>
-{:else}
-  <Placeholder />
-{/if}
+      {#each filteredCards as card}
+        <div
+          id="card"
+          on:click={() => {
+            [showEditCard, editCardObject] = [true, card];
+          }}>
+          <h2>
+            {#if card.showTooltip}
+              <span class="lnr lnr-checkmark-circle" />
+            {/if}
+            {card.title}
+          </h2>
+          {card.content}
+        </div>
+      {/each}
+    </div>
+  {:else}
+    <Placeholder />
+  {/if}
+</div>
