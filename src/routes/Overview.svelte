@@ -89,17 +89,25 @@
     text-decoration: underline;
     text-decoration-style: dashed;
   }
+
+  .overview {
+    max-width: 800px;
+    margin: auto;
+    text-align: center;
+  }
 </style>
 
 <CreateProject
   bind:showCreateProject
   on:changeProject={event => changeProject(event.detail.project)} />
-<div in:fade={{ duration: 100 }}>
+
+<div in:fade={{ duration: 100 }} class="overview">
   {#each $projects.filter(project => project.id == $state.currentProject) as project}
-    <h1 class="projectTitle" on:click={() => (showEditProject = true)}>
-      {project.title}
+    <h1>{project.title}</h1>
+    <h3 class="projectTitle" on:click={() => (showEditProject = true)}>
       <span class="lnr lnr-cog" />
-    </h1>
+      Edit project
+    </h3>
     <ProjectOverview />
     <Modal bind:show={showEditProject}>
       <div class="field">
