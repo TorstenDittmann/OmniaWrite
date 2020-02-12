@@ -10,7 +10,7 @@
       setTimeout(() => {
         window.location.hash = "#/cloud";
         deskgap.reload();
-      }, 2500)
+      }, 1500)
     );
   });
 </script>

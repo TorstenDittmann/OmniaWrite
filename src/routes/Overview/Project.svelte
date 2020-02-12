@@ -37,12 +37,13 @@
 
 <style type="text/css">
   .column {
-    float: left;
     width: 20%;
     padding: 0 5px;
   }
 
   .row {
+    display: flex;
+    justify-content: center;
     margin: 0 -5px;
   }
 

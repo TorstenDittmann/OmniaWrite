@@ -62,7 +62,7 @@
 <style type="text/css">
   .overlay {
     position: fixed; /* Sit on top of the page content */
-    display: block; /* Hidden by default */
+    display: flex; /* Hidden by default */
     width: 100%; /* Full width (cover the whole page) */
     height: 100%; /* Full height (cover the whole page) */
     top: 0;
@@ -75,6 +75,8 @@
     ); /* Black background with opacity */
     z-index: 999999; /* Specify a stack order in case you're using a different order for other elements */
     overflow: auto;
+    align-items: center;
+    justify-content: center;
   }
   .install {
     max-width: 640px;
@@ -129,7 +131,6 @@
 </style>
 
 <div class="overlay">
-
   <div
     class:show={isRunningElectron}
     class="installHeader"
