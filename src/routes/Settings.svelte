@@ -1,4 +1,5 @@
 <script lang="javascript">
+  import { fade } from "svelte/transition";
   import { _, locale } from "svelte-i18n";
   import { push } from "svelte-spa-router";
 
@@ -27,7 +28,7 @@
   }
 </style>
 
-<div class="settings">
+<div class="settings" in:fade={{ duration: 100 }}>
   <h2>{$_('settings.appereance.title')}</h2>
   <div class="field">
     <label class="big" for="editTheme">

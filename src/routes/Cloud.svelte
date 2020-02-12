@@ -1,5 +1,6 @@
 <script lang="javascript">
   import { onMount } from "svelte";
+  import { fade } from "svelte/transition";
   import { state, settings } from "../stores";
   import { deskgap } from "../utils";
   import { _ } from "svelte-i18n";
@@ -103,7 +104,7 @@
 
 <Toast bind:show={showToast} text={showToastText} />
 
-<div class="cloud-container">
+<div class="cloud-container" in:fade={{ duration: 100 }}>
   {#if !loading}
     {#if !isUserLoggedIn}
       <div id="cards" class="grid">
