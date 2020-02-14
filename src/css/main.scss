@@ -66,6 +66,10 @@ header {
     -webkit-user-select: none;
     -webkit-app-region: drag;
 
+    &.focus-mode {
+        display: none;
+    }
+
     .logo-mobile img {
         height: 4rem;
     }

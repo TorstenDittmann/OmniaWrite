@@ -154,6 +154,7 @@
   function toggleFocus() {
     focusMode = !focusMode;
     document.getElementById("content").classList.toggle("focus");
+    document.getElementById("titlebar").classList.toggle("focus-mode");
   }
 
   function undo() {
