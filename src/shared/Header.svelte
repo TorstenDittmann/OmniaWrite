@@ -69,7 +69,7 @@
   }
 </style>
 
-<header style="-webkit-app-region: drag">
+<header id="titlebar" style="-webkit-app-region: drag">
   <nav class="header noselect">
     <button
       class="burger"
