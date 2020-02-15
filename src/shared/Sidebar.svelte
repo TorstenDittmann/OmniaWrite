@@ -9,64 +9,31 @@
   import active from "svelte-spa-router/active";
   import { initDraggable } from "./Sidebar/draggable";
 
+  import CreateChapter from "./Sidebar/CreateChapter.svelte";
+  import CreateScene from "./Sidebar/CreateScene.svelte";
+  import EditChapter from "./Sidebar/EditChapter.svelte";
+  import EditScene from "./Sidebar/EditScene.svelte";
+
   export let sidebarState;
 
-  let showCreateChapter = false;
-  let createChapterTitle = "";
+  let createChapter = {
+    show: false
+  };
 
-  function createChapter() {
-    chapters.createChapter($state.currentProject, createChapterTitle);
-    showCreateChapter = false;
-    createChapterTitle = "";
-  }
+  let createScene = {
+    show: false,
+    chapter: ""
+  };
 
-  let createSceneTitle = "";
-  let createSceneChapter;
-  let showCreateScene = false;
+  let editChapter = {
+    show: false,
+    data: {}
+  };
 
-  function openCreateScene(chapter) {
-    createSceneChapter = chapter;
-    showCreateScene = true;
-  }
-
-  function createScene() {
-    scenes.createScene(createSceneChapter, createSceneTitle);
-    showCreateScene = false;
-    createSceneTitle = "";
-  }
-
-  let showEditChapter = false;
-  let objEditChapter;
-
-  function editChapter() {
-    chapters.setChapterTitle(objEditChapter.id, objEditChapter.title);
-    showEditChapter = false;
-  }
-
-  function removeChapter(chapterId) {
-    let confirmed = confirm($_("overview.chapter.confirmDelete"));
-    if (confirmed == true) {
-      chapters.removeChapter(chapterId);
-      showEditChapter = false;
-    }
-  }
-
-  let showEditScene = false;
-  let objEditScene;
-
-  function editScene() {
-    scenes.setSceneTitle(objEditScene.id, objEditScene.title);
-    showEditScene = false;
-  }
-
-  function removeScene(sceneId) {
-    let confirmed = confirm($_("overview.scene.confirmDelete"));
-    if (confirmed == true) {
-      showEditScene = false;
-      push("/write");
-      window.setTimeout(() => scenes.removeScene(sceneId), 200);
-    }
-  }
+  let editScene = {
+    show: false,
+    data: {}
+  };
 
   onMount(() => {
     initDraggable(document.querySelectorAll(".menu .parent"));
@@ -105,108 +72,10 @@
   }
 </style>
 
-<Modal bind:show={showCreateChapter}>
-  <h2 slot="header">{$_('sidebar.modal.newChapter.header')}</h2>
-  <form on:submit|preventDefault={createChapter}>
-    <div class="field">
-      <label for="editChapterInput">{$_('sidebar.modal.title')}</label>
-      <input
-        id="editChapterInput"
-        bind:value={createChapterTitle}
-        autocomplete="off"
-        placeholder="enter your title"
-        type="text" />
-    </div>
-    <hr />
-    <div class="btn-group">
-      {#if createChapterTitle.length > 0}
-        <button on:click={createChapter}>
-          {$_('sidebar.modal.newChapter.button')}
-        </button>
-      {/if}
-    </div>
-  </form>
-</Modal>
-
-<Modal bind:show={showCreateScene}>
-  <h2 slot="header">{$_('sidebar.modal.newScene.header')}</h2>
-  <form on:submit|preventDefault={createScene}>
-    <div class="field">
-      <label for="editChapterInput">{$_('sidebar.modal.title')}</label>
-      <input
-        id="editChapterInput"
-        bind:value={createSceneTitle}
-        autocomplete="off"
-        placeholder="enter your title"
-        type="text" />
-    </div>
-    <hr />
-    <div class="btn-group">
-      {#if createSceneTitle.length > 0}
-        <button on:click={createScene}>
-          {$_('sidebar.modal.newScene.button')}
-        </button>
-      {/if}
-    </div>
-  </form>
-</Modal>
-
-<Modal bind:show={showEditChapter}>
-  <h2 slot="header">{objEditChapter.title}</h2>
-  <form on:submit|preventDefault={editChapter}>
-    <div class="field">
-      <label for="editChapterInput">{$_('sidebar.modal.title')}</label>
-      <input
-        id="editChapterInput"
-        bind:value={objEditChapter.title}
-        autocomplete="off"
-        placeholder="enter your title"
-        type="text" />
-    </div>
-    <div class="btn-group">
-      {#if objEditChapter.title.length > 0}
-        <button on:click={editChapter} type="submit">
-          {$_('sidebar.modal.edit.buttonSave')}
-        </button>
-      {/if}
-      <button
-        style="float: right;"
-        class="warning"
-        on:click={() => removeChapter(objEditChapter.id)}>
-        {$_('sidebar.modal.edit.buttonDelete')}
-      </button>
-    </div>
-  </form>
-</Modal>
-
-<Modal bind:show={showEditScene}>
-  <h2 slot="header">{objEditScene.title}</h2>
-  <form on:submit|preventDefault={editScene}>
-    <div class="field">
-      <label for="editChapterInput">{$_('sidebar.modal.title')}</label>
-      <input
-        id="editChapterInput"
-        bind:value={objEditScene.title}
-        autocomplete="off"
-        placeholder="enter your title"
-        type="text" />
-    </div>
-    <br />
-    <div class="btn-group">
-      {#if objEditScene.title.length > 0}
-        <button on:click={editScene} type="submit">
-          {$_('sidebar.modal.edit.buttonSave')}
-        </button>
-      {/if}
-      <button
-        style="float: right;"
-        class="warning"
-        on:click={() => removeScene(objEditScene.id)}>
-        {$_('sidebar.modal.edit.buttonDelete')}
-      </button>
-    </div>
-  </form>
-</Modal>
+<CreateChapter {...createChapter} />
+<CreateScene {...createScene} />
+<EditChapter {...editChapter} />
+<EditScene {...editScene} />
 
 {#if sidebarState}
   <div
@@ -237,7 +106,11 @@
               <span class="lnr lnr-chevron-up collapse" />
               <span
                 class="lnr lnr-cog action"
-                on:click={() => ([showEditChapter, objEditChapter] = [true, chapter])} />
+                on:click={() => ([editChapter.show, editChapter.data] = [true, chapter])} />
+              <span
+                class="lnr lnr-line-spacing action"
+                on:mousedown={startDrag}
+                style="cursor: grab;" />
             </span>
             <ul>
               {#each $scenes
@@ -249,11 +122,16 @@
                   <a href="/write/{scene.id}" use:link>{scene.title}</a>
                   <span
                     class="lnr lnr-cog action"
-                    on:click={() => ([showEditScene, objEditScene] = [true, scene])} />
+                    on:click={() => ([editScene.show, editScene.data] = [true, scene])} />
+                  <span
+                    class="lnr lnr-line-spacing action"
+                    on:mousedown={startDragScene}
+                    style="cursor: grab;" />
                 </li>
               {/each}
               <li>
-                <button on:click={() => openCreateScene(chapter.id)}>
+                <button
+                  on:click={() => ([createScene.show, createScene.chapter] = [true, chapter.id])}>
                   <span class="lnr lnr-plus-circle" />
                   {$_('sidebar.createScene')}
                 </button>
@@ -263,7 +141,7 @@
         {/each}
         <hr class="divider" />
         <li class="parent">
-          <span class="key" on:click={() => (showCreateChapter = true)}>
+          <span class="key" on:click={() => (createChapter.show = true)}>
             <span class="lnr lnr-plus-circle collapse" />
             {$_('sidebar.createChapter')}
           </span>

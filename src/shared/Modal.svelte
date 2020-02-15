@@ -1,6 +1,6 @@
 <script lang="javascript">
   import { createEventDispatcher } from "svelte";
-  import { scale } from "svelte/transition";
+  import { fade, scale } from "svelte/transition";
 
   export let show = false;
   export let fullscreen = false;
@@ -55,9 +55,17 @@
 </style>
 
 {#if show}
-  <div class="modal-background" on:click={() => (show = false)} />
+  <div
+    class="modal-background"
+    on:click={() => (show = false)}
+    in:fade={{ duration: 200 }}
+    out:fade={{ duration: 200 }} />
 
-  <div class="modal" in:scale={{ duration: 200 }} class:fullscreen>
+  <div
+    class="modal"
+    in:scale={{ duration: 200 }}
+    out:scale={{ duration: 200 }}
+    class:fullscreen>
     {#if !persistent}
       <div class="modal-close" on:click={() => (show = false)}>
         <span class="lnr lnr-cross" />

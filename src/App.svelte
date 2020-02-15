@@ -25,6 +25,7 @@
   locale.set($settings.language);
 
   export let version;
+  console.log(`Version: ${version}`);
 
   const routes = {
     "/": OverviewRoute,
