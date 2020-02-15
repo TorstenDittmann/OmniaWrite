@@ -32,7 +32,7 @@
   "dependencies": {
     "@sentry/browser": "^5.12.1",
     "appwrite": "^1.0.28",
-    "backendless": "^5.7.1",
+    "copy-dir": "^1.2.0",
     "cross-env": "^7.0.0",
     "css-loader": "^3.4.2",
     "file-saver": "^2.0.2",
@@ -52,18 +52,20 @@
   },
   "scripts": {
     "build": "run-s license svelte-build",
-    "build-cordova": "run-s license svelte-cordova",
+    "build-phonegap": "run-s license svelte-build-phonegap prepare-phonegap",
     "build-electron": "run-s svelte-build electron-builder",
     "svelte-build": "cross-env NODE_ENV=production webpack",
+    "svelte-build-phonegap": "cross-env PHONEGAP=true NODE_ENV=production webpack",
     "dev": "webpack-dev-server --content-base public",
-    "license": "license-checker --exclude \"MIT\" --production --json --customPath ./src/licenses.json > ./src/licenses.json",
     "electron": "run-s build pure-electron",
+    "license": "license-checker --exclude \"MIT\" --production --json --customPath ./src/licenses.json > ./src/licenses.json",
     "pure-electron": "electron .",
-    "electron-builder": "electron-builder build --dir --linux AppImage snap"
+    "electron-builder": "electron-builder build --dir --linux AppImage snap",
+    "prepare-phonegap": "node scripts/phonegap.js"
   },
   "build": {
     "appId": "com.omniawrite.app",
-    "compression": "normal",
+    "compression": "maximum",
     "asar": true,
     "linux": {
       "target": [
