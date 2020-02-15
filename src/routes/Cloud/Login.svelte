@@ -1,6 +1,7 @@
 <script>
-  import { settings } from "../../stores";
+  import { fade } from "svelte/transition";
   import { _ } from "svelte-i18n";
+  import { settings } from "../../stores";
 
   import cloud from "../../appwrite";
   import Alert from "../../shared/Alert.svelte";
@@ -28,35 +29,37 @@
 
 </style>
 
-<h2>{$_('cloud.login.title')}</h2>
-<Alert danger bind:show={showAlert}>
-  <span class="lnr lnr-warning">{showAlertText}</span>
-</Alert>
-<form on:submit|preventDefault={login}>
-  <div class="field">
-    <label class="big" for="loginUser">{$_('cloud.login.email')}</label>
-    <input
-      id="loginUser"
-      type="email"
-      placeholder="john.doe@email.tld"
-      bind:value={loginUser} />
-  </div>
-  <div class="field">
-    <label class="big" for="loginPass">{$_('cloud.login.password')}</label>
-    <input
-      id="loginPass"
-      type="password"
-      autocomplete="off"
-      placeholder="******"
-      bind:value={loginPass} />
-  </div>
-  <div class="btn-group">
-    <button
-      on:click={login}
-      disabled={loginButtonLoading}
-      class:loading={loginButtonLoading}>
-      <span class="lnr lnr-sync spinner" />
-      {$_('cloud.login.button')}
-    </button>
-  </div>
-</form>
+<div in:fade={{ duration: 100 }}>
+  <h2>{$_('cloud.login.title')}</h2>
+  <Alert danger bind:show={showAlert}>
+    <span class="lnr lnr-warning">{showAlertText}</span>
+  </Alert>
+  <form on:submit|preventDefault={login}>
+    <div class="field">
+      <label class="big" for="loginUser">{$_('cloud.login.email')}</label>
+      <input
+        id="loginUser"
+        type="email"
+        placeholder="john.doe@email.tld"
+        bind:value={loginUser} />
+    </div>
+    <div class="field">
+      <label class="big" for="loginPass">{$_('cloud.login.password')}</label>
+      <input
+        id="loginPass"
+        type="password"
+        autocomplete="off"
+        placeholder="******"
+        bind:value={loginPass} />
+    </div>
+    <div class="btn-group">
+      <button
+        on:click={login}
+        disabled={loginButtonLoading}
+        class:loading={loginButtonLoading}>
+        <span class="lnr lnr-sync spinner" />
+        {$_('cloud.login.button')}
+      </button>
+    </div>
+  </form>
+</div>
