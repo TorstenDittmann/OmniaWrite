@@ -8,7 +8,8 @@ src/licenses.json
 public/precache-manifest.*
 public/workbox-*
 public/fonts
-installer/OmniaWrite-*
-deskgap/*
-!deskgap/deskgap.js
-!deskgap/package.json
+
+mobile/platforms/
+mobile/plugins/
+mobile/node_modules/
+mobile/www/*
