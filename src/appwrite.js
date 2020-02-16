@@ -3,8 +3,8 @@ import {
     state
 } from "./stores";
 
-const APP_ENDPOINT = "https://appwrite.omniawrite.com/v1";
-const APP_PROJECT = "5e206befb11db";
+const APP_ENDPOINT = "https://shelf.omniawrite.com/v1";
+const APP_PROJECT = "5e49446bb5328";
 const APP_HOST = window.location.origin + "/";
 
 const SDK = new Appwrite();
