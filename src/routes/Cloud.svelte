@@ -124,7 +124,7 @@
           <div id="card" on:click={() => push('/cloud/security')}>
             <h2>Security</h2>
           </div>
-          <div id="card" on:click={() => push('/cloud/update')}>
+          <div id="card" on:click={() => push('/cloud/profile')}>
             <h2>Profile</h2>
           </div>
           <div id="card" on:click={() => push('/cloud/logout')}>
