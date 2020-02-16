@@ -37,6 +37,13 @@ const cloud = {
             return account;
         });
     },
+    /**
+     * Checks if user is logged in.
+     * @returns Promise<boolean>
+     */
+    getUser: () => {
+        return SDK.account.get();
+    },
     recoverPassword: (user) => {
         return SDK.auth.recovery(
             user,
