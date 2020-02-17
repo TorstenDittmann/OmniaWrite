@@ -63,11 +63,11 @@
 <div in:fade={{ duration: 100 }} class="overview">
   {#each $projects.filter(project => project.id == $state.currentProject) as project}
     <h1>{project.title}</h1>
+    <ProjectOverview />
     <h3 class="projectTitle" on:click={() => (showEditProject = true)}>
       <span class="lnr lnr-cog" />
       Edit project
     </h3>
-    <ProjectOverview />
     <Modal bind:show={showEditProject}>
       <div class="field">
         <label class="big" for="author">{$_('overview.project.title')}:</label>
