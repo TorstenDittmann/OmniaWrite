@@ -1,5 +1,5 @@
 {
-    "editor.fontFamily": "Fira Code",
+    "editor.fontFamily": "JetBrains Mono",
     "editor.fontSize": 14,
     "editor.fontLigatures": true,
     "workbench.editor.highlightModifiedTabs": true,
