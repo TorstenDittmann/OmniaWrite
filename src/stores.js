@@ -62,7 +62,6 @@ function storeState() {
          * @param project Project ID.
          */
         setCurrentProject: (project) => update(n => {
-
             n.currentProject = project;
             return n;
         }),
