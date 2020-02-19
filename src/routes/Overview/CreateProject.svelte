@@ -11,11 +11,13 @@
   let createProjectInput = "";
 
   function createProject() {
-    let retValue = projects.createProject(createProjectInput);
-    showCreateProject = false;
-    dispatch("changeProject", {
-      project: retValue
-    });
+    if (createProjectInput.length > 0) {
+      let retValue = projects.createProject(createProjectInput);
+      showCreateProject = false;
+      dispatch("changeProject", {
+        project: retValue
+      });
+    }
   }
 </script>
 
@@ -24,20 +26,22 @@
 </style>
 
 <Modal bind:show={showCreateProject}>
-  <h2 slot="header">New project</h2>
-  <div class="field">
-    <label for="createProjectInput">Title:</label>
-    <input
-      bind:value={createProjectInput}
-      autocomplete="off"
-      placeholder="enter your title"
-      type="text" />
-  </div>
-
-  <hr />
-  {#if createProjectInput.length > 0}
-    <div class="btn-group">
-      <button on:click={createProject}>Create!</button>
+  <form on:submit|preventDefault={createProject}>
+    <h2 slot="header">New project</h2>
+    <div class="field">
+      <label for="createProjectInput">Title:</label>
+      <input
+        bind:value={createProjectInput}
+        autocomplete="off"
+        placeholder="enter your title"
+        type="text" />
     </div>
-  {/if}
+
+    <hr />
+    {#if createProjectInput.length > 0}
+      <div class="btn-group">
+        <button on:click={createProject}>Create!</button>
+      </div>
+    {/if}
+  </form>
 </Modal>
