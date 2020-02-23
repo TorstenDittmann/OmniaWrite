@@ -39,7 +39,7 @@
     </select>
   </div>
   <div class="field">
-    <label class="big" for="editTheme">
+    <label class="big" for="editLanguage">
       {$_('settings.appereance.language.title')}
     </label>
     <select id="editLanguage" bind:value={$settings.language}>
