@@ -9,40 +9,17 @@
   import active from "svelte-spa-router/active";
 
   import cloud from "../appwrite";
-  import Toast from "../shared/Toast.svelte";
-  import Spinner from "../shared/Spinner.svelte";
+  import Toast from "./Toast.svelte";
+  import Cloud from "./Header/Cloud.svelte";
 
   export let navigationState;
 
-  const dispatch = createEventDispatcher();
-
-  let isValidLogin = $state.isUserLoggedIn;
-  let showCloudUpload = false;
-  let isCloudUploading = false;
   let showCloudToast = false;
 
-  $: {
-    if (isValidLogin) {
-      if ($state.lastCloudSave < $state.lastLocalSave) {
-        showCloudUpload = true;
-      } else {
-        showCloudUpload = false;
-      }
-    }
-  }
-
-  function createTab() {
+  const dispatch = createEventDispatcher();
+  const createTab = () => {
     tabs.createTab($state.currentProject, $state.currentTitle, $location);
-  }
-
-  function syncCloud() {
-    showCloudUpload = false;
-    isCloudUploading = true;
-    cloud.saveToCloud().then(response => {
-      isCloudUploading = false;
-      showCloudToast = true;
-    });
-  }
+  };
 </script>
 
 <style type="text/css">
@@ -123,22 +100,7 @@
           <li use:active={'/cloud'} style="-webkit-app-region: no-drag">
             <a href="/cloud" use:link>{$_('header.cloud.title')}</a>
           </li>
-          {#if isValidLogin}
-            {#if showCloudUpload}
-              <li on:click={syncCloud} style="-webkit-app-region: no-drag">
-                <span class="lnr lnr-cloud-upload" />
-              </li>
-            {:else}
-              <li>
-                <span class="lnr lnr-cloud-check" />
-              </li>
-            {/if}
-            {#if isCloudUploading}
-              <li>
-                <Spinner />
-              </li>
-            {/if}
-          {/if}
+          <Cloud />
         </ul>
         {#if isRunningElectron}
           <span

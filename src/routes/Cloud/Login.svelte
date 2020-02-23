@@ -13,16 +13,16 @@
   let loginPass = "";
   let loginButtonLoading = false;
 
-  function login() {
+  const login = () => {
     loginButtonLoading = true;
-    if (loginUser.length > 0 && loginPass.length) {
+    if (loginUser.length > 0 && loginPass.length > 0) {
       cloud.login(loginUser, loginPass);
     } else {
       showAlert = true;
       showAlertText = "Login credentialss can't be empty.";
       loginButtonLoading = false;
     }
-  }
+  };
 </script>
 
 <style>
