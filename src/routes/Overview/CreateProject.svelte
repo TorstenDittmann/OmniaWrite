@@ -26,8 +26,8 @@
 </style>
 
 <Modal bind:show={showCreateProject}>
+  <h2 slot="header">New project</h2>
   <form on:submit|preventDefault={createProject}>
-    <h2 slot="header">New project</h2>
     <div class="field">
       <label for="createProjectInput">Title:</label>
       <input
