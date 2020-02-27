@@ -38,7 +38,7 @@
     <hr />
     {#if createProjectInput.length > 0}
       <div class="btn-group">
-        <button on:click={createProject}>Create!</button>
+        <button on:click|preventDefault={createProject}>Create!</button>
       </div>
     {/if}
   </form>
