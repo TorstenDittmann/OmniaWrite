@@ -1,5 +1,5 @@
 <script lang="javascript">
-  import { fade } from "svelte/transition";
+	import { fade } from "svelte/transition";
   import { state, projects, chapters, scenes, settings } from "../stores";
   import { deskgap } from "../utils";
   import { _ } from "svelte-i18n";
@@ -26,6 +26,7 @@
       project,
       document.getElementById("newProjectTitle").value
     );
+    showEditProject = false;
   }
 
   function sort(b, a) {
@@ -40,28 +41,26 @@
 </script>
 
 <style>
-  .projectTitle {
-    cursor: pointer;
-  }
+	.projectTitle {
+		cursor: pointer;
+	}
 
-  .projectTitle:hover {
-    text-decoration: underline;
-    text-decoration-style: dashed;
-  }
+	.projectTitle:hover {
+		text-decoration: underline;
+		text-decoration-style: dashed;
+	}
 
-  .overview {
-    max-width: 800px;
-    margin: auto;
-    text-align: center;
-  }
+	.overview {
+		max-width: 800px;
+		margin: auto;
+		text-align: center;
+	}
 </style>
 
-<CreateProject
-  bind:showCreateProject
-  on:changeProject={event => changeProject(event.detail.project)} />
+<CreateProject bind:showCreateProject on:changeProject={event=> changeProject(event.detail.project)} />
 
-<div in:fade={{ duration: 100 }} class="overview">
-  {#each $projects.filter(project => project.id == $state.currentProject) as project}
+	<div in:fade={{ duration: 100 }} class="overview">
+		{#each $projects.filter(project => project.id == $state.currentProject) as project}
     <h1>{project.title}</h1>
     <ProjectOverview />
     <h3 class="projectTitle" on:click={() => (showEditProject = true)}>
@@ -72,7 +71,7 @@
       <div class="field">
         <label class="big" for="author">{$_('overview.project.title')}:</label>
         <input
-          id="author"
+          id="newProjectTitle"
           type="text"
           autocomplete="off"
           bind:value={project.title} />
