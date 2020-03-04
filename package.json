@@ -60,11 +60,12 @@
     "electron": "run-s build pure-electron",
     "license": "license-checker --exclude \"MIT\" --production --json --customPath ./src/licenses.json > ./src/licenses.json",
     "pure-electron": "electron .",
-    "electron-builder": "electron-builder build --dir --linux AppImage snap",
+    "electron-builder": "electron-builder build --dir --macos dmg",
     "prepare-phonegap": "node scripts/phonegap.js"
   },
   "build": {
     "appId": "com.omniawrite.app",
+    "productName": "OmniaWrite",
     "compression": "maximum",
     "asar": true,
     "linux": {
