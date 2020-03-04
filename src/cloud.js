@@ -4,7 +4,7 @@ import {
 } from "./stores";
 
 const APP_ID = "0CE45A1E-07A9-86CD-FF78-81FCFD46CD00";
-const API_KEY = "5990F07B-D5AA-70CF-FF93-AD29940B8900";
+const API_KEY = "__api_key__";
 const API_URL = "https://backendlessappcontent.com/" + APP_ID + "/" + API_KEY + "/files/userData/";
 let USER_ID;
 let USER_TOKEN;
