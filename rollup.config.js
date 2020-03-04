@@ -37,6 +37,7 @@ export default {
 	},
 	plugins: [
 		replace({
+			__api_id__: process.env.API_ID,
 			__api_key__: process.env.API_KEY
 		}),
 		svelte({
