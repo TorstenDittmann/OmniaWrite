@@ -1,0 +1,7 @@
+{
+  "build": {
+    "env": {
+      "API_KEY": "@api_key"
+    }
+  }
+}
