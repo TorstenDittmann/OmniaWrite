@@ -9,7 +9,11 @@
   },
   "description": "Writing Tool.",
   "homepage": "https://www.omniawrite.com/",
-  "license": "All rights reserved.",
+  "license": "Attribution-NonCommercial-ShareAlike 4.0 International",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/torstendittmann/omniawrite"
+  },
   "devDependencies": {
     "@editorjs/editorjs": "^2.16.1",
     "@editorjs/header": "^2.4.0",
