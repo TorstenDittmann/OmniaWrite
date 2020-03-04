@@ -36,6 +36,9 @@ export default {
 		file: "public/bundle.js"
 	},
 	plugins: [
+		replace({
+			__api_key__: process.env.API_KEY
+		}),
 		svelte({
 			// enable run-time checks when not in production
 			dev: !production,
