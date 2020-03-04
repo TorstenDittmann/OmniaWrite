@@ -13,6 +13,7 @@
     "@editorjs/paragraph": "^2.6.1",
     "@editorjs/quote": "^2.3.0",
     "@rollup/plugin-json": "^4.0.1",
+    "@rollup/plugin-replace": "^2.3.1",
     "@sentry/webpack-plugin": "^1.10.0",
     "@types/file-saver": "^2.0.1",
     "deskgap": "^0.2.0",

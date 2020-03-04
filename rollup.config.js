@@ -9,8 +9,9 @@ import globals from "rollup-plugin-node-globals";
 import scss from "rollup-plugin-scss";
 import copy from "rollup-plugin-copy";
 import conditional from "rollup-plugin-conditional";
+import replace from '@rollup/plugin-replace';
 
-
+console.log(process.env.API_KEY)
 
 import {
 	terser
