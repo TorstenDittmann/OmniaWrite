@@ -3,8 +3,8 @@ import {
     state
 } from "./stores";
 
-const APP_ID = "***REMOVED***";
-const API_KEY = "***REMOVED***";
+const APP_ID = "__api_id__";
+const API_KEY = "__api_key__";
 const API_URL = "https://backendlessappcontent.com/" + APP_ID + "/" + API_KEY + "/files/userData/";
 let USER_ID;
 let USER_TOKEN;
