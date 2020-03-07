@@ -76,13 +76,14 @@
     z-index: 999999; /* Specify a stack order in case you're using a different order for other elements */
     overflow: auto;
     align-items: center;
-    justify-content: center;
+    flex-direction: column;
   }
   .install {
     max-width: 640px;
     display: inline-block;
     padding: 1rem;
     background-color: var(--background-color);
+    margin: auto;
   }
 
   .installIcon {
