@@ -82,7 +82,7 @@
       .isUserLoggedIn()
       .then(
         response => {
-          isUserLoggedIn = response.$uid ? true : false;
+          isUserLoggedIn = response.$id ? true : false;
         },
         error => {
           isUserLoggedIn = false;

@@ -81,7 +81,7 @@
   {:then backups}
     <ul>
       {#each backups.files as backup}
-        <li on:click={() => restoreBackup(backup.$uid)}>
+        <li on:click={() => restoreBackup(backup.$id)}>
           <span class="from-now">
             {moment(backup.dateCreated, 'X').fromNow()}
           </span>

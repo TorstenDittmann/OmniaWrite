@@ -12,13 +12,17 @@
     showCloudUpload = false;
     isCloudUploading = true;
     cloud.saveToCloud().then(response => {
+      console.log(response);
       isCloudUploading = false;
     });
   };
 
   $: {
     if (isValidLogin) {
-      if ($state.lastCloudSave < $state.lastLocalSave) {
+      if (
+        !$state.lastCloudSave ||
+        $state.lastCloudSave < $state.lastLocalSave
+      ) {
         showCloudUpload = true;
       } else {
         showCloudUpload = false;

@@ -103,7 +103,7 @@
    */
   cloud.isUserLoggedIn().then(
     user => {
-      if (user["$uid"]) {
+      if (user["$id"]) {
         state.setLogin(true);
       } else {
         state.setLogin(false);

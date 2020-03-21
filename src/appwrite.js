@@ -4,7 +4,7 @@ import {
 } from "./stores";
 
 const APP_ENDPOINT = "https://shelf.omniawrite.com/v1";
-const APP_PROJECT = "5e49446bb5328";
+const APP_PROJECT = "5e757bc02aeda";
 const APP_HOST = window.location.origin + "/";
 
 const SDK = new Appwrite();
@@ -18,14 +18,14 @@ const cloud = {
      * @returns Backendless.User
      */
     register: (name, email, pass) => {
-        SDK.auth.register(
+        return SDK.account.create(
             email,
             pass,
-            APP_HOST + "#/cloud/register-confirm/",
-            APP_HOST + "#/cloud/register-success/",
-            APP_HOST + "#/cloud/register-failure/",
             name
         );
+    },
+    createConfirmation: () => {
+        return SDK.account.createVerification(APP_HOST + "#/cloud/register-confirm/");
     },
     /**
      * Checks if user is logged in.
@@ -33,7 +33,8 @@ const cloud = {
      */
     isUserLoggedIn: async () => {
         return SDK.account.get().then(account => {
-            cloud.currentUser = account.$uid;
+            cloud.currentUser = account.$id;
+            console.log(account);
             return account;
         });
     },
@@ -51,7 +52,7 @@ const cloud = {
         );
     },
     confirm: (id, token) => {
-        return SDK.auth.confirm(id, token);
+        return SDK.account.updateVerification(id, token);
     },
     /**
      * Login user and sets user ID in state.
@@ -59,24 +60,17 @@ const cloud = {
      * @param pass Password
      */
     login: (user, pass) => {
-        return SDK.auth.login(
+        return SDK.account.createSession(
             user,
-            pass,
-            APP_HOST + "#/cloud/login-success/",
-            APP_HOST + "#/cloud/login-failure/"
+            pass
         );
-    },
-    /**
-     * Logs out user.
-     */
-    logout: () => {
-        return SDK.auth.logout();
     },
     /**
      * Logs out session form user.
      */
     logoutSession: (id) => {
-        return SDK.auth.logoutBySession(id);
+        console.log(id);
+        return SDK.account.deleteSession(id);
     },
     setCloudTimestamp: (id) => {
         return SDK.storage.getFile(id).then(response => {
@@ -93,69 +87,38 @@ const cloud = {
         });
 
         return SDK.storage.createFile(
-            new File([blob], "user:" + cloud.currentUser + ".json"),
-            ["user:" + cloud.currentUser],
-            ["user:" + cloud.currentUser],
-            "user:" + cloud.currentUser).then(response => {
-                state.updateCloudTimestamp(response[0].dateCreated);
-                return response;
-            });
-    },
-    /**
-     * Fetches all stores from cloud.
-     * @returns Promise<boolean>
-     */
-    saveFromCloud: async () => {
-        /*const response = await fetch(API_URL + USER_ID + "/data.json", {
-            headers: {
-                "user-token": USER_TOKEN
-            }
+            new File([blob], `user:${cloud.currentUser}.json`),
+            [`user:${cloud.currentUser}`],
+            [`user:${cloud.currentUser}`]
+        ).then(response => {
+            state.updateCloudTimestamp(response.dateCreated);
+            return response;
+        }, error => {
+            console.log(error);
         });
-        const data = await response.json();
-        const dataObject = Object.keys(data);
-        return new Promise((resolve) => {
-            dataObject.forEach(k => {
-                if (k != "Backendless") {
-                    localStorage.setItem(k, data[k]);
-                }
-            });
-            cloud.setCloudTimestamp().then(() => {
-                resolve(true);
-            });
-        });*/
     },
     getSecurityLog: () => {
-        return SDK.account.getSecurity();
+        return SDK.account.getLogs();
     },
     getSessions: () => {
-        return SDK.account.getSessions();
-    },
-    createCollection: (name) => {
-        return SDK.database.createCollection(name, ["user:" + cloud.currentUser], ["user:" + cloud.currentUser], []);
-    },
-    uploadSettings: () => {
-        return SDK.account.updatePrefs(JSON.parse(localStorage.getItem("settings")))
-    },
-    deleteSettings: () => {
-        SDK.account.updatePrefs({}).then(
-            response => {
-                console.log(response);
-            }, error => {
-                console.log(error)
-            });
-    },
-    getSettings: () => {
-        return SDK.account.getPrefs()
+        return SDK.account.getSessions().then(res => {
+            console.log(res);
+            return res;
+        });
     },
     restoreBackup: (id) => {
-        return SDK.storage.getFileDownload(id).then(response => {
-            const data = JSON.parse(response);
-            const dataObject = Object.keys(data);
-            return new Promise((resolve) => {
-                dataObject.forEach(k => localStorage.setItem(k, data[k]));
-                cloud.setCloudTimestamp(id).then(() => resolve(true));
-            });
-        })
+        return fetch(SDK.storage.getFileView(id))
+            .then((response) => {
+                return response.json();
+            })
+            .then(response => {
+                const data = response;
+                const dataObject = Object.keys(data);
+                return new Promise((resolve) => {
+                    dataObject.forEach(k => localStorage.setItem(k, data[k]));
+                    cloud.setCloudTimestamp(id).then(() => resolve(true));
+                });
+            })
     },
     getAllBackups: () => {
         return SDK.storage.listFiles("user:" + cloud.currentUser + ".json", 25, 0, "DESC");
