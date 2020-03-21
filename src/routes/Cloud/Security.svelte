@@ -57,7 +57,7 @@
         <span>{device.OS.name}</span>
         <span>{device.geo.country}</span>
         <span>{device.ip}</span>
-        <span on:click={() => logoutSession(device.id)} class="lnr lnr-exit" />
+        <span on:click={() => logoutSession(device.$id)} class="lnr lnr-exit" />
       </li>
     {/each}
   </ul>

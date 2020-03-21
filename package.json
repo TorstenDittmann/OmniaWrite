@@ -35,7 +35,7 @@
   },
   "dependencies": {
     "@sentry/browser": "^5.12.1",
-    "appwrite": "^1.0.28",
+    "appwrite": "^1.0.29",
     "copy-dir": "^1.2.0",
     "cross-env": "^7.0.0",
     "css-loader": "^3.4.2",

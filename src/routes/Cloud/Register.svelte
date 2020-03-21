@@ -16,7 +16,10 @@
   let registerButtonLoading = false;
 
   function register() {
-    cloud.register(registerName, registerUser, registerPass);
+    cloud.register(registerName, registerUser, registerPass).then(response => {
+      console.log(response);
+      cloud.createConfirmation();
+    });
   }
 </script>
 

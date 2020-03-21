@@ -16,7 +16,9 @@
   const login = () => {
     loginButtonLoading = true;
     if (loginUser.length > 0 && loginPass.length > 0) {
-      cloud.login(loginUser, loginPass);
+      cloud.login(loginUser, loginPass).then(response => {
+        console.log(response);
+      });
     } else {
       showAlert = true;
       showAlertText = "Login credentialss can't be empty.";
