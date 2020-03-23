@@ -4,7 +4,7 @@ import {
 } from "./stores";
 
 const APP_ENDPOINT = "https://shelf.omniawrite.com/v1";
-const APP_PROJECT = "5e757bc02aeda";
+const APP_PROJECT = "5e776e77a0bf6";
 const APP_HOST = window.location.origin + "/";
 
 const SDK = new Appwrite();
@@ -34,7 +34,6 @@ const cloud = {
     isUserLoggedIn: async () => {
         return SDK.account.get().then(account => {
             cloud.currentUser = account.$id;
-            console.log(account);
             return account;
         });
     },
@@ -69,7 +68,6 @@ const cloud = {
      * Logs out session form user.
      */
     logoutSession: (id) => {
-        console.log(id);
         return SDK.account.deleteSession(id);
     },
     setCloudTimestamp: (id) => {
@@ -127,6 +125,15 @@ const cloud = {
         return SDK.storage.listFiles("", 1, 0, "DESC").then(response => {
             console.log(response);
         })
+    },
+    updateEmail: (mail, pass) => {
+        return SDK.account.updateEmail(mail, pass);
+    },
+    updateName: (name) => {
+        return SDK.account.updateName(name);
+    },
+    updatePassword: (pass, old) => {
+        return SDK.account.updatePassword(pass, old);
     }
 }
 

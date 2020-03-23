@@ -1,7 +1,6 @@
 <script lang="javascript">
   import { fade } from "svelte/transition";
   import { cards, state } from "../stores";
-  import { createEventDispatcher } from "svelte";
   import { _ } from "svelte-i18n";
 
   import Placeholder from "../shared/Placeholder.svelte";
@@ -47,6 +46,13 @@
       window.alert("Title can't be empty.");
     }
   }
+  function removeCard(cardId) {
+    let confirmed = confirm($_("overview.cards.confirmDelete"));
+    if (confirmed == true) {
+      showEditCard = false;
+      cards.removeCard(cardId);
+    }
+  }
 
   $: filteredCards = searchInput
     ? $cards.filter(
@@ -89,7 +95,9 @@
     </div>
     {#if newCardObject.title.length > 0}
       <div class="btn-group">
-        <button on:click={createCard}>{$_('cards.modal.buttonSave')}</button>
+        <button on:click|preventDefault={createCard}>
+          {$_('cards.modal.buttonSave')}
+        </button>
       </div>
     {/if}
   </form>
@@ -124,11 +132,19 @@
         <label for="showTooltip" />
       </p>
     </div>
-    {#if editCardObject.title.length > 0}
-      <div class="btn-group">
-        <button on:click={editCard}>{$_('cards.modal.buttonSave')}</button>
-      </div>
-    {/if}
+    <div class="btn-group">
+      {#if editCardObject.title.length > 0}
+        <button on:click|preventDefault={editCard}>
+          {$_('cards.modal.buttonSave')}
+        </button>
+      {/if}
+      <button
+        style="float: right;"
+        class="warning"
+        on:click={() => removeCard(editCardObject.id)}>
+        {$_('sidebar.modal.edit.buttonDelete')}
+      </button>
+    </div>
   </form>
 </Modal>
 

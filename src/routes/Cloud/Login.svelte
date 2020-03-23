@@ -2,6 +2,8 @@
   import { fade } from "svelte/transition";
   import { _ } from "svelte-i18n";
   import { settings } from "../../stores";
+  import { deskgap } from "../../utils";
+  import { state } from "../../stores";
 
   import cloud from "../../appwrite";
   import Alert from "../../shared/Alert.svelte";
@@ -17,7 +19,9 @@
     loginButtonLoading = true;
     if (loginUser.length > 0 && loginPass.length > 0) {
       cloud.login(loginUser, loginPass).then(response => {
-        console.log(response);
+        state.setLogin(true);
+        window.location.hash = "#/cloud";
+        deskgap.reload();
       });
     } else {
       showAlert = true;

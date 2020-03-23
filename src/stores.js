@@ -2,8 +2,6 @@ import {
     writable
 } from "svelte/store";
 
-// import PouchDB from "pouchdb";
-
 const defaultIntern = {
     version: "alpha",
     installed: false

@@ -1,11 +1,24 @@
 <script>
+  import { _ } from "svelte-i18n";
+
   import cloud from "../../../appwrite";
+  import Toast from "../../../shared/Toast.svelte";
 
   export let email;
 
-  let password;
+  let password = "";
+  let showToast = false;
 
-  const updateEmail = () => {};
+  const updateEmail = () => {
+    cloud.updateEmail(email, password).then(
+      response => {
+        showToast = true;
+      },
+      error => {
+        console.log(error);
+      }
+    );
+  };
 </script>
 
 <h2>Update e-mail</h2>
@@ -21,9 +34,15 @@
   </div>
   <div class="field">
     <label class="big" for="email">Password</label>
-    <input id="password" type="password" placeholder="***" />
+    <input
+      id="password"
+      type="password"
+      placeholder="***"
+      bind:value={password} />
   </div>
   <div class="btn-group">
-    <button on:click={updateEmail}>update</button>
+    <button on:click|preventDefault={updateEmail}>update</button>
   </div>
 </form>
+
+<Toast bind:show={showToast} text={$_('common.profile.update-email')} />

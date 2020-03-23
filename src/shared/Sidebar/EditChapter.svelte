@@ -41,7 +41,7 @@
     </div>
     <div class="btn-group">
       {#if data.title.length > 0}
-        <button on:click={editChapter} type="submit">
+        <button on:click|preventDefault={editChapter} type="submit">
           {$_('sidebar.modal.edit.buttonSave')}
         </button>
       {/if}

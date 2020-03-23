@@ -5,6 +5,10 @@
 
   import Modal from "../../shared/Modal.svelte";
   import Policy from "./Policy.svelte";
+  import Alert from "../../shared/Alert.svelte";
+
+  let showAlert = false;
+  let showAlertText;
 
   let registerName;
   let registerUser;
@@ -16,9 +20,11 @@
   let registerButtonLoading = false;
 
   function register() {
+    registerButtonLoading = true;
     cloud.register(registerName, registerUser, registerPass).then(response => {
-      console.log(response);
-      cloud.createConfirmation();
+      registerButtonLoading = false;
+      showAlert = true;
+      showAlertText = "Account created!";
     });
   }
 </script>
@@ -39,6 +45,9 @@
 
 <div in:fade={{ duration: 100 }}>
   <h2>{$_('cloud.register.title')}</h2>
+  <Alert danger bind:show={showAlert}>
+    <span class="lnr success">{showAlertText}</span>
+  </Alert>
   <form on:submit|preventDefault={register}>
     <div class="field">
       <label class="big" for="newName">{$_('cloud.register.name')}</label>
@@ -82,7 +91,7 @@
     <div class="btn-group">
       <button
         type="submit"
-        on:click={register}
+        on:click|preventDefault={register}
         disabled={registerButtonLoading}
         class:loading={registerButtonLoading}>
         <span class="lnr lnr-sync spinner" />

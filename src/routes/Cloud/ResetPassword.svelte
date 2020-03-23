@@ -24,6 +24,6 @@
       bind:value={recoverUser} />
   </div>
   <div class="btn-group">
-    <button on:click={recover}>Recover</button>
+    <button on:click|preventDefault={recover}>Recover</button>
   </div>
 </form>
