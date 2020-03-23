@@ -1,11 +1,33 @@
 <script>
+  import { _ } from "svelte-i18n";
+
   import cloud from "../../../appwrite";
+  import Toast from "../../../shared/Toast.svelte";
 
   let old_password;
   let new_password;
   let new_password_confirm;
 
-  const updatePassword = () => {};
+  let textToast = "";
+  let showToast = false;
+
+  const updatePassword = () => {
+    if (new_password === new_password_confirm) {
+      cloud.updatePassword(new_password, old_password).then(
+        response => {
+          old_password = new_password = new_password_confirm = "";
+          textToast = "Password changed!";
+          showToast = true;
+        },
+        error => {
+          console.log(error);
+        }
+      );
+    } else {
+      textToast = "Passwords have to match";
+      showToast = true;
+    }
+  };
 </script>
 
 <h2>Update password</h2>
@@ -25,6 +47,8 @@
   </div>
 
   <div class="btn-group">
-    <button on:click={updatePassword}>update</button>
+    <button on:click|preventDefault={updatePassword}>update</button>
   </div>
 </form>
+
+<Toast bind:show={showToast} text={textToast} />

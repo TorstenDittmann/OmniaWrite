@@ -12,7 +12,6 @@
     showCloudUpload = false;
     isCloudUploading = true;
     cloud.saveToCloud().then(response => {
-      console.log(response);
       isCloudUploading = false;
     });
   };

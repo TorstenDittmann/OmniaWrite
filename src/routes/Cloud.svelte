@@ -54,6 +54,7 @@
   let loading = true;
 
   let isUserLoggedIn = false;
+  let isUserVerified = false;
 
   let showToast = false;
   let showToastText;
@@ -82,6 +83,7 @@
       .isUserLoggedIn()
       .then(
         response => {
+          isUserVerified = response.emailVerification;
           isUserLoggedIn = response.$id ? true : false;
         },
         error => {
@@ -91,6 +93,12 @@
       .finally(() => {
         loading = false;
       });
+  }
+
+  function createConfirmation() {
+    cloud.createConfirmation();
+    showToast = true;
+    showToastText = "Confirmation e-mail has been sent!";
   }
 </script>
 
@@ -116,22 +124,29 @@
         </div>
       </div>
     {:else}
-      <div id="cards" class="grid">
+      {#if !isUserVerified}
+        <div class="grid">
+          <div on:click={createConfirmation}>
+            Your account is not verfied yet! Click here to verify your account.
+          </div>
+        </div>
+      {/if}
+      <div class="grid">
         {#if !params.loginReturn}
-          <div id="card" on:click={() => push('/cloud/backups')}>
+          <div on:click={() => push('/cloud/backups')}>
             <h2>Backups</h2>
           </div>
-          <div id="card" on:click={() => push('/cloud/security')}>
+          <div on:click={() => push('/cloud/security')}>
             <h2>Security</h2>
           </div>
-          <div id="card" on:click={() => push('/cloud/profile')}>
+          <div on:click={() => push('/cloud/profile')}>
             <h2>Profile</h2>
           </div>
-          <div id="card" on:click={() => push('/cloud/logout')}>
+          <div on:click={() => push('/cloud/logout')}>
             <h2>Logout</h2>
           </div>
         {:else}
-          <div id="card" on:click={() => push('/cloud')}>
+          <div on:click={() => push('/cloud')}>
             <span class="lnr lnr-arrow-left-circle" />
             {$_('install.back')}
           </div>

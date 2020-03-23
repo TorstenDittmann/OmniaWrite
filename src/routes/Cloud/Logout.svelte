@@ -2,12 +2,15 @@
   import { onMount } from "svelte";
   import { push } from "svelte-spa-router";
 
+  import { state } from "../../stores";
+
   import cloud from "../../appwrite";
   import { deskgap } from "../../utils";
 
   onMount(() => {
-    cloud.logout().then(
+    cloud.logoutSession("current").then(
       setTimeout(() => {
+        state.setLogin(false);
         window.location.hash = "#/cloud";
         deskgap.reload();
       }, 1500)
