@@ -70,6 +70,9 @@ const cloud = {
     logoutSession: (id) => {
         return SDK.account.deleteSession(id);
     },
+    /**
+     * Set Cloud Timestamp from specific file
+     */
     setCloudTimestamp: (id) => {
         return SDK.storage.getFile(id).then(response => {
             state.updateCloudTimestamp(response.dateCreated);
@@ -95,15 +98,21 @@ const cloud = {
             console.log(error);
         });
     },
+    /**
+     * Get Security log from account.
+     */
     getSecurityLog: () => {
         return SDK.account.getLogs();
     },
+    /**
+     * Get Sessions from account.
+     */
     getSessions: () => {
-        return SDK.account.getSessions().then(res => {
-            console.log(res);
-            return res;
-        });
+        return SDK.account.getSessions();
     },
+    /**
+     * Restore from a backup.
+     */
     restoreBackup: (id) => {
         return fetch(SDK.storage.getFileView(id))
             .then((response) => {
@@ -118,18 +127,33 @@ const cloud = {
                 });
             })
     },
+    /**
+     * Get all backups.
+     */
     getAllBackups: () => {
         return SDK.storage.listFiles("user:" + cloud.currentUser + ".json", 25, 0, "DESC");
     },
+    /**
+     * Get latest backup.
+     */
     getLatestBackup: () => {
         return SDK.storage.listFiles("", 1, 0, "DESC");
     },
+    /**
+     * Update e-mail.
+     */
     updateEmail: (mail, pass) => {
         return SDK.account.updateEmail(mail, pass);
     },
+    /**
+     * Update name.
+     */
     updateName: (name) => {
         return SDK.account.updateName(name);
     },
+    /**
+     * Update password.
+     */
     updatePassword: (pass, old) => {
         return SDK.account.updatePassword(pass, old);
     }
