@@ -16,6 +16,12 @@
     });
   };
 
+  setInterval(() => {
+    cloud.getLatestBackup().then(response => {
+      // TODO: Implement checking for new Cloud Backup
+    });
+  }, 60000);
+
   $: {
     if (isValidLogin) {
       if (
