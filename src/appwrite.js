@@ -122,9 +122,7 @@ const cloud = {
         return SDK.storage.listFiles("user:" + cloud.currentUser + ".json", 25, 0, "DESC");
     },
     getLatestBackup: () => {
-        return SDK.storage.listFiles("", 1, 0, "DESC").then(response => {
-            console.log(response);
-        })
+        return SDK.storage.listFiles("", 1, 0, "DESC");
     },
     updateEmail: (mail, pass) => {
         return SDK.account.updateEmail(mail, pass);
