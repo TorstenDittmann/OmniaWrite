@@ -73,6 +73,7 @@
     "compression": "maximum",
     "asar": true,
     "linux": {
+      "desktop": "OmniaWrite",
       "target": [
         "AppImage"
       ]
