@@ -5,22 +5,26 @@
   import Spinner from "../../shared/Spinner.svelte";
 
   let isValidLogin = $state.isUserLoggedIn;
+  let buttonState = "none";
   let showCloudUpload = false;
   let isCloudUploading = false;
+  let latestBackup = false;
 
   const syncCloud = () => {
-    showCloudUpload = false;
-    isCloudUploading = true;
+    buttonState = "loading";
     cloud.saveToCloud().then(response => {
-      isCloudUploading = false;
+      buttonState = "done";
     });
   };
 
   setInterval(() => {
     cloud.getLatestBackup().then(response => {
       // TODO: Implement checking for new Cloud Backup
+      if (response.files.length > 0) {
+        latestBackup = response.files[0].dateCreated;
+      }
     });
-  }, 60000);
+  }, 6000);
 
   $: {
     if (isValidLogin) {
@@ -28,27 +32,28 @@
         !$state.lastCloudSave ||
         $state.lastCloudSave < $state.lastLocalSave
       ) {
-        showCloudUpload = true;
+        buttonState = "upload";
       } else {
-        showCloudUpload = false;
+        buttonState = "done";
       }
     }
   }
 </script>
 
-{#if isValidLogin}
-  {#if showCloudUpload}
-    <li on:click={syncCloud} style="-webkit-app-region: no-drag">
-      <span class="lnr lnr-cloud-upload" />
-    </li>
-  {:else}
-    <li>
-      <span class="lnr lnr-cloud-check" />
-    </li>
-  {/if}
-  {#if isCloudUploading}
-    <li>
-      <Spinner />
-    </li>
-  {/if}
+{#if buttonState === 'upload'}
+  <li on:click={syncCloud} style="-webkit-app-region: no-drag">
+    <span class="lnr lnr-cloud-upload" />
+  </li>
+{:else if buttonState === 'download'}
+  <li on:click={syncCloud} style="-webkit-app-region: no-drag">
+    <span class="lnr lnr-cloud-download" />
+  </li>
+{:else if buttonState === 'done'}
+  <li>
+    <span class="lnr lnr-cloud-check" />
+  </li>
+{:else if buttonState === 'loading'}
+  <li>
+    <Spinner />
+  </li>
 {/if}
