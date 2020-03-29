@@ -17,15 +17,6 @@
     });
   };
 
-  setInterval(() => {
-    cloud.getLatestBackup().then(response => {
-      // TODO: Implement checking for new Cloud Backup
-      if (response.files.length > 0) {
-        latestBackup = response.files[0].dateCreated;
-      }
-    });
-  }, 6000);
-
   $: {
     if (isValidLogin) {
       if (
@@ -43,10 +34,6 @@
 {#if buttonState === 'upload'}
   <li on:click={syncCloud} style="-webkit-app-region: no-drag">
     <span class="lnr lnr-cloud-upload" />
-  </li>
-{:else if buttonState === 'download'}
-  <li on:click={syncCloud} style="-webkit-app-region: no-drag">
-    <span class="lnr lnr-cloud-download" />
   </li>
 {:else if buttonState === 'done'}
   <li>

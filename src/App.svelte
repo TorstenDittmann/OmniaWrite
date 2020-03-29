@@ -114,6 +114,21 @@
   );
 
   /**
+   * Check for newer backup
+   */
+  const checkForBackup = () => {
+    cloud.getLatestBackup().then(response => {
+      if (response.files.length > 0) {
+        if ($state.lastCloudSave < response.files[0].dateCreated) {
+          // TODO: Implement checking for new Cloud Backup
+          console.log("newer data on cloud");
+        }
+      }
+    });
+  };
+  checkForBackup();
+  setInterval(checkForBackup, 60000);
+  /**
    * Listen for settings
    */
   $: {
