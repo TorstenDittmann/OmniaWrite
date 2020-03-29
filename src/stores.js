@@ -67,15 +67,15 @@ function storeState() {
          * Updates Cloud timestamp.
          */
         updateCloudTimestamp: (timestamp) => update(n => {
-            n.lastCloudSave = timestamp / 1000;
-            n.lastLocalSave = timestamp / 1000;
+            n.lastCloudSave = (timestamp / 1000).toFixed();
+            n.lastLocalSave = (timestamp / 1000).toFixed();
             return n;
         }),
         /**
          * Sets Local Timestamp to current time.
          */
         updateLocalTimestamp: () => update(n => {
-            n.lastLocalSave = (+new Date) / 1000;
+            n.lastLocalSave = (+new Date / 1000).toFixed();
             return n;
         }),
         setLogin: (bool) => update(n => {
@@ -134,7 +134,7 @@ function storeProjects() {
          * @param id ID of the project.
          */
         updateProjectTimestamp: (id) => update(n => {
-            n[n.findIndex(p => p.id == id)].lastOpen = Math.round((new Date()).getTime() / 1000);
+            n[n.findIndex(p => p.id == id)].lastOpen = (+new Date() / 1000).toFixed();
             return n;
         })
     }
@@ -246,7 +246,7 @@ function storeScenes() {
             updateLocalTimestamp();
             let index = n.findIndex(c => c.id == id);
             n[index].title = title;
-            n[index].lastEdit = Math.round((new Date()).getTime() / 1000);
+            n[index].lastEdit = (+new Date / 1000).toFixed();
             return n;
         }),
         /**
@@ -258,7 +258,7 @@ function storeScenes() {
             updateLocalTimestamp();
             let index = n.findIndex(c => c.id == id);
             n[index].content = content;
-            n[index].lastEdit = Math.round((new Date()).getTime() / 1000);
+            n[index].lastEdit = (+new Date() / 1000).toFixed();
             return n;
         }),
         /**
