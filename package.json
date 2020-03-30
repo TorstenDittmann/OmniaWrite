@@ -1,6 +1,6 @@
 {
   "name": "omniawrite-app",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "main": "./src/electron.js",
   "author": {
     "name": "OmniaWrite",
@@ -73,7 +73,9 @@
     "linux": {
       "desktop": "OmniaWrite",
       "target": [
-        "AppImage"
+        "AppImage",
+        "deb",
+        "rpm"
       ]
     }
   }
