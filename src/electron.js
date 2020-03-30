@@ -1,5 +1,7 @@
 /* eslint-disable no-undef */
 const { app, BrowserWindow } = require("electron");
+const { autoUpdater } = require("electron-updater")
+
 const path = require("path")
 const ipc = require("electron").ipcMain
 
@@ -54,6 +56,7 @@ const createLoadingScreen = () => {
   loadingScreen.on("closed", () => (loadingScreen = null));
   loadingScreen.webContents.on("did-finish-load", () => {
     loadingScreen.show();
+    autoUpdater.checkForUpdatesAndNotify();
   });
 };
 
