@@ -1,3 +1,5 @@
+![Build/release](https://github.com/TorstenDittmann/OmniaWrite/workflows/Build/release/badge.svg)
+
 <!-- PROJECT LOGO -->
 <br />
 <p align="center">
@@ -20,8 +22,6 @@
     <a href="https://github.com/TorstenDittmann/OmniaWrite/issues">Request Feature</a>
   </p>
 </p>
-
-
 
 <!-- TABLE OF CONTENTS -->
 ## Table of Contents
