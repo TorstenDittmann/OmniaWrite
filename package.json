@@ -1,6 +1,6 @@
 {
   "name": "omniawrite-app",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "main": "./src/electron.js",
   "author": {
     "name": "OmniaWrite",
@@ -13,6 +13,9 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/torstendittmann/omniawrite"
+  },
+  "dependencies": {
+    "electron-updater": "^4.2.5"
   },
   "devDependencies": {
     "@editorjs/editorjs": "^2.17.0",
@@ -27,7 +30,6 @@
     "css-loader": "^3.4.2",
     "electron": "^8.2.0",
     "electron-builder": "^22.4.1",
-    "electron-updater": "^4.2.5",
     "eslint": "^6.8.0",
     "eslint-plugin-svelte3": "^2.7.3",
     "file-loader": "^5.1.0",
