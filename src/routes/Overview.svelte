@@ -32,9 +32,11 @@
   function removeProject(project) {
     let confirmed = confirm($_("overview.project.confirmDelete"));
     if (confirmed == true) {
-      $chapters.forEach(chapter => {
-        scenes.removeAllScenes(chapter.id);
-      });
+      $chapters
+        .filter(ch => ch.project == project)
+        .forEach(chapter => {
+          scenes.removeAllScenes(chapter.id);
+        });
       chapters.removeAllChapters(project);
       projects.removeProject(project);
 
