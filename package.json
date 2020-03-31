@@ -71,7 +71,7 @@
   "build": {
     "appId": "com.omniawrite.app",
     "productName": "OmniaWrite",
-    "compression": "maximum",
+    "compression": "normal",
     "asar": true,
     "publish": {
       "provider": "github",
@@ -80,8 +80,10 @@
     },
     "linux": {
       "desktop": "OmniaWrite",
+      "category": "Office",
       "target": [
-        "AppImage"
+        "AppImage",
+        "snap"
       ]
     },
     "mac": {
