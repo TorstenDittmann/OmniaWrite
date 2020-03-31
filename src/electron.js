@@ -8,6 +8,8 @@ const ipc = require("electron").ipcMain
 let mainWindow;
 let loadingScreen;
 
+autoUpdater.allowPrerelease = true;
+
 console.log("App starting...");
 
 function createWindow() {
