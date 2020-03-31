@@ -81,9 +81,19 @@
     "linux": {
       "desktop": "OmniaWrite",
       "target": [
-        "AppImage",
-        "deb",
-        "rpm"
+        "AppImage"
+      ]
+    },
+    "mac": {
+      "category": "public.app-category.utilities",
+      "target": [
+        "dmg"
+      ]
+    },
+    "win": {
+      "oneClick": false,
+      "target": [
+        "nsis"
       ]
     }
   }

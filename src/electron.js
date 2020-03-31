@@ -5,11 +5,10 @@ const { autoUpdater } = require("electron-updater")
 const path = require("path")
 const ipc = require("electron").ipcMain
 
-
-// Keep a global reference of the window object, if you don't, the window will
-// be closed automatically when the JavaScript object is garbage collected.
 let mainWindow;
 let loadingScreen;
+
+console.log("App starting...");
 
 function createWindow() {
   mainWindow = new BrowserWindow({
@@ -55,6 +54,7 @@ const createLoadingScreen = () => {
 
   loadingScreen.on("closed", () => (loadingScreen = null));
   loadingScreen.webContents.on("did-finish-load", () => {
+    console.log("show app");
     loadingScreen.show();
     autoUpdater.checkForUpdatesAndNotify();
   });
@@ -113,3 +113,19 @@ ipc.on("resize", () => {
     mainWindow.maximize();
   }
 })
+
+autoUpdater.on("checking-for-update", () => {
+  console.log("Checking for update...");
+})
+autoUpdater.on("update-available", (info) => {
+  console.log("Update available.");
+})
+autoUpdater.on("update-not-available", (info) => {
+  console.log("Update not available.");
+})
+autoUpdater.on("error", (err) => {
+  console.log("Error in auto-updater. " + err);
+})
+autoUpdater.on("update-downloaded", (info) => {
+  console.log("Update downloaded");
+});
