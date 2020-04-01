@@ -1,14 +1,12 @@
 /* eslint-disable no-undef */
 const { app, BrowserWindow } = require("electron");
-const { autoUpdater } = require("electron-updater")
 
-const path = require("path")
+const path = require("path");
+const fetch = require("node-fetch");
 const ipc = require("electron").ipcMain
 
 let mainWindow;
 let loadingScreen;
-
-autoUpdater.allowPrerelease = true;
 
 console.log("App starting...");
 
@@ -27,6 +25,14 @@ function createWindow() {
 
   mainWindow.loadURL(`file://${path.join(__dirname, "../public/index.html")}`);
   mainWindow.webContents.on("did-finish-load", () => {
+    fetch("http://api.github.com/repos/torstendittmann/omniawrite/releases/latest")
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
+        // TODO: Show new update in splash screen and link to the downloads
+        console.log(data.name);
+      });
     /// then close the loading screen window and show the main window
     if (loadingScreen) {
       loadingScreen.close();
@@ -58,7 +64,6 @@ const createLoadingScreen = () => {
   loadingScreen.webContents.on("did-finish-load", () => {
     console.log("show app");
     loadingScreen.show();
-    autoUpdater.checkForUpdatesAndNotify();
   });
 };
 
@@ -115,19 +120,3 @@ ipc.on("resize", () => {
     mainWindow.maximize();
   }
 })
-
-autoUpdater.on("checking-for-update", () => {
-  console.log("Checking for update...");
-})
-autoUpdater.on("update-available", (info) => {
-  console.log("Update available.");
-})
-autoUpdater.on("update-not-available", (info) => {
-  console.log("Update not available.");
-})
-autoUpdater.on("error", (err) => {
-  console.log("Error in auto-updater. " + err);
-})
-autoUpdater.on("update-downloaded", (info) => {
-  console.log("Update downloaded");
-});
