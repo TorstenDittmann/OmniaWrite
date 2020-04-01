@@ -1,6 +1,6 @@
 {
   "name": "omniawrite-app",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "main": "./src/electron.js",
   "author": {
     "name": "OmniaWrite",
@@ -80,21 +80,11 @@
     },
     "linux": {
       "desktop": "OmniaWrite",
-      "category": "Office",
-      "target": [
-        "AppImage"
-      ]
+      "category": "Office"
     },
     "mac": {
-      "category": "public.app-category.utilities",
-      "target": [
-        "dmg"
-      ]
+      "category": "public.app-category.utilities"
     },
-    "win": {
-      "target": [
-        "nsis"
-      ]
-    }
+    "win": {}
   }
 }
