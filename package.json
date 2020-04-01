@@ -82,7 +82,8 @@
       "desktop": "OmniaWrite",
       "category": "Office",
       "target": [
-        "AppImage"
+        "AppImage",
+        "snap"
       ]
     },
     "mac": {
