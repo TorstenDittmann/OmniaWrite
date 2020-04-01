@@ -1,4 +1,5 @@
 ![Build/release](https://github.com/TorstenDittmann/OmniaWrite/workflows/Build/release/badge.svg)
+[![omniawrite](https://snapcraft.io//omniawrite/badge.svg)](https://snapcraft.io/omniawrite)
 
 <!-- PROJECT LOGO -->
 <br />
