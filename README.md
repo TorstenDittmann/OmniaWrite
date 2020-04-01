@@ -69,7 +69,16 @@ Any contributions you make are **greatly appreciated**.
 4. Push to the Branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
 
+## Releasing
 
+When you want to create a new release, follow these steps:
+
+1. Update the version in `package.json` file (e.g. `1.2.3`)
+2. Commit that change (`git commit -am v1.2.3`)
+3. Tag commit (`git tag v1.2.3`). Make sure the tag name's format is `v*.*.*`.
+4. Push changes to GitHub (`git push && git push --tags`)
+
+After building successfully, the action will publish your release artifacts.
 
 <!-- LICENSE -->
 ## License
