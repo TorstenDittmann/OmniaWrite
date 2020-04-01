@@ -1,6 +1,6 @@
 {
   "name": "omniawrite",
-  "version": "1.1.4",
+  "version": "1.1.5",
   "main": "./src/electron.js",
   "author": {
     "name": "OmniaWrite",
@@ -89,6 +89,9 @@
     "mac": {
       "category": "public.app-category.utilities"
     },
-    "win": {}
+    "win": {
+      "publisherName": "CN=Torsten Dittmann, OU=Developement, O=OmniaWrite, L=Cologne, S=NRW, E=info@omniawrite.com, C=DE",
+      "verifyUpdateCodeSignature": true
+    }
   }
 }
