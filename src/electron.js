@@ -1,16 +1,18 @@
 /* eslint-disable no-undef */
-const { app, BrowserWindow } = require("electron");
+const { app, dialog, shell, BrowserWindow } = require("electron");
 
 const path = require("path");
 const fetch = require("node-fetch");
-const ipc = require("electron").ipcMain
+const semver = require("semver");
+const ipc = require("electron").ipcMain;
+
 
 let mainWindow;
 let loadingScreen;
 
 console.log("App starting...");
 
-function createWindow() {
+const createWindow = () => {
   mainWindow = new BrowserWindow({
     width: 1280,
     height: 800,
@@ -25,23 +27,53 @@ function createWindow() {
 
   mainWindow.loadURL(`file://${path.join(__dirname, "../public/index.html")}`);
   mainWindow.webContents.on("did-finish-load", () => {
-    fetch("http://api.github.com/repos/torstendittmann/omniawrite/releases/latest")
-      .then((response) => {
+    let status = false;
+    let latest = false;
+    fetch("https://api.github.com/repos/torstendittmann/omniawrite/releases/latest")
+      .then(response => {
+        status = response.status;
         return response.json();
       })
-      .then((data) => {
+      .then(data => {
         // TODO: Show new update in splash screen and link to the downloads
-        console.log(data.name);
+        latest = data;
+      })
+      .catch(err => console.log(err))
+      .finally(() => {
+        /// then close the loading screen window and show the main window
+        let currentVersion = app.getVersion();
+        let fetchedVersion = latest ? latest.name : false;
+
+        if (status && status === 200 && fetchedVersion && semver.gt(fetchedVersion, currentVersion)) {
+          let options = {
+            buttons: ["Yes", "No"],
+            title: "Update available!",
+            message: "Would you like to update now?",
+            type: "info"
+          };
+          dialog.showMessageBox(options).then(res => {
+            console.log(res);
+            if (res.response === 0) {
+              shell.openExternal("https://omniawrite.com/download")
+            }
+            showMainWindow();
+          })
+        } else {
+          showMainWindow();
+        }
       });
-    /// then close the loading screen window and show the main window
-    if (loadingScreen) {
-      loadingScreen.close();
-    }
-    mainWindow.show();
   });
   mainWindow.on("closed", () => {
     mainWindow = null;
   });
+}
+
+const showMainWindow = () => {
+  console.log("Show app");
+  if (loadingScreen) {
+    loadingScreen.close();
+  }
+  mainWindow.show();
 }
 
 const createLoadingScreen = () => {
@@ -62,7 +94,7 @@ const createLoadingScreen = () => {
 
   loadingScreen.on("closed", () => (loadingScreen = null));
   loadingScreen.webContents.on("did-finish-load", () => {
-    console.log("show app");
+    console.log("Show loading screen");
     loadingScreen.show();
   });
 };
