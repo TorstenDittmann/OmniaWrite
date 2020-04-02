@@ -82,7 +82,6 @@ const createLoadingScreen = () => {
         return response.json();
       })
       .then(data => {
-        // TODO: Show new update in splash screen and link to the downloads
         latest = data;
       })
       .catch(err => console.log(err))
@@ -95,7 +94,7 @@ const createLoadingScreen = () => {
           let options = {
             buttons: ["Yes", "No"],
             title: "Update available!",
-            message: "Would you like to update now?",
+            message: "There is a new Update available!\n\nWould you like to update now?",
             type: "info"
           };
           dialog.showMessageBox(options).then(res => {
