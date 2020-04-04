@@ -4,7 +4,7 @@ import {
 } from "./stores";
 
 const APP_ENDPOINT = "https://shelf.omniawrite.com/v1";
-const APP_PROJECT = "5e776e77a0bf6";
+const APP_PROJECT = "5e890a780e6b2";
 const APP_HOST = window.location.origin + "/";
 
 const SDK = new Appwrite();
