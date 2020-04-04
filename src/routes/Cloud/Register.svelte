@@ -10,9 +10,9 @@
   let showAlert = false;
   let showAlertText;
 
-  let registerName;
-  let registerUser;
-  let registerPass;
+  let registerName = "";
+  let registerUser = "";
+  let registerPass = "";
 
   let statusPrivacyPolicy;
   let showPrivacyPolicy;
@@ -21,11 +21,29 @@
 
   function register() {
     registerButtonLoading = true;
-    cloud.register(registerName, registerUser, registerPass).then(response => {
+    if (
+      statusPrivacyPolicy &&
+      registerName.length > 0 &&
+      registerUser.length > 0 &&
+      registerPass.length > 0
+    ) {
+      cloud.register(registerName, registerUser, registerPass).then(
+        response => {
+          registerButtonLoading = false;
+          showAlert = true;
+          showAlertText = "Account created!";
+        },
+        error => {
+          registerButtonLoading = false;
+          showAlert = true;
+          showAlertText = "Register failed!";
+        }
+      );
+    } else {
       registerButtonLoading = false;
       showAlert = true;
-      showAlertText = "Account created!";
-    });
+      showAlertText = "Please fill out all fields!";
+    }
   }
 </script>
 
