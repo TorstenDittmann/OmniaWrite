@@ -18,14 +18,21 @@
   const login = () => {
     loginButtonLoading = true;
     if (loginUser.length > 0 && loginPass.length > 0) {
-      cloud.login(loginUser, loginPass).then(response => {
-        state.setLogin(true);
-        window.location.hash = "#/cloud";
-        deskgap.reload();
-      });
+      cloud.login(loginUser, loginPass).then(
+        response => {
+          state.setLogin(true);
+          window.location.hash = "#/cloud";
+          deskgap.reload();
+        },
+        err => {
+          showAlert = true;
+          showAlertText = "Login failed.";
+          loginButtonLoading = false;
+        }
+      );
     } else {
       showAlert = true;
-      showAlertText = "Login credentialss can't be empty.";
+      showAlertText = "Login credentials can't be empty.";
       loginButtonLoading = false;
     }
   };
