@@ -93,5 +93,7 @@ After building successfully, the action will publish your release artifacts.
 
 OmniaWrite - [@OmniaWrite](https://twitter.com/OmniaWrite) - info@omniawrite.com
 
+:)
+
 Project Link: [https://OmniaWrite.com](https://OmniaWrite.com)
 Project GitHub Link: [https://github.com/TorstenDittmann/OmniaWrite](https://github.com/TorstenDittmann/OmniaWrite)
