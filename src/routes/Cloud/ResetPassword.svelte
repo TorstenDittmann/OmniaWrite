@@ -2,9 +2,9 @@
   import { _ } from "svelte-i18n";
   import cloud from "../../appwrite";
 
-  let recoverUser;
+  let recoverUser = "";
   function recover() {
-    cloud.recoverPassword(loginUser).then(response => {
+    cloud.recoverPassword(recoverUser).then(response => {
       console.log(response);
     });
   }

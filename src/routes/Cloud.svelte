@@ -24,6 +24,7 @@
   import Profile from "./Cloud/Profile.svelte";
   import Backups from "./Cloud/Backups.svelte";
   import ResetPassword from "./Cloud/ResetPassword.svelte";
+  import ConfirmPassword from "./Cloud/ConfirmPassword.svelte";
   import Logout from "./Cloud/Logout.svelte";
 
   import moment from "moment";
@@ -47,6 +48,7 @@
     "/security": Security,
     "/profile": Profile,
     "/reset-password": ResetPassword,
+    "/confirm-password": ConfirmPassword,
     "/backups": Backups,
     "/logout": Logout
   };
