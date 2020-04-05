@@ -45,10 +45,10 @@ const cloud = {
         return SDK.account.get();
     },
     recoverPassword: (user) => {
-        return SDK.auth.recovery(
-            user,
-            APP_HOST + "#/cloud/recovery/"
-        );
+        return SDK.account.createRecovery(user, APP_HOST + "#/cloud/confirm-password/");
+    },
+    confirmPassword: (user, secret, password) => {
+        return SDK.account.updateRecovery(user, secret, password, password);
     },
     confirm: (id, token) => {
         return SDK.account.updateVerification(id, token);
