@@ -129,6 +129,7 @@
   };
   checkForBackup();
   setInterval(checkForBackup, 60000);
+
   /**
    * Listen for settings
    */
@@ -141,10 +142,6 @@
     );
   }
 </script>
-
-<style type="text/css">
-
-</style>
 
 <div class="container">
   {#if !$intern.installed}
