@@ -117,8 +117,6 @@ const cloud = {
         ).then(response => {
             state.updateCloudTimestamp(response.dateCreated);
             return response;
-        }, error => {
-            console.log(error);
         });
     },
     /**
