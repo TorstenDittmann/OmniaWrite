@@ -24,6 +24,10 @@ const cloud = {
             name
         );
     },
+    /**
+     * Send verify email to user.
+     * @returns Promise<response>
+     */
     createConfirmation: () => {
         return SDK.account.createVerification(APP_HOST + "#/cloud/register-confirm/");
     },
@@ -44,12 +48,30 @@ const cloud = {
     getUser: () => {
         return SDK.account.get();
     },
+    /**
+     * Send password recovery email.
+     * @param user Email of user.
+     * @returns Promise<repsonse>
+     */
     recoverPassword: (user) => {
         return SDK.account.createRecovery(user, APP_HOST + "#/cloud/confirm-password/");
     },
+    /**
+     * Confirm and change password from recovery.
+     * @param user User token.
+     * @param secret Secret token.
+     * @param password New password.
+     * @returns Promise<response>
+     */
     confirmPassword: (user, secret, password) => {
         return SDK.account.updateRecovery(user, secret, password, password);
     },
+    /**
+     * Verify account.
+     * @param id 
+     * @param token
+     * @returns Promise<response>
+     */
     confirm: (id, token) => {
         return SDK.account.updateVerification(id, token);
     },
@@ -57,6 +79,7 @@ const cloud = {
      * Login user and sets user ID in state.
      * @param user E-Mail
      * @param pass Password
+     * @returns Promise<session>
      */
     login: (user, pass) => {
         return SDK.account.createSession(
