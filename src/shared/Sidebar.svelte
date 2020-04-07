@@ -101,9 +101,9 @@
           <li class="parent" class:open={chapter.ui.open}>
             <span
               class="key"
-              on:click={() => chapters.toggleChapterInSidebar(chapter.id)}>
+              on:click|self={() => chapters.toggleChapterInSidebar(chapter.id)}>
               {chapter.title}
-              <span class="lnr lnr-chevron-up collapse" />
+              <span class="lnr lnr-chevron-up collapse" on:click|self={() => chapters.toggleChapterInSidebar(chapter.id)} />
               <span
                 class="lnr lnr-cog action"
                 on:click={() => ([editChapter.show, editChapter.data] = [true, chapter])} />
@@ -118,7 +118,10 @@
                 .sort((a, b) => a.order - b.order) as scene}
                 <li
                   use:active={'/write/' + scene.id}
-                  on:click={() => push('/write/' + scene.id)}>
+                  on:click|self={() => push('/write/' + scene.id)}
+                  data-type="scene"
+                  data-id={scene.id}
+                  data-chapter={scene.chapter}>
                   <a href="/write/{scene.id}" use:link>{scene.title}</a>
                   <span
                     class="lnr lnr-cog action"
