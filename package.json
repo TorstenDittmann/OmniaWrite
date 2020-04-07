@@ -84,11 +84,16 @@
       "category": "Office",
       "target": [
         "AppImage",
-        "snap"
+        "snap",
+        "deb",
+        "rpm"
       ]
     },
     "mac": {
-      "category": "public.app-category.utilities"
+      "category": "public.app-category.utilities",
+      "target": [
+        "dmg"
+      ]
     },
     "win": {}
   }
