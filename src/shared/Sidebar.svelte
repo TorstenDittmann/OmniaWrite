@@ -111,9 +111,9 @@
             data-project={chapter.project}>
             <span
               class="key"
-              on:click={() => chapters.toggleChapterInSidebar(chapter.id)}>
+              on:click|self={() => chapters.toggleChapterInSidebar(chapter.id)}>
               {chapter.title}
-              <span class="lnr lnr-chevron-up collapse" />
+              <span class="lnr lnr-chevron-up collapse" on:click|self={() => chapters.toggleChapterInSidebar(chapter.id)} />
               <span
                 class="lnr lnr-cog action"
                 on:click={() => ([editChapter.show, editChapter.data] = [true, chapter])} />
@@ -129,7 +129,7 @@
                 <li
                   class="sceneDrag"
                   use:active={'/write/' + scene.id}
-                  on:click={() => push('/write/' + scene.id)}
+                  on:click|self={() => push('/write/' + scene.id)}
                   data-type="scene"
                   data-id={scene.id}
                   data-chapter={scene.chapter}>
