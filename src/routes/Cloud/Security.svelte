@@ -30,7 +30,7 @@
   }
 
   li span {
-    flex: 1 1;
+    flex: 0 0 20%;
   }
 
   ul li:hover {
@@ -72,12 +72,11 @@
   <ul>
     {#each logs as log}
       <li class="flex-container">
-        <b class="flex-item">{log.event}</b>
-        <span class="flex-item">{log.OS.name}</span>
         <span class="flex-item">{moment(log.time, 'X').fromNow()}</span>
         <span class="flex-item">
-          {moment(log.time, 'X').format('MMMM Do YYYY, h:mm:ss a')}
+          {moment(log.time, 'X').format('MMMM Do YYYY, h:mm a')}
         </span>
+        <b class="flex-item">{log.event}</b>
       </li>
     {/each}
   </ul>
