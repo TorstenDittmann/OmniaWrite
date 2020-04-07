@@ -1,6 +1,7 @@
 <script>
   import { fade } from "svelte/transition";
   import { _ } from "svelte-i18n";
+  import { push } from "svelte-spa-router";
   import { settings } from "../../stores";
   import { deskgap } from "../../utils";
   import { state } from "../../stores";
@@ -39,7 +40,12 @@
 </script>
 
 <style>
-
+  .link {
+    cursor: pointer;
+  }
+  .link:hover {
+    text-decoration: underline;
+  }
 </style>
 
 <div in:fade={{ duration: 100 }}>
@@ -75,4 +81,7 @@
       </button>
     </div>
   </form>
+  <small class="link" on:click={() => push('/cloud/reset-password')}>
+    {$_('cloud.reset.title')}
+  </small>
 </div>
