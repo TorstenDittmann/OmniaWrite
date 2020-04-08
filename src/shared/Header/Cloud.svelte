@@ -40,15 +40,15 @@
 </script>
 
 <Toast bind:show={showToast} text="Something went wrong." />
-{#if buttonState === 'upload'}
+{#if buttonState === "upload"}
   <li on:click={syncCloud} style="-webkit-app-region: no-drag">
     <span class="lnr lnr-cloud-upload" />
   </li>
-{:else if buttonState === 'done'}
+{:else if buttonState === "done"}
   <li>
     <span class="lnr lnr-cloud-check" />
   </li>
-{:else if buttonState === 'loading'}
+{:else if buttonState === "loading"}
   <li>
     <Spinner />
   </li>

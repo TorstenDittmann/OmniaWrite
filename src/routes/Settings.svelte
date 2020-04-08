@@ -28,36 +28,36 @@
 </style>
 
 <div class="settings" in:fade={{ duration: 100 }}>
-  <h2>{$_('settings.appereance.title')}</h2>
+  <h2>{$_("settings.appereance.title")}</h2>
   <div class="field">
     <label class="big" for="editTheme">
-      {$_('settings.appereance.theme.title')}
+      {$_("settings.appereance.theme.title")}
     </label>
     <select id="editTheme" bind:value={$settings.theme}>
-      <option value="dark">{$_('settings.appereance.theme.dark')}</option>
-      <option value="light">{$_('settings.appereance.theme.light')}</option>
+      <option value="dark">{$_("settings.appereance.theme.dark")}</option>
+      <option value="light">{$_("settings.appereance.theme.light")}</option>
     </select>
   </div>
   <div class="field">
     <label class="big" for="editLanguage">
-      {$_('settings.appereance.language.title')}
+      {$_("settings.appereance.language.title")}
     </label>
     <select id="editLanguage" bind:value={$settings.language}>
-      <option value="en">{$_('settings.appereance.language.en')}</option>
-      <option value="de">{$_('settings.appereance.language.de')}</option>
+      <option value="en">{$_("settings.appereance.language.en")}</option>
+      <option value="de">{$_("settings.appereance.language.de")}</option>
     </select>
   </div>
 
-  <h2>{$_('header.write.title')}</h2>
+  <h2>{$_("header.write.title")}</h2>
   <div class="field">
-    <label class="big" for="autosave">{$_('settings.write.autosave')}</label>
+    <label class="big" for="autosave">{$_("settings.write.autosave")}</label>
     <p>
       <input id="autosave" type="checkbox" bind:checked={$settings.autosave} />
       <label for="autosave" />
     </p>
   </div>
   <div class="field">
-    <label class="big" for="fontSize">{$_('settings.write.fontsize')}</label>
+    <label class="big" for="fontSize">{$_("settings.write.fontsize")}</label>
     <input
       id="fontSize"
       type="range"
@@ -78,15 +78,15 @@
     </div>
   </div>
   <br />
-  <small class="link" on:click={() => push('/thirdparty')}>
-    {$_('settings.thirdparty')}
+  <small class="link" on:click={() => push("/thirdparty")}>
+    {$_("settings.thirdparty")}
   </small>
   |
-  <small class="link" on:click={() => push('/policy')}>
-    {$_('cloud.privacy.show')}
+  <small class="link" on:click={() => push("/policy")}>
+    {$_("cloud.privacy.show")}
   </small>
   |
-  <small class="link" on:click={() => push('/disclaimer')}>
-    {$_('install.disclaimer.show')}
+  <small class="link" on:click={() => push("/disclaimer")}>
+    {$_("install.disclaimer.show")}
   </small>
 </div>

@@ -154,7 +154,7 @@
   <div id="content" class="content">
     <Toast
       bind:show={updateAvailable}
-      text={$_('common.update-toast')}
+      text={$_("common.update-toast")}
       on:click={updateApp}
       duration="forever" />
     <div class="inner">

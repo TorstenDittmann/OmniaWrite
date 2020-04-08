@@ -33,7 +33,7 @@
   <h2 slot="header">{data.title}</h2>
   <form on:submit|preventDefault={editScene}>
     <div class="field">
-      <label for="editChapterInput">{$_('sidebar.modal.title')}</label>
+      <label for="editChapterInput">{$_("sidebar.modal.title")}</label>
       <input
         id="editChapterInput"
         bind:value={data.title}
@@ -45,14 +45,14 @@
     <div class="btn-group">
       {#if data.title.length > 0}
         <button on:click={editScene} type="submit">
-          {$_('sidebar.modal.edit.buttonSave')}
+          {$_("sidebar.modal.edit.buttonSave")}
         </button>
       {/if}
       <button
         style="float: right;"
         class="warning"
         on:click={() => removeScene(data.id)}>
-        {$_('sidebar.modal.edit.buttonDelete')}
+        {$_("sidebar.modal.edit.buttonDelete")}
       </button>
     </div>
   </form>

@@ -65,10 +65,10 @@
 </script>
 
 <Modal bind:show={showCreateCard}>
-  <h2 slot="header">{$_('cards.modal.newHeader')}</h2>
+  <h2 slot="header">{$_("cards.modal.newHeader")}</h2>
   <form on:submit|preventDefault={createCard}>
     <div class="field">
-      <label for="createTitle">{$_('cards.modal.title')}</label>
+      <label for="createTitle">{$_("cards.modal.title")}</label>
       <input
         id="createTitle"
         autocomplete="off"
@@ -77,14 +77,14 @@
         bind:value={newCardObject.title} />
     </div>
     <div class="field">
-      <label for="createContent">{$_('cards.modal.content')}</label>
+      <label for="createContent">{$_("cards.modal.content")}</label>
       <textarea
         id="createContent"
         rows="10"
         bind:value={newCardObject.content} />
     </div>
     <div class="field">
-      <label for="showTooltip">{$_('cards.modal.showInScenes')}</label>
+      <label for="showTooltip">{$_("cards.modal.showInScenes")}</label>
       <p>
         <input
           id="showTooltip"
@@ -96,7 +96,7 @@
     {#if newCardObject.title.length > 0}
       <div class="btn-group">
         <button on:click|preventDefault={createCard}>
-          {$_('cards.modal.buttonSave')}
+          {$_("cards.modal.buttonSave")}
         </button>
       </div>
     {/if}
@@ -104,10 +104,10 @@
 </Modal>
 
 <Modal bind:show={showEditCard}>
-  <h2 slot="header">{$_('cards.modal.editHeader')} '{editCardObject.title}'</h2>
+  <h2 slot="header">{$_("cards.modal.editHeader")} '{editCardObject.title}'</h2>
   <form on:submit|preventDefault={editCard}>
     <div class="field">
-      <label for="createTitle">{$_('cards.modal.title')}</label>
+      <label for="createTitle">{$_("cards.modal.title")}</label>
       <input
         id="createTitle"
         autocomplete="off"
@@ -116,14 +116,14 @@
         bind:value={editCardObject.title} />
     </div>
     <div class="field">
-      <label for="createContent">{$_('cards.modal.content')}</label>
+      <label for="createContent">{$_("cards.modal.content")}</label>
       <textarea
         id="createContent"
         rows="10"
         bind:value={editCardObject.content} />
     </div>
     <div class="field">
-      <label for="showTooltip">{$_('cards.modal.showInScenes')}</label>
+      <label for="showTooltip">{$_("cards.modal.showInScenes")}</label>
       <p>
         <input
           id="showTooltip"
@@ -135,14 +135,14 @@
     <div class="btn-group">
       {#if editCardObject.title.length > 0}
         <button on:click|preventDefault={editCard}>
-          {$_('cards.modal.buttonSave')}
+          {$_("cards.modal.buttonSave")}
         </button>
       {/if}
       <button
         style="float: right;"
         class="warning"
         on:click={() => removeCard(editCardObject.id)}>
-        {$_('sidebar.modal.edit.buttonDelete')}
+        {$_("sidebar.modal.edit.buttonDelete")}
       </button>
     </div>
   </form>
@@ -153,7 +153,7 @@
     <div class="field">
       <input
         autocomplete="off"
-        placeholder={$_('cards.search')}
+        placeholder={$_("cards.search")}
         type="search"
         bind:value={searchInput} />
     </div>

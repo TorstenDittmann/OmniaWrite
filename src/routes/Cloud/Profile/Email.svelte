@@ -45,4 +45,4 @@
   </div>
 </form>
 
-<Toast bind:show={showToast} text={$_('common.profile.update-email')} />
+<Toast bind:show={showToast} text={$_("common.profile.update-email")} />
