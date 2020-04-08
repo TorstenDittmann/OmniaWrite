@@ -30,6 +30,7 @@
 
     if (
       !"serviceWorker" in navigator ||
+      !navigator.serviceWorker.controller ||
       navigator.userAgent.indexOf("Firefox") > -1 ||
       navigator.userAgent.indexOf("Edge") > -1 ||
       window.matchMedia("(display-mode: standalone)").matches ||
@@ -67,28 +68,28 @@
   </div>
 
   <div class="install">
-    {#if installStep === 'init'}
+    {#if installStep === "init"}
       <img src="logo.png" alt="OmniaWrite Logo" />
       <hr />
       <Spinner />
-    {:else if installStep === 'language'}
+    {:else if installStep === "language"}
       <img src="logo.png" alt="OmniaWrite Logo" />
-      <h3>{$_('install.language')}</h3>
+      <h3>{$_("install.language")}</h3>
       <div class="field">
         <select bind:value={$settings.language} id="language">
-          <option value="en">{$_('settings.appereance.language.en')}</option>
-          <option value="de">{$_('settings.appereance.language.de')}</option>
+          <option value="en">{$_("settings.appereance.language.en")}</option>
+          <option value="de">{$_("settings.appereance.language.de")}</option>
         </select>
       </div>
       <div class="grid">
         <div on:click={() => (installStep = "disclaimer")}>
           <span class="lnr lnr-arrow-right-circle" />
-          {$_('install.continue')}
+          {$_("install.continue")}
         </div>
       </div>
-    {:else if installStep === 'disclaimer'}
+    {:else if installStep === "disclaimer"}
       <Modal bind:show={showDisclaimer}>
-        <h2 slot="header">{$_('install.disclaimer.title')}</h2>
+        <h2 slot="header">{$_("install.disclaimer.title")}</h2>
         <Disclaimer />
       </Modal>
       <div class="field">
@@ -96,50 +97,50 @@
           <input id="terms" type="checkbox" bind:checked={statusDisclaimer} />
           <label for="terms" />
         </p>
-      <label class="big" on:click={() => showDisclaimer = true}>{$_('install.disclaimer.action')}</label>
+      <label class="big" on:click={() => showDisclaimer = true}>{$_("install.disclaimer.action")}</label>
     </div>
       <div class="grid">
         <div on:click={() => (installStep = "language")}>
           <span class="lnr lnr-arrow-left-circle" />
-          {$_('install.back')}
+          {$_("install.back")}
         </div>
         {#if statusDisclaimer}
           <div on:click={() => (installStep = "install")}>
             <span class="lnr lnr-arrow-right-circle" />
-            {$_('install.continue')}
+            {$_("install.continue")}
           </div>
         {/if}
       </div>
-    {:else if installStep === 'install'}
-      <h3>{$_('install.requirements.title')}</h3>
+    {:else if installStep === "install"}
+      <h3>{$_("install.requirements.title")}</h3>
       <p>
         <span
           class="lnr"
           class:lnr-checkmark-circle={requirements.steps.internet}
           class:lnr-question-circle={!requirements.steps.internet} />
-        {$_('install.requirements.internet')}
+        {$_("install.requirements.internet")}
       </p>
       <p>
         <span
           class="lnr"
           class:lnr-checkmark-circle={requirements.steps.browser}
           class:lnr-question-circle={!requirements.steps.browser} />
-        {$_('install.requirements.browser')}
+        {$_("install.requirements.browser")}
       </p>
       {#if !requirements.steps.browser}
-        {$_('install.requirements.warning.browser')}
+        {$_("install.requirements.warning.browser")}
       {/if}
       <div class="grid">
         <div on:click={() => ($intern.installed = true)}>
           <span class="lnr lnr-cloud installIcon" />
           <br />
-          {$_('install.install.browser')}
+          {$_("install.install.browser")}
         </div>
         {#if requirements.installable}
           <div on:click={install}>
             <span class="lnr lnr-download installIcon" />
             <br />
-            {$_('install.install.install')}
+            {$_("install.install.install")}
           </div>
         {/if}
       </div>
