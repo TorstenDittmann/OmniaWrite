@@ -7,5 +7,5 @@
 </style>
 
 <p>
-  {@html $_('install.disclaimer.content')}
+  {@html $_("install.disclaimer.content")}
 </p>

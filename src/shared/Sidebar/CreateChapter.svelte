@@ -21,10 +21,10 @@
 </style>
 
 <Modal bind:show>
-  <h2 slot="header">{$_('sidebar.modal.newChapter.header')}</h2>
+  <h2 slot="header">{$_("sidebar.modal.newChapter.header")}</h2>
   <form on:submit|preventDefault={createChapter}>
     <div class="field">
-      <label for="createChapterInput">{$_('sidebar.modal.title')}</label>
+      <label for="createChapterInput">{$_("sidebar.modal.title")}</label>
       <input
         id="createChapterInput"
         bind:value={title}
@@ -36,7 +36,7 @@
     <div class="btn-group">
       {#if title.length > 0}
         <button on:click|preventDefault={createChapter}>
-          {$_('sidebar.modal.newChapter.button')}
+          {$_("sidebar.modal.newChapter.button")}
         </button>
       {/if}
     </div>

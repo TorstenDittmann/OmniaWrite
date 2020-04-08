@@ -18,7 +18,7 @@
 </style>
 
 <div class="export-container" in:fade={{ duration: 100 }}>
-  {#if !window.hasOwnProperty('cordova')}
+  {#if !window.hasOwnProperty("cordova")}
     {#if $state.currentProject}
       <RTF />
       <EPUB />

@@ -72,9 +72,9 @@
   <ul>
     {#each logs as log}
       <li class="flex-container">
-        <span class="flex-item">{moment(log.time, 'X').fromNow()}</span>
+        <span class="flex-item">{moment(log.time, "X").fromNow()}</span>
         <span class="flex-item">
-          {moment(log.time, 'X').format('MMMM Do YYYY, h:mm a')}
+          {moment(log.time, "X").format("MMMM Do YYYY, h:mm a")}
         </span>
         <b class="flex-item">{log.event}</b>
       </li>

@@ -31,11 +31,11 @@
   }
 </script>
 
-<h2>{$_('export.title.epub')}</h2>
+<h2>{$_("export.title.epub")}</h2>
 <div class="grid">
   <div>
     <div class="field">
-      <label class="big" for="author">{$_('export.author')}</label>
+      <label class="big" for="author">{$_("export.author")}</label>
       <input
         id="author"
         type="text"
@@ -44,7 +44,7 @@
         bind:value={author} />
     </div>
     <div class="field">
-      <label class="big" for="cover">{$_('export.cover')}</label>
+      <label class="big" for="cover">{$_("export.cover")}</label>
       <input
         id="cover"
         type="file"
@@ -57,7 +57,7 @@
         disabled={downloadButtonDisabled}
         class:loading>
         <span class="lnr lnr-sync spinner" />
-        {$_('export.downloadEpub')}
+        {$_("export.downloadEpub")}
       </button>
     </div>
   </div>

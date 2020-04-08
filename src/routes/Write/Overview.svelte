@@ -41,10 +41,10 @@
 
 <div id="cards" class="grid">
   {#each sceneData as scene}
-    <div id="card" on:click={() => push('/write/' + scene.id)}>
+    <div id="card" on:click={() => push("/write/" + scene.id)}>
       <h2>{scene.title}</h2>
       <small>
-        {$_('write.overview.opened')} {moment(scene.lastEdit, 'X').fromNow()}
+        {$_("write.overview.opened")} {moment(scene.lastEdit, "X").fromNow()}
       </small>
     </div>
   {/each}

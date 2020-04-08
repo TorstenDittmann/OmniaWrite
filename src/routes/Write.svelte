@@ -180,22 +180,22 @@
     {#if params.sceneId !== null}
       <div class="toolbar">
         <span class="tooltip">
-          {amountWords} {$_('write.toolbar.words')}
+          {amountWords} {$_("write.toolbar.words")}
           <span class="tooltiptext">
-            {amountChars} {$_('write.toolbar.chars')}
+            {amountChars} {$_("write.toolbar.chars")}
           </span>
         </span>
         <span class="lnr lnr-undo tooltip" on:click={undo}>
-          <span class="tooltiptext">{$_('write.toolbar.undo')}</span>
+          <span class="tooltiptext">{$_("write.toolbar.undo")}</span>
         </span>
         <span class="lnr lnr-redo tooltip" on:click={redo}>
-          <span class="tooltiptext">{$_('write.toolbar.redo')}</span>
+          <span class="tooltiptext">{$_("write.toolbar.redo")}</span>
         </span>
         {#if editorChangeHappened}
           <span
             class="lnr lnr-checkmark-circle tooltip"
             on:click={() => save(params.sceneId)}>
-            <span class="tooltiptext">{$_('write.toolbar.save')}</span>
+            <span class="tooltiptext">{$_("write.toolbar.save")}</span>
           </span>
         {/if}
         <span
@@ -203,7 +203,7 @@
           on:click={toggleFocus}
           class:lnr-eye={!focusMode}
           class:lnr-exit={focusMode}>
-          <span class="tooltiptext">{$_('write.toolbar.focus')}</span>
+          <span class="tooltiptext">{$_("write.toolbar.focus")}</span>
         </span>
         <!--<span class="lnr lnr-frame-expand tooltip" on:click={toggleFullscreen}>
         <span class="tooltiptext">{$_('write.toolbar.fullscreen')}</span>
@@ -211,7 +211,7 @@
         {#if focusMode}
           <select id="focusSceneSelect" on:change={switchScene}>
             <option value="" selected="selected">
-              {$_('write.toolbar.switchScene')}
+              {$_("write.toolbar.switchScene")}
             </option>
             {#each $chapters.filter(chapter => chapter.project == $state.currentProject) as chapter, i}
               <optgroup label={chapter.title}>

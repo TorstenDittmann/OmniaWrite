@@ -18,7 +18,7 @@
     <div class="new">
       <a href="https://trello.com/b/XmcZBEIl/omniawrite" target="_blank">
         <span class="lnr lnr-bug" />
-        {$_('developementStatus')}
+        {$_("developementStatus")}
       </a>
 
     </div>

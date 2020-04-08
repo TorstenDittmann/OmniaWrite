@@ -83,10 +83,10 @@
       {#each backups.files as backup}
         <li on:click={() => restoreBackup(backup.$id)}>
           <span class="from-now">
-            {moment(backup.dateCreated, 'X').fromNow()}
+            {moment(backup.dateCreated, "X").fromNow()}
           </span>
           <span class="date">
-            {moment(backup.dateCreated, 'X').format('MMMM Do YYYY, h:mm:ss a')}
+            {moment(backup.dateCreated, "X").format("MMMM Do YYYY, h:mm:ss a")}
           </span>
           <span class="file-size">{formatBytes(backup.sizeOriginal)}</span>
           <span class="lnr lnr-cloud-download" />
