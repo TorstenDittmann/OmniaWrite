@@ -55,15 +55,11 @@ const showMainWindow = () => {
 }
 
 const createLoadingScreen = () => {
-  /// create a browser window
   loadingScreen = new BrowserWindow(
     Object.assign({
-      /// define width and height for the window
       width: 300,
       height: 400,
-      /// remove the window frame, so it will become a frameless window
       frame: false,
-      /// and set the transparency, to remove any window background color
       transparent: true,
       resizable: false
     })
@@ -86,7 +82,6 @@ const createLoadingScreen = () => {
       })
       .catch(err => console.log(err))
       .finally(() => {
-        /// then close the loading screen window and show the main window
         let currentVersion = app.getVersion();
         let fetchedVersion = latest ? latest.name : false;
 
