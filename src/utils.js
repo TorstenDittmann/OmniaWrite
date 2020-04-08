@@ -33,15 +33,11 @@ export function checkRequirements() {
 
     check.steps.internet = navigator.onLine;
 
-    // Firefox 1.0+
-    let isFirefox = typeof InstallTrigger !== "undefined";
     // Chrome 1 - 71
     let isChrome = !!window.chrome && (!!window.chrome.webstore || !!window.chrome.runtime);
     // webKit
-    let isWebKit = !!window.webkitURL;
 
-
-    if (isChrome || isFirefox || isWebKit) check.steps.browser = true;
+    if (isChrome) check.steps.browser = true;
     if ("serviceWorker" in navigator) check.steps.serviceWorker = true;
 
     if (check.steps.browser) check.installable = true;
