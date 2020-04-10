@@ -19,7 +19,8 @@
         }
     },
     "common": {
-        "no-project-selected": "Kein Projekt ausgewählt"
+        "no-project-selected": "Kein Projekt ausgewählt",
+        "update-toast": "Neues Update installiert!<br>Hier klicken zum Neustart.",
     },
     "write": {
         "toolbar": {
@@ -71,6 +72,11 @@
         },
         "privacy": {
             "show": "Datenschutz"
+        },
+        "profile": {
+            "updateName": "Name aktualisiert!",
+            "updateMail": "E-Mail aktualisiert!",
+            "updatePass": "Passwort aktualisiert!",
         },
         "toast": {
             "savedCloud": "In die Cloud gespeichert.",
@@ -150,7 +156,10 @@
             "title": "Systemanforderungen",
             "internet": "Internet",
             "browser": "Browser",
-            "serviceWorker": "Service worker"
+            "serviceWorker": "Service worker",
+            "warning": {
+                "browser": "OmniaWrite funktioniert am besten mit Google Chrome!"
+            }
         },
         "start": "Neuer Start",
         "cloud": "von Cloud",
