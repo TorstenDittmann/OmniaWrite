@@ -164,6 +164,7 @@
         "start": "Fresh start",
         "cloud": "From Cloud",
         "back": "back",
+        "continue": "continue",
         "install": {
             "install": "Install",
             "browser": "Run in browser"

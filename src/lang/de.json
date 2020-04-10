@@ -164,6 +164,7 @@
         "start": "Neuer Start",
         "cloud": "von Cloud",
         "back": "zurück",
+        "continue": "weiter",
         "install": {
             "install": "Installieren",
             "browser": "Im Browser starten"
