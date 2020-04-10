@@ -5,7 +5,7 @@ import {
 
 const APP_ENDPOINT = "https://shelf.omniawrite.com/v1";
 const APP_PROJECT = "5e890a780e6b2";
-const APP_HOST = window.location.origin + "/";
+const APP_EXT_HOST = "https://external.omniawrite.com/";
 
 const SDK = new Appwrite();
 
@@ -29,7 +29,7 @@ const cloud = {
      * @returns Promise<response>
      */
     createConfirmation: () => {
-        return SDK.account.createVerification(APP_HOST + "#/cloud/register-confirm/");
+        return SDK.account.createVerification(APP_EXT_HOST + "verify-account");
     },
     /**
      * Checks if user is logged in.
@@ -54,7 +54,7 @@ const cloud = {
      * @returns Promise<repsonse>
      */
     recoverPassword: (user) => {
-        return SDK.account.createRecovery(user, APP_HOST + "#/cloud/confirm-password/");
+        return SDK.account.createRecovery(user, APP_EXT_HOST + "reset-password");
     },
     /**
      * Confirm and change password from recovery.
