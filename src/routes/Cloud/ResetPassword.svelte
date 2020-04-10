@@ -6,6 +6,7 @@
   let recoverState = false;
   function recover() {
     cloud.recoverPassword(recoverUser).then(response => {
+      recoverUser = "";
       recoverState = true;
     });
   }
@@ -21,7 +22,7 @@
 {:else}
   <form on:submit|preventDefault={recover}>
     <div class="field">
-      <label class="big" for="loginUser">{$_("cloud.login.email")}</label>
+      <label class="big" for="loginUser">{$_('cloud.login.email')}</label>
       <input
         id="loginUser"
         type="email"
@@ -30,7 +31,7 @@
     </div>
     <div class="btn-group">
       <button on:click|preventDefault={recover}>
-        {$_("cloud.reset.title")}
+        {$_('cloud.reset.title')}
       </button>
     </div>
   </form>

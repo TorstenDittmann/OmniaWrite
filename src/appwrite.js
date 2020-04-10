@@ -29,7 +29,7 @@ const cloud = {
      * @returns Promise<response>
      */
     createConfirmation: () => {
-        return SDK.account.createVerification(APP_EXT_HOST + "verify-account");
+        return SDK.account.createVerification(APP_EXT_HOST + "#/verify-account");
     },
     /**
      * Checks if user is logged in.
@@ -54,7 +54,7 @@ const cloud = {
      * @returns Promise<repsonse>
      */
     recoverPassword: (user) => {
-        return SDK.account.createRecovery(user, APP_EXT_HOST + "reset-password");
+        return SDK.account.createRecovery(user, APP_EXT_HOST + "#/reset-password");
     },
     /**
      * Confirm and change password from recovery.
