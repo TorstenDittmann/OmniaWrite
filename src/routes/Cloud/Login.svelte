@@ -11,6 +11,8 @@
 
   let showAlert = false;
   let showAlertText;
+  let alertSuccess = false;
+  let alertDanger = false;
 
   let loginUser = "";
   let loginPass = "";
@@ -49,13 +51,13 @@
 </style>
 
 <div in:fade={{ duration: 100 }}>
-  <h2>{$_("cloud.login.title")}</h2>
+  <h2>{$_('cloud.login.title')}</h2>
   <Alert danger bind:show={showAlert}>
     <span class="lnr lnr-warning">{showAlertText}</span>
   </Alert>
   <form on:submit|preventDefault={login}>
     <div class="field">
-      <label class="big" for="loginUser">{$_("cloud.login.email")}</label>
+      <label class="big" for="loginUser">{$_('cloud.login.email')}</label>
       <input
         id="loginUser"
         type="email"
@@ -63,7 +65,7 @@
         bind:value={loginUser} />
     </div>
     <div class="field">
-      <label class="big" for="loginPass">{$_("cloud.login.password")}</label>
+      <label class="big" for="loginPass">{$_('cloud.login.password')}</label>
       <input
         id="loginPass"
         type="password"
@@ -77,11 +79,11 @@
         disabled={loginButtonLoading}
         class:loading={loginButtonLoading}>
         <span class="lnr lnr-sync spinner" />
-        {$_("cloud.login.button")}
+        {$_('cloud.login.button')}
       </button>
     </div>
   </form>
-  <small class="link" on:click={() => push("/cloud/reset-password")}>
-    {$_("cloud.reset.title")}
+  <small class="link" on:click={() => push('/cloud/reset-password')}>
+    {$_('cloud.reset.title')}
   </small>
 </div>
