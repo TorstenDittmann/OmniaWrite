@@ -167,7 +167,7 @@
         "continue": "continue",
         "install": {
             "install": "Install",
-            "browser": "Run in browser"
+            "browser": "Run"
         },
         "disclaimer": {
             "action": "I agree to the terms and conditions",

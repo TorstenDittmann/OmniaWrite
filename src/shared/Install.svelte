@@ -202,7 +202,7 @@
       {/if}
       <div class="grid">
         <div on:click={() => ($intern.installed = true)}>
-          <span class="lnr lnr-cloud installIcon" />
+          <span class="lnr lnr-rocket installIcon" />
           <br />
           {$_('install.install.browser')}
         </div>
