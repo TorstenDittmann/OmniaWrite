@@ -138,7 +138,8 @@ const cloud = {
         return fetch(SDK.storage.getFileView(id),
             {
                 method: "GET",
-                credentials: "include"
+                credentials: "include",
+                mode: "same-origin"
             }
         )
             .then((response) => {
