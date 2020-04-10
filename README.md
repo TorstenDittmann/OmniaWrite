@@ -1,7 +1,10 @@
+![Build/release](https://github.com/TorstenDittmann/OmniaWrite/workflows/Build/release/badge.svg)
+[![omniawrite](https://snapcraft.io//omniawrite/badge.svg)](https://snapcraft.io/omniawrite)
+
 <!-- PROJECT LOGO -->
 <br />
 <p align="center">
-  <a href="https://github.com/othneildrew/Best-README-Template">
+  <a href="https://omniawrite.com">
     <img src="public/android-chrome-512x512.png" alt="Logo" width="80" height="80">
   </a>
 
@@ -20,8 +23,6 @@
     <a href="https://github.com/TorstenDittmann/OmniaWrite/issues">Request Feature</a>
   </p>
 </p>
-
-
 
 <!-- TABLE OF CONTENTS -->
 ## Table of Contents
@@ -69,7 +70,16 @@ Any contributions you make are **greatly appreciated**.
 4. Push to the Branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
 
+## Releasing
 
+When you want to create a new release, follow these steps:
+
+1. Update the version in `package.json` file (e.g. `1.2.3`)
+2. Commit that change (`git commit -am v1.2.3`)
+3. Tag commit (`git tag v1.2.3`). Make sure the tag name's format is `v*.*.*`.
+4. Push changes to GitHub (`git push && git push --tags`)
+
+After building successfully, the action will publish your release artifacts.
 
 <!-- LICENSE -->
 ## License

@@ -67,11 +67,16 @@
             "button": "Register"
         },
         "reset": {
-            "title": "Password reset",
+            "title": "Forgot password?",
             "button": "Reset password"
         },
         "privacy": {
             "show": "Privacy Policy"
+        },
+        "profile": {
+            "updateName": "Name updated!",
+            "updateMail": "E-mail updated!",
+            "updatePass": "Password updated!"
         },
         "toast": {
             "savedCloud": "Saved into cloud.",
@@ -95,7 +100,10 @@
         }
     },
     "export": {
-        "title": "Export",
+        "title": {
+            "rtf": "RTF",
+            "epub": "EPUB"
+        },
         "author": "Author:",
         "cover": "Cover:",
         "downloadEpub": "Download as EPUB",
@@ -148,6 +156,9 @@
             "title": "Requirements",
             "internet": "Internet",
             "browser": "Browser",
+            "warning": {
+                "browser": "OmniaWrite works best in Google Chrome!"
+            },
             "serviceWorker": "Service worker"
         },
         "start": "Fresh start",
@@ -158,7 +169,7 @@
             "browser": "Run in browser"
         },
         "disclaimer": {
-            "action": "Agree to the terms and conditions:",
+            "action": "I agree to the terms and conditions",
             "title": "Disclaimer",
             "show": "Terms",
             "content": "Last updated: December 03, 2019<br><br>The information provided by OmniaWrite on our application is for general informational purposes only.<br>All information on our web and mobile application is provided in good faith, however we make no representation or warranty of any kind, express or implied, regarding the accuracy, adequacy, validity, reliability, availability or completeness of any information on our application.<br>Under no circumstance shall we have any liability to you for any loss or damage of any kind incurred as a result of the use of our  application or reliance on any information provided on our application.<br>Your use of the application and your reliance on any information on our application is solely at your own risk."

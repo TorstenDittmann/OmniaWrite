@@ -1,6 +1,6 @@
 <script lang="javascript">
+  import { fade } from "svelte/transition";
   import { cards, state } from "../stores";
-  import { createEventDispatcher } from "svelte";
   import { _ } from "svelte-i18n";
 
   import Placeholder from "../shared/Placeholder.svelte";
@@ -25,18 +25,33 @@
   };
 
   function createCard() {
-    cards.createCard(
-      $state.currentProject,
-      newCardObject.title,
-      newCardObject.content,
-      newCardObject.showTooltip
-    );
-    showCreateCard = false;
+    if (newCardObject.title.length > 0) {
+      cards.createCard(
+        $state.currentProject,
+        newCardObject.title,
+        newCardObject.content,
+        newCardObject.showTooltip
+      );
+      showCreateCard = false;
+    } else {
+      window.alert("Title can't be empty.");
+    }
   }
 
   function editCard() {
-    cards.setCard(editCardObject);
-    showEditCard = false;
+    if (editCardObject.title.length > 0) {
+      cards.setCard(editCardObject);
+      showEditCard = false;
+    } else {
+      window.alert("Title can't be empty.");
+    }
+  }
+  function removeCard(cardId) {
+    let confirmed = confirm($_("overview.cards.confirmDelete"));
+    if (confirmed == true) {
+      showEditCard = false;
+      cards.removeCard(cardId);
+    }
   }
 
   $: filteredCards = searchInput
@@ -50,110 +65,119 @@
 </script>
 
 <Modal bind:show={showCreateCard}>
-  <h2 slot="header">{$_('cards.modal.newHeader')}</h2>
-  <div class="field">
-    <label for="createTitle">{$_('cards.modal.title')}</label>
-    <input
-      id="createTitle"
-      autocomplete="off"
-      placeholder="enter your title"
-      type="text"
-      bind:value={newCardObject.title} />
-  </div>
-  <div class="field">
-    <label for="createContent">{$_('cards.modal.content')}</label>
-    <textarea id="createContent" rows="10" bind:value={newCardObject.content} />
-  </div>
-  <div class="field">
-    <label for="showTooltip">{$_('cards.modal.showInScenes')}</label>
-    <div class="btn-group">
-      <button
-        id="showTooltip"
-        class:green={newCardObject.showTooltip}
-        class:red={!newCardObject.showTooltip}
-        on:click={() => (newCardObject.showTooltip = !newCardObject.showTooltip)}>
-        <span
-          class="lnr"
-          class:lnr-cross-circle={!newCardObject.showTooltip}
-          class:lnr-checkmark-circle={newCardObject.showTooltip} />
-      </button>
+  <h2 slot="header">{$_("cards.modal.newHeader")}</h2>
+  <form on:submit|preventDefault={createCard}>
+    <div class="field">
+      <label for="createTitle">{$_("cards.modal.title")}</label>
+      <input
+        id="createTitle"
+        autocomplete="off"
+        placeholder="enter your title"
+        type="text"
+        bind:value={newCardObject.title} />
     </div>
-  </div>
-  {#if newCardObject.title.length > 0}
-    <div class="btn-group">
-      <button on:click={createCard}>{$_('cards.modal.buttonSave')}</button>
+    <div class="field">
+      <label for="createContent">{$_("cards.modal.content")}</label>
+      <textarea
+        id="createContent"
+        rows="10"
+        bind:value={newCardObject.content} />
     </div>
-  {/if}
+    <div class="field">
+      <label for="showTooltip">{$_("cards.modal.showInScenes")}</label>
+      <p>
+        <input
+          id="showTooltip"
+          type="checkbox"
+          bind:checked={newCardObject.showTooltip} />
+        <label for="showTooltip" />
+      </p>
+    </div>
+    {#if newCardObject.title.length > 0}
+      <div class="btn-group">
+        <button on:click|preventDefault={createCard}>
+          {$_("cards.modal.buttonSave")}
+        </button>
+      </div>
+    {/if}
+  </form>
 </Modal>
 
 <Modal bind:show={showEditCard}>
-  <h2 slot="header">{$_('cards.modal.editHeader')} '{editCardObject.title}'</h2>
-  <div class="field">
-    <label for="createTitle">{$_('cards.modal.title')}</label>
-    <input
-      id="createTitle"
-      autocomplete="off"
-      placeholder="enter your title"
-      type="text"
-      bind:value={editCardObject.title} />
-  </div>
-  <div class="field">
-    <label for="createContent">{$_('cards.modal.content')}</label>
-    <textarea
-      id="createContent"
-      rows="10"
-      bind:value={editCardObject.content} />
-  </div>
-  <div class="field">
-    <label for="showTooltip">{$_('cards.modal.showInScenes')}</label>
+  <h2 slot="header">{$_("cards.modal.editHeader")} '{editCardObject.title}'</h2>
+  <form on:submit|preventDefault={editCard}>
+    <div class="field">
+      <label for="createTitle">{$_("cards.modal.title")}</label>
+      <input
+        id="createTitle"
+        autocomplete="off"
+        placeholder="enter your title"
+        type="text"
+        bind:value={editCardObject.title} />
+    </div>
+    <div class="field">
+      <label for="createContent">{$_("cards.modal.content")}</label>
+      <textarea
+        id="createContent"
+        rows="10"
+        bind:value={editCardObject.content} />
+    </div>
+    <div class="field">
+      <label for="showTooltip">{$_("cards.modal.showInScenes")}</label>
+      <p>
+        <input
+          id="showTooltip"
+          type="checkbox"
+          bind:checked={editCardObject.showTooltip} />
+        <label for="showTooltip" />
+      </p>
+    </div>
     <div class="btn-group">
+      {#if editCardObject.title.length > 0}
+        <button on:click|preventDefault={editCard}>
+          {$_("cards.modal.buttonSave")}
+        </button>
+      {/if}
       <button
-        id="showTooltip"
-        class:green={editCardObject.showTooltip}
-        class:red={!editCardObject.showTooltip}
-        on:click={() => (editCardObject.showTooltip = !editCardObject.showTooltip)}>
-        <span
-          class="lnr"
-          class:lnr-cross-circle={!editCardObject.showTooltip}
-          class:lnr-checkmark-circle={editCardObject.showTooltip} />
+        style="float: right;"
+        class="warning"
+        on:click={() => removeCard(editCardObject.id)}>
+        {$_("sidebar.modal.edit.buttonDelete")}
       </button>
     </div>
-  </div>
-  {#if editCardObject.title.length > 0}
-    <div class="btn-group">
-      <button on:click={editCard}>{$_('cards.modal.buttonSave')}</button>
-    </div>
-  {/if}
+  </form>
 </Modal>
 
-{#if $state.currentProject}
-  <div class="field">
-    <input
-      autocomplete="off"
-      placeholder={$_('cards.search')}
-      type="search"
-      bind:value={searchInput} />
-  </div>
-  <div id="cards" class="grid">
-    <div class="new" on:click={() => (showCreateCard = true)}>
-      <span class="lnr lnr-plus-circle" />
+<div in:fade={{ duration: 100 }}>
+  {#if $state.currentProject}
+    <div class="field">
+      <input
+        autocomplete="off"
+        placeholder={$_("cards.search")}
+        type="search"
+        bind:value={searchInput} />
     </div>
-    {#each filteredCards as card}
-      <div
-        id="card"
-        on:click={() => {
-          [showEditCard, editCardObject] = [true, card];
-        }}>
-        <h2>
-          {#if card.showTooltip}
-            <span class="lnr lnr-checkmark-circle" />
-          {/if}
-          {card.title}
-        </h2>
-        {card.content}
+    <div id="cards" class="grid">
+      <div class="new" on:click={() => (showCreateCard = true)}>
+        <span class="lnr lnr-plus-circle" />
       </div>
-    {/each}
-  </div>
-{:else}
-  <Placeholder />
-{/if}
+      {#each filteredCards as card}
+        <div
+          id="card"
+          on:click={() => {
+            [showEditCard, editCardObject] = [true, card];
+          }}>
+          <h2>
+            {#if card.showTooltip}
+              <span class="lnr lnr-checkmark-circle" />
+            {/if}
+            {card.title}
+          </h2>
+          {card.content}
+        </div>
+      {/each}
+    </div>
+  {:else}
+    <Placeholder />
+  {/if}
+</div>

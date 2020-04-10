@@ -1,6 +1,6 @@
 <script>
   import { _ } from "svelte-i18n";
-  import { deskgap } from "../../utils";
+  import { deskgap, isRunningElectron } from "../../utils";
 </script>
 
 <style>
@@ -12,13 +12,13 @@
   }
 </style>
 
-{#if !deskgap.isRunning()}
+{#if !isRunningElectron}
   <div id="cards" class="grid">
 
     <div class="new">
       <a href="https://trello.com/b/XmcZBEIl/omniawrite" target="_blank">
         <span class="lnr lnr-bug" />
-        {$_('developementStatus')}
+        {$_("developementStatus")}
       </a>
 
     </div>

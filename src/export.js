@@ -3,8 +3,8 @@ import {
     chapters,
     scenes
 } from "./stores";
-import JSZip from "jszip";
 import saveAs from "file-saver";
+import JSZip from "jszip";
 
 const zip = new JSZip();
 const {

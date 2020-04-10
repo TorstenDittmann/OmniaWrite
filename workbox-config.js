@@ -1,7 +1,4 @@
 module.exports = {
-  "globDirectory": "public/",
-  "globPatterns": [
-    "**/*.{png,xml,eot,svg,ttf,woff,css,scss,ico,js,html,webmanifest,xhtml,opf,otf,json}"
-  ],
-  "swDest": "public/service-worker.js"
+  maximumFileSizeToCacheInBytes: 5000000,
+  "swDest": "service-worker.js"
 };

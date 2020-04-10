@@ -1,21 +1,21 @@
-const {
-    messageUI
-} = window.deskgap || {};
-class Deskgap {
-    isRunning() {
-        return window.deskgap ? true : false;
-    }
+export const isRunningElectron = window && window.process && window.process.type;
+const { ipcRenderer } = isRunningElectron ? window.require("electron") : {};
 
+class Deskgap {
     reload() {
-        return window.deskgap ? messageUI.send("reload") : window.location.reload();
+        return isRunningElectron ? ipcRenderer.send("reload") : window.location.reload();
     }
 
     closeWindow() {
-        messageUI.send("close");
+        ipcRenderer.send("close");
+    }
+
+    resizeWindow() {
+        ipcRenderer.send("resize");
     }
 
     minimizeWindow() {
-        messageUI.send("minimize");
+        ipcRenderer.send("minimize");
     }
 }
 
@@ -33,15 +33,11 @@ export function checkRequirements() {
 
     check.steps.internet = navigator.onLine;
 
-    // Firefox 1.0+
-    let isFirefox = typeof InstallTrigger !== "undefined";
     // Chrome 1 - 71
     let isChrome = !!window.chrome && (!!window.chrome.webstore || !!window.chrome.runtime);
     // webKit
-    let isWebKit = !!window.webkitURL;
 
-
-    if (isChrome || isFirefox || isWebKit) check.steps.browser = true;
+    if (isChrome) check.steps.browser = true;
     if ("serviceWorker" in navigator) check.steps.serviceWorker = true;
 
     if (check.steps.browser) check.installable = true;

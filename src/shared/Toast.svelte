@@ -26,7 +26,7 @@
 {#if show}
   <div
     on:click={() => {
-      dispatch('click');
+      dispatch("click");
     }}
     id="snackbar"
     in:fly={{ y: -100, duration: 500 }}

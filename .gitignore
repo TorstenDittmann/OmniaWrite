@@ -4,9 +4,11 @@ public/bundle.*
 dist/
 public/service-worker.js
 src/licenses.json
-public/main.css
-installer/OmniaWrite-*
-deskgap/*
-!deskgap/deskgap.js
-!deskgap/package.json
-!installer/repository/feeds/.git/
+public/precache-manifest.*
+public/workbox-*
+public/fonts
+
+mobile/platforms/
+mobile/plugins/
+mobile/node_modules/
+mobile/www/*

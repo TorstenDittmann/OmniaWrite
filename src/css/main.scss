@@ -19,7 +19,7 @@ body {
     --input-border-color: #0092d1;
     --snackbar: #000;
     margin: 0;
-    font-family: 'IBM Plex Sans', sans-serif;
+    font-family: 'Nunito Sans', sans-serif;
     color: var(--text-color);
     background-color: var(--background-color);
     height: 100vh;
@@ -66,6 +66,10 @@ header {
     -webkit-user-select: none;
     -webkit-app-region: drag;
 
+    &.focus-mode {
+        display: none;
+    }
+
     .logo-mobile img {
         height: 4rem;
     }
@@ -90,6 +94,7 @@ header {
 
             li {
                 -webkit-app-region: no-drag;
+                cursor: pointer;
 
                 a {
                     color: var(--menu-link);
@@ -115,6 +120,10 @@ header {
                     &:hover {
                         opacity: 1;
                     }
+                }
+
+                .lnr {
+                    padding: 1.25rem 1rem;
                 }
             }
 
@@ -411,6 +420,8 @@ header {
 
 .btn-group {
     margin: 1rem;
+    justify-content: center;
+    display: flex;
 
     button {
         border: 1px solid;
@@ -474,109 +485,6 @@ header {
 
     button.outline {
         background-color: var(--background-color);
-    }
-}
-
-.field {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    margin: 1rem 0;
-
-    label {
-        min-width: 6rem;
-        padding-right: 1rem;
-    }
-
-    .big {
-        min-width: 8rem;
-    }
-
-    input[type=text],
-    input[type=email],
-    input[type=password] {
-        -webkit-appearance: none;
-        -moz-appearance: none;
-        -ms-appearance: none;
-        -o-appearance: none;
-        margin: 0;
-        padding: 0 .25rem;
-        border: none;
-        border-radius: 0;
-        box-shadow: none;
-        background: 0 0;
-        height: 1.2rem;
-        color: var(--text-color);
-        display: inline-block;
-        border-bottom: 1px solid #999;
-        max-height: 1.2rem;
-        font-size: 1rem;
-        opacity: .65;
-        background: linear-gradient(to bottom, transparent 95%, var(--input-border-color) 95%) no-repeat;
-        background-size: 0 100%;
-        transition: background-size .2s ease;
-
-        &:focus {
-            border-bottom: 1px solid var(--input-border-color);
-            background-size: 100% 100%;
-            outline: 0;
-            opacity: 1;
-        }
-    }
-
-    textarea {
-        max-width: calc(100% - .25rem);
-        width: calc(100% - .25rem);
-        height: auto;
-        resize: vertical;
-        background: none;
-        border: 1px solid #999;
-        color: var(--text-color);
-        border-radius: .125rem;
-        padding: calc(.25rem + 2px) .5rem;
-    }
-
-    select {
-        background-color: var(--select-background);
-        width: auto;
-        font-size: 1rem;
-        color: var(--text-color);
-        -webkit-text-fill-color: var(--text-color);
-        text-align: center;
-        border: 0;
-        cursor: pointer;
-    }
-
-    input[type=search] {
-        -webkit-appearance: none;
-        -moz-appearance: none;
-        -ms-appearance: none;
-        -o-appearance: none;
-        margin: 0;
-        padding: 0 .25rem;
-        border: none;
-        border-radius: 0;
-        box-shadow: none;
-        background: 0 0;
-        height: 2rem;
-        color: var(--text-color);
-        display: inline-block;
-        border-bottom: 1px solid #999;
-        max-height: 2rem;
-        font-size: 1.5rem;
-        opacity: .85;
-        background: linear-gradient(to bottom, transparent 95%, var(--input-border-color) 95%) no-repeat;
-        background-size: 0 100%;
-        transition: background-size .2s ease;
-        width: 100%;
-        text-align: center;
-
-        &:focus {
-            border-bottom: 1px solid var(--input-border-color);
-            background-size: 100% 100%;
-            outline: 0;
-            opacity: 1;
-        }
     }
 }
 

@@ -1,10 +1,12 @@
 <script lang="javascript">
   import { Workbox } from "workbox-window";
   import { state, projects, settings, intern } from "./stores";
-  import { deskgap } from "./utils";
+  import { deskgap, isRunningElectron } from "./utils";
+  import cloud from "./appwrite";
   import { locale, _ } from "svelte-i18n";
 
   import Router from "svelte-spa-router";
+  import * as Sentry from "@sentry/browser";
 
   import HeaderComponent from "./shared/Header.svelte";
   import SidebarComponent from "./shared/Sidebar.svelte";
@@ -25,14 +27,15 @@
   locale.set($settings.language);
 
   export let version;
-  console.log(version);
+  console.log(`Version: ${version}`);
 
   const routes = {
     "/": OverviewRoute,
     "/write/:sceneId?": WriteRoute,
     "/cards": CardsRoute,
     "/settings": SettingsRoute,
-    "/cloud": CloudRoute,
+    "/cloud/": CloudRoute,
+    "/cloud/*": CloudRoute,
     "/export": ExportRoute,
 
     // Non header route
@@ -44,13 +47,22 @@
     "*": OverviewRoute
   };
 
+  Sentry.init({
+    dsn: "https://23916d0950d744b49ded80f0177467a5@sentry.io/2319182"
+  });
+
   const wb = new Workbox("./service-worker.js");
   let updateAvailable = false;
 
   /**
    * Register Service Worker.
    */
-  if ("serviceWorker" in navigator && !window.hasOwnProperty("cordova")) {
+  if (
+    "serviceWorker" in navigator &&
+    !window.hasOwnProperty("cordova") &&
+    !isRunningElectron &&
+    window.location.hostname !== "localhost"
+  ) {
     wb.addEventListener("waiting", event => {
       updateAvailable = true;
     });
@@ -88,6 +100,38 @@
   }
 
   /**
+   * Check for login
+   */
+  cloud.isUserLoggedIn().then(
+    user => {
+      if (user["$id"]) {
+        state.setLogin(true);
+      } else {
+        state.setLogin(false);
+      }
+    },
+    err => {
+      state.setLogin(false);
+    }
+  );
+
+  /**
+   * Check for newer backup
+   */
+  const checkForBackup = () => {
+    cloud.getLatestBackup().then(response => {
+      if (response.files.length > 0) {
+        if ($state.lastCloudSave < response.files[0].dateCreated) {
+          // TODO: Implement checking for new Cloud Backup
+          console.log("newer data on cloud");
+        }
+      }
+    });
+  };
+  checkForBackup();
+  setInterval(checkForBackup, 60000);
+
+  /**
    * Listen for settings
    */
   $: {
@@ -98,56 +142,7 @@
       $settings.fontsize + "rem"
     );
   }
-
-  /**
-   * Init Doorbell feedback.
-   */
-  window.doorbellOptions = {
-    id: "11083",
-    appKey: "L7mreXHsiGLMDgoDA4nAwKF6qVi47ZOCv0uXh1XT3IJmjFnsFBMl4tEBVqt9kx1m",
-    properties: {
-      Backendless: localStorage.getItem("Backendless") || "",
-      state: localStorage.getItem("state") || ""
-    }
-  };
-  (function(w, d, t) {
-    var hasLoaded = false;
-
-    function l() {
-      if (hasLoaded) {
-        return;
-      }
-      hasLoaded = true;
-      window.doorbellOptions.windowLoaded = true;
-      var g = d.createElement(t);
-      g.id = "doorbellScript";
-      g.type = "text/javascript";
-      g.async = true;
-      g.src =
-        "https://embed.doorbell.io/button/" +
-        window.doorbellOptions["id"] +
-        "?t=" +
-        new Date().getTime();
-      (
-        d.getElementsByTagName("head")[0] || d.getElementsByTagName("body")[0]
-      ).appendChild(g);
-    }
-    if (w.attachEvent) {
-      w.attachEvent("onload", l);
-    } else if (w.addEventListener) {
-      w.addEventListener("load", l, false);
-    } else {
-      l();
-    }
-    if (d.readyState == "complete") {
-      l();
-    }
-  })(window, document, "script");
 </script>
-
-<style type="text/css">
-
-</style>
 
 <div class="container">
   {#if !$intern.installed}

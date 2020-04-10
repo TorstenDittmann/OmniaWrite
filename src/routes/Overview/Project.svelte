@@ -37,12 +37,13 @@
 
 <style type="text/css">
   .column {
-    float: left;
     width: 20%;
     padding: 0 5px;
   }
 
   .row {
+    display: flex;
+    justify-content: center;
     margin: 0 -5px;
   }
 
@@ -75,28 +76,28 @@
   <div class="column">
     <div class="card">
       <h3>{chapterCount}</h3>
-      <p>{$_('overview.project.chapters')}</p>
+      <p>{$_("overview.project.chapters")}</p>
     </div>
   </div>
 
   <div class="column">
     <div class="card">
       <h3>{sceneCount}</h3>
-      <p>{$_('overview.project.scenes')}</p>
+      <p>{$_("overview.project.scenes")}</p>
     </div>
   </div>
 
   <div class="column">
     <div class="card">
       <h3>{wordCount}</h3>
-      <p>{$_('overview.project.words')}</p>
+      <p>{$_("overview.project.words")}</p>
     </div>
   </div>
 
   <div class="column">
     <div class="card">
       <h3>{charCount}</h3>
-      <p>{$_('overview.project.characters')}</p>
+      <p>{$_("overview.project.characters")}</p>
     </div>
   </div>
 </div>

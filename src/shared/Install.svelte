@@ -1,12 +1,12 @@
 <script lang="javascript">
   import { intern, settings } from "../stores";
-  import { checkRequirements, deskgap } from "../utils";
+  import { checkRequirements, deskgap, isRunningElectron } from "../utils";
   import { onMount } from "svelte";
   import { _ } from "svelte-i18n";
 
   import Modal from "./Modal.svelte";
   import Disclaimer from "./Disclaimer.svelte";
-  import Cloud from "../routes/Cloud.svelte";
+  import Spinner from "./Spinner.svelte";
 
   let choice = "none";
   let requirements = checkRequirements();
@@ -16,43 +16,35 @@
   let showDisclaimer = false;
   let statusDisclaimer = false;
 
+  let installStep = "init";
+
   onMount(() => {
-    // variable store event
     window.deferredPrompt = {};
-
-    // if the app can be installed emit beforeinstallprompt
     window.addEventListener("beforeinstallprompt", e => {
-      installable = showInstall = true;
-
-      // prevent default event
+      installable = true;
+      installStep = "language";
       e.preventDefault();
-
-      // store install avaliable event
       window.deferredPrompt = e;
     });
 
-    // if are standalone android OR safari
     if (
+      !"serviceWorker" in navigator ||
+      !navigator.serviceWorker.controller ||
+      navigator.userAgent.indexOf("Firefox") > -1 ||
+      navigator.userAgent.indexOf("Edge") > -1 ||
       window.matchMedia("(display-mode: standalone)").matches ||
       window.navigator.standalone === true
     ) {
-      installable = showInstall = false;
+      installStep = "language";
+      installable = false;
     }
-
-    // do action when finished install
-    window.addEventListener("appinstalled", e => {
-      console.log("success app install!");
-    });
   });
 
   function install(e) {
     window.deferredPrompt.prompt();
     window.deferredPrompt.userChoice.then(choiceResult => {
       if (choiceResult.outcome === "accepted") {
-        showInstall = false;
-        installed = true;
-      } else {
-        console.log("User dismissed the prompt");
+        $intern.installed = true;
       }
       window.deferredPrompt = null;
     });
@@ -61,26 +53,27 @@
 
 <style type="text/css">
   .overlay {
-    position: fixed; /* Sit on top of the page content */
-    display: block; /* Hidden by default */
-    width: 100%; /* Full width (cover the whole page) */
-    height: 100%; /* Full height (cover the whole page) */
+    position: fixed;
+    display: flex;
+    width: 100%;
+    height: 100%;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
     text-align: center;
-    background-color: var(
-      --secondary-color
-    ); /* Black background with opacity */
-    z-index: 999999; /* Specify a stack order in case you're using a different order for other elements */
+    background-color: var(--secondary-color);
+    z-index: 999999;
     overflow: auto;
+    align-items: center;
+    flex-direction: column;
   }
   .install {
-    max-width: 640px;
+    width: 640px;
     display: inline-block;
     padding: 1rem;
     background-color: var(--background-color);
+    margin: auto;
   }
 
   .installIcon {
@@ -117,34 +110,38 @@
     width: 100%;
   }
 
-  .disclaimer-check {
-    width: 3rem;
-    min-width: 3rem;
-    margin-right: 1rem;
+  .field label {
+    flex: 0 1 16rem;
+    cursor: pointer;
   }
 
-  .disclaimer-button {
-    width: calc(100% - 4rem);
+  .field p {
+    flex: 0 1 4rem;
   }
 </style>
 
 <div class="overlay">
-
-  <div class:show={deskgap.isRunning()} class="installHeader" data-deskgap-drag>
+  <div
+    class:show={isRunningElectron}
+    class="installHeader"
+    style="-webkit-app-region: drag">
     <span
       class="lnr lnr-cross control"
       on:click={deskgap.closeWindow}
-      data-deskgap-no-drag />
+      style="-webkit-app-region: drag" />
     <span
       class="lnr lnr-chevron-down control"
       on:click={deskgap.minimizeWindow}
-      data-deskgap-no-drag />
+      style="-webkit-app-region: drag" />
   </div>
 
   <div class="install">
-    <img src="logo.png" alt="OmniaWrite Logo" />
-    <hr />
-    {#if choice == 'none'}
+    {#if installStep === 'init'}
+      <img src="logo.png" alt="OmniaWrite Logo" />
+      <hr />
+      <Spinner />
+    {:else if installStep === 'language'}
+      <img src="logo.png" alt="OmniaWrite Logo" />
       <h3>{$_('install.language')}</h3>
       <div class="field">
         <select bind:value={$settings.language} id="language">
@@ -152,98 +149,71 @@
           <option value="de">{$_('settings.appereance.language.de')}</option>
         </select>
       </div>
-      {#if showInstall}
-        <h3>{$_('install.requirements.title')}</h3>
+      <div class="grid">
+        <div on:click={() => (installStep = 'disclaimer')}>
+          <span class="lnr lnr-arrow-right-circle" />
+          {$_('install.continue')}
+        </div>
+      </div>
+    {:else if installStep === 'disclaimer'}
+      <Modal bind:show={showDisclaimer}>
+        <h2 slot="header">{$_('install.disclaimer.title')}</h2>
+        <Disclaimer />
+      </Modal>
+      <div class="field">
         <p>
-          <span
-            class="lnr"
-            class:lnr-checkmark-circle={requirements.steps.internet}
-            class:lnr-question-circle={!requirements.steps.internet} />
-          {$_('install.requirements.internet')}
+          <input id="terms" type="checkbox" bind:checked={statusDisclaimer} />
+          <label for="terms" />
         </p>
-        <p>
-          <span
-            class="lnr"
-            class:lnr-checkmark-circle={requirements.steps.browser}
-            class:lnr-cross-circle={!requirements.steps.browser} />
-          {$_('install.requirements.browser')}
-        </p>
-        <p>
-          <span
-            class="lnr"
-            class:lnr-checkmark-circle={requirements.steps.serviceWorker}
-            class:lnr-question-circle={!requirements.steps.serviceWorker} />
-          {$_('install.requirements.serviceWorker')}
-        </p>
-        <div class="grid">
+        <label class="big" on:click={() => (showDisclaimer = true)}>
+          {$_('install.disclaimer.action')}
+        </label>
+      </div>
+      <div class="grid">
+        <div on:click={() => (installStep = 'language')}>
+          <span class="lnr lnr-arrow-left-circle" />
+          {$_('install.back')}
+        </div>
+        {#if statusDisclaimer}
+          <div on:click={() => (installStep = 'install')}>
+            <span class="lnr lnr-arrow-right-circle" />
+            {$_('install.continue')}
+          </div>
+        {/if}
+      </div>
+    {:else if installStep === 'install'}
+      <h3>{$_('install.requirements.title')}</h3>
+      <p>
+        <span
+          class="lnr"
+          class:lnr-checkmark-circle={requirements.steps.internet}
+          class:lnr-question-circle={!requirements.steps.internet} />
+        {$_('install.requirements.internet')}
+      </p>
+      <p>
+        <span
+          class="lnr"
+          class:lnr-checkmark-circle={requirements.steps.browser}
+          class:lnr-question-circle={!requirements.steps.browser} />
+        {$_('install.requirements.browser')}
+      </p>
+      {#if !requirements.steps.browser}
+        {$_('install.requirements.warning.browser')}
+      {/if}
+      <div class="grid">
+        <div on:click={() => ($intern.installed = true)}>
+          <span class="lnr lnr-cloud installIcon" />
+          <br />
+          {$_('install.install.browser')}
+        </div>
+        {#if requirements.installable}
           <div on:click={install}>
             <span class="lnr lnr-download installIcon" />
             <br />
             {$_('install.install.install')}
           </div>
-          <div on:click={() => (showInstall = false)}>
-            <span class="lnr lnr-cloud installIcon" />
-            <br />
-            {$_('install.install.browser')}
-          </div>
-        </div>
-      {:else}
-        <Modal bind:show={showDisclaimer}>
-          <h2 slot="header">{$_('install.disclaimer.title')}</h2>
-          <Disclaimer />
-        </Modal>
-        <h3>{$_('install.disclaimer.action')}</h3>
-        <div class="btn-group">
-          <button
-            class="disclaimer-check"
-            class:red={!statusDisclaimer}
-            class:green={statusDisclaimer}
-            on:click={() => (statusDisclaimer = !statusDisclaimer)}>
-            <span
-              class="lnr"
-              class:lnr-cross-circle={!statusDisclaimer}
-              class:lnr-checkmark-circle={statusDisclaimer} />
-          </button>
-          <button
-            class="disclaimer-button outline"
-            on:click={() => (showDisclaimer = !showDisclaimer)}>
-            {$_('install.disclaimer.show')}
-          </button>
-        </div>
-        {#if statusDisclaimer}
-          <div class="grid">
-            <div on:click={() => ($intern.installed = true)}>
-              <span class="lnr lnr-rocket installIcon" />
-              <br />
-              {$_('install.start')}
-            </div>
-            <div on:click={() => (choice = 'cloud')}>
-              <span class="lnr lnr-cloud installIcon" />
-              <br />
-              {$_('install.cloud')}
-            </div>
-          </div>
         {/if}
-        {#if installable}
-          <div class="grid">
-            <div on:click={() => (showInstall = true)}>
-              <span class="lnr lnr-arrow-left-circle" />
-              {$_('install.back')}
-            </div>
-          </div>
-        {/if}
-      {/if}
-    {:else}
-      <div class="grid">
-        <div on:click={() => (choice = 'none')}>
-          <span class="lnr lnr-arrow-left-circle" />
-          {$_('install.back')}
-        </div>
       </div>
-    {/if}
-
-    {#if choice == 'cloud'}
-      <Cloud hideExport="true" />
     {/if}
   </div>
 </div>
