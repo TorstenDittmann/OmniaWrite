@@ -34,9 +34,9 @@
     "/write/:sceneId?": WriteRoute,
     "/cards": CardsRoute,
     "/settings": SettingsRoute,
-    "/cloud/:loginReturn?": CloudRoute,
+    "/cloud/": CloudRoute,
+    "/cloud/*": CloudRoute,
     "/export": ExportRoute,
-    "/thirdparty": ThirdPartyRoute,
 
     // Non header route
     "/thirdparty": ThirdPartyRoute,

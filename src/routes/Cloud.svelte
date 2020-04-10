@@ -65,14 +65,7 @@
   let getCloudButtonLoading = false;
 
   onMount(() => {
-    let query = new URLSearchParams(window.location.search);
-
     checkLogin();
-    if (params.loginReturn == "confirm") {
-      cloud
-        .confirm(query.get("userId"), query.get("token"))
-        .then(response => console.log, error => console.log);
-    }
   });
 
   function logout() {
@@ -118,10 +111,10 @@
   {#if !loading}
     {#if !isUserLoggedIn}
       <div id="cards" class="grid">
-        <div class="card" on:click={() => push("/cloud/login")}>
+        <div class="card" on:click={() => push('/cloud/login')}>
           <h2>Login</h2>
         </div>
-        <div class="card" on:click={() => push("/cloud/register")}>
+        <div class="card" on:click={() => push('/cloud/register')}>
           <h2>Register</h2>
         </div>
       </div>
@@ -135,22 +128,22 @@
       {/if}
       <div class="grid">
         {#if !params.loginReturn}
-          <div on:click={() => push("/cloud/backups")}>
+          <div on:click={() => push('/cloud/backups')}>
             <h2>Backups</h2>
           </div>
-          <div on:click={() => push("/cloud/security")}>
+          <div on:click={() => push('/cloud/security')}>
             <h2>Security</h2>
           </div>
-          <div on:click={() => push("/cloud/profile")}>
+          <div on:click={() => push('/cloud/profile')}>
             <h2>Profile</h2>
           </div>
-          <div on:click={() => push("/cloud/logout")}>
+          <div on:click={() => push('/cloud/logout')}>
             <h2>Logout</h2>
           </div>
         {:else}
-          <div on:click={() => push("/cloud")}>
+          <div on:click={() => push('/cloud')}>
             <span class="lnr lnr-arrow-left-circle" />
-            {$_("install.back")}
+            {$_('install.back')}
           </div>
         {/if}
       </div>

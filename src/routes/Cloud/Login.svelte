@@ -86,4 +86,18 @@
   <small class="link" on:click={() => push('/cloud/reset-password')}>
     {$_('cloud.reset.title')}
   </small>
+  <br />
+  <br />
+  <Alert warning show="true" duration="9999999">
+    <h2>Notice for existing users!</h2>
+    <p>
+      We moved all our server to a different location and a more advanced
+      system. Therefore we also had to move our user data.
+    </p>
+    <p>
+      As we have very high priorities in security, we could not move the
+      passwords because we do not have access to the passwords ourselves
+    </p>
+    <a href="#/cloud/reset-password">Please request a new password here!</a>
+  </Alert>
 </div>
