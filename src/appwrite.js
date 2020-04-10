@@ -139,7 +139,7 @@ const cloud = {
             {
                 method: "GET",
                 credentials: "include",
-                mode: "same-origin"
+                mode: "cors"
             }
         )
             .then((response) => {
