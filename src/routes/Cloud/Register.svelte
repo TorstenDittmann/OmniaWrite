@@ -9,6 +9,8 @@
 
   let showAlert = false;
   let showAlertText;
+  let alertSuccess = false;
+  let alertDanger = false;
 
   let registerName = "";
   let registerUser = "";
@@ -32,17 +34,23 @@
           registerButtonLoading = false;
           showAlert = true;
           showAlertText = "Account created!";
+          alertDanger = false;
+          alertSuccess = true;
         },
         error => {
           registerButtonLoading = false;
           showAlert = true;
           showAlertText = "Register failed!";
+          alertDanger = true;
+          alertSuccess = false;
         }
       );
     } else {
       registerButtonLoading = false;
       showAlert = true;
       showAlertText = "Please fill out all fields!";
+      alertDanger = true;
+      alertSuccess = false;
     }
   }
 </script>
@@ -57,18 +65,18 @@
 </style>
 
 <Modal bind:show={showPrivacyPolicy}>
-  <h2 slot="header">{$_("cloud.privacy.show")}</h2>
+  <h2 slot="header">{$_('cloud.privacy.show')}</h2>
   <Policy />
 </Modal>
 
 <div in:fade={{ duration: 100 }}>
-  <h2>{$_("cloud.register.title")}</h2>
-  <Alert danger bind:show={showAlert}>
+  <h2>{$_('cloud.register.title')}</h2>
+  <Alert danger={!alertSuccess} success={alertSuccess} bind:show={showAlert}>
     <span class="lnr success">{showAlertText}</span>
   </Alert>
   <form on:submit|preventDefault={register}>
     <div class="field">
-      <label class="big" for="newName">{$_("cloud.register.name")}</label>
+      <label class="big" for="newName">{$_('cloud.register.name')}</label>
       <input
         id="newName"
         type="text"
@@ -77,7 +85,7 @@
         bind:value={registerName} />
     </div>
     <div class="field">
-      <label class="big" for="newUser">{$_("cloud.login.email")}</label>
+      <label class="big" for="newUser">{$_('cloud.login.email')}</label>
       <input
         id="newUser"
         type="email"
@@ -86,7 +94,7 @@
         bind:value={registerUser} />
     </div>
     <div class="field">
-      <label class="big" for="newPass">{$_("cloud.login.password")}</label>
+      <label class="big" for="newPass">{$_('cloud.login.password')}</label>
       <input
         id="newPass"
         type="password"
@@ -102,7 +110,7 @@
       <label for="PrivacyPolicy">
         I agree to the
         <span class="link" on:click={() => (showPrivacyPolicy = true)}>
-          {" " + $_("cloud.privacy.show")}
+          {' ' + $_('cloud.privacy.show')}
         </span>
       </label>
     </p>
@@ -113,7 +121,7 @@
         disabled={registerButtonLoading}
         class:loading={registerButtonLoading}>
         <span class="lnr lnr-sync spinner" />
-        {$_("cloud.register.button")}
+        {$_('cloud.register.button')}
       </button>
     </div>
   </form>

@@ -67,7 +67,7 @@
             "button": "Register"
         },
         "reset": {
-            "title": "Password reset",
+            "title": "Forgot password?",
             "button": "Reset password"
         },
         "privacy": {
