@@ -135,7 +135,12 @@ const cloud = {
      * Restore from a backup.
      */
     restoreBackup: (id) => {
-        return fetch(SDK.storage.getFileView(id))
+        return fetch(SDK.storage.getFileView(id),
+            {
+                method: "GET",
+                credentials: "include"
+            }
+        )
             .then((response) => {
                 return response.json();
             })
