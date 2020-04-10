@@ -43,11 +43,6 @@
     "/policy": PolicyRoute,
     "/disclaimer": DisclaimerRoute,
 
-    // Non header route
-    "/thirdparty": ThirdPartyRoute,
-    "/policy": PolicyRoute,
-    "/disclaimer": DisclaimerRoute,
-
     // Catch-all
     "*": OverviewRoute
   };

@@ -73,6 +73,11 @@
         "privacy": {
             "show": "Privacy Policy"
         },
+        "profile": {
+            "updateName": "Name updated!",
+            "updateMail": "E-mail updated!",
+            "updatePass": "Password updated!"
+        },
         "toast": {
             "savedCloud": "Saved into cloud.",
             "loginSuccessful": "Login successful!",
@@ -151,6 +156,9 @@
             "title": "Requirements",
             "internet": "Internet",
             "browser": "Browser",
+            "warning": {
+                "browser": "OmniaWrite works best in Google Chrome!"
+            },
             "serviceWorker": "Service worker"
         },
         "start": "Fresh start",
