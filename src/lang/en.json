@@ -19,7 +19,8 @@
         }
     },
     "common": {
-        "no-project-selected": "No project selected"
+        "no-project-selected": "No project selected",
+        "update-toast": "New update installed!<br>Click here to restart."
     },
     "write": {
         "toolbar": {
@@ -71,11 +72,6 @@
         },
         "privacy": {
             "show": "Privacy Policy"
-        },
-        "profile": {
-            "updateName": "Name updated!",
-            "updateMail": "E-mail updated!",
-            "updatePass": "Password updated!"
         },
         "toast": {
             "savedCloud": "Saved into cloud.",
@@ -155,10 +151,7 @@
             "title": "Requirements",
             "internet": "Internet",
             "browser": "Browser",
-            "serviceWorker": "Service worker",
-            "warning": {
-                "browser": "OmniaWrite works best in Google Chrome!"
-            }
+            "serviceWorker": "Service worker"
         },
         "start": "Fresh start",
         "cloud": "From Cloud",

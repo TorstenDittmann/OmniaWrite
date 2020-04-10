@@ -8,6 +8,8 @@
 
   export let showCreateProject;
 
+  let createProjectInput = "";
+
   function createProject() {
     if (createProjectInput.length > 0) {
       let retValue = projects.createProject(createProjectInput);

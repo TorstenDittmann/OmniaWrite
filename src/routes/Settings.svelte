@@ -3,6 +3,7 @@
   import { _, locale } from "svelte-i18n";
   import { push } from "svelte-spa-router";
 
+  import { settings } from "../stores";
 </script>
 
 <style type="text/css">

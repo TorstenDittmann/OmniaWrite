@@ -21,6 +21,8 @@
   import CloudRoute from "./routes/Cloud.svelte";
   import ExportRoute from "./routes/Export.svelte";
   import ThirdPartyRoute from "./shared/ThirdParty.svelte";
+  import DisclaimerRoute from "./shared/Disclaimer.svelte";
+  import PolicyRoute from "./routes/Cloud/Policy.svelte";
 
   locale.set($settings.language);
 
@@ -35,6 +37,11 @@
     "/cloud/:loginReturn?": CloudRoute,
     "/export": ExportRoute,
     "/thirdparty": ThirdPartyRoute,
+
+    // Non header route
+    "/thirdparty": ThirdPartyRoute,
+    "/policy": PolicyRoute,
+    "/disclaimer": DisclaimerRoute,
 
     // Non header route
     "/thirdparty": ThirdPartyRoute,
@@ -154,7 +161,7 @@
   <div id="content" class="content">
     <Toast
       bind:show={updateAvailable}
-      text={$_("common.update-toast")}
+      text={$_('common.update-toast')}
       on:click={updateApp}
       duration="forever" />
     <div class="inner">

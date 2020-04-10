@@ -13,37 +13,7 @@
   moment.locale($settings.language);
 
   let showCreateProject = false;
-  let chapterCount;
-  let sceneCount;
-  let wordCount;
-  let charCount;
-
-  $: {
-    chapterCount = 0;
-    sceneCount = 0;
-    wordCount = 0;
-    charCount = 0;
-    chapters.subscribe(chapters => {
-      chapters
-        .filter(chapter => chapter.project == $state.currentProject)
-        .forEach(chapter => {
-          chapterCount++;
-          scenes.subscribe(scenes => {
-            scenes
-              .filter(scene => scene.chapter == chapter.id)
-              .forEach(scene => {
-                sceneCount++;
-                if (scene.content) {
-                  scene.content.blocks.forEach(block => {
-                    wordCount += block.data.text.split(" ").length;
-                    charCount += block.data.text.length;
-                  });
-                }
-              });
-          });
-        });
-    });
-  }
+  let showEditProject = false;
 
   function changeProject(project) {
     state.setCurrentProject(project);
@@ -118,7 +88,7 @@
     </h3>
     <Modal bind:show={showEditProject}>
       <div class="field">
-        <label class="big" for="author">{$_("overview.project.title")}:</label>
+        <label class="big" for="author">{$_('overview.project.title')}:</label>
         <input
           id="newProjectTitle"
           type="text"
@@ -127,18 +97,18 @@
       </div>
       <div class="btn-group">
         <button on:click={() => setProjectTitle(project.id)}>
-          {$_("overview.project.save")}
+          {$_('overview.project.save')}
         </button>
         <button
           on:click={() => removeProject(project.id)}
           style="float: right;"
           class="warning">
-          {$_("overview.project.delete")}
+          {$_('overview.project.delete')}
         </button>
       </div>
     </Modal>
   {/each}
-  <h1>{$_("overview.projects.title")}</h1>
+  <h1>{$_('overview.projects.title')}</h1>
   <div class="grid">
     <div class="new" on:click={() => (showCreateProject = true)}>
       <span class="lnr lnr-plus-circle" />
@@ -147,11 +117,11 @@
       <div on:click={() => changeProject(project.id)}>
         <h2>{project.title}</h2>
         <p>
-          {$_("overview.projects.opened")}
-          {moment(project.lastOpen, "X").fromNow()}
+          {$_('overview.projects.opened')}
+          {moment(project.lastOpen, 'X').fromNow()}
         </p>
         <p>
-          {$_("overview.project.chapters")}: {$chapters.filter(n => n.project == project.id).length}
+          {$_('overview.project.chapters')}: {$chapters.filter(n => n.project == project.id).length}
         </p>
       </div>
     {/each}

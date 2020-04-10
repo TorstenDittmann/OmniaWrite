@@ -1,5 +1,6 @@
 <script lang="javascript">
   import { state, chapters, scenes } from "../stores";
+  import { onMount } from "svelte";
   import { link, push, replace } from "svelte-spa-router";
   import { fade, fly } from "svelte/transition";
   import { _ } from "svelte-i18n";
@@ -97,13 +98,24 @@
         <span class="lnr lnr-cross" />
       </div>
       {#if $state.currentProject}
-        {#each $chapters.filter(chapter => chapter.project == $state.currentProject) as chapter, i}
-          <li class="parent" class:open={chapter.ui.open}>
+        {#each $chapters
+          .filter(chapter => chapter.project == $state.currentProject)
+          .sort((a, b) => a.order - b.order) as chapter, i}
+          <li
+            id="chapter-{chapter.id}"
+            class="parent"
+            class:open={chapter.ui.open}
+            draggable="false"
+            data-type="chapter"
+            data-id={chapter.id}
+            data-project={chapter.project}>
             <span
               class="key"
               on:click|self={() => chapters.toggleChapterInSidebar(chapter.id)}>
               {chapter.title}
-              <span class="lnr lnr-chevron-up collapse" on:click|self={() => chapters.toggleChapterInSidebar(chapter.id)} />
+              <span
+                class="lnr lnr-chevron-up collapse"
+                on:click|self={() => chapters.toggleChapterInSidebar(chapter.id)} />
               <span
                 class="lnr lnr-cog action"
                 on:click={() => ([editChapter.show, editChapter.data] = [true, chapter])} />
@@ -112,14 +124,14 @@
                 on:mousedown={startDrag}
                 style="cursor: grab;" />
             </span>
-            <ul>
+            <ul class="scenes">
               {#each $scenes
                 .filter(scene => scene.chapter == chapter.id)
                 .sort((a, b) => a.order - b.order) as scene}
                 <li
                   class="sceneDrag"
-                  use:active={"/write/" + scene.id}
-                  on:click|self={() => push("/write/" + scene.id)}
+                  use:active={'/write/' + scene.id}
+                  on:click|self={() => push('/write/' + scene.id)}
                   data-type="scene"
                   data-id={scene.id}
                   data-chapter={scene.chapter}>
@@ -137,7 +149,7 @@
                 <button
                   on:click={() => ([createScene.show, createScene.chapter] = [true, chapter.id])}>
                   <span class="lnr lnr-plus-circle" />
-                  {$_("sidebar.createScene")}
+                  {$_('sidebar.createScene')}
                 </button>
               </li>
             </ul>
@@ -147,7 +159,7 @@
         <li class="parent">
           <span class="key" on:click={() => (createChapter.show = true)}>
             <span class="lnr lnr-plus-circle collapse" />
-            {$_("sidebar.createChapter")}
+            {$_('sidebar.createChapter')}
           </span>
         </li>
       {:else}

@@ -3,7 +3,6 @@ node_modules
 public/bundle.*
 dist/
 public/service-worker.js
-cordova/www/
 src/licenses.json
 public/precache-manifest.*
 public/workbox-*
