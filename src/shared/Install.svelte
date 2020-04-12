@@ -69,7 +69,7 @@
     flex-direction: column;
   }
   .install {
-    width: 640px;
+    width: 320px;
     display: inline-block;
     padding: 1rem;
     background-color: var(--background-color);

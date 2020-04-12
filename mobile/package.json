@@ -10,7 +10,8 @@
     "cordova-plugin-globalization": "~1.0.7",
     "cordova-plugin-inappbrowser": "~1.7.1",
     "cordova-plugin-network-information": "~1.3.3",
-    "cordova-plugin-vibration": "~2.1.5"
+    "cordova-plugin-vibration": "~2.1.5",
+    "cordova-plugin-whitelist": "^1.3.4"
   },
   "cordova": {
     "plugins": {
@@ -24,7 +25,8 @@
       "cordova-plugin-globalization": {},
       "cordova-plugin-inappbrowser": {},
       "cordova-plugin-network-information": {},
-      "cordova-plugin-vibration": {}
+      "cordova-plugin-vibration": {},
+      "cordova-plugin-whitelist": {}
     },
     "platforms": [
       "android"
