@@ -7,7 +7,7 @@
 
   const download = () => {
     loading = true;
-    const generateDownload = new ExportRTF($state.currentProject, author);
+    let generateDownload = new ExportRTF($state.currentProject, author);
     generateDownload
       .fetchTemplate()
       .then(() => {
@@ -19,13 +19,13 @@
   };
 </script>
 
-<h2>{$_("export.title.rtf")}</h2>
+<h2>{$_('export.title.rtf')}</h2>
 <div class="grid">
   <div on:click={download}>
     {#if loading}
       <span class="lnr lnr-sync spinner loading" />
     {:else}
-      {$_("export.downloadRtf")}
+      {$_('export.downloadRtf')}
       <span class="lnr lnr-download" />
     {/if}
   </div>

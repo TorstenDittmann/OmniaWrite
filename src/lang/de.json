@@ -110,7 +110,7 @@
         "downloadRtf": "Download als RTF"
     },
     "sidebar": {
-        "createScene": "Erstellen",
+        "createScene": "Szene erstellen",
         "createChapter": "Kapitel erstellen",
         "modal": {
             "title": "Titel:",

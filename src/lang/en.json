@@ -110,7 +110,7 @@
         "downloadRtf": "Download as RTF"
     },
     "sidebar": {
-        "createScene": "New",
+        "createScene": "New Scene",
         "createChapter": "Create Chapter",
         "modal": {
             "title": "Title:",
