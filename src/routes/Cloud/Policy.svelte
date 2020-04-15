@@ -37,11 +37,8 @@
   this privacy policy.
 </p>
 <p>
-  The app does use third party services that may collect information used to
+  The app does not use any third party services that may collect information used to
   identify you.
-  <a href="https://backendless.com/privacy-policy/" target="_blank">
-    Backendless is used for storing all of the user data.
-  </a>
 </p>
 <p>
   <strong>Log Data</strong>
@@ -69,10 +66,8 @@
   <li>To assist us in analyzing how our Service is used.</li>
 </ul>
 <p>
-  I want to inform users of this Service that these third parties have access to
-  your Personal Information. The reason is to perform the tasks assigned to them
-  on our behalf. However, they are obligated not to disclose or use the
-  information for any other purpose.
+  I want to inform users of this Service that these third parties have not access to
+  your Personal Information.
 </p>
 
 <p>
