@@ -118,6 +118,10 @@
   .field p {
     flex: 0 1 4rem;
   }
+
+  .link:hover {
+    text-decoration: underline dotted;
+  }
 </style>
 
 <div class="overlay">
@@ -165,7 +169,7 @@
           <input id="terms" type="checkbox" bind:checked={statusDisclaimer} />
           <label for="terms" />
         </p>
-        <label class="big" on:click={() => (showDisclaimer = true)}>
+        <label class="big link" on:click={() => (showDisclaimer = true)}>
           {$_('install.disclaimer.action')}
         </label>
       </div>
@@ -190,15 +194,17 @@
           class:lnr-question-circle={!requirements.steps.internet} />
         {$_('install.requirements.internet')}
       </p>
-      <p>
-        <span
-          class="lnr"
-          class:lnr-checkmark-circle={requirements.steps.browser}
-          class:lnr-question-circle={!requirements.steps.browser} />
-        {$_('install.requirements.browser')}
-      </p>
-      {#if !requirements.steps.browser}
-        {$_('install.requirements.warning.browser')}
+      {#if !isRunningElectron}
+        <p>
+          <span
+            class="lnr"
+            class:lnr-checkmark-circle={requirements.steps.browser}
+            class:lnr-question-circle={!requirements.steps.browser} />
+          {$_('install.requirements.browser')}
+        </p>
+        {#if !requirements.steps.browser}
+          {$_('install.requirements.warning.browser')}
+        {/if}
       {/if}
       <div class="grid">
         <div on:click={() => ($intern.installed = true)}>
