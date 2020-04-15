@@ -64,7 +64,7 @@
     "svelte-build-phonegap": "cross-env PHONEGAP=true NODE_ENV=production webpack",
     "dev": "webpack-dev-server --content-base public",
     "electron": "run-s build pure-electron",
-    "license": "license-checker --exclude \"MIT\" --production --json --customPath ./src/licenses.json > ./src/licenses.json",
+    "license": "license-checker --exclude \"MIT\" --json --customPath ./src/licenses.json > ./src/licenses.json",
     "pure-electron": "electron .",
     "electron-builder": "electron-builder build --dir --macos pkg",
     "prepare-phonegap": "node scripts/phonegap.js"
