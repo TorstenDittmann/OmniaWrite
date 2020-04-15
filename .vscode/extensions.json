@@ -4,6 +4,7 @@
         "Equinusocio.vsc-material-theme",
         "JamesBirtles.svelte-vscode",
         "PKief.material-icon-theme",
-        "samundrak.esdoc-mdn"
+        "samundrak.esdoc-mdn",
+        "tabnine.tabnine-vscode"
     ]
 }
