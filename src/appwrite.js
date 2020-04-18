@@ -98,7 +98,7 @@ const cloud = {
      */
     setCloudTimestamp: (id) => {
         return SDK.storage.getFile(id).then(response => {
-            state.updateCloudTimestamp(response.dateCreated * 1000);
+            state.updateCloudTimestamp(response.dateCreated);
         });
     },
     /**

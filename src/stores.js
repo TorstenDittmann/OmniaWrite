@@ -67,8 +67,8 @@ function storeState() {
          * Updates Cloud timestamp.
          */
         updateCloudTimestamp: (timestamp) => update(n => {
-            n.lastCloudSave = (timestamp / 1000).toFixed();
-            n.lastLocalSave = (timestamp / 1000).toFixed();
+            n.lastCloudSave = (timestamp).toFixed();
+            n.lastLocalSave = (timestamp).toFixed();
             return n;
         }),
         /**
