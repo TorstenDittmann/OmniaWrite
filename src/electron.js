@@ -94,7 +94,7 @@ const createLoadingScreen = () => {
           };
           dialog.showMessageBox(options).then(res => {
             if (res.response === 0) {
-              shell.openExternal("https://omniawrite.com/download")
+              shell.openExternal("https://external.omniawrite.com/#/update/")
             }
             windowState.main = true;
           })
