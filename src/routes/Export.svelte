@@ -7,6 +7,7 @@
   import Placeholder from "../shared/Placeholder.svelte";
   import RTF from "./Export/RTF.svelte";
   import EPUB from "./Export/EPUB.svelte";
+  import Cloud from "./Export/Cloud.svelte";
 </script>
 
 <style type="text/css">
@@ -18,10 +19,11 @@
 </style>
 
 <div class="export-container" in:fade={{ duration: 100 }}>
-  {#if !window.hasOwnProperty("cordova")}
+  {#if !window.hasOwnProperty('cordova')}
     {#if $state.currentProject}
       <RTF />
       <EPUB />
+      <Cloud />
     {:else}
       <Placeholder />
     {/if}
