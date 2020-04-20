@@ -40,15 +40,18 @@
       .fetchTemplate()
       .then(data => {
         let filename = "no title";
-        fetch("http://localhost:3000/api/export", {
-          method: "POST",
-          mode: "same-origin",
-          cache: "no-cache",
-          headers: {
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify({ data: data })
-        })
+        fetch(
+          "https://omniawrite-git-cloud-export.torstendittmann.now.sh/api/export",
+          {
+            method: "POST",
+            mode: "same-origin",
+            cache: "no-cache",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ data: data })
+          }
+        )
           .then(response => {
             filename = response.headers
               .get("Content-Disposition")
