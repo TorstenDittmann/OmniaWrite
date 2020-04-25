@@ -102,9 +102,6 @@
           </li>
           <Cloud />
         </ul>
-        <span
-          class="lnr lnr-question-circle titlebar"
-          on:click={() => ($ui.support.show = true)} />
         {#if isRunningElectron}
           <span
             class="lnr lnr-cross titlebar"
@@ -119,6 +116,9 @@
             on:click={deskgap.minimizeWindow}
             style="-webkit-app-region: no-drag" />
         {/if}
+        <span
+          class="lnr lnr-question-circle titlebar"
+          on:click={() => ($ui.support.show = true)} />
       </div>
     {/if}
     <button
