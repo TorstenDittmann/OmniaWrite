@@ -1,6 +1,7 @@
 <script>
   import { onMount } from "svelte";
   import { push } from "svelte-spa-router";
+  import { _ } from "svelte-i18n";
 
   import { state } from "../../stores";
 
@@ -18,4 +19,4 @@
   });
 </script>
 
-<h2>Logout was successful. You will be redirected.</h2>
+<h2>{$_("cloud.logout.success")}</h2>

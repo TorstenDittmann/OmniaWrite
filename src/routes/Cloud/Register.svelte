@@ -33,14 +33,14 @@
         response => {
           registerButtonLoading = false;
           showAlert = true;
-          showAlertText = "Account created!";
+          showAlertText = $_('cloud.register.responses.success');
           alertDanger = false;
           alertSuccess = true;
         },
         error => {
           registerButtonLoading = false;
           showAlert = true;
-          showAlertText = "Register failed!";
+          showAlertText = $_('cloud.register.responses.failed');
           alertDanger = true;
           alertSuccess = false;
         }
@@ -48,7 +48,7 @@
     } else {
       registerButtonLoading = false;
       showAlert = true;
-      showAlertText = "Please fill out all fields!";
+      showAlertText = $_('cloud.register.responses.empty');
       alertDanger = true;
       alertSuccess = false;
     }
@@ -108,7 +108,6 @@
         type="checkbox"
         bind:checked={statusPrivacyPolicy} />
       <label for="PrivacyPolicy">
-        I agree to the
         <span class="link" on:click={() => (showPrivacyPolicy = true)}>
           {' ' + $_('cloud.privacy.show')}
         </span>

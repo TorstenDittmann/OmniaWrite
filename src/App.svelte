@@ -13,6 +13,7 @@
   import Toast from "./shared/Toast.svelte";
   import Modal from "./shared/Modal.svelte";
   import Install from "./shared/Install.svelte";
+  import Support from "./shared/Support.svelte";
 
   import OverviewRoute from "./routes/Overview.svelte";
   import WriteRoute from "./routes/Write.svelte";
@@ -145,6 +146,7 @@
 </script>
 
 <div class="container">
+  <Support />
   {#if !$intern.installed}
     <Install />
   {/if}

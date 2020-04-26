@@ -2,7 +2,7 @@
   import { createEventDispatcher, onMount } from "svelte";
   import { fade, fly } from "svelte/transition";
   import { link, location } from "svelte-spa-router";
-  import { state, tabs } from "../stores";
+  import { state, tabs, ui } from "../stores";
   import { deskgap, isRunningElectron } from "../utils";
   import { _ } from "svelte-i18n";
 
@@ -51,7 +51,7 @@
     <button
       class="burger"
       id="open-sidebar"
-      on:click={() => dispatch("openSidebar")}
+      on:click={() => dispatch('openSidebar')}
       style="-webkit-app-region: no-drag">
       <span class="lnr lnr-menu" />
     </button>
@@ -80,25 +80,25 @@
             style="-webkit-app-region: no-drag">
             <span class="lnr lnr-cross" />
           </div>
-          <li use:active={"/"} style="-webkit-app-region: no-drag">
+          <li use:active={'/'} style="-webkit-app-region: no-drag">
             <a href="/" use:link>
               <img src="logo.png" alt="OmniaWrite Logo" />
             </a>
           </li>
-          <li use:active={"/write/*"} style="-webkit-app-region: no-drag">
-            <a href="/write/" use:link>{$_("header.write.title")}</a>
+          <li use:active={'/write/*'} style="-webkit-app-region: no-drag">
+            <a href="/write/" use:link>{$_('header.write.title')}</a>
           </li>
-          <li use:active={"/cards/"} style="-webkit-app-region: no-drag">
-            <a href="/cards/" use:link>{$_("header.cards.title")}</a>
+          <li use:active={'/cards/'} style="-webkit-app-region: no-drag">
+            <a href="/cards/" use:link>{$_('header.cards.title')}</a>
           </li>
-          <li use:active={"/settings"} style="-webkit-app-region: no-drag">
-            <a href="/settings" use:link>{$_("header.settings.title")}</a>
+          <li use:active={'/settings'} style="-webkit-app-region: no-drag">
+            <a href="/settings" use:link>{$_('header.settings.title')}</a>
           </li>
-          <li use:active={"/export"} style="-webkit-app-region: no-drag">
-            <a href="/export" use:link>{$_("header.export.title")}</a>
+          <li use:active={'/export'} style="-webkit-app-region: no-drag">
+            <a href="/export" use:link>{$_('header.export.title')}</a>
           </li>
-          <li use:active={"/cloud"} style="-webkit-app-region: no-drag">
-            <a href="/cloud" use:link>{$_("header.cloud.title")}</a>
+          <li use:active={'/cloud'} style="-webkit-app-region: no-drag">
+            <a href="/cloud" use:link>{$_('header.cloud.title')}</a>
           </li>
           <Cloud />
         </ul>
@@ -116,6 +116,9 @@
             on:click={deskgap.minimizeWindow}
             style="-webkit-app-region: no-drag" />
         {/if}
+        <span
+          class="lnr lnr-question-circle titlebar feedback"
+          on:click={() => ($ui.support.show = true)} />
       </div>
     {/if}
     <button
@@ -136,7 +139,7 @@
             on:click={() => tabs.removeTab(tab.id)} />
         </li>
       {/each}
-      {#if $location != "/write/" && $location.includes("write")}
+      {#if $location != '/write/' && $location.includes('write')}
         <li class="tab new" on:click={createTab}>
           <span class="lnr lnr-plus-circle" />
         </li>
@@ -146,5 +149,5 @@
 </header>
 <Toast
   bind:show={showCloudToast}
-  text={$_("cloud.toast.savedCloud")}
+  text={$_('cloud.toast.savedCloud')}
   on:click={() => (showCloudToast = false)} />

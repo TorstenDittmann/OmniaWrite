@@ -12,19 +12,13 @@
   import Spinner from "../shared/Spinner.svelte";
 
   import Login from "./Cloud/Login.svelte";
-  import LoginSuccess from "./Cloud/Login/Success.svelte";
-  import LoginFailure from "./Cloud/Login/Failure.svelte";
 
   import Register from "./Cloud/Register.svelte";
-  import RegisterConfirm from "./Cloud/Register/Confirm.svelte";
-  import RegisterSuccess from "./Cloud/Register/Success.svelte";
-  import RegisterFailure from "./Cloud/Register/Failure.svelte";
 
   import Security from "./Cloud/Security.svelte";
   import Profile from "./Cloud/Profile.svelte";
   import Backups from "./Cloud/Backups.svelte";
   import ResetPassword from "./Cloud/ResetPassword.svelte";
-  import ConfirmPassword from "./Cloud/ConfirmPassword.svelte";
   import Logout from "./Cloud/Logout.svelte";
 
   import moment from "moment";
@@ -37,18 +31,12 @@
   const prefix = "/cloud";
   const routes = {
     "/login": Login,
-    "/login-success": LoginSuccess,
-    "/login-failure": LoginFailure,
 
     "/register": Register,
-    "/register-confirm": RegisterConfirm,
-    "/register-success": RegisterSuccess,
-    "/register-failure": RegisterFailure,
 
     "/security": Security,
     "/profile": Profile,
     "/reset-password": ResetPassword,
-    "/confirm-password": ConfirmPassword,
     "/backups": Backups,
     "/logout": Logout
   };
@@ -93,7 +81,7 @@
   function createConfirmation() {
     cloud.createConfirmation();
     showToast = true;
-    showToastText = "Confirmation e-mail has been sent!";
+    showToastText = $_("cloud.confirm.success");
   }
 </script>
 
@@ -122,23 +110,23 @@
       {#if !isUserVerified}
         <div class="grid">
           <div on:click={createConfirmation}>
-            Your account is not verfied yet! Click here to verify your account.
+            {$_("cloud.confirm.text")}
           </div>
         </div>
       {/if}
       <div class="grid">
         {#if !params.loginReturn}
           <div on:click={() => push('/cloud/backups')}>
-            <h2>Backups</h2>
+            <h2>{$_("cloud.backups.title")}</h2>
           </div>
           <div on:click={() => push('/cloud/security')}>
-            <h2>Security</h2>
+            <h2>{$_("cloud.security.title")}</h2>
           </div>
           <div on:click={() => push('/cloud/profile')}>
-            <h2>Profile</h2>
+            <h2>{$_("cloud.profile.title")}</h2>
           </div>
           <div on:click={() => push('/cloud/logout')}>
-            <h2>Logout</h2>
+            <h2>{$_("cloud.logout.title")}</h2>
           </div>
         {:else}
           <div on:click={() => push('/cloud')}>

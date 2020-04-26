@@ -408,6 +408,11 @@ function storeCards() {
         })
     }
 }
+export const ui = writable({
+    support: {
+        show: false
+    }
+});
 
 function updateLocalTimestamp() {
     state.updateLocalTimestamp();

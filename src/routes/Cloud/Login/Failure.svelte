@@ -1,1 +1,0 @@
-<h2>Login failed.</h2>
