@@ -16,7 +16,7 @@
   }
 
   function removeScene(sceneId) {
-    let confirmed = confirm($_("overview.scene.confirmDelete"));
+    let confirmed = confirm($_("sidebar.delete.scene"));
     if (confirmed == true) {
       show = false;
       push("/write");

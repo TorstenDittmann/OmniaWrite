@@ -8,24 +8,25 @@
 
   let password = "";
   let showToast = false;
+  let textToast = "";
 
   const updateEmail = () => {
     cloud.updateEmail(email, password).then(
       response => {
-        showToast = true;
+        [showToast, textToast] = [true, $_("cloud.profile.email.success")];
       },
       error => {
-        console.log(error);
+        [showToast, textToast] = [true, $_("cloud.profile.error")];
       }
     );
   };
 </script>
 
-<h2>Update e-mail</h2>
+<h2>{$_("cloud.profile.email.title")}</h2>
 
 <form on:submit|preventDefault={updateEmail}>
   <div class="field">
-    <label class="big" for="email">E-Mail</label>
+    <label class="big" for="email">{$_("cloud.profile.email.fields.email")}</label>
     <input
       id="email"
       type="email"
@@ -33,7 +34,7 @@
       bind:value={email} />
   </div>
   <div class="field">
-    <label class="big" for="email">Password</label>
+    <label class="big" for="email">{$_("cloud.profile.email.fields.password")}</label>
     <input
       id="password"
       type="password"
@@ -41,8 +42,8 @@
       bind:value={password} />
   </div>
   <div class="btn-group">
-    <button on:click|preventDefault={updateEmail}>update</button>
+    <button on:click|preventDefault={updateEmail}>{$_("cloud.profile.action")}</button>
   </div>
 </form>
 
-<Toast bind:show={showToast} text={$_("cloud.profile.updateMail")} />
+<Toast bind:show={showToast} text={textToast} />

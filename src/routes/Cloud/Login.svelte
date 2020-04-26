@@ -29,13 +29,13 @@
         },
         err => {
           showAlert = true;
-          showAlertText = "Login failed.";
+          showAlertText = $_('cloud.login.responses.failed');
           loginButtonLoading = false;
         }
       );
     } else {
       showAlert = true;
-      showAlertText = "Login credentials can't be empty.";
+      showAlertText = $_('cloud.login.responses.empty');
       loginButtonLoading = false;
     }
   };

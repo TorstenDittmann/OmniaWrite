@@ -1,4 +1,6 @@
 <script>
+  import { _ } from "svelte-i18n";
+  
   import { settings } from "../../stores";
   import cloud from "../../appwrite";
   import moment from "moment";
@@ -47,7 +49,7 @@
   }
 </style>
 
-<h2>Devices</h2>
+<h2>{$_('cloud.security.devices.title')}</h2>
 {#await cloud.getSessions()}
   <Spinner />
 {:then devices}
@@ -65,7 +67,7 @@
   <p style="color: red">{error.message}</p>
 {/await}
 
-<h2>Activity logs</h2>
+<h2>{$_('cloud.security.logs.title')}</h2>
 {#await cloud.getSecurityLog()}
   <Spinner />
 {:then logs}

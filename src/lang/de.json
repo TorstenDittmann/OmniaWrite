@@ -44,46 +44,90 @@
         }
     },
     "cloud": {
-        "updated": "aktualisiert",
-        "account": {
-            "title": "Account",
-            "connectedAccount": "Verbundener Account:",
-            "logout": "Logout"
-        },
-        "cloud": {
-            "title": "Cloud",
-            "export": "Export",
-            "import": "Import"
+        "confirm": {
+            "text": "Dein Account ist noch nicht verifiziert! Klicke hier um deinen Account zu verifizieren.",
+            "success": "Verifizierungs E-Mail wurde verschickt!"
         },
         "login": {
             "title": "Login",
             "email": "E-Mail:",
             "password": "Passwort:",
-            "button": "Login"
+            "button": "Login",
+            "responses": {
+                "failed": "Login fehlgeschlagen.",
+                "empty": "Felder dürfen nicht leer sein."
+            }
         },
         "register": {
             "title": "Registrieren",
             "name": "Name",
-            "button": "Registrieren"
+            "button": "Registrieren",
+            "responses": {
+                "success": "Account erstellt!",
+                "failed": "Registrierung fehlgeschlagen.",
+                "empty": "Felder dürfen nicht leer sein."
+            }
         },
         "reset": {
             "title": "Passwort vergessen?",
-            "button": "Passwort zurücksetzen"
+            "button": "Passwort zurücksetzen",
+            "success": "Bitte überprüfe dein E-Mail Postfach für weitere Anweisungen."
         },
         "privacy": {
             "show": "Datenschutz"
         },
         "profile": {
-            "updateName": "Name aktualisiert!",
-            "updateMail": "E-Mail aktualisiert!",
-            "updatePass": "Passwort aktualisiert!"
+            "title": "Profil",
+            "name": {
+                "title": "Name ändern",
+                "success": "Name geändert!",
+                "fields": {
+                    "name": "Name"
+                }
+            },
+            "email": {
+                "title": "E-Mail ändern",
+                "success": "E-Mail geändert!",
+                "fields": {
+                    "email": "E-mail",
+                    "password": "Passwort"
+                }
+            },
+            "password": {
+                "title": "Passwort ändern",
+                "success": "Passwort geändert!",
+                "match": "Passwörter müssen übereinstimmen!",
+                "fields": {
+                    "old": "Altes Passwort",
+                    "new": "Neues Passwort",
+                    "confirm": "Bestätige Passwort"
+                }
+            },
+            "error": "Irgendwas lief schief :(",
+            "action": "Ändern"
+        },
+        "logout": {
+            "title": "Logout",
+            "success": "Logout war erfolgreich. Du wirst weitergeleitet."
+        },
+        "backups": {
+            "title": "Sicherungen",
+            "migrating": "Migriere Sicherung"
         },
         "toast": {
             "savedCloud": "In die Cloud gespeichert.",
             "loginSuccessful": "Erfolgreich angemeldet!",
             "activateEmail": "Bitte aktivieren Sie Ihre E-Mail Adresse.",
-            "resetPassword": "Bitte überprüfen Sie Ihren Posteingang für weitere Anweisungen.",
             "acceptPolicy": "Bitte akzeptieren Sie unsere Datenschutzbestimmungen."
+        },
+        "security": {
+            "title": "Sicherheit",
+            "devices": {
+                "title": "Geräte"
+            },
+            "logs": {
+                "title": "Aktivitäten"
+            }
         }
     },
     "cards": {
@@ -112,6 +156,10 @@
     "sidebar": {
         "createScene": "Szene erstellen",
         "createChapter": "Kapitel erstellen",
+        "delete": {
+            "chapter": "Sind Sie sicher, dass Sie dieses Kapitel löschen wollen?",
+            "scene": "Sind Sie sicher, dass Sie diese Szene löschen wollen?"
+        },
         "modal": {
             "title": "Titel:",
             "newChapter": {
@@ -191,5 +239,12 @@
             "title": "Projekte",
             "opened": "geöffnet"
         }
+    },
+    "feedback": {
+        "title": "Support & Feedback",
+        "sub": "Ihr Feedback, einschließlich Fehlerberichte, Verbesserungsvorschläge, neue Featurevorschläge und alle anderen Dinge, die Sie vielleicht zu sagen haben, sind willkommen.",
+        "email": "E-Mail",
+        "action": "Abschicken",
+        "success": "Abgeschickt!"
     }
 }

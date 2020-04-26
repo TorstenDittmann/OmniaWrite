@@ -15,7 +15,7 @@
   }
 
   function removeChapter(chapterId) {
-    let confirmed = confirm($_("overview.chapter.confirmDelete"));
+    let confirmed = confirm($_("sidebar.delete.chapter"));
     if (confirmed == true) {
       chapters.removeChapter(chapterId);
       show = false;

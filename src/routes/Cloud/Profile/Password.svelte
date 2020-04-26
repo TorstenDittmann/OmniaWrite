@@ -4,50 +4,53 @@
   import cloud from "../../../appwrite";
   import Toast from "../../../shared/Toast.svelte";
 
-  let old_password;
-  let new_password;
-  let new_password_confirm;
+  let old_password = "";
+  let new_password = "";
+  let new_password_confirm = "";
 
   let textToast = "";
   let showToast = false;
 
   const updatePassword = () => {
-    if (new_password === new_password_confirm) {
+    if (
+      new_password === new_password_confirm && 
+      new_password !== "" && 
+      new_password_confirm !== "" && 
+      old_password !== ""
+      ) {
       cloud.updatePassword(new_password, old_password).then(
         response => {
           old_password = new_password = new_password_confirm = "";
-          textToast = "Password changed!";
-          showToast = true;
+          [showToast, textToast] = [true, $_("cloud.profile.password.success")];
         },
         error => {
-          console.log(error);
+          [showToast, textToast] = [true, $_("cloud.profile.error")];
         }
       );
     } else {
-      textToast = "Passwords have to match";
-      showToast = true;
+      [showToast, textToast] = [true, $_("cloud.profile.password.match")];
     }
   };
 </script>
 
-<h2>Update password</h2>
+<h2>{$_("cloud.profile.password.title")}</h2>
 
 <form on:submit|preventDefault={updatePassword}>
   <div class="field">
-    <label class="big" for="old">Old password</label>
-    <input id="old" type="password" bind:value={old_password} />
+    <label class="big" for="old">{$_("cloud.profile.password.fields.old")}</label>
+    <input id="old" type="password" placeholder="***" bind:value={old_password} />
   </div>
   <div class="field">
-    <label class="big" for="new">New password</label>
-    <input id="new" type="password" bind:value={new_password} />
+    <label class="big" for="new">{$_("cloud.profile.password.fields.new")}</label>
+    <input id="new" type="password" placeholder="***" bind:value={new_password} />
   </div>
   <div class="field">
-    <label class="big" for="confirm">Confirm password</label>
-    <input id="confirm" type="password" bind:value={new_password_confirm} />
+    <label class="big" for="confirm">{$_("cloud.profile.password.fields.confirm")}</label>
+    <input id="confirm" type="password" placeholder="***" bind:value={new_password_confirm} />
   </div>
 
   <div class="btn-group">
-    <button on:click|preventDefault={updatePassword}>update</button>
+    <button on:click|preventDefault={updatePassword}>{$_("cloud.profile.action")}</button>
   </div>
 </form>
 

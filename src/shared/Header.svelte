@@ -117,7 +117,7 @@
             style="-webkit-app-region: no-drag" />
         {/if}
         <span
-          class="lnr lnr-question-circle titlebar"
+          class="lnr lnr-question-circle titlebar feedback"
           on:click={() => ($ui.support.show = true)} />
       </div>
     {/if}

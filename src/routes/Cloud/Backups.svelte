@@ -1,4 +1,6 @@
 <script>
+  import { _ } from "svelte-i18n";
+
   import { settings } from "../../stores";
   import { deskgap } from "../../utils";
   import cloud from "../../appwrite";
@@ -73,9 +75,9 @@
 {#if isLoadingBackup}
   <Spinner />
   <br />
-  <i>Migrating backup</i>
+  <i>{$_("cloud.backups.migrating")}</i>
 {:else}
-  <h2>Backups</h2>
+  <h2>{$_("cloud.backups.title")}</h2>
   {#await cloud.getAllBackups()}
     <Spinner />
   {:then backups}

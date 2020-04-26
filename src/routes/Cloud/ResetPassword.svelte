@@ -18,7 +18,7 @@
 
 {#if recoverState}
   <span class="lnr lnr-checkmark-circle" />
-  Please check you emails for further instructions!
+  {$_('cloud.reset.success')}
 {:else}
   <form on:submit|preventDefault={recover}>
     <div class="field">
