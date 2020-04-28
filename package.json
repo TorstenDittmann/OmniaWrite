@@ -9,7 +9,7 @@
   },
   "description": "A text editor engineered for creative writing.",
   "homepage": "https://www.omniawrite.com/",
-  "license": "Attribution-NonCommercial-ShareAlike 4.0 International",
+  "license": "CC BY-NC-SA 4.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/torstendittmann/omniawrite"
