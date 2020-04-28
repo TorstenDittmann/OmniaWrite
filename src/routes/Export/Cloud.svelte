@@ -1,25 +1,26 @@
 <script>
-  import { ExportJSON } from "../../export";
   import { state } from "../../stores";
   import { _ } from "svelte-i18n";
   import saveAs from "file-saver";
+  import Export from "./Cloud/index";
 
   let loading = false;
   let downloadButtonDisabled = true;
   let author = "";
   let cover = "";
 
-  const getBase64 = file => new Promise((resolve, reject) => {
+  const getBase64 = file =>
+    new Promise((resolve, reject) => {
       const reader = new FileReader();
       reader.readAsDataURL(file);
       reader.onload = () => resolve(reader.result);
       reader.onerror = error => reject(error);
-  });
+    });
 
   const download = async () => {
     loading = true;
     const file = await getBase64(cover[0]);
-    let generateDownload = new ExportJSON($state.currentProject, author);
+    let generateDownload = new Export($state.currentProject, author);
     generateDownload
       .fetchTemplate()
       .then(data => {
@@ -33,15 +34,17 @@
             headers: {
               "Content-Type": "application/json"
             },
-            body: JSON.stringify(
-              { 
-                data: data,
-                cover: {
-                  extension: file.substring('data:image/'.length, file.indexOf(';base64')),
-                  type: file.substring('data:'.length, file.indexOf(';base64')),
-                  data: file.replace(/^data:image.+;base64,/, '')
-                }
-              })
+            body: JSON.stringify({
+              data: data,
+              cover: {
+                extension: file.substring(
+                  "data:image/".length,
+                  file.indexOf(";base64")
+                ),
+                type: file.substring("data:".length, file.indexOf(";base64")),
+                data: file.replace(/^data:image.+;base64,/, "")
+              }
+            })
           }
         )
           .then(response => {

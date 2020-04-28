@@ -1,13 +1,13 @@
 <script>
-  import { ExportRTF } from "../../export";
   import { state } from "../../stores";
   import { _ } from "svelte-i18n";
+  import Export from "./RTF/index";
 
   let loading = false;
 
   const download = () => {
     loading = true;
-    let generateDownload = new ExportRTF($state.currentProject, author);
+    let generateDownload = new Export($state.currentProject, author);
     generateDownload
       .fetchTemplate()
       .then(() => {

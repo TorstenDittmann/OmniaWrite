@@ -109,6 +109,16 @@
       opacity: 1;
     }
   }
+
+  &.vertical {
+    align-items: normal;
+    flex-direction: column;
+    margin: 0 0 2rem 0;
+
+    label {
+      flex: 0 1 2rem;
+    }
+  }
 }
 
 [type="checkbox"]:not(:checked),
