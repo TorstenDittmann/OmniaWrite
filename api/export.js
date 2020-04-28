@@ -1,11 +1,9 @@
 module.exports = (req, res) => {
   const EBook = require("@torstendittmann/ebook-generator");
-  const ebook = new EBook({
-    title: "Titel"
-  },
+  const ebook = new EBook({},
     req.body.data);
 
-  ebook.render();
+  ebook.render({ use: "epub3" });
   ebook.base64().then(data => {
     res.setHeader("Content-Disposition", `attachment; filename="${ebook.options.title}.epub"`)
     res.setHeader("Content-Type", "application/epub+zip")
