@@ -9,33 +9,17 @@
   let author = "";
   let cover = "";
 
-  async function postData(url = "", data = {}) {
-    // Default options are marked with *
-    return await fetch(url, {
-      method: "POST", // *GET, POST, PUT, DELETE, etc.
-      mode: "no-cors", // no-cors, *cors, same-origin
-      cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
-      credentials: "same-origin", // include, *same-origin, omit
-      headers: {
-        "Content-Type": "application/json"
-        // 'Content-Type': 'application/x-www-form-urlencoded',
-      },
-      body: JSON.stringify(data) // body data type must match "Content-Type" header
-    })
-      .then(response => {
-        console.log("huhu");
-        console.log(response.headers);
-        return response.blob();
-      })
-      .then(blob => {
-        console.log(blob);
-      });
-  }
+  const getBase64 = file => new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => resolve(reader.result);
+      reader.onerror = error => reject(error);
+  });
 
   const download = async () => {
     loading = true;
-    const file = cover[0];
-    let generateDownload = new ExportJSON($state.currentProject, author, file);
+    const file = await getBase64(cover[0]);
+    let generateDownload = new ExportJSON($state.currentProject, author);
     generateDownload
       .fetchTemplate()
       .then(data => {
@@ -49,7 +33,15 @@
             headers: {
               "Content-Type": "application/json"
             },
-            body: JSON.stringify({ data: data })
+            body: JSON.stringify(
+              { 
+                data: data,
+                cover: {
+                  extension: file.substring('data:image/'.length, file.indexOf(';base64')),
+                  type: file.substring('data:'.length, file.indexOf(';base64')),
+                  data: file.replace(/^data:image.+;base64,/, '')
+                }
+              })
           }
         )
           .then(response => {
