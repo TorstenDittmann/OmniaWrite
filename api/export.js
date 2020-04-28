@@ -1,7 +1,6 @@
 module.exports = (req, res) => {
   const EBook = require("@torstendittmann/ebook-generator");
-  const ebook = new EBook({},
-    req.body.data);
+  const ebook = new EBook({ cover: req.body.cover }, req.body.data);
 
   ebook.render({ use: "epub3" });
   ebook.base64().then(data => {
