@@ -292,10 +292,9 @@ export class ExportRTF {
 
 
 export class ExportJSON {
-    constructor(id, author, cover) {
+    constructor(id, author) {
         this.projectId = id;
         this.projectAuthor = author;
-        this.cover = cover;
     }
     async fetchTemplate() {
         unsubscribeProject = await projects.subscribe(value => {
