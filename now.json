@@ -7,7 +7,7 @@
   },
   "functions": {
     "api/export.js": {
-      "includeFiles": "templates/**"
+      "includeFiles": "node_modules/@torstendittmann/ebook-generator/templates/**"
     }
   }
 }
