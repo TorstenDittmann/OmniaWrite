@@ -61,7 +61,8 @@ const createLoadingScreen = () => {
       height: 400,
       frame: false,
       transparent: true,
-      resizable: false
+      resizable: false,
+      icon: path.join(__dirname, "../build/icon.png")
     })
   );
   loadingScreen.loadURL(`file://${path.join(__dirname, "../public/splash/index.html")}`);

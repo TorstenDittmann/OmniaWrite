@@ -6,6 +6,7 @@
   import Placeholder from "../shared/Placeholder.svelte";
   import Export from "./Export/Cloud/index";
   import saveAs from "file-saver";
+  
 
   let form = {
     title: "",
@@ -13,9 +14,10 @@
     description: "",
     publisher: "",
     lang: "",
-    cover: "",
-    template: ""
+    template: "epub3"
   };
+
+  let cover= [];
 
   let loading = false;
 
@@ -29,7 +31,7 @@
 
   const download = async () => {
     loading = true;
-    const file = await getBase64(form.cover[0]);
+    const file = await getBase64(cover[0]);
     let generateDownload = new Export($state.currentProject);
     generateDownload
       .fetchTemplate()
@@ -45,6 +47,7 @@
               "Content-Type": "application/json"
             },
             body: JSON.stringify({
+              ...form,
               data: data,
               cover: {
                 extension: file.substring(
@@ -64,9 +67,9 @@
             return response.blob();
           })
           .then(blob => {
-            saveAs.saveAs(blob, filename);
+            saveAs.saveAs(blob, filename + ".epub");
+            loading = false;
           });
-        loading = false;
       })
       .finally(() => {
         generateDownload = null;
@@ -133,7 +136,7 @@
         <label class="big" for="cover">{$_('export.cover')}</label>
         <input
           id="cover"
-          bind:files={form.cover}
+          bind:files={cover}
           type="file" />
       </div>
     </div>
