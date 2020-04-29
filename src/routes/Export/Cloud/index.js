@@ -9,9 +9,8 @@ let unsubscribeChapters;
 let unsubscribeScenes;
 
 export default class Export {
-  constructor(id, author) {
+  constructor(id) {
     this.projectId = id;
-    this.projectAuthor = author;
   }
   async fetchTemplate() {
     unsubscribeProject = await projects.subscribe(value => {
