@@ -8,46 +8,80 @@
 </script>
 
 <style type="text/css">
-  .export-container {
-    margin: auto;
-    max-width: 800px;
-    height: calc(90vh - 5rem);
-    display: grid;
-    grid-template-columns: 1fr 4fr;
-    grid-template-rows: 4rem auto;
-    grid-template-areas:
-      "export-header export-header"
-      "export-sidebar export-templates";
+  .header, .sidebar {
+    position:sticky;
+    background-color: var(--background-color);
   }
-
   .header {
-    grid-area: export-header;
+    height: 4rem;
+    top: 0;
+    padding: .5rem 0;
   }
-
   .sidebar {
-    grid-area: export-sidebar;
+    top: 4rem;
+    padding: .5rem 0;
   }
-
+  
   .templates {
     grid-area: export-templates;
     display: flex;
-    flex-direction: row;
     flex-wrap: wrap;
-    justify-content: flex-start;
-    align-items: flex-start;
-    align-content: flex-start;
-    overflow-y: auto;
+    justify-content: center;
   }
 
-  .templates img {
-    padding: 1rem;
+  .cover {
+    flex: 0 0 50%;
+  }
+
+  .cover img {
+    max-width:90%;
+    margin: .5rem;
+  }
+
+  @media (min-width: 960px) {
+    .export-container {
+      margin: auto;
+      max-width: 800px;
+      display: grid;
+      grid-template-columns: 1fr 4fr;
+      grid-template-rows: 4rem auto;
+      grid-template-areas:
+        "export-header export-header"
+        "export-sidebar export-templates";
+    }
+
+    .header {
+      grid-area: export-header;
+      position: sticky;
+      top: 0;
+      display: flex;
+    }
+
+    .sidebar {
+      grid-area: export-sidebar;
+      position: sticky;
+      top: 4rem;
+      height: fit-content;
+    }
+
+    .export-action {
+      margin-left: auto;
+    }
+
+    .btn-group button {
+      width: 100%;
+    }
   }
 </style>
 
 <div class="export-container" in:fade={{ duration: 100 }}>
   {#if $state.currentProject}
     <div class="header">
-      <h2>Export</h2>
+      <div class="btn-group export-action">
+        <button on:click|preventDefault={()=> window.alert('xpört')}>
+          {$_("exports.action")}
+        </button>
+      </div>
     </div>
     <div class="sidebar">
       <div class="field vertical">
@@ -68,13 +102,27 @@
       </div>
     </div>
     <div class="templates">
-      <img src="http://lorempixel.com/260/440/" />
-      <img src="http://lorempixel.com/260/440/" />
-      <img src="http://lorempixel.com/260/440/" />
-      <img src="http://lorempixel.com/260/440/" />
-      <img src="http://lorempixel.com/260/440/" />
-      <img src="http://lorempixel.com/260/440/" />
-      <img src="http://lorempixel.com/260/440/" />
+      <div class="cover">
+        <img src="https://via.placeholder.com/260x440?text=Cover" />
+      </div>
+      <div class="cover">
+        <img src="https://via.placeholder.com/260x440?text=Cover" />
+      </div>
+      <div class="cover">
+        <img src="https://via.placeholder.com/260x440?text=Cover" />
+      </div>
+      <div class="cover">
+        <img src="https://via.placeholder.com/260x440?text=Cover" />
+      </div>
+      <div class="cover">
+        <img src="https://via.placeholder.com/260x440?text=Cover" />
+      </div>
+      <div class="cover">
+        <img src="https://via.placeholder.com/260x440?text=Cover" />
+      </div>
+            <div class="cover">
+        <img src="https://via.placeholder.com/260x440?text=Cover" />
+      </div>
     </div>
   {:else}
     <Placeholder />
