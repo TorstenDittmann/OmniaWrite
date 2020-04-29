@@ -57,7 +57,7 @@
 {#if show}
   <div
     class="modal-background"
-    on:click={() => (show = false)}
+    on:click={() => persistent ? "" : (show = false)}
     in:fade={{ duration: 200 }}
     out:fade={{ duration: 200 }} />
 

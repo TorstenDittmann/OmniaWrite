@@ -4,6 +4,8 @@
   import { _ } from "svelte-i18n";
 
   import Placeholder from "../shared/Placeholder.svelte";
+  import Modal from "../shared/Modal.svelte";
+  import Spinner from "../shared/Spinner.svelte";
   import Export from "./Export/Cloud/index";
   import saveAs from "file-saver";
   
@@ -19,7 +21,10 @@
 
   let cover= [];
 
-  let loading = false;
+  let progress = {
+    active: false,
+    state: ""
+  };
 
   const getBase64 = file =>
     new Promise((resolve, reject) => {
@@ -30,13 +35,15 @@
     });
 
   const download = async () => {
-    loading = true;
+    progress.active = true;
     const file = await getBase64(cover[0]);
+    progress.state = "starting :)";
     let generateDownload = new Export($state.currentProject);
     generateDownload
       .fetchTemplate()
       .then(data => {
         let filename = "no title";
+        progress.state = "sending data to server";
         fetch(
           "https://omniawrite-git-cloud-export.torstendittmann.now.sh/api/export",
           {
@@ -61,14 +68,16 @@
           }
         )
           .then(response => {
+            progress.state = "receiving data from server";
             filename = response.headers
               .get("Content-Disposition")
               .split('"')[1];
             return response.blob();
           })
           .then(blob => {
+            progress.state = "preparing epub";
             saveAs.saveAs(blob, filename + ".epub");
-            loading = false;
+            progress.active = false;
           });
       })
       .finally(() => {
@@ -76,7 +85,12 @@
       });
   };
 </script>
-
+<Modal bind:show={progress.active} persistent="true">
+  <center>
+  <i>{progress.state}</i>
+  <Spinner />
+  </center>
+</Modal>
 <div class="export-container" in:fade={{ duration: 100 }}>
   {#if $state.currentProject}
     <div class="header">
