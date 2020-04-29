@@ -11,7 +11,7 @@ module.exports = (req, res) => {
     },
     req.body.data);
 
-  ebook.render({ use: "epub3" });
+  ebook.render({ use: req.body.template });
   ebook.base64().then(data => {
     res.setHeader("Content-Disposition", `attachment; filename="${ebook.options.title}.epub"`)
     res.setHeader("Content-Type", "application/epub+zip")
