@@ -8,7 +8,6 @@
   import Spinner from "../shared/Spinner.svelte";
   import Export from "./Export/Cloud/index";
   import saveAs from "file-saver";
-  
 
   let form = {
     title: "",
@@ -19,7 +18,7 @@
     template: "epub3"
   };
 
-  let cover= [];
+  let cover = [];
 
   let progress = {
     active: false,
@@ -42,7 +41,7 @@
     generateDownload
       .fetchTemplate()
       .then(data => {
-        let filename = "no title";
+        let filename;
         progress.state = "sending data to server";
         fetch(
           "https://omniawrite-git-cloud-export.torstendittmann.now.sh/api/export",
@@ -85,10 +84,68 @@
       });
   };
 </script>
+
+<style type="text/css">
+  .header,
+  .sidebar {
+    background-color: var(--background-color);
+  }
+  .header {
+    top: 0;
+    padding: 0.5rem 0;
+    position: sticky;
+    z-index: 2;
+  }
+
+  .btn-group {
+    margin: 0;
+  }
+
+  .templates {
+    grid-area: export-templates;
+  }
+
+  @media (min-width: 960px) {
+    .export-container {
+      margin: auto;
+      max-width: 800px;
+      display: grid;
+      grid-template-columns: 1fr 4fr;
+      grid-template-rows: 4rem auto;
+      grid-template-areas:
+        "export-header export-header"
+        "export-sidebar export-templates";
+    }
+
+    .header {
+      grid-area: export-header;
+      position: sticky;
+      top: 0;
+      display: flex;
+      flex-direction: row-reverse;
+    }
+
+    .sidebar {
+      grid-area: export-sidebar;
+      position: sticky;
+      top: 4rem;
+      height: fit-content;
+    }
+
+    .export-action {
+      margin: auto 0;
+    }
+
+    .btn-group button {
+      width: 100%;
+    }
+  }
+</style>
+
 <Modal bind:show={progress.active} persistent="true">
   <center>
-  <i>{progress.state}</i>
-  <Spinner />
+    <i>{progress.state}</i>
+    <Spinner />
   </center>
 </Modal>
 <div class="export-container" in:fade={{ duration: 100 }}>
@@ -96,7 +153,7 @@
     <div class="header">
       <div class="btn-group export-action">
         <button on:click|preventDefault={download}>
-          {$_("exports.action")}
+          {$_('exports.action')}
         </button>
       </div>
     </div>
@@ -148,104 +205,21 @@
       </div>
       <div class="field vertical">
         <label class="big" for="cover">{$_('export.cover')}</label>
-        <input
-          id="cover"
-          bind:files={cover}
-          type="file" />
+        <input id="cover" bind:files={cover} type="file" />
       </div>
     </div>
     <div class="templates">
-      <div class="cover">
-        <img src="https://via.placeholder.com/260x440?text=Cover" alt="" />
-      </div>
-      <div class="cover">
-        <img src="https://via.placeholder.com/260x440?text=Cover" alt="" />
-      </div>
-      <div class="cover">
-        <img src="https://via.placeholder.com/260x440?text=Cover" alt="" />
-      </div>
-      <div class="cover">
-        <img src="https://via.placeholder.com/260x440?text=Cover" alt="" />
-      </div>
-      <div class="cover">
-        <img src="https://via.placeholder.com/260x440?text=Cover" alt="" />
-      </div>
-      <div class="cover">
-        <img src="https://via.placeholder.com/260x440?text=Cover" alt="" />
-      </div>
-            <div class="cover">
-        <img src="https://via.placeholder.com/260x440?text=Cover" alt="" />
+      <div id="cards" class="grid">
+        <div id="card">
+          <h2>Basic</h2>
+          <small>EPUB 3</small>
+        </div>
+        <div id="card">
+          <small>more coming soon</small>
+        </div>
       </div>
     </div>
   {:else}
     <Placeholder />
   {/if}
 </div>
-
-<style type="text/css">
-  .header, .sidebar {
-    background-color: var(--background-color);
-  }
-  .header {
-    top: 0;
-    padding: .5rem 0;
-    position: sticky;
-    z-index: 2;
-  }
-
-  .btn-group {
-    margin: 0;
-  }
-  
-  .templates {
-    grid-area: export-templates;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-
-  .cover {
-    flex: 0 0 50%;
-  }
-
-  .cover img {
-    max-width:90%;
-    margin: .5rem;
-  }
-
-  @media (min-width: 960px) {
-    .export-container {
-      margin: auto;
-      max-width: 800px;
-      display: grid;
-      grid-template-columns: 1fr 4fr;
-      grid-template-rows: 4rem auto;
-      grid-template-areas:
-        "export-header export-header"
-        "export-sidebar export-templates";
-    }
-
-    .header {
-      grid-area: export-header;
-      position: sticky;
-      top: 0;
-      display: flex;
-      flex-direction: row-reverse;
-    }
-
-    .sidebar {
-      grid-area: export-sidebar;
-      position: sticky;
-      top: 4rem;
-      height: fit-content;
-    }
-
-    .export-action {
-      margin: auto 0;
-    }
-
-    .btn-group button {
-      width: 100%;
-    }
-  }
-</style>
