@@ -20,21 +20,29 @@ export default class Export {
     });
     let data = [];
     const start = async () => {
-      unsubscribeChapters = chapters.subscribe(value => {
-        value.filter(e => e.project == this.projectId).sort(this.compare).forEach((element, i) => {
-          unsubscribeScenes = scenes.subscribe(value => {
-            data.push({
-              title: element.title,
-              data: value.filter(e => e.chapter == element.id).sort(this.compare).map(e => {
-                if (e.content)
-                  return e.content.blocks.map(block => {
-                    return block.data.text
-                  }).join("<br />")
-              }).join("<br />")
-            })
-          });
+      unsubscribeChapters = chapters
+        .subscribe(value => {
+          value
+            .filter(e => e.project == this.projectId)
+            .sort(this.compare)
+            .forEach((element, i) => {
+              unsubscribeScenes = scenes
+                .subscribe(value => {
+                  data.push({
+                    title: element.title,
+                    data: value
+                      .filter(e => e.chapter == element.id)
+                      .sort(this.compare)
+                      .map(e => {
+                        if (e.content)
+                          return e.content.blocks.map(block => {
+                            return `<p>${block.data.text}</p>`
+                          }).join("")
+                      }).join("")
+                  })
+                });
+            });
         });
-      });
       unsubscribeProject();
       unsubscribeChapters();
       unsubscribeScenes();
