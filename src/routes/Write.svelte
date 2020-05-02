@@ -40,6 +40,7 @@
   }
 
   onMount(() => {
+    clearTimeout(autosave);
     if (params.sceneId !== null) {
       document.addEventListener("keydown", shortcutListener, false);
     }
@@ -48,6 +49,7 @@
   onDestroy(() => {
     document.removeEventListener("keydown", shortcutListener);
     if (editorChangeHappened) {
+      clearTimeout(autosave);
       save(lastScene);
     }
     if (editor && typeof editor.destroy === "function") {
@@ -110,6 +112,7 @@
     editor
       .save()
       .then(outputData => {
+        clearTimeout(autosave);
         scenes.setSceneContent(param, outputData);
         editorChangeHappened = false;
         showToast = true;
