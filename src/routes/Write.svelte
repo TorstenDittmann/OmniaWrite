@@ -1,7 +1,7 @@
 <script lang="javascript">
   import { onMount, onDestroy } from "svelte";
   import { fade } from "svelte/transition";
-  import { scenes, chapters, state, cards } from "../stores";
+  import { scenes, chapters, state, cards, settings } from "../stores";
   import { push, location } from "svelte-spa-router";
   import { _ } from "svelte-i18n";
   import Paragraph, { QuoteTool } from "./Write/paragraph";
@@ -27,6 +27,7 @@
   let showToastText;
 
   let focusMode = false;
+  let autosave;
 
   $: currentScene = $scenes.filter(scene => scene.id == params.sceneId)[0];
   $: state.setCurrentTitle(
@@ -68,8 +69,14 @@
         placeholder: $_("write.editor.placeholder"),
         data: currentScene.content,
         onChange: () => {
+          clearTimeout(autosave);
           editorChangeHappened = true;
           countWordsAndChars();
+          if ($settings.autosave) {
+            autosave = setTimeout(() => {
+              save(params.sceneId);
+            }, 10000);
+          }
         },
         onReady: () => {
           countWordsAndChars();
