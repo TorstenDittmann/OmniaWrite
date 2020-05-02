@@ -116,7 +116,8 @@
     flex-direction: column;
     margin: 0 0 2rem 0;
 
-    label {
+    label,
+    select {
       flex: 0 1 2rem;
     }
   }
@@ -202,3 +203,5 @@
 label:hover:before {
   border: 2px solid #4778d9 !important;
 }
+
+@import url('https://css.gg/css');
