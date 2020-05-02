@@ -15,15 +15,26 @@
     description: "",
     publisher: "",
     lang: "",
-    template: "epub3"
+    template: "scifi"
   };
 
   let cover = [];
 
   let progress = {
     active: false,
-    state: ""
+    state: "..."
   };
+
+  const templates = [
+    {
+      id: "epub3",
+      name: "Simple"
+    },
+    {
+      id: "scifi",
+      name: "Science Fiction"
+    }
+  ];
 
   const getBase64 = file =>
     new Promise((resolve, reject) => {
@@ -144,8 +155,9 @@
 
 <Modal bind:show={progress.active} persistent="true">
   <center>
-    <i>{progress.state}</i>
     <Spinner />
+    <br />
+    <i>{progress.state}</i>
   </center>
 </Modal>
 <div class="export-container" in:fade={{ duration: 100 }}>
@@ -153,7 +165,7 @@
     <div class="header">
       <div class="btn-group export-action">
         <button on:click|preventDefault={download}>
-          {$_('exports.action')}
+          {$_('export.action')}
         </button>
       </div>
     </div>
@@ -181,18 +193,16 @@
         <input
           id="publisher"
           type="text"
-          placeholder="John Doe"
+          placeholder="OmniaWrite"
           bind:value={form.publisher}
           autocomplete="off" />
       </div>
       <div class="field vertical">
         <label class="big" for="language">{$_('export.language')}</label>
-        <input
-          id="language"
-          type="text"
-          placeholder="John Doe"
-          bind:value={form.lang}
-          autocomplete="off" />
+        <select id="language" bind:value={form.lang}>
+          <option value="en">{$_('settings.appereance.language.en')}</option>
+          <option value="de">{$_('settings.appereance.language.de')}</option>
+        </select>
       </div>
       <div class="field vertical">
         <label class="big" for="description">{$_('export.description')}</label>
@@ -210,10 +220,12 @@
     </div>
     <div class="templates">
       <div id="cards" class="grid">
-        <div id="card">
-          <h2>Basic</h2>
-          <small>EPUB 3</small>
-        </div>
+        {#each templates as template}
+          <div id="card">
+            <h2>{template.name}</h2>
+            <small>...</small>
+          </div>
+        {/each}
         <div id="card">
           <small>more coming soon</small>
         </div>
