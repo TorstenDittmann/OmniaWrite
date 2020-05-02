@@ -47,9 +47,9 @@
   });
 
   onDestroy(() => {
+    clearTimeout(autosave);
     document.removeEventListener("keydown", shortcutListener);
     if (editorChangeHappened) {
-      clearTimeout(autosave);
       save(lastScene);
     }
     if (editor && typeof editor.destroy === "function") {
