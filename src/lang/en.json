@@ -151,7 +151,8 @@
         "language": "Language",
         "description": "Description",
         "cover": "Cover",
-        "action": "Export"
+        "action": "Export",
+        "form": "Please complete all fields."
     },
     "sidebar": {
         "createScene": "New Scene",
