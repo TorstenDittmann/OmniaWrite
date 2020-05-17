@@ -2,20 +2,21 @@
   import { fade } from "svelte/transition";
   import { state } from "../stores";
   import { _ } from "svelte-i18n";
+  import saveAs from "file-saver";
 
   import Placeholder from "../shared/Placeholder.svelte";
   import Modal from "../shared/Modal.svelte";
+  import Toast from "../shared/Toast.svelte";
   import Spinner from "../shared/Spinner.svelte";
   import Export from "./Export/Cloud/index";
-  import saveAs from "file-saver";
 
   let form = {
     title: "",
     author: "",
     description: "",
     publisher: "",
-    lang: "",
-    template: "scifi"
+    lang: "en",
+    template: "epub3"
   };
 
   let cover = [];
@@ -24,6 +25,8 @@
     active: false,
     state: "..."
   };
+
+  let completeForm = false;
 
   const templates = [
     {
@@ -36,6 +39,15 @@
     }
   ];
 
+  const checkForm = () =>
+    form.title !== "" &&
+    form.author !== "" &&
+    form.description !== "" &&
+    form.publisher !== "" &&
+    form.lang !== "" &&
+    form.template !== "" &&
+    cover.length !== 0;
+
   const getBase64 = file =>
     new Promise((resolve, reject) => {
       const reader = new FileReader();
@@ -45,6 +57,10 @@
     });
 
   const download = async () => {
+    if (!checkForm()) {
+      completeForm = true;
+      return;
+    }
     progress.active = true;
     const file = await getBase64(cover[0]);
     progress.state = "starting :)";
@@ -153,7 +169,8 @@
   }
 </style>
 
-<Modal bind:show={progress.active} persistent="true">
+<Toast bind:show={completeForm} text={$_('export.form')} />
+<Modal bind:show={progress.active}>
   <center>
     <Spinner />
     <br />
@@ -221,8 +238,13 @@
     <div class="templates">
       <div id="cards" class="grid">
         {#each templates as template}
-          <div id="card">
-            <h2>{template.name}</h2>
+          <div id="card" on:click={() => (form.template = template.id)}>
+            <h2>
+              {#if form.template === template.id}
+                <span class="lnr lnr-checkmark-circle" />
+              {/if}
+              {template.name}
+            </h2>
             <small>...</small>
           </div>
         {/each}
