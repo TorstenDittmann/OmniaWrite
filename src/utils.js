@@ -44,3 +44,7 @@ export function checkRequirements() {
 
     return check;
 }
+
+export const getRandomNumber = () => {
+    return Math.floor(Math.random() * 999999);
+}
