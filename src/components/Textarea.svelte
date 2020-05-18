@@ -1,18 +1,25 @@
 <script>
-import { getRandomNumber } from "../utils"
-import Field from "./shared/Field.svelte";
+  import { getRandomNumber } from "../utils";
+  import Field from "./shared/Field.svelte";
 
-export let label;
-export let id = label + getRandomNumber();
+  export let label;
+  export let id = label + getRandomNumber();
 
-export let value;
-
-
+  export let value;
 </script>
 
-<Field bind:id bind:label >
-  <textarea
-    id={id}
-    rows="10"
-    bind:value />
+<style>
+  textarea {
+    width: 100%;
+    height: auto;
+    resize: vertical;
+    background: none;
+    border: 1px solid #999;
+    color: var(--text-color);
+    border-radius: 0.125rem;
+  }
+</style>
+
+<Field bind:id bind:label>
+  <textarea {id} rows="10" bind:value />
 </Field>
