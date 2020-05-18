@@ -3,6 +3,9 @@
   import { cards, state } from "../stores";
   import { _ } from "svelte-i18n";
 
+
+  import Input from "../components/Input.svelte";
+  import Textarea from "../components/Textarea.svelte";
   import Placeholder from "../shared/Placeholder.svelte";
   import Modal from "../shared/Modal.svelte";
 
@@ -67,22 +70,15 @@
 <Modal bind:show={showCreateCard}>
   <h2 slot="header">{$_("cards.modal.newHeader")}</h2>
   <form on:submit|preventDefault={createCard}>
-    <div class="field">
-      <label for="createTitle">{$_("cards.modal.title")}</label>
-      <input
-        id="createTitle"
-        autocomplete="off"
-        placeholder="enter your title"
-        type="text"
-        bind:value={newCardObject.title} />
-    </div>
-    <div class="field">
-      <label for="createContent">{$_("cards.modal.content")}</label>
-      <textarea
-        id="createContent"
-        rows="10"
-        bind:value={newCardObject.content} />
-    </div>
+    <Input 
+      label={$_("cards.modal.title")}
+      bind:value={newCardObject.title}
+      autocomplete="off"
+      placeholder="enter your title" />
+    <Textarea
+      label={$_("cards.modal.content")}
+      bind:value={newCardObject.content} />
+
     <div class="field">
       <label for="showTooltip">{$_("cards.modal.showInScenes")}</label>
       <p>
