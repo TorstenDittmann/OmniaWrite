@@ -1,0 +1,73 @@
+<script>
+export let color;
+export let loading = false;
+export let disabled = false;
+</script>
+
+<style>
+  button {
+    border: 1px solid;
+    padding: .25em 1em;
+    cursor: pointer;
+    float: left;
+    border-color: #0077b8;
+    background-color: #0077b8;
+    color: var(--button-color);
+    opacity: .85;
+    font-size: 1rem;
+    height: 2rem;
+    width: -webkit-fill-available;
+    min-width: 4rem;
+  }
+
+  button:hover {
+    opacity: 1;
+  }
+
+  button:not(:last-child) {
+    border-right: none;
+  }
+
+  button:disabled {
+    cursor: not-allowed;
+    opacity: .4;
+    background-color: #313131;
+  }
+
+  button.green {
+    border-color: #2e8500;
+    background-color: #2e8500;
+  }
+
+  button.red {
+    border-color: #e02200;
+    background-color: #e02200;
+  }
+
+  button.outline {
+    background-color: var(--background-color);
+  }
+
+  button > .spinner {
+    display: none;
+    -webkit-animation: spin 2s infinite linear;
+    animation: spin 2s infinite linear;
+  }
+
+  button.loading >.spinner {
+    display: inline-block;
+  }
+</style>
+
+<button 
+  {disabled}
+  class:loading
+  class:green={color == "green"}
+  class:red={color == "red"}
+  class:outline={color == "outline"}
+  on:click|preventDefault>
+  {#if loading}
+    <span class="lnr lnr-sync spinner" />
+  {/if}
+  <slot />
+</button>
