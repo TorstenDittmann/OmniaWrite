@@ -49,11 +49,11 @@
 </style>
 
 <Field bind:id bind:label>
-  <input
+  <input 
     {id}
     {autocomplete}
     {placeholder}
     {required}
-    type="text"
+    type="email"
     bind:value />
 </Field>
