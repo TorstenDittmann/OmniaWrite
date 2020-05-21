@@ -140,6 +140,7 @@
             "content": "Content:",
             "buttonCreate": "Create",
             "buttonSave": "Save",
+            "buttonDelete": "Delete",
             "showInScenes": "Show in scenes"
         }
     },
