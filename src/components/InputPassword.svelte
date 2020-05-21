@@ -51,9 +51,9 @@
 <Field bind:id bind:label>
   <input
     {id}
-    {autocomplete}
     {placeholder}
+    {autocomplete}
     {required}
-    type="text"
+    type="password"
     bind:value />
 </Field>
