@@ -5,6 +5,9 @@
   import { scenes } from "../../stores";
 
   import Modal from "../../shared/Modal.svelte";
+  import Input from "../../components/Input.svelte";
+  import ButtonGroup from "../../components/ButtonGroup.svelte";
+  import Button from "../../components/Button.svelte";
 
   export let show;
   export let chapter;
@@ -25,22 +28,15 @@
 <Modal bind:show>
   <h2 slot="header">{$_("sidebar.modal.newScene.header")}</h2>
   <form on:submit|preventDefault={createScene}>
-    <div class="field">
-      <label for="editChapterInput">{$_("sidebar.modal.title")}</label>
-      <input
-        id="editChapterInput"
-        bind:value={title}
-        autocomplete="off"
-        placeholder="enter your title"
-        type="text" />
-    </div>
-    <hr />
-    <div class="btn-group">
-      {#if title.length > 0}
-        <button on:click|preventDefault={createScene}>
-          {$_("sidebar.modal.newScene.button")}
-        </button>
-      {/if}
-    </div>
+    <Input 
+      label={$_("sidebar.modal.title")} 
+      bind:value={title} 
+      autocomplete="off"
+      placeholder="enter your title" />
+    <ButtonGroup>
+      <Button on:click={createScene} disabled={title.length === 0}>
+        {$_("sidebar.modal.newScene.button")}
+      </Button>
+    </ButtonGroup>
   </form>
 </Modal>
