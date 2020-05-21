@@ -1,8 +1,13 @@
 <script>
+
   import { _ } from "svelte-i18n";
 
   import cloud from "../../../appwrite";
   import Toast from "../../../shared/Toast.svelte";
+
+  import InputPassword from "../../../components/InputPassword.svelte";
+  import Button from "../../../components/Button.svelte";
+  import ButtonGroup from "../../../components/ButtonGroup.svelte";
 
   let old_password = "";
   let new_password = "";
@@ -10,6 +15,7 @@
 
   let textToast = "";
   let showToast = false;
+  let loading = false;
 
   const updatePassword = () => {
     if (
@@ -18,12 +24,15 @@
       new_password_confirm !== "" && 
       old_password !== ""
       ) {
+        loading = true;
       cloud.updatePassword(new_password, old_password).then(
         response => {
+          loading = false;
           old_password = new_password = new_password_confirm = "";
           [showToast, textToast] = [true, $_("cloud.profile.password.success")];
         },
         error => {
+          loading = false;
           [showToast, textToast] = [true, $_("cloud.profile.error")];
         }
       );
@@ -36,22 +45,23 @@
 <h2>{$_("cloud.profile.password.title")}</h2>
 
 <form on:submit|preventDefault={updatePassword}>
-  <div class="field">
-    <label class="big" for="old">{$_("cloud.profile.password.fields.old")}</label>
-    <input id="old" type="password" placeholder="***" bind:value={old_password} />
-  </div>
-  <div class="field">
-    <label class="big" for="new">{$_("cloud.profile.password.fields.new")}</label>
-    <input id="new" type="password" placeholder="***" bind:value={new_password} />
-  </div>
-  <div class="field">
-    <label class="big" for="confirm">{$_("cloud.profile.password.fields.confirm")}</label>
-    <input id="confirm" type="password" placeholder="***" bind:value={new_password_confirm} />
-  </div>
-
-  <div class="btn-group">
-    <button on:click|preventDefault={updatePassword}>{$_("cloud.profile.action")}</button>
-  </div>
+  <InputPassword
+    label={$_("cloud.profile.password.fields.old")} 
+    placeholder="******"
+    bind:value={old_password} />
+  <InputPassword
+    label={$_("cloud.profile.password.fields.new")} 
+    placeholder="******"
+    bind:value={new_password} />
+  <InputPassword
+    label={$_("cloud.profile.password.fields.confirm")} 
+    placeholder="******"
+    bind:value={new_password_confirm} />
+  <ButtonGroup>
+    <Button on:click={updatePassword} {loading}>
+      {$_("cloud.profile.action")}
+    </Button>
+  </ButtonGroup>
 </form>
 
 <Toast bind:show={showToast} text={textToast} />
