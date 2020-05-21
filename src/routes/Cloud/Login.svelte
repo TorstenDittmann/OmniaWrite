@@ -9,6 +9,11 @@
   import cloud from "../../appwrite";
   import Alert from "../../shared/Alert.svelte";
 
+  import InputEmail from "../../components/InputEmail.svelte";
+  import InputPassword from "../../components/InputPassword.svelte";
+  import ButtonGroup from "../../components/ButtonGroup.svelte";
+  import Button from "../../components/Button.svelte";
+
   let showAlert = false;
   let showAlertText;
   let alertSuccess = false;
@@ -56,32 +61,19 @@
     <span class="lnr lnr-warning">{showAlertText}</span>
   </Alert>
   <form on:submit|preventDefault={login}>
-    <div class="field">
-      <label class="big" for="loginUser">{$_('cloud.login.email')}</label>
-      <input
-        id="loginUser"
-        type="email"
-        placeholder="john.doe@email.tld"
-        bind:value={loginUser} />
-    </div>
-    <div class="field">
-      <label class="big" for="loginPass">{$_('cloud.login.password')}</label>
-      <input
-        id="loginPass"
-        type="password"
-        autocomplete="off"
-        placeholder="******"
-        bind:value={loginPass} />
-    </div>
-    <div class="btn-group">
-      <button
-        on:click|preventDefault={login}
-        disabled={loginButtonLoading}
-        class:loading={loginButtonLoading}>
-        <span class="lnr lnr-sync spinner" />
+    <InputEmail 
+      label={$_('cloud.login.email')} 
+      placeholder="john.doe@email.tld"
+      bind:value={loginUser} />
+    <InputPassword 
+      label={$_('cloud.login.password')} 
+      placeholder="******"
+      bind:value={loginPass} />
+    <ButtonGroup>
+      <Button on:click={login} loading={loginButtonLoading}>
         {$_('cloud.login.button')}
-      </button>
-    </div>
+      </Button>
+    </ButtonGroup>
   </form>
   <small class="link" on:click={() => push('/cloud/reset-password')}>
     {$_('cloud.reset.title')}
