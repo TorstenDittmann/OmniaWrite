@@ -140,6 +140,7 @@
             "content": "Inhalt:",
             "buttonCreate": "Erstellen",
             "buttonSave": "Speichern",
+            "buttonDelete": "Löschen",
             "showInScenes": "In Szenen anzeigen"
         }
     },

@@ -6,6 +6,9 @@
   import Input from "../components/Input.svelte";
   import Textarea from "../components/Textarea.svelte";
   import Checkbox from "../components/Checkbox.svelte";
+  import ButtonGroup from "../components/ButtonGroup.svelte";
+  import Button from "../components/Button.svelte";
+
   import Placeholder from "../shared/Placeholder.svelte";
   import Modal from "../shared/Modal.svelte";
 
@@ -16,7 +19,7 @@
   let newCardObject = {
     title: "",
     content: "",
-    showTooltip: ""
+    showTooltip: false
   };
 
   let editCardObject = {
@@ -24,7 +27,7 @@
     project: null,
     title: "",
     content: "",
-    showTooltip: ""
+    showTooltip: false
   };
 
   function createCard() {
@@ -36,20 +39,17 @@
         newCardObject.showTooltip
       );
       showCreateCard = false;
-    } else {
-      window.alert("Title can't be empty.");
     }
   }
 
-  function editCard() {
+  const editCard = () => {
     if (editCardObject.title.length > 0) {
       cards.setCard(editCardObject);
       showEditCard = false;
-    } else {
-      window.alert("Title can't be empty.");
     }
   }
-  function removeCard(cardId) {
+
+  const removeCard = cardId => {
     let confirmed = confirm($_("overview.cards.confirmDelete"));
     if (confirmed == true) {
       showEditCard = false;
@@ -61,7 +61,7 @@
     ? $cards.filter(
         card =>
           card.project == $state.currentProject &&
-          (card.title.toLowerCase().startsWith(searchInput.toLowerCase()) ||
+          (card.title.toLowerCase().includes(searchInput.toLowerCase()) ||
             card.content.toLowerCase().includes(searchInput.toLowerCase()))
       )
     : $cards.filter(card => card.project == $state.currentProject);
@@ -81,59 +81,36 @@
     <Checkbox
       label={$_('cards.modal.showInScenes')}
       bind:value={newCardObject.showTooltip} />
-
-    {#if newCardObject.title.length > 0}
-      <div class="btn-group">
-        <button on:click|preventDefault={createCard}>
-          {$_('cards.modal.buttonSave')}
-        </button>
-      </div>
-    {/if}
+    <ButtonGroup>
+      <Button on:click={createCard} disabled={newCardObject.title.length === 0}>
+        {$_('cards.modal.buttonSave')}
+      </Button>
+    </ButtonGroup>
   </form>
 </Modal>
 
 <Modal bind:show={showEditCard}>
   <h2 slot="header">{$_('cards.modal.editHeader')} '{editCardObject.title}'</h2>
   <form on:submit|preventDefault={editCard}>
-    <div class="field">
-      <label for="createTitle">{$_('cards.modal.title')}</label>
-      <input
-        id="createTitle"
-        autocomplete="off"
-        placeholder="enter your title"
-        type="text"
-        bind:value={editCardObject.title} />
-    </div>
-    <div class="field">
-      <label for="createContent">{$_('cards.modal.content')}</label>
-      <textarea
-        id="createContent"
-        rows="10"
-        bind:value={editCardObject.content} />
-    </div>
-    <div class="field">
-      <label for="showTooltip">{$_('cards.modal.showInScenes')}</label>
-      <p>
-        <input
-          id="showTooltip"
-          type="checkbox"
-          bind:checked={editCardObject.showTooltip} />
-        <label for="showTooltip" />
-      </p>
-    </div>
-    <div class="btn-group">
-      {#if editCardObject.title.length > 0}
-        <button on:click|preventDefault={editCard}>
-          {$_('cards.modal.buttonSave')}
-        </button>
-      {/if}
-      <button
-        style="float: right;"
-        class="warning"
-        on:click={() => removeCard(editCardObject.id)}>
-        {$_('sidebar.modal.edit.buttonDelete')}
-      </button>
-    </div>
+    <Input
+      label={$_('cards.modal.title')}
+      bind:value={editCardObject.title}
+      autocomplete="off"
+      placeholder="enter your title" />
+    <Textarea
+      label={$_('cards.modal.content')}
+      bind:value={editCardObject.content} />
+    <Checkbox
+      label={$_('cards.modal.showInScenes')}
+      bind:value={editCardObject.showTooltip} />
+    <ButtonGroup>
+      <Button on:click={createCard} disabled={editCardObject.title.length === 0}>
+        {$_('cards.modal.buttonSave')}
+      </Button>
+      <Button on:click={() => removeCard(editCardObject.id)} color="red">
+        {$_('cards.modal.buttonDelete')}
+      </Button>
+    </ButtonGroup>
   </form>
 </Modal>
 
