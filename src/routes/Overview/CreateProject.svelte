@@ -1,18 +1,24 @@
 <script>
-  import { projects } from "../../stores";
   import { createEventDispatcher } from "svelte";
+  import { _ } from "svelte-i18n";
+
+  import { projects } from "../../stores";
 
   import Modal from "../../shared/Modal.svelte";
 
+  import Input from "../../components/Input.svelte";
+  import ButtonGroup from "../../components/ButtonGroup.svelte";
+  import Button from "../../components/Button.svelte";
+
   const dispatch = createEventDispatcher();
 
-  export let showCreateProject;
+  export let showCreateProject = false;
 
-  let createProjectInput = "";
+  let value = "";
 
-  function createProject() {
-    if (createProjectInput.length > 0) {
-      let retValue = projects.createProject(createProjectInput);
+  const createProject = () => {
+    if (value.length > 0) {
+      let retValue = projects.createProject(value);
       showCreateProject = false;
       dispatch("changeProject", {
         project: retValue
@@ -26,22 +32,19 @@
 </style>
 
 <Modal bind:show={showCreateProject}>
-  <h2 slot="header">New project</h2>
+  <h2 slot="header">
+    {$_('overview.modals.newProject.header')}
+  </h2>
   <form on:submit|preventDefault={createProject}>
-    <div class="field">
-      <label for="createProjectInput">Title:</label>
-      <input
-        bind:value={createProjectInput}
-        autocomplete="off"
-        placeholder="enter your title"
-        type="text" />
-    </div>
-
-    <hr />
-    {#if createProjectInput.length > 0}
-      <div class="btn-group">
-        <button on:click|preventDefault={createProject}>Create!</button>
-      </div>
-    {/if}
+    <Input
+      label={$_('overview.modals.newProject.title')}
+      bind:value
+      autocomplete="off"
+      placeholder="enter your title" />
+    <ButtonGroup>
+      <Button on:click={createProject} disabled={value.length === 0}>
+        {$_('overview.modals.newProject.button')}
+      </Button>
+    </ButtonGroup>
   </form>
 </Modal>
