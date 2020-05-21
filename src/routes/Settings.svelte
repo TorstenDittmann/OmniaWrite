@@ -4,6 +4,32 @@
   import { push } from "svelte-spa-router";
 
   import { settings } from "../stores";
+
+  import Select from "../components/Select.svelte";
+  import Checkbox from "../components/Checkbox.svelte";
+  import Range from "../components/Range.svelte";
+
+  $: themes = [
+    {
+      value: "dark",
+      text: $_("settings.appereance.theme.dark")
+    },
+    {
+      value: "light",
+      text: $_("settings.appereance.theme.light")
+    }
+  ];
+
+  $: languages = [
+    {
+      value: "en",
+      text: $_("settings.appereance.language.en")
+    },
+    {
+      value: "de",
+      text: $_("settings.appereance.language.de")
+    }
+  ];
 </script>
 
 <style type="text/css">
@@ -30,43 +56,28 @@
 
 <div class="settings" in:fade={{ duration: 100 }}>
   <h2>{$_("settings.appereance.title")}</h2>
-  <div class="field">
-    <label class="big" for="editTheme">
-      {$_("settings.appereance.theme.title")}
-    </label>
-    <select id="editTheme" bind:value={$settings.theme}>
-      <option value="dark">{$_("settings.appereance.theme.dark")}</option>
-      <option value="light">{$_("settings.appereance.theme.light")}</option>
-    </select>
-  </div>
-  <div class="field">
-    <label class="big" for="editLanguage">
-      {$_("settings.appereance.language.title")}
-    </label>
-    <select id="editLanguage" bind:value={$settings.language}>
-      <option value="en">{$_("settings.appereance.language.en")}</option>
-      <option value="de">{$_("settings.appereance.language.de")}</option>
-    </select>
-  </div>
+
+  <Select 
+    label={$_("settings.appereance.theme.title")} 
+    bind:value={$settings.theme} 
+    options={themes} />
+  <Select 
+    label={$_("settings.appereance.language.title")} 
+    bind:value={$settings.language} 
+    options={languages} />
 
   <h2>{$_("header.write.title")}</h2>
-  <div class="field">
-    <label class="big" for="autosave">{$_("settings.write.autosave")}</label>
-    <p>
-      <input id="autosave" type="checkbox" bind:checked={$settings.autosave} />
-      <label for="autosave" />
-    </p>
-  </div>
-  <div class="field">
-    <label class="big" for="fontSize">{$_("settings.write.fontsize")}</label>
-    <input
-      id="fontSize"
-      type="range"
-      bind:value={$settings.fontsize}
-      min=".6"
-      max="1.2"
-      step=".1" />
-  </div>
+
+  <Checkbox 
+    label={$_("settings.write.autosave")} 
+    bind:value={$settings.autosave} />
+  <Range 
+    label={$_("settings.write.fontsize")}
+    bind:value={$settings.fontsize}
+    min=".6"
+    max="1.2"
+    step=".1" />
+
   <div id="codex-editor" class="preview">
     <div class="codex-editor">
       Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy
