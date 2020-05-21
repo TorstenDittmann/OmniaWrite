@@ -17,6 +17,7 @@
     color: var(--text-color);
     -webkit-text-fill-color: var(--text-color);
     text-align: center;
+    text-align-last: center;
     border: 0;
     cursor: pointer;
   }
