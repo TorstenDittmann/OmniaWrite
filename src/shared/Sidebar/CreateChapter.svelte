@@ -5,11 +5,15 @@
   import { state, chapters } from "../../stores";
 
   import Modal from "../../shared/Modal.svelte";
+  import Input from "../../components/Input.svelte";
+  import ButtonGroup from "../../components/ButtonGroup.svelte";
+  import Button from "../../components/Button.svelte";
 
   export let show;
 
   let title = "";
-  function createChapter() {
+
+  const createChapter = () => {
     chapters.createChapter($state.currentProject, title);
     show = false;
     title = "";
@@ -23,22 +27,15 @@
 <Modal bind:show>
   <h2 slot="header">{$_("sidebar.modal.newChapter.header")}</h2>
   <form on:submit|preventDefault={createChapter}>
-    <div class="field">
-      <label for="createChapterInput">{$_("sidebar.modal.title")}</label>
-      <input
-        id="createChapterInput"
-        bind:value={title}
-        autocomplete="off"
-        placeholder="enter your title"
-        type="text" />
-    </div>
-    <hr />
-    <div class="btn-group">
-      {#if title.length > 0}
-        <button on:click|preventDefault={createChapter}>
-          {$_("sidebar.modal.newChapter.button")}
-        </button>
-      {/if}
-    </div>
+    <Input 
+      label={$_("sidebar.modal.title")} 
+      bind:value={title} 
+      autocomplete="off"
+      placeholder="enter your title" />
+    <ButtonGroup>
+      <Button on:click={createChapter} disabled={title.length === 0}>
+        {$_("sidebar.modal.newChapter.button")}
+      </Button>
+    </ButtonGroup>
   </form>
 </Modal>

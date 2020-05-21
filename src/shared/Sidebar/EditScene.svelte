@@ -6,16 +6,19 @@
   import { state, scenes } from "../../stores";
 
   import Modal from "../../shared/Modal.svelte";
+  import Input from "../../components/Input.svelte";
+  import ButtonGroup from "../../components/ButtonGroup.svelte";
+  import Button from "../../components/Button.svelte";
 
   export let show;
   export let data;
 
-  function editScene() {
+  const editScene = () => {
     scenes.setSceneTitle(data.id, data.title);
     show = false;
   }
 
-  function removeScene(sceneId) {
+  const removeScene = sceneId => {
     let confirmed = confirm($_("sidebar.delete.scene"));
     if (confirmed == true) {
       show = false;
@@ -32,28 +35,19 @@
 <Modal bind:show>
   <h2 slot="header">{data.title}</h2>
   <form on:submit|preventDefault={editScene}>
-    <div class="field">
-      <label for="editChapterInput">{$_("sidebar.modal.title")}</label>
-      <input
-        id="editChapterInput"
-        bind:value={data.title}
-        autocomplete="off"
-        placeholder="enter your title"
-        type="text" />
-    </div>
-    <br />
-    <div class="btn-group">
-      {#if data.title.length > 0}
-        <button on:click={editScene} type="submit">
-          {$_("sidebar.modal.edit.buttonSave")}
-        </button>
-      {/if}
-      <button
-        style="float: right;"
-        class="warning"
-        on:click={() => removeScene(data.id)}>
+    <Input
+      label={$_('sidebar.modal.title')}
+      bind:value={data.title}
+      autocomplete="off"
+      placeholder="enter your title" />
+
+    <ButtonGroup>
+      <Button on:click={editScene} disabled={data.title.length === 0}>
+        {$_("sidebar.modal.edit.buttonSave")}
+      </Button>
+      <Button on:click={() => removeScene(data.id)} color="red">
         {$_("sidebar.modal.edit.buttonDelete")}
-      </button>
-    </div>
+      </Button>
+    </ButtonGroup>
   </form>
 </Modal>
