@@ -239,6 +239,13 @@
         "projects": {
             "title": "Projekte",
             "opened": "geöffnet"
+        },
+        "modals": {
+            "newProject": {
+                "header": "Neues Projekt",
+                "title": "Titel:",
+                "button": "Erstellen!"
+            }
         }
     },
     "feedback": {
