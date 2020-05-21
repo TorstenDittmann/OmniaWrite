@@ -18,6 +18,7 @@ export let disabled = false;
     height: 2rem;
     width: -webkit-fill-available;
     min-width: 4rem;
+    max-width: 12rem;
   }
 
   button:hover {
@@ -60,7 +61,7 @@ export let disabled = false;
 </style>
 
 <button 
-  {disabled}
+  disabled={disabled || loading}
   class:loading
   class:green={color == "green"}
   class:red={color == "red"}
