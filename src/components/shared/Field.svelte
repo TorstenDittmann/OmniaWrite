@@ -5,8 +5,9 @@
 
 <style>
   div {
-    margin: 1.5rem 0;
+    margin: 0.5rem 0;
   }
+
   @media (min-width: 960px) {
     .field {
       display: flex;
@@ -15,11 +16,15 @@
       justify-content: center;
       margin: 1rem 0;
     }
+
     label {
-      flex: 0 1 8rem;
+      text-align: left;
+      font-weight: bold;
+      flex: 0 1 10rem;
     }
+
     div {
-      flex: 0 1 20rem;
+      flex: 0 1 12rem;
     }
   }
 </style>

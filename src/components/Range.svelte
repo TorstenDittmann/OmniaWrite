@@ -12,15 +12,11 @@
 </script>
 
 <style>
-
+  input {
+    width: 100%;
+  }
 </style>
 
 <Field bind:id bind:label>
-  <input
-    {id}
-    {min}
-    {max}
-    {step}
-    type="range"
-    bind:value />
+  <input {id} {min} {max} {step} type="range" bind:value />
 </Field>

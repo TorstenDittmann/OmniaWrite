@@ -49,11 +49,5 @@
 </style>
 
 <Field bind:id bind:label>
-  <input
-    {id}
-    {autocomplete}
-    {placeholder}
-    {required}
-    type="text"
-    bind:value />
+  <input {id} {autocomplete} {placeholder} {required} type="text" bind:value />
 </Field>
