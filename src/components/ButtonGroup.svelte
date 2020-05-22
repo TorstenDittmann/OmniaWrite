@@ -1,7 +1,3 @@
-<script>
-
-</script>
-
 <style>
   div.button-group {
     margin: 1rem;
