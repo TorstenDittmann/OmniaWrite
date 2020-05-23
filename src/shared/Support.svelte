@@ -54,12 +54,6 @@
       <ButtonGroup>
         <Button on:click={send} {loading}>{$_('feedback.action')}</Button>
       </ButtonGroup>
-      <div class="btn-group">
-        <button on:click|preventDefault={send}>
-          <span class="lnr lnr-sync spinner" />
-          {$_('feedback.action')}
-        </button>
-      </div>
     </form>
   {:else}
     <center>
