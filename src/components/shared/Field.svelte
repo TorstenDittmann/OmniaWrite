@@ -6,6 +6,11 @@
 <style>
   div {
     margin: 0.5rem 0;
+    text-align: left;
+  }
+  label {
+    text-align: left;
+    font-weight: bold;
   }
 
   @media (min-width: 960px) {
@@ -18,8 +23,6 @@
     }
 
     label {
-      text-align: left;
-      font-weight: bold;
       flex: 0 1 10rem;
     }
 
@@ -30,7 +33,9 @@
 </style>
 
 <div class="field">
-  <label for={id}>{label}</label>
+  {#if label}
+    <label for={id}>{label}</label>
+  {/if}
   <div>
     <slot />
   </div>

@@ -17,6 +17,11 @@
     border: 1px solid #999;
     color: var(--text-color);
     border-radius: 0.125rem;
+    font-size: 0.8rem;
+    opacity: 0.65;
+  }
+  textarea:focus {
+    opacity: 1;
   }
 </style>
 
