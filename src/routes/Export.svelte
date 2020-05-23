@@ -10,20 +10,24 @@
   import Spinner from "../shared/Spinner.svelte";
   import Export from "./Export/Cloud/index";
 
+  import Input from "../components/Input.svelte";
+  import Select from "../components/Select.svelte";
+  import File from "../components/File.svelte";
+
   let form = {
     title: "",
     author: "",
     description: "",
     publisher: "",
     lang: "en",
-    template: "epub3"
+    template: "epub3",
   };
 
   let cover = [];
 
   let progress = {
     active: false,
-    state: "..."
+    state: "...",
   };
 
   let completeForm = false;
@@ -31,12 +35,23 @@
   const templates = [
     {
       id: "epub3",
-      name: "Simple"
+      name: "Simple",
     },
     {
       id: "scifi",
-      name: "Science Fiction"
-    }
+      name: "Science Fiction",
+    },
+  ];
+
+  const languages = [
+    {
+      value: "en",
+      text: $_("settings.appereance.language.en"),
+    },
+    {
+      value: "de",
+      text: $_("settings.appereance.language.de"),
+    },
   ];
 
   const checkForm = () =>
@@ -48,12 +63,12 @@
     form.template !== "" &&
     cover.length !== 0;
 
-  const getBase64 = file =>
+  const getBase64 = (file) =>
     new Promise((resolve, reject) => {
       const reader = new FileReader();
       reader.readAsDataURL(file);
       reader.onload = () => resolve(reader.result);
-      reader.onerror = error => reject(error);
+      reader.onerror = (error) => reject(error);
     });
 
   const download = async () => {
@@ -67,40 +82,37 @@
     let generateDownload = new Export($state.currentProject);
     generateDownload
       .fetchTemplate()
-      .then(data => {
+      .then((data) => {
         let filename;
         progress.state = "sending data to server";
-        fetch(
-          "https://omniawrite-git-cloud-export.torstendittmann.now.sh/api/export",
-          {
-            method: "POST",
-            mode: "same-origin",
-            cache: "no-cache",
-            headers: {
-              "Content-Type": "application/json"
+        fetch("https://omniawrite-git-11.torstendittmann.now.sh/api/export", {
+          method: "POST",
+          mode: "same-origin",
+          cache: "no-cache",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            ...form,
+            data: data,
+            cover: {
+              extension: file.substring(
+                "data:image/".length,
+                file.indexOf(";base64")
+              ),
+              type: file.substring("data:".length, file.indexOf(";base64")),
+              data: file.replace(/^data:image.+;base64,/, ""),
             },
-            body: JSON.stringify({
-              ...form,
-              data: data,
-              cover: {
-                extension: file.substring(
-                  "data:image/".length,
-                  file.indexOf(";base64")
-                ),
-                type: file.substring("data:".length, file.indexOf(";base64")),
-                data: file.replace(/^data:image.+;base64,/, "")
-              }
-            })
-          }
-        )
-          .then(response => {
+          }),
+        })
+          .then((response) => {
             progress.state = "receiving data from server";
             filename = response.headers
               .get("Content-Disposition")
               .split('"')[1];
             return response.blob();
           })
-          .then(blob => {
+          .then((blob) => {
             progress.state = "preparing epub";
             saveAs.saveAs(blob, filename + ".epub");
             progress.active = false;
@@ -135,9 +147,9 @@
   @media (min-width: 960px) {
     .export-container {
       margin: auto;
-      max-width: 800px;
+      max-width: 960px;
       display: grid;
-      grid-template-columns: 1fr 4fr;
+      grid-template-columns: 2fr 3fr;
       grid-template-rows: 4rem auto;
       grid-template-areas:
         "export-header export-header"
@@ -187,53 +199,27 @@
       </div>
     </div>
     <div class="sidebar">
-      <div class="field vertical">
-        <label class="big" for="title">{$_('export.title')}</label>
-        <input
-          id="title"
-          type="text"
-          placeholder="Moby Dick"
-          bind:value={form.title}
-          autocomplete="off" />
-      </div>
-      <div class="field vertical">
-        <label class="big" for="author">{$_('export.author')}</label>
-        <input
-          id="author"
-          type="text"
-          placeholder="John Doe"
-          bind:value={form.author}
-          autocomplete="off" />
-      </div>
-      <div class="field vertical">
-        <label class="big" for="publisher">{$_('export.publisher')}</label>
-        <input
-          id="publisher"
-          type="text"
-          placeholder="OmniaWrite"
-          bind:value={form.publisher}
-          autocomplete="off" />
-      </div>
-      <div class="field vertical">
-        <label class="big" for="language">{$_('export.language')}</label>
-        <select id="language" bind:value={form.lang}>
-          <option value="en">{$_('settings.appereance.language.en')}</option>
-          <option value="de">{$_('settings.appereance.language.de')}</option>
-        </select>
-      </div>
-      <div class="field vertical">
-        <label class="big" for="description">{$_('export.description')}</label>
-        <input
-          id="description"
-          type="text"
-          placeholder="John Doe"
-          bind:value={form.description}
-          autocomplete="off" />
-      </div>
-      <div class="field vertical">
-        <label class="big" for="cover">{$_('export.cover')}</label>
-        <input id="cover" bind:files={cover} type="file" />
-      </div>
+      <Input
+        label={$_('export.title')}
+        placeholder="Moby Dick"
+        bind:value={form.title} />
+      <Input
+        label={$_('export.author')}
+        placeholder="John Doe"
+        bind:value={form.author} />
+      <Input
+        label={$_('export.publisher')}
+        placeholder="OmniaWrite"
+        bind:value={form.publisher} />
+      <Select
+        label={$_('export.language')}
+        bind:value={form.lang}
+        options={languages} />
+      <Input
+        label={$_('export.description')}
+        placeholder="This book is awesome..."
+        bind:value={form.description} />
+      <File label={$_('export.cover')} bind:files={cover} />
     </div>
     <div class="templates">
       <div id="cards" class="grid">
