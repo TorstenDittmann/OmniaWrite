@@ -11,6 +11,7 @@
 
   import Placeholder from "../shared/Placeholder.svelte";
   import Modal from "../shared/Modal.svelte";
+  import Search from "../components/Search.svelte";
 
   let showCreateCard = false;
   let showEditCard = false;
@@ -19,7 +20,7 @@
   let newCardObject = {
     title: "",
     content: "",
-    showTooltip: false
+    showTooltip: false,
   };
 
   let editCardObject = {
@@ -27,7 +28,7 @@
     project: null,
     title: "",
     content: "",
-    showTooltip: false
+    showTooltip: false,
   };
 
   function createCard() {
@@ -47,24 +48,24 @@
       cards.setCard(editCardObject);
       showEditCard = false;
     }
-  }
+  };
 
-  const removeCard = cardId => {
+  const removeCard = (cardId) => {
     let confirmed = confirm($_("overview.cards.confirmDelete"));
     if (confirmed == true) {
       showEditCard = false;
       cards.removeCard(cardId);
     }
-  }
+  };
 
   $: filteredCards = searchInput
     ? $cards.filter(
-        card =>
+        (card) =>
           card.project == $state.currentProject &&
           (card.title.toLowerCase().includes(searchInput.toLowerCase()) ||
             card.content.toLowerCase().includes(searchInput.toLowerCase()))
       )
-    : $cards.filter(card => card.project == $state.currentProject);
+    : $cards.filter((card) => card.project == $state.currentProject);
 </script>
 
 <Modal bind:show={showCreateCard}>
@@ -104,7 +105,9 @@
       label={$_('cards.modal.showInScenes')}
       bind:value={editCardObject.showTooltip} />
     <ButtonGroup>
-      <Button on:click={createCard} disabled={editCardObject.title.length === 0}>
+      <Button
+        on:click={createCard}
+        disabled={editCardObject.title.length === 0}>
         {$_('cards.modal.buttonSave')}
       </Button>
       <Button on:click={() => removeCard(editCardObject.id)} color="red">
@@ -116,13 +119,10 @@
 
 <div in:fade={{ duration: 100 }}>
   {#if $state.currentProject}
-    <div class="field">
-      <input
-        autocomplete="off"
-        placeholder={$_('cards.search')}
-        type="search"
-        bind:value={searchInput} />
-    </div>
+    <Search
+      placeholder={$_('cards.search')}
+      bind:value={searchInput}
+      autocomplete="off" />
     <div id="cards" class="grid">
       <div class="new" on:click={() => (showCreateCard = true)}>
         <span class="lnr lnr-plus-circle" />

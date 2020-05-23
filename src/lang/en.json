@@ -252,6 +252,7 @@
         "title": "Support & Feedback",
         "sub": "Your feedback, including error reports, improvement suggestions, new featurerequests and any other things you might have to say is welcome.",
         "email": "E-Mail",
+        "description": "Description",
         "action": "Submit",
         "success": "Submitted!"
     }
