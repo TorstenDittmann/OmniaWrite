@@ -2,9 +2,8 @@
     "recommendations": [
         "dbaeumer.vscode-eslint",
         "Equinusocio.vsc-material-theme",
-        "JamesBirtles.svelte-vscode",
+        "svelte.svelte-vscode",
         "PKief.material-icon-theme",
-        "samundrak.esdoc-mdn",
         "tabnine.tabnine-vscode"
     ]
 }
