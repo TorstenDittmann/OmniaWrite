@@ -13,6 +13,8 @@
   import Input from "../components/Input.svelte";
   import Select from "../components/Select.svelte";
   import File from "../components/File.svelte";
+  import ButtonGroup from "../components/ButtonGroup.svelte";
+  import Button from "../components/Button.svelte";
 
   let form = {
     title: "",
@@ -22,6 +24,8 @@
     lang: "en",
     template: "epub3",
   };
+
+  let selectTemplate = false;
 
   let cover = [];
 
@@ -124,63 +128,6 @@
   };
 </script>
 
-<style type="text/css">
-  .header,
-  .sidebar {
-    background-color: var(--background-color);
-  }
-  .header {
-    top: 0;
-    padding: 0.5rem 0;
-    position: sticky;
-    z-index: 2;
-  }
-
-  .btn-group {
-    margin: 0;
-  }
-
-  .templates {
-    grid-area: export-templates;
-  }
-
-  @media (min-width: 960px) {
-    .export-container {
-      margin: auto;
-      max-width: 960px;
-      display: grid;
-      grid-template-columns: 2fr 3fr;
-      grid-template-rows: 4rem auto;
-      grid-template-areas:
-        "export-header export-header"
-        "export-sidebar export-templates";
-    }
-
-    .header {
-      grid-area: export-header;
-      position: sticky;
-      top: 0;
-      display: flex;
-      flex-direction: row-reverse;
-    }
-
-    .sidebar {
-      grid-area: export-sidebar;
-      position: sticky;
-      top: 4rem;
-      height: fit-content;
-    }
-
-    .export-action {
-      margin: auto 0;
-    }
-
-    .btn-group button {
-      width: 100%;
-    }
-  }
-</style>
-
 <Toast bind:show={completeForm} text={$_('export.form')} />
 <Modal bind:show={progress.active}>
   <center>
@@ -189,56 +136,54 @@
     <i>{progress.state}</i>
   </center>
 </Modal>
-<div class="export-container" in:fade={{ duration: 100 }}>
+<Modal bind:show={selectTemplate}>
+  <h2>{$_('export.templates')}</h2>
+  <div id="cards" class="grid">
+    {#each templates as template}
+      <div id="card" on:click={() => (form.template = template.id)}>
+        <h2>
+          {#if form.template === template.id}
+            <span class="lnr lnr-checkmark-circle" />
+          {/if}
+          {template.name}
+        </h2>
+        <small>...</small>
+      </div>
+    {/each}
+  </div>
+</Modal>
+<div in:fade={{ duration: 100 }}>
   {#if $state.currentProject}
-    <div class="header">
-      <div class="btn-group export-action">
-        <button on:click|preventDefault={download}>
-          {$_('export.action')}
-        </button>
-      </div>
-    </div>
-    <div class="sidebar">
-      <Input
-        label={$_('export.title')}
-        placeholder="Moby Dick"
-        bind:value={form.title} />
-      <Input
-        label={$_('export.author')}
-        placeholder="John Doe"
-        bind:value={form.author} />
-      <Input
-        label={$_('export.publisher')}
-        placeholder="OmniaWrite"
-        bind:value={form.publisher} />
-      <Select
-        label={$_('export.language')}
-        bind:value={form.lang}
-        options={languages} />
-      <Input
-        label={$_('export.description')}
-        placeholder="This book is awesome..."
-        bind:value={form.description} />
-      <File label={$_('export.cover')} bind:files={cover} />
-    </div>
-    <div class="templates">
-      <div id="cards" class="grid">
-        {#each templates as template}
-          <div id="card" on:click={() => (form.template = template.id)}>
-            <h2>
-              {#if form.template === template.id}
-                <span class="lnr lnr-checkmark-circle" />
-              {/if}
-              {template.name}
-            </h2>
-            <small>...</small>
-          </div>
-        {/each}
-        <div id="card">
-          <small>more coming soon</small>
-        </div>
-      </div>
-    </div>
+    <ButtonGroup>
+      <Button on:click={() => (selectTemplate = true)}>
+        {$_('export.selectTemplate')}
+      </Button>
+    </ButtonGroup>
+    <hr />
+    <Input
+      label={$_('export.title')}
+      placeholder="Moby Dick"
+      bind:value={form.title} />
+    <Input
+      label={$_('export.author')}
+      placeholder="John Doe"
+      bind:value={form.author} />
+    <Input
+      label={$_('export.publisher')}
+      placeholder="OmniaWrite"
+      bind:value={form.publisher} />
+    <Select
+      label={$_('export.language')}
+      bind:value={form.lang}
+      options={languages} />
+    <Input
+      label={$_('export.description')}
+      placeholder="This book is awesome..."
+      bind:value={form.description} />
+    <File label={$_('export.cover')} bind:files={cover} />
+    <ButtonGroup>
+      <Button on:click={download}>{$_('export.action')}</Button>
+    </ButtonGroup>
   {:else}
     <Placeholder />
   {/if}
