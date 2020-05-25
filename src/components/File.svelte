@@ -7,6 +7,7 @@
 
   export let files;
 
+  export let helper;
   export let required = false;
 </script>
 
@@ -47,6 +48,6 @@
   }
 </style>
 
-<Field bind:id bind:label>
+<Field bind:id bind:label bind:helper>
   <input {id} {required} type="file" bind:files />
 </Field>

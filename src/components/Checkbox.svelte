@@ -6,6 +6,7 @@
   export let id = label + getRandomNumber();
 
   export let value;
+  export let helper;
 </script>
 
 <style>
@@ -74,7 +75,7 @@
   }
 </style>
 
-<Field bind:id bind:label>
+<Field bind:id bind:label bind:helper>
   <input {id} type="checkbox" bind:checked={value} />
   <label for={id} />
 </Field>
