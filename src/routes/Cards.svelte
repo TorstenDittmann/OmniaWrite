@@ -75,13 +75,16 @@
       label={$_('cards.modal.title')}
       bind:value={newCardObject.title}
       autocomplete="off"
-      placeholder="enter your title" />
+      placeholder="enter your title"
+      helper={$_('cards.modal.helper.title')} />
     <Textarea
       label={$_('cards.modal.content')}
-      bind:value={newCardObject.content} />
+      bind:value={newCardObject.content}
+      helper={$_('cards.modal.helper.content')} />
     <Checkbox
       label={$_('cards.modal.showInScenes')}
-      bind:value={newCardObject.showTooltip} />
+      bind:value={newCardObject.showTooltip}
+      helper={$_('cards.modal.helper.tooltip')} />
     <ButtonGroup>
       <Button on:click={createCard} disabled={newCardObject.title.length === 0}>
         {$_('cards.modal.buttonSave')}
@@ -97,17 +100,18 @@
       label={$_('cards.modal.title')}
       bind:value={editCardObject.title}
       autocomplete="off"
-      placeholder="enter your title" />
+      placeholder="enter your title"
+      helper={$_('cards.modal.helper.title')} />
     <Textarea
       label={$_('cards.modal.content')}
-      bind:value={editCardObject.content} />
+      bind:value={editCardObject.content}
+      helper={$_('cards.modal.helper.content')} />
     <Checkbox
       label={$_('cards.modal.showInScenes')}
-      bind:value={editCardObject.showTooltip} />
+      bind:value={editCardObject.showTooltip}
+      helper={$_('cards.modal.helper.tooltip')} />
     <ButtonGroup>
-      <Button
-        on:click={createCard}
-        disabled={editCardObject.title.length === 0}>
+      <Button on:click={editCard} disabled={editCardObject.title.length === 0}>
         {$_('cards.modal.buttonSave')}
       </Button>
       <Button on:click={() => removeCard(editCardObject.id)} color="red">

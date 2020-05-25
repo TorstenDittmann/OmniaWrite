@@ -22,7 +22,7 @@
     description: "",
     publisher: "",
     lang: "en",
-    template: "epub3",
+    template: "",
   };
 
   let selectTemplate = false;
@@ -158,29 +158,48 @@
       <Button on:click={() => (selectTemplate = true)}>
         {$_('export.selectTemplate')}
       </Button>
+      {#if form.template !== ''}
+        <Button on:click={() => (selectTemplate = '')} color="red">
+          {$_('export.removeTemplate')}
+        </Button>
+      {/if}
     </ButtonGroup>
     <hr />
     <Input
       label={$_('export.title')}
       placeholder="Moby Dick"
-      bind:value={form.title} />
+      bind:value={form.title}
+      required="true"
+      helper={$_('export.helpers.title')} />
     <Input
       label={$_('export.author')}
       placeholder="John Doe"
-      bind:value={form.author} />
+      bind:value={form.author}
+      required="true"
+      helper={$_('export.helpers.author')} />
     <Input
       label={$_('export.publisher')}
       placeholder="OmniaWrite"
-      bind:value={form.publisher} />
+      bind:value={form.publisher}
+      required="true"
+      helper={$_('export.helpers.publisher')} />
     <Select
       label={$_('export.language')}
       bind:value={form.lang}
-      options={languages} />
+      options={languages}
+      required="true"
+      helper={$_('export.helpers.language')} />
     <Input
       label={$_('export.description')}
       placeholder="This book is awesome..."
-      bind:value={form.description} />
-    <File label={$_('export.cover')} bind:files={cover} />
+      bind:value={form.description}
+      required="true"
+      helper={$_('export.helpers.description')} />
+    <File
+      label={$_('export.cover')}
+      bind:files={cover}
+      required="true"
+      helper={$_('export.helpers.cover')} />
     <ButtonGroup>
       <Button on:click={download}>{$_('export.action')}</Button>
     </ButtonGroup>
