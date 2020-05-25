@@ -3,12 +3,18 @@
   import { state, projects, chapters, scenes, settings } from "../stores";
   import { deskgap } from "../utils";
   import { _ } from "svelte-i18n";
+  import moment from "moment";
+  import "moment/locale/de";
 
   import CreateProject from "./Overview/CreateProject.svelte";
   import ProjectOverview from "./Overview/Project.svelte";
   import Modal from "../shared/Modal.svelte";
-  import moment from "moment";
-  import "moment/locale/de";
+
+  import Input from "../components/Input.svelte";
+  import ButtonGroup from "../components/ButtonGroup.svelte";
+  import Button from "../components/Button.svelte";
+
+  // TODO Edit project is broken!
 
   moment.locale($settings.language);
 
@@ -87,25 +93,20 @@
       Edit project
     </h3>
     <Modal bind:show={showEditProject}>
-      <div class="field">
-        <label class="big" for="author">{$_('overview.project.title')}:</label>
-        <input
-          id="newProjectTitle"
-          type="text"
-          autocomplete="off"
-          bind:value={project.title} />
-      </div>
-      <div class="btn-group">
-        <button on:click={() => setProjectTitle(project.id)}>
+      <Input
+        label={$_('overview.project.title')}
+        value={project.title}
+        autofocus="true"
+        autocomplete="off"
+        placeholder="enter your title" />
+      <ButtonGroup>
+        <Button on:click={() => setProjectTitle(project.id)} disabled={project.title.length === 0}>
           {$_('overview.project.save')}
-        </button>
-        <button
-          on:click={() => removeProject(project.id)}
-          style="float: right;"
-          class="warning">
+        </Button>
+        <Button on:click={() => removeProject(project.id)} color="red">
           {$_('overview.project.delete')}
-        </button>
-      </div>
+        </Button>
+      </ButtonGroup>
     </Modal>
   {/each}
   <h1>{$_('overview.projects.title')}</h1>
