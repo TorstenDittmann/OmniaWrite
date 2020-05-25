@@ -19,11 +19,8 @@
     "^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})"
   );
 
-  $: strength = regexMedium.test(value)
-    ? regexStrong.test(value)
-      ? "strong"
-      : "medium"
-    : "weak";
+  $: passwordIsMedium = regexMedium.test(value);
+  $: passwordIsStrong = regexStrong.test(value);
 </script>
 
 <style>
@@ -48,23 +45,56 @@
     background: linear-gradient(
         to bottom,
         transparent 95%,
-        var(--input-border-color) 95%
+        green 95%
       )
       no-repeat;
     background-size: 0 100%;
     transition: background-size 0.2s ease;
   }
 
-  input:focus {
-    border-bottom: 1px solid var(--input-border-color);
+  input.strong {
+    background: linear-gradient(
+      to bottom,
+      transparent 95%,
+      green 95%
+    )
+    no-repeat;
+    border-bottom: 1px solid green;
     background-size: 100% 100%;
+    outline: 0;
+    opacity: 1;
+  }
+
+  input.medium {
+    background: linear-gradient(
+      to bottom,
+      transparent 95%,
+      blue 95%
+    )
+    no-repeat;
+    background-size: 50% 100%;
+    outline: 0;
+    opacity: 1;
+  }
+
+  input.weak {
+    background: linear-gradient(
+      to bottom,
+      transparent 95%,
+      red 95%
+    )
+    no-repeat;
+    background-size: 25% 100%;
     outline: 0;
     opacity: 1;
   }
 </style>
 
-<Field bind:id bind:label helper={$_('component.password.' + strength)}>
+<Field bind:id bind:label>
   <input
+    class:weak={value.length > 0 && !passwordIsMedium}
+    class:medium={value.length > 0 && passwordIsMedium && !passwordIsStrong}
+    class:strong={value.length > 0 && passwordIsStrong}
     {id}
     {placeholder}
     {autocomplete}
