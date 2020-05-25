@@ -74,6 +74,7 @@
     <Input
       label={$_('cards.modal.title')}
       bind:value={newCardObject.title}
+      autofocus="true"
       autocomplete="off"
       placeholder="enter your title"
       helper={$_('cards.modal.helper.title')} />

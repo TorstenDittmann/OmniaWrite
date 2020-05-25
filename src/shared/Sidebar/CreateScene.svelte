@@ -31,6 +31,7 @@
     <Input 
       label={$_("sidebar.modal.title")} 
       bind:value={title} 
+      autofocus="true"
       autocomplete="off"
       placeholder="enter your title" />
     <ButtonGroup>
