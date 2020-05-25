@@ -61,26 +61,26 @@
     label={$_('settings.appereance.theme.title')}
     bind:value={$settings.theme}
     options={themes}
-    helper={$_('settings.helper.theme')} />
+    helper={$_('settings.helpers.theme')} />
   <Select
     label={$_('settings.appereance.language.title')}
     bind:value={$settings.language}
     options={languages}
-    helper={$_('settings.helper.language')} />
+    helper={$_('settings.helpers.language')} />
 
   <h2>{$_('header.write.title')}</h2>
 
   <Checkbox
     label={$_('settings.write.autosave')}
     bind:value={$settings.autosave}
-    helper={$_('settings.helper.autosave')} />
+    helper={$_('settings.helpers.autosave')} />
   <Range
     label={$_('settings.write.fontsize')}
     bind:value={$settings.fontsize}
     min=".6"
     max="1.2"
     step=".1"
-    helper={$_('settings.helper.fontsize')} />
+    helper={$_('settings.helpers.fontsize')} />
 
   <div id="codex-editor" class="preview">
     <div class="codex-editor">
