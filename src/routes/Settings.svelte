@@ -12,23 +12,23 @@
   $: themes = [
     {
       value: "dark",
-      text: $_("settings.appereance.theme.dark")
+      text: $_("settings.appereance.theme.dark"),
     },
     {
       value: "light",
-      text: $_("settings.appereance.theme.light")
-    }
+      text: $_("settings.appereance.theme.light"),
+    },
   ];
 
   $: languages = [
     {
       value: "en",
-      text: $_("settings.appereance.language.en")
+      text: $_("settings.appereance.language.en"),
     },
     {
       value: "de",
-      text: $_("settings.appereance.language.de")
-    }
+      text: $_("settings.appereance.language.de"),
+    },
   ];
 </script>
 
@@ -55,28 +55,32 @@
 </style>
 
 <div class="settings" in:fade={{ duration: 100 }}>
-  <h2>{$_("settings.appereance.title")}</h2>
+  <h2>{$_('settings.appereance.title')}</h2>
 
-  <Select 
-    label={$_("settings.appereance.theme.title")} 
-    bind:value={$settings.theme} 
-    options={themes} />
-  <Select 
-    label={$_("settings.appereance.language.title")} 
-    bind:value={$settings.language} 
-    options={languages} />
+  <Select
+    label={$_('settings.appereance.theme.title')}
+    bind:value={$settings.theme}
+    options={themes}
+    helper={$_('settings.helper.theme')} />
+  <Select
+    label={$_('settings.appereance.language.title')}
+    bind:value={$settings.language}
+    options={languages}
+    helper={$_('settings.helper.language')} />
 
-  <h2>{$_("header.write.title")}</h2>
+  <h2>{$_('header.write.title')}</h2>
 
-  <Checkbox 
-    label={$_("settings.write.autosave")} 
-    bind:value={$settings.autosave} />
-  <Range 
-    label={$_("settings.write.fontsize")}
+  <Checkbox
+    label={$_('settings.write.autosave')}
+    bind:value={$settings.autosave}
+    helper={$_('settings.helper.autosave')} />
+  <Range
+    label={$_('settings.write.fontsize')}
     bind:value={$settings.fontsize}
     min=".6"
     max="1.2"
-    step=".1" />
+    step=".1"
+    helper={$_('settings.helper.fontsize')} />
 
   <div id="codex-editor" class="preview">
     <div class="codex-editor">
@@ -90,15 +94,15 @@
     </div>
   </div>
   <br />
-  <small class="link" on:click={() => push("/thirdparty")}>
-    {$_("settings.thirdparty")}
+  <small class="link" on:click={() => push('/thirdparty')}>
+    {$_('settings.thirdparty')}
   </small>
   |
-  <small class="link" on:click={() => push("/policy")}>
-    {$_("cloud.privacy.show")}
+  <small class="link" on:click={() => push('/policy')}>
+    {$_('cloud.privacy.show')}
   </small>
   |
-  <small class="link" on:click={() => push("/disclaimer")}>
-    {$_("install.disclaimer.show")}
+  <small class="link" on:click={() => push('/disclaimer')}>
+    {$_('install.disclaimer.show')}
   </small>
 </div>
