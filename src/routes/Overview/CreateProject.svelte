@@ -39,6 +39,7 @@
     <Input
       label={$_('overview.modals.newProject.title')}
       bind:value
+      autofocus="true"
       autocomplete="off"
       placeholder="enter your title" />
     <ButtonGroup>

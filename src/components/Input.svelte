@@ -1,4 +1,5 @@
 <script>
+  import { onMount } from "svelte";
   import { getRandomNumber } from "../utils";
   import Field from "./shared/Field.svelte";
 
@@ -10,6 +11,15 @@
   export let helper;
   export let autocomplete = "off";
   export let required = false;
+  export let autofocus = false;
+
+  let element;
+
+  onMount(() => {
+    if(element && autofocus) {
+      element.focus();
+    }
+  });
 </script>
 
 <style>
@@ -50,5 +60,5 @@
 </style>
 
 <Field bind:id bind:label bind:helper>
-  <input {id} {autocomplete} {placeholder} {required} type="text" bind:value />
+  <input {id} {autocomplete} {placeholder} bind:this={element} {required} type="text" bind:value />
 </Field>
