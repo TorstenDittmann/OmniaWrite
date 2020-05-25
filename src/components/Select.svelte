@@ -7,6 +7,7 @@
 
   export let value;
   export let options = [];
+  export let helper;
 </script>
 
 <style>
@@ -21,7 +22,7 @@
   }
 </style>
 
-<Field bind:id bind:label>
+<Field bind:id bind:label bind:helper>
   <select {id} bind:value>
     {#each options as option}
       <option value={option.value}>{option.text}</option>

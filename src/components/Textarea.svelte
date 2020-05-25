@@ -6,6 +6,7 @@
   export let id = label + getRandomNumber();
 
   export let value;
+  export let helper;
 </script>
 
 <style>
@@ -25,6 +26,6 @@
   }
 </style>
 
-<Field bind:id bind:label>
+<Field bind:id bind:label bind:helper>
   <textarea {id} rows="10" bind:value />
 </Field>

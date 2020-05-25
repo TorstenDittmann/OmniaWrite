@@ -9,6 +9,8 @@
   export let min;
   export let max;
   export let step;
+
+  export let helper;
 </script>
 
 <style>
@@ -17,6 +19,6 @@
   }
 </style>
 
-<Field bind:id bind:label>
+<Field bind:id bind:label bind:helper>
   <input {id} {min} {max} {step} type="range" bind:value />
 </Field>

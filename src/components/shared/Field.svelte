@@ -1,6 +1,8 @@
 <script>
   export let id;
   export let label;
+
+  export let helper;
 </script>
 
 <style>
@@ -8,6 +10,7 @@
     margin: 0.5rem 0;
     text-align: left;
   }
+
   label {
     text-align: left;
     font-weight: bold;
@@ -38,5 +41,8 @@
   {/if}
   <div>
     <slot />
+    {#if helper}
+      <small>{helper}</small>
+    {/if}
   </div>
 </div>

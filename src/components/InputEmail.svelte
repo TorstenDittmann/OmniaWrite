@@ -7,6 +7,7 @@
 
   export let value;
   export let placeholder;
+  export let helper;
   export let autocomplete = "off";
   export let required = false;
 </script>
@@ -48,6 +49,6 @@
   }
 </style>
 
-<Field bind:id bind:label>
+<Field bind:id bind:label bind:helper>
   <input {id} {autocomplete} {placeholder} {required} type="email" bind:value />
 </Field>
