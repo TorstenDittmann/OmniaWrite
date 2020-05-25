@@ -1,4 +1,6 @@
 <script>
+  import { _ } from "svelte-i18n";
+
   import { getRandomNumber } from "../utils";
   import Field from "./shared/Field.svelte";
 
@@ -9,6 +11,19 @@
   export let placeholder;
   export let autocomplete = "off";
   export let required = false;
+
+  const regexMedium = RegExp(
+    "^(((?=.*[a-z])(?=.*[A-Z]))|((?=.*[a-z])(?=.*[0-9]))|((?=.*[A-Z])(?=.*[0-9])))(?=.{6,})"
+  );
+  const regexStrong = RegExp(
+    "^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})"
+  );
+
+  $: strength = regexMedium.test(value)
+    ? regexStrong.test(value)
+      ? "strong"
+      : "medium"
+    : "weak";
 </script>
 
 <style>
@@ -48,7 +63,7 @@
   }
 </style>
 
-<Field bind:id bind:label>
+<Field bind:id bind:label helper={$_('component.password.' + strength)}>
   <input
     {id}
     {placeholder}
