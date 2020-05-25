@@ -32,7 +32,6 @@
     background: none;
   }
   input + label {
-    margin: auto;
     outline: 0;
     display: block;
     width: 3em;
