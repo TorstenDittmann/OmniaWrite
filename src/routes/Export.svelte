@@ -58,14 +58,14 @@
     },
   ];
 
-  const checkForm = () =>
+  $: checkForm = (
     form.title !== "" &&
     form.author !== "" &&
     form.description !== "" &&
     form.publisher !== "" &&
     form.lang !== "" &&
     form.template !== "" &&
-    cover.length !== 0;
+    cover.length !== 0);
 
   const getBase64 = (file) =>
     new Promise((resolve, reject) => {
@@ -76,7 +76,7 @@
     });
 
   const download = async () => {
-    if (!checkForm()) {
+    if (!checkForm) {
       completeForm = true;
       return;
     }
@@ -109,6 +109,10 @@
             },
           }),
         })
+          .catch(error => {
+            progress.active = false;
+            generateDownload = null;
+          })
           .then((response) => {
             progress.state = "receiving data from server";
             filename = response.headers
@@ -201,7 +205,7 @@
       required="true"
       helper={$_('export.helpers.cover')} />
     <ButtonGroup>
-      <Button on:click={download}>{$_('export.action')}</Button>
+      <Button on:click={download} disabled={!checkForm}>{$_('export.action')}</Button>
     </ButtonGroup>
   {:else}
     <Placeholder />
