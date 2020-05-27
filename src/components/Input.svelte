@@ -16,7 +16,7 @@
   let element;
 
   onMount(() => {
-    if(element && autofocus) {
+    if (element && autofocus) {
       element.focus();
     }
   });
@@ -60,5 +60,12 @@
 </style>
 
 <Field bind:id bind:label bind:helper>
-  <input {id} {autocomplete} {placeholder} bind:this={element} {required} type="text" bind:value />
+  <input
+    {id}
+    {autocomplete}
+    {placeholder}
+    bind:this={element}
+    {required}
+    type="text"
+    bind:value />
 </Field>

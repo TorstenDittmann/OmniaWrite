@@ -47,7 +47,6 @@
       opacity: 1;
     }
   }
-
 </style>
 
 <Field bind:id bind:label bind:helper>

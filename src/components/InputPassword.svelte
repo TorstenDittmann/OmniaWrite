@@ -42,22 +42,13 @@
     max-height: 1.2rem;
     font-size: 1rem;
     opacity: 0.65;
-    background: linear-gradient(
-        to bottom,
-        transparent 95%,
-        green 95%
-      )
-      no-repeat;
+    background: linear-gradient(to bottom, transparent 95%, green 95%) no-repeat;
     background-size: 0 100%;
     transition: background-size 0.2s ease;
 
     &.strong {
-      background: linear-gradient(
-        to bottom,
-        transparent 95%,
-        green 95%
-      )
-      no-repeat;
+      background: linear-gradient(to bottom, transparent 95%, green 95%)
+        no-repeat;
       border-bottom: 1px solid green;
       background-size: 100% 100%;
       outline: 0;
@@ -65,24 +56,15 @@
     }
 
     &.medium {
-      background: linear-gradient(
-        to bottom,
-        transparent 95%,
-        blue 95%
-      )
-      no-repeat;
+      background: linear-gradient(to bottom, transparent 95%, blue 95%)
+        no-repeat;
       background-size: 50% 100%;
       outline: 0;
       opacity: 1;
     }
 
     &.weak {
-      background: linear-gradient(
-        to bottom,
-        transparent 95%,
-        red 95%
-      )
-      no-repeat;
+      background: linear-gradient(to bottom, transparent 95%, red 95%) no-repeat;
       background-size: 25% 100%;
       outline: 0;
       opacity: 1;
