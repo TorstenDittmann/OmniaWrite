@@ -1,13 +1,14 @@
-<style>
+<style lang="scss">
   div.button-group {
     margin: 1rem;
     justify-content: center;
     display: flex;
-  }
-  div.button-group:after {
-    content: "";
-    clear: both;
-    display: table;
+
+    &:after {
+      content: "";
+      clear: both;
+      display: table;
+    }
   }
 </style>
 

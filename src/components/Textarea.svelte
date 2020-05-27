@@ -9,7 +9,7 @@
   export let helper;
 </script>
 
-<style>
+<style lang="scss">
   textarea {
     width: 100%;
     height: auto;
@@ -20,9 +20,10 @@
     border-radius: 0.125rem;
     font-size: 0.8rem;
     opacity: 0.65;
-  }
-  textarea:focus {
-    opacity: 1;
+
+    &:focus {
+      opacity: 1;
+    }
   }
 </style>
 
