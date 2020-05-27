@@ -226,7 +226,7 @@
         <span class="tooltiptext">{$_('write.toolbar.fullscreen')}</span>
       </span>-->
         {#if focusMode}
-          <select id="focusSceneSelect" on:change={switchScene}>
+          <select id="focusSceneSelect" on:blur={switchScene}>
             <option value="" selected="selected">
               {$_('write.toolbar.switchScene')}
             </option>

@@ -1,4 +1,4 @@
-<script lang="javascript">
+<script>
   import { fade } from "svelte/transition";
   import { state } from "../stores";
   import { _ } from "svelte-i18n";
@@ -122,7 +122,10 @@
           })
           .then((blob) => {
             progress.state = "preparing epub";
-            saveAs.saveAs(blob, filename + ".epub");
+            if(!filename.endsWith(".epub")) {
+              filename = `${filename}.epub`;
+            }
+            saveAs.saveAs(blob, filename);
             progress.active = false;
           });
       })
