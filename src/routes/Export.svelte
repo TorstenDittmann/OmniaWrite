@@ -58,14 +58,14 @@
     },
   ];
 
-  $: checkForm = (
+  $: checkForm =
     form.title !== "" &&
     form.author !== "" &&
     form.description !== "" &&
     form.publisher !== "" &&
     form.lang !== "" &&
     form.template !== "" &&
-    cover.length !== 0);
+    cover.length !== 0;
 
   const getBase64 = (file) =>
     new Promise((resolve, reject) => {
@@ -109,7 +109,7 @@
             },
           }),
         })
-          .catch(error => {
+          .catch((error) => {
             progress.active = false;
             generateDownload = null;
           })
@@ -122,7 +122,7 @@
           })
           .then((blob) => {
             progress.state = "preparing epub";
-            if(!filename.endsWith(".epub")) {
+            if (!filename.endsWith(".epub")) {
               filename = `${filename}.epub`;
             }
             saveAs.saveAs(blob, filename);
@@ -208,7 +208,9 @@
       required="true"
       helper={$_('export.helpers.cover')} />
     <ButtonGroup>
-      <Button on:click={download} disabled={!checkForm}>{$_('export.action')}</Button>
+      <Button on:click={download} disabled={!checkForm}>
+        {$_('export.action')}
+      </Button>
     </ButtonGroup>
   {:else}
     <Placeholder />
