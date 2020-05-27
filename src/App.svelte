@@ -45,11 +45,11 @@
     "/disclaimer": DisclaimerRoute,
 
     // Catch-all
-    "*": OverviewRoute
+    "*": OverviewRoute,
   };
 
   Sentry.init({
-    dsn: "https://23916d0950d744b49ded80f0177467a5@sentry.io/2319182"
+    dsn: "https://23916d0950d744b49ded80f0177467a5@sentry.io/2319182",
   });
 
   const wb = new Workbox("./service-worker.js");
@@ -64,7 +64,7 @@
     !isRunningElectron &&
     window.location.hostname !== "localhost"
   ) {
-    wb.addEventListener("waiting", event => {
+    wb.addEventListener("waiting", (event) => {
       updateAvailable = true;
     });
     wb.register();
@@ -74,11 +74,11 @@
    * Update app.
    */
   function updateApp() {
-    wb.addEventListener("controlling", event => {
+    wb.addEventListener("controlling", (event) => {
       deskgap.reload();
     });
     wb.messageSW({
-      type: "SKIP_WAITING"
+      type: "SKIP_WAITING",
     });
   }
 
@@ -88,7 +88,7 @@
   let mql = window.matchMedia("(max-width: 959px)");
   let sidebarState = mql.matches ? false : true;
   let navigationState = mql.matches ? false : true;
-  mql.addListener(e => {
+  mql.addListener((e) => {
     e.matches ? (navigationState = false) : (navigationState = true);
     e.matches ? (sidebarState = false) : (sidebarState = true);
   });
@@ -104,14 +104,14 @@
    * Check for login
    */
   cloud.isUserLoggedIn().then(
-    user => {
+    (user) => {
       if (user["$id"]) {
         state.setLogin(true);
       } else {
         state.setLogin(false);
       }
     },
-    err => {
+    (err) => {
       state.setLogin(false);
     }
   );
@@ -120,7 +120,7 @@
    * Check for newer backup
    */
   const checkForBackup = () => {
-    cloud.getLatestBackup().then(response => {
+    cloud.getLatestBackup().then((response) => {
       if (response.files.length > 0) {
         if ($state.lastCloudSave < response.files[0].dateCreated) {
           // TODO: Implement checking for new Cloud Backup
@@ -129,8 +129,8 @@
       }
     });
   };
-  checkForBackup();
-  setInterval(checkForBackup, 60000);
+  // checkForBackup();
+  // setInterval(checkForBackup, 60000);
 
   /**
    * Listen for settings

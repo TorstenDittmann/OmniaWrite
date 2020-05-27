@@ -30,7 +30,7 @@
     }
 
     div {
-      flex: 0 1 12rem;
+      flex: 0 1 14rem;
     }
   }
 </style>
