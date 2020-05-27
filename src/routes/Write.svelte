@@ -29,7 +29,7 @@
   let focusMode = false;
   let autosave;
 
-  $: currentScene = $scenes.filter(scene => scene.id == params.sceneId)[0];
+  $: currentScene = $scenes.filter((scene) => scene.id == params.sceneId)[0];
   $: state.setCurrentTitle(
     params.sceneId ? currentScene.title : "No scene selected!"
   );
@@ -85,23 +85,23 @@
         },
         tools: {
           quote: {
-            class: QuoteTool
+            class: QuoteTool,
           },
           paragraph: {
             class: Paragraph,
             inlineToolbar: ["bold", "italic", "quote"],
             config: {
               project: $state.currentProject,
-              cards: $cards.filter(card => {
+              cards: $cards.filter((card) => {
                 return (
                   card.project == $state.currentProject &&
                   card.showTooltip == true
                 );
-              })
-            }
-          }
+              }),
+            },
+          },
         },
-        logLevel: "ERROR"
+        logLevel: "ERROR",
       });
       editor.tools;
       lastScene = params.sceneId;
@@ -111,14 +111,14 @@
   function save(param) {
     editor
       .save()
-      .then(outputData => {
+      .then((outputData) => {
         clearTimeout(autosave);
         scenes.setSceneContent(param, outputData);
         editorChangeHappened = false;
         showToast = true;
         showToastText = $_("write.toast.saved");
       })
-      .catch(error => {
+      .catch((error) => {
         console.error("Saving failed: ", error);
       });
   }
@@ -157,15 +157,6 @@
   function switchScene(e) {
     push("/write/" + e.target.value);
     e.target.selectedIndex = 0;
-  }
-
-  function toggleFullscreen() {
-    let element = document.documentElement;
-    if (!document.fullscreen) {
-      element.webkitRequestFullscreen();
-    } else {
-      document.webkitExitFullscreen();
-    }
   }
 
   function toggleFocus() {
@@ -222,17 +213,15 @@
           class:lnr-exit={focusMode}>
           <span class="tooltiptext">{$_('write.toolbar.focus')}</span>
         </span>
-        <!--<span class="lnr lnr-frame-expand tooltip" on:click={toggleFullscreen}>
-        <span class="tooltiptext">{$_('write.toolbar.fullscreen')}</span>
-      </span>-->
         {#if focusMode}
-          <select id="focusSceneSelect" on:blur={switchScene}>
+          <!-- svelte-ignore a11y-no-onchange -->
+          <select id="focusSceneSelect" on:change={switchScene}>
             <option value="" selected="selected">
               {$_('write.toolbar.switchScene')}
             </option>
-            {#each $chapters.filter(chapter => chapter.project == $state.currentProject) as chapter, i}
+            {#each $chapters.filter((chapter) => chapter.project == $state.currentProject) as chapter, i}
               <optgroup label={chapter.title}>
-                {#each $scenes.filter(scene => scene.chapter == chapter.id) as scene}
+                {#each $scenes.filter((scene) => scene.chapter == chapter.id) as scene}
                   <option value={scene.id}>{scene.title}</option>
                 {/each}
               </optgroup>
