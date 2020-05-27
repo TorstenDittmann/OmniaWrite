@@ -23,7 +23,7 @@
   $: passwordIsStrong = regexStrong.test(value);
 </script>
 
-<style>
+<style lang="scss">
   input {
     -webkit-appearance: none;
     -moz-appearance: none;
@@ -50,43 +50,43 @@
       no-repeat;
     background-size: 0 100%;
     transition: background-size 0.2s ease;
-  }
 
-  input.strong {
-    background: linear-gradient(
-      to bottom,
-      transparent 95%,
-      green 95%
-    )
-    no-repeat;
-    border-bottom: 1px solid green;
-    background-size: 100% 100%;
-    outline: 0;
-    opacity: 1;
-  }
+    &.strong {
+      background: linear-gradient(
+        to bottom,
+        transparent 95%,
+        green 95%
+      )
+      no-repeat;
+      border-bottom: 1px solid green;
+      background-size: 100% 100%;
+      outline: 0;
+      opacity: 1;
+    }
 
-  input.medium {
-    background: linear-gradient(
-      to bottom,
-      transparent 95%,
-      blue 95%
-    )
-    no-repeat;
-    background-size: 50% 100%;
-    outline: 0;
-    opacity: 1;
-  }
+    &.medium {
+      background: linear-gradient(
+        to bottom,
+        transparent 95%,
+        blue 95%
+      )
+      no-repeat;
+      background-size: 50% 100%;
+      outline: 0;
+      opacity: 1;
+    }
 
-  input.weak {
-    background: linear-gradient(
-      to bottom,
-      transparent 95%,
-      red 95%
-    )
-    no-repeat;
-    background-size: 25% 100%;
-    outline: 0;
-    opacity: 1;
+    &.weak {
+      background: linear-gradient(
+        to bottom,
+        transparent 95%,
+        red 95%
+      )
+      no-repeat;
+      background-size: 25% 100%;
+      outline: 0;
+      opacity: 1;
+    }
   }
 </style>
 

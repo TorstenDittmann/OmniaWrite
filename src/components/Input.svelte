@@ -22,7 +22,7 @@
   });
 </script>
 
-<style>
+<style lang="scss">
   input {
     -webkit-appearance: none;
     -moz-appearance: none;
@@ -49,13 +49,13 @@
       no-repeat;
     background-size: 0 100%;
     transition: background-size 0.2s ease;
-  }
 
-  input:focus {
-    border-bottom: 1px solid var(--input-border-color);
-    background-size: 100% 100%;
-    outline: 0;
-    opacity: 1;
+    &:focus {
+      border-bottom: 1px solid var(--input-border-color);
+      background-size: 100% 100%;
+      outline: 0;
+      opacity: 1;
+    }
   }
 </style>
 

@@ -4,7 +4,7 @@
   export let disabled = false;
 </script>
 
-<style>
+<style lang="scss">
   button {
     border: 1px solid;
     padding: 0.25em 1em;
@@ -19,44 +19,46 @@
     width: -webkit-fill-available;
     min-width: 4rem;
     max-width: 12rem;
-  }
 
-  button:hover {
-    opacity: 1;
-  }
+    &:hover {
+      opacity: 1;
+    }
 
-  button:not(:last-child) {
-    border-right: none;
-  }
+    &:not(:last-child) {
+      border-right: none;
+    }
 
-  button:disabled {
-    cursor: not-allowed;
-    opacity: 0.4;
-    background-color: #313131;
-  }
+    &:disabled {
+      cursor: not-allowed;
+      opacity: 0.4;
+      background-color: #313131;
+    }
 
-  button.green {
-    border-color: #2e8500;
-    background-color: #2e8500;
-  }
+    &.green {
+      border-color: #2e8500;
+      background-color: #2e8500;
+    }
 
-  button.red {
-    border-color: #e02200;
-    background-color: #e02200;
-  }
+    &.red {
+      border-color: #e02200;
+      background-color: #e02200;
+    }
 
-  button.outline {
-    background-color: var(--background-color);
-  }
+    &.outline {
+      background-color: var(--background-color);
+    }
 
-  button > .spinner {
-    display: none;
-    -webkit-animation: spin 2s infinite linear;
-    animation: spin 2s infinite linear;
-  }
+    .spinner {
+      display: none;
+      -webkit-animation: spin 2s infinite linear;
+      animation: spin 2s infinite linear;
+    }
 
-  button.loading > .spinner {
-    display: inline-block;
+    &.loading {
+      .spinner {
+        display: inline-block;
+      }
+    }
   }
 </style>
 
