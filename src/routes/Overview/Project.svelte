@@ -24,8 +24,10 @@
                 sceneCount++;
                 if (scene.content) {
                   scene.content.blocks.forEach(block => {
-                    wordCount += block.data.text.split(" ").length;
-                    charCount += block.data.text.length;
+                    if(block.data.text) {
+                      wordCount += block.data.text.split(" ").length;
+                      charCount += block.data.text.length;
+                    }
                   });
                 }
               });
