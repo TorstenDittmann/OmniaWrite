@@ -45,6 +45,14 @@
       height: 7.5rem;
     }
   }
+
+  .link {
+    cursor: pointer;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
 </style>
 
 <Modal show="true" persistent="true">
@@ -68,6 +76,9 @@
         {$_('install.install.browser')}
       </Button>
     </ButtonGroup>
+    <small class="link" on:click={() => (showDisclaimer = true)}>
+      {$_('install.disclaimer.show')}
+    </small>
   </div>
 </Modal>
 
