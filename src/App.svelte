@@ -3,7 +3,7 @@
   import { state, projects, settings, intern } from "./stores";
   import { deskgap, isRunningElectron } from "./utils";
   import cloud from "./appwrite";
-  import { locale, _ } from "svelte-i18n";
+  import { isLoading, locale, _ } from "svelte-i18n";
 
   import Router from "svelte-spa-router";
   import * as Sentry from "@sentry/browser";
@@ -24,6 +24,7 @@
   import ThirdPartyRoute from "./shared/ThirdParty.svelte";
   import DisclaimerRoute from "./shared/Disclaimer.svelte";
   import PolicyRoute from "./routes/Cloud/Policy.svelte";
+  import Spinner from "./shared/Spinner.svelte";
 
   locale.set($settings.language);
 
@@ -145,24 +146,28 @@
   }
 </script>
 
-<div class="container">
-  <Support />
-  {#if !$intern.installed}
-    <Install />
-  {/if}
-  <HeaderComponent
-    bind:navigationState
-    on:openSidebar={() => (sidebarState = true)} />
+{#if $isLoading}
+  <Spinner />
+{:else}
+  <div class="container">
+    <Support />
+    {#if !$intern.installed}
+      <Install />
+    {/if}
+    <HeaderComponent
+      bind:navigationState
+      on:openSidebar={() => (sidebarState = true)} />
 
-  <SidebarComponent bind:sidebarState />
-  <div id="content" class="content">
-    <Toast
-      bind:show={updateAvailable}
-      text={$_('common.update-toast')}
-      on:click={updateApp}
-      duration="forever" />
-    <div class="inner">
-      <Router {routes} on:routeLoaded={routeLoaded} />
+    <SidebarComponent bind:sidebarState />
+    <div id="content" class="content">
+      <Toast
+        bind:show={updateAvailable}
+        text={$_('common.update-toast')}
+        on:click={updateApp}
+        duration="forever" />
+      <div class="inner">
+        <Router {routes} on:routeLoaded={routeLoaded} />
+      </div>
     </div>
   </div>
-</div>
+{/if}

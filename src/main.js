@@ -4,20 +4,14 @@ import "normalize.css";
 import "./css/index.scss";
 
 import App from "./App.svelte";
+import { register, init } from "svelte-i18n";
 
-import {
-	addMessages,
-	init
-} from "svelte-i18n";
-
-import en from "./lang/en.json";
-import de from "./lang/de.json";
-
-addMessages("en", en);
-addMessages("de", de);
+register("en", () => import("./lang/en.json"));
+register("de", () => import("./lang/de.json"));
 
 init({
-	fallback: "en"
+	fallbackLocale: "en",
+	initialLocale: "en"
 });
 
 Sentry.init({ dsn: "https://23916d0950d744b49ded80f0177467a5@sentry.io/2319182" });
