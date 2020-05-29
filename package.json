@@ -15,8 +15,8 @@
     "url": "https://github.com/torstendittmann/omniawrite"
   },
   "dependencies": {
-    "@torstendittmann/ebook-generator": "0.0.7",
     "node-fetch": "^2.6.0",
+    "omnia-ebook-generator": "0.0.7",
     "semver": "^7.3.2"
   },
   "devDependencies": {

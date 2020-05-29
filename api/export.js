@@ -1,5 +1,5 @@
 module.exports = (req, res) => {
-  const EBook = require("@torstendittmann/ebook-generator");
+  const EBook = require("omnia-ebook-generator");
   const ebook = new EBook(
     {
       cover: req.body.cover,
