@@ -36,6 +36,9 @@
 
   let completeForm = false;
 
+  const exportApi =
+    "https://omniawrite-git-11.torstendittmann.now.sh/api/export";
+
   const templates = [
     {
       id: "epub3",
@@ -93,7 +96,7 @@
       .then((data) => {
         let filename;
         progress.state = "sending data to server";
-        fetch("https://omniawrite-git-11.torstendittmann.now.sh/api/export", {
+        fetch(exportApi, {
           method: "POST",
           mode: "same-origin",
           cache: "no-cache",
