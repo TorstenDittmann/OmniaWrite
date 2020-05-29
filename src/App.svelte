@@ -147,7 +147,11 @@
 </script>
 
 {#if $isLoading}
-  <Spinner />
+  <div style="width: 100vw;">
+    <div style="text-align: center;">
+      <Spinner />
+    </div>
+  </div>
 {:else}
   <div class="container">
     <Support />
