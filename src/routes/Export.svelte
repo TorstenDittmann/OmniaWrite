@@ -42,6 +42,10 @@
       name: "Simple",
     },
     {
+      id: "modern",
+      name: "Modern",
+    },
+    {
       id: "scifi",
       name: "Science Fiction",
     },
