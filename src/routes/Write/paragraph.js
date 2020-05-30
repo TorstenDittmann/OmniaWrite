@@ -242,13 +242,13 @@ export class QuoteTool {
     this._state = false;
 
     this.tag = "Q";
-    this.class = "cdx-quote";
+    this.class = "cdx-quote"; //TODO implement different types of qutoes
   }
 
   render() {
     this.button = document.createElement("button");
     this.button.type = "button";
-    this.button.innerHTML = "<span class=\"lnr lnr-bubble\"></span>";
+    this.button.innerHTML = "<span style=\"margin: auto\" class=\"lnr lnr-bubble\"></span>";
     this.button.classList.add(this.api.styles.inlineToolButton);
 
     return this.button;
