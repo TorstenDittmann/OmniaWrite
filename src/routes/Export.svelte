@@ -15,6 +15,7 @@
   import File from "../components/File.svelte";
   import ButtonGroup from "../components/ButtonGroup.svelte";
   import Button from "../components/Button.svelte";
+  import Field from "../components/shared/Field.svelte";
 
   let form = {
     title: "",
@@ -137,6 +138,7 @@
           });
       })
       .finally(() => {
+        progress.active = false;
         generateDownload = null;
       });
   };
@@ -154,7 +156,8 @@
   <h2>{$_('export.templates')}</h2>
   <div id="cards" class="grid">
     {#each templates as template}
-      <div id="card" on:click={() => (form.template = template.id)}>
+      <div
+        on:click={() => ([form.template, selectTemplate] = [template.id, false])}>
         <h2>
           {#if form.template === template.id}
             <span class="lnr lnr-checkmark-circle" />
@@ -168,17 +171,18 @@
 </Modal>
 <div in:fade={{ duration: 100 }}>
   {#if $state.currentProject}
-    <ButtonGroup>
-      <Button on:click={() => (selectTemplate = true)}>
-        {$_('export.selectTemplate')}
-      </Button>
-      {#if form.template !== ''}
-        <Button on:click={() => (selectTemplate = '')} color="red">
-          {$_('export.removeTemplate')}
+    <Field label={$_('export.template')}>
+      <ButtonGroup>
+        <Button on:click={() => (selectTemplate = true)}>
+          {#if form.template !== ''}
+            <span class="lnr lnr-checkmark-circle" />
+            {#each templates.filter((t) => t.id === form.template) as template}
+              {template.name}
+            {/each}
+          {:else}{$_('export.action.choose')}{/if}
         </Button>
-      {/if}
-    </ButtonGroup>
-    <hr />
+      </ButtonGroup>
+    </Field>
     <Input
       label={$_('export.title')}
       placeholder="Moby Dick"
@@ -216,7 +220,7 @@
       helper={$_('export.helpers.cover')} />
     <ButtonGroup>
       <Button on:click={download} disabled={!checkForm}>
-        {$_('export.action')}
+        {$_('export.action.export')}
       </Button>
     </ButtonGroup>
   {:else}

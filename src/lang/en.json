@@ -145,14 +145,26 @@
         }
     },
     "export": {
+        "template": "Template",
         "title": "Title",
         "publisher": "Publisher",
         "author": "Author",
         "language": "Language",
         "description": "Description",
         "cover": "Cover",
-        "action": "Export",
-        "form": "Please complete all fields."
+        "form": "Please complete all fields.",
+        "action": {
+            "choose": "Choose",
+            "export": "Export"
+        },
+        "helpers": {
+            "title": "Title for the book",
+            "author": "Listed author for the book",
+            "publisher": "Your publisher for the book",
+            "language": "The language of the book",
+            "description": "Short description of the book",
+            "cover": "The cover for the book"
+        }
     },
     "sidebar": {
         "createScene": "New Scene",

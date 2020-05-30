@@ -145,14 +145,26 @@
         }
     },
     "export": {
-        "title": {
-            "rtf": "RTF",
-            "epub": "EPUB"
+        "template": "Vorlage",
+        "title": "Titel",
+        "publisher": "Verlag",
+        "author": "Autor",
+        "language": "Sprache",
+        "description": "Beschreibung",
+        "cover": "Cover",
+        "form": "Bitte alle Felder ausfüllen.",
+        "action": {
+            "choose": "Auswählen",
+            "export": "Exportieren"
         },
-        "author": "Autor:",
-        "cover": "Cover:",
-        "downloadEpub": "Download als EPUB",
-        "downloadRtf": "Download als RTF"
+        "helpers": {
+            "title": "Title des Buches",
+            "author": "Gelisteter Autor des Buches",
+            "publisher": "Verlag oder Veleger",
+            "language": "Sprache des Buches",
+            "description": "Kurze Beschreibung des Buches",
+            "cover": "Das Cover des Buches"
+        }
     },
     "sidebar": {
         "createScene": "Szene erstellen",

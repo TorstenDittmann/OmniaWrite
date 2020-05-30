@@ -16,6 +16,10 @@
     font-weight: bold;
   }
 
+  small {
+    color: gray;
+  }
+
   @media (min-width: 960px) {
     .field {
       display: flex;
