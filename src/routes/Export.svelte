@@ -35,6 +35,9 @@
     state: "...",
   };
 
+  let exportToast = false;
+  let exportResponse = "";
+
   let completeForm = false;
 
   const exportApi =
@@ -117,11 +120,10 @@
             },
           }),
         })
-          .catch((error) => {
-            progress.active = false;
-            generateDownload = null;
-          })
           .then((response) => {
+            if (!response.ok) {
+              throw new Error("Server response was invalid!");
+            }
             progress.state = "receiving data from server";
             filename = response.headers
               .get("Content-Disposition")
@@ -135,6 +137,13 @@
             }
             saveAs.saveAs(blob, filename);
             progress.active = false;
+          })
+          .catch((error) => {
+            exportToast = true;
+            exportResponse = error.message;
+
+            progress.active = false;
+            generateDownload = null;
           });
       })
       .finally(() => {
@@ -144,6 +153,7 @@
   };
 </script>
 
+<Toast bind:show={exportToast} text={exportResonse} />
 <Toast bind:show={completeForm} text={$_('export.form')} />
 <Modal bind:show={progress.active}>
   <center>
