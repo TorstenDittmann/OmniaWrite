@@ -95,58 +95,49 @@
     const file = await getBase64(cover[0]);
     progress.state = "starting :)";
     let generateDownload = new Export($state.currentProject);
-    generateDownload
-      .fetchTemplate()
-      .then((data) => {
-        let filename;
-        progress.state = "sending data to server";
-        fetch(exportApi, {
-          method: "POST",
-          mode: "same-origin",
-          cache: "no-cache",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            ...form,
-            data: data,
-            cover: {
-              extension: file.substring(
-                "data:image/".length,
-                file.indexOf(";base64")
-              ),
-              type: file.substring("data:".length, file.indexOf(";base64")),
-              data: file.replace(/^data:image.+;base64,/, ""),
-            },
-          }),
-        })
-          .then((response) => {
-            if (!response.ok) {
-              throw new Error("Server response was invalid!");
-            }
-            progress.state = "receiving data from server";
-            filename = response.headers
-              .get("Content-Disposition")
-              .split('"')[1];
-            return response.blob();
-          })
-          .then((blob) => {
-            progress.state = "preparing epub";
-            if (!filename.endsWith(".epub")) {
-              filename = `${filename}.epub`;
-            }
-            saveAs.saveAs(blob, filename);
-            progress.active = false;
-          })
-          .catch((error) => {
-            exportToast = true;
-            exportResponse = error.message;
-
-            progress.active = false;
-            generateDownload = null;
-          });
+    const data = await generateDownload.fetchTemplate();
+    let filename;
+    progress.state = "sending data to server";
+    fetch(exportApi, {
+      method: "POST",
+      mode: "same-origin",
+      cache: "no-cache",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        ...form,
+        data: data,
+        cover: {
+          extension: file.substring(
+            "data:image/".length,
+            file.indexOf(";base64")
+          ),
+          type: file.substring("data:".length, file.indexOf(";base64")),
+          data: file.replace(/^data:image.+;base64,/, ""),
+        },
+      }),
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Server response was invalid!");
+        }
+        progress.state = "receiving data from server";
+        filename = response.headers.get("Content-Disposition").split('"')[1];
+        return response.blob();
       })
-      .finally(() => {
+      .then((blob) => {
+        progress.state = "preparing epub";
+        if (!filename.endsWith(".epub")) {
+          filename = `${filename}.epub`;
+        }
+        saveAs.saveAs(blob, filename);
+        progress.active = false;
+      })
+      .catch((error) => {
+        exportToast = true;
+        exportResponse = error.message;
+
         progress.active = false;
         generateDownload = null;
       });
