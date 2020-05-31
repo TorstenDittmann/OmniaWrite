@@ -153,7 +153,7 @@
   };
 </script>
 
-<Toast bind:show={exportToast} text={exportResonse} />
+<Toast bind:show={exportToast} text={exportResponse} />
 <Toast bind:show={completeForm} text={$_('export.form')} />
 <Modal bind:show={progress.active}>
   <center>
