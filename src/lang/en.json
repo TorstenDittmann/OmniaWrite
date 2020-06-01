@@ -48,8 +48,8 @@
         },
         "login": {
             "title": "Login",
-            "email": "E-Mail:",
-            "password": "Password:",
+            "email": "E-Mail",
+            "password": "Password",
             "button": "Login",
             "responses": {
                 "failed": "Login failed.",
@@ -134,8 +134,8 @@
         "modal": {
             "newHeader": "New Card",
             "editHeader": "Edit",
-            "title": "Title:",
-            "content": "Content:",
+            "title": "Title",
+            "content": "Content",
             "buttonCreate": "Create",
             "buttonSave": "Save",
             "buttonDelete": "Delete",
@@ -147,18 +147,18 @@
         }
     },
     "export": {
-        "template": "Template",
         "title": "Title",
         "publisher": "Publisher",
         "author": "Author",
         "language": "Language",
         "description": "Description",
         "cover": "Cover",
-        "form": "Please complete all fields.",
         "action": {
             "choose": "Choose",
             "export": "Export"
         },
+        "form": "Please complete all fields.",
+        "template": "Template",
         "helpers": {
             "title": "Title for the book",
             "author": "Listed author for the book",
@@ -176,7 +176,7 @@
             "scene": "Are you sure you want to delete this scene?"
         },
         "modal": {
-            "title": "Title:",
+            "title": "Title",
             "newChapter": {
                 "header": "New Chapter",
                 "button": "Create Chapter"
@@ -261,7 +261,7 @@
         "modals": {
             "newProject": {
                 "header": "New Project",
-                "title": "Title:",
+                "title": "Title",
                 "button": "Create!"
             }
         }
