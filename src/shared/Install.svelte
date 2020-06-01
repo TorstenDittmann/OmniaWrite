@@ -28,6 +28,10 @@
       value: "de",
       text: $_("settings.appereance.language.de"),
     },
+    {
+      value: "pt",
+      text: $_("settings.appereance.language.pt"),
+    },
   ];
 </script>
 
