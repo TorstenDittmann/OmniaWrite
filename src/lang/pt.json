@@ -1,0 +1,280 @@
+{
+    "header": {
+        "write": {
+            "title": "Escreva para"
+        },
+        "cards": {
+            "title": "Cartões"
+        },
+        "settings": {
+            "title": "Configurações"
+        },
+        "export": {
+            "title": "Exportação"
+        },
+        "cloud": {
+            "title": "Nuvem"
+        }
+    },
+    "common": {
+        "no-project-selected": "Nenhum projeto selecionado",
+        "update-toast": "Nova atualização instalada!<br>Clique aqui para reiniciar."
+    },
+    "write": {
+        "toolbar": {
+            "words": "palavras",
+            "chars": "personagens",
+            "undo": "Desfazer",
+            "redo": "Redo",
+            "save": "Salvar",
+            "focus": "Foco",
+            "fullscreen": "Ecrã completo",
+            "switchScene": "Cena de troca ..."
+        },
+        "toast": {
+            "saved": "Salvo!"
+        },
+        "editor": {
+            "placeholder": "Vamos escrever uma história fantástica!"
+        },
+        "overview": {
+            "opened": "aberto"
+        }
+    },
+    "cloud": {
+        "confirm": {
+            "text": "A sua conta ainda não está verificada! Clique aqui para verificar a sua conta.",
+            "success": "O e-mail de confirmação foi enviado!"
+        },
+        "login": {
+            "title": "Login",
+            "email": "E-Mail",
+            "password": "Senha",
+            "button": "Login",
+            "responses": {
+                "failed": "O login falhou.",
+                "empty": "As credenciais de login não podem estar vazias."
+            }
+        },
+        "register": {
+            "title": "Registe-se",
+            "name": "Nome",
+            "button": "Registe-se",
+            "responses": {
+                "success": "Conta criada!",
+                "failed": "O registo falhou.",
+                "empty": "Por favor, preencha todos os campos!."
+            }
+        },
+        "reset": {
+            "title": "Esqueceu a senha?",
+            "button": "Redefinir senha",
+            "success": "Por favor, verifique a sua caixa de correio para mais instruções."
+        },
+        "privacy": {
+            "show": "Política de Privacidade"
+        },
+        "profile": {
+            "title": "Perfil",
+            "name": {
+                "title": "Atualizar nome",
+                "success": "Nome actualizado!",
+                "fields": {
+                    "name": "Nome"
+                }
+            },
+            "email": {
+                "title": "Atualizar e-mail",
+                "success": "E-mail atualizado!",
+                "fields": {
+                    "email": "E-mail",
+                    "password": "Senha"
+                }
+            },
+            "password": {
+                "title": "Atualizar senha",
+                "success": "Senha atualizada!",
+                "match": "A senha tem que corresponder!",
+                "fields": {
+                    "old": "Senha atual",
+                    "new": "Nova senha",
+                    "confirm": "Confirmar senha"
+                }
+            },
+            "error": "Algo correu mal :(",
+            "action": "atualização"
+        },
+        "logout": {
+            "title": "Sair",
+            "success": "O logout foi um sucesso. Você será redireccionado."
+        },
+        "backups": {
+            "title": "Cópias de segurança",
+            "migrating": "Migração de backup"
+        },
+        "toast": {
+            "savedCloud": "Guardado na nuvem.",
+            "loginSuccessful": "Login com sucesso!",
+            "activateEmail": "Por favor, active o seu endereço de e-mail.",
+            "acceptPolicy": "Por favor, aceite a nossa Política de Privacidade."
+        },
+        "security": {
+            "title": "Segurança",
+            "devices": {
+                "title": "Dispositivos"
+            },
+            "logs": {
+                "title": "Registos de actividade"
+            }
+        }
+    },
+    "cards": {
+        "title": "Cartões",
+        "search": "procure aqui...",
+        "modal": {
+            "newHeader": "Novo Cartão",
+            "editHeader": "Editar",
+            "title": "Título",
+            "content": "Conteúdo",
+            "buttonCreate": "Criar",
+            "buttonSave": "Salvar",
+            "buttonDelete": "Eliminar",
+            "showInScenes": "Mostrar em cenas",
+            "helper": {
+                "title": "Caráter, localização, item ...",
+                "tooltip": "Mostrar uma dica de ferramenta dentro do editor"
+            }
+        }
+    },
+    "export": {
+        "title": "Título",
+        "publisher": "Editora",
+        "author": "Autor",
+        "language": "Idioma",
+        "description": "Descrição",
+        "cover": "Capa",
+        "action": {
+            "choose": "Escolha",
+            "export": "Exportação"
+        },
+        "form": "Por favor, preencha todos os campos.",
+        "template": "Modelo",
+        "helpers": {
+            "title": "Título do livro",
+            "author": "Autor listado para o livro",
+            "publisher": "Sua editora para o livro",
+            "language": "A linguagem do livro",
+            "description": "Breve descrição do livro",
+            "cover": "A capa do livro"
+        }
+    },
+    "sidebar": {
+        "createScene": "Nova Cena",
+        "createChapter": "Criar Capítulo",
+        "delete": {
+            "chapter": "Tens a certeza que queres apagar este capítulo?",
+            "scene": "Tens a certeza que queres apagar esta cena?"
+        },
+        "modal": {
+            "title": "Título",
+            "newChapter": {
+                "header": "Novo Capítulo",
+                "button": "Criar Capítulo"
+            },
+            "newScene": {
+                "header": "Nova Cena",
+                "button": "Criar Cena"
+            },
+            "edit": {
+                "order": "Encomendar cenas",
+                "buttonSave": "Salvar Cena",
+                "buttonDelete": "Eliminar"
+            }
+        }
+    },
+    "settings": {
+        "title": "Configurações",
+        "thirdparty": "Licenças de Terceiros",
+        "appereance": {
+            "title": "Aparência",
+            "theme": {
+                "title": "Tema",
+                "dark": "Escuro",
+                "light": "Luz"
+            },
+            "language": {
+                "title": "Idioma",
+                "en": "Inglês",
+                "de": "Alemão"
+            }
+        },
+        "write": {
+            "autosave": "Salvamento Autosave",
+            "fontsize": "Tamanho da fonte"
+        },
+        "helpers": {
+            "autosave": "O Auto guarda o seu projecto periodicamente",
+            "fontsize": "Muda o tamanho da fonte dentro do editor"
+        }
+    },
+    "install": {
+        "language": "Escolha o idioma",
+        "requirements": {
+            "title": "Requisitos",
+            "internet": "Internet",
+            "browser": "Navegador",
+            "warning": {
+                "browser": "OmniaWrite funciona melhor no Google Chrome!"
+            },
+            "serviceWorker": "Trabalhador de serviços"
+        },
+        "start": "Novo começo",
+        "cloud": "Da Nuvem",
+        "back": "voltar",
+        "continue": "continuar",
+        "install": {
+            "install": "Instalar",
+            "browser": "Corre"
+        },
+        "disclaimer": {
+            "action": "Eu concordo com os termos e condições",
+            "title": "Isenção de responsabilidade",
+            "show": "Mostrar Aviso Legal",
+            "content": "Última actualização: 03 de Dezembro de 2019<br>>br>As informações fornecidas pela OmniaWrite na nossa aplicação são apenas para fins informativos gerais.<br>Todas as informações na nossa aplicação web e móvel são fornecidas de boa fé, no entanto não fazemos qualquer representação ou garantia de qualquer tipo, expressa ou implícita, relativamente à exactidão, adequação, validade, fiabilidade, disponibilidade ou integralidade de qualquer informação sobre a nossa aplicação.<Não temos qualquer responsabilidade perante si por qualquer perda ou dano de qualquer tipo incorrido como resultado do uso da nossa aplicação ou confiança em qualquer informação fornecida na nossa aplicação.<br>A sua utilização da aplicação e a sua confiança em qualquer informação sobre a nossa aplicação é da sua inteira responsabilidade."
+        }
+    },
+    "overview": {
+        "project": {
+            "title": "Título",
+            "chapters": "Capítulos",
+            "scenes": "Cenas",
+            "words": "Palavras",
+            "characters": "Personagens",
+            "save": "Salvar",
+            "delete": "Eliminar",
+            "confirmDelete": "Tens a certeza que queres apagar este projecto?"
+        },
+        "projects": {
+            "title": "Projetos",
+            "opened": "aberto"
+        },
+        "modals": {
+            "newProject": {
+                "header": "Novo Projeto",
+                "title": "Título",
+                "button": "Criar!"
+            }
+        }
+    },
+    "feedback": {
+        "title": "Suporte & Feedback",
+        "sub": "Seu feedback, incluindo relatórios de erro, sugestões de melhorias, novos featurerequests e quaisquer outras coisas que você possa ter a dizer, é bem-vindo.",
+        "email": "E-Mail",
+        "description": "Descrição",
+        "action": "Envie para",
+        "success": "Submetido!"
+    },
+    "placeholder": {
+        "title": "Introduza o seu título"
+    }
+}
