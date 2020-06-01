@@ -60,13 +60,11 @@
   <Select
     label={$_('settings.appereance.theme.title')}
     bind:value={$settings.theme}
-    options={themes}
-    helper={$_('settings.helpers.theme')} />
+    options={themes} />
   <Select
     label={$_('settings.appereance.language.title')}
     bind:value={$settings.language}
-    options={languages}
-    helper={$_('settings.helpers.language')} />
+    options={languages} />
 
   <h2>{$_('header.write.title')}</h2>
 

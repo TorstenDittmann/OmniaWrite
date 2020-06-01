@@ -2,7 +2,7 @@ import {
   projects,
   chapters,
   scenes
-} from "../../../stores";
+} from "../../stores";
 
 let unsubscribeProject;
 let unsubscribeChapters;
@@ -12,7 +12,7 @@ export default class Export {
   constructor(id) {
     this.projectId = id;
   }
-  async fetchTemplate() {
+  async fetchData() {
     unsubscribeProject = await projects.subscribe(value => {
       value.filter(e => e.id == this.projectId).forEach(project => {
         this.projectData = project;
@@ -25,7 +25,7 @@ export default class Export {
           value
             .filter(e => e.project == this.projectId)
             .sort(this.compare)
-            .forEach((element, i) => {
+            .forEach(element => {
               unsubscribeScenes = scenes
                 .subscribe(value => {
                   data.push({

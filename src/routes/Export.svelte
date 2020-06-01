@@ -8,7 +8,7 @@
   import Modal from "../shared/Modal.svelte";
   import Toast from "../shared/Toast.svelte";
   import Spinner from "../shared/Spinner.svelte";
-  import Export from "./Export/Cloud/index";
+  import Export from "./Export/collectData";
 
   import Input from "../components/Input.svelte";
   import Select from "../components/Select.svelte";
@@ -95,7 +95,7 @@
     const file = await getBase64(cover[0]);
     progress.state = "starting :)";
     let generateDownload = new Export($state.currentProject);
-    const data = await generateDownload.fetchTemplate();
+    const data = await generateDownload.fetchData();
     let filename;
     progress.state = "sending data to server";
     fetch(exportApi, {

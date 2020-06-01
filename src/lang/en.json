@@ -1,6 +1,4 @@
 {
-    "developementStatus": "View development status",
-    "in-developement": "still in development",
     "header": {
         "write": {
             "title": "Write"
@@ -141,7 +139,11 @@
             "buttonCreate": "Create",
             "buttonSave": "Save",
             "buttonDelete": "Delete",
-            "showInScenes": "Show in scenes"
+            "showInScenes": "Show in scenes",
+            "helper": {
+                "title": "Character, location, item ...",
+                "tooltip": "Show a tooltip inside the editor"
+            }
         }
     },
     "export": {
@@ -209,6 +211,10 @@
         "write": {
             "autosave": "Autosave",
             "fontsize": "Fontsize"
+        },
+        "helpers": {
+            "autosave": "Auto saves your project periodically",
+            "fontsize": "Changes the font size inside the editor"
         }
     },
     "install": {
@@ -267,5 +273,8 @@
         "description": "Description",
         "action": "Submit",
         "success": "Submitted!"
+    },
+    "placeholder": {
+        "title": "Enter your title"
     }
 }

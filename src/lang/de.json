@@ -1,6 +1,4 @@
 {
-    "developementStatus": "Entwicklungsstand anzeigen",
-    "in-developement": "noch in Entwicklung",
     "header": {
         "write": {
             "title": "Schreiben"
@@ -141,7 +139,11 @@
             "buttonCreate": "Erstellen",
             "buttonSave": "Speichern",
             "buttonDelete": "Löschen",
-            "showInScenes": "In Szenen anzeigen"
+            "showInScenes": "In Szenen anzeigen",
+            "helper": {
+                "title": "Charakter, Ort, Gegenstand ...",
+                "tooltip": "Einen Hinweis im Editor anzeigen"
+            }
         }
     },
     "export": {
@@ -207,8 +209,12 @@
             }
         },
         "write": {
-            "autosave": "Automatisches speichern",
+            "autosave": "Auto-Speichern",
             "fontsize": "Schriftgröße"
+        },
+        "helpers": {
+            "autosave": "Speichert das Projekt automatisch ab",
+            "fontsize": "Passt die Schriftgröße vom Editor an"
         }
     },
     "install": {
@@ -255,7 +261,7 @@
         "modals": {
             "newProject": {
                 "header": "Neues Projekt",
-                "title": "Titel:",
+                "title": "Titel",
                 "button": "Erstellen!"
             }
         }
@@ -267,5 +273,8 @@
         "description": "Beschreibung",
         "action": "Abschicken",
         "success": "Abgeschickt!"
+    },
+    "placeholder": {
+        "title": "Titel eingeben"
     }
 }

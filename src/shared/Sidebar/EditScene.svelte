@@ -16,16 +16,16 @@
   const editScene = () => {
     scenes.setSceneTitle(data.id, data.title);
     show = false;
-  }
+  };
 
-  const removeScene = sceneId => {
+  const removeScene = (sceneId) => {
     let confirmed = confirm($_("sidebar.delete.scene"));
     if (confirmed == true) {
       show = false;
       push("/write");
       window.setTimeout(() => scenes.removeScene(sceneId), 200);
     }
-  }
+  };
 </script>
 
 <style>
@@ -39,14 +39,14 @@
       label={$_('sidebar.modal.title')}
       bind:value={data.title}
       autocomplete="off"
-      placeholder="enter your title" />
+      placeholder={$_('placeholder.title')} />
 
     <ButtonGroup>
       <Button on:click={editScene} disabled={data.title.length === 0}>
-        {$_("sidebar.modal.edit.buttonSave")}
+        {$_('sidebar.modal.edit.buttonSave')}
       </Button>
       <Button on:click={() => removeScene(data.id)} color="red">
-        {$_("sidebar.modal.edit.buttonDelete")}
+        {$_('sidebar.modal.edit.buttonDelete')}
       </Button>
     </ButtonGroup>
   </form>

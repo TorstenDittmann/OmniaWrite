@@ -26,17 +26,17 @@
 </style>
 
 <Modal bind:show>
-  <h2 slot="header">{$_("sidebar.modal.newScene.header")}</h2>
+  <h2 slot="header">{$_('sidebar.modal.newScene.header')}</h2>
   <form on:submit|preventDefault={createScene}>
-    <Input 
-      label={$_("sidebar.modal.title")} 
-      bind:value={title} 
+    <Input
+      label={$_('sidebar.modal.title')}
+      bind:value={title}
       autofocus="true"
       autocomplete="off"
-      placeholder="enter your title" />
+      placeholder={$_('placeholder.title')} />
     <ButtonGroup>
       <Button on:click={createScene} disabled={title.length === 0}>
-        {$_("sidebar.modal.newScene.button")}
+        {$_('sidebar.modal.newScene.button')}
       </Button>
     </ButtonGroup>
   </form>

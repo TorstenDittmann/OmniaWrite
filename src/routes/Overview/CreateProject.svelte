@@ -21,10 +21,10 @@
       let retValue = projects.createProject(value);
       showCreateProject = false;
       dispatch("changeProject", {
-        project: retValue
+        project: retValue,
       });
     }
-  }
+  };
 </script>
 
 <style>
@@ -32,16 +32,14 @@
 </style>
 
 <Modal bind:show={showCreateProject}>
-  <h2 slot="header">
-    {$_('overview.modals.newProject.header')}
-  </h2>
+  <h2 slot="header">{$_('overview.modals.newProject.header')}</h2>
   <form on:submit|preventDefault={createProject}>
     <Input
       label={$_('overview.modals.newProject.title')}
       bind:value
       autofocus="true"
       autocomplete="off"
-      placeholder="enter your title" />
+      placeholder={$_('placeholder.title')} />
     <ButtonGroup>
       <Button on:click={createProject} disabled={value.length === 0}>
         {$_('overview.modals.newProject.button')}

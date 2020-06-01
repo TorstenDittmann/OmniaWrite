@@ -76,12 +76,11 @@
       bind:value={newCardObject.title}
       autofocus="true"
       autocomplete="off"
-      placeholder="enter your title"
+      placeholder={$_('placeholder.title')}
       helper={$_('cards.modal.helper.title')} />
     <Textarea
       label={$_('cards.modal.content')}
-      bind:value={newCardObject.content}
-      helper={$_('cards.modal.helper.content')} />
+      bind:value={newCardObject.content} />
     <Checkbox
       label={$_('cards.modal.showInScenes')}
       bind:value={newCardObject.showTooltip}
@@ -101,12 +100,11 @@
       label={$_('cards.modal.title')}
       bind:value={editCardObject.title}
       autocomplete="off"
-      placeholder="enter your title"
+      placeholder={$_('cards.modal.placeholder.title')}
       helper={$_('cards.modal.helper.title')} />
     <Textarea
       label={$_('cards.modal.content')}
-      bind:value={editCardObject.content}
-      helper={$_('cards.modal.helper.content')} />
+      bind:value={editCardObject.content} />
     <Checkbox
       label={$_('cards.modal.showInScenes')}
       bind:value={editCardObject.showTooltip}

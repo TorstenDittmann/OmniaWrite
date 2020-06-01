@@ -39,8 +39,8 @@
     let confirmed = confirm($_("overview.project.confirmDelete"));
     if (confirmed == true) {
       $chapters
-        .filter(ch => ch.project == project)
-        .forEach(chapter => {
+        .filter((ch) => ch.project == project)
+        .forEach((chapter) => {
           scenes.removeAllScenes(chapter.id);
         });
       chapters.removeAllChapters(project);
@@ -82,10 +82,10 @@
 
 <CreateProject
   bind:showCreateProject
-  on:changeProject={event => changeProject(event.detail.project)} />
+  on:changeProject={(event) => changeProject(event.detail.project)} />
 
 <div in:fade={{ duration: 100 }} class="overview">
-  {#each $projects.filter(project => project.id == $state.currentProject) as project}
+  {#each $projects.filter((project) => project.id == $state.currentProject) as project}
     <h1>{project.title}</h1>
     <ProjectOverview />
     <h3 class="projectTitle" on:click={() => (showEditProject = true)}>
@@ -98,9 +98,11 @@
         value={project.title}
         autofocus="true"
         autocomplete="off"
-        placeholder="enter your title" />
+        placeholder={$_('placeholder.title')} />
       <ButtonGroup>
-        <Button on:click={() => setProjectTitle(project.id)} disabled={project.title.length === 0}>
+        <Button
+          on:click={() => setProjectTitle(project.id)}
+          disabled={project.title.length === 0}>
           {$_('overview.project.save')}
         </Button>
         <Button on:click={() => removeProject(project.id)} color="red">
@@ -122,7 +124,7 @@
           {moment(project.lastOpen, 'X').fromNow()}
         </p>
         <p>
-          {$_('overview.project.chapters')}: {$chapters.filter(n => n.project == project.id).length}
+          {$_('overview.project.chapters')}: {$chapters.filter((n) => n.project == project.id).length}
         </p>
       </div>
     {/each}

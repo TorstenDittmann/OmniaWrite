@@ -15,15 +15,15 @@
   const editChapter = () => {
     chapters.setChapterTitle(data.id, data.title);
     show = false;
-  }
+  };
 
-  const removeChapter = chapterId => {
+  const removeChapter = (chapterId) => {
     let confirmed = confirm($_("sidebar.delete.chapter"));
     if (confirmed == true) {
       chapters.removeChapter(chapterId);
       show = false;
     }
-  }
+  };
 </script>
 
 <style>
@@ -37,14 +37,14 @@
       label={$_('sidebar.modal.title')}
       bind:value={data.title}
       autocomplete="off"
-      placeholder="enter your title" />
+      placeholder={$_('placeholder.title')} />
 
     <ButtonGroup>
       <Button on:click={editChapter} disabled={data.title.length === 0}>
-        {$_("sidebar.modal.edit.buttonSave")}
+        {$_('sidebar.modal.edit.buttonSave')}
       </Button>
       <Button on:click={() => removeChapter(data.id)} color="red">
-        {$_("sidebar.modal.edit.buttonDelete")}
+        {$_('sidebar.modal.edit.buttonDelete')}
       </Button>
     </ButtonGroup>
   </form>
