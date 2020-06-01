@@ -48,8 +48,8 @@
         },
         "login": {
             "title": "Login",
-            "email": "E-Mail:",
-            "password": "Passwort:",
+            "email": "E-Mail",
+            "password": "Passwort",
             "button": "Login",
             "responses": {
                 "failed": "Login fehlgeschlagen.",
@@ -134,8 +134,8 @@
         "modal": {
             "newHeader": "Neue Karte",
             "editHeader": "Bearbeiten",
-            "title": "Titel:",
-            "content": "Inhalt:",
+            "title": "Titel",
+            "content": "Inhalt",
             "buttonCreate": "Erstellen",
             "buttonSave": "Speichern",
             "buttonDelete": "Löschen",
@@ -147,18 +147,18 @@
         }
     },
     "export": {
-        "template": "Vorlage",
         "title": "Titel",
         "publisher": "Verlag",
         "author": "Autor",
         "language": "Sprache",
         "description": "Beschreibung",
         "cover": "Cover",
-        "form": "Bitte alle Felder ausfüllen.",
         "action": {
             "choose": "Auswählen",
             "export": "Exportieren"
         },
+        "form": "Bitte alle Felder ausfüllen.",
+        "template": "Vorlage",
         "helpers": {
             "title": "Title des Buches",
             "author": "Gelisteter Autor des Buches",
@@ -176,7 +176,7 @@
             "scene": "Sind Sie sicher, dass Sie diese Szene löschen wollen?"
         },
         "modal": {
-            "title": "Titel:",
+            "title": "Titel",
             "newChapter": {
                 "header": "Neues Kapitel",
                 "button": "Kapitel erstellen"
@@ -198,7 +198,7 @@
         "appereance": {
             "title": "Erscheinungsbild",
             "theme": {
-                "title": "Theme:",
+                "title": "Theme",
                 "dark": "Dunkel",
                 "light": "Hell"
             },
