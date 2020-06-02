@@ -7,6 +7,8 @@
   import "moment/locale/de";
 
   import CreateProject from "./Overview/CreateProject.svelte";
+  import EditProject from "./Overview/EditProject.svelte";
+
   import ProjectOverview from "./Overview/Project.svelte";
   import Modal from "../shared/Modal.svelte";
 
@@ -14,45 +16,20 @@
   import ButtonGroup from "../components/ButtonGroup.svelte";
   import Button from "../components/Button.svelte";
 
-  // TODO Edit project is broken!
+  // TODO Optimize Edit project!
 
   moment.locale($settings.language);
 
   let showCreateProject = false;
   let showEditProject = false;
 
-  function changeProject(project) {
+  const changeProject = (project) => {
     state.setCurrentProject(project);
     projects.updateProjectTimestamp(project);
     deskgap.reload();
-  }
+  };
 
-  function setProjectTitle(project) {
-    projects.setProjectTitle(
-      project,
-      document.getElementById("newProjectTitle").value
-    );
-    showEditProject = false;
-  }
-
-  function removeProject(project) {
-    let confirmed = confirm($_("overview.project.confirmDelete"));
-    if (confirmed == true) {
-      $chapters
-        .filter((ch) => ch.project == project)
-        .forEach((chapter) => {
-          scenes.removeAllScenes(chapter.id);
-        });
-      chapters.removeAllChapters(project);
-      projects.removeProject(project);
-
-      scenes.removeAllScenes(project);
-      state.setCurrentProject("");
-      deskgap.reload();
-    }
-  }
-
-  function sort(b, a) {
+  const sort = (b, a) => {
     if (a.lastOpen < b.lastOpen) {
       return -1;
     }
@@ -60,7 +37,7 @@
       return 1;
     }
     return 0;
-  }
+  };
 </script>
 
 <style>
@@ -90,26 +67,9 @@
     <ProjectOverview />
     <h3 class="projectTitle" on:click={() => (showEditProject = true)}>
       <span class="lnr lnr-cog" />
-      Edit project
+      {$_('overview.projects.edit')}
     </h3>
-    <Modal bind:show={showEditProject}>
-      <Input
-        label={$_('overview.project.title')}
-        value={project.title}
-        autofocus="true"
-        autocomplete="off"
-        placeholder={$_('placeholder.title')} />
-      <ButtonGroup>
-        <Button
-          on:click={() => setProjectTitle(project.id)}
-          disabled={project.title.length === 0}>
-          {$_('overview.project.save')}
-        </Button>
-        <Button on:click={() => removeProject(project.id)} color="red">
-          {$_('overview.project.delete')}
-        </Button>
-      </ButtonGroup>
-    </Modal>
+    <EditProject bind:showEditProject id={project.id} />
   {/each}
   <h1>{$_('overview.projects.title')}</h1>
   <div class="grid">
