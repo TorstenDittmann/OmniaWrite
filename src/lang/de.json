@@ -250,8 +250,8 @@
             "scenes": "Szenen",
             "words": "Wörter",
             "characters": "Zeichen",
-            "save": "Löschen",
-            "delete": "Delete",
+            "save": "Speichern",
+            "delete": "Löschen",
             "confirmDelete": "Sind Sie sicher, dass Sie dieses Projekt löschen wollen?"
         },
         "projects": {
