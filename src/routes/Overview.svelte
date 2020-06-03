@@ -67,7 +67,7 @@
     <ProjectOverview />
     <h3 class="projectTitle" on:click={() => (showEditProject = true)}>
       <span class="lnr lnr-cog" />
-      {$_('overview.projects.edit')}
+      {$_('overview.project.edit')}
     </h3>
     <EditProject bind:showEditProject id={project.id} />
   {/each}
