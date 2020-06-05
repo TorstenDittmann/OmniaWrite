@@ -146,6 +146,7 @@ const cloud = {
                 return response.json();
             })
             .then(response => {
+                if (!response.ok) return;
                 const data = response;
                 const dataObject = Object.keys(data);
                 return new Promise((resolve) => {
