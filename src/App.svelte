@@ -1,9 +1,11 @@
 <script lang="javascript">
+  import { onMount } from "svelte";
+  import { isLoading, locale, _ } from "svelte-i18n";
+
   import { Workbox } from "workbox-window";
   import { state, projects, settings, intern } from "./stores";
   import { deskgap, isRunningElectron } from "./utils";
   import cloud from "./appwrite";
-  import { isLoading, locale, _ } from "svelte-i18n";
 
   import Router from "svelte-spa-router";
   import * as Sentry from "@sentry/browser";
@@ -14,6 +16,8 @@
   import Modal from "./shared/Modal.svelte";
   import Install from "./shared/Install.svelte";
   import Support from "./shared/Support.svelte";
+  import Spinner from "./shared/Spinner.svelte";
+  import NewBackup from "./shared/NewBackup.svelte";
 
   import OverviewRoute from "./routes/Overview.svelte";
   import WriteRoute from "./routes/Write.svelte";
@@ -24,7 +28,6 @@
   import ThirdPartyRoute from "./shared/ThirdParty.svelte";
   import DisclaimerRoute from "./shared/Disclaimer.svelte";
   import PolicyRoute from "./routes/Cloud/Policy.svelte";
-  import Spinner from "./shared/Spinner.svelte";
 
   locale.set($settings.language);
 
@@ -118,22 +121,6 @@
   );
 
   /**
-   * Check for newer backup
-   */
-  const checkForBackup = () => {
-    cloud.getLatestBackup().then((response) => {
-      if (response.files.length > 0) {
-        if ($state.lastCloudSave < response.files[0].dateCreated) {
-          // TODO: Implement checking for new Cloud Backup
-          console.log("newer data on cloud");
-        }
-      }
-    });
-  };
-  // checkForBackup();
-  // setInterval(checkForBackup, 60000);
-
-  /**
    * Listen for settings
    */
   $: {
@@ -164,6 +151,9 @@
 
     <SidebarComponent bind:sidebarState />
     <div id="content" class="content">
+      {#if $state.isUserLoggedIn}
+        <NewBackup />
+      {/if}
       <Toast
         bind:show={updateAvailable}
         text={$_('common.update-toast')}

@@ -18,7 +18,14 @@
     },
     "common": {
         "no-project-selected": "No project selected",
-        "update-toast": "New update installed!<br>Click here to restart."
+        "update-toast": "New update installed!<br>Click here to restart.",
+        "modals": {
+            "newBackup": {
+                "header": "Cloud sync",
+                "subtitle": "We found newer data on the cloud.",
+                "warning": "Any work that has not been saved to the cloud from this device will be lost."
+            }
+        }
     },
     "write": {
         "toolbar": {

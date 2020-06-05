@@ -4,7 +4,7 @@
 
   import { state, chapters } from "../../stores";
 
-  import Modal from "../../shared/Modal.svelte";
+  import Modal from "../Modal.svelte";
   import Input from "../../components/Input.svelte";
   import ButtonGroup from "../../components/ButtonGroup.svelte";
   import Button from "../../components/Button.svelte";
