@@ -9,7 +9,9 @@ const defaultIntern = {
 
 const defaultSettings = {
     theme: "dark",
-    language: "en"
+    language: "en",
+    autosave: true,
+    lastLocation: true
 }
 
 if (localStorage.getItem("intern") === null) {
@@ -61,6 +63,14 @@ function storeState() {
          */
         setCurrentProject: (project) => update(n => {
             n.currentProject = project;
+            return n;
+        }),
+        /**
+         * Sets currently active location.
+         * @param location Hash based URL.
+         */
+        setCurrentLocation: (location) => update(n => {
+            n.lastLocation = location;
             return n;
         }),
         /**

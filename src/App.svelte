@@ -1,13 +1,13 @@
 <script lang="javascript">
   import { onMount } from "svelte";
   import { isLoading, locale, _ } from "svelte-i18n";
+  import Router, { location, replace } from "svelte-spa-router";
 
   import { Workbox } from "workbox-window";
   import { state, projects, settings, intern } from "./stores";
   import { deskgap, isRunningElectron } from "./utils";
   import cloud from "./appwrite";
 
-  import Router from "svelte-spa-router";
   import * as Sentry from "@sentry/browser";
 
   import HeaderComponent from "./shared/Header.svelte";
@@ -77,14 +77,14 @@
   /**
    * Update app.
    */
-  function updateApp() {
+  const updateApp = () => {
     wb.addEventListener("controlling", (event) => {
       deskgap.reload();
     });
     wb.messageSW({
       type: "SKIP_WAITING",
     });
-  }
+  };
 
   /**
    * Defines state of sidebar and navigation based on max-width.
@@ -97,12 +97,12 @@
     e.matches ? (sidebarState = false) : (sidebarState = true);
   });
 
-  function routeLoaded(event) {
+  const routeLoaded = (event) => {
     if (mql.matches) {
       sidebarState = false;
       navigationState = false;
     }
-  }
+  };
 
   /**
    * Check for login
@@ -119,6 +119,15 @@
       state.setLogin(false);
     }
   );
+
+  onMount(() => {
+    if ($settings.lastLocation) {
+      replace($state.lastLocation);
+    }
+    location.subscribe((currentLocation) => {
+      state.setCurrentLocation(currentLocation);
+    });
+  });
 
   /**
    * Listen for settings

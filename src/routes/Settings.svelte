@@ -70,6 +70,12 @@
     bind:value={$settings.language}
     options={languages} />
 
+  <h2>{$_('settings.common.title')}</h2>
+  <Checkbox
+    label={$_('settings.common.lastLocation')}
+    bind:value={$settings.lastLocation}
+    helper={$_('settings.helpers.lastLocation')} />
+
   <h2>{$_('header.write.title')}</h2>
 
   <Checkbox

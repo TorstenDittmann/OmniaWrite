@@ -215,13 +215,18 @@
                 "de": "German"
             }
         },
+        "common": {
+            "title": "Common",
+            "lastLocation": "Remember"
+        },
         "write": {
             "autosave": "Autosave",
             "fontsize": "Fontsize"
         },
         "helpers": {
             "autosave": "Auto saves your project periodically",
-            "fontsize": "Changes the font size inside the editor"
+            "fontsize": "Changes the font size inside the editor",
+            "lastLocation": "Re-open your last closed page"
         }
     },
     "install": {

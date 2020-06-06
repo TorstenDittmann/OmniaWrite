@@ -215,13 +215,18 @@
                 "de": "Deutsch"
             }
         },
+        "common": {
+            "title": "Allgemein",
+            "lastLocation": "Fortsetzen"
+        },
         "write": {
             "autosave": "Auto-Speichern",
             "fontsize": "Schriftgröße"
         },
         "helpers": {
             "autosave": "Speichert das Projekt automatisch ab",
-            "fontsize": "Passt die Schriftgröße vom Editor an"
+            "fontsize": "Passt die Schriftgröße vom Editor an",
+            "lastLocation": "Ihre letzte geschlossene Seite öffnen"
         }
     },
     "install": {

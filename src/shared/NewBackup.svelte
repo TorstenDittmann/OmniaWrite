@@ -27,10 +27,15 @@
 
   const download = () => {
     loading = true;
-    cloud.restoreBackup(latest.files[0].$id).then((response) => {
-      loading = false;
-      deskgap.reload();
-    });
+    cloud.restoreBackup(latest.files[0].$id).then(
+      (response) => {
+        loading = false;
+        deskgap.reload();
+      },
+      (err) => {
+        loading = false;
+      }
+    );
   };
 
   const formatBytes = (a, b) => {
