@@ -17,18 +17,33 @@
   }
 </script>
 
-<style type="text/css">
+<style type="scss">
   div {
-    cursor: pointer;
+    width: 100%;
+    background-color: var(--snackbar);
+    color: var(--text-color);
+    text-align: center;
+    padding: 1rem;
+    position: fixed;
+    z-index: 9999;
+    bottom: 0;
+    right: 0;
+  }
+  @media (min-width: 960px) {
+    div {
+      width: 18rem;
+      border-radius: 1rem;
+      bottom: 1rem;
+      right: 1rem;
+    }
   }
 </style>
 
 {#if show}
   <div
     on:click={() => {
-      dispatch("click");
+      dispatch('click');
     }}
-    id="snackbar"
     in:fly={{ y: -100, duration: 500 }}
     out:fly={{ x: 100, duration: 500 }}>
     {@html text}

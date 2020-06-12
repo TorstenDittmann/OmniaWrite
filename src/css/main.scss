@@ -759,18 +759,6 @@ span.card {
     }
 }
 
-#snackbar {
-    width: 100%;
-    background-color: var(--snackbar);
-    color: var(--text-color);
-    text-align: center;
-    padding: 1rem;
-    position: fixed;
-    z-index: 9999;
-    bottom: 0;
-    right: 0;
-}
-
 ::-webkit-scrollbar {
     width: 1rem;
     height: 1rem;
@@ -908,13 +896,6 @@ span.card {
     .burger,
     .mobile {
         display: none;
-    }
-
-    #snackbar {
-        width: 18rem;
-        border-radius: 1rem;
-        bottom: 1rem;
-        right: 1rem;
     }
 
     .tooltip {
