@@ -11,7 +11,10 @@ const APP_EXT_HOST = "https://external.omniawrite.com/";
 
 const SDK = new Appwrite();
 
-SDK.setEndpoint(APP_ENDPOINT).setProject(APP_PROJECT).setLocale(get(settings).language || "en");
+SDK
+    .setEndpoint(APP_ENDPOINT)
+    .setProject(APP_PROJECT)
+    .setLocale(get(settings).language || "en");
 
 const cloud = {
     currentUser: null,
