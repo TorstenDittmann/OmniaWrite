@@ -122,7 +122,9 @@
 
   onMount(() => {
     if ($settings.lastLocation) {
-      replace($state.lastLocation);
+      if ($state.lastLocation) {
+        replace($state.lastLocation);
+      }
     }
     location.subscribe((currentLocation) => {
       state.setCurrentLocation(currentLocation);
