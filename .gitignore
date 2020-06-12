@@ -12,6 +12,6 @@ mobile/platforms/
 mobile/plugins/
 mobile/node_modules/
 mobile/www/*
-.now
+.now/
 .env
 .env.build
