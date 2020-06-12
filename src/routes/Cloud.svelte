@@ -26,8 +26,6 @@
 
   moment.locale($settings.language);
 
-  export let params = {};
-
   const prefix = "/cloud";
   const routes = {
     "/login": Login,
@@ -38,7 +36,7 @@
     "/profile": Profile,
     "/reset-password": ResetPassword,
     "/backups": Backups,
-    "/logout": Logout
+    "/logout": Logout,
   };
 
   let loading = true;
@@ -48,9 +46,6 @@
 
   let showToast = false;
   let showToastText;
-
-  let saveCloudButtonLoading = false;
-  let getCloudButtonLoading = false;
 
   onMount(() => {
     checkLogin();
@@ -65,11 +60,11 @@
     cloud
       .isUserLoggedIn()
       .then(
-        response => {
+        (response) => {
           isUserVerified = response.emailVerification;
           isUserLoggedIn = response.$id ? true : false;
         },
-        error => {
+        (error) => {
           isUserLoggedIn = false;
         }
       )
@@ -98,7 +93,7 @@
 <div class="cloud-container" in:fade={{ duration: 100 }}>
   {#if !loading}
     {#if !isUserLoggedIn}
-      <div id="cards" class="grid">
+      <div class="grid">
         <div class="card" on:click={() => push('/cloud/login')}>
           <h2>Login</h2>
         </div>
@@ -109,31 +104,22 @@
     {:else}
       {#if !isUserVerified}
         <div class="grid">
-          <div on:click={createConfirmation}>
-            {$_("cloud.confirm.text")}
-          </div>
+          <div on:click={createConfirmation}>{$_('cloud.confirm.text')}</div>
         </div>
       {/if}
       <div class="grid">
-        {#if !params.loginReturn}
-          <div on:click={() => push('/cloud/backups')}>
-            <h2>{$_("cloud.backups.title")}</h2>
-          </div>
-          <div on:click={() => push('/cloud/security')}>
-            <h2>{$_("cloud.security.title")}</h2>
-          </div>
-          <div on:click={() => push('/cloud/profile')}>
-            <h2>{$_("cloud.profile.title")}</h2>
-          </div>
-          <div on:click={() => push('/cloud/logout')}>
-            <h2>{$_("cloud.logout.title")}</h2>
-          </div>
-        {:else}
-          <div on:click={() => push('/cloud')}>
-            <span class="lnr lnr-arrow-left-circle" />
-            {$_('install.back')}
-          </div>
-        {/if}
+        <div on:click={() => push('/cloud/backups')}>
+          <h2>{$_('cloud.backups.title')}</h2>
+        </div>
+        <div on:click={() => push('/cloud/security')}>
+          <h2>{$_('cloud.security.title')}</h2>
+        </div>
+        <div on:click={() => push('/cloud/profile')}>
+          <h2>{$_('cloud.profile.title')}</h2>
+        </div>
+        <div on:click={() => push('/cloud/logout')}>
+          <h2>{$_('cloud.logout.title')}</h2>
+        </div>
       </div>
     {/if}
     <Router {routes} {prefix} />
