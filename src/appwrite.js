@@ -1,6 +1,8 @@
 import Appwrite from "appwrite";
+import { get } from "svelte/store";
 import {
-    state
+    state,
+    settings
 } from "./stores";
 
 const APP_ENDPOINT = "https://shelf.omniawrite.com/v1";
@@ -9,7 +11,7 @@ const APP_EXT_HOST = "https://external.omniawrite.com/";
 
 const SDK = new Appwrite();
 
-SDK.setEndpoint(APP_ENDPOINT).setProject(APP_PROJECT);
+SDK.setEndpoint(APP_ENDPOINT).setProject(APP_PROJECT).setLocale(get(settings).language || "en");
 
 const cloud = {
     currentUser: null,
