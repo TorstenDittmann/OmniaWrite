@@ -17,9 +17,9 @@
   let currentScene;
   let currentChapter;
   let lastScene;
-  let editorHtml;
   let editor;
   let editorChangeHappened;
+  let editorElement;
   let amountWords = 0;
   let amountChars = 0;
 
@@ -142,12 +142,10 @@
   }
 
   function countWordsAndChars() {
-    if (document.getElementById("codex-editor")) {
-      amountChars = document.getElementById("codex-editor").innerText.length;
+    if (editorElement) {
+      amountChars = editorElement.innerText.length;
       if (amountChars > 0) {
-        amountWords = document
-          .getElementById("codex-editor")
-          .innerText.split(" ").length;
+        amountWords = editorElement.innerText.split(" ").length;
       } else {
         amountWords = 0;
       }
@@ -231,7 +229,7 @@
       </div>
       <div class="editpane">
         <h1 contenteditable="true">{currentScene.title}</h1>
-        <div id="codex-editor" />
+        <div id="codex-editor" bind:this={editorElement} />
       </div>
     {:else}
       <Overview />
