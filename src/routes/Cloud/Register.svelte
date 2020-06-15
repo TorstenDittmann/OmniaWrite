@@ -1,4 +1,5 @@
 <script>
+  import { push } from "svelte-spa-router";
   import { fade } from "svelte/transition";
   import { _ } from "svelte-i18n";
   import cloud from "../../appwrite";
@@ -7,52 +8,60 @@
   import Policy from "./Policy.svelte";
   import Alert from "../../shared/Alert.svelte";
 
+  import Input from "../../components/Input.svelte";
+  import InputEmail from "../../components/InputEmail.svelte";
+  import InputPassword from "../../components/InputPassword.svelte";
+  import Checkbox from "../../components/Checkbox.svelte";
+  import ButtonGroup from "../../components/ButtonGroup.svelte";
+  import Button from "../../components/Button.svelte";
+
   let showAlert = false;
   let showAlertText;
   let alertSuccess = false;
   let alertDanger = false;
 
-  let registerName = "";
-  let registerUser = "";
-  let registerPass = "";
+  const form = {
+    name: "",
+    email: "",
+    pass: "",
+    policy: false,
+  };
 
   let statusPrivacyPolicy;
   let showPrivacyPolicy;
 
   let registerButtonLoading = false;
 
-  function register() {
+  $: checkForm =
+    form.name !== "" && form.email !== "" && form.pass !== "" && form.policy;
+
+  const register = () => {
     registerButtonLoading = true;
-    if (
-      statusPrivacyPolicy &&
-      registerName.length > 0 &&
-      registerUser.length > 0 &&
-      registerPass.length > 0
-    ) {
-      cloud.register(registerName, registerUser, registerPass).then(
-        response => {
-          registerButtonLoading = false;
-          showAlert = true;
-          showAlertText = $_('cloud.register.responses.success');
-          alertDanger = false;
-          alertSuccess = true;
-        },
-        error => {
-          registerButtonLoading = false;
-          showAlert = true;
-          showAlertText = $_('cloud.register.responses.failed');
-          alertDanger = true;
-          alertSuccess = false;
-        }
-      );
-    } else {
+    if (!checkForm) {
       registerButtonLoading = false;
       showAlert = true;
-      showAlertText = $_('cloud.register.responses.empty');
+      showAlertText = $_("cloud.register.responses.empty");
       alertDanger = true;
       alertSuccess = false;
+      return;
     }
-  }
+    cloud.register(form.name, form.email, form.pass).then(
+      (response) => {
+        registerButtonLoading = false;
+        showAlert = true;
+        showAlertText = $_("cloud.register.responses.success");
+        alertDanger = false;
+        alertSuccess = true;
+      },
+      (error) => {
+        registerButtonLoading = false;
+        showAlert = true;
+        showAlertText = $_("cloud.register.responses.failed");
+        alertDanger = true;
+        alertSuccess = false;
+      }
+    );
+  };
 </script>
 
 <style>
@@ -75,53 +84,36 @@
     <span class="lnr success">{showAlertText}</span>
   </Alert>
   <form on:submit|preventDefault={register}>
-    <div class="field">
-      <label class="big" for="newName">{$_('cloud.register.name')}</label>
-      <input
-        id="newName"
-        type="text"
-        placeholder="John Doe"
-        autocomplete="off"
-        bind:value={registerName} />
-    </div>
-    <div class="field">
-      <label class="big" for="newUser">{$_('cloud.login.email')}</label>
-      <input
-        id="newUser"
-        type="email"
-        placeholder="john.doe@email.tld"
-        autocomplete="off"
-        bind:value={registerUser} />
-    </div>
-    <div class="field">
-      <label class="big" for="newPass">{$_('cloud.login.password')}</label>
-      <input
-        id="newPass"
-        type="password"
-        autocomplete="off"
-        placeholder="******"
-        bind:value={registerPass} />
-    </div>
-    <p>
-      <input
-        id="PrivacyPolicy"
-        type="checkbox"
-        bind:checked={statusPrivacyPolicy} />
-      <label for="PrivacyPolicy">
-        <span class="link" on:click={() => (showPrivacyPolicy = true)}>
-          {' ' + $_('cloud.privacy.show')}
-        </span>
-      </label>
-    </p>
-    <div class="btn-group">
-      <button
-        type="submit"
-        on:click|preventDefault={register}
-        disabled={registerButtonLoading}
-        class:loading={registerButtonLoading}>
-        <span class="lnr lnr-sync spinner" />
+    <Input
+      label={$_('cloud.register.name')}
+      placeholder="John Doe"
+      bind:value={form.name} />
+    <InputEmail
+      label={$_('cloud.login.email')}
+      placeholder="john.doe@email.tld"
+      bind:value={form.email} />
+    <InputPassword
+      label={$_('cloud.login.password')}
+      placeholder="******"
+      bind:value={form.pass} />
+    <Checkbox
+      bind:value={form.policy}
+      label={$_('cloud.privacy.show')}
+      helper={$_('install.disclaimer.action')} />
+    <ButtonGroup>
+      <Button
+        on:click={register}
+        loading={registerButtonLoading}
+        disabled={!checkForm}>
         {$_('cloud.register.button')}
-      </button>
-    </div>
+      </Button>
+    </ButtonGroup>
+    <small class="link" on:click={() => (showPrivacyPolicy = true)}>
+      {$_('cloud.privacy.show')}
+    </small>
+    <h2>{$_('cloud.register.login')}</h2>
+    <ButtonGroup>
+      <Button on:click={() => push('/cloud')}>{$_('cloud.login.title')}</Button>
+    </ButtonGroup>
   </form>
 </div>

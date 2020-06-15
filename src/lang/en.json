@@ -58,6 +58,7 @@
             "email": "E-Mail",
             "password": "Password",
             "button": "Login",
+            "register": "Don't have an account yet?",
             "responses": {
                 "failed": "Login failed.",
                 "empty": "Login credentials can't be empty."
@@ -67,6 +68,7 @@
             "title": "Register",
             "name": "Name",
             "button": "Register",
+            "login": "Already have an account?",
             "responses": {
                 "success": "Account created!",
                 "failed": "Registration failed.",
@@ -76,7 +78,8 @@
         "reset": {
             "title": "Forgot password?",
             "button": "Reset password",
-            "success": "Please check your mail inbox for further instructions."
+            "success": "Please check your mail inbox for further instructions.",
+            "login": "Remembered? Log in here."
         },
         "privacy": {
             "show": "Privacy Policy"

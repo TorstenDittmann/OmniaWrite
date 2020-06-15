@@ -28,8 +28,7 @@
 
   const prefix = "/cloud";
   const routes = {
-    "/login": Login,
-
+    "/": Login,
     "/register": Register,
 
     "/security": Security,
@@ -92,35 +91,27 @@
 
 <div class="cloud-container" in:fade={{ duration: 100 }}>
   {#if !loading}
-    {#if !isUserLoggedIn}
-      <div class="grid">
-        <div class="card" on:click={() => push('/cloud/login')}>
-          <h2>Login</h2>
-        </div>
-        <div class="card" on:click={() => push('/cloud/register')}>
-          <h2>Register</h2>
-        </div>
-      </div>
-    {:else}
+    {#if isUserLoggedIn}
       {#if !isUserVerified}
         <div class="grid">
           <div on:click={createConfirmation}>{$_('cloud.confirm.text')}</div>
         </div>
+      {:else}
+        <div class="grid">
+          <div on:click={() => push('/cloud/backups')}>
+            <h2>{$_('cloud.backups.title')}</h2>
+          </div>
+          <div on:click={() => push('/cloud/security')}>
+            <h2>{$_('cloud.security.title')}</h2>
+          </div>
+          <div on:click={() => push('/cloud/profile')}>
+            <h2>{$_('cloud.profile.title')}</h2>
+          </div>
+          <div on:click={() => push('/cloud/logout')}>
+            <h2>{$_('cloud.logout.title')}</h2>
+          </div>
+        </div>
       {/if}
-      <div class="grid">
-        <div on:click={() => push('/cloud/backups')}>
-          <h2>{$_('cloud.backups.title')}</h2>
-        </div>
-        <div on:click={() => push('/cloud/security')}>
-          <h2>{$_('cloud.security.title')}</h2>
-        </div>
-        <div on:click={() => push('/cloud/profile')}>
-          <h2>{$_('cloud.profile.title')}</h2>
-        </div>
-        <div on:click={() => push('/cloud/logout')}>
-          <h2>{$_('cloud.logout.title')}</h2>
-        </div>
-      </div>
     {/if}
     <Router {routes} {prefix} />
   {:else}
