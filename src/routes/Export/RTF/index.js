@@ -33,7 +33,6 @@ export class ExportRTF {
     let content = "";
     const start = async () => {
 
-      // set title
       this.header = this.header.replace("TITLE", this.projectData.title);
       content += this.header;
       unsubscribeChapters = chapters.subscribe(value => {

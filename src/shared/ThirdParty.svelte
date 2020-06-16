@@ -1,7 +1,9 @@
 <script>
   import { onMount } from "svelte";
 
-  let licenses = import('../licenses.json').then(lic => {
+  import Spinner from "./Spinner.svelte";
+
+  const licenses = import('../licenses.json').then(lic => {
     let licenseData = [];
     Object.keys(lic).forEach((key, index) => {
       licenseData.push({
@@ -22,9 +24,8 @@
 
 <div class="licenses">
 {#await licenses}
-loading
+  <Spinner />
 {:then licenseData}
-
   {#each licenseData as item}
     <b>{item.name}</b>
     <br />
@@ -33,6 +34,5 @@ loading
     <small>{item.text}</small>
     <hr />
   {/each}
-  {/await}
-
+{/await}
 </div>
