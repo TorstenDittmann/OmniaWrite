@@ -1,14 +1,16 @@
 <script>
-  import licenses from "../licenses.json";
+  import { onMount } from "svelte";
 
-  let licenseData = [];
-
-  Object.keys(licenses).forEach((key, index) => {
-    licenseData.push({
-      name: key,
-      license: licenses[key].licenses,
-      text: licenses[key].licenseText
+  let licenses = import('../licenses.json').then(lic => {
+    let licenseData = [];
+    Object.keys(lic).forEach((key, index) => {
+      licenseData.push({
+        name: key,
+        license: lic[key].licenses,
+        text: lic[key].licenseText
+      });
     });
+    return licenseData;
   });
 </script>
 
@@ -19,6 +21,10 @@
 </style>
 
 <div class="licenses">
+{#await licenses}
+loading
+{:then licenseData}
+
   {#each licenseData as item}
     <b>{item.name}</b>
     <br />
@@ -27,4 +33,6 @@
     <small>{item.text}</small>
     <hr />
   {/each}
+  {/await}
+
 </div>
