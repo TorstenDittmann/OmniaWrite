@@ -8,16 +8,17 @@
 
   import Cloud from "./Export/Cloud.svelte";
   import RTF from "./Export/RTF.svelte";
+  import Backup from "./Export/Backup.svelte";
 
   const types = [
-    {
-      title: "EPUB",
-      component: Cloud,
-    },
     {
       title: "RTF",
       component: RTF,
     },
+    {
+      title: "Local Backup",
+      component: Backup,
+    }
   ];
 
   let selected = false;
@@ -27,6 +28,7 @@
 <style>
   .export {
     margin: auto;
+    max-width: 800px;
   }
 </style>
 
@@ -35,7 +37,15 @@
 </Modal>
 <div class="export" in:fade={{ duration: 100 }}>
   {#if $state.currentProject}
-    <div id="cards" class="grid">
+    <div class="grid">
+      <div on:click={() => ([selected, selectedComponent] = [true, Cloud])}>
+        <h1>{$_('export.cloud.title')}</h1>
+        <p>
+          {$_('export.cloud.subtitle')}
+        </p>
+      </div>
+    </div>
+    <div class="grid">
       {#each types as type}
         <div
           on:click={() => ([selected, selectedComponent] = [true, type.component])}>
