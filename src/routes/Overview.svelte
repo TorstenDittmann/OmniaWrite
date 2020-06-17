@@ -15,6 +15,8 @@
   import Input from "../components/Input.svelte";
   import ButtonGroup from "../components/ButtonGroup.svelte";
   import Button from "../components/Button.svelte";
+  import Grid from "../components/Grid.svelte";
+  import GridElement from "../components/GridElement.svelte";
 
   // TODO Optimize Edit project!
 
@@ -72,13 +74,14 @@
     <EditProject bind:showEditProject id={project.id} />
   {/each}
   <h1>{$_('overview.projects.title')}</h1>
-  <div class="grid">
-    <div class="new" on:click={() => (showCreateProject = true)}>
+  <Grid>
+    <GridElement action="true" on:click={() => (showCreateProject = true)}>
       <span class="lnr lnr-plus-circle" />
-    </div>
+    </GridElement>
     {#each $projects.sort(sort) as project}
-      <div on:click={() => changeProject(project.id)}>
-        <h2>{project.title}</h2>
+      <GridElement
+        title={project.title}
+        on:click={() => changeProject(project.id)}>
         <p>
           {$_('overview.projects.opened')}
           {moment(project.lastOpen, 'X').fromNow()}
@@ -86,7 +89,7 @@
         <p>
           {$_('overview.project.chapters')}: {$chapters.filter((n) => n.project == project.id).length}
         </p>
-      </div>
+      </GridElement>
     {/each}
-  </div>
+  </Grid>
 </div>
