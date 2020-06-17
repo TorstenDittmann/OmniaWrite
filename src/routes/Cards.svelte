@@ -12,6 +12,8 @@
   import Placeholder from "../shared/Placeholder.svelte";
   import Modal from "../shared/Modal.svelte";
   import Search from "../components/Search.svelte";
+  import Grid from "../components/Grid.svelte";
+  import GridElement from "../components/GridElement.svelte";
 
   let showCreateCard = false;
   let showEditCard = false;
@@ -126,26 +128,20 @@
       placeholder={$_('cards.search')}
       bind:value={searchInput}
       autocomplete="off" />
-    <div id="cards" class="grid">
-      <div class="new" on:click={() => (showCreateCard = true)}>
+    <Grid>
+      <GridElement action="true" on:click={() => (showCreateCard = true)}>
         <span class="lnr lnr-plus-circle" />
-      </div>
+      </GridElement>
       {#each filteredCards as card}
-        <div
-          id="card"
+        <GridElement
+          title={card.title}
           on:click={() => {
             [showEditCard, editCardObject] = [true, card];
           }}>
-          <h2>
-            {#if card.showTooltip}
-              <span class="lnr lnr-checkmark-circle" />
-            {/if}
-            {card.title}
-          </h2>
           {card.content}
-        </div>
+        </GridElement>
       {/each}
-    </div>
+    </Grid>
   {:else}
     <Placeholder />
   {/if}
