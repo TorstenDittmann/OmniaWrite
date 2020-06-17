@@ -512,38 +512,6 @@ select#focusSceneSelect:active {
     outline: 0;
 }
 
-.grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
-}
-
-.grid>div {
-    background: var(--background-color);
-    border: 2px solid rgba(0, 0, 0, .3);
-    color: var(--text-color);
-    margin: 1em;
-    padding: 1em;
-    cursor: pointer;
-    opacity: .65;
-    white-space: pre-line;
-    line-height: 1.5rem;
-
-    h2 {
-        margin: 0 0 1rem 0;
-    }
-
-    &.new {
-        text-align: center;
-        font-size: 3rem;
-    }
-
-    &:hover {
-        opacity: 1;
-        transform: scale(1.05);
-        z-index: 997;
-    }
-}
-
 .tooltip {
     position: relative;
     display: inline-block;
