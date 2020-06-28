@@ -1,4 +1,5 @@
 module.exports = (req, res) => {
+  res.setHeader("Access-Control-Allow-Origin", "*");
   const templates = [
     {
       id: "epub3",
