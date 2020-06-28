@@ -244,7 +244,8 @@ function storeScenes() {
                 id: getRandomNumber(),
                 chapter: chapter,
                 title: title,
-                order: n.length
+                order: n.length,
+                lastEdit: (+new Date() / 1000).toFixed()
             }]);
         }),
         /**
