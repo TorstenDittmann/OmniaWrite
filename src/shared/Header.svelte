@@ -1,4 +1,4 @@
-<script lang="javascript">
+<script>
   import { createEventDispatcher, onMount } from "svelte";
   import { fade, fly } from "svelte/transition";
   import { link, location } from "svelte-spa-router";
@@ -132,7 +132,7 @@
   </nav>
   <div class="tabs" style="-webkit-app-region: no-drag">
     <ul>
-      {#each $tabs.filter(tabs => tabs.project == $state.currentProject) as tab}
+      {#each $tabs.filter((tabs) => tabs.project == $state.currentProject) as tab}
         <li class="tab" use:active={tab.link}>
           <a href={tab.link} use:link>{tab.title}</a>
           <span

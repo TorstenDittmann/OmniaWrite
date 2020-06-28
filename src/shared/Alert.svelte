@@ -1,4 +1,4 @@
-<script lang="javascript">
+<script>
   import { createEventDispatcher } from "svelte";
   import { fade, fly } from "svelte/transition";
 

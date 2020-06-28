@@ -1,4 +1,4 @@
-<script lang="javascript">
+<script>
   import { onMount } from "svelte";
   import { isLoading, locale, _ } from "svelte-i18n";
   import Router, { location, replace } from "svelte-spa-router";

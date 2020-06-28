@@ -1,4 +1,4 @@
-<script lang="javascript">
+<script>
   import { fade } from "svelte/transition";
   import { state, projects, chapters, scenes, settings } from "../stores";
   import { deskgap } from "../utils";

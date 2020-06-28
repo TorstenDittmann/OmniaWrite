@@ -1,4 +1,4 @@
-<script lang="javascript">
+<script>
   import { intern, settings } from "../stores";
   import { checkRequirements, deskgap, isRunningElectron } from "../utils";
   import { onMount } from "svelte";

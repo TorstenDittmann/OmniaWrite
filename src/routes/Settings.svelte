@@ -1,4 +1,4 @@
-<script lang="javascript">
+<script>
   import { fade } from "svelte/transition";
   import { _, locale } from "svelte-i18n";
   import { push } from "svelte-spa-router";
@@ -28,10 +28,6 @@
     {
       value: "de",
       text: $_("settings.appereance.language.de"),
-    },
-    {
-      value: "pt",
-      text: $_("settings.appereance.language.pt"),
     },
   ];
 </script>

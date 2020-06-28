@@ -1,4 +1,4 @@
-<script lang="javascript">
+<script>
   import { state, chapters, scenes } from "../stores";
   import { onMount } from "svelte";
   import { link, push, replace } from "svelte-spa-router";
@@ -18,22 +18,22 @@
   export let sidebarState;
 
   let createChapter = {
-    show: false
+    show: false,
   };
 
   let createScene = {
     show: false,
-    chapter: ""
+    chapter: "",
   };
 
   let editChapter = {
     show: false,
-    data: {}
+    data: {},
   };
 
   let editScene = {
     show: false,
-    data: {}
+    data: {},
   };
 
   onMount(() => {
@@ -99,7 +99,7 @@
       </div>
       {#if $state.currentProject}
         {#each $chapters
-          .filter(chapter => chapter.project == $state.currentProject)
+          .filter((chapter) => chapter.project == $state.currentProject)
           .sort((a, b) => a.order - b.order) as chapter, i}
           <li
             id="chapter-{chapter.id}"
@@ -126,7 +126,7 @@
             </span>
             <ul class="scenes">
               {#each $scenes
-                .filter(scene => scene.chapter == chapter.id)
+                .filter((scene) => scene.chapter == chapter.id)
                 .sort((a, b) => a.order - b.order) as scene}
                 <li
                   class="sceneDrag"

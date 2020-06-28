@@ -1,4 +1,4 @@
-<script lang="javascript">
+<script>
   import { fade } from "svelte/transition";
   import { cards, state } from "../stores";
   import { _ } from "svelte-i18n";

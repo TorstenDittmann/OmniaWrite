@@ -1,4 +1,4 @@
-<script lang="javascript">
+<script>
   import { state, projects, chapters, scenes, settings } from "../../stores";
   import { _ } from "svelte-i18n";
 
@@ -12,19 +12,19 @@
     sceneCount = 0;
     wordCount = 0;
     charCount = 0;
-    chapters.subscribe(chapters => {
+    chapters.subscribe((chapters) => {
       chapters
-        .filter(chapter => chapter.project == $state.currentProject)
-        .forEach(chapter => {
+        .filter((chapter) => chapter.project == $state.currentProject)
+        .forEach((chapter) => {
           chapterCount++;
-          scenes.subscribe(scenes => {
+          scenes.subscribe((scenes) => {
             scenes
-              .filter(scene => scene.chapter == chapter.id)
-              .forEach(scene => {
+              .filter((scene) => scene.chapter == chapter.id)
+              .forEach((scene) => {
                 sceneCount++;
                 if (scene.content) {
-                  scene.content.blocks.forEach(block => {
-                    if(block.data.text) {
+                  scene.content.blocks.forEach((block) => {
+                    if (block.data.text) {
                       wordCount += block.data.text.split(" ").length;
                       charCount += block.data.text.length;
                     }
@@ -78,28 +78,28 @@
   <div class="column">
     <div class="card">
       <h3>{chapterCount}</h3>
-      <p>{$_("overview.project.chapters")}</p>
+      <p>{$_('overview.project.chapters')}</p>
     </div>
   </div>
 
   <div class="column">
     <div class="card">
       <h3>{sceneCount}</h3>
-      <p>{$_("overview.project.scenes")}</p>
+      <p>{$_('overview.project.scenes')}</p>
     </div>
   </div>
 
   <div class="column">
     <div class="card">
       <h3>{wordCount}</h3>
-      <p>{$_("overview.project.words")}</p>
+      <p>{$_('overview.project.words')}</p>
     </div>
   </div>
 
   <div class="column">
     <div class="card">
       <h3>{charCount}</h3>
-      <p>{$_("overview.project.characters")}</p>
+      <p>{$_('overview.project.characters')}</p>
     </div>
   </div>
 </div>
