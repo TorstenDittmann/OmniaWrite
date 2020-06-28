@@ -1,4 +1,5 @@
 <script>
+  import { onMount } from "svelte";
   import { fade } from "svelte/transition";
   import { state } from "../../stores";
   import { _ } from "svelte-i18n";
@@ -43,20 +44,7 @@
   const exportApi =
     "https://omniawrite-git-11.torstendittmann.now.sh/api/export";
 
-  const templates = [
-    {
-      id: "epub3",
-      name: "Simple",
-    },
-    {
-      id: "modern",
-      name: "Modern",
-    },
-    {
-      id: "scifi",
-      name: "Science Fiction",
-    },
-  ];
+  let templates = [];
 
   const languages = [
     {
@@ -97,6 +85,13 @@
     form.lang !== "" &&
     form.template !== "" &&
     cover.length !== 0;
+
+  onMount(async () => {
+    const req = await fetch(
+      "https://omniawrite-git-11.torstendittmann.now.sh/api/templates"
+    );
+    templates = await req.json();
+  });
 
   const getBase64 = (file) =>
     new Promise((resolve, reject) => {
