@@ -1,9 +1,4 @@
 module.exports = (req, res) => {
-  res.setHeader("Access-Control-Allow-Origin", "*");
-  res.setHeader(
-    "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept"
-  );
   const templates = [
     {
       id: "epub3",
@@ -18,5 +13,6 @@ module.exports = (req, res) => {
       name: "Science Fiction",
     },
   ];
+  res.setHeader("Access-Control-Allow-Origin", "*");
   res.json(templates)
 }
