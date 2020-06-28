@@ -67,6 +67,26 @@
       value: "de",
       text: $_("settings.appereance.language.de"),
     },
+    {
+      value: "ru",
+      text: $_("settings.appereance.language.ru"),
+    },
+    {
+      value: "es",
+      text: $_("settings.appereance.language.es"),
+    },
+    {
+      value: "pt",
+      text: $_("settings.appereance.language.pt"),
+    },
+    {
+      value: "fr",
+      text: $_("settings.appereance.language.fr"),
+    },
+    {
+      value: "uk",
+      text: $_("settings.appereance.language.uk"),
+    },
   ];
 
   $: checkForm =
