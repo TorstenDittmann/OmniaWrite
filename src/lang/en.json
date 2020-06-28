@@ -176,6 +176,10 @@
             "language": "The language of the book",
             "description": "Short description of the book",
             "cover": "The cover for the book"
+        },
+        "cloud": {
+            "title": "EPUB",
+            "subtitle": "Internet connection is needed for this."
         }
     },
     "sidebar": {

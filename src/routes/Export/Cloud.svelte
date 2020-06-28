@@ -2,6 +2,7 @@
   import { onMount } from "svelte";
   import { fade } from "svelte/transition";
   import { state } from "../../stores";
+  import { getBase64 } from "../../utils";
   import { _ } from "svelte-i18n";
   import saveAs from "file-saver";
 
@@ -17,6 +18,8 @@
   import ButtonGroup from "../../components/ButtonGroup.svelte";
   import Button from "../../components/Button.svelte";
   import Field from "../../components/shared/Field.svelte";
+  import Grid from "../../components/Grid.svelte";
+  import GridElement from "../../components/GridElement.svelte";
 
   let form = {
     title: "",
@@ -46,36 +49,14 @@
 
   let templates = [];
 
-  const languages = [
-    {
-      value: "en",
-      text: $_("settings.appereance.language.en"),
-    },
-    {
-      value: "de",
-      text: $_("settings.appereance.language.de"),
-    },
-    {
-      value: "ru",
-      text: $_("settings.appereance.language.ru"),
-    },
-    {
-      value: "es",
-      text: $_("settings.appereance.language.es"),
-    },
-    {
-      value: "pt",
-      text: $_("settings.appereance.language.pt"),
-    },
-    {
-      value: "fr",
-      text: $_("settings.appereance.language.fr"),
-    },
-    {
-      value: "uk",
-      text: $_("settings.appereance.language.uk"),
-    },
-  ];
+  const languages = ["en", "de", "ru", "es", "pt", "fr", "uk"].map(
+    (language) => {
+      return {
+        value: language,
+        text: $_(`settings.appereance.language.${language}`),
+      };
+    }
+  );
 
   $: checkForm =
     form.title !== "" &&
@@ -92,14 +73,6 @@
     );
     templates = await req.json();
   });
-
-  const getBase64 = (file) =>
-    new Promise((resolve, reject) => {
-      const reader = new FileReader();
-      reader.readAsDataURL(file);
-      reader.onload = () => resolve(reader.result);
-      reader.onerror = (error) => reject(error);
-    });
 
   const download = async () => {
     if (!checkForm) {
@@ -170,9 +143,9 @@
 </Modal>
 <Modal bind:show={selectTemplate}>
   <h2>{$_('export.templates')}</h2>
-  <div id="cards" class="grid">
+  <Grid>
     {#each templates as template}
-      <div
+      <GridElement
         on:click={() => ([form.template, selectTemplate] = [template.id, false])}>
         <h2>
           {#if form.template === template.id}
@@ -181,9 +154,9 @@
           {template.name}
         </h2>
         <small>...</small>
-      </div>
+      </GridElement>
     {/each}
-  </div>
+  </Grid>
 </Modal>
 <div in:fade={{ duration: 100 }}>
   {#if $state.currentProject}
