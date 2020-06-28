@@ -5,6 +5,8 @@
 
   import moment from "moment";
   import "moment/locale/de";
+  import Grid from "../../components/Grid.svelte";
+  import GridElement from "../../components/GridElement.svelte";
 
   moment.locale($settings.language);
 
@@ -12,12 +14,12 @@
 
   $: {
     sceneData = [];
-    const unsubscribe = $chapters
-      .filter(chapter => chapter.project == $state.currentProject)
-      .forEach(chapter => {
+    $chapters
+      .filter((chapter) => chapter.project == $state.currentProject)
+      .forEach((chapter) => {
         $scenes
-          .filter(scene => scene.chapter == chapter.id)
-          .forEach(scene => {
+          .filter((scene) => scene.chapter == chapter.id)
+          .forEach((scene) => {
             sceneData.push(scene);
           });
       });
@@ -35,17 +37,13 @@
   }
 </script>
 
-<style type="text/css">
-
-</style>
-
-<div id="cards" class="grid">
+<Grid>
   {#each sceneData as scene}
-    <div id="card" on:click={() => push("/write/" + scene.id)}>
+    <GridElement on:click={() => push('/write/' + scene.id)}>
       <h2>{scene.title}</h2>
       <small>
-        {$_("write.overview.opened")} {moment(scene.lastEdit, "X").fromNow()}
+        {$_('write.overview.opened')} {moment(scene.lastEdit, 'X').fromNow()}
       </small>
-    </div>
+    </GridElement>
   {/each}
-</div>
+</Grid>

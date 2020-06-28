@@ -6,19 +6,24 @@
   import Placeholder from "../shared/Placeholder.svelte";
   import Modal from "../shared/Modal.svelte";
 
+  import Grid from "../components/Grid.svelte";
+  import GridElement from "../components/GridElement.svelte";
+
   import Cloud from "./Export/Cloud.svelte";
   import RTF from "./Export/RTF.svelte";
   import Backup from "./Export/Backup.svelte";
 
   const types = [
     {
-      title: "RTF",
+      title: $_("export.rtf.title"),
+      subtitle: $_("export.rtf.subtitle"),
       component: RTF,
     },
     {
-      title: "Local Backup",
+      title: $_("export.backup.title"),
+      subtitle: $_("export.backup.subtitle"),
       component: Backup,
-    }
+    },
   ];
 
   let selected = false;
@@ -37,22 +42,21 @@
 </Modal>
 <div class="export" in:fade={{ duration: 100 }}>
   {#if $state.currentProject}
-    <div class="grid">
-      <div on:click={() => ([selected, selectedComponent] = [true, Cloud])}>
+    <Grid>
+      <GridElement
+        on:click={() => ([selected, selectedComponent] = [true, Cloud])}>
         <h1>{$_('export.cloud.title')}</h1>
-        <p>
-          {$_('export.cloud.subtitle')}
-        </p>
-      </div>
-    </div>
-    <div class="grid">
+        <p>{$_('export.cloud.subtitle')}</p>
+      </GridElement>
+    </Grid>
+    <Grid>
       {#each types as type}
-        <div
+        <GridElement
           on:click={() => ([selected, selectedComponent] = [true, type.component])}>
           <h1>{type.title}</h1>
-        </div>
+        </GridElement>
       {/each}
-    </div>
+    </Grid>
   {:else}
     <Placeholder />
   {/if}

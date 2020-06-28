@@ -11,8 +11,10 @@
   import Toast from "../shared/Toast.svelte";
   import Spinner from "../shared/Spinner.svelte";
 
-  import Login from "./Cloud/Login.svelte";
+  import Grid from "../components/Grid.svelte";
+  import GridElement from "../components/GridElement.svelte";
 
+  import Login from "./Cloud/Login.svelte";
   import Register from "./Cloud/Register.svelte";
 
   import Security from "./Cloud/Security.svelte";
@@ -93,24 +95,26 @@
   {#if !loading}
     {#if isUserLoggedIn}
       {#if !isUserVerified}
-        <div class="grid">
-          <div on:click={createConfirmation}>{$_('cloud.confirm.text')}</div>
-        </div>
+        <Grid>
+          <GridElement on:click={createConfirmation}>
+            {$_('cloud.confirm.text')}
+          </GridElement>
+        </Grid>
       {:else}
-        <div class="grid">
-          <div on:click={() => push('/cloud/backups')}>
+        <Grid>
+          <GridElement on:click={() => push('/cloud/backups')}>
             <h2>{$_('cloud.backups.title')}</h2>
-          </div>
-          <div on:click={() => push('/cloud/security')}>
+          </GridElement>
+          <GridElement on:click={() => push('/cloud/security')}>
             <h2>{$_('cloud.security.title')}</h2>
-          </div>
-          <div on:click={() => push('/cloud/profile')}>
+          </GridElement>
+          <GridElement on:click={() => push('/cloud/profile')}>
             <h2>{$_('cloud.profile.title')}</h2>
-          </div>
-          <div on:click={() => push('/cloud/logout')}>
+          </GridElement>
+          <GridElement on:click={() => push('/cloud/logout')}>
             <h2>{$_('cloud.logout.title')}</h2>
-          </div>
-        </div>
+          </GridElement>
+        </Grid>
       {/if}
     {/if}
     <Router {routes} {prefix} />
