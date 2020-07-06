@@ -584,8 +584,19 @@ span.card {
     text-align: center;
 }
 
-#codex-editor {
-    &>* {
+.omnia-editor {
+    font-family: 'IBM Plex Mono', monospace;
+    color: var(--editor-color);
+    font-weight: 400;
+    font-size: var(--editor-font-size);
+    line-height: 2rem;
+    text-align: justify;
+
+    svg {
+        fill: var(--editor-color);
+    }
+
+    & * {
         -webkit-touch-callout: auto;
         -webkit-user-select: auto;
         -khtml-user-select: auto;
@@ -594,51 +605,9 @@ span.card {
         user-select: auto;
     }
 
-    .codex-editor {
-        font-family: 'IBM Plex Mono', monospace;
-        color: var(--editor-color);
-        font-weight: 400;
-        font-size: var(--editor-font-size);
-        line-height: 2rem;
-        text-align: justify;
-
-        .ce-block i {
-            font-family: 'IBM Plex Mono',
-                monospace;
-
-        }
-
-        .ce-block__content {
-            padding: 0;
-            max-width: unset;
-        }
-
-        .ce-block--focused {
-            background-image: unset;
-        }
-
-        .ce-paragraph {
-            line-height: 2rem;
-
-            q {
-                quotes: "„""“"
-            }
-        }
-
-        .ce-inline-toolbar__dropdown {
-            display: none;
-        }
+    q {
+        quotes: "„""“"
     }
-}
-
-.nodeText {
-    font-family: 'IBM Plex Mono', monospace;
-    padding: 5%;
-    color: var(--editor-color);
-    font-weight: 400;
-    font-size: 0.9rem;
-    line-height: 2rem;
-    text-align: justify;
 }
 
 .toolbar {
@@ -693,38 +662,11 @@ span.card {
         box-shadow: 0 5px 26px 2px rgba(0, 0, 0, 0.2);
     }
 
-    .nodeText {
+    .omnia-editor {
+        font-weight: 400;
+        font-size: var(--editor-font-size);
         line-height: 2.5rem;
-    }
-
-    #codex-editor {
-        .codex-editor {
-            font-family: 'IBM Plex Mono',
-                monospace;
-            color: var(--editor-color);
-            font-weight: 400;
-            font-size: var(--editor-font-size);
-            text-align: justify;
-
-            .ce-block__content {
-                padding: 0 5%;
-                max-width: unset;
-            }
-
-            .ce-block--focused {
-                background-image: unset;
-            }
-
-            .ce-paragraph {
-                line-height: 2.5rem;
-            }
-        }
-    }
-}
-
-@media (max-width: 960px) {
-    .nodeText {
-        padding: 0 0 100%;
+        text-align: justify;
     }
 }
 

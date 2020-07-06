@@ -4,22 +4,15 @@
   import { scenes, chapters, state, cards, settings } from "../stores";
   import { push, location } from "svelte-spa-router";
   import { _ } from "svelte-i18n";
-  import Paragraph, { QuoteTool } from "./Write/paragraph";
+  import OmniaEditor from "omnia-editor";
 
   import Overview from "./Write/Overview.svelte";
-  import EditorJS from "@editorjs/editorjs";
-  import Header from "@editorjs/header";
-  import Quote from "@editorjs/quote";
   import Toast from "../shared/Toast.svelte";
   import Placeholder from "../shared/Placeholder.svelte";
 
   export let params = {};
   let currentScene;
-  let currentChapter;
-  let lastScene;
   let editor;
-  let editorChangeHappened;
-  let editorElement;
   let amountWords = 0;
   let amountChars = 0;
 
@@ -27,101 +20,41 @@
   let showToastText;
 
   let focusMode = false;
-  let autosave;
 
   $: currentScene = $scenes.filter((scene) => scene.id == params.sceneId)[0];
-  $: state.setCurrentTitle(
-    params.sceneId ? currentScene.title : "No scene selected!"
-  );
   $: {
-    if ($location) {
-      init();
-    }
+    state.setCurrentTitle(
+      params.sceneId ? currentScene.title : "No scene selected!"
+    );
   }
 
   onMount(() => {
-    clearTimeout(autosave);
+    window.addEventListener("hashchange", routeChange, false);
     if (params.sceneId !== null) {
       document.addEventListener("keydown", shortcutListener, false);
     }
   });
 
   onDestroy(() => {
-    clearTimeout(autosave);
     document.removeEventListener("keydown", shortcutListener);
-    if (editorChangeHappened) {
-      save(lastScene);
-    }
-    if (editor && typeof editor.destroy === "function") {
-      editor.destroy();
-    }
+    window.removeEventListener("hashchange", routeChange, false);
   });
 
-  function init() {
-    if (params.sceneId !== null) {
-      if (editor && typeof editor.destroy === "function") {
-        if (editorChangeHappened) {
-          save(lastScene);
-        }
-        editor.destroy();
-      }
-      editorChangeHappened = false;
-      editor = new EditorJS({
-        holder: "codex-editor",
-        placeholder: $_("write.editor.placeholder"),
-        data: currentScene.content,
-        onChange: () => {
-          clearTimeout(autosave);
-          editorChangeHappened = true;
-          countWordsAndChars();
-          if ($settings.autosave) {
-            autosave = setTimeout(() => {
-              save(params.sceneId);
-            }, 10000);
-          }
-        },
-        onReady: () => {
-          countWordsAndChars();
-        },
-        tools: {
-          quote: {
-            class: QuoteTool,
-          },
-          paragraph: {
-            class: Paragraph,
-            inlineToolbar: ["bold", "italic", "quote"],
-            config: {
-              project: $state.currentProject,
-              cards: $cards.filter((card) => {
-                return (
-                  card.project == $state.currentProject &&
-                  card.showTooltip == true
-                );
-              }),
-            },
-          },
-        },
-        logLevel: "ERROR",
-      });
-      editor.tools;
-      lastScene = params.sceneId;
+  const routeChange = () => {
+    if (editor) {
+      editor.update();
     }
-  }
+  };
 
-  function save(param) {
-    editor
-      .save()
-      .then((outputData) => {
-        clearTimeout(autosave);
-        scenes.setSceneContent(param, outputData);
-        editorChangeHappened = false;
-        showToast = true;
-        showToastText = $_("write.toast.saved");
-      })
-      .catch((error) => {
-        console.error("Saving failed: ", error);
-      });
-  }
+  const change = (e) => {
+    scenes.setSceneContent(params.sceneId, e.detail);
+    showToast = true;
+    showToastText = $_("write.toast.saved");
+  };
+
+  const init = () => {
+    countWordsAndChars();
+  };
 
   function shortcutListener(evt) {
     evt = evt || window.event;
@@ -142,14 +75,13 @@
   }
 
   function countWordsAndChars() {
-    if (editorElement) {
-      amountChars = editorElement.innerText.length;
-      if (amountChars > 0) {
-        amountWords = editorElement.innerText.split(" ").length;
-      } else {
-        amountWords = 0;
-      }
-    }
+    // TODO implement counter into omnia-editor
+    /*amountChars = editorElement.innerText.length;
+    if (amountChars > 0) {
+      amountWords = editorElement.innerText.split(" ").length;
+    } else {
+      amountWords = 0;
+    }*/
   }
 
   function switchScene(e) {
@@ -172,7 +104,7 @@
   }
 </script>
 
-<style type="text/css">
+<style>
   * {
     -webkit-tap-highlight-color: rgba(255, 255, 255, 0) !important;
     -webkit-focus-ring-color: rgba(255, 255, 255, 0) !important;
@@ -197,13 +129,6 @@
         <span class="lnr lnr-redo tooltip" on:click={redo}>
           <span class="tooltiptext">{$_('write.toolbar.redo')}</span>
         </span>
-        {#if editorChangeHappened}
-          <span
-            class="lnr lnr-checkmark-circle tooltip"
-            on:click={() => save(params.sceneId)}>
-            <span class="tooltiptext">{$_('write.toolbar.save')}</span>
-          </span>
-        {/if}
         <span
           class="lnr tooltip"
           on:click={toggleFocus}
@@ -229,7 +154,10 @@
       </div>
       <div class="editpane">
         <h1 contenteditable="true">{currentScene.title}</h1>
-        <div id="codex-editor" bind:this={editorElement} />
+        <OmniaEditor
+          bind:this={editor}
+          data={currentScene.content}
+          on:change={change} />
       </div>
     {:else}
       <Overview />

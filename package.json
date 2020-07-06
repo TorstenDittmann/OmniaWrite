@@ -17,13 +17,10 @@
   "dependencies": {
     "node-fetch": "^2.6.0",
     "omnia-ebook-generator": "0.0.7",
+    "omnia-editor": "0.0.6",
     "semver": "^7.3.2"
   },
   "devDependencies": {
-    "@editorjs/editorjs": "^2.17.0",
-    "@editorjs/header": "^2.4.0",
-    "@editorjs/paragraph": "^2.6.1",
-    "@editorjs/quote": "^2.3.0",
     "@sentry/browser": "^5.15.4",
     "@types/file-saver": "^2.0.1",
     "appwrite": "^1.0.29",
