@@ -43,6 +43,7 @@
   const routeChange = () => {
     if (editor) {
       editor.update();
+      document.getElementById("content").scrollTo(0, 0);
     }
   };
 
