@@ -21,30 +21,6 @@ class ElectronIPC {
 
 export const electronIPC = new ElectronIPC();
 
-export function checkRequirements() {
-    let check = {
-        steps: {
-            internet: false,
-            browser: false,
-            serviceWorker: false
-        },
-        installable: false
-    }
-
-    check.steps.internet = navigator.onLine;
-
-    // Chrome 1 - 71
-    let isChrome = !!window.chrome && (!!window.chrome.webstore || !!window.chrome.runtime);
-    // webKit
-
-    if (isChrome) check.steps.browser = true;
-    if ("serviceWorker" in navigator) check.steps.serviceWorker = true;
-
-    if (check.steps.browser) check.installable = true;
-
-    return check;
-}
-
 export const getRandomNumber = () => {
     return Math.floor(Math.random() * 999999);
 }

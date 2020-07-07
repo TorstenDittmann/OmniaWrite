@@ -3,7 +3,7 @@ import {
 } from "svelte/store";
 
 const defaultIntern = {
-    version: "alpha",
+    version: "1.1.0", // TODO changelog modal
     installed: false
 };
 
