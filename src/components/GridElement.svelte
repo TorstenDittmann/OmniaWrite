@@ -14,6 +14,7 @@
     opacity: 0.65;
     white-space: pre-line;
     line-height: 1.5rem;
+    transition: transform 0.2s;
 
     h2 {
       margin: 0 0 1rem 0;
