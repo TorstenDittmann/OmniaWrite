@@ -16,9 +16,6 @@
   let amountWords = 0;
   let amountChars = 0;
 
-  let showToast = false;
-  let showToastText;
-
   let focusMode = false;
 
   $: currentScene = $scenes.filter((scene) => scene.id == params.sceneId)[0];
@@ -49,8 +46,6 @@
 
   const change = (e) => {
     scenes.setSceneContent(params.sceneId, e.detail);
-    showToast = true;
-    showToastText = $_("write.toast.saved");
   };
 
   const init = () => {
@@ -113,7 +108,6 @@
   }
 </style>
 
-<Toast bind:show={showToast} text={showToastText} />
 <div in:fade={{ duration: 100 }}>
   {#if $state.currentProject}
     {#if params.sceneId !== null}
