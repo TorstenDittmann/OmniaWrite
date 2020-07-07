@@ -6,17 +6,17 @@
   import { state } from "../../stores";
 
   import cloud from "../../appwrite";
-  import { deskgap } from "../../utils";
+  import { electronIPC } from "../../utils";
 
   onMount(() => {
     cloud.logoutSession("current").then(
       setTimeout(() => {
         state.setLogin(false);
         window.location.hash = "#/cloud";
-        deskgap.reload();
+        electronIPC.reload();
       }, 1500)
     );
   });
 </script>
 
-<h2>{$_("cloud.logout.success")}</h2>
+<h2>{$_('cloud.logout.success')}</h2>

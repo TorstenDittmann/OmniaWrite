@@ -3,6 +3,7 @@
   import { _ } from "svelte-i18n";
 
   import { projects, chapters, scenes } from "../../stores";
+  import { electronIPC } from "../../utils"
 
   import Modal from "../../shared/Modal.svelte";
 
@@ -41,7 +42,7 @@
 
       scenes.removeAllScenes(project);
       state.setCurrentProject("");
-      deskgap.reload();
+      electronIPC.reload();
     }
   };
 </script>

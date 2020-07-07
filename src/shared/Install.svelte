@@ -1,6 +1,5 @@
 <script>
   import { intern, settings } from "../stores";
-  import { checkRequirements, deskgap, isRunningElectron } from "../utils";
   import { onMount } from "svelte";
   import { _ } from "svelte-i18n";
 

@@ -1,7 +1,7 @@
 <script>
   import { fade } from "svelte/transition";
   import { state, projects, chapters, scenes, settings } from "../stores";
-  import { deskgap } from "../utils";
+  import { electronIPC } from "../utils";
   import { _ } from "svelte-i18n";
   import moment from "moment";
   import "moment/locale/de";
@@ -28,7 +28,7 @@
   const changeProject = (project) => {
     state.setCurrentProject(project);
     projects.updateProjectTimestamp(project);
-    deskgap.reload();
+    electronIPC.reload();
   };
 
   const sort = (b, a) => {

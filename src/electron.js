@@ -1,5 +1,5 @@
 /* eslint-disable no-undef */
-const { app, dialog, shell, BrowserWindow } = require("electron");
+const { app, dialog, shell, BrowserWindow, Menu, MenuItem } = require("electron");
 
 const path = require("path");
 const fetch = require("node-fetch");
@@ -44,6 +44,27 @@ const createWindow = () => {
   mainWindow.on("closed", () => {
     mainWindow = null;
   });
+  mainWindow.webContents.on("context-menu", (event, params) => {
+    const menu = new Menu()
+    for (const suggestion of params.dictionarySuggestions) {
+      menu.append(new MenuItem({
+        label: suggestion,
+        click: () => mainWindow.webContents.replaceMisspelling(suggestion)
+      }))
+    }
+
+    if (params.misspelledWord) {
+      menu.append(
+        new MenuItem({
+          label: "Add to dictionary",
+          click: () => mainWindow.webContents.session.addWordToSpellCheckerDictionary(params.misspelledWord)
+        })
+      )
+    } else {
+      return;
+    }
+    menu.popup()
+  })
 }
 
 const showMainWindow = () => {

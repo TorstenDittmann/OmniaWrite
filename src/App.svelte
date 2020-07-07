@@ -5,7 +5,7 @@
 
   import { Workbox } from "workbox-window";
   import { state, projects, settings, intern } from "./stores";
-  import { deskgap, isRunningElectron } from "./utils";
+  import { electronIPC, isRunningElectron } from "./utils";
   import cloud from "./appwrite";
 
   import * as Sentry from "@sentry/browser";
@@ -79,7 +79,7 @@
    */
   const updateApp = () => {
     wb.addEventListener("controlling", (event) => {
-      deskgap.reload();
+      electronIPC.reload();
     });
     wb.messageSW({
       type: "SKIP_WAITING",

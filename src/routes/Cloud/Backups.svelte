@@ -2,7 +2,7 @@
   import { _ } from "svelte-i18n";
 
   import { settings } from "../../stores";
-  import { deskgap } from "../../utils";
+  import { electronIPC } from "../../utils";
   import cloud from "../../appwrite";
   import moment from "moment";
   import "moment/locale/de";
@@ -15,9 +15,9 @@
 
   function restoreBackup(id) {
     isLoadingBackup = true;
-    cloud.restoreBackup(id).then(response => {
+    cloud.restoreBackup(id).then((response) => {
       isLoadingBackup = false;
-      deskgap.reload();
+      electronIPC.reload();
     });
   }
   function formatBytes(a, b) {
@@ -75,9 +75,9 @@
 {#if isLoadingBackup}
   <Spinner />
   <br />
-  <i>{$_("cloud.backups.migrating")}</i>
+  <i>{$_('cloud.backups.migrating')}</i>
 {:else}
-  <h2>{$_("cloud.backups.title")}</h2>
+  <h2>{$_('cloud.backups.title')}</h2>
   {#await cloud.getAllBackups()}
     <Spinner />
   {:then backups}
@@ -85,10 +85,10 @@
       {#each backups.files as backup}
         <li on:click={() => restoreBackup(backup.$id)}>
           <span class="from-now">
-            {moment(backup.dateCreated, "X").fromNow()}
+            {moment(backup.dateCreated, 'X').fromNow()}
           </span>
           <span class="date">
-            {moment(backup.dateCreated, "X").format("MMMM Do YYYY, h:mm:ss a")}
+            {moment(backup.dateCreated, 'X').format('MMMM Do YYYY, h:mm:ss a')}
           </span>
           <span class="file-size">{formatBytes(backup.sizeOriginal)}</span>
           <span class="lnr lnr-cloud-download" />

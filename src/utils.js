@@ -1,7 +1,7 @@
 export const isRunningElectron = window && window.process && window.process.type;
 const { ipcRenderer } = isRunningElectron ? window.require("electron") : {};
 
-class Deskgap {
+class ElectronIPC {
     reload() {
         return isRunningElectron ? ipcRenderer.send("reload") : window.location.reload();
     }
@@ -19,7 +19,7 @@ class Deskgap {
     }
 }
 
-export const deskgap = new Deskgap();
+export const electronIPC = new ElectronIPC();
 
 export function checkRequirements() {
     let check = {

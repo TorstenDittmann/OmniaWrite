@@ -2,7 +2,6 @@
   import { onMount } from "svelte";
   import { fade } from "svelte/transition";
   import { state, settings } from "../stores";
-  import { deskgap } from "../utils";
   import { _ } from "svelte-i18n";
   import { querystring, push } from "svelte-spa-router";
   import Router from "svelte-spa-router";
