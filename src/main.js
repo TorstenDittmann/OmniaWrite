@@ -6,8 +6,8 @@ import "./css/index.scss";
 import App from "./App.svelte";
 import { register, init } from "svelte-i18n";
 
-register("en", () => import("./lang/en.json"));
-register("de", () => import("./lang/de.json"));
+register("en", () => import(/* webpackChunkName: "en" */"./lang/en.json"));
+register("de", () => import(/* webpackChunkName: "de" */"./lang/de.json"));
 
 init({
 	fallbackLocale: "en",

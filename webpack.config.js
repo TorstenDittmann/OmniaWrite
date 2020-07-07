@@ -21,7 +21,7 @@ module.exports = {
   output: {
     path: __dirname + "/public",
     filename: "[name].js",
-    chunkFilename: "bundle.[name].[id].js"
+    chunkFilename: "bundle.[name].js"
   },
   module: {
     rules: [
