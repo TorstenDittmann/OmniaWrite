@@ -6,7 +6,8 @@
 <style lang="scss">
   .grid-element {
     background: var(--background-color);
-    border: 2px solid rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     color: var(--text-color);
     margin: 1em;
     padding: 1em;
@@ -14,7 +15,7 @@
     opacity: 0.65;
     white-space: pre-line;
     line-height: 1.5rem;
-    transition: transform 0.2s;
+    transition: all 0.2s;
 
     h2 {
       margin: 0 0 1rem 0;

@@ -5,13 +5,6 @@
   import { getBase64 } from "../../utils";
   import { _ } from "svelte-i18n";
   import saveAs from "file-saver";
-
-  import Placeholder from "../../shared/Placeholder.svelte";
-  import Modal from "../../shared/Modal.svelte";
-  import Toast from "../../shared/Toast.svelte";
-  import Spinner from "../../shared/Spinner.svelte";
-  import Export from "./collectData";
-
   import {
     Input,
     Select,
@@ -21,6 +14,12 @@
     Field,
   } from "../../components/Forms";
   import { Grid, GridElement } from "../../components/Grid";
+
+  import Placeholder from "../../shared/Placeholder.svelte";
+  import Modal from "../../shared/Modal.svelte";
+  import Toast from "../../shared/Toast.svelte";
+  import Spinner from "../../shared/Spinner.svelte";
+  import Export from "./collectData";
 
   let form = {
     title: "",
@@ -154,7 +153,6 @@
           {/if}
           {template.name}
         </h2>
-        <small>...</small>
       </GridElement>
     {/each}
   </Grid>
