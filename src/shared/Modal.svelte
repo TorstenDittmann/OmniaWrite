@@ -7,7 +7,7 @@
   export let persistent = false;
 </script>
 
-<style type="text/css">
+<style lang="scss">
   .modal-background {
     position: fixed;
     top: 0;
@@ -17,7 +17,6 @@
     background: rgba(0, 0, 0, 0.5);
     z-index: 998;
   }
-
   .modal {
     position: absolute;
     left: 50%;
@@ -31,26 +30,31 @@
     border-radius: 0.2em;
     background-color: var(--background-color);
     z-index: 999;
-  }
 
-  .modal-close {
-    float: right;
-    margin-right: 1em;
-    opacity: 0.65;
-    cursor: pointer;
-  }
+    .modal-content {
+      float: left;
+      width: 100%;
+    }
+    .modal-close {
+      float: right;
+      font-size: 1.5rem;
+      opacity: 0.65;
+      cursor: pointer;
+      transition: all 0.2s;
 
-  .modal-close:hover {
-    opacity: 1;
-  }
-
-  .modal.fullscreen {
-    max-width: 100vw;
-    height: 100vh;
-    max-height: 100vh;
-    width: 100vw;
-    text-align: center;
-    background-color: var(--secondary-color);
+      &:hover {
+        opacity: 1;
+        transform: scale(1.25);
+      }
+    }
+    &.fullscreen {
+      max-width: 100vw;
+      height: 100vh;
+      max-height: 100vh;
+      width: 100vw;
+      text-align: center;
+      background-color: var(--secondary-color);
+    }
   }
 </style>
 
@@ -60,7 +64,6 @@
     on:click={() => (persistent ? '' : (show = false))}
     in:fade={{ duration: 200 }}
     out:fade={{ duration: 200 }} />
-
   <div
     class="modal"
     in:scale={{ duration: 200 }}
@@ -72,6 +75,8 @@
       </div>
     {/if}
     <slot name="header" />
-    <slot />
+    <div class="modal-content">
+      <slot />
+    </div>
   </div>
 {/if}
