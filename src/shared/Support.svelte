@@ -1,12 +1,13 @@
 <script>
   import { _ } from "svelte-i18n";
+  import {
+    InputEmail,
+    Textarea,
+    ButtonGroup,
+    Button,
+  } from "../components/Forms";
 
   import Modal from "./Modal.svelte";
-
-  import InputEmail from "../components/InputEmail.svelte";
-  import Textarea from "../components/Textarea.svelte";
-  import Button from "../components/Button.svelte";
-  import ButtonGroup from "../components/ButtonGroup.svelte";
 
   import { ui } from "../stores";
 

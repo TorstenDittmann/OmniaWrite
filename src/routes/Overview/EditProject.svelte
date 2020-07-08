@@ -1,15 +1,11 @@
 <script>
   import { createEventDispatcher, onMount } from "svelte";
   import { _ } from "svelte-i18n";
-
   import { projects, chapters, scenes } from "../../stores";
-  import { electronIPC } from "../../utils"
+  import { electronIPC } from "../../utils";
+  import { Input, Button, ButtonGroup } from "../../components/Forms";
 
   import Modal from "../../shared/Modal.svelte";
-
-  import Input from "../../components/Input.svelte";
-  import ButtonGroup from "../../components/ButtonGroup.svelte";
-  import Button from "../../components/Button.svelte";
 
   const dispatch = createEventDispatcher();
 

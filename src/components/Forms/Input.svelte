@@ -1,14 +1,25 @@
 <script>
-  import { getRandomNumber } from "../utils";
-  import Field from "./shared/Field.svelte";
+  import { onMount } from "svelte";
+  import { getRandomNumber } from "../../utils";
+  import { Field } from ".";
 
   export let label;
   export let id = label + getRandomNumber();
 
   export let value;
   export let placeholder;
+  export let helper;
   export let autocomplete = "off";
   export let required = false;
+  export let autofocus = false;
+
+  let element;
+
+  onMount(() => {
+    if (element && autofocus) {
+      element.focus();
+    }
+  });
 </script>
 
 <style lang="scss">
@@ -23,12 +34,12 @@
     border: none;
     border-radius: 0;
     box-shadow: none;
-    height: 2rem;
+    height: 1.2rem;
     color: var(--text-color);
     display: inline-block;
     border-bottom: 1px solid #999;
-    max-height: 2rem;
-    font-size: 1.5rem;
+    max-height: 1.2rem;
+    font-size: 1rem;
     opacity: 0.65;
     background: linear-gradient(
         to bottom,
@@ -48,12 +59,13 @@
   }
 </style>
 
-<Field bind:id>
+<Field bind:id bind:label bind:helper>
   <input
     {id}
     {autocomplete}
     {placeholder}
+    bind:this={element}
     {required}
-    type="search"
+    type="text"
     bind:value />
 </Field>

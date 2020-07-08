@@ -3,20 +3,15 @@
   import { state, projects, chapters, scenes, settings } from "../stores";
   import { electronIPC } from "../utils";
   import { _ } from "svelte-i18n";
+  import { Input, ButtonGroup, Button } from "../components/Forms";
+  import { Grid, GridElement } from "../components/Grid";
+
   import moment from "moment";
   import "moment/locale/de";
-
   import CreateProject from "./Overview/CreateProject.svelte";
   import EditProject from "./Overview/EditProject.svelte";
-
   import ProjectOverview from "./Overview/Project.svelte";
   import Modal from "../shared/Modal.svelte";
-
-  import Input from "../components/Input.svelte";
-  import ButtonGroup from "../components/ButtonGroup.svelte";
-  import Button from "../components/Button.svelte";
-  import Grid from "../components/Grid.svelte";
-  import GridElement from "../components/GridElement.svelte";
 
   // TODO Optimize Edit project!
 

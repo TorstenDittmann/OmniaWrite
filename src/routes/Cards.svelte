@@ -2,18 +2,18 @@
   import { fade } from "svelte/transition";
   import { cards, state } from "../stores";
   import { _ } from "svelte-i18n";
-
-  import Input from "../components/Input.svelte";
-  import Textarea from "../components/Textarea.svelte";
-  import Checkbox from "../components/Checkbox.svelte";
-  import ButtonGroup from "../components/ButtonGroup.svelte";
-  import Button from "../components/Button.svelte";
+  import { Grid, GridElement } from "../components/Grid";
+  import {
+    Input,
+    Textarea,
+    Checkbox,
+    ButtonGroup,
+    Button,
+    Search,
+  } from "../components/Forms";
 
   import Placeholder from "../shared/Placeholder.svelte";
   import Modal from "../shared/Modal.svelte";
-  import Search from "../components/Search.svelte";
-  import Grid from "../components/Grid.svelte";
-  import GridElement from "../components/GridElement.svelte";
 
   let showCreateCard = false;
   let showEditCard = false;

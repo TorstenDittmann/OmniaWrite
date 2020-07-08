@@ -2,14 +2,11 @@
   import { intern, settings } from "../stores";
   import { onMount } from "svelte";
   import { _ } from "svelte-i18n";
+  import { Button, ButtonGroup, Select, Checkbox } from "../components/Forms";
 
   import Modal from "./Modal.svelte";
   import Disclaimer from "./Disclaimer.svelte";
   import Spinner from "./Spinner.svelte";
-  import ButtonGroup from "../components/ButtonGroup.svelte";
-  import Button from "../components/Button.svelte";
-  import Select from "../components/Select.svelte";
-  import Checkbox from "../components/Checkbox.svelte";
 
   let installable = false;
   let showInstall = false;

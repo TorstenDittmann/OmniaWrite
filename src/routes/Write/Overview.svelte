@@ -2,11 +2,10 @@
   import { state, chapters, scenes, settings } from "../../stores";
   import { push } from "svelte-spa-router";
   import { _ } from "svelte-i18n";
+  import { Grid, GridElement } from "../../components/Grid";
 
   import moment from "moment";
   import "moment/locale/de";
-  import Grid from "../../components/Grid.svelte";
-  import GridElement from "../../components/GridElement.svelte";
 
   moment.locale($settings.language);
 

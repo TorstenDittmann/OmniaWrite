@@ -1,25 +1,14 @@
 <script>
-  import { onMount } from "svelte";
-  import { getRandomNumber } from "../utils";
-  import Field from "./shared/Field.svelte";
+  import { getRandomNumber } from "../../utils";
+  import { Field } from ".";
 
   export let label;
   export let id = label + getRandomNumber();
 
-  export let value;
-  export let placeholder;
+  export let files;
+
   export let helper;
-  export let autocomplete = "off";
   export let required = false;
-  export let autofocus = false;
-
-  let element;
-
-  onMount(() => {
-    if (element && autofocus) {
-      element.focus();
-    }
-  });
 </script>
 
 <style lang="scss">
@@ -60,12 +49,5 @@
 </style>
 
 <Field bind:id bind:label bind:helper>
-  <input
-    {id}
-    {autocomplete}
-    {placeholder}
-    bind:this={element}
-    {required}
-    type="text"
-    bind:value />
+  <input {id} {required} type="file" bind:files />
 </Field>

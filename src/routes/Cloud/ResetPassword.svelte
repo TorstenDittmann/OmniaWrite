@@ -3,9 +3,7 @@
   import { push } from "svelte-spa-router";
   import cloud from "../../appwrite";
 
-  import InputEmail from "../../components/InputEmail.svelte";
-  import ButtonGroup from "../../components/ButtonGroup.svelte";
-  import Button from "../../components/Button.svelte";
+  import { InputEmail, ButtonGroup, Button } from "../../components/Forms";
 
   let email = "";
   let recoverLoading = false;

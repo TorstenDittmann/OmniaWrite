@@ -12,14 +12,15 @@
   import Spinner from "../../shared/Spinner.svelte";
   import Export from "./collectData";
 
-  import Input from "../../components/Input.svelte";
-  import Select from "../../components/Select.svelte";
-  import File from "../../components/File.svelte";
-  import ButtonGroup from "../../components/ButtonGroup.svelte";
-  import Button from "../../components/Button.svelte";
-  import Field from "../../components/shared/Field.svelte";
-  import Grid from "../../components/Grid.svelte";
-  import GridElement from "../../components/GridElement.svelte";
+  import {
+    Input,
+    Select,
+    File,
+    Button,
+    ButtonGroup,
+    Field,
+  } from "../../components/Forms";
+  import { Grid, GridElement } from "../../components/Grid";
 
   let form = {
     title: "",

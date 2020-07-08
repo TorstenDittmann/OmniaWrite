@@ -1,13 +1,14 @@
 <script>
-
   import { _ } from "svelte-i18n";
 
   import cloud from "../../../appwrite";
   import Toast from "../../../shared/Toast.svelte";
 
-  import InputPassword from "../../../components/InputPassword.svelte";
-  import Button from "../../../components/Button.svelte";
-  import ButtonGroup from "../../../components/ButtonGroup.svelte";
+  import {
+    InputPassword,
+    Button,
+    ButtonGroup,
+  } from "../../../components/Forms";
 
   let old_password = "";
   let new_password = "";
@@ -19,19 +20,19 @@
 
   const updatePassword = () => {
     if (
-      new_password === new_password_confirm && 
-      new_password !== "" && 
-      new_password_confirm !== "" && 
+      new_password === new_password_confirm &&
+      new_password !== "" &&
+      new_password_confirm !== "" &&
       old_password !== ""
-      ) {
-        loading = true;
+    ) {
+      loading = true;
       cloud.updatePassword(new_password, old_password).then(
-        response => {
+        (response) => {
           loading = false;
           old_password = new_password = new_password_confirm = "";
           [showToast, textToast] = [true, $_("cloud.profile.password.success")];
         },
-        error => {
+        (error) => {
           loading = false;
           [showToast, textToast] = [true, $_("cloud.profile.error")];
         }
@@ -42,24 +43,24 @@
   };
 </script>
 
-<h2>{$_("cloud.profile.password.title")}</h2>
+<h2>{$_('cloud.profile.password.title')}</h2>
 
 <form on:submit|preventDefault={updatePassword}>
   <InputPassword
-    label={$_("cloud.profile.password.fields.old")} 
+    label={$_('cloud.profile.password.fields.old')}
     placeholder="******"
     bind:value={old_password} />
   <InputPassword
-    label={$_("cloud.profile.password.fields.new")} 
+    label={$_('cloud.profile.password.fields.new')}
     placeholder="******"
     bind:value={new_password} />
   <InputPassword
-    label={$_("cloud.profile.password.fields.confirm")} 
+    label={$_('cloud.profile.password.fields.confirm')}
     placeholder="******"
     bind:value={new_password_confirm} />
   <ButtonGroup>
     <Button on:click={updatePassword} {loading}>
-      {$_("cloud.profile.action")}
+      {$_('cloud.profile.action')}
     </Button>
   </ButtonGroup>
 </form>

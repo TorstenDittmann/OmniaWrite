@@ -1,13 +1,10 @@
 <script>
   import { createEventDispatcher } from "svelte";
   import { _ } from "svelte-i18n";
-
   import { scenes } from "../../stores";
+  import { Input, ButtonGroup, Button } from "../../components/Forms";
 
   import Modal from "../Modal.svelte";
-  import Input from "../../components/Input.svelte";
-  import ButtonGroup from "../../components/ButtonGroup.svelte";
-  import Button from "../../components/Button.svelte";
 
   export let show;
   export let chapter;

@@ -1,10 +1,10 @@
 <style lang="scss">
-  div {
+  .grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
   }
 </style>
 
-<div>
+<div class="grid">
   <slot />
 </div>

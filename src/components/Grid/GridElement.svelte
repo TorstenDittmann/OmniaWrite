@@ -4,7 +4,7 @@
 </script>
 
 <style lang="scss">
-  div {
+  .grid-element {
     background: var(--background-color);
     border: 2px solid rgba(0, 0, 0, 0.3);
     color: var(--text-color);
@@ -33,7 +33,7 @@
   }
 </style>
 
-<div class:action on:click>
+<div class="grid-element" class:action on:click>
   {#if title}
     <h2>{title}</h2>
   {/if}

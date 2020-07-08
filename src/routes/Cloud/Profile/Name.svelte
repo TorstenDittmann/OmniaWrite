@@ -4,9 +4,7 @@
   import cloud from "../../../appwrite";
   import Toast from "../../../shared/Toast.svelte";
 
-  import Input from "../../../components/Input.svelte";
-  import Button from "../../../components/Button.svelte";
-  import ButtonGroup from "../../../components/ButtonGroup.svelte";
+  import { Input, Button, ButtonGroup } from "../../../components/Forms";
 
   export let name;
 
@@ -17,11 +15,11 @@
   const updateName = () => {
     loading = true;
     cloud.updateName(name).then(
-      response => {
+      (response) => {
         loading = false;
         [showToast, textToast] = [true, $_("cloud.profile.name.success")];
       },
-      error => {
+      (error) => {
         loading = false;
         [showToast, textToast] = [true, $_("cloud.profile.error")];
       }
@@ -29,16 +27,16 @@
   };
 </script>
 
-<h2>{$_("cloud.profile.name.title")}</h2>
+<h2>{$_('cloud.profile.name.title')}</h2>
 
 <form on:submit|preventDefault={updateName}>
   <Input
-    label={$_("cloud.profile.name.fields.name")}
+    label={$_('cloud.profile.name.fields.name')}
     placeholder="John Doe"
     bind:value={name} />
   <ButtonGroup>
     <Button on:click={updateName} {loading}>
-      {$_("cloud.profile.action")}
+      {$_('cloud.profile.action')}
     </Button>
   </ButtonGroup>
 </form>

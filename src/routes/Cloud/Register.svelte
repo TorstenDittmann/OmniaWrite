@@ -8,12 +8,14 @@
   import Policy from "./Policy.svelte";
   import Alert from "../../shared/Alert.svelte";
 
-  import Input from "../../components/Input.svelte";
-  import InputEmail from "../../components/InputEmail.svelte";
-  import InputPassword from "../../components/InputPassword.svelte";
-  import Checkbox from "../../components/Checkbox.svelte";
-  import ButtonGroup from "../../components/ButtonGroup.svelte";
-  import Button from "../../components/Button.svelte";
+  import {
+    Input,
+    InputEmail,
+    InputPassword,
+    Checkbox,
+    ButtonGroup,
+    Button,
+  } from "../../components/Forms";
 
   let showAlert = false;
   let showAlertText;

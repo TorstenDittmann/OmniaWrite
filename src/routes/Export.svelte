@@ -2,13 +2,10 @@
   import { fade } from "svelte/transition";
   import { state } from "../stores";
   import { _ } from "svelte-i18n";
+  import { Grid, GridElement } from "../components/Grid";
 
   import Placeholder from "../shared/Placeholder.svelte";
   import Modal from "../shared/Modal.svelte";
-
-  import Grid from "../components/Grid.svelte";
-  import GridElement from "../components/GridElement.svelte";
-
   import Cloud from "./Export/Cloud.svelte";
   import RTF from "./Export/RTF.svelte";
   import Backup from "./Export/Backup.svelte";

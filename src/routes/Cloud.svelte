@@ -4,24 +4,19 @@
   import { state, settings } from "../stores";
   import { _ } from "svelte-i18n";
   import { querystring, push } from "svelte-spa-router";
+  import { Grid, GridElement } from "../components/Grid";
   import Router from "svelte-spa-router";
 
   import cloud from "../appwrite";
   import Toast from "../shared/Toast.svelte";
   import Spinner from "../shared/Spinner.svelte";
-
-  import Grid from "../components/Grid.svelte";
-  import GridElement from "../components/GridElement.svelte";
-
   import Login from "./Cloud/Login.svelte";
   import Register from "./Cloud/Register.svelte";
-
   import Security from "./Cloud/Security.svelte";
   import Profile from "./Cloud/Profile.svelte";
   import Backups from "./Cloud/Backups.svelte";
   import ResetPassword from "./Cloud/ResetPassword.svelte";
   import Logout from "./Cloud/Logout.svelte";
-
   import moment from "moment";
   import "moment/locale/de";
 

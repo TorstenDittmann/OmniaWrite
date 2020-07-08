@@ -1,13 +1,12 @@
 <script>
-  import { getRandomNumber } from "../utils";
-  import Field from "./shared/Field.svelte";
+  import { getRandomNumber } from "../../utils";
+  import { Field } from ".";
 
   export let label;
   export let id = label + getRandomNumber();
 
   export let value;
   export let placeholder;
-  export let helper;
   export let autocomplete = "off";
   export let required = false;
 </script>
@@ -24,12 +23,12 @@
     border: none;
     border-radius: 0;
     box-shadow: none;
-    height: 1.2rem;
+    height: 2rem;
     color: var(--text-color);
     display: inline-block;
     border-bottom: 1px solid #999;
-    max-height: 1.2rem;
-    font-size: 1rem;
+    max-height: 2rem;
+    font-size: 1.5rem;
     opacity: 0.65;
     background: linear-gradient(
         to bottom,
@@ -49,6 +48,12 @@
   }
 </style>
 
-<Field bind:id bind:label bind:helper>
-  <input {id} {autocomplete} {placeholder} {required} type="email" bind:value />
+<Field bind:id>
+  <input
+    {id}
+    {autocomplete}
+    {placeholder}
+    {required}
+    type="search"
+    bind:value />
 </Field>

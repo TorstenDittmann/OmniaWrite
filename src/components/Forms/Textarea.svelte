@@ -1,6 +1,6 @@
 <script>
-  import { getRandomNumber } from "../utils";
-  import Field from "./shared/Field.svelte";
+  import { getRandomNumber } from "../../utils";
+  import { Field } from ".";
 
   export let label;
   export let id = label + getRandomNumber();

@@ -6,13 +6,15 @@
   import { electronIPC } from "../../utils";
   import { state } from "../../stores";
 
+  import {
+    InputEmail,
+    InputPassword,
+    ButtonGroup,
+    Button,
+  } from "../../components/Forms";
+
   import cloud from "../../appwrite";
   import Alert from "../../shared/Alert.svelte";
-
-  import InputEmail from "../../components/InputEmail.svelte";
-  import InputPassword from "../../components/InputPassword.svelte";
-  import ButtonGroup from "../../components/ButtonGroup.svelte";
-  import Button from "../../components/Button.svelte";
 
   let showAlert = false;
   let showAlertText;

@@ -2,12 +2,8 @@
   import { fade } from "svelte/transition";
   import { _, locale } from "svelte-i18n";
   import { push } from "svelte-spa-router";
-
   import { settings } from "../stores";
-
-  import Select from "../components/Select.svelte";
-  import Checkbox from "../components/Checkbox.svelte";
-  import Range from "../components/Range.svelte";
+  import { Select, Checkbox, Range } from "../components/Forms";
 
   $: themes = [
     {
