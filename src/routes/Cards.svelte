@@ -33,7 +33,7 @@
     showTooltip: false,
   };
 
-  function createCard() {
+  const createCard = () => {
     if (newCardObject.title.length > 0) {
       cards.createCard(
         $state.currentProject,
@@ -43,7 +43,7 @@
       );
       showCreateCard = false;
     }
-  }
+  };
 
   const editCard = () => {
     if (editCardObject.title.length > 0) {
