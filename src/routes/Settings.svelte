@@ -4,6 +4,24 @@
   import { push } from "svelte-spa-router";
   import { settings } from "../stores";
   import { Select, Checkbox, Range } from "../components/Forms";
+  import OmniaEditor from "omnia-editor";
+
+  const preview = {
+    blocks: [
+      {
+        type: "paragraph",
+        data: {
+          text: `Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy
+                    eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
+                    voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet
+                    clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit
+                    amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
+                    nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed
+                    diam voluptua amet.`,
+        },
+      },
+    ],
+  };
 
   $: themes = [
     {
@@ -31,7 +49,7 @@
 <style type="text/css">
   .preview {
     max-width: 800px;
-    padding: 1rem;
+    padding: 0.5rem;
     border-radius: 0px 0px 0px 0px;
     -moz-border-radius: 0px 0px 0px 0px;
     -webkit-border-radius: 0px 0px 0px 0px;
@@ -82,16 +100,8 @@
     step=".1"
     helper={$_('settings.helpers.fontsize')} />
 
-  <div id="codex-editor" class="preview">
-    <div class="codex-editor">
-      Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy
-      eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
-      voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet
-      clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit
-      amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
-      nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed
-      diam voluptua amet.
-    </div>
+  <div class="preview">
+    <OmniaEditor data={preview} active="false" />
   </div>
   <br />
   <small class="link" on:click={() => push('/thirdparty')}>
