@@ -52,7 +52,7 @@
     countWordsAndChars();
   };
 
-  function shortcutListener(evt) {
+  const shortcutListener = (evt) => {
     evt = evt || window.event;
 
     // Escape => Toggle focus mode
@@ -68,9 +68,9 @@
       evt.preventDefault();
       save(params.sceneId);
     }
-  }
+  };
 
-  function countWordsAndChars() {
+  const countWordsAndChars = () => {
     // TODO implement counter into omnia-editor
     /*amountChars = editorElement.innerText.length;
     if (amountChars > 0) {
@@ -78,26 +78,26 @@
     } else {
       amountWords = 0;
     }*/
-  }
+  };
 
-  function switchScene(e) {
+  const switchScene = (e) => {
     push("/write/" + e.target.value);
     e.target.selectedIndex = 0;
-  }
+  };
 
-  function toggleFocus() {
+  const toggleFocus = () => {
     focusMode = !focusMode;
     document.getElementById("content").classList.toggle("focus");
     document.getElementById("titlebar").classList.toggle("focus-mode");
-  }
+  };
 
-  function undo() {
+  const undo = () => {
     document.execCommand("undo", false, null);
-  }
+  };
 
-  function redo() {
+  const redo = () => {
     document.execCommand("redo", false, null);
-  }
+  };
 </script>
 
 <style>
