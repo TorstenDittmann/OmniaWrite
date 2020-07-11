@@ -1,9 +1,9 @@
 <script>
   import { onMount } from "svelte";
   import { fade } from "svelte/transition";
+  import { _ } from "svelte-i18n";
   import { state } from "../../stores";
   import { getBase64 } from "../../utils";
-  import { _ } from "svelte-i18n";
   import saveAs from "file-saver";
   import {
     Input,
@@ -19,7 +19,7 @@
   import Modal from "../../shared/Modal.svelte";
   import Toast from "../../shared/Toast.svelte";
   import Spinner from "../../shared/Spinner.svelte";
-  import Export from "./collectData";
+  import Export from "./Cloud/collectData";
 
   let form = {
     title: "",

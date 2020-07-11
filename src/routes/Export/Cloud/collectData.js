@@ -2,7 +2,7 @@ import {
   projects,
   chapters,
   scenes
-} from "../../stores";
+} from "../../../stores";
 
 let unsubscribeProject;
 let unsubscribeChapters;

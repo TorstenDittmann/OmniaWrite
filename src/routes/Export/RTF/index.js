@@ -5,10 +5,6 @@ import {
 } from "./stores";
 import saveAs from "file-saver";
 
-const {
-  messageUI
-} = window.deskgap || {};
-
 let unsubscribeProject;
 let unsubscribeChapters;
 let unsubscribeScenes;
@@ -70,12 +66,7 @@ export class ExportRTF {
             let blob = new Blob([content], {
               type: "text/plain"
             });
-            if (window.deskgap) {
-              let base64 = btoa(unescape(encodeURIComponent(content)));
-              messageUI.send("saveFile", base64, this.projectData.title + ".rtf");
-            } else {
-              saveAs.saveAs(blob, this.projectData.title + ".rtf");
-            }
+            saveAs.saveAs(blob, this.projectData.title + ".rtf");
           }
         });
       });
