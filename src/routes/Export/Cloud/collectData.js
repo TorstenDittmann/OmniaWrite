@@ -4,6 +4,8 @@ import {
   scenes
 } from "../../../stores";
 
+import { smartenText } from "../../../utils";
+
 let unsubscribeProject;
 let unsubscribeChapters;
 let unsubscribeScenes;
@@ -36,7 +38,7 @@ export default class Export {
                       .map(e => {
                         if (e.content)
                           return e.content.blocks.map(block => {
-                            return `<p>${block.data.text}</p>`
+                            return `<p>${smartenText(block.data.text)}</p>`
                           }).join("")
                       }).join("")
                   })
