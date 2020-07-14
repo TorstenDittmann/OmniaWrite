@@ -46,11 +46,11 @@
     checkLogin();
   });
 
-  function logout() {
+  const logout = () => {
     cloud.logout().then(checkLogin());
-  }
+  };
 
-  function checkLogin() {
+  const checkLogin = () => {
     loading = true;
     cloud
       .isUserLoggedIn()
@@ -66,16 +66,16 @@
       .finally(() => {
         loading = false;
       });
-  }
+  };
 
-  function createConfirmation() {
+  const createConfirmation = () => {
     cloud.createConfirmation();
     showToast = true;
     showToastText = $_("cloud.confirm.success");
-  }
+  };
 </script>
 
-<style type="text/css">
+<style lang="scss">
   .cloud-container {
     max-width: 800px;
     margin: auto;
