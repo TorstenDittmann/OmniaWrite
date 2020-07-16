@@ -1,3 +1,5 @@
+import { get } from "svelte/store";
+
 import {
   projects,
   chapters,
@@ -6,51 +8,29 @@ import {
 
 import { smartenText } from "../../../utils";
 
-let unsubscribeProject;
-let unsubscribeChapters;
-let unsubscribeScenes;
-
 export default class Export {
   constructor(id) {
     this.projectId = id;
   }
   async fetchData() {
-    unsubscribeProject = await projects.subscribe(value => {
-      value.filter(e => e.id == this.projectId).forEach(project => {
-        this.projectData = project;
-      })
-    });
-    let data = [];
-    const start = async () => {
-      unsubscribeChapters = chapters
-        .subscribe(value => {
-          value
-            .filter(e => e.project == this.projectId)
-            .sort(this.compare)
-            .forEach(element => {
-              unsubscribeScenes = scenes
-                .subscribe(value => {
-                  data.push({
-                    title: element.title,
-                    data: value
-                      .filter(e => e.chapter == element.id)
-                      .sort(this.compare)
-                      .map(e => {
-                        if (e.content)
-                          return e.content.blocks.map(block => {
-                            return `<p>${smartenText(block.data.text)}</p>`
-                          }).join("")
-                      }).join("")
-                  })
-                });
-            });
-        });
-      unsubscribeProject();
-      unsubscribeChapters();
-      unsubscribeScenes();
-      return data;
+    const blockMapper = (currentBlock) => {
+      return currentBlock.data ? `<p>${smartenText(currentBlock.data.text)}</p>` : [];
     }
-    return start();
+    const sceneMapper = currentScene => currentScene.content.blocks.flatMap(blockMapper);
+    const chapterMapper = (currentChapter) => {
+      return {
+        title: currentChapter.title,
+        data: get(scenes)
+          .filter(scene => scene.chapter == currentChapter.id && scene.content)
+          .sort(this.compare)
+          .map(sceneMapper)
+          .join(" ")
+      }
+    };
+    return get(chapters)
+      .filter(e => e.project == this.projectId)
+      .sort(this.compare)
+      .map(chapterMapper);
   }
   compare(a, b) {
     if (a.order < b.order) {
