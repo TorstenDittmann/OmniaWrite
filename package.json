@@ -57,16 +57,13 @@
   },
   "scripts": {
     "build": "run-s license svelte-build",
-    "build-phonegap": "run-s license svelte-build-phonegap prepare-phonegap",
-    "build-electron": "run-s svelte-build electron-builder",
+    "build:cap": "run-s build prepare-cap",
     "svelte-build": "cross-env NODE_ENV=production webpack",
-    "svelte-build-phonegap": "cross-env PHONEGAP=true NODE_ENV=production webpack",
     "dev": "webpack-dev-server --content-base public",
     "electron": "run-s build pure-electron",
     "license": "license-checker --exclude \"MIT\" --json --customPath ./src/licenses.json > ./src/licenses.json",
     "pure-electron": "electron .",
-    "electron-builder": "electron-builder build --dir --macos pkg",
-    "prepare-phonegap": "node scripts/phonegap.js"
+    "prepare-cap": "cap copy"
   },
   "build": {
     "appId": "com.omniawrite.app",
