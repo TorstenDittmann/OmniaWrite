@@ -45,7 +45,7 @@
   let completeForm = false;
 
   const exportApi =
-    "https://omniawrite-git-11.torstendittmann.now.sh/api/export";
+    "https://omniawrite-git-11.torstendittmann.vercel.app/api/export";
 
   let templates = [];
 
@@ -89,7 +89,7 @@
     fetch(exportApi, {
       method: "POST",
       cache: "no-cache",
-      mode: "same-origin",
+      mode: "cors",
       headers: {
         "Content-Type": "application/json",
       },
