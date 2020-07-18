@@ -3,7 +3,7 @@ import {
 } from "svelte/store";
 
 const defaultIntern = {
-    version: "1.1.0", // TODO changelog modal
+    version: "1.1.0",
     installed: false
 };
 
@@ -25,11 +25,11 @@ if (localStorage.getItem("intern") === null) {
     localStorage.setItem("cards", "[]");
 }
 
-function getRandomNumber() {
+const getRandomNumber = () => {
     return Math.floor(Math.random() * 999999);
 }
 
-function storeState() {
+const storeState = () => {
     const {
         subscribe,
         update
@@ -95,7 +95,7 @@ function storeState() {
     }
 }
 
-function storeProjects() {
+const storeProjects = () => {
     const {
         subscribe,
         update
@@ -150,7 +150,7 @@ function storeProjects() {
     }
 }
 
-function storeChapters() {
+const storeChapters = () => {
     const {
         subscribe,
         update
@@ -224,7 +224,7 @@ function storeChapters() {
     }
 }
 
-function storeScenes() {
+const storeScenes = () => {
     const {
         subscribe,
         update
@@ -324,7 +324,7 @@ function storeScenes() {
     }
 }
 
-function storeTabs() {
+const storeTabs = () => {
     const {
         subscribe,
         update
@@ -357,7 +357,7 @@ function storeTabs() {
     }
 }
 
-function storeCards() {
+const storeCards = () => {
     const {
         subscribe,
         update
@@ -425,7 +425,7 @@ export const ui = writable({
     }
 });
 
-function updateLocalTimestamp() {
+const updateLocalTimestamp = () => {
     state.updateLocalTimestamp();
 }
 

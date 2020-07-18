@@ -1,6 +1,4 @@
 <script>
-  import NewUpdate from "./shared/NewUpdate.svelte";
-
   import { onMount } from "svelte";
   import { isLoading, locale, _ } from "svelte-i18n";
   import Router, { location, replace } from "svelte-spa-router";
@@ -20,6 +18,7 @@
   import Support from "./shared/Support.svelte";
   import Spinner from "./shared/Spinner.svelte";
   import NewBackup from "./shared/NewBackup.svelte";
+  import NewUpdate from "./shared/NewUpdate.svelte";
 
   import OverviewRoute from "./routes/Overview.svelte";
   import WriteRoute from "./routes/Write.svelte";
