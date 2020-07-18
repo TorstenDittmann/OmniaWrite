@@ -1,4 +1,6 @@
 <script>
+  import NewUpdate from "./shared/NewUpdate.svelte";
+
   import { onMount } from "svelte";
   import { isLoading, locale, _ } from "svelte-i18n";
   import Router, { location, replace } from "svelte-spa-router";
@@ -58,6 +60,7 @@
 
   const wb = new Workbox("./service-worker.js");
   let updateAvailable = false;
+  let showChangelog = false;
 
   /**
    * Register Service Worker.
@@ -126,6 +129,10 @@
         replace($state.lastLocation);
       }
     }
+    if (version !== $intern.version) {
+      showChangelog = true;
+      $intern.version = version;
+    }
     location.subscribe((currentLocation) => {
       state.setCurrentLocation(currentLocation);
     });
@@ -159,12 +166,12 @@
     <HeaderComponent
       bind:navigationState
       on:openSidebar={() => (sidebarState = true)} />
-
     <SidebarComponent bind:sidebarState />
     <div id="content" class="content">
       {#if $state.isUserLoggedIn}
         <NewBackup />
       {/if}
+      <NewUpdate bind:show={showChangelog} />
       <Toast
         bind:show={updateAvailable}
         text={$_('common.update-toast')}
