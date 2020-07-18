@@ -88,8 +88,6 @@
     progress.state = "sending data to server";
     fetch(exportApi, {
       method: "POST",
-      cache: "no-cache",
-      mode: "cors",
       headers: {
         "Content-Type": "application/json",
       },
