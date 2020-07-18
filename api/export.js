@@ -15,6 +15,7 @@ module.exports = (req, res) => {
   ebook.base64().then(data => {
     res.setHeader("Content-Disposition", `attachment; filename="${ebook.options.title}.epub"`)
     res.setHeader("Content-Type", "application/epub+zip")
+    res.setHeader("Access-Control-Allow-Origin", "*")
     res.send(Buffer.from(data, "base64"))
   });
 }
