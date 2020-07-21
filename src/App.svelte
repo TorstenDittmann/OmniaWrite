@@ -5,7 +5,7 @@
 
   import { Workbox } from "workbox-window";
   import { state, projects, settings, intern } from "./stores";
-  import { electronIPC, isRunningElectron } from "./utils";
+  import { electronIPC, isRunningElectron, isRunningCapacitor } from "./utils";
   import cloud from "./appwrite";
 
   import * as Sentry from "@sentry/browser";
@@ -66,7 +66,7 @@
    */
   if (
     "serviceWorker" in navigator &&
-    !window.hasOwnProperty("cordova") &&
+    !isRunningCapacitor &&
     !isRunningElectron &&
     window.location.hostname !== "localhost"
   ) {

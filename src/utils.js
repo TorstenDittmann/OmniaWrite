@@ -1,4 +1,6 @@
 export const isRunningElectron = window && window.process && window.process.type;
+export const isRunningCapacitor = window && window.Capacitor;
+
 const { ipcRenderer } = isRunningElectron ? window.require("electron") : {};
 
 class ElectronIPC {

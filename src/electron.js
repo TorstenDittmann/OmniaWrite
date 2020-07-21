@@ -1,4 +1,3 @@
-/* eslint-disable no-undef */
 const { app, dialog, shell, BrowserWindow, Menu, MenuItem } = require("electron");
 
 const path = require("path");
