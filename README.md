@@ -57,7 +57,7 @@ This section should list any major frameworks that you built your project using.
 * [svelte](https://svelte.dev)
 * [Appwrite](https://appwrite.io)
 * [Electron](https://www.electronjs.org)
-* [Cordova](https://cordova.apache.org)
+* [Capacitor](https://capacitorjs.com)
 
 <!-- CONTRIBUTING -->
 ## Contributing

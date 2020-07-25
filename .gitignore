@@ -8,11 +8,6 @@ public/precache-manifest.*
 public/workbox-*
 public/fonts
 
-mobile/platforms/
-mobile/plugins/
-mobile/node_modules/
-mobile/www/*
-.now/
 .env
 .env.build
 .vercel
