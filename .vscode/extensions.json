@@ -3,7 +3,6 @@
         "dbaeumer.vscode-eslint",
         "Equinusocio.vsc-material-theme",
         "svelte.svelte-vscode",
-        "PKief.material-icon-theme",
-        "tabnine.tabnine-vscode"
+        "PKief.material-icon-theme"
     ]
 }
