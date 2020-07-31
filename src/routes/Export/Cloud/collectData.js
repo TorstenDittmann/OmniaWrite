@@ -1,7 +1,6 @@
 import { get } from "svelte/store";
 
 import {
-  projects,
   chapters,
   scenes
 } from "../../../stores";

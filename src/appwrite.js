@@ -20,7 +20,7 @@ const cloud = {
     currentUser: null,
     /**
      * Registers new user.
-     * @returns Backendless.User
+     * @returns User
      */
     register: (name, email, pass) => {
         return SDK.account.create(
