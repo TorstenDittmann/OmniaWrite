@@ -8,6 +8,7 @@
   button {
     border: 1px solid;
     padding: 0.25em 1em;
+    margin: 0 0.5em 0 0.5em;
     cursor: pointer;
     float: left;
     border-color: #0077b8;

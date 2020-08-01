@@ -13,7 +13,23 @@ export default class Export {
   }
   async fetchData() {
     const blockMapper = (currentBlock) => {
-      return currentBlock.data ? `<p>${smartenText(currentBlock.data.text)}</p>` : [];
+      if (!currentBlock.data) return [];
+
+      const text = currentBlock.data.text
+        .replace(/(\s|<br \/>)+$/, ""); // trim whitespace and unnecessary linebreaks at the end
+
+      switch (currentBlock.type) {
+        case "paragraph":
+          return `<p>${smartenText(text.replace("<br />", "</p><p>"))}</p>`;
+        case "quote":
+          return `<blockquote>${smartenText(text)}</blockquote>`;
+        case "heading":
+          return `<h2>${smartenText(text)}</h2>`;
+        case "code":
+          return `<pre><code>${text}</code></pre>`;
+        default:
+          return `<p>${text}</p>`;
+      }
     }
     const sceneMapper = currentScene => currentScene.content.blocks.flatMap(blockMapper);
     const chapterMapper = (currentChapter) => {
@@ -23,7 +39,8 @@ export default class Export {
           .filter(scene => scene.chapter == currentChapter.id && scene.content)
           .sort(this.compare)
           .map(sceneMapper)
-          .join(" ")
+          .flat()
+          .join("")
       }
     };
     return get(chapters)
