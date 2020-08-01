@@ -180,6 +180,14 @@
         "cloud": {
             "title": "EPUB",
             "subtitle": "Internet connection is needed for this."
+        },
+        "rtf": {
+            "title": "RTF",
+            "subtitle": "Export to RTF file format"
+        },
+        "json": {
+            "title": "JSON",
+            "subtitle": "Export to JSON file format"
         }
     },
     "sidebar": {
@@ -201,7 +209,7 @@
             },
             "edit": {
                 "order": "Order scenes",
-                "buttonSave": "Save Scene",
+                "buttonSave": "Save",
                 "buttonDelete": "Delete"
             }
         }
@@ -219,7 +227,12 @@
             "language": {
                 "title": "Language",
                 "en": "English",
-                "de": "German"
+                "de": "German",
+                "es": "Spanish",
+                "it": "Italian",
+                "pt": "Portuguese",
+                "ru": "Russian",
+                "fr": "French"
             }
         },
         "common": {

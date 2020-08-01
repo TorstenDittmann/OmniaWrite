@@ -47,7 +47,7 @@
     const exportApi =
         'https://omniawrite-git-11.torstendittmann.vercel.app/api/export';
 
-    const languages = ['en', 'de', 'ru', 'es', 'pt', 'fr', 'uk'].map(
+    const languages = ['en', 'de', 'ru', 'es', 'pt', 'fr', 'it'].map(
         (language) => {
             return {
                 value: language,

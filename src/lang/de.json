@@ -194,7 +194,7 @@
             },
             "edit": {
                 "order": "Szenen anordnen",
-                "buttonSave": "Szene speichern",
+                "buttonSave": "Speichern",
                 "buttonDelete": "Löschen"
             }
         }

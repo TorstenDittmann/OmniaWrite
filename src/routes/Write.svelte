@@ -148,7 +148,7 @@
         {/if}
       </div>
       <div class="editpane">
-        <h1 contenteditable="true">{currentScene.title}</h1>
+        <h1 contenteditable bind:textContent={currentScene.title} />
         <OmniaEditor
           bind:this={editor}
           data={currentScene.content}
