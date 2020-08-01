@@ -31,7 +31,7 @@ export default class Export {
           return `<p>${text}</p>`;
       }
     }
-    const sceneMapper = currentScene => currentScene.content.blocks.flatMap(blockMapper);
+    const sceneMapper = currentScene => currentScene.content.blocks.flatMap(blockMapper).join("");
     const chapterMapper = (currentChapter) => {
       return {
         title: currentChapter.title,
@@ -39,8 +39,7 @@ export default class Export {
           .filter(scene => scene.chapter == currentChapter.id && scene.content)
           .sort(this.compare)
           .map(sceneMapper)
-          .flat()
-          .join("")
+          .join("<hr />")
       }
     };
     return get(chapters)
