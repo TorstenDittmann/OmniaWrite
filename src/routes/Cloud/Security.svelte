@@ -1,68 +1,39 @@
 <script>
   import { _ } from "svelte-i18n";
-  
+
   import { settings } from "../../stores";
   import cloud from "../../appwrite";
   import moment from "moment";
   import "moment/locale/de";
 
   import Spinner from "../../shared/Spinner.svelte";
+  import { Table, Cell, Row, Heading } from "../../components/Table";
 
   moment.locale($settings.language);
 
-  function logoutSession(id) {
+  const logoutSession = (id) => {
     cloud.logoutSession(id);
-  }
+  };
 </script>
-
-<style>
-  ul {
-    padding-inline-start: 0px;
-    margin-block-start: 0;
-    margin-block-end: 0;
-  }
-
-  ul li {
-    padding: 2rem 1rem;
-    display: flex;
-    justify-content: space-between;
-    opacity: 1;
-    transition: all 0.5s ease;
-    max-width: 800px;
-  }
-
-  li span {
-    flex: 0 0 20%;
-  }
-
-  ul li:hover {
-    background-color: rgba(255, 255, 255, 0.1);
-  }
-
-  .lnr {
-    font-size: 2rem;
-    margin-top: -0.5rem;
-    cursor: pointer;
-  }
-  span.flex-item {
-    font-size: 0.8rem;
-  }
-</style>
 
 <h2>{$_('cloud.security.devices.title')}</h2>
 {#await cloud.getSessions()}
   <Spinner />
 {:then devices}
-  <ul>
+  <Table>
+    <Row>
+      <Heading>OS</Heading>
+      <Heading>Country</Heading>
+      <Heading>IP</Heading>
+    </Row>
     {#each devices as device}
-      <li>
-        <span>{device.OS.name}</span>
-        <span>{device.geo.country}</span>
-        <span>{device.ip}</span>
-        <span on:click={() => logoutSession(device.$id)} class="lnr lnr-exit" />
-      </li>
+      <Row on:click={() => logoutSession(device.$id)}>
+        <Cell label="OS">{device.OS.name}</Cell>
+        <Cell label="Country">{device.geo.country}</Cell>
+        <Cell label="IP">{device.ip}</Cell>
+      </Row>
     {/each}
-  </ul>
+  </Table>
 {:catch error}
   <p style="color: red">{error.message}</p>
 {/await}
@@ -71,17 +42,22 @@
 {#await cloud.getSecurityLog()}
   <Spinner />
 {:then logs}
-  <ul>
+  <Table>
+    <Row>
+      <Heading>Timestamp</Heading>
+      <Heading>Age</Heading>
+      <Heading>Event</Heading>
+    </Row>
     {#each logs as log}
-      <li class="flex-container">
-        <span class="flex-item">{moment(log.time, "X").fromNow()}</span>
-        <span class="flex-item">
-          {moment(log.time, "X").format("MMMM Do YYYY, h:mm a")}
-        </span>
-        <b class="flex-item">{log.event}</b>
-      </li>
+      <Row>
+        <Cell label="Timestamp">
+          {moment(log.time, 'X').format('MMMM Do YYYY, h:mm a')}
+        </Cell>
+        <Cell label="Age">{moment(log.time, 'X').fromNow()}</Cell>
+        <Cell label="Event">{$_(`cloud.security.logs.${log.event}`)}</Cell>
+      </Row>
     {/each}
-  </ul>
+  </Table>
 {:catch error}
   <p style="color: red">{error.message}</p>
 {/await}

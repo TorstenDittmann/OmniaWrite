@@ -134,7 +134,25 @@
                 "title": "Devices"
             },
             "logs": {
-                "title": "Activity logs"
+                "title": "Activity logs",
+                "account": {
+                    "update": {
+                        "email": "E-mail changed",
+                        "name": "Name changed"
+                    },
+                    "recovery": {
+                        "create": "Password recovery request",
+                        "update": "Password recovery finished"
+                    },
+                    "sessions": {
+                        "create": "Login",
+                        "delete": "Logout"
+                    },
+                    "verification": {
+                        "create": "Account confirmation request",
+                        "update": "Account confirmation finished"
+                    }
+                }
             }
         }
     },
