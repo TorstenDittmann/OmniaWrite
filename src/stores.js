@@ -1,5 +1,6 @@
 import {
-    writable
+    writable,
+    get
 } from "svelte/store";
 
 const defaultIntern = {
@@ -26,7 +27,34 @@ if (localStorage.getItem("intern") === null) {
 }
 
 const getRandomNumber = () => {
-    return Math.floor(Math.random() * 999999);
+    const generateId = () => Math.floor(Math.random() * 999999);
+
+    let id = generateId();
+    while (doesIdExist(id)) {
+        id = generateId();
+    }
+
+    return id;
+}
+
+const doesIdExist = id => {
+    if (get(projects).some(project => project.id === id)) {
+        return true;
+    }
+    if (get(chapters).some(chapter => chapter.id === id)) {
+        return true;
+    }
+    if (get(scenes).some(scene => scene.id === id)) {
+        return true;
+    }
+    if (get(tabs).some(tab => tab.id === id)) {
+        return true;
+    }
+    if (get(cards).some(card => card.id === id)) {
+        return true;
+    }
+
+    return false;
 }
 
 const storeState = () => {
