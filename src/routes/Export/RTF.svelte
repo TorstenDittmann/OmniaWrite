@@ -10,7 +10,7 @@
   const download = async () => {
     let generateDownload = new Export($state.currentProject);
     const data = await generateDownload.fetchData();
-    let blob = new Blob([data.document], {
+    const blob = new Blob([data.document], {
       type: "text/plain",
     });
     saveAs.saveAs(blob, data.filename);
@@ -18,12 +18,8 @@
 </script>
 
 <div in:fade={{ duration: 100 }}>
-  {#if $state.currentProject}
-    <p>{$_('export.rtf.explain')}</p>
-    <ButtonGroup>
-      <Button on:click={download}>{$_('export.action.export')}</Button>
-    </ButtonGroup>
-  {:else}
-    <Placeholder />
-  {/if}
+  <p>{$_('export.rtf.explain')}</p>
+  <ButtonGroup>
+    <Button on:click={download}>{$_('export.action.export')}</Button>
+  </ButtonGroup>
 </div>

@@ -8,7 +8,7 @@ import {
 
 import { smartenText } from "../../../utils";
 
-function toRTF(text) {
+const toRTF = (text) => {
   return text
     .replace(/([\\{}])/g, "\\$1") // escape RTF special characters
     .replace(/\u00A0/g, "\\~") // non-breaking space
@@ -25,7 +25,7 @@ function toRTF(text) {
     .replace(/&amp;/g, "&");
 }
 
-function toFileName(text) {
+const toFileName = (text) => {
   return text.replace(/[^a-zA-Z0-9]/g, "_");
 }
 
