@@ -201,7 +201,8 @@
         },
         "rtf": {
             "title": "RTF",
-            "subtitle": "Export to RTF file format"
+            "subtitle": "Export to RTF file format",
+            "explain": "Generates a Rich Text Format document compatible with most word processors."
         },
         "json": {
             "title": "JSON",
