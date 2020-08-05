@@ -13,12 +13,23 @@
   export let params = {};
   let currentScene;
   let editor;
-  let amountWords = 0;
-  let amountChars = 0;
 
   let focusMode = false;
 
   $: currentScene = $scenes.filter((scene) => scene.id == params.sceneId)[0];
+  $: analytics = currentScene.content.blocks.reduce(
+    (prev, curr) =>
+      curr.data && curr.data.text
+        ? {
+            chars: prev.chars + curr.data.text.length,
+            words: prev.words + curr.data.text.split(" ").length,
+          }
+        : prev,
+    {
+      chars: 0,
+      words: 0,
+    }
+  );
   $: {
     state.setCurrentTitle(
       params.sceneId ? currentScene.title : "No scene selected!"
@@ -48,10 +59,6 @@
     scenes.setSceneContent(params.sceneId, e.detail);
   };
 
-  const init = () => {
-    countWordsAndChars();
-  };
-
   const shortcutListener = (evt) => {
     evt = evt || window.event;
 
@@ -60,24 +67,6 @@
       evt.preventDefault();
       toggleFocus();
     }
-    // CTRL/CMD + S => Save
-    if (
-      (window.navigator.platform.match("Mac") ? evt.metaKey : evt.ctrlKey) &&
-      evt.keyCode == 83
-    ) {
-      evt.preventDefault();
-      save(params.sceneId);
-    }
-  };
-
-  const countWordsAndChars = () => {
-    // TODO implement counter into omnia-editor
-    /*amountChars = editorElement.innerText.length;
-    if (amountChars > 0) {
-      amountWords = editorElement.innerText.split(" ").length;
-    } else {
-      amountWords = 0;
-    }*/
   };
 
   const switchScene = (e) => {
@@ -113,9 +102,9 @@
     {#if params.sceneId !== null}
       <div class="toolbar">
         <span class="tooltip">
-          {amountWords} {$_('write.toolbar.words')}
+          {analytics.words} {$_('write.toolbar.words')}
           <span class="tooltiptext">
-            {amountChars} {$_('write.toolbar.chars')}
+            {analytics.chars} {$_('write.toolbar.chars')}
           </span>
         </span>
         <span class="lnr lnr-undo tooltip" on:click={undo}>
