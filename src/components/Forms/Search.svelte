@@ -55,5 +55,6 @@
     {placeholder}
     {required}
     type="search"
+    autofocus
     bind:value />
 </Field>
