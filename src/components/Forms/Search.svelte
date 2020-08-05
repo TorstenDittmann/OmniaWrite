@@ -1,4 +1,5 @@
 <script>
+  import { onMount } from "svelte";
   import { getRandomNumber } from "../../utils";
   import { Field } from ".";
 
@@ -9,6 +10,12 @@
   export let placeholder;
   export let autocomplete = "off";
   export let required = false;
+
+  let element;
+
+  onMount(() => {
+    if (element) element.focus();
+  });
 </script>
 
 <style lang="scss">
@@ -55,6 +62,6 @@
     {placeholder}
     {required}
     type="search"
-    autofocus
+    bind:this={element}
     bind:value />
 </Field>
