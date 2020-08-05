@@ -53,7 +53,7 @@ Write in chapters and scenes to give your text more structure and add manageabil
 OmniaWrite will support Windows, Linux, macOS, Android, iOS and can also run in any modern browser.
 
 ### Built With
-This section should list any major frameworks that you built your project using. Leave any add-ons/plugins for the acknowledgements section. Here are a few examples.
+
 * [svelte](https://svelte.dev)
 * [Appwrite](https://appwrite.io)
 * [Electron](https://www.electronjs.org)
