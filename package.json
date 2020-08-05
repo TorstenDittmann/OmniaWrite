@@ -55,14 +55,15 @@
         "workbox-window": "^5.1.3"
     },
     "scripts": {
-        "build": "run-s license svelte-build",
-        "build:cap": "run-s build prepare-cap",
+        "build": "run-s prepare:* svelte-build",
+        "build:cap": "run-s build cap:copy",
         "dev": "webpack-dev-server --content-base public",
         "electron": "run-s build pure-electron",
         "svelte-build": "cross-env NODE_ENV=production webpack",
-        "license": "license-checker --exclude \"MIT\" --json --customPath ./src/licenses.json > ./src/licenses.json",
+        "prepare:license": "license-checker --exclude \"MIT\" --json --customPath ./src/licenses.json > ./src/licenses.json",
+        "prepare:changelog": "node ./build/scripts/changelog.js",
         "pure-electron": "electron .",
-        "prepare-cap": "cap copy"
+        "cap:copy": "cap copy"
     },
     "build": {
         "appId": "com.omniawrite.app",
