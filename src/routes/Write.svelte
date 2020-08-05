@@ -17,24 +17,22 @@
   let focusMode = false;
 
   $: currentScene = $scenes.filter((scene) => scene.id == params.sceneId)[0];
-  $: analytics = currentScene.content
-    ? currentScene.content.blocks.reduce(
-        (prev, curr) =>
-          curr.data && curr.data.text
-            ? {
-                chars: prev.chars + curr.data.text.length,
-                words: prev.words + curr.data.text.split(" ").length,
-              }
-            : prev,
-        {
-          chars: 0,
-          words: 0,
-        }
-      )
-    : {
-        chars: 0,
-        words: 0,
-      };
+  $: analytics =
+    params.sceneId && currentScene.content
+      ? currentScene.content.blocks.reduce(
+          (prev, curr) =>
+            curr.data && curr.data.text
+              ? {
+                  chars: prev.chars + curr.data.text.length,
+                  words: prev.words + curr.data.text.split(" ").length,
+                }
+              : prev,
+          {
+            chars: 0,
+            words: 0,
+          }
+        )
+      : {};
   $: {
     state.setCurrentTitle(
       params.sceneId ? currentScene.title : "No scene selected!"
