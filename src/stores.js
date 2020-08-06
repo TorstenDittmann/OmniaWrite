@@ -69,25 +69,15 @@ const storeState = () => {
         subscribe,
         /**
          * Sets current title.
-         * @param title Title to set.
+         * @param {string} title Title to set.
          */
         setCurrentTitle: (title) => update(n => {
             n.currentTitle = title;
             return n;
         }),
         /**
-         * Sets current user ID.
-         * @param user User ID.
-         */
-        setCurrentUser: (user, email, token) => update(n => {
-            n.currentUser = user;
-            n.currentUserEmail = email;
-            n.currentUserToken = token;
-            return n;
-        }),
-        /**
          * Sets currently active project.
-         * @param project Project ID.
+         * @param {number} project Project ID.
          */
         setCurrentProject: (project) => update(n => {
             n.currentProject = project;
@@ -95,7 +85,7 @@ const storeState = () => {
         }),
         /**
          * Sets currently active location.
-         * @param location Hash based URL.
+         * @param {string} location Hash based URL.
          */
         setCurrentLocation: (location) => update(n => {
             n.lastLocation = location;
@@ -103,6 +93,7 @@ const storeState = () => {
         }),
         /**
          * Updates Cloud timestamp.
+         * @param {number} timestamp Unix Timestamp
          */
         updateCloudTimestamp: (timestamp) => update(n => {
             n.lastCloudSave = (timestamp).toFixed();
@@ -118,6 +109,7 @@ const storeState = () => {
         }),
         /**
          * Sets local login state.
+         * @param {boolean} bool
          */
         setLogin: (bool) => update(n => {
             n.isUserLoggedIn = bool;
@@ -138,7 +130,7 @@ const storeProjects = () => {
         subscribe,
         /**
          * Creates project.
-         * @param title Title of the new project.
+         * @param {string} title Title of the new project.
          * @returns ID of the created project.
          */
         createProject: (title) => {
@@ -154,7 +146,7 @@ const storeProjects = () => {
         },
         /**
          * Removes project.
-         * @param id ID of the project.
+         * @param {number} id ID of the project.
          */
         removeProject: (id) => update(n => {
             updateLocalTimestamp();
@@ -162,8 +154,8 @@ const storeProjects = () => {
         }),
         /**
          * Sets project title.
-         * @param id ID of the project.
-         * @param title New title of project.
+         * @param {number} id ID of the project.
+         * @param {string} title New title of project.
          */
         setProjectTitle: (id, title) => update(n => {
             updateLocalTimestamp();
@@ -172,7 +164,7 @@ const storeProjects = () => {
         }),
         /**
          * Sets project last opened timestamp.
-         * @param id ID of the project.
+         * @param {number} id ID of the project.
          */
         updateProjectTimestamp: (id) => update(n => {
             n[n.findIndex(p => p.id == id)].lastOpen = (+new Date() / 1000).toFixed();
@@ -193,8 +185,8 @@ const storeChapters = () => {
         subscribe,
         /**
          * Creates new chapter.
-         * @param project Project ID.
-         * @param title Title of the new chapter.
+         * @param {number} project Project ID.
+         * @param {string} title Title of the new chapter.
          */
         createChapter: (project, title) => update(n => {
             updateLocalTimestamp();
@@ -210,8 +202,8 @@ const storeChapters = () => {
         }),
         /**
          * Sets chapter title.
-         * @param id ID of the chapter.
-         * @param title New title of chapter.
+         * @param {number} id ID of the chapter.
+         * @param {string} title New title of chapter.
          */
         setChapterTitle: (id, title) => update(n => {
             updateLocalTimestamp();
@@ -220,7 +212,7 @@ const storeChapters = () => {
         }),
         /**
          * Removes chapter.
-         * @param id ID of the chapter.
+         * @param {number} id ID of the chapter.
          */
         removeChapter: (id) => update(n => {
             updateLocalTimestamp();
@@ -228,7 +220,7 @@ const storeChapters = () => {
         }),
         /**
          * Removes all chapters from project.
-         * @param id ID of the chapter.
+         * @param {number} id ID of the chapter.
          */
         removeAllChapters: (id) => update(n => {
             updateLocalTimestamp();
@@ -236,9 +228,9 @@ const storeChapters = () => {
         }),
         /**
          * Reorder chapter based on sort.
-         * @param project ID of the project.
-         * @param from ID of the to be moved chapter.
-         * @param to ID of the following chapter.
+         * @param {number} project ID of the project.
+         * @param {number} from ID of the to be moved chapter.
+         * @param {number} to ID of the following chapter.
          */
         moveChapter: (project, from, to) => update(n => {
             let temp = n.filter(p => p.project == project).sort((a, b) => a.order - b.order);
@@ -250,7 +242,7 @@ const storeChapters = () => {
         }),
         /**
          * Toggles sidebar state of a chapter => Open/Closed.
-         * @param id ID of the chapter.
+         * @param {number} id ID of the chapter.
          */
         toggleChapterInSidebar: (id) => update(n => {
             updateLocalTimestamp();
@@ -272,8 +264,8 @@ const storeScenes = () => {
         subscribe,
         /**
          * Creates new scene.
-         * @param chapter Chapter ID.
-         * @param title Title of the new chapter.
+         * @param {number} chapter Chapter ID.
+         * @param {string} title Title of the new chapter.
          */
         createScene: (chapter, title) => update(n => {
             updateLocalTimestamp();
@@ -287,8 +279,8 @@ const storeScenes = () => {
         }),
         /**
          * Sets scene title.
-         * @param id ID of the scene.
-         * @param title New title of scene.
+         * @param {number} id ID of the scene.
+         * @param {string} title New title of scene.
          */
         setSceneTitle: (id, title) => update(n => {
             updateLocalTimestamp();
@@ -299,8 +291,8 @@ const storeScenes = () => {
         }),
         /**
          * Sets scene content.
-         * @param id ID of the scene.
-         * @param title New content of scene.
+         * @param {number} id ID of the scene.
+         * @param {string} title New content of scene.
          */
         setSceneContent: (id, content) => update(n => {
             updateLocalTimestamp();
@@ -311,7 +303,7 @@ const storeScenes = () => {
         }),
         /**
          * Removes scene.
-         * @param id ID of the scene.
+         * @param {number} id ID of the scene.
          */
         removeScene: (id) => update(n => {
             updateLocalTimestamp();
@@ -319,7 +311,7 @@ const storeScenes = () => {
         }),
         /**
          * Removes all scenes from chapter.
-         * @param id ID of the chapter.
+         * @param {number} id ID of the chapter.
          */
         removeAllScenes: (id) => update(n => {
             updateLocalTimestamp();
@@ -327,10 +319,10 @@ const storeScenes = () => {
         }),
         /**
          * Move scene orders.
-         * @param fromChapter ID of the source chapter.
-         * @param fromId ID of the to be moved scene.
-         * @param toChapter ID of the targetted chapter.
-         * @param toId ID of the following targetted scene.
+         * @param {number} fromChapter ID of the source chapter.
+         * @param {number} fromId ID of the to be moved scene.
+         * @param {number} toChapter ID of the targetted chapter.
+         * @param {number} toId ID of the following targetted scene.
          */
         moveScene: (fromChapter, fromId, toChapter, toId) => update(n => {
             let tempFrom = n.filter(p => p.chapter == fromChapter).sort((a, b) => a.order - b.order);
@@ -363,9 +355,9 @@ const storeTabs = () => {
         subscribe,
         /**
          * Creates new tab.
-         * @param project Project ID.
-         * @param title Title.
-         * @param link Relative link to content.
+         * @param {number} project Project ID.
+         * @param {string} title Title.
+         * @param {string} link Relative link to content.
          */
         createTab: (project, title, link) => update(n => {
             return n.concat([{
@@ -377,7 +369,7 @@ const storeTabs = () => {
         }),
         /**
          * Removes tab.
-         * @param id ID of the tab.
+         * @param {number} id ID of the tab.
          */
         removeTab: (id) => update(n => {
             return n.filter(n => n.id !== id)
@@ -396,10 +388,10 @@ const storeCards = () => {
         subscribe,
         /**
          * Creates new tab.
-         * @param project Project ID.
-         * @param title Title.
-         * @param content Content.
-         * @param showTooltip Show tooltip while writing.
+         * @param {number} project Project ID.
+         * @param {string} title Title.
+         * @param {string} content Content.
+         * @param {boolean} showTooltip Show tooltip while writing.
          */
         createCard: (project, title, content, showTooltip) => update(n => {
             return n.concat([{
@@ -412,7 +404,7 @@ const storeCards = () => {
         }),
         /**
          * Update card by id.
-         * @param card Card object.
+         * @param {object} card Card object.
          */
         setCard: (card) => update(n => {
             updateLocalTimestamp();
@@ -422,7 +414,7 @@ const storeCards = () => {
         }),
         /**
          * Removes card.
-         * @param id ID of the tab.
+         * @param {number} id ID of the tab.
          */
         removeCard: (id) => update(n => {
             return n.filter(n => n.id !== id)
