@@ -1,5 +1,6 @@
 <script>
   import { state, projects, chapters, scenes, settings } from "../../stores";
+  import { countChars, countWords } from "../../utils";
   import { _ } from "svelte-i18n";
 
   let chapterCount = 0;
@@ -25,8 +26,8 @@
                 if (scene.content) {
                   scene.content.blocks.forEach((block) => {
                     if (block.data.text) {
-                      wordCount += block.data.text.split(" ").length;
-                      charCount += block.data.text.length;
+                      wordCount += countWords(block.data.text);
+                      charCount += countChars(block.data.text);
                     }
                   });
                 }

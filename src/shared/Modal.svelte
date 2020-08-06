@@ -5,6 +5,13 @@
   export let show = false;
   export let fullscreen = false;
   export let persistent = false;
+
+  function handleKeydown(event) {
+    if (event.keyCode === 27 && !persistent) {
+      event.preventDefault();
+      show = false;
+    }
+  }
 </script>
 
 <style lang="scss">
@@ -58,6 +65,7 @@
   }
 </style>
 
+<svelte:window on:keydown={handleKeydown} />
 {#if show}
   <div
     class="modal-background"

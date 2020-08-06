@@ -179,7 +179,9 @@ header {
 
     ul {
         list-style-type: none;
-        overflow-y: scroll;
+        overflow-x: auto;
+        scrollbar-width:none;
+        overflow-y: hidden;
         height: 2rem;
         margin: 0;
         padding: 0;
