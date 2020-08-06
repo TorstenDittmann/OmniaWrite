@@ -53,7 +53,7 @@ Write in chapters and scenes to give your text more structure and add manageabil
 OmniaWrite will support Windows, Linux, macOS, Android, iOS and can also run in any modern browser.
 
 ### Built With
-This section should list any major frameworks that you built your project using. Leave any add-ons/plugins for the acknowledgements section. Here are a few examples.
+
 * [svelte](https://svelte.dev)
 * [Appwrite](https://appwrite.io)
 * [Electron](https://www.electronjs.org)
@@ -84,9 +84,7 @@ After building successfully, the action will publish your release artifacts.
 <!-- LICENSE -->
 ## License
 
-<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">Creative Commons Attribution-NonCommercial 4.0 International License</a>.
-
-
+This work is licensed under a Apache License 2.0.
 
 <!-- CONTACT -->
 ## Contact

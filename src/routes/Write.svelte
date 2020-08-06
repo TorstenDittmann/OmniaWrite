@@ -19,9 +19,8 @@
 
   $: currentScene = $scenes.filter((scene) => scene.id == params.sceneId)[0];
   $: analytics =
-    !currentScene || !currentScene.content
-      ? { chars: 0, words: 0 }
-      : currentScene.content.blocks.reduce(
+    params.sceneId && currentScene.content
+      ? currentScene.content.blocks.reduce(
           (prev, curr) =>
             curr.data && curr.data.text
               ? {
@@ -33,7 +32,8 @@
             chars: 0,
             words: 0,
           }
-        );
+        )
+      : {};
   $: {
     state.setCurrentTitle(
       params.sceneId ? currentScene.title : "No scene selected!"
