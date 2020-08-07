@@ -59,17 +59,6 @@ This section should list any major frameworks that you built your project using.
 * [Electron](https://www.electronjs.org)
 * [Cordova](https://cordova.apache.org)
 
-<!-- CONTRIBUTING -->
-## Contributing
-
-Any contributions you make are **greatly appreciated**.
-
-1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the Branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
 ## Releasing
 
 When you want to create a new release, follow these steps:
@@ -81,15 +70,15 @@ When you want to create a new release, follow these steps:
 
 After building successfully, the action will publish your release artifacts.
 
-<!-- LICENSE -->
 ## License
 
 This work is licensed under a Apache License 2.0.
 
-<!-- CONTACT -->
 ## Contact
 
 OmniaWrite - [@OmniaWrite](https://twitter.com/OmniaWrite) - info@omniawrite.com
 
 Project Link: [https://OmniaWrite.com](https://OmniaWrite.com)
 Project GitHub Link: [https://github.com/TorstenDittmann/OmniaWrite](https://github.com/TorstenDittmann/OmniaWrite)
+
+## Contributors
