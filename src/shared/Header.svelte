@@ -3,7 +3,12 @@
   import { fade, fly } from "svelte/transition";
   import { link, location } from "svelte-spa-router";
   import { state, tabs, ui } from "../stores";
-  import { electronIPC, isRunningElectron } from "../utils";
+  import {
+    closeWindow,
+    resizeWindow,
+    minimizeWindow,
+    isRunningElectron,
+  } from "../bridge";
   import { _ } from "svelte-i18n";
 
   import active from "svelte-spa-router/active";
@@ -105,15 +110,15 @@
         {#if isRunningElectron}
           <span
             class="lnr lnr-cross titlebar"
-            on:click={electronIPC.closeWindow}
+            on:click={closeWindow}
             style="-webkit-app-region: no-drag" />
           <span
             class="lnr lnr-frame-expand titlebar"
-            on:click={electronIPC.resizeWindow}
+            on:click={resizeWindow}
             style="-webkit-app-region: no-drag" />
           <span
             class="lnr lnr-chevron-down titlebar"
-            on:click={electronIPC.minimizeWindow}
+            on:click={minimizeWindow}
             style="-webkit-app-region: no-drag" />
         {/if}
         <span

@@ -5,7 +5,11 @@
 
   import { Workbox } from "workbox-window";
   import { state, projects, settings, intern } from "./stores";
-  import { electronIPC, isRunningElectron, isRunningCapacitor } from "./utils";
+  import {
+    reloadWindow,
+    isRunningElectron,
+    isRunningCapacitor,
+  } from "./bridge";
   import cloud from "./appwrite";
 
   import * as Sentry from "@sentry/browser";
@@ -81,7 +85,7 @@
    */
   const updateApp = () => {
     wb.addEventListener("controlling", (event) => {
-      electronIPC.reload();
+      reloadWindow();
     });
     wb.messageSW({
       type: "SKIP_WAITING",

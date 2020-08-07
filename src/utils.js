@@ -1,28 +1,3 @@
-export const isRunningElectron = window && window.process && window.process.type;
-export const isRunningCapacitor = window && window.Capacitor;
-
-const { ipcRenderer } = isRunningElectron ? window.require("electron") : {};
-
-class ElectronIPC {
-    reload() {
-        return isRunningElectron ? ipcRenderer.send("reload") : window.location.reload();
-    }
-
-    closeWindow() {
-        ipcRenderer.send("close");
-    }
-
-    resizeWindow() {
-        ipcRenderer.send("resize");
-    }
-
-    minimizeWindow() {
-        ipcRenderer.send("minimize");
-    }
-}
-
-export const electronIPC = new ElectronIPC();
-
 export const getRandomNumber = () => {
     return Math.floor(Math.random() * 999999);
 }

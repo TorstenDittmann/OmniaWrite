@@ -2,7 +2,7 @@
   import { _ } from "svelte-i18n";
 
   import { settings } from "../../stores";
-  import { electronIPC } from "../../utils";
+  import { reloadWindow } from "../../bridge";
   import cloud from "../../appwrite";
   import moment from "moment";
   import "moment/locale/de";
@@ -20,7 +20,7 @@
       .restoreBackup(id)
       .then((response) => {
         isLoadingBackup = false;
-        electronIPC.reload();
+        reloadWindow();
       })
       .catch((err) => {
         isLoadingBackup = false;

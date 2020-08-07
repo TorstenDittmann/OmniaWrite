@@ -2,7 +2,7 @@
   import { createEventDispatcher, onMount } from "svelte";
   import { _ } from "svelte-i18n";
   import { projects, chapters, scenes } from "../../stores";
-  import { electronIPC } from "../../utils";
+  import { reloadWindow } from "../../bridge";
   import { Input, Button, ButtonGroup } from "../../components/Forms";
 
   import Modal from "../../shared/Modal.svelte";
@@ -38,7 +38,7 @@
 
       scenes.removeAllScenes(project);
       state.setCurrentProject("");
-      electronIPC.reload();
+      reloadWindow();
     }
   };
 </script>

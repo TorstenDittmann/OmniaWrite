@@ -3,7 +3,7 @@
   import { _ } from "svelte-i18n";
 
   import { state, settings } from "../stores";
-  import { electronIPC } from "../utils";
+  import { reloadWindow } from "../bridge";
   import cloud from "../appwrite";
   import moment from "moment";
   import "moment/locale/de";
@@ -30,7 +30,7 @@
     cloud.restoreBackup(latest.files[0].$id).then(
       (response) => {
         loading = false;
-        electronIPC.reload();
+        reloadWindow();
       },
       (err) => {
         loading = false;

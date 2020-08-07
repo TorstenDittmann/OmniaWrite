@@ -3,7 +3,7 @@
   import { _ } from "svelte-i18n";
   import { push } from "svelte-spa-router";
   import { settings } from "../../stores";
-  import { electronIPC } from "../../utils";
+  import { reloadWindow } from "../../bridge";
   import { state } from "../../stores";
 
   import {
@@ -42,7 +42,7 @@
       (response) => {
         state.setLogin(true);
         window.location.hash = "#/cloud";
-        electronIPC.reload();
+        reloadWindow();
       },
       (err) => {
         showAlert = true;

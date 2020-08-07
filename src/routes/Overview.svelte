@@ -1,7 +1,7 @@
 <script>
   import { fade } from "svelte/transition";
   import { state, projects, chapters, scenes, settings } from "../stores";
-  import { electronIPC } from "../utils";
+  import { reloadWindow } from "../bridge";
   import { _ } from "svelte-i18n";
   import { Input, ButtonGroup, Button } from "../components/Forms";
   import { Grid, GridElement } from "../components/Grid";
@@ -23,7 +23,7 @@
   const changeProject = (project) => {
     state.setCurrentProject(project);
     projects.updateProjectTimestamp(project);
-    electronIPC.reload();
+    reloadWindow();
   };
 
   const sort = (b, a) => {
