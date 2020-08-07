@@ -93,3 +93,22 @@ OmniaWrite - [@OmniaWrite](https://twitter.com/OmniaWrite) - info@omniawrite.com
 
 Project Link: [https://OmniaWrite.com](https://OmniaWrite.com)
 Project GitHub Link: [https://github.com/TorstenDittmann/OmniaWrite](https://github.com/TorstenDittmann/OmniaWrite)
+
+## Contributors ✨
+
+Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
+
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
+<table>
+  <tr>
+    <td align="center"><a href="https://github.com/AnthonyBoucher"><img src="https://avatars0.githubusercontent.com/u/6674732?v=4?s=100" width="100px;" alt=""/><br /><sub><b>AnthonyBoucher</b></sub></a><br /><a href="#maintenance-AnthonyBoucher" title="Maintenance">🚧</a></td>
+  </tr>
+</table>
+
+<!-- markdownlint-enable -->
+<!-- prettier-ignore-end -->
+<!-- ALL-CONTRIBUTORS-LIST:END -->
+
+This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
