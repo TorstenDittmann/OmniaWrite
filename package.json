@@ -21,7 +21,8 @@
         "node-fetch": "^2.6.0",
         "omnia-ebook-generator": "^0.1.2",
         "omnia-editor": "0.0.6",
-        "semver": "^7.3.2"
+        "semver": "^7.3.2",
+        "sortablejs": "^1.10.2"
     },
     "devDependencies": {
         "@sentry/browser": "^5.20.1",
