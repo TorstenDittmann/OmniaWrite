@@ -14,8 +14,13 @@
   import CreateScene from "./Sidebar/CreateScene.svelte";
   import EditChapter from "./Sidebar/EditChapter.svelte";
   import EditScene from "./Sidebar/EditScene.svelte";
+  import ReArrange from "./Sidebar/ReArrange.svelte";
 
   export let sidebarState;
+
+  let reArrange = {
+    show: false,
+  };
 
   let createChapter = {
     show: false,
@@ -49,29 +54,9 @@
   }
 </script>
 
-<style type="text/css">
-  .swap-list > li .action {
-    cursor: pointer;
-    opacity: 0.65;
-  }
-
-  .swap-list > li .action:hover {
-    opacity: 1;
-  }
-
-  .swap-list li:first-child .lnr-chevron-up {
-    visibility: hidden;
-  }
-
-  [draggable] {
-    -moz-user-select: none;
-    -khtml-user-select: none;
-    -webkit-user-select: none;
-    user-select: none;
-    -khtml-user-drag: element;
-    -webkit-user-drag: element;
-  }
-</style>
+{#if reArrange.show}
+  <ReArrange {...reArrange} />
+{/if}
 
 <CreateChapter {...createChapter} />
 <CreateScene {...createScene} />
@@ -101,14 +86,7 @@
         {#each $chapters
           .filter((chapter) => chapter.project == $state.currentProject)
           .sort((a, b) => a.order - b.order) as chapter, i}
-          <li
-            id="chapter-{chapter.id}"
-            class="parent"
-            class:open={chapter.ui.open}
-            draggable="false"
-            data-type="chapter"
-            data-id={chapter.id}
-            data-project={chapter.project}>
+          <li class="parent" class:open={chapter.ui.open}>
             <span
               class="key"
               on:click|self={() => chapters.toggleChapterInSidebar(chapter.id)}>
@@ -119,30 +97,18 @@
               <span
                 class="lnr lnr-cog action"
                 on:click={() => ([editChapter.show, editChapter.data] = [true, chapter])} />
-              <span
-                class="lnr lnr-line-spacing action"
-                on:mousedown={startDrag}
-                style="cursor: grab;" />
             </span>
             <ul class="scenes">
               {#each $scenes
                 .filter((scene) => scene.chapter == chapter.id)
                 .sort((a, b) => a.order - b.order) as scene}
                 <li
-                  class="sceneDrag"
                   use:active={'/write/' + scene.id}
-                  on:click|self={() => push('/write/' + scene.id)}
-                  data-type="scene"
-                  data-id={scene.id}
-                  data-chapter={scene.chapter}>
+                  on:click|self={() => push('/write/' + scene.id)}>
                   <a href="/write/{scene.id}" use:link>{scene.title}</a>
                   <span
                     class="lnr lnr-cog action"
                     on:click={() => ([editScene.show, editScene.data] = [true, scene])} />
-                  <span
-                    class="lnr lnr-line-spacing action"
-                    on:mousedown={startDragScene}
-                    style="cursor: grab;" />
                 </li>
               {/each}
               <li>
@@ -156,10 +122,16 @@
           </li>
         {/each}
         <hr class="divider" />
-        <li class="parent">
+        <li class="parent open">
           <span class="key" on:click={() => (createChapter.show = true)}>
             <span class="lnr lnr-plus-circle collapse" />
             {$_('sidebar.createChapter')}
+          </span>
+        </li>
+        <li class="parent open">
+          <span class="key" on:click={() => (reArrange.show = true)}>
+            <span class="lnr lnr-line-spacing collapse" />
+            {$_('sidebar.reArrange')}
           </span>
         </li>
       {:else}
