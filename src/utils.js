@@ -108,3 +108,33 @@ export const smartenText = (s) => {
 
     return s;
 }
+
+const parser = new DOMParser();
+
+function toPlainText(s) {
+    s = s.replace(/<br \/>(?=.)/g, "\n"); // convert br tags to line break (except at the end)
+    return parser.parseFromString(s, "text/html").documentElement.textContent; // decodes all HTML entities
+}
+
+export function countChars(s) {
+    return toPlainText(s).length;
+}
+
+export function countWords(s) {
+    // Splitting on spaces (or whitespace) has some caveats, e.g "oh..." is 1 word but "oh ..." is 2 words.
+    // To give a more reliable count, let's detect sequences of letters (or digits).
+    // Of course it is never going to be bulletproof, because each language has its own way
+    // to count words---some, like Japanese, don't even use spaces!
+    // For CJK, we'll count individual characters as words.
+    // For numbers, we'll count a sequence a consecutive digits as 1 word (e.g "123.45" is two words).
+
+    let words = toPlainText(s).match(/[A-Za-z\u00C0-\u017F]+|[\u0400-\u04FF\u0500–\u052F]+|[\u0370-\u03FF\u1F00-\u1FFF]+|[\u4E00–\u9FFF]|\d+/g);
+    return words ? words.length : 0;
+
+    //   \u00C0-\u017F   Latin Extended
+    //   \u0400-\u04FF   Cyrillic
+    //   \u0500–\u052F   Cyrillic Supplement
+    //   \u0370-\u03FF   Greek
+    //   \u1F00-\u1FFF   Greek Extended
+    //   \u4E00–\u9FFF   CJK
+}

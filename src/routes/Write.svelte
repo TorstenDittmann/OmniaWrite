@@ -5,6 +5,7 @@
   import { push, location } from "svelte-spa-router";
   import { _ } from "svelte-i18n";
   import OmniaEditor from "omnia-editor";
+  import { countChars, countWords } from "../utils";
 
   import Overview from "./Write/Overview.svelte";
   import Toast from "../shared/Toast.svelte";
@@ -23,8 +24,8 @@
           (prev, curr) =>
             curr.data && curr.data.text
               ? {
-                  chars: prev.chars + curr.data.text.length,
-                  words: prev.words + curr.data.text.split(" ").length,
+                  chars: prev.chars + countChars(curr.data.text),
+                  words: prev.words + countWords(curr.data.text),
                 }
               : prev,
           {

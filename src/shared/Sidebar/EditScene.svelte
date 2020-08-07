@@ -35,6 +35,7 @@
       label={$_('sidebar.modal.title')}
       bind:value={data.title}
       autocomplete="off"
+      autofocus="true"
       placeholder={$_('placeholder.title')} />
 
     <ButtonGroup>

@@ -20,7 +20,10 @@ const cloud = {
     currentUser: null,
     /**
      * Registers new user.
-     * @returns User
+     * @param {string} name Fullname of the user.
+     * @param {string} email E-mail of the user.
+     * @param {string} pass Password of the user.
+     * @returns Promise<user>
      */
     register: (name, email, pass) => {
         return SDK.account.create(
@@ -55,17 +58,17 @@ const cloud = {
     },
     /**
      * Send password recovery email.
-     * @param user Email of user.
+     * @param {string} mail Email of user.
      * @returns Promise<repsonse>
      */
-    recoverPassword: (user) => {
-        return SDK.account.createRecovery(user, APP_EXT_HOST + "#/reset-password");
+    recoverPassword: (mail) => {
+        return SDK.account.createRecovery(mail, APP_EXT_HOST + "#/reset-password");
     },
     /**
      * Confirm and change password from recovery.
-     * @param user User token.
-     * @param secret Secret token.
-     * @param password New password.
+     * @param {string} user User token.
+     * @param {string} secret Secret token.
+     * @param {string} password New password.
      * @returns Promise<response>
      */
     confirmPassword: (user, secret, password) => {
@@ -73,8 +76,8 @@ const cloud = {
     },
     /**
      * Verify account.
-     * @param id 
-     * @param token
+     * @param {string} id
+     * @param {string} token
      * @returns Promise<response>
      */
     confirm: (id, token) => {
@@ -82,8 +85,8 @@ const cloud = {
     },
     /**
      * Login user and sets user ID in state.
-     * @param user E-Mail
-     * @param pass Password
+     * @param {string} user E-Mail
+     * @param {string} pass Password
      * @returns Promise<session>
      */
     login: (user, pass) => {
@@ -94,11 +97,15 @@ const cloud = {
     },
     /**
      * Logs out session form user.
+     * @param {string} id Session ID
+     * @returns Promise<response>
      */
     logoutSession: (id) => {
         return SDK.account.deleteSession(id);
     },
     /**
+     * @param {string} id Backup ID
+     * @returns Promise<response>
      * Set Cloud Timestamp from specific file
      */
     setCloudTimestamp: (id) => {
@@ -138,6 +145,8 @@ const cloud = {
     },
     /**
      * Restore from a backup.
+     * @param {string} id Backup ID
+     * @returns Promise<response>
      */
     restoreBackup: (id) => {
         return fetch(SDK.storage.getFileView(id),
@@ -174,18 +183,26 @@ const cloud = {
     },
     /**
      * Update e-mail.
+     * @param {string} mail New e-mail.
+     * @param {string} pass Current password.
+     * @returns Promise<response>
      */
     updateEmail: (mail, pass) => {
         return SDK.account.updateEmail(mail, pass);
     },
     /**
      * Update name.
+     * @param {string} name New name.
+     * @returns Promise<response>
      */
     updateName: (name) => {
         return SDK.account.updateName(name);
     },
     /**
      * Update password.
+     * @param {string} pass New password.
+     * @param {string} old Current password.
+     * @returns Promise<response>
      */
     updatePassword: (pass, old) => {
         return SDK.account.updatePassword(pass, old);

@@ -44,7 +44,7 @@
     "/cloud/*": CloudRoute,
     "/export": ExportRoute,
 
-    // Non header route
+    // Non header routes
     "/thirdparty": ThirdPartyRoute,
     "/policy": PolicyRoute,
     "/disclaimer": DisclaimerRoute,
