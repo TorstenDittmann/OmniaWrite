@@ -86,10 +86,15 @@ Project GitHub Link: [https://github.com/TorstenDittmann/OmniaWrite](https://git
 
 ## Contributors
 
+Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
+
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore-start -->
 <!-- markdownlint-disable -->
 <table>
+  <tr>
+    <td align="center"><a href="https://github.com/AnthonyBoucher"><img src="https://avatars0.githubusercontent.com/u/6674732?v=4?s=100" width="100px;" alt=""/><br /><sub><b>AnthonyBoucher</b></sub></a><br /><a href="#maintenance-AnthonyBoucher" title="Maintenance">🚧</a></td>
+  </tr>
   <tr>
     <td align="center"><a href="https://torstendittmann.now.sh"><img src="https://avatars1.githubusercontent.com/u/1759475?v=4" width="100px;" alt=""/><br /><sub><b>Torsten Dittmann</b></sub></a><br /><a href="#maintenance-TorstenDittmann" title="Maintenance">🚧</a></td>
   </tr>
@@ -98,3 +103,5 @@ Project GitHub Link: [https://github.com/TorstenDittmann/OmniaWrite](https://git
 <!-- markdownlint-enable -->
 <!-- prettier-ignore-end -->
 <!-- ALL-CONTRIBUTORS-LIST:END -->
+
+This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
