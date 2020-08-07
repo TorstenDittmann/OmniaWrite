@@ -16,11 +16,11 @@ export default class Export {
       if (!currentBlock.data) return [];
 
       const text = currentBlock.data.text
-        .replace(/(\s|<br \/>)+$/, ""); // trim whitespace and unnecessary linebreaks at the end
+        .replace(/(\s|<br ?\/?>)+$/, ""); // trim whitespace and unnecessary linebreaks at the end
 
       switch (currentBlock.type) {
         case "paragraph":
-          return `<p>${smartenText(text.replace("<br />", "</p><p>"))}</p>`;
+          return `<p>${smartenText(text.replace(/<br ?\/?>/g, "</p><p>"))}</p>`;
         case "quote":
           return `<blockquote>${smartenText(text)}</blockquote>`;
         case "heading":
