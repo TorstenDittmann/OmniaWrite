@@ -7,35 +7,31 @@
   import Placeholder from "../../shared/Placeholder.svelte";
   import Export from "./RTF/collectData";
   import { saveFile } from "../../bridge";
+  import Done from "./Shared/Done.svelte";
+  import Spinner from "../../shared/Spinner.svelte";
 
   let done = false;
+  let progress = false;
   let uri;
+  let file;
 
   const download = async () => {
+    progress = true;
     let generateDownload = new Export($state.currentProject);
     const data = await generateDownload.fetchData();
     const blob = new Blob([data.document], {
       type: "text/plain",
     });
-    saveFile(blob, data.filename).then((e) => {
-      switch (e.type) {
-        case "download":
-          e.download();
-          break;
-
-        case "filesystem":
-          uri = e.uri;
-          done = true;
-          break;
-      }
-    });
+    file = await saveFile(blob, data.filename);
+    done = true;
   };
 </script>
 
 <div in:fade={{ duration: 100 }}>
   {#if done}
-    <b>Saved to:</b>
-    {uri}
+    <Done {file} />
+  {:else if progress}
+    <Spinner />
   {:else}
     <p>{$_('export.rtf.explain')}</p>
     <ButtonGroup>

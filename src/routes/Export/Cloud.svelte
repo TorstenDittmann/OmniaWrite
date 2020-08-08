@@ -4,6 +4,7 @@
   import { _ } from "svelte-i18n";
   import { state } from "../../stores";
   import { getBase64 } from "../../utils";
+  import { saveFile } from "../../bridge";
   import {
     Input,
     Select,
@@ -18,8 +19,8 @@
   import Modal from "../../shared/Modal.svelte";
   import Toast from "../../shared/Toast.svelte";
   import Spinner from "../../shared/Spinner.svelte";
+  import Done from "./Shared/Done.svelte";
   import Export from "./Cloud/collectData";
-  import { saveFile } from "../../bridge";
 
   let form = {
     title: "",
@@ -36,7 +37,9 @@
 
   let progress = {
     active: false,
+    done: false,
     state: "...",
+    file: {},
   };
 
   let exportToast = false;
@@ -111,24 +114,13 @@
         filename = response.headers.get("Content-Disposition").split('"')[1];
         return response.blob();
       })
-      .then((blob) => {
+      .then(async (blob) => {
         progress.state = "preparing epub";
         if (!filename.endsWith(".epub")) {
           filename = `${filename}.epub`;
         }
-        saveFile(blob, filename).then((e) => {
-          switch (e.type) {
-            case "download":
-              e.download();
-              break;
-
-            case "filesystem":
-              uri = e.uri;
-              done = true;
-              break;
-          }
-        });
-        progress.active = false;
+        progress.file = await saveFile(blob, filename);
+        progress.done = true;
       })
       .catch((error) => {
         exportToast = true;
@@ -144,9 +136,13 @@
 <Toast bind:show={completeForm} text={$_('export.form')} />
 <Modal bind:show={progress.active}>
   <center>
-    <Spinner />
-    <br />
-    <i>{progress.state}</i>
+    {#if progress.done}
+      <Done file={progress.file} />
+    {:else}
+      <Spinner />
+      <br />
+      <i>{progress.state}</i>
+    {/if}
   </center>
 </Modal>
 <Modal bind:show={selectTemplate}>
