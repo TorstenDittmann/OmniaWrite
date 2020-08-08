@@ -4,7 +4,6 @@
   import { _ } from "svelte-i18n";
   import { state } from "../../stores";
   import { getBase64 } from "../../utils";
-  import saveAs from "file-saver";
   import {
     Input,
     Select,
@@ -20,6 +19,7 @@
   import Toast from "../../shared/Toast.svelte";
   import Spinner from "../../shared/Spinner.svelte";
   import Export from "./Cloud/collectData";
+  import { saveFile } from "../../bridge";
 
   let form = {
     title: "",
@@ -116,7 +116,18 @@
         if (!filename.endsWith(".epub")) {
           filename = `${filename}.epub`;
         }
-        saveAs.saveAs(blob, filename);
+        saveFile(blob, filename).then((e) => {
+          switch (e.type) {
+            case "download":
+              e.download();
+              break;
+
+            case "filesystem":
+              uri = e.uri;
+              done = true;
+              break;
+          }
+        });
         progress.active = false;
       })
       .catch((error) => {
