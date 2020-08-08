@@ -113,3 +113,7 @@ export function countWords(s) {
     //   \u1F00-\u1FFF   Greek Extended
     //   \u4E00–\u9FFF   CJK
 }
+
+export const toFileName = (text) => {
+    return text.replace(/[^a-zA-Z0-9]/g, "_");
+}

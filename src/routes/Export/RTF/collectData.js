@@ -6,7 +6,7 @@ import {
   scenes
 } from "../../../stores";
 
-import { smartenText } from "../../../utils";
+import { smartenText, toFileName } from "../../../utils";
 
 const toRTF = (text) => {
   return text
@@ -25,10 +25,6 @@ const toRTF = (text) => {
     .replace(/&gt;/g, ">") // unescape HTML special characters
     .replace(/&lt;/g, "<")
     .replace(/&amp;/g, "&");
-}
-
-const toFileName = (text) => {
-  return text.replace(/[^a-zA-Z0-9]/g, "_");
 }
 
 export default class Export {

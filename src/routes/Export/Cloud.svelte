@@ -1,9 +1,10 @@
 <script>
   import { onMount } from "svelte";
+  import { get } from "svelte/store";
   import { fade } from "svelte/transition";
   import { _ } from "svelte-i18n";
-  import { state } from "../../stores";
-  import { getBase64 } from "../../utils";
+  import { state, projects } from "../../stores";
+  import { getBase64, toFileName } from "../../utils";
   import { saveFile } from "../../bridge";
   import {
     Input,
@@ -38,7 +39,6 @@
   let progress = {
     active: false,
     done: false,
-    state: "...",
     file: {},
   };
 
@@ -81,54 +81,45 @@
       return;
     }
     progress.active = true;
-    const file = await getBase64(cover[0]);
-    progress.state = "starting :)";
-    let generateDownload = new Export($state.currentProject);
-    const data = await generateDownload.fetchData();
-    let filename;
-    progress.state = "sending data to server";
-    fetch(exportApi, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        ...form,
-        template: form.template.id,
-        data: data,
-        cover: {
-          extension: file.substring(
-            "data:image/".length,
-            file.indexOf(";base64")
-          ),
-          type: file.substring("data:".length, file.indexOf(";base64")),
-          data: file.replace(/^data:image.+;base64,/, ""),
+    try {
+      const file = await getBase64(cover[0]);
+      const generateDownload = new Export($state.currentProject);
+      const data = await generateDownload.fetchData();
+      const response = await fetch(exportApi, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
         },
-      }),
-    })
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Server response was invalid!");
-        }
-        progress.state = "receiving data from server";
-        filename = response.headers.get("Content-Disposition").split('"')[1];
-        return response.blob();
-      })
-      .then(async (blob) => {
-        progress.state = "preparing epub";
-        if (!filename.endsWith(".epub")) {
-          filename = `${filename}.epub`;
-        }
-        progress.file = await saveFile(blob, filename);
-        progress.done = true;
-      })
-      .catch((error) => {
-        exportToast = true;
-        exportResponse = error.message;
-
-        progress.active = false;
-        generateDownload = null;
+        body: JSON.stringify({
+          ...form,
+          template: form.template.id,
+          data: data,
+          cover: {
+            extension: file.substring(
+              "data:image/".length,
+              file.indexOf(";base64")
+            ),
+            type: file.substring("data:".length, file.indexOf(";base64")),
+            data: file.replace(/^data:image.+;base64,/, ""),
+          },
+        }),
       });
+
+      if (!response.ok) {
+        throw new Error("Server response was invalid!");
+      }
+
+      const blob = await response.blob();
+      const filename = toFileName(form.title);
+
+      progress.file = await saveFile(blob, `${filename}.epub`);
+      progress.done = true;
+    } catch (error) {
+      exportToast = true;
+      exportResponse = error.message;
+
+      progress.active = false;
+    }
   };
 </script>
 
@@ -140,8 +131,6 @@
       <Done file={progress.file} />
     {:else}
       <Spinner />
-      <br />
-      <i>{progress.state}</i>
     {/if}
   </center>
 </Modal>
