@@ -30,7 +30,7 @@
   {:else if progress}
     <Spinner />
   {:else}
-    <p>{$_('export.rtf.explain')}</p>
+    <p>{$_('export.markdown.explain')}</p>
     <ButtonGroup>
       <Button on:click={download}>{$_('export.action.export')}</Button>
     </ButtonGroup>
