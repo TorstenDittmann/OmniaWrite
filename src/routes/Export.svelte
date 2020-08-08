@@ -8,7 +8,7 @@
   import Modal from "../shared/Modal.svelte";
   import Cloud from "./Export/Cloud.svelte";
   import RTF from "./Export/RTF.svelte";
-  import JSON from "./Export/JSON.svelte";
+  import Markdown from "./Export/Markdown.svelte";
 
   const types = [
     {
@@ -17,9 +17,9 @@
       component: RTF,
     },
     {
-      title: $_("export.json.title"),
-      subtitle: $_("export.json.subtitle"),
-      component: JSON,
+      title: $_("export.markdown.title"),
+      subtitle: $_("export.markdown.subtitle"),
+      component: Markdown,
     },
   ];
 
