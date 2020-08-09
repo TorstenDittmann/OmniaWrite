@@ -1,13 +1,8 @@
 <script>
   import { onMount } from "svelte";
   import { _ } from "svelte-i18n";
-<<<<<<< HEAD:src/routes/Overview/EditProject.svelte
-  import { projects, chapters, scenes } from "../../stores";
-  import { reloadWindow } from "../../bridge";
-=======
   import { projects, chapters, scenes, state } from "../../stores";
-  import { electronIPC } from "../../utils";
->>>>>>> revamp sidebar & navigation:src/shared/Sidebar/EditProject.svelte
+  import { reloadWindow } from "../../bridge";
   import { Input, Button, ButtonGroup } from "../../components/Forms";
 
   import Modal from "../../shared/Modal.svelte";
