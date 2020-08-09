@@ -9,7 +9,7 @@
     display: flex;
 
     &.small {
-      margin: 0;
+      margin: 0.5rem;
     }
 
     &:after {
