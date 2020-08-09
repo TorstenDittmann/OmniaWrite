@@ -35,14 +35,10 @@
             "redo": "Redo",
             "save": "Save",
             "focus": "Focus",
-            "fullscreen": "Fullscreen",
             "switchScene": "Switch scene ..."
         },
         "toast": {
             "saved": "Saved!"
-        },
-        "editor": {
-            "placeholder": "Let`s write an awesome story!"
         },
         "overview": {
             "opened": "opened"
@@ -124,9 +120,7 @@
         },
         "toast": {
             "savedCloud": "Saved into cloud.",
-            "loginSuccessful": "Login successful!",
-            "activateEmail": "Please activate your e-mail adress.",
-            "acceptPolicy": "Please agree to our Privacy Policy."
+            "loginSuccessful": "Login successful!"
         },
         "security": {
             "title": "Security",
@@ -204,9 +198,9 @@
             "subtitle": "Export to RTF file format",
             "explain": "Generates a Rich Text Format document compatible with most word processors."
         },
-        "json": {
-            "title": "JSON",
-            "subtitle": "Export to JSON file format"
+        "markdown": {
+            "title": "Markdown",
+            "subtitle": "Generates a Markdown document compatible with most blogs."
         }
     },
     "sidebar": {
@@ -274,23 +268,7 @@
     },
     "install": {
         "language": "Choose language",
-        "requirements": {
-            "title": "Requirements",
-            "internet": "Internet",
-            "browser": "Browser",
-            "warning": {
-                "browser": "OmniaWrite works best in Google Chrome!"
-            },
-            "serviceWorker": "Service worker"
-        },
-        "start": "Fresh start",
-        "cloud": "From Cloud",
-        "back": "back",
-        "continue": "continue",
-        "install": {
-            "install": "Install",
-            "browser": "Run"
-        },
+        "action": "Run",
         "disclaimer": {
             "action": "I agree to the terms and conditions",
             "title": "Disclaimer",

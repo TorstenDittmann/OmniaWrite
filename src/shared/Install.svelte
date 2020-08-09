@@ -73,7 +73,7 @@
       <Button
         disabled={!disclaimer}
         on:click={() => ($intern.installed = true)}>
-        {$_('install.install.browser')}
+        {$_('install.action')}
       </Button>
     </ButtonGroup>
     <small class="link" on:click={() => (showDisclaimer = true)}>
