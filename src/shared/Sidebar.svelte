@@ -93,8 +93,8 @@
       width: 70%;
       display: flex;
       justify-content: space-around;
-      -webkit-box-shadow: 0 -1px 8px 0 rgba(0, 0, 0, 0.65);
-      box-shadow: 0 -1px 8px 0 rgba(0, 0, 0, 0.65);
+      -webkit-box-shadow: 0 -1px 8px 0 rgba(0, 0, 0, 0.35);
+      box-shadow: 0 -1px 8px 0 rgba(0, 0, 0, 0.35);
       z-index: 10;
       @include desktop {
         width: 100%;
