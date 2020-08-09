@@ -2,6 +2,8 @@
   import { state, projects, chapters, scenes, settings } from "../../stores";
   import { countChars, countWords } from "../../utils";
   import { _ } from "svelte-i18n";
+  import Grid from "../../components/Grid/Grid.svelte";
+  import GridElement from "../../components/Grid/GridElement.svelte";
 
   let chapterCount = 0;
   let sceneCount = 0;
@@ -75,32 +77,21 @@
   }
 </style>
 
-<div class="row">
-  <div class="column">
-    <div class="card">
-      <h3>{chapterCount}</h3>
-      <p>{$_('overview.project.chapters')}</p>
-    </div>
-  </div>
-
-  <div class="column">
-    <div class="card">
-      <h3>{sceneCount}</h3>
-      <p>{$_('overview.project.scenes')}</p>
-    </div>
-  </div>
-
-  <div class="column">
-    <div class="card">
-      <h3>{wordCount}</h3>
-      <p>{$_('overview.project.words')}</p>
-    </div>
-  </div>
-
-  <div class="column">
-    <div class="card">
-      <h3>{charCount}</h3>
-      <p>{$_('overview.project.characters')}</p>
-    </div>
-  </div>
-</div>
+<Grid columns={4}>
+  <GridElement>
+    <h3>{chapterCount}</h3>
+    <p>{$_('overview.project.chapters')}</p>
+  </GridElement>
+  <GridElement>
+    <h3>{sceneCount}</h3>
+    <p>{$_('overview.project.scenes')}</p>
+  </GridElement>
+  <GridElement>
+    <h3>{wordCount}</h3>
+    <p>{$_('overview.project.words')}</p>
+  </GridElement>
+  <GridElement>
+    <h3>{charCount}</h3>
+    <p>{$_('overview.project.characters')}</p>
+  </GridElement>
+</Grid>
