@@ -13,6 +13,8 @@
 </script>
 
 <style lang="scss">
+  @import "../../css/mixins/devices";
+
   li {
     cursor: pointer;
     display: block;
@@ -43,6 +45,10 @@
         margin-right: 1em;
         opacity: 0.65;
 
+        @include desktop {
+          visibility: hidden;
+        }
+
         &:hover {
           opacity: 1;
         }
@@ -51,6 +57,12 @@
       &:hover {
         opacity: 1;
         background-color: var(--menu-hover);
+
+        @include desktop {
+          .action {
+            visibility: visible;
+          }
+        }
       }
     }
     &.open {
