@@ -9,16 +9,12 @@
   import moment from "moment";
   import "moment/locale/de";
   import CreateProject from "./Overview/CreateProject.svelte";
-  import EditProject from "./Overview/EditProject.svelte";
   import ProjectOverview from "./Overview/Project.svelte";
   import Modal from "../shared/Modal.svelte";
-
-  // TODO Optimize Edit project!
 
   moment.locale($settings.language);
 
   let showCreateProject = false;
-  let showEditProject = false;
 
   const changeProject = (project) => {
     state.setCurrentProject(project);
@@ -38,15 +34,6 @@
 </script>
 
 <style>
-  .projectTitle {
-    cursor: pointer;
-  }
-
-  .projectTitle:hover {
-    text-decoration: underline;
-    text-decoration-style: dashed;
-  }
-
   .overview {
     max-width: 800px;
     margin: auto;
@@ -62,11 +49,6 @@
   {#each $projects.filter((project) => project.id == $state.currentProject) as project}
     <h1>{project.title}</h1>
     <ProjectOverview />
-    <h3 class="projectTitle" on:click={() => (showEditProject = true)}>
-      <span class="lnr lnr-cog" />
-      {$_('overview.project.edit')}
-    </h3>
-    <EditProject bind:showEditProject id={project.id} />
   {/each}
   <h1>{$_('overview.projects.title')}</h1>
   <Grid>
