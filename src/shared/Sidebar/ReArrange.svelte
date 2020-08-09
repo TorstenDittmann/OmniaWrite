@@ -17,8 +17,13 @@
 
   const sortableConfig = {
     animation: 150,
+    delay: 500,
+    delayOnTouchOnly: true,
     fallbackOnBody: true,
     swapThreshold: 0.65,
+    scrollSpeed: 100,
+    scrollSensitivity: 1000,
+    bubbleScroll: true,
   };
 
   onMount(() => {
@@ -47,6 +52,12 @@
       list-style-type: none;
       padding: 0;
       font-weight: bold;
+      -moz-user-select: none;
+      -khtml-user-select: none;
+      -webkit-user-select: none;
+      user-select: none;
+      -khtml-user-drag: element;
+      -webkit-user-drag: element;
 
       span {
         opacity: 0.65;
@@ -60,16 +71,14 @@
       .scenes {
         li {
           font-weight: normal;
+          -moz-user-select: none;
+          -khtml-user-select: none;
+          -webkit-user-select: none;
+          user-select: none;
+          -khtml-user-drag: element;
+          -webkit-user-drag: element;
         }
       }
-    }
-    [draggable] {
-      -moz-user-select: none;
-      -khtml-user-select: none;
-      -webkit-user-select: none;
-      user-select: none;
-      -khtml-user-drag: element;
-      -webkit-user-drag: element;
     }
   }
 </style>

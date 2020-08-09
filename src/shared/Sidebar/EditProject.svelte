@@ -1,18 +1,21 @@
 <script>
-  import { createEventDispatcher, onMount } from "svelte";
+  import { onMount } from "svelte";
   import { _ } from "svelte-i18n";
+<<<<<<< HEAD:src/routes/Overview/EditProject.svelte
   import { projects, chapters, scenes } from "../../stores";
   import { reloadWindow } from "../../bridge";
+=======
+  import { projects, chapters, scenes, state } from "../../stores";
+  import { electronIPC } from "../../utils";
+>>>>>>> revamp sidebar & navigation:src/shared/Sidebar/EditProject.svelte
   import { Input, Button, ButtonGroup } from "../../components/Forms";
 
   import Modal from "../../shared/Modal.svelte";
 
-  const dispatch = createEventDispatcher();
-
-  export let showEditProject = false;
+  export let show = false;
   export let id;
 
-  let value;
+  let value = "";
 
   onMount(() => {
     value = $projects.filter((project) => project.id == id)[0].title;
@@ -21,7 +24,7 @@
   const save = () => {
     if (value.length > 0) {
       projects.setProjectTitle(id, value);
-      showEditProject = false;
+      show = false;
     }
   };
 
@@ -37,7 +40,7 @@
       projects.removeProject(project);
 
       scenes.removeAllScenes(project);
-      state.setCurrentProject("");
+      state.setCurrentProject(false);
       reloadWindow();
     }
   };
@@ -47,7 +50,7 @@
 
 </style>
 
-<Modal bind:show={showEditProject}>
+<Modal bind:show>
   <form on:submit|preventDefault={save}>
     <Input
       label={$_('overview.project.title')}
