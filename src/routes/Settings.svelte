@@ -101,7 +101,7 @@
     helper={$_('settings.helpers.fontsize')} />
 
   <div class="preview">
-    <OmniaEditor data={preview} active="false" />
+    <OmniaEditor data={preview} active={false} />
   </div>
   <br />
   <small class="link" on:click={() => push('/thirdparty')}>
