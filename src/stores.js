@@ -422,6 +422,7 @@ const storeCards = () => {
     }
 }
 export const ui = writable({
+    focus: false,
     support: {
         show: false
     }

@@ -1,7 +1,7 @@
 <script>
   import { onMount, onDestroy } from "svelte";
   import { fade } from "svelte/transition";
-  import { scenes, chapters, state, cards, settings } from "../stores";
+  import { scenes, chapters, state, cards, settings, ui } from "../stores";
   import { push, location } from "svelte-spa-router";
   import { _ } from "svelte-i18n";
   import OmniaEditor from "omnia-editor";
@@ -14,8 +14,6 @@
   export let params = {};
   let currentScene;
   let editor;
-
-  let focusMode = false;
 
   $: currentScene = $scenes.filter((scene) => scene.id == params.sceneId)[0];
   $: analytics =
@@ -79,9 +77,7 @@
   };
 
   const toggleFocus = () => {
-    focusMode = !focusMode;
-    document.getElementById("content").classList.toggle("focus");
-    document.getElementById("titlebar").classList.toggle("focus-mode");
+    $ui.focus = !$ui.focus;
   };
 
   const undo = () => {
@@ -120,11 +116,11 @@
         <span
           class="lnr tooltip"
           on:click={toggleFocus}
-          class:lnr-eye={!focusMode}
-          class:lnr-exit={focusMode}>
+          class:lnr-eye={!$ui.focus}
+          class:lnr-exit={$ui.focus}>
           <span class="tooltiptext">{$_('write.toolbar.focus')}</span>
         </span>
-        {#if focusMode}
+        {#if $ui.focus}
           <!-- svelte-ignore a11y-no-onchange -->
           <select id="focusSceneSelect" on:change={switchScene}>
             <option value="" selected="selected">

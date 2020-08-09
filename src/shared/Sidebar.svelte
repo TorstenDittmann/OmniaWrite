@@ -8,135 +8,193 @@
   import Modal from "./Modal.svelte";
   import Placeholder from "./Placeholder.svelte";
   import active from "svelte-spa-router/active";
-  import { initDraggable } from "./Sidebar/draggable";
+
+  import ButtonGroup from "../components/Forms/ButtonGroup.svelte";
+  import Button from "../components/Forms/Button.svelte";
 
   import CreateChapter from "./Sidebar/CreateChapter.svelte";
   import CreateScene from "./Sidebar/CreateScene.svelte";
   import EditChapter from "./Sidebar/EditChapter.svelte";
   import EditScene from "./Sidebar/EditScene.svelte";
   import ReArrange from "./Sidebar/ReArrange.svelte";
+  import Scene from "./Sidebar/Scene.svelte";
+  import Chapter from "./Sidebar/Chapter.svelte";
+  import Backdrop from "./Sidebar/Backdrop.svelte";
+  import Close from "./Sidebar/Close.svelte";
+  import EditProject from "./Sidebar/EditProject.svelte";
 
   export let sidebarState;
 
-  let reArrange = {
-    show: false,
+  const modals = {
+    reArrange: false,
+    createChapter: false,
+    editProject: false,
+    createScene: {
+      show: false,
+      chapter: "",
+    },
+    editChapter: {
+      show: false,
+      data: {},
+    },
+    editScene: {
+      show: false,
+      data: {},
+    },
   };
 
-  let createChapter = {
-    show: false,
+  const createScene = (chapter) => {
+    modals.createScene.chapter = chapter;
+    modals.createScene.show = true;
   };
 
-  let createScene = {
-    show: false,
-    chapter: "",
+  const editChapter = (event) => {
+    modals.editChapter.data = event.detail;
+    modals.editChapter.show = true;
   };
 
-  let editChapter = {
-    show: false,
-    data: {},
+  const editScene = (event) => {
+    modals.editScene.data = event.detail;
+    modals.editScene.show = true;
   };
-
-  let editScene = {
-    show: false,
-    data: {},
-  };
-
-  onMount(() => {
-    initDraggable(document.querySelectorAll(".menu .parent"));
-    initDraggable(document.querySelectorAll(".scenes .sceneDrag"));
-  });
-
-  function startDrag(e) {
-    e.target.parentNode.parentNode.setAttribute("draggable", true);
-  }
-  function startDragScene(e) {
-    e.target.parentNode.setAttribute("draggable", true);
-  }
 </script>
 
-{#if reArrange.show}
-  <ReArrange {...reArrange} />
+<style lang="scss">
+  @import "../css/mixins/devices";
+
+  .sidebar {
+    scrollbar-color: rgb(13, 19, 22) rgb(25, 38, 44);
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    width: 100%;
+    visibility: hidden;
+    position: absolute;
+    top: 0;
+    z-index: 10;
+
+    @include desktop {
+      background-color: var(--secondary-color);
+      top: 0;
+      position: initial;
+      visibility: initial;
+      height: calc(100vh - 6rem);
+      grid-area: sidebar;
+    }
+
+    &.active {
+      visibility: visible;
+    }
+
+    .actions {
+      height: 4rem;
+      background-color: var(--secondary-color);
+      width: 70%;
+      display: flex;
+      justify-content: space-around;
+      -webkit-box-shadow: 0 -1px 8px 0 rgba(0, 0, 0, 0.65);
+      box-shadow: 0 -1px 8px 0 rgba(0, 0, 0, 0.65);
+      z-index: 10;
+      @include desktop {
+        width: 100%;
+      }
+
+      div {
+        margin: auto;
+        cursor: pointer;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        opacity: 0.65;
+
+        &:hover {
+          opacity: 1;
+          background-color: var(--menu-hover);
+        }
+      }
+    }
+
+    ul.menu {
+      background-color: var(--background-color);
+      margin: 0;
+      padding: 0;
+      width: 70%;
+      height: calc(100vh - 4rem);
+      float: left;
+      overflow-y: auto;
+
+      @include desktop {
+        width: 100%;
+        overflow-y: auto;
+        background-color: var(--secondary-color);
+      }
+    }
+  }
+</style>
+
+{#if modals.reArrange}
+  <ReArrange bind:show={modals.reArrange} />
 {/if}
 
-<CreateChapter {...createChapter} />
-<CreateScene {...createScene} />
-<EditChapter {...editChapter} />
-<EditScene {...editScene} />
+{#if modals.editProject}
+  <EditProject bind:show={modals.editProject} id={$state.currentProject} />
+{/if}
+<CreateChapter bind:show={modals.createChapter} />
+<CreateScene
+  bind:show={modals.createScene.show}
+  bind:chapter={modals.createScene.chapter} />
+<EditChapter
+  bind:show={modals.editChapter.show}
+  bind:data={modals.editChapter.data} />
+<EditScene
+  bind:show={modals.editScene.show}
+  bind:data={modals.editScene.data} />
 
 {#if sidebarState}
   <div
-    id="sidebar"
-    class="navigation noselect"
+    class="sidebar"
     class:active={sidebarState}
     in:fly={{ y: 200, duration: 200 }}
     out:fly={{ y: 200, duration: 200 }}>
     <ul class="menu">
-      <div
-        class="backdrop"
-        on:click={() => (sidebarState = false)}
-        style="-webkit-app-region: no-drag" />
-      <div
-        id="close-sidebar"
-        class="close"
-        on:click={() => (sidebarState = false)}
-        style="-webkit-app-region: no-drag">
-        <span class="lnr lnr-cross" />
-      </div>
+      <Backdrop bind:state={sidebarState} />
+      <Close bind:state={sidebarState} />
       {#if $state.currentProject}
         {#each $chapters
           .filter((chapter) => chapter.project == $state.currentProject)
           .sort((a, b) => a.order - b.order) as chapter, i}
-          <li class="parent" class:open={chapter.ui.open}>
-            <span
-              class="key"
-              on:click|self={() => chapters.toggleChapterInSidebar(chapter.id)}>
-              {chapter.title}
-              <span
-                class="lnr lnr-chevron-up collapse"
-                on:click|self={() => chapters.toggleChapterInSidebar(chapter.id)} />
-              <span
-                class="lnr lnr-cog action"
-                on:click={() => ([editChapter.show, editChapter.data] = [true, chapter])} />
-            </span>
-            <ul class="scenes">
-              {#each $scenes
-                .filter((scene) => scene.chapter == chapter.id)
-                .sort((a, b) => a.order - b.order) as scene}
-                <li
-                  use:active={'/write/' + scene.id}
-                  on:click|self={() => push('/write/' + scene.id)}>
-                  <a href="/write/{scene.id}" use:link>{scene.title}</a>
-                  <span
-                    class="lnr lnr-cog action"
-                    on:click={() => ([editScene.show, editScene.data] = [true, scene])} />
-                </li>
-              {/each}
-              <li>
-                <button
-                  on:click={() => ([createScene.show, createScene.chapter] = [true, chapter.id])}>
-                  <span class="lnr lnr-plus-circle" />
-                  {$_('sidebar.createScene')}
-                </button>
-              </li>
-            </ul>
-          </li>
+          <Chapter {chapter} on:edit={editChapter}>
+            {#each $scenes
+              .filter((scene) => scene.chapter == chapter.id)
+              .sort((a, b) => a.order - b.order) as scene}
+              <Scene {scene} on:edit={editScene} />
+            {/each}
+            <ButtonGroup small={true}>
+              <Button on:click={() => createScene(chapter.id)}>
+                <span class="lnr lnr-plus-circle" />
+                {$_('sidebar.createScene')}
+              </Button>
+            </ButtonGroup>
+          </Chapter>
         {/each}
-        <hr class="divider" />
-        <li class="parent open">
-          <span class="key" on:click={() => (createChapter.show = true)}>
-            <span class="lnr lnr-plus-circle collapse" />
-            {$_('sidebar.createChapter')}
-          </span>
-        </li>
-        <li class="parent open">
-          <span class="key" on:click={() => (reArrange.show = true)}>
-            <span class="lnr lnr-line-spacing collapse" />
-            {$_('sidebar.reArrange')}
-          </span>
-        </li>
       {:else}
         <Placeholder />
       {/if}
     </ul>
+    {#if $state.currentProject}
+      <div class="actions">
+        <div on:click={() => (modals.editProject = true)}>
+          <span class="lnr lnr-cog collapse" />
+        </div>
+        <div on:click={() => (modals.reArrange = true)}>
+          <span class="lnr lnr-line-spacing collapse" />
+        </div>
+        <div on:click={() => (modals.createChapter = true)}>
+          <span class="lnr lnr-plus-circle collapse" />
+        </div>
+      </div>
+    {/if}
   </div>
 {/if}

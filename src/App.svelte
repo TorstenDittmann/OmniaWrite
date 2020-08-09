@@ -4,7 +4,7 @@
   import Router, { location, replace } from "svelte-spa-router";
 
   import { Workbox } from "workbox-window";
-  import { state, projects, settings, intern } from "./stores";
+  import { state, projects, settings, intern, ui } from "./stores";
   import { electronIPC, isRunningElectron, isRunningCapacitor } from "./utils";
   import cloud from "./appwrite";
 
@@ -166,7 +166,7 @@
       bind:navigationState
       on:openSidebar={() => (sidebarState = true)} />
     <SidebarComponent bind:sidebarState />
-    <div id="content" class="content">
+    <div class="content" class:focus={$ui.focus}>
       {#if $state.isUserLoggedIn}
         <NewBackup />
       {/if}
