@@ -40,43 +40,6 @@
   }
 </script>
 
-<style type="text/css">
-  .column {
-    width: 20%;
-    padding: 0 5px;
-  }
-
-  .row {
-    display: flex;
-    justify-content: center;
-    margin: 0 -5px;
-  }
-
-  .row:after {
-    content: "";
-    display: table;
-    clear: both;
-  }
-
-  @media screen and (max-width: 600px) {
-    .column {
-      width: 100%;
-      display: block;
-      margin-bottom: 1rem;
-    }
-  }
-  .card {
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-    padding: 1rem;
-    text-align: center;
-    background-color: var(--background-color);
-    color: var(--text-color);
-  }
-  .card:hover {
-    transform: scale(1.1);
-  }
-</style>
-
 <Grid columns={4}>
   <GridElement>
     <h3>{chapterCount}</h3>
