@@ -1,7 +1,8 @@
 <script>
   import { createEventDispatcher } from "svelte";
-
+  import { _ } from "svelte-i18n";
   import { chapters, ui } from "../../stores";
+  import tippy from "sveltejs-tippy";
 
   export let chapter;
 
@@ -86,7 +87,10 @@
     <span
       class="lnr lnr-chevron-up collapse"
       on:click|self={() => chapters.toggleChapterInSidebar(chapter.id)} />
-    <span class="lnr lnr-cog action" on:click={edit} />
+    <span
+      class="lnr lnr-cog action"
+      use:tippy={{ content: $_('sidebar.editChapter'), placement: 'right' }}
+      on:click={edit} />
   </span>
   {#if chapter.ui.open}
     <ul class="scenes">

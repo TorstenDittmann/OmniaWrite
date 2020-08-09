@@ -4,7 +4,10 @@
   import { scenes, chapters, state, cards, settings, ui } from "../stores";
   import { push, location } from "svelte-spa-router";
   import { _ } from "svelte-i18n";
+
   import OmniaEditor from "omnia-editor";
+  import tippy from "sveltejs-tippy";
+
   import { countChars, countWords } from "../utils";
 
   import Overview from "./Write/Overview.svelte";
@@ -39,6 +42,7 @@
   }
 
   onMount(() => {
+    tippy("[data-tooltip]");
     window.addEventListener("hashchange", routeChange, false);
     if (params.sceneId !== null) {
       document.addEventListener("keydown", shortcutListener, false);
@@ -101,25 +105,24 @@
   {#if $state.currentProject}
     {#if params.sceneId !== null}
       <div class="toolbar">
-        <span class="tooltip">
+        <span
+          use:tippy={{ content: `${analytics.chars} ${$_('write.toolbar.chars')}`, placement: 'bottom' }}>
           {analytics.words} {$_('write.toolbar.words')}
-          <span class="tooltiptext">
-            {analytics.chars} {$_('write.toolbar.chars')}
-          </span>
-        </span>
-        <span class="lnr lnr-undo tooltip" on:click={undo}>
-          <span class="tooltiptext">{$_('write.toolbar.undo')}</span>
-        </span>
-        <span class="lnr lnr-redo tooltip" on:click={redo}>
-          <span class="tooltiptext">{$_('write.toolbar.redo')}</span>
         </span>
         <span
-          class="lnr tooltip"
+          class="lnr lnr-undo"
+          use:tippy={{ content: $_('write.toolbar.undo'), placement: 'bottom' }}
+          on:click={undo} />
+        <span
+          class="lnr lnr-redo"
+          use:tippy={{ content: $_('write.toolbar.redo'), placement: 'bottom' }}
+          on:click={redo} />
+        <span
+          class="lnr"
+          use:tippy={{ content: $_('write.toolbar.focus'), placement: 'bottom' }}
           on:click={toggleFocus}
           class:lnr-eye={!$ui.focus}
-          class:lnr-exit={$ui.focus}>
-          <span class="tooltiptext">{$_('write.toolbar.focus')}</span>
-        </span>
+          class:lnr-exit={$ui.focus} />
         {#if $ui.focus}
           <!-- svelte-ignore a11y-no-onchange -->
           <select id="focusSceneSelect" on:change={switchScene}>

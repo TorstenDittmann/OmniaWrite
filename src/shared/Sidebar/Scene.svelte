@@ -1,8 +1,9 @@
 <script>
   import { createEventDispatcher } from "svelte";
-
+  import { _ } from "svelte-i18n";
   import { link, push } from "svelte-spa-router";
   import active from "svelte-spa-router/active";
+  import tippy from "sveltejs-tippy";
 
   export let scene;
 
@@ -66,5 +67,8 @@
   use:active={'/write/' + scene.id}
   on:click|self={() => push('/write/' + scene.id)}>
   <a href="/write/{scene.id}" use:link>{scene.title}</a>
-  <span class="lnr lnr-cog action" on:click={edit} />
+  <span
+    class="lnr lnr-cog action"
+    use:tippy={{ content: $_('sidebar.editScene'), placement: 'right' }}
+    on:click={edit} />
 </li>

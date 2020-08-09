@@ -178,6 +178,10 @@
     "sidebar": {
         "createScene": "Szene erstellen",
         "createChapter": "Kapitel erstellen",
+        "editOrder": "Reihenfolge ändern",
+        "editProject": "Projekt bearbeiten",
+        "editChapter": "Kapitel bearbeiten",
+        "editScene": "Szene bearbeiten",
         "delete": {
             "chapter": "Sind Sie sicher, dass Sie dieses Kapitel löschen wollen?",
             "scene": "Sind Sie sicher, dass Sie diese Szene löschen wollen?"
@@ -263,7 +267,6 @@
             "words": "Wörter",
             "characters": "Zeichen",
             "save": "Speichern",
-            "edit": "Projekt bearbeiten",
             "delete": "Löschen",
             "confirmDelete": "Sind Sie sicher, dass Sie dieses Projekt löschen wollen?"
         },

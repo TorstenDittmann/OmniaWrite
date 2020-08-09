@@ -4,6 +4,7 @@
   import { link, push, replace } from "svelte-spa-router";
   import { fade, fly } from "svelte/transition";
   import { _ } from "svelte-i18n";
+  import tippy from "sveltejs-tippy";
 
   import Modal from "./Modal.svelte";
   import Placeholder from "./Placeholder.svelte";
@@ -185,13 +186,19 @@
     </ul>
     {#if $state.currentProject}
       <div class="actions">
-        <div on:click={() => (modals.editProject = true)}>
+        <div
+          use:tippy={{ content: $_('sidebar.editProject'), placement: 'top' }}
+          on:click={() => (modals.editProject = true)}>
           <span class="lnr lnr-cog collapse" />
         </div>
-        <div on:click={() => (modals.reArrange = true)}>
+        <div
+          use:tippy={{ content: $_('sidebar.editOrder'), placement: 'top' }}
+          on:click={() => (modals.reArrange = true)}>
           <span class="lnr lnr-line-spacing collapse" />
         </div>
-        <div on:click={() => (modals.createChapter = true)}>
+        <div
+          use:tippy={{ content: $_('sidebar.createChapter'), placement: 'top' }}
+          on:click={() => (modals.createChapter = true)}>
           <span class="lnr lnr-plus-circle collapse" />
         </div>
       </div>
