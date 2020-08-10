@@ -10,6 +10,8 @@
   let wordCount = 0;
   let charCount = 0;
 
+  // TODO: this causes memory leaks and performance suffers
+
   $: {
     chapterCount = 0;
     sceneCount = 0;
