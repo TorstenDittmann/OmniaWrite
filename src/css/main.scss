@@ -47,56 +47,21 @@ body {
     }
 }
 
+::-webkit-scrollbar {
+    width: 1rem;
+    height: 1rem;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.1);
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.5);
+}
+
 a {
     color: var(--text-color);
-}
-
-.burger {
-    float: left;
-    font-size: 1.5rem;
-    height: 4rem;
-    width: 4rem;
-    border: 0;
-    color: #fafafa;
-    background: rgba(0, 0, 0, 0);
-}
-
-.mobile {
-    float: right;
-    font-size: 1.5rem;
-    height: 4rem;
-    width: 4rem;
-    border: 0;
-    color: #fafafa;
-    background: rgba(0, 0, 0, 0);
-}
-
-select#focusSceneSelect {
-    background-color: var(--select-background);
-    width: auto;
-    font-size: 1rem;
-    font-weight: bold;
-    color: var(--text-color);
-    text-align: center;
-    -webkit-appearance: none;
-    border: 0;
-    cursor: pointer;
-}
-
-select#focusSceneSelect:focus,
-select#focusSceneSelect:active {
-    border: 0;
-    outline: 0;
-}
-
-.editpane {
-    margin: 0 auto;
-    max-width: 800px;
-}
-
-.editpane>h1 {
-    font-family: 'IBM Plex Mono', monospace;
-    text-align: center;
 }
 
 .omnia-editor {
@@ -106,6 +71,12 @@ select#focusSceneSelect:active {
     font-size: var(--editor-font-size);
     line-height: 2rem;
     text-align: justify;
+
+    @media (min-width: 1200px) {
+        .omnia-editor {
+            line-height: 2.5rem;
+        }
+    }
 
     svg {
         fill: var(--editor-color);
@@ -122,72 +93,5 @@ select#focusSceneSelect:active {
 
     q {
         quotes: '„''“';
-    }
-}
-
-.toolbar {
-    position: sticky;
-    position: -webkit-sticky;
-    top: 0;
-    text-align: center;
-    background-color: var(--background-color);
-    padding: 1rem;
-    font-size: 1.5rem;
-    cursor: pointer;
-    margin-bottom: 2rem;
-    z-index: 8;
-}
-
-.toolbar>* {
-    margin: 0 0.5rem;
-    opacity: 0.65;
-}
-
-.toolbar>*:hover {
-    opacity: 1;
-}
-
-.toolbar>span {
-    font-size: 1rem;
-}
-
-.toolbar>.lnr {
-    font-size: unset;
-}
-
-@media (min-width: 1200px) {
-    .editpane {
-        padding: 10px;
-        box-shadow: 0 5px 26px 2px rgba(0, 0, 0, 0.2);
-    }
-
-    .omnia-editor {
-        font-weight: 400;
-        font-size: var(--editor-font-size);
-        line-height: 2.5rem;
-        text-align: justify;
-    }
-}
-
-::-webkit-scrollbar {
-    width: 1rem;
-    height: 1rem;
-}
-
-::-webkit-scrollbar-track {
-    background: rgba(0, 0, 0, 0.1);
-}
-
-::-webkit-scrollbar-thumb {
-    background: rgba(0, 0, 0, 0.5);
-}
-
-@media (min-width: 960px) {
-
-
-    .close,
-    .burger,
-    .mobile {
-        display: none;
     }
 }

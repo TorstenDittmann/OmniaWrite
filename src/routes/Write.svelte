@@ -95,11 +95,71 @@
   };
 </script>
 
-<style>
+<style lang="scss">
   * {
     -webkit-tap-highlight-color: rgba(255, 255, 255, 0) !important;
     -webkit-focus-ring-color: rgba(255, 255, 255, 0) !important;
     outline: 0 !important;
+  }
+
+  .editpane {
+    margin: 0 auto;
+    max-width: 800px;
+
+    @media (min-width: 1200px) {
+      padding: 10px;
+      box-shadow: 0 5px 26px 2px rgba(0, 0, 0, 0.2);
+    }
+
+    > h1 {
+      font-family: "IBM Plex Mono", monospace;
+      text-align: center;
+    }
+  }
+
+  select#focusSceneSelect {
+    background-color: var(--select-background);
+    width: auto;
+    font-size: 1rem;
+    font-weight: bold;
+    color: var(--text-color);
+    text-align: center;
+    -webkit-appearance: none;
+    border: 0;
+    cursor: pointer;
+
+    &:focus,
+    &:active {
+      border: 0;
+      outline: 0;
+    }
+  }
+
+  .toolbar {
+    position: sticky;
+    position: -webkit-sticky;
+    top: 0;
+    text-align: center;
+    background-color: var(--background-color);
+    padding: 1rem;
+    font-size: 1.5rem;
+    cursor: pointer;
+    margin-bottom: 2rem;
+    z-index: 8;
+
+    > * {
+      margin: 0 0.5rem;
+      opacity: 0.65;
+    }
+    > *:hover {
+      opacity: 1;
+    }
+    > span {
+      font-size: 1rem;
+    }
+    > .lnr {
+      font-size: unset;
+    }
   }
 </style>
 

@@ -77,6 +77,20 @@
       display: none;
     }
 
+    .burger {
+      float: left;
+      font-size: 1.5rem;
+      height: 4rem;
+      width: 4rem;
+      border: 0;
+      color: #fafafa;
+      background: rgba(0, 0, 0, 0);
+
+      @include desktop {
+        display: none;
+      }
+    }
+
     .logo-mobile {
       @include desktop {
         display: none;
@@ -88,6 +102,20 @@
 
     nav.header {
       height: 4rem;
+
+      .mobile {
+        float: right;
+        font-size: 1.5rem;
+        height: 4rem;
+        width: 4rem;
+        border: 0;
+        color: #fafafa;
+        background: rgba(0, 0, 0, 0);
+
+        @include desktop {
+          display: none;
+        }
+      }
     }
 
     .navigation {
