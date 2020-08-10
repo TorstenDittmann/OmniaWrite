@@ -157,6 +157,15 @@
 <style lang="scss">
   @import "css/mixins/devices";
 
+  .loading {
+    width: 100vw;
+
+    > .spinner {
+      text-align: center;
+      margin: 45vh 0;
+    }
+  }
+
   .container {
     height: 100vh;
     display: grid;
@@ -198,8 +207,8 @@
 </style>
 
 {#if $isLoading}
-  <div style="width: 100vw;">
-    <div style="text-align: center;">
+  <div class="loading">
+    <div class="spinner">
       <Spinner />
     </div>
   </div>
