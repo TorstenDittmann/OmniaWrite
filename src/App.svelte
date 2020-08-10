@@ -154,6 +154,49 @@
   }
 </script>
 
+<style lang="scss">
+  @import "css/mixins/devices";
+
+  .container {
+    height: 100vh;
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: 6rem auto;
+    grid-template-areas: "header" "content";
+
+    @include desktop {
+      grid-template-columns: 300px auto;
+      grid-template-areas: "header header" "sidebar content";
+    }
+
+    .content {
+      grid-area: content;
+      overflow: auto;
+      scrollbar-color: rgb(13, 19, 22) rgb(25, 38, 44);
+      height: 90vh;
+
+      .inner {
+        padding: 1rem;
+        text-align: center;
+
+        @include desktop {
+          text-align: initial;
+        }
+      }
+
+      &.focus {
+        position: fixed;
+        width: 100vw;
+        height: 100vh;
+        left: 0;
+        top: 0;
+        background: var(--background-color);
+        z-index: 99;
+      }
+    }
+  }
+</style>
+
 {#if $isLoading}
   <div style="width: 100vw;">
     <div style="text-align: center;">
@@ -163,6 +206,10 @@
 {:else}
   <div class="container">
     <Support />
+    <NewUpdate bind:show={showChangelog} />
+    {#if $state.isUserLoggedIn}
+      <NewBackup />
+    {/if}
     {#if !$intern.installed}
       <Install />
     {/if}
@@ -171,10 +218,6 @@
       on:openSidebar={() => (sidebarState = true)} />
     <SidebarComponent bind:sidebarState />
     <div class="content" class:focus={$ui.focus}>
-      {#if $state.isUserLoggedIn}
-        <NewBackup />
-      {/if}
-      <NewUpdate bind:show={showChangelog} />
       <Toast
         bind:show={updateAvailable}
         text={$_('common.update-toast')}
