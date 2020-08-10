@@ -34,7 +34,10 @@
             words: 0,
           }
         )
-      : {};
+      : {
+          chars: 0,
+          words: 0,
+        };
   $: {
     state.setCurrentTitle(
       params.sceneId ? currentScene.title : "No scene selected!"
