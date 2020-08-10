@@ -18,6 +18,9 @@
   let loading = false;
 
   const send = () => {
+    if (!(email && description)) {
+      return false;
+    }
     loading = true;
     fetch(
       "https://doorbell.io/api/applications/11083/submit?key=E2XjFpPM7gFQpj78ekxtNua2Qdcl2PqzqvxBBaDq6I30UOErH40aoAtkwYHWnTgx",
@@ -50,6 +53,7 @@
       <InputEmail
         label={$_('feedback.email')}
         bind:value={email}
+        required={true}
         placeholder="john.does@email.ltd" />
       <Textarea bind:value={description} label={$_('feedback.description')} />
       <ButtonGroup>
