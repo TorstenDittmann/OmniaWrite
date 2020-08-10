@@ -45,7 +45,6 @@
   }
 
   onMount(() => {
-    tippy("[data-tooltip]");
     window.addEventListener("hashchange", routeChange, false);
     if (params.sceneId !== null) {
       document.addEventListener("keydown", shortcutListener, false);
