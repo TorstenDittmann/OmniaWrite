@@ -15,16 +15,48 @@
 
   import cloud from "../appwrite";
   import Toast from "./Toast.svelte";
-  import Cloud from "./Header/Cloud.svelte";
   import Backdrop from "./Sidebar/Backdrop.svelte";
   import Close from "./Sidebar/Close.svelte";
   import Tabs from "./Header/Tabs.svelte";
+  import Spinner from "./Spinner.svelte";
 
   export let navigationState;
 
-  let showCloudToast = false;
-
   const dispatch = createEventDispatcher();
+
+  const cloudToast = {
+    show: false,
+    text: "",
+  };
+
+  let cloudState = "none";
+
+  const syncCloud = () => {
+    cloudState = "loading";
+    cloud.saveToCloud().then(
+      (response) => {
+        cloudState = "done";
+      },
+      (error) => {
+        cloudToast.text = error.message;
+        cloudToast.show = true;
+        cloudState = "upload";
+      }
+    );
+  };
+
+  $: {
+    if ($state.isUserLoggedIn) {
+      if (
+        !$state.lastCloudSave ||
+        $state.lastCloudSave < $state.lastLocalSave
+      ) {
+        cloudState = "upload";
+      } else {
+        cloudState = "done";
+      }
+    }
+  }
 </script>
 
 <style lang="scss">
@@ -224,7 +256,19 @@
           <li use:active={'/cloud'} style="-webkit-app-region: no-drag">
             <a href="/cloud" use:link>{$_('header.cloud.title')}</a>
           </li>
-          <Cloud />
+          {#if cloudState === 'upload'}
+            <li on:click={syncCloud} style="-webkit-app-region: no-drag">
+              <span class="lnr lnr-cloud-upload" />
+            </li>
+          {:else if cloudState === 'done'}
+            <li>
+              <span class="lnr lnr-cloud-check" />
+            </li>
+          {:else if cloudState === 'loading'}
+            <li>
+              <Spinner />
+            </li>
+          {/if}
         </ul>
         {#if isRunningElectron}
           <span
@@ -257,6 +301,6 @@
   <Tabs />
 </header>
 <Toast
-  bind:show={showCloudToast}
-  text={$_('cloud.toast.savedCloud')}
-  on:click={() => (showCloudToast = false)} />
+  bind:show={cloudToast.show}
+  text={cloudToast.text}
+  on:click={() => (cloudToast.show = false)} />
