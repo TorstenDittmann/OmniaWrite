@@ -107,6 +107,7 @@
   .editpane {
     margin: 0 auto;
     max-width: 800px;
+    margin-bottom: 50vh;
 
     @media (min-width: 1200px) {
       padding: 10px;
