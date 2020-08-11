@@ -46,6 +46,7 @@
 </style>
 
 <Modal bind:show>
+  <h2 slot="header">{$_('sidebar.editProject')}</h2>
   <form on:submit|preventDefault={save}>
     <Input
       label={$_('overview.project.title')}

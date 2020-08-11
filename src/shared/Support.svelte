@@ -45,8 +45,8 @@
 </script>
 
 <Modal bind:show={$ui.support.show}>
+  <h2 slot="header">{$_('feedback.title')}</h2>
   {#if !sent}
-    <h2>{$_('feedback.title')}</h2>
     {$_('feedback.sub')}
     <hr />
     <form on:submit|preventDefault={send}>

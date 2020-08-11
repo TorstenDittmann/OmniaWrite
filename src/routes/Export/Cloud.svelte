@@ -125,7 +125,8 @@
 
 <Toast bind:show={exportToast} text={exportResponse} />
 <Toast bind:show={completeForm} text={$_('export.form')} />
-<Modal bind:show={progress.active}>
+<Modal bind:show={progress.active} persistent={true}>
+  <h2 slot="header">{$_('export.templates.progress')}</h2>
   <center>
     {#if progress.done}
       <Done file={progress.file} />
@@ -135,7 +136,7 @@
   </center>
 </Modal>
 <Modal bind:show={selectTemplate}>
-  <h2>{$_('export.templates')}</h2>
+  <h2 slot="header">{$_('export.templates')}</h2>
   {#await fetchTemplates()}
     <Spinner />
   {:then templates}

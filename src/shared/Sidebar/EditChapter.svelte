@@ -28,6 +28,7 @@
 </style>
 
 <Modal bind:show>
+  <h2 slot="header">{$_('sidebar.editChapter')}</h2>
   <form on:submit|preventDefault={editChapter}>
     <Input
       label={$_('sidebar.modal.title')}

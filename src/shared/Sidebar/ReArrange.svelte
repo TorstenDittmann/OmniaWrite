@@ -84,7 +84,7 @@
 </style>
 
 <Modal bind:show>
-  <h2 slot="header">{$_('sidebar.modal.reArrange.header')}</h2>
+  <h2 slot="header">{$_('sidebar.editOrder')}</h2>
   <ul class="chapters">
     {#each get(chapters)
       .filter((chapter) => chapter.project == $state.currentProject)

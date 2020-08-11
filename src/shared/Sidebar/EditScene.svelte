@@ -30,6 +30,7 @@
 </style>
 
 <Modal bind:show>
+  <h2 slot="header">{$_('sidebar.editScene')}</h2>
   <form on:submit|preventDefault={editScene}>
     <Input
       label={$_('sidebar.modal.title')}

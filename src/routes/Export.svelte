@@ -35,13 +35,14 @@
 </style>
 
 <Modal bind:show={selected}>
-  <svelte:component this={selectedComponent} />
+  <h2 slot="header">{selectedComponent.title}</h2>
+  <svelte:component this={selectedComponent.component} />
 </Modal>
 <div class="export" in:fade={{ duration: 100 }}>
   {#if $state.currentProject}
     <Grid>
       <GridElement
-        on:click={() => ([selected, selectedComponent] = [true, Cloud])}>
+        on:click={() => ([selected, selectedComponent] = [true, { title: $_('export.cloud.title'), component: Cloud }])}>
         <h1>{$_('export.cloud.title')}</h1>
         <p>{$_('export.cloud.subtitle')}</p>
       </GridElement>
@@ -49,7 +50,7 @@
     <Grid>
       {#each types as type}
         <GridElement
-          on:click={() => ([selected, selectedComponent] = [true, type.component])}>
+          on:click={() => ([selected, selectedComponent] = [true, type])}>
           <h1>{type.title}</h1>
         </GridElement>
       {/each}

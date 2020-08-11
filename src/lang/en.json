@@ -206,10 +206,10 @@
     "sidebar": {
         "createScene": "New Scene",
         "createChapter": "Create Chapter",
-        "editOrder": "Edit order",
-        "editProject": "Edit project",
-        "editChapter": "Edit chapter",
-        "editScene": "Edit scene",
+        "editOrder": "Edit Order",
+        "editProject": "Edit Project",
+        "editChapter": "Edit Chapter",
+        "editScene": "Edit Scene",
         "delete": {
             "chapter": "Are you sure you want to delete this chapter?",
             "scene": "Are you sure you want to delete this scene?"
