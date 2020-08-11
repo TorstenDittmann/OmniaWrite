@@ -87,12 +87,13 @@
   };
 
   const undo = () => {
-    console.log(editor);
     document.execCommand("undo", false, null);
+    scenes.setSceneContent(params.sceneId, editor.getContent());
   };
 
   const redo = () => {
     document.execCommand("redo", false, null);
+    scenes.setSceneContent(params.sceneId, editor.getContent());
   };
 </script>
 
