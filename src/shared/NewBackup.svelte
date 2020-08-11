@@ -81,7 +81,8 @@
     margin-top: -0.5rem;
   }
 
-  .file-size {
+  .file-size,
+  .hint {
     font-size: 0.8rem;
   }
 </style>
@@ -105,6 +106,6 @@
         <span class="lnr lnr-cloud-download" />
       </li>
     </ul>
-    <small>{$_('common.modals.newBackup.warning')}</small>
+    <p class="hint">{$_('common.modals.newBackup.warning')}</p>
   {/if}
 </Modal>

@@ -31,6 +31,7 @@
     left: 50%;
     top: 50%;
     width: 100vw;
+    max-height: 100vh;
     overflow: auto;
     transform: translate(-50%, -50%);
     border-radius: 0.2em;
@@ -72,8 +73,12 @@
 
     .modal-content {
       overflow: auto;
-      max-height: 70vh;
-      padding: 0.5rem;
+      max-height: calc(100vh - 4rem);
+      padding: 0 0.5rem;
+
+      @include desktop {
+        max-height: calc(80vh - 4rem);
+      }
     }
 
     &.fullscreen {
