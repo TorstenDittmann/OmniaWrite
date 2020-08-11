@@ -59,7 +59,7 @@
   const routeChange = () => {
     if (editor) {
       editor.update();
-      document.getElementById("content").scrollTo(0, 0);
+      document.querySelector(".content").scrollTo(0, 0);
     }
   };
 
@@ -87,6 +87,7 @@
   };
 
   const undo = () => {
+    console.log(editor);
     document.execCommand("undo", false, null);
   };
 
