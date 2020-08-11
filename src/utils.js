@@ -12,8 +12,8 @@ export const getBase64 = (file) =>
 
 export const smartenText = (s) => {
     // 5' or 5'' or 5" => prime symbols
-    s = s.replace(/(?<=\d)'(?!['"])/g, "\u2032");
-    s = s.replace(/(?<=\d)("|'')(?!['"])/g, "\u2033");
+    s = s.replace(/(\d)'(?!['"])/g, "$1\u2032");
+    s = s.replace(/(\d)("|'')(?!['"])/g, "$1\u2033");
 
     // curly quotes
     s = s.replace(/"|'+|`+/g, (match, offset, string) => {
@@ -41,45 +41,45 @@ export const smartenText = (s) => {
     });
 
     // insert hair spaces between curly quotes
-    s = s.replace(/(?<=\u2018|\u2019|\u201C|\u201D)(?=\u2018|\u2019|\u201C|\u201D)/g, "\u200A");
+    s = s.replace(/(\u2018|\u2019|\u201C|\u201D)(?=\u2018|\u2019|\u201C|\u201D)/g, "$1\u200A");
 
-    // ... or .... => ellipsis
-    s = s.replace(/(?<!\. ?)\.( ?\.){2,3}(?! ?\.)/g, "\u2026");
+    // ... or .... or . . . => ellipsis
+    s = s.replace(/\. ?\.( ?\.)+/g, s => s.replace(/ /g, "").length < 5 ? "\u2026" : s);
 
     // +/- => plus or minus sign
     s = s.replace(/\+\/-/g, "\u00B1");
 
     // --- => em-dash (with hair spaces)
-    s = s.replace(/ ?(?<!-)---(?!-) ?/g, "\u200A\u2014\u200A");
+    s = s.replace(/ ?---+ ?/g, s => s.trim().length == 3 ? "\u200A\u2014\u200A" : s);
 
     // -- => en-dash
-    s = s.replace(/ ?(?<!-)--(?!-) ?/g, "\u2013");
+    s = s.replace(/ ?--+ ?/g, s => s.trim().length == 2 ? "\u2013" : s);
 
-    // *2 or x2 => multiply sign
-    s = s.replace(/((?<![a-zA-Z])x|(?<!(^|\n) *)\*)(?= ?-?\.?\d)/g, "\u00D7");
+    // 3*4 or 3x4 => multiply sign
+    s = s.replace(/(\d ?)[x*]( ?\d)/g, "$1\u00D7$2");
 
     // -1 => minus sign
     s = s.replace(/-(?= ?\.?\d)/g, "\u2212");
 
     // 1/2, 3/4 etc. => fractions
     if (s.match(/\d\/\d/)) {
-        s = s.replace(/(?<!\d)1\/2(?!\d)/g, "\u00BD");
-        s = s.replace(/(?<!\d)1\/3(?!\d)/g, "\u2153");
-        s = s.replace(/(?<!\d)2\/3(?!\d)/g, "\u2154");
-        s = s.replace(/(?<!\d)1\/4(?!\d)/g, "\u00BC");
-        s = s.replace(/(?<!\d)3\/4(?!\d)/g, "\u00BE");
-        s = s.replace(/(?<!\d)1\/8(?!\d)/g, "\u215B");
-        s = s.replace(/(?<!\d)3\/8(?!\d)/g, "\u215C");
-        s = s.replace(/(?<!\d)5\/8(?!\d)/g, "\u215D");
-        s = s.replace(/(?<!\d)7\/8(?!\d)/g, "\u215E");
+        s = s.replace(/(^|\D)1\/2(?!\d)/g, "$1\u00BD");
+        s = s.replace(/(^|\D)1\/3(?!\d)/g, "$1\u2153");
+        s = s.replace(/(^|\D)2\/3(?!\d)/g, "$1\u2154");
+        s = s.replace(/(^|\D)1\/4(?!\d)/g, "$1\u00BC");
+        s = s.replace(/(^|\D)3\/4(?!\d)/g, "$1\u00BE");
+        s = s.replace(/(^|\D)1\/8(?!\d)/g, "$1\u215B");
+        s = s.replace(/(^|\D)3\/8(?!\d)/g, "$1\u215C");
+        s = s.replace(/(^|\D)5\/8(?!\d)/g, "$1\u215D");
+        s = s.replace(/(^|\D)7\/8(?!\d)/g, "$1\u215E");
     }
 
     // a.  A => a. A
     s = s.replace(/\. {2}(?! )/g, ". ");
 
     // non-breaking spaces
-    s = s.replace(/(?<=\u00AB|\u2039) | (?=[:;!?]|\u00BB|\u203A)/g, "\u00A0"); // French
-    s = s.replace(/(?<=\b[A-Za-z]\.) (?=[A-Za-z]\.)/g, "\u00A0"); // German
+    s = s.replace(/(\u00AB|\u2039) | (?=[:;!?]|\u00BB|\u203A)/g, "$1\u00A0"); // French
+    s = s.replace(/(\b[A-Za-z]\.) (?=[A-Za-z]\.)/g, "$1\u00A0"); // German
 
     return s;
 }
@@ -87,7 +87,7 @@ export const smartenText = (s) => {
 const parser = new DOMParser();
 
 function toPlainText(s) {
-    s = s.replace(/<br \/>(?=.)/g, "\n"); // convert br tags to line break (except at the end)
+    s = s.replace(/<br ?\/?>(?=.)/g, "\n"); // convert br tags to line break (except at the end)
     return parser.parseFromString(s, "text/html").documentElement.textContent; // decodes all HTML entities
 }
 
