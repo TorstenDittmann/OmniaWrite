@@ -1,21 +1,14 @@
 <script>
-  import { onMount } from "svelte";
   import { get } from "svelte/store";
   import { _ } from "svelte-i18n";
 
-  import { state, projects, chapters, scenes, settings } from "../../stores";
+  import { state, projects, chapters, scenes } from "../../stores";
   import { countChars, countWords } from "../../utils";
   import Grid from "../../components/Grid/Grid.svelte";
   import GridElement from "../../components/Grid/GridElement.svelte";
+  import Spinner from "../../shared/Spinner.svelte";
 
-  const analytics = {
-    chapters: 0,
-    scenes: 0,
-    words: 0,
-    chars: 0,
-  };
-
-  onMount(() => {
+  const analyze = new Promise((resolve, reject) => {
     const filteredChapters = get(chapters).filter(
       (e) => e.project == $state.currentProject
     );
@@ -33,28 +26,35 @@
         },
         { words: 0, chars: 0 }
       );
-    analytics.chapters = filteredChapters.length;
-    analytics.scenes = filteredScenes.length;
-    analytics.words = filteredRest.words;
-    analytics.chars = filteredRest.chars;
+
+    resolve({
+      chapters: filteredChapters.length,
+      scenes: filteredScenes.length,
+      words: filteredRest.words,
+      chars: filteredRest.chars,
+    });
   });
 </script>
 
-<Grid columns={4}>
-  <GridElement>
-    <h3>{analytics.chapters}</h3>
-    <p>{$_('overview.project.chapters')}</p>
-  </GridElement>
-  <GridElement>
-    <h3>{analytics.scenes}</h3>
-    <p>{$_('overview.project.scenes')}</p>
-  </GridElement>
-  <GridElement>
-    <h3>{analytics.words}</h3>
-    <p>{$_('overview.project.words')}</p>
-  </GridElement>
-  <GridElement>
-    <h3>{analytics.chars}</h3>
-    <p>{$_('overview.project.characters')}</p>
-  </GridElement>
-</Grid>
+{#await analyze}
+  <Spinner />
+{:then analytics}
+  <Grid columns={4}>
+    <GridElement>
+      <h3>{analytics.chapters}</h3>
+      <p>{$_('overview.project.chapters')}</p>
+    </GridElement>
+    <GridElement>
+      <h3>{analytics.scenes}</h3>
+      <p>{$_('overview.project.scenes')}</p>
+    </GridElement>
+    <GridElement>
+      <h3>{analytics.words}</h3>
+      <p>{$_('overview.project.words')}</p>
+    </GridElement>
+    <GridElement>
+      <h3>{analytics.chars}</h3>
+      <p>{$_('overview.project.characters')}</p>
+    </GridElement>
+  </Grid>
+{/await}
