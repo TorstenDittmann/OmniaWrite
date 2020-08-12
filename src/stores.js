@@ -211,6 +211,16 @@ const storeChapters = () => {
             return n;
         }),
         /**
+         * Sets chapter order.
+         * @param {number} id ID of the chapter.
+         * @param {string} order New index of the chapter.
+         */
+        setChapterOrder: (id, order) => update(n => {
+            updateLocalTimestamp();
+            n[n.findIndex(c => c.id == id)].order = order;
+            return n;
+        }),
+        /**
          * Removes chapter.
          * @param {number} id ID of the chapter.
          */
@@ -225,20 +235,6 @@ const storeChapters = () => {
         removeAllChapters: (id) => update(n => {
             updateLocalTimestamp();
             return n.filter(n => n.project !== id)
-        }),
-        /**
-         * Reorder chapter based on sort.
-         * @param {number} project ID of the project.
-         * @param {number} from ID of the to be moved chapter.
-         * @param {number} to ID of the following chapter.
-         */
-        moveChapter: (project, from, to) => update(n => {
-            let temp = n.filter(p => p.project == project).sort((a, b) => a.order - b.order);
-            temp.splice(temp.findIndex(a => a.id == to), 0, temp.splice(temp.findIndex(a => a.id == from), 1)[0]);
-            temp.forEach((ele, i) => {
-                n[n.findIndex(a => ele.id == a.id && project == a.project)].order = i;
-            });
-            return n;
         }),
         /**
          * Toggles sidebar state of a chapter => Open/Closed.
@@ -290,6 +286,16 @@ const storeScenes = () => {
             return n;
         }),
         /**
+         * Sets scene title.
+         * @param {number} id ID of the scene.
+         * @param {string} order New index of the scene.
+         */
+        setSceneOrder: (id, order) => update(n => {
+            updateLocalTimestamp();
+            n[n.findIndex(c => c.id == id)].order = order;
+            return n;
+        }),
+        /**
          * Sets scene content.
          * @param {number} id ID of the scene.
          * @param {string} title New content of scene.
@@ -299,6 +305,16 @@ const storeScenes = () => {
             let index = n.findIndex(c => c.id == id);
             n[index].content = content;
             n[index].lastEdit = (+new Date() / 1000).toFixed();
+            return n;
+        }),
+        /**
+         * Sets scene title.
+         * @param {number} id ID of the scene.
+         * @param {string} chapter New chapter of the scene.
+         */
+        moveScene: (id, chapter) => update(n => {
+            updateLocalTimestamp();
+            n[n.findIndex(c => c.id == id)].chapter = chapter;
             return n;
         }),
         /**
@@ -316,30 +332,6 @@ const storeScenes = () => {
         removeAllScenes: (id) => update(n => {
             updateLocalTimestamp();
             return n.filter(n => n.chapter !== id)
-        }),
-        /**
-         * Move scene orders.
-         * @param {number} fromChapter ID of the source chapter.
-         * @param {number} fromId ID of the to be moved scene.
-         * @param {number} toChapter ID of the targetted chapter.
-         * @param {number} toId ID of the following targetted scene.
-         */
-        moveScene: (fromChapter, fromId, toChapter, toId) => update(n => {
-            let tempFrom = n.filter(p => p.chapter == fromChapter).sort((a, b) => a.order - b.order);
-            let tempTo = n.filter(p => p.chapter == toChapter).sort((a, b) => a.order - b.order);
-
-            let tempScene = tempFrom.splice(tempFrom.findIndex(a => a.id == fromId), 1)[0];
-            if (fromChapter == toChapter) {
-                tempTo.splice(tempTo.findIndex(a => a.id == fromId), 1);
-            }
-            tempTo.splice(tempTo.findIndex(a => a.id == toId), 0, tempScene);
-
-            n[n.findIndex(a => fromId == a.id && fromChapter == a.chapter)].chapter = toChapter;
-            tempTo.forEach((ele, i) => {
-                n[n.findIndex(a => ele.id == a.id && toChapter == a.chapter)].order = i;
-            });
-
-            return n;
         }),
     }
 }
