@@ -24,26 +24,12 @@
       value: "de",
       text: $_("settings.appereance.language.de"),
     },
-    {
-      value: "pt",
-      text: $_("settings.appereance.language.pt"),
-    },
   ];
 </script>
 
 <style lang="scss">
   .install {
     text-align: center;
-  }
-
-  .header {
-    background-color: var(--primary-color);
-    padding: 1rem;
-    font-family: "IBM Plex Mono";
-
-    img {
-      height: 7.5rem;
-    }
   }
 
   .link {
@@ -56,11 +42,8 @@
 </style>
 
 <Modal show="true" persistent="true">
+  <h2 slot="header">OmniaWrite</h2>
   <div class="install">
-    <div class="header">
-      <img src="logo.svg" alt="OmniaWrite Logo" />
-      <h3 class="subtitle">The first step to your novel</h3>
-    </div>
     <Select
       label={$_('settings.appereance.language.title')}
       bind:value={$settings.language}
@@ -76,9 +59,9 @@
         {$_('install.action')}
       </Button>
     </ButtonGroup>
-    <small class="link" on:click={() => (showDisclaimer = true)}>
+    <p class="link" on:click={() => (showDisclaimer = true)}>
       {$_('install.disclaimer.show')}
-    </small>
+    </p>
   </div>
 </Modal>
 
