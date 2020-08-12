@@ -7,7 +7,7 @@ src/licenses.json
 src/changelog.json
 public/precache-manifest.*
 public/workbox-*
-public/fonts
+public/fonts/*
 
 .env
 .env.build
