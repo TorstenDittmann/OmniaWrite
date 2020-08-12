@@ -26,7 +26,7 @@ export default async project => {
     if (!currentBlock.data) return [];
 
     let text = currentBlock.data.text
-    //.replace(/(\s|<br \/>)+$/, ""); // trim trailing whitespace
+      .replace(/(\s|<br \/>)+$/, "").trim(); // trim trailing whitespace
 
     switch (currentBlock.type) {
       case "paragraph":
