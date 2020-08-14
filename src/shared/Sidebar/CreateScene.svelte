@@ -1,6 +1,8 @@
 <script>
   import { createEventDispatcher } from "svelte";
   import { _ } from "svelte-i18n";
+  import { push } from "svelte-spa-router";
+
   import { scenes } from "../../stores";
   import { Input, ButtonGroup, Button } from "../../components/Forms";
 
@@ -12,9 +14,10 @@
   let title = "";
 
   const createScene = () => {
-    scenes.createScene(chapter, title);
+    const id = scenes.createScene(chapter, title);
     show = false;
     title = "";
+    push("/write/" + id);
   };
 </script>
 

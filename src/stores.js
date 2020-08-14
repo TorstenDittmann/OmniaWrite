@@ -263,16 +263,20 @@ const storeScenes = () => {
          * @param {number} chapter Chapter ID.
          * @param {string} title Title of the new chapter.
          */
-        createScene: (chapter, title) => update(n => {
-            updateLocalTimestamp();
-            return n.concat([{
-                id: getRandomNumber(),
-                chapter: chapter,
-                title: title,
-                order: n.length,
-                lastEdit: (+new Date() / 1000).toFixed()
-            }]);
-        }),
+        createScene: (chapter, title) => {
+            const id = getRandomNumber()
+            update(n => {
+                updateLocalTimestamp();
+                return n.concat([{
+                    id,
+                    chapter: chapter,
+                    title: title,
+                    order: n.length,
+                    lastEdit: (+new Date() / 1000).toFixed()
+                }]);
+            });
+            return id;
+        },
         /**
          * Sets scene title.
          * @param {number} id ID of the scene.
