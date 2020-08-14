@@ -65,7 +65,8 @@
         "prepare:license": "license-checker --exclude \"MIT\" --json --customPath ./src/licenses.json > ./src/licenses.json",
         "prepare:changelog": "node ./build/scripts/changelog.js",
         "pure-electron": "electron .",
-        "cap:copy": "cap copy"
+        "cap:copy": "cap copy",
+        "lint": "eslint src/"
     },
     "build": {
         "appId": "com.omniawrite.app",
