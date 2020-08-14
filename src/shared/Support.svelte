@@ -11,14 +11,16 @@
 
   import { ui } from "../stores";
 
-  let email;
-  let description;
+  let email = "";
+  let description = "";
 
   let sent = false;
   let loading = false;
 
+  $: checkForm = email !== "" && description !== "";
+
   const send = () => {
-    if (!(email && description)) {
+    if (!checkForm) {
       return false;
     }
     loading = true;
@@ -47,7 +49,7 @@
 <Modal bind:show={$ui.support.show}>
   <h2 slot="header">{$_('feedback.title')}</h2>
   {#if !sent}
-    {$_('feedback.sub')}
+    <p>{$_('feedback.sub')}</p>
     <hr />
     <form on:submit|preventDefault={send}>
       <InputEmail
@@ -57,7 +59,9 @@
         placeholder="john.does@email.ltd" />
       <Textarea bind:value={description} label={$_('feedback.description')} />
       <ButtonGroup>
-        <Button on:click={send} {loading}>{$_('feedback.action')}</Button>
+        <Button on:click={send} {loading} disabled={!checkForm}>
+          {$_('feedback.action')}
+        </Button>
       </ButtonGroup>
     </form>
   {:else}
