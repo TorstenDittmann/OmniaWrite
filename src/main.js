@@ -12,7 +12,7 @@ register("de", () => import(/* webpackChunkName: "de" */"./lang/de.json"));
 
 init({
 	fallbackLocale: "en",
-	initialLocale: "en"
+	initialLocale: JSON.parse(localStorage.getItem("settings")).language || "en"
 });
 
 Sentry.init({ dsn: "https://23916d0950d744b49ded80f0177467a5@sentry.io/2319182" });

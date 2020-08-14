@@ -126,6 +126,10 @@
       float: left;
       overflow-y: auto;
 
+      .placeholder-chapters {
+        cursor: pointer;
+      }
+
       @include desktop {
         width: 100%;
         overflow-y: auto;
@@ -179,6 +183,15 @@
               </Button>
             </ButtonGroup>
           </Chapter>
+        {:else}
+          <Placeholder>
+            <div
+              class="placeholder-chapters"
+              use:tippy={{ content: $_('sidebar.createChapter'), placement: 'bottom' }}
+              on:click={() => (modals.createChapter = true)}>
+              {$_('sidebar.placeholderChapters')}
+            </div>
+          </Placeholder>
         {/each}
       {:else}
         <Placeholder />

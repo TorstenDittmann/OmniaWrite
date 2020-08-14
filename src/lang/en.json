@@ -41,7 +41,8 @@
             "saved": "Saved!"
         },
         "overview": {
-            "opened": "opened"
+            "opened": "opened",
+            "placeholder": "This project has no scenes yet."
         }
     },
     "cloud": {
@@ -161,6 +162,7 @@
             "buttonCreate": "Create",
             "buttonSave": "Save",
             "buttonDelete": "Delete",
+            "confirmDelete": "Are you sure you want to delete this card?",
             "showInScenes": "Show in scenes",
             "helper": {
                 "title": "Character, location, item ...",
@@ -210,6 +212,7 @@
         "editProject": "Edit Project",
         "editChapter": "Edit Chapter",
         "editScene": "Edit Scene",
+        "placeholderChapters": "Click here to create your first chapter.",
         "delete": {
             "chapter": "Are you sure you want to delete this chapter?",
             "scene": "Are you sure you want to delete this scene?"

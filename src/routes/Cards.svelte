@@ -53,7 +53,7 @@
   };
 
   const removeCard = (cardId) => {
-    let confirmed = confirm($_("overview.cards.confirmDelete"));
+    let confirmed = confirm($_("cards.modal.confirmDelete"));
     if (confirmed == true) {
       showEditCard = false;
       cards.removeCard(cardId);

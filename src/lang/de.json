@@ -41,7 +41,8 @@
             "saved": "Gespeichert!"
         },
         "overview": {
-            "opened": "geöffnet"
+            "opened": "geöffnet",
+            "placeholder": "Dieses Projekt hat noch keine Szenen."
         }
     },
     "cloud": {
@@ -161,6 +162,7 @@
             "buttonCreate": "Erstellen",
             "buttonSave": "Speichern",
             "buttonDelete": "Löschen",
+            "confirmDelete": "Sind Sie sicher, dass Sie diese Karte löschen wollen?",
             "showInScenes": "In Szenen anzeigen",
             "helper": {
                 "title": "Charakter, Ort, Gegenstand ...",
@@ -210,6 +212,7 @@
         "editProject": "Projekt bearbeiten",
         "editChapter": "Kapitel bearbeiten",
         "editScene": "Szene bearbeiten",
+        "placeholderChapters": "Klicken Sie hier, um das erste Kapitel zu erstellen.",
         "delete": {
             "chapter": "Sind Sie sicher, dass Sie dieses Kapitel löschen wollen?",
             "scene": "Sind Sie sicher, dass Sie diese Szene löschen wollen?"

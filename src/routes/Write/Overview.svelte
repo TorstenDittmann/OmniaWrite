@@ -7,6 +7,7 @@
 
   import moment from "moment";
   import "moment/locale/de";
+  import Placeholder from "../../shared/Placeholder.svelte";
 
   moment.locale($settings.language);
 
@@ -46,6 +47,8 @@
           {$_('write.overview.opened')} {moment(scene.lastEdit, 'X').fromNow()}
         </small>
       </GridElement>
+    {:else}
+      <Placeholder>{$_('write.overview.placeholder')}</Placeholder>
     {/each}
   </Grid>
 </div>
