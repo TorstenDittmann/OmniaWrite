@@ -1,8 +1,8 @@
 <script>
   import { onMount, onDestroy } from "svelte";
   import { fade } from "svelte/transition";
-  import { scenes, chapters, state, cards, settings, ui } from "../stores";
-  import { push, location } from "svelte-spa-router";
+  import { scenes, chapters, state, ui } from "../stores";
+  import { push } from "svelte-spa-router";
   import { _ } from "svelte-i18n";
 
   import OmniaEditor from "omnia-editor";
@@ -11,7 +11,6 @@
   import { countChars, countWords } from "../utils";
 
   import Overview from "./Write/Overview.svelte";
-  import Toast from "../shared/Toast.svelte";
   import Placeholder from "../shared/Placeholder.svelte";
 
   export let params = {};
@@ -171,20 +170,20 @@
     {#if params.sceneId !== null}
       <div class="toolbar">
         <span
-          use:tippy={{ content: `${analytics.chars} ${$_('write.toolbar.chars')}`, placement: 'bottom' }}>
-          {analytics.words} {$_('write.toolbar.words')}
+          use:tippy={{ content: `${analytics.chars} ${$_("write.toolbar.chars")}`, placement: "bottom" }}>
+          {analytics.words} {$_("write.toolbar.words")}
         </span>
         <span
           class="lnr lnr-undo"
-          use:tippy={{ content: $_('write.toolbar.undo'), placement: 'bottom' }}
+          use:tippy={{ content: $_("write.toolbar.undo"), placement: "bottom" }}
           on:click={undo} />
         <span
           class="lnr lnr-redo"
-          use:tippy={{ content: $_('write.toolbar.redo'), placement: 'bottom' }}
+          use:tippy={{ content: $_("write.toolbar.redo"), placement: "bottom" }}
           on:click={redo} />
         <span
           class="lnr"
-          use:tippy={{ content: $_('write.toolbar.focus'), placement: 'bottom' }}
+          use:tippy={{ content: $_("write.toolbar.focus"), placement: "bottom" }}
           on:click={toggleFocus}
           class:lnr-eye={!$ui.focus}
           class:lnr-exit={$ui.focus} />
@@ -192,7 +191,7 @@
           <!-- svelte-ignore a11y-no-onchange -->
           <select id="focusSceneSelect" on:change={switchScene}>
             <option value="" selected="selected">
-              {$_('write.toolbar.switchScene')}
+              {$_("write.toolbar.switchScene")}
             </option>
             {#each $chapters.filter((chapter) => chapter.project == $state.currentProject) as chapter, i}
               <optgroup label={chapter.title}>

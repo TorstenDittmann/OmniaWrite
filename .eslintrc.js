@@ -1,4 +1,4 @@
-{
+module.exports = {
     "env": {
         "browser": true,
         "amd": true,
@@ -33,5 +33,8 @@
                 "avoidEscape": true
             }
         ]
+    },
+    "settings": {
+        "svelte3/ignore-styles": () => true
     }
 }

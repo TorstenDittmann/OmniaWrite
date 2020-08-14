@@ -42,9 +42,9 @@
   {#if $state.currentProject}
     <Grid>
       <GridElement
-        on:click={() => ([selected, selectedComponent] = [true, { title: $_('export.cloud.title'), component: Cloud }])}>
-        <h1>{$_('export.cloud.title')}</h1>
-        <p>{$_('export.cloud.subtitle')}</p>
+        on:click={() => ([selected, selectedComponent] = [true, { title: $_("export.cloud.title"), component: Cloud }])}>
+        <h1>{$_("export.cloud.title")}</h1>
+        <p>{$_("export.cloud.subtitle")}</p>
       </GridElement>
     </Grid>
     <Grid>

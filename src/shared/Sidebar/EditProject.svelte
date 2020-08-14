@@ -46,20 +46,20 @@
 </style>
 
 <Modal bind:show>
-  <h2 slot="header">{$_('sidebar.editProject')}</h2>
+  <h2 slot="header">{$_("sidebar.editProject")}</h2>
   <form on:submit|preventDefault={save}>
     <Input
-      label={$_('overview.project.title')}
+      label={$_("overview.project.title")}
       bind:value
       autofocus="true"
       autocomplete="off"
-      placeholder={$_('placeholder.title')} />
+      placeholder={$_("placeholder.title")} />
     <ButtonGroup>
       <Button on:click={() => save()} disabled={value.length === 0}>
-        {$_('overview.project.save')}
+        {$_("overview.project.save")}
       </Button>
       <Button on:click={() => removeProject(id)} color="red">
-        {$_('overview.project.delete')}
+        {$_("overview.project.delete")}
       </Button>
     </ButtonGroup>
   </form>

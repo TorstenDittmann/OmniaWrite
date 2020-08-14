@@ -13,5 +13,5 @@
 </style>
 
 <div class="placeholder">
-  <slot>{$_('common.no-project-selected')}</slot>
+  <slot>{$_("common.no-project-selected")}</slot>
 </div>

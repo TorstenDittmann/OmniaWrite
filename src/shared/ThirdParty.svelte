@@ -1,13 +1,11 @@
 <script>
-  import { onMount } from "svelte";
-
   import Spinner from "./Spinner.svelte";
 
   const licenses = import(
     /* webpackChunkName: "licenses" */ "../licenses.json"
   ).then((lic) => {
     let licenseData = [];
-    Object.keys(lic).forEach((key, index) => {
+    Object.keys(lic).forEach((key) => {
       licenseData.push({
         name: key,
         license: lic[key].licenses,

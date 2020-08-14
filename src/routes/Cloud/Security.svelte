@@ -16,7 +16,7 @@
   };
 </script>
 
-<h2>{$_('cloud.security.devices.title')}</h2>
+<h2>{$_("cloud.security.devices.title")}</h2>
 {#await cloud.getSessions()}
   <Spinner />
 {:then devices}
@@ -38,7 +38,7 @@
   <p style="color: red">{error.message}</p>
 {/await}
 
-<h2>{$_('cloud.security.logs.title')}</h2>
+<h2>{$_("cloud.security.logs.title")}</h2>
 {#await cloud.getSecurityLog()}
   <Spinner />
 {:then logs}
@@ -51,9 +51,9 @@
     {#each logs as log}
       <Row>
         <Cell label="Timestamp">
-          {moment(log.time, 'X').format('MMMM Do YYYY, h:mm a')}
+          {moment(log.time, "X").format("MMMM Do YYYY, h:mm a")}
         </Cell>
-        <Cell label="Age">{moment(log.time, 'X').fromNow()}</Cell>
+        <Cell label="Age">{moment(log.time, "X").fromNow()}</Cell>
         <Cell label="Event">{$_(`cloud.security.logs.${log.event}`)}</Cell>
       </Row>
     {/each}

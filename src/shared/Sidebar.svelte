@@ -1,18 +1,12 @@
 <script>
   import { state, chapters, scenes } from "../stores";
-  import { onMount } from "svelte";
-  import { link, push, replace } from "svelte-spa-router";
-  import { fade, fly } from "svelte/transition";
+  import { fly } from "svelte/transition";
   import { _ } from "svelte-i18n";
   import tippy from "sveltejs-tippy";
 
-  import Modal from "./Modal.svelte";
   import Placeholder from "./Placeholder.svelte";
-  import active from "svelte-spa-router/active";
-
   import ButtonGroup from "../components/Forms/ButtonGroup.svelte";
   import Button from "../components/Forms/Button.svelte";
-
   import CreateChapter from "./Sidebar/CreateChapter.svelte";
   import CreateScene from "./Sidebar/CreateScene.svelte";
   import EditChapter from "./Sidebar/EditChapter.svelte";
@@ -179,7 +173,7 @@
             <ButtonGroup small={true}>
               <Button on:click={() => createScene(chapter.id)}>
                 <span class="lnr lnr-plus-circle" />
-                {$_('sidebar.createScene')}
+                {$_("sidebar.createScene")}
               </Button>
             </ButtonGroup>
           </Chapter>
@@ -187,9 +181,9 @@
           <Placeholder>
             <div
               class="placeholder-chapters"
-              use:tippy={{ content: $_('sidebar.createChapter'), placement: 'bottom' }}
+              use:tippy={{ content: $_("sidebar.createChapter"), placement: "bottom" }}
               on:click={() => (modals.createChapter = true)}>
-              {$_('sidebar.placeholderChapters')}
+              {$_("sidebar.placeholderChapters")}
             </div>
           </Placeholder>
         {/each}
@@ -200,17 +194,17 @@
     {#if $state.currentProject}
       <div class="actions">
         <div
-          use:tippy={{ content: $_('sidebar.editProject'), placement: 'top' }}
+          use:tippy={{ content: $_("sidebar.editProject"), placement: "top" }}
           on:click={() => (modals.editProject = true)}>
           <span class="lnr lnr-cog collapse" />
         </div>
         <div
-          use:tippy={{ content: $_('sidebar.editOrder'), placement: 'top' }}
+          use:tippy={{ content: $_("sidebar.editOrder"), placement: "top" }}
           on:click={() => (modals.reArrange = true)}>
           <span class="lnr lnr-line-spacing collapse" />
         </div>
         <div
-          use:tippy={{ content: $_('sidebar.createChapter'), placement: 'top' }}
+          use:tippy={{ content: $_("sidebar.createChapter"), placement: "top" }}
           on:click={() => (modals.createChapter = true)}>
           <span class="lnr lnr-plus-circle collapse" />
         </div>

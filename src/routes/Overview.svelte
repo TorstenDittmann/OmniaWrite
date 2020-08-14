@@ -1,16 +1,13 @@
 <script>
   import { fade } from "svelte/transition";
-  import { state, projects, chapters, scenes, settings } from "../stores";
+  import { state, projects, chapters, settings } from "../stores";
   import { reloadWindow } from "../bridge";
   import { _ } from "svelte-i18n";
-  import { Input, ButtonGroup, Button } from "../components/Forms";
   import { Grid, GridElement } from "../components/Grid";
-
   import moment from "moment";
   import "moment/locale/de";
   import CreateProject from "./Overview/CreateProject.svelte";
   import ProjectOverview from "./Overview/Project.svelte";
-  import Modal from "../shared/Modal.svelte";
 
   moment.locale($settings.language);
 
@@ -50,7 +47,7 @@
     <h1>{project.title}</h1>
     <ProjectOverview />
   {/each}
-  <h1>{$_('overview.projects.title')}</h1>
+  <h1>{$_("overview.projects.title")}</h1>
   <Grid>
     <GridElement action="true" on:click={() => (showCreateProject = true)}>
       <span class="lnr lnr-plus-circle" />
@@ -60,11 +57,11 @@
         title={project.title}
         on:click={() => changeProject(project.id)}>
         <p>
-          {$_('overview.projects.opened')}
-          {moment(project.lastOpen, 'X').fromNow()}
+          {$_("overview.projects.opened")}
+          {moment(project.lastOpen, "X").fromNow()}
         </p>
         <p>
-          {$_('overview.project.chapters')}: {$chapters.filter((n) => n.project == project.id).length}
+          {$_("overview.project.chapters")}: {$chapters.filter((n) => n.project == project.id).length}
         </p>
       </GridElement>
     {/each}

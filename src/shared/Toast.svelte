@@ -1,5 +1,5 @@
 <script>
-  import { fade, fly } from "svelte/transition";
+  import { fly } from "svelte/transition";
   import { createEventDispatcher } from "svelte";
 
   const dispatch = createEventDispatcher();
@@ -42,7 +42,7 @@
 {#if show}
   <div
     on:click={() => {
-      dispatch('click');
+      dispatch("click");
     }}
     in:fly={{ y: -100, duration: 500 }}
     out:fly={{ x: 100, duration: 500 }}>

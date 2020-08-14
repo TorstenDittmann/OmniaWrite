@@ -2,7 +2,6 @@
   import { fade } from "svelte/transition";
   import { _ } from "svelte-i18n";
   import { push } from "svelte-spa-router";
-  import { settings } from "../../stores";
   import { reloadWindow } from "../../bridge";
   import { state } from "../../stores";
 
@@ -18,8 +17,6 @@
 
   let showAlert = false;
   let showAlertText;
-  let alertSuccess = false;
-  let alertDanger = false;
 
   const form = {
     email: "",
@@ -39,12 +36,12 @@
       return;
     }
     cloud.login(form.email, form.pass).then(
-      (response) => {
+      () => {
         state.setLogin(true);
         window.location.hash = "#/cloud";
         reloadWindow();
       },
-      (err) => {
+      () => {
         showAlert = true;
         showAlertText = $_("cloud.login.responses.failed");
         loginButtonLoading = false;
@@ -64,17 +61,17 @@
 
 {#if !$state.isUserLoggedIn}
   <div in:fade={{ duration: 100 }}>
-    <h2>{$_('cloud.login.title')}</h2>
+    <h2>{$_("cloud.login.title")}</h2>
     <Alert danger bind:show={showAlert}>
       <span class="lnr lnr-warning">{showAlertText}</span>
     </Alert>
     <form on:submit|preventDefault={login}>
       <InputEmail
-        label={$_('cloud.login.email')}
+        label={$_("cloud.login.email")}
         placeholder="john.doe@email.tld"
         bind:value={form.email} />
       <InputPassword
-        label={$_('cloud.login.password')}
+        label={$_("cloud.login.password")}
         placeholder="******"
         bind:value={form.pass} />
       <ButtonGroup>
@@ -82,17 +79,17 @@
           on:click={login}
           loading={loginButtonLoading}
           disabled={!checkForm}>
-          {$_('cloud.login.button')}
+          {$_("cloud.login.button")}
         </Button>
       </ButtonGroup>
     </form>
-    <small class="link" on:click={() => push('/cloud/reset-password')}>
-      {$_('cloud.reset.title')}
+    <small class="link" on:click={() => push("/cloud/reset-password")}>
+      {$_("cloud.reset.title")}
     </small>
-    <h2>{$_('cloud.login.register')}</h2>
+    <h2>{$_("cloud.login.register")}</h2>
     <ButtonGroup>
-      <Button on:click={() => push('/cloud/register')}>
-        {$_('cloud.register.title')}
+      <Button on:click={() => push("/cloud/register")}>
+        {$_("cloud.register.title")}
       </Button>
     </ButtonGroup>
   </div>

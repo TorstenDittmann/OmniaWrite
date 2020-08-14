@@ -2,9 +2,7 @@
   import { fade } from "svelte/transition";
   import { _ } from "svelte-i18n";
   import { state } from "../../stores";
-  import saveAs from "file-saver";
   import { Button, ButtonGroup } from "../../components/Forms";
-  import Placeholder from "../../shared/Placeholder.svelte";
   import Export from "./RTF/collectData";
   import { saveFile } from "../../bridge";
   import Done from "./Shared/Done.svelte";
@@ -12,7 +10,6 @@
 
   let done = false;
   let progress = false;
-  let uri;
   let file;
 
   const download = async () => {
@@ -33,9 +30,9 @@
   {:else if progress}
     <Spinner />
   {:else}
-    <p>{$_('export.rtf.explain')}</p>
+    <p>{$_("export.rtf.explain")}</p>
     <ButtonGroup>
-      <Button on:click={download}>{$_('export.action.export')}</Button>
+      <Button on:click={download}>{$_("export.action.export")}</Button>
     </ButtonGroup>
   {/if}
 </div>

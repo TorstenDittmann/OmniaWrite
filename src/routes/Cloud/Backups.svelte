@@ -18,11 +18,11 @@
     isLoadingBackup = true;
     cloud
       .restoreBackup(id)
-      .then((response) => {
+      .then(() => {
         isLoadingBackup = false;
         reloadWindow();
       })
-      .catch((err) => {
+      .catch(() => {
         isLoadingBackup = false;
       });
   }
@@ -43,9 +43,9 @@
 {#if isLoadingBackup}
   <Spinner />
   <br />
-  <i>{$_('cloud.backups.migrating')}</i>
+  <i>{$_("cloud.backups.migrating")}</i>
 {:else}
-  <h2>{$_('cloud.backups.title')}</h2>
+  <h2>{$_("cloud.backups.title")}</h2>
   {#await cloud.getAllBackups()}
     <Spinner />
   {:then backups}
@@ -58,9 +58,9 @@
       {#each backups.files as backup}
         <Row on:click={() => restoreBackup(backup.$id)}>
           <Cell label="Timestamp">
-            {moment(backup.dateCreated, 'X').format('MMMM Do YYYY, h:mm:ss a')}
+            {moment(backup.dateCreated, "X").format("MMMM Do YYYY, h:mm:ss a")}
           </Cell>
-          <Cell label="Age">{moment(backup.dateCreated, 'X').fromNow()}</Cell>
+          <Cell label="Age">{moment(backup.dateCreated, "X").fromNow()}</Cell>
           <Cell label="Size">{formatBytes(backup.sizeOriginal)}</Cell>
         </Row>
       {/each}

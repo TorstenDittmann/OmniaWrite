@@ -10,7 +10,6 @@
 
   let done = false;
   let progress = false;
-  let uri;
   let file;
 
   const download = async () => {
@@ -30,9 +29,9 @@
   {:else if progress}
     <Spinner />
   {:else}
-    <p>{$_('export.markdown.explain')}</p>
+    <p>{$_("export.markdown.explain")}</p>
     <ButtonGroup>
-      <Button on:click={download}>{$_('export.action.export')}</Button>
+      <Button on:click={download}>{$_("export.action.export")}</Button>
     </ButtonGroup>
   {/if}
 </div>

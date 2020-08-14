@@ -17,7 +17,7 @@
       recoverLoading = false;
       return;
     }
-    cloud.recoverPassword(email).then((response) => {
+    cloud.recoverPassword(email).then(() => {
       email = "";
       recoverState = true;
       recoverLoading = true;
@@ -25,25 +25,25 @@
   };
 </script>
 
-<h2>{$_('cloud.reset.title')}</h2>
+<h2>{$_("cloud.reset.title")}</h2>
 {#if recoverState}
   <span class="lnr lnr-checkmark-circle" />
-  {$_('cloud.reset.success')}
+  {$_("cloud.reset.success")}
 {:else}
   <form on:submit|preventDefault={recover}>
     <InputEmail
-      label={$_('cloud.login.email')}
+      label={$_("cloud.login.email")}
       placeholder="john.doe@email.tld"
       bind:value={email} />
     <ButtonGroup>
       <Button on:click={recover} loading={recoverLoading} disabled={!checkForm}>
-        {$_('cloud.reset.title')}
+        {$_("cloud.reset.title")}
       </Button>
     </ButtonGroup>
   </form>
 {/if}
 
-<h2>{$_('cloud.reset.login')}</h2>
+<h2>{$_("cloud.reset.login")}</h2>
 <ButtonGroup>
-  <Button on:click={() => push('/cloud')}>{$_('cloud.login.title')}</Button>
+  <Button on:click={() => push("/cloud")}>{$_("cloud.login.title")}</Button>
 </ButtonGroup>

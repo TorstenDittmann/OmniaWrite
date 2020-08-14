@@ -1,12 +1,11 @@
 <script>
   import { onMount } from "svelte";
   import { fade } from "svelte/transition";
-  import { state, settings } from "../stores";
+  import { settings } from "../stores";
   import { _ } from "svelte-i18n";
-  import { querystring, push, location } from "svelte-spa-router";
+  import { push, location } from "svelte-spa-router";
   import { Grid, GridElement } from "../components/Grid";
   import Router from "svelte-spa-router";
-
   import cloud from "../appwrite";
   import Toast from "../shared/Toast.svelte";
   import Spinner from "../shared/Spinner.svelte";
@@ -46,10 +45,6 @@
     checkLogin();
   });
 
-  const logout = () => {
-    cloud.logout().then(checkLogin());
-  };
-
   const checkLogin = () => {
     loading = true;
     cloud
@@ -59,7 +54,7 @@
           isUserVerified = response.emailVerification;
           isUserLoggedIn = response.$id ? true : false;
         },
-        (error) => {
+        () => {
           isUserLoggedIn = false;
         }
       )
@@ -91,26 +86,26 @@
       {#if !isUserVerified}
         <Grid>
           <GridElement on:click={createConfirmation}>
-            {$_('cloud.confirm.text')}
+            {$_("cloud.confirm.text")}
           </GridElement>
         </Grid>
       {:else}
         <Grid>
-          {#if $location === '/cloud'}
-            <GridElement on:click={() => push('/cloud/backups')}>
-              <h2>{$_('cloud.backups.title')}</h2>
+          {#if $location === "/cloud"}
+            <GridElement on:click={() => push("/cloud/backups")}>
+              <h2>{$_("cloud.backups.title")}</h2>
             </GridElement>
-            <GridElement on:click={() => push('/cloud/security')}>
-              <h2>{$_('cloud.security.title')}</h2>
+            <GridElement on:click={() => push("/cloud/security")}>
+              <h2>{$_("cloud.security.title")}</h2>
             </GridElement>
-            <GridElement on:click={() => push('/cloud/profile')}>
-              <h2>{$_('cloud.profile.title')}</h2>
+            <GridElement on:click={() => push("/cloud/profile")}>
+              <h2>{$_("cloud.profile.title")}</h2>
             </GridElement>
-            <GridElement on:click={() => push('/cloud/logout')}>
-              <h2>{$_('cloud.logout.title')}</h2>
+            <GridElement on:click={() => push("/cloud/logout")}>
+              <h2>{$_("cloud.logout.title")}</h2>
             </GridElement>
           {:else}
-            <GridElement on:click={() => push('/cloud')}>
+            <GridElement on:click={() => push("/cloud")}>
               <span class="lnr lnr-arrow-left" />
             </GridElement>
           {/if}

@@ -71,52 +71,52 @@
 </script>
 
 <Modal bind:show={showCreateCard}>
-  <h2 slot="header">{$_('cards.modal.newHeader')}</h2>
+  <h2 slot="header">{$_("cards.modal.newHeader")}</h2>
   <form on:submit|preventDefault={createCard}>
     <Input
-      label={$_('cards.modal.title')}
+      label={$_("cards.modal.title")}
       bind:value={newCardObject.title}
       autofocus="true"
       autocomplete="off"
-      placeholder={$_('placeholder.title')}
-      helper={$_('cards.modal.helper.title')} />
+      placeholder={$_("placeholder.title")}
+      helper={$_("cards.modal.helper.title")} />
     <Textarea
-      label={$_('cards.modal.content')}
+      label={$_("cards.modal.content")}
       bind:value={newCardObject.content} />
     <Checkbox
-      label={$_('cards.modal.showInScenes')}
+      label={$_("cards.modal.showInScenes")}
       bind:value={newCardObject.showTooltip}
-      helper={$_('cards.modal.helper.tooltip')} />
+      helper={$_("cards.modal.helper.tooltip")} />
     <ButtonGroup>
       <Button on:click={createCard} disabled={newCardObject.title.length === 0}>
-        {$_('cards.modal.buttonSave')}
+        {$_("cards.modal.buttonSave")}
       </Button>
     </ButtonGroup>
   </form>
 </Modal>
 
 <Modal bind:show={showEditCard}>
-  <h2 slot="header">{$_('cards.modal.editHeader')} '{editCardObject.title}'</h2>
+  <h2 slot="header">{$_("cards.modal.editHeader")} '{editCardObject.title}'</h2>
   <form on:submit|preventDefault={editCard}>
     <Input
-      label={$_('cards.modal.title')}
+      label={$_("cards.modal.title")}
       bind:value={editCardObject.title}
       autocomplete="off"
-      placeholder={$_('cards.modal.placeholder.title')}
-      helper={$_('cards.modal.helper.title')} />
+      placeholder={$_("cards.modal.placeholder.title")}
+      helper={$_("cards.modal.helper.title")} />
     <Textarea
-      label={$_('cards.modal.content')}
+      label={$_("cards.modal.content")}
       bind:value={editCardObject.content} />
     <Checkbox
-      label={$_('cards.modal.showInScenes')}
+      label={$_("cards.modal.showInScenes")}
       bind:value={editCardObject.showTooltip}
-      helper={$_('cards.modal.helper.tooltip')} />
+      helper={$_("cards.modal.helper.tooltip")} />
     <ButtonGroup>
       <Button on:click={editCard} disabled={editCardObject.title.length === 0}>
-        {$_('cards.modal.buttonSave')}
+        {$_("cards.modal.buttonSave")}
       </Button>
       <Button on:click={() => removeCard(editCardObject.id)} color="red">
-        {$_('cards.modal.buttonDelete')}
+        {$_("cards.modal.buttonDelete")}
       </Button>
     </ButtonGroup>
   </form>
@@ -125,7 +125,7 @@
 <div in:fade={{ duration: 100 }}>
   {#if $state.currentProject}
     <Search
-      placeholder={$_('cards.search')}
+      placeholder={$_("cards.search")}
       bind:value={searchInput}
       autocomplete="off" />
     <Grid>

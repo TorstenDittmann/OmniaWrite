@@ -1,7 +1,7 @@
 <script>
-  import { createEventDispatcher, onMount } from "svelte";
-  import { fade, fly } from "svelte/transition";
-  import { link, location } from "svelte-spa-router";
+  import { createEventDispatcher } from "svelte";
+  import { fly } from "svelte/transition";
+  import { link } from "svelte-spa-router";
   import {
     closeWindow,
     resizeWindow,
@@ -34,7 +34,7 @@
   const syncCloud = () => {
     cloudState = "loading";
     cloud.saveToCloud().then(
-      (response) => {
+      () => {
         cloudState = "done";
       },
       (error) => {
@@ -243,7 +243,7 @@
     <button
       class="burger"
       id="open-sidebar"
-      on:click={() => dispatch('openSidebar')}
+      on:click={() => dispatch("openSidebar")}
       style="-webkit-app-region: no-drag">
       <span class="lnr lnr-menu" />
     </button>
@@ -264,35 +264,35 @@
         <ul class="menu">
           <Backdrop bind:state={navigationState} />
           <Close bind:state={navigationState} right={false} />
-          <li use:active={'/'} style="-webkit-app-region: no-drag">
+          <li use:active={"/"} style="-webkit-app-region: no-drag">
             <a href="/" use:link>
               <img src="logo.png" alt="OmniaWrite Logo" />
             </a>
           </li>
-          <li use:active={'/write/*'} style="-webkit-app-region: no-drag">
-            <a href="/write/" use:link>{$_('header.write.title')}</a>
+          <li use:active={"/write/*"} style="-webkit-app-region: no-drag">
+            <a href="/write/" use:link>{$_("header.write.title")}</a>
           </li>
-          <li use:active={'/cards/'} style="-webkit-app-region: no-drag">
-            <a href="/cards/" use:link>{$_('header.cards.title')}</a>
+          <li use:active={"/cards/"} style="-webkit-app-region: no-drag">
+            <a href="/cards/" use:link>{$_("header.cards.title")}</a>
           </li>
-          <li use:active={'/settings'} style="-webkit-app-region: no-drag">
-            <a href="/settings" use:link>{$_('header.settings.title')}</a>
+          <li use:active={"/settings"} style="-webkit-app-region: no-drag">
+            <a href="/settings" use:link>{$_("header.settings.title")}</a>
           </li>
-          <li use:active={'/export'} style="-webkit-app-region: no-drag">
-            <a href="/export" use:link>{$_('header.export.title')}</a>
+          <li use:active={"/export"} style="-webkit-app-region: no-drag">
+            <a href="/export" use:link>{$_("header.export.title")}</a>
           </li>
-          <li use:active={'/cloud'} style="-webkit-app-region: no-drag">
-            <a href="/cloud" use:link>{$_('header.cloud.title')}</a>
+          <li use:active={"/cloud"} style="-webkit-app-region: no-drag">
+            <a href="/cloud" use:link>{$_("header.cloud.title")}</a>
           </li>
-          {#if cloudState === 'upload'}
+          {#if cloudState === "upload"}
             <li on:click={syncCloud} style="-webkit-app-region: no-drag">
               <span class="lnr lnr-cloud-upload" />
             </li>
-          {:else if cloudState === 'done'}
+          {:else if cloudState === "done"}
             <li>
               <span class="lnr lnr-cloud-check" />
             </li>
-          {:else if cloudState === 'loading'}
+          {:else if cloudState === "loading"}
             <li>
               <Spinner />
             </li>

@@ -47,27 +47,27 @@
 </script>
 
 <Modal bind:show={$ui.support.show}>
-  <h2 slot="header">{$_('feedback.title')}</h2>
+  <h2 slot="header">{$_("feedback.title")}</h2>
   {#if !sent}
-    <p>{$_('feedback.sub')}</p>
+    <p>{$_("feedback.sub")}</p>
     <hr />
     <form on:submit|preventDefault={send}>
       <InputEmail
-        label={$_('feedback.email')}
+        label={$_("feedback.email")}
         bind:value={email}
         required={true}
         placeholder="john.does@email.ltd" />
-      <Textarea bind:value={description} label={$_('feedback.description')} />
+      <Textarea bind:value={description} label={$_("feedback.description")} />
       <ButtonGroup>
         <Button on:click={send} {loading} disabled={!checkForm}>
-          {$_('feedback.action')}
+          {$_("feedback.action")}
         </Button>
       </ButtonGroup>
     </form>
   {:else}
     <center>
       <span class="lnr lnr-checkmark-circle" style="font-size: 4rem" />
-      <h2>{$_('feedback.success')}</h2>
+      <h2>{$_("feedback.success")}</h2>
     </center>
   {/if}
 </Modal>

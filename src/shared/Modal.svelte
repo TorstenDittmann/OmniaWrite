@@ -1,5 +1,4 @@
 <script>
-  import { createEventDispatcher } from "svelte";
   import { fade, scale } from "svelte/transition";
 
   export let show = false;
@@ -96,7 +95,7 @@
 {#if show}
   <div
     class="modal-backdrop"
-    on:click={() => (persistent ? '' : (show = false))}
+    on:click={() => (persistent ? "" : (show = false))}
     in:fade={{ duration: 200 }}
     out:fade={{ duration: 200 }} />
   <div

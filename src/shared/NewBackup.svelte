@@ -28,11 +28,11 @@
   const download = () => {
     loading = true;
     cloud.restoreBackup(latest.files[0].$id).then(
-      (response) => {
+      () => {
         loading = false;
         reloadWindow();
       },
-      (err) => {
+      () => {
         loading = false;
       }
     );
@@ -88,8 +88,8 @@
 </style>
 
 <Modal bind:show>
-  <h2 slot="header">{$_('common.modals.newBackup.header')}</h2>
-  <p>{$_('common.modals.newBackup.subtitle')}</p>
+  <h2 slot="header">{$_("common.modals.newBackup.header")}</h2>
+  <p>{$_("common.modals.newBackup.subtitle")}</p>
   {#if loading}
     <center>
       <Spinner />
@@ -98,7 +98,7 @@
     <ul>
       <li on:click={download}>
         <span class="from-now">
-          {moment(latest.files[0].dateCreated, 'X').fromNow()}
+          {moment(latest.files[0].dateCreated, "X").fromNow()}
         </span>
         <span class="file-size">
           {formatBytes(latest.files[0].sizeOriginal)}
@@ -106,6 +106,6 @@
         <span class="lnr lnr-cloud-download" />
       </li>
     </ul>
-    <p class="hint">{$_('common.modals.newBackup.warning')}</p>
+    <p class="hint">{$_("common.modals.newBackup.warning")}</p>
   {/if}
 </Modal>

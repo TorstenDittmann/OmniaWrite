@@ -41,14 +41,14 @@
 <div in:fade={{ duration: 100 }}>
   <Grid>
     {#each sceneData as scene}
-      <GridElement on:click={() => push('/write/' + scene.id)}>
+      <GridElement on:click={() => push("/write/" + scene.id)}>
         <h2>{scene.title}</h2>
         <small>
-          {$_('write.overview.opened')} {moment(scene.lastEdit, 'X').fromNow()}
+          {$_("write.overview.opened")} {moment(scene.lastEdit, "X").fromNow()}
         </small>
       </GridElement>
     {:else}
-      <Placeholder>{$_('write.overview.placeholder')}</Placeholder>
+      <Placeholder>{$_("write.overview.placeholder")}</Placeholder>
     {/each}
   </Grid>
 </div>

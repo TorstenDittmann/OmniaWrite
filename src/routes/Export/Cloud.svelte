@@ -1,9 +1,7 @@
 <script>
-  import { onMount } from "svelte";
-  import { get } from "svelte/store";
   import { fade } from "svelte/transition";
   import { _ } from "svelte-i18n";
-  import { state, projects } from "../../stores";
+  import { state } from "../../stores";
   import { getBase64, toFileName } from "../../utils";
   import { saveFile } from "../../bridge";
   import {
@@ -15,8 +13,6 @@
     Field,
   } from "../../components/Forms";
   import { Grid, GridElement } from "../../components/Grid";
-
-  import Placeholder from "../../shared/Placeholder.svelte";
   import Modal from "../../shared/Modal.svelte";
   import Toast from "../../shared/Toast.svelte";
   import Spinner from "../../shared/Spinner.svelte";
@@ -124,9 +120,9 @@
 </script>
 
 <Toast bind:show={exportToast} text={exportResponse} />
-<Toast bind:show={completeForm} text={$_('export.form')} />
+<Toast bind:show={completeForm} text={$_("export.form")} />
 <Modal bind:show={progress.active} persistent={true}>
-  <h2 slot="header">{$_('export.templates.progress')}</h2>
+  <h2 slot="header">{$_("export.templates.progress")}</h2>
   <center>
     {#if progress.done}
       <Done file={progress.file} />
@@ -136,7 +132,7 @@
   </center>
 </Modal>
 <Modal bind:show={selectTemplate}>
-  <h2 slot="header">{$_('export.templates')}</h2>
+  <h2 slot="header">{$_("export.templates")}</h2>
   {#await fetchTemplates()}
     <Spinner />
   {:then templates}
@@ -158,54 +154,54 @@
   {/await}
 </Modal>
 <div in:fade={{ duration: 100 }}>
-  <Field label={$_('export.template')}>
+  <Field label={$_("export.template")}>
     <ButtonGroup>
       <Button on:click={() => (selectTemplate = true)}>
-        {#if form.template !== ''}
+        {#if form.template !== ""}
           <span class="lnr lnr-checkmark-circle" />
           {form.template.name}
-        {:else}{$_('export.action.choose')}{/if}
+        {:else}{$_("export.action.choose")}{/if}
       </Button>
     </ButtonGroup>
   </Field>
   <Input
-    label={$_('export.title')}
+    label={$_("export.title")}
     placeholder="Moby Dick"
     bind:value={form.title}
     required="true"
-    helper={$_('export.helpers.title')} />
+    helper={$_("export.helpers.title")} />
   <Input
-    label={$_('export.author')}
+    label={$_("export.author")}
     placeholder="John Doe"
     bind:value={form.author}
     required="true"
-    helper={$_('export.helpers.author')} />
+    helper={$_("export.helpers.author")} />
   <Input
-    label={$_('export.publisher')}
+    label={$_("export.publisher")}
     placeholder="OmniaWrite"
     bind:value={form.publisher}
     required="true"
-    helper={$_('export.helpers.publisher')} />
+    helper={$_("export.helpers.publisher")} />
   <Select
-    label={$_('export.language')}
+    label={$_("export.language")}
     bind:value={form.lang}
     options={languages}
     required="true"
-    helper={$_('export.helpers.language')} />
+    helper={$_("export.helpers.language")} />
   <Input
-    label={$_('export.description')}
+    label={$_("export.description")}
     placeholder="This book is awesome..."
     bind:value={form.description}
     required="true"
-    helper={$_('export.helpers.description')} />
+    helper={$_("export.helpers.description")} />
   <File
-    label={$_('export.cover')}
+    label={$_("export.cover")}
     bind:files={cover}
     required="true"
-    helper={$_('export.helpers.cover')} />
+    helper={$_("export.helpers.cover")} />
   <ButtonGroup>
     <Button on:click={download} disabled={!checkForm}>
-      {$_('export.action.export')}
+      {$_("export.action.export")}
     </Button>
   </ButtonGroup>
 </div>

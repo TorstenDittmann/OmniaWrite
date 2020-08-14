@@ -1,8 +1,7 @@
 <script>
-  import { createEventDispatcher } from "svelte";
   import { _ } from "svelte-i18n";
   import { push } from "svelte-spa-router";
-  import { state, scenes } from "../../stores";
+  import { scenes } from "../../stores";
   import { Input, ButtonGroup, Button } from "../../components/Forms";
 
   import Modal from "../../shared/Modal.svelte";
@@ -30,21 +29,21 @@
 </style>
 
 <Modal bind:show>
-  <h2 slot="header">{$_('sidebar.editScene')}</h2>
+  <h2 slot="header">{$_("sidebar.editScene")}</h2>
   <form on:submit|preventDefault={editScene}>
     <Input
-      label={$_('sidebar.modal.title')}
+      label={$_("sidebar.modal.title")}
       bind:value={data.title}
       autocomplete="off"
       autofocus="true"
-      placeholder={$_('placeholder.title')} />
+      placeholder={$_("placeholder.title")} />
 
     <ButtonGroup>
       <Button on:click={editScene} disabled={data.title.length === 0}>
-        {$_('sidebar.modal.edit.buttonSave')}
+        {$_("sidebar.modal.edit.buttonSave")}
       </Button>
       <Button on:click={() => removeScene(data.id)} color="red">
-        {$_('sidebar.modal.edit.buttonDelete')}
+        {$_("sidebar.modal.edit.buttonDelete")}
       </Button>
     </ButtonGroup>
   </form>
