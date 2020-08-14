@@ -77,9 +77,9 @@
 <button
   disabled={disabled || loading}
   class:loading
-  class:green={color == "green"}
-  class:red={color == "red"}
-  class:outline={color == "outline"}
+  class:green={color == 'green'}
+  class:red={color == 'red'}
+  class:outline={color == 'outline'}
   on:click|preventDefault>
   {#if loading}
     <span class="lnr lnr-sync spinner" />

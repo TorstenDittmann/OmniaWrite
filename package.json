@@ -66,7 +66,7 @@
         "prepare:changelog": "node ./build/scripts/changelog.js",
         "pure-electron": "electron .",
         "cap:copy": "cap copy",
-        "lint": "eslint src/**/*.{js,svelte} --fix"
+        "lint": "eslint src/**/*.{js,svelte}"
     },
     "build": {
         "appId": "com.omniawrite.app",
