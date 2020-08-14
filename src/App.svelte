@@ -1,5 +1,5 @@
 <script>
-  import { onMount } from "svelte";
+  import { onMount, afterUpdate } from "svelte";
   import { isLoading, locale, _ } from "svelte-i18n";
   import Router, { location, replace } from "svelte-spa-router";
   import { Workbox } from "workbox-window";
