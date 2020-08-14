@@ -149,7 +149,7 @@
     locale.set($settings.language);
     document.body.style.setProperty(
       "--editor-font-size",
-      $settings.fontsize ? $settings.fontsize : 1 + "rem"
+      $settings.fontsize === undefined ? 1 : $settings.fontsize + "rem"
     );
   }
 </script>

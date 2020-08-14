@@ -95,8 +95,8 @@
   <Range
     label={$_('settings.write.fontsize')}
     bind:value={$settings.fontsize}
-    min=".8"
-    max="1.4"
+    min=".6"
+    max="1.6"
     step=".1"
     helper={$_('settings.helpers.fontsize')} />
 
