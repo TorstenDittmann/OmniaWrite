@@ -17,7 +17,7 @@
       recoverLoading = false;
       return;
     }
-    cloud.recoverPassword(email).then((response) => {
+    cloud.recoverPassword(email).then(() => {
       email = "";
       recoverState = true;
       recoverLoading = true;

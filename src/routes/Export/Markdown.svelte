@@ -10,7 +10,6 @@
 
   let done = false;
   let progress = false;
-  let uri;
   let file;
 
   const download = async () => {

@@ -1,6 +1,6 @@
 <script>
   import { fade } from "svelte/transition";
-  import { _, locale } from "svelte-i18n";
+  import { _ } from "svelte-i18n";
   import { push } from "svelte-spa-router";
   import { settings } from "../stores";
   import { Select, Checkbox, Range } from "../components/Forms";

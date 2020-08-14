@@ -1,5 +1,4 @@
 <script>
-  import { onMount } from "svelte";
   import { _ } from "svelte-i18n";
   import Modal from "./Modal.svelte";
   import Spinner from "./Spinner.svelte";

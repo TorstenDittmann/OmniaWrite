@@ -1,18 +1,11 @@
 <script>
   import { state, chapters, scenes } from "../stores";
-  import { onMount } from "svelte";
-  import { link, push, replace } from "svelte-spa-router";
-  import { fade, fly } from "svelte/transition";
+  import { fly } from "svelte/transition";
   import { _ } from "svelte-i18n";
   import tippy from "sveltejs-tippy";
-
-  import Modal from "./Modal.svelte";
   import Placeholder from "./Placeholder.svelte";
-  import active from "svelte-spa-router/active";
-
   import ButtonGroup from "../components/Forms/ButtonGroup.svelte";
   import Button from "../components/Forms/Button.svelte";
-
   import CreateChapter from "./Sidebar/CreateChapter.svelte";
   import CreateScene from "./Sidebar/CreateScene.svelte";
   import EditChapter from "./Sidebar/EditChapter.svelte";

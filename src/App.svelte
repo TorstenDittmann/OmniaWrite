@@ -2,28 +2,23 @@
   import { onMount } from "svelte";
   import { isLoading, locale, _ } from "svelte-i18n";
   import Router, { location, replace } from "svelte-spa-router";
-
   import { Workbox } from "workbox-window";
   import {
     reloadWindow,
     isRunningElectron,
     isRunningCapacitor,
   } from "./bridge";
-  import { state, projects, settings, intern, ui } from "./stores";
+  import { state, settings, intern, ui } from "./stores";
   import cloud from "./appwrite";
-
   import * as Sentry from "@sentry/browser";
-
   import HeaderComponent from "./shared/Header.svelte";
   import SidebarComponent from "./shared/Sidebar.svelte";
   import Toast from "./shared/Toast.svelte";
-  import Modal from "./shared/Modal.svelte";
   import Install from "./shared/Install.svelte";
   import Support from "./shared/Support.svelte";
   import Spinner from "./shared/Spinner.svelte";
   import NewBackup from "./shared/NewBackup.svelte";
   import NewUpdate from "./shared/NewUpdate.svelte";
-
   import OverviewRoute from "./routes/Overview.svelte";
   import WriteRoute from "./routes/Write.svelte";
   import CardsRoute from "./routes/Cards.svelte";
@@ -74,7 +69,7 @@
     !isRunningElectron &&
     window.location.hostname !== "localhost"
   ) {
-    wb.addEventListener("waiting", (event) => {
+    wb.addEventListener("waiting", () => {
       updateAvailable = true;
     });
     wb.register();
@@ -84,7 +79,7 @@
    * Update app.
    */
   const updateApp = () => {
-    wb.addEventListener("controlling", (event) => {
+    wb.addEventListener("controlling", () => {
       reloadWindow();
     });
     wb.messageSW({
@@ -103,7 +98,7 @@
     e.matches ? (sidebarState = false) : (sidebarState = true);
   });
 
-  const routeLoaded = (event) => {
+  const routeLoaded = () => {
     if (mql.matches) {
       sidebarState = false;
       navigationState = false;
@@ -121,7 +116,7 @@
         state.setLogin(false);
       }
     },
-    (err) => {
+    () => {
       state.setLogin(false);
     }
   );

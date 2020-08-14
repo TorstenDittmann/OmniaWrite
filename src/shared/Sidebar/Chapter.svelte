@@ -1,7 +1,7 @@
 <script>
   import { createEventDispatcher } from "svelte";
   import { _ } from "svelte-i18n";
-  import { chapters, ui } from "../../stores";
+  import { chapters } from "../../stores";
   import tippy from "sveltejs-tippy";
 
   export let chapter;

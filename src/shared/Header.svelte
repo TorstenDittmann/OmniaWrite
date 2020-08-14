@@ -1,7 +1,7 @@
 <script>
-  import { createEventDispatcher, onMount } from "svelte";
-  import { fade, fly } from "svelte/transition";
-  import { link, location } from "svelte-spa-router";
+  import { createEventDispatcher } from "svelte";
+  import { fly } from "svelte/transition";
+  import { link } from "svelte-spa-router";
   import {
     closeWindow,
     resizeWindow,
@@ -34,7 +34,7 @@
   const syncCloud = () => {
     cloudState = "loading";
     cloud.saveToCloud().then(
-      (response) => {
+      () => {
         cloudState = "done";
       },
       (error) => {

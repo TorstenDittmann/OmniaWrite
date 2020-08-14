@@ -27,12 +27,12 @@
     ) {
       loading = true;
       cloud.updatePassword(new_password, old_password).then(
-        (response) => {
+        () => {
           loading = false;
           old_password = new_password = new_password_confirm = "";
           [showToast, textToast] = [true, $_("cloud.profile.password.success")];
         },
-        (error) => {
+        () => {
           loading = false;
           [showToast, textToast] = [true, $_("cloud.profile.error")];
         }

@@ -1,11 +1,8 @@
 <script>
-  import { createEventDispatcher } from "svelte";
   import { _ } from "svelte-i18n";
   import { push } from "svelte-spa-router";
-
   import { scenes } from "../../stores";
   import { Input, ButtonGroup, Button } from "../../components/Forms";
-
   import Modal from "../Modal.svelte";
 
   export let show;

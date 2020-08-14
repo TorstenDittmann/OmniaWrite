@@ -1,13 +1,11 @@
 <script>
   import { onMount } from "svelte";
   import { _ } from "svelte-i18n";
-
   import { state, settings } from "../stores";
   import { reloadWindow } from "../bridge";
   import cloud from "../appwrite";
   import moment from "moment";
   import "moment/locale/de";
-
   import Modal from "./Modal.svelte";
   import Spinner from "./Spinner.svelte";
 
@@ -28,11 +26,11 @@
   const download = () => {
     loading = true;
     cloud.restoreBackup(latest.files[0].$id).then(
-      (response) => {
+      () => {
         loading = false;
         reloadWindow();
       },
-      (err) => {
+      () => {
         loading = false;
       }
     );

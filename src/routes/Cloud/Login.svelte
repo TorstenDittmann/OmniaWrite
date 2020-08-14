@@ -2,7 +2,6 @@
   import { fade } from "svelte/transition";
   import { _ } from "svelte-i18n";
   import { push } from "svelte-spa-router";
-  import { settings } from "../../stores";
   import { reloadWindow } from "../../bridge";
   import { state } from "../../stores";
 
@@ -18,8 +17,6 @@
 
   let showAlert = false;
   let showAlertText;
-  let alertSuccess = false;
-  let alertDanger = false;
 
   const form = {
     email: "",
@@ -39,12 +36,12 @@
       return;
     }
     cloud.login(form.email, form.pass).then(
-      (response) => {
+      () => {
         state.setLogin(true);
         window.location.hash = "#/cloud";
         reloadWindow();
       },
-      (err) => {
+      () => {
         showAlert = true;
         showAlertText = $_("cloud.login.responses.failed");
         loginButtonLoading = false;

@@ -21,12 +21,12 @@
   const updateEmail = () => {
     loading = true;
     cloud.updateEmail(email, password).then(
-      (response) => {
+      () => {
         loading = false;
         password = "";
         [showToast, textToast] = [true, $_("cloud.profile.email.success")];
       },
-      (error) => {
+      () => {
         loading = false;
         [showToast, textToast] = [true, $_("cloud.profile.error")];
       }

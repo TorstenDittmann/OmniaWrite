@@ -29,7 +29,6 @@
     policy: false,
   };
 
-  let statusPrivacyPolicy;
   let showPrivacyPolicy;
 
   let registerButtonLoading = false;
@@ -48,14 +47,14 @@
       return;
     }
     cloud.register(form.name, form.email, form.pass).then(
-      (response) => {
+      () => {
         registerButtonLoading = false;
         showAlert = true;
         showAlertText = $_("cloud.register.responses.success");
         alertDanger = false;
         alertSuccess = true;
       },
-      (error) => {
+      () => {
         registerButtonLoading = false;
         showAlert = true;
         showAlertText = $_("cloud.register.responses.failed");

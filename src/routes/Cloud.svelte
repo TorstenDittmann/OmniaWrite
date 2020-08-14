@@ -1,12 +1,11 @@
 <script>
   import { onMount } from "svelte";
   import { fade } from "svelte/transition";
-  import { state, settings } from "../stores";
+  import { settings } from "../stores";
   import { _ } from "svelte-i18n";
-  import { querystring, push, location } from "svelte-spa-router";
+  import { push, location } from "svelte-spa-router";
   import { Grid, GridElement } from "../components/Grid";
   import Router from "svelte-spa-router";
-
   import cloud from "../appwrite";
   import Toast from "../shared/Toast.svelte";
   import Spinner from "../shared/Spinner.svelte";
@@ -46,10 +45,6 @@
     checkLogin();
   });
 
-  const logout = () => {
-    cloud.logout().then(checkLogin());
-  };
-
   const checkLogin = () => {
     loading = true;
     cloud
@@ -59,7 +54,7 @@
           isUserVerified = response.emailVerification;
           isUserLoggedIn = response.$id ? true : false;
         },
-        (error) => {
+        () => {
           isUserLoggedIn = false;
         }
       )

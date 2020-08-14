@@ -1,6 +1,5 @@
 <script>
   import { onMount } from "svelte";
-  import { push } from "svelte-spa-router";
   import { _ } from "svelte-i18n";
   import { reloadWindow } from "../../bridge";
   import { state } from "../../stores";

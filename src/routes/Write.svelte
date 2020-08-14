@@ -1,17 +1,13 @@
 <script>
   import { onMount, onDestroy } from "svelte";
   import { fade } from "svelte/transition";
-  import { scenes, chapters, state, cards, settings, ui } from "../stores";
-  import { push, location } from "svelte-spa-router";
+  import { scenes, chapters, state, ui } from "../stores";
+  import { push } from "svelte-spa-router";
   import { _ } from "svelte-i18n";
-
+  import { countChars, countWords } from "../utils";
   import OmniaEditor from "omnia-editor";
   import tippy from "sveltejs-tippy";
-
-  import { countChars, countWords } from "../utils";
-
   import Overview from "./Write/Overview.svelte";
-  import Toast from "../shared/Toast.svelte";
   import Placeholder from "../shared/Placeholder.svelte";
 
   export let params = {};

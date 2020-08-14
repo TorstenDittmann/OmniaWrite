@@ -1,5 +1,4 @@
 <script>
-  import { createEventDispatcher } from "svelte";
   import { fade, scale } from "svelte/transition";
 
   export let show = false;

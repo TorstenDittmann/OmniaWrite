@@ -1,7 +1,6 @@
 <script>
   import Download from "./Download.svelte";
   import Filesystem from "./Filesystem.svelte";
-  import { onMount } from "svelte";
 
   export let file;
 </script>

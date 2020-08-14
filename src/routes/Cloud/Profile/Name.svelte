@@ -15,11 +15,11 @@
   const updateName = () => {
     loading = true;
     cloud.updateName(name).then(
-      (response) => {
+      () => {
         loading = false;
         [showToast, textToast] = [true, $_("cloud.profile.name.success")];
       },
-      (error) => {
+      () => {
         loading = false;
         [showToast, textToast] = [true, $_("cloud.profile.error")];
       }

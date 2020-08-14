@@ -1,14 +1,12 @@
 <script>
   import { _ } from "svelte-i18n";
-
   import { settings } from "../../stores";
   import { reloadWindow } from "../../bridge";
   import cloud from "../../appwrite";
-  import moment from "moment";
-  import "moment/locale/de";
-
   import { Table, Cell, Row, Heading } from "../../components/Table";
   import Spinner from "../../shared/Spinner.svelte";
+  import moment from "moment";
+  import "moment/locale/de";
 
   moment.locale($settings.language);
 
@@ -18,11 +16,11 @@
     isLoadingBackup = true;
     cloud
       .restoreBackup(id)
-      .then((response) => {
+      .then(() => {
         isLoadingBackup = false;
         reloadWindow();
       })
-      .catch((err) => {
+      .catch(() => {
         isLoadingBackup = false;
       });
   }

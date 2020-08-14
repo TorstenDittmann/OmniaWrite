@@ -1,9 +1,7 @@
 <script>
-  import { onMount } from "svelte";
-  import { get } from "svelte/store";
   import { fade } from "svelte/transition";
   import { _ } from "svelte-i18n";
-  import { state, projects } from "../../stores";
+  import { state } from "../../stores";
   import { getBase64, toFileName } from "../../utils";
   import { saveFile } from "../../bridge";
   import {
@@ -15,8 +13,6 @@
     Field,
   } from "../../components/Forms";
   import { Grid, GridElement } from "../../components/Grid";
-
-  import Placeholder from "../../shared/Placeholder.svelte";
   import Modal from "../../shared/Modal.svelte";
   import Toast from "../../shared/Toast.svelte";
   import Spinner from "../../shared/Spinner.svelte";

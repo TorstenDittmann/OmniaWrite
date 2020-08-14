@@ -2,7 +2,7 @@
   import { createEventDispatcher } from "svelte";
 
   const dispatch = createEventDispatcher();
-  const click = (e) => {
+  const click = () => {
     dispatch("click");
   };
 </script>
@@ -19,6 +19,6 @@
   }
 </style>
 
-<tr on:click>
+<tr on:click={click}>
   <slot />
 </tr>

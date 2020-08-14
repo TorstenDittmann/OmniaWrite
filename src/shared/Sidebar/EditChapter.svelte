@@ -1,9 +1,7 @@
 <script>
-  import { createEventDispatcher } from "svelte";
   import { _ } from "svelte-i18n";
-  import { state, chapters } from "../../stores";
+  import {  chapters } from "../../stores";
   import { Input, Button, ButtonGroup } from "../../components/Forms";
-
   import Modal from "../../shared/Modal.svelte";
 
   export let show;

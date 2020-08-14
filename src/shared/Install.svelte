@@ -1,19 +1,12 @@
 <script>
   import { intern, settings } from "../stores";
-  import { onMount } from "svelte";
   import { _ } from "svelte-i18n";
   import { Button, ButtonGroup, Select, Checkbox } from "../components/Forms";
-
   import Modal from "./Modal.svelte";
   import Disclaimer from "./Disclaimer.svelte";
-  import Spinner from "./Spinner.svelte";
 
-  let installable = false;
-  let showInstall = false;
   let disclaimer = false;
   let showDisclaimer = false;
-
-  let step = "init";
 
   $: languages = [
     {
