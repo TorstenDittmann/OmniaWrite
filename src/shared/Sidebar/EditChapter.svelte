@@ -1,6 +1,6 @@
 <script>
   import { _ } from "svelte-i18n";
-  import {  chapters } from "../../stores";
+  import { chapters } from "../../stores";
   import { Input, Button, ButtonGroup } from "../../components/Forms";
   import Modal from "../../shared/Modal.svelte";
 
@@ -34,7 +34,6 @@
       autocomplete="off"
       autofocus="true"
       placeholder={$_('placeholder.title')} />
-
     <ButtonGroup>
       <Button on:click={editChapter} disabled={data.title.length === 0}>
         {$_('sidebar.modal.edit.buttonSave')}

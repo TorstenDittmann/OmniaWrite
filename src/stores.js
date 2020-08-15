@@ -131,15 +131,23 @@ const storeProjects = () => {
         /**
          * Creates project.
          * @param {string} title Title of the new project.
+         * @param {string} author Author of the new project.
+         * @param {string} description Description of the new project.
+         * @param {string} publisher Publisher of the new project.
+         * @param {string} language Language of the new project.
          * @returns ID of the created project.
          */
-        createProject: (title) => {
+        createProject: (title, author, description, publisher, language) => {
             updateLocalTimestamp();
             let newProjectId = getRandomNumber();
             update(n => {
                 return n.concat([{
                     id: newProjectId,
-                    title: title
+                    title,
+                    author,
+                    description,
+                    publisher,
+                    language
                 }]);
             });
             return newProjectId;
@@ -155,11 +163,11 @@ const storeProjects = () => {
         /**
          * Sets project title.
          * @param {number} id ID of the project.
-         * @param {string} title New title of project.
+         * @param {object} project Project object.
          */
-        setProjectTitle: (id, title) => update(n => {
+        setProject: (project) => update(n => {
             updateLocalTimestamp();
-            n[n.findIndex(p => p.id == id)].title = title;
+            n[n.findIndex(p => p.id == project.id)] = project;
             return n;
         }),
         /**
