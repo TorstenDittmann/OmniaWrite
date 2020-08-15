@@ -200,7 +200,7 @@
           </select>
         {/if}
       </div>
-      <div class="editpane">
+      <div class="editpane" style="--quotation-marks:{$_('write.quote.marks')}">
         <h1 contenteditable bind:textContent={currentScene.title} />
         <OmniaEditor
           bind:this={editor}

@@ -92,6 +92,6 @@ a {
     }
 
     q {
-        quotes: '„''“';
+        quotes: var(--quotation-marks);
     }
 }

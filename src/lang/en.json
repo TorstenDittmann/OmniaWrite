@@ -28,6 +28,9 @@
         }
     },
     "write": {
+        "quote": {
+            "marks": "'“' '”' '‘' '’'"
+        },
         "toolbar": {
             "words": "words",
             "chars": "characters",
