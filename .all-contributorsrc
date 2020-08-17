@@ -22,6 +22,15 @@
       "contributions": [
         "maintenance"
       ]
+    },
+    {
+      "login": "BenStigsen",
+      "name": "Benjamin Stigsen",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/24865450?v=4",
+      "profile": "https://stigsen.xyz/",
+      "contributions": [
+        "ideas"
+      ]
     }
   ],
   "contributorsPerLine": 7,
