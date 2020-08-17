@@ -1,6 +1,6 @@
 ![Build/release](https://github.com/TorstenDittmann/OmniaWrite/workflows/Build/release/badge.svg)
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square)](#contributors)
+[![All Contributors](https://img.shields.io/badge/all_contributors-3-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 [![omniawrite](https://snapcraft.io//omniawrite/badge.svg)](https://snapcraft.io/omniawrite)
 
@@ -93,8 +93,9 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <!-- markdownlint-disable -->
 <table>
   <tr>
-    <td align="center"><a href="https://github.com/AnthonyBoucher"><img src="https://avatars0.githubusercontent.com/u/6674732?v=4?s=100" width="100px;" alt=""/><br /><sub><b>AnthonyBoucher</b></sub></a><br /><a href="#maintenance-AnthonyBoucher" title="Maintenance">🚧</a></td>
     <td align="center"><a href="https://torstendittmann.now.sh"><img src="https://avatars1.githubusercontent.com/u/1759475?v=4" width="100px;" alt=""/><br /><sub><b>Torsten Dittmann</b></sub></a><br /><a href="#maintenance-TorstenDittmann" title="Maintenance">🚧</a></td>
+    <td align="center"><a href="https://github.com/AnthonyBoucher"><img src="https://avatars0.githubusercontent.com/u/6674732?v=4" width="100px;" alt=""/><br /><sub><b>AnthonyBoucher</b></sub></a><br /><a href="#maintenance-AnthonyBoucher" title="Maintenance">🚧</a></td>
+    <td align="center"><a href="https://stigsen.xyz/"><img src="https://avatars3.githubusercontent.com/u/24865450?v=4" width="100px;" alt=""/><br /><sub><b>Benjamin Stigsen</b></sub></a><br /><a href="#ideas-BenStigsen" title="Ideas, Planning, & Feedback">🤔</a></td>
   </tr>
 </table>
 
