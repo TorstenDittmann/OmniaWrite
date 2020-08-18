@@ -227,7 +227,7 @@
         <h1 contenteditable bind:textContent={currentScene.title} />
         <OmniaEditor
           bind:this={editor}
-          data={currentScene.content}
+          bind:data={currentScene.content}
           on:init={init}
           on:change={change} />
       </div>
