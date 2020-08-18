@@ -83,13 +83,11 @@
   };
 
   const undo = () => {
-    document.execCommand("undo", false, null);
-    scenes.setSceneContent(params.sceneId, editor.getContent());
+    editor.history.undo();
   };
 
   const redo = () => {
-    document.execCommand("redo", false, null);
-    scenes.setSceneContent(params.sceneId, editor.getContent());
+    editor.history.redo();
   };
 </script>
 
@@ -170,6 +168,18 @@
           use:tippy={{ content: `${analytics.chars} ${$_('write.toolbar.chars')}`, placement: 'bottom' }}>
           {analytics.words} {$_('write.toolbar.words')}
         </span>
+        <span
+          class="lnr lnr-bold"
+          use:tippy={{ content: $_('write.toolbar.undo'), placement: 'bottom' }}
+          on:click={() => editor.toggleFormat('bold')} />
+        <span
+          class="lnr lnr-italic"
+          use:tippy={{ content: $_('write.toolbar.undo'), placement: 'bottom' }}
+          on:click={() => editor.toggleFormat('italic')} />
+        <span
+          class="lnr lnr-underline"
+          use:tippy={{ content: $_('write.toolbar.undo'), placement: 'bottom' }}
+          on:click={() => editor.toggleFormat('underline')} />
         <span
           class="lnr lnr-undo"
           use:tippy={{ content: $_('write.toolbar.undo'), placement: 'bottom' }}
