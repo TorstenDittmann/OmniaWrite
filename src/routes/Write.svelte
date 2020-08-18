@@ -44,13 +44,9 @@
 
   onMount(() => {
     window.addEventListener("hashchange", routeChange, false);
-    if (params.sceneId !== null) {
-      document.addEventListener("keydown", shortcutListener, false);
-    }
   });
 
   onDestroy(() => {
-    document.removeEventListener("keydown", shortcutListener);
     window.removeEventListener("hashchange", routeChange, false);
   });
 
@@ -63,16 +59,6 @@
 
   const change = (e) => {
     scenes.setSceneContent(params.sceneId, e.detail);
-  };
-
-  const shortcutListener = (evt) => {
-    evt = evt || window.event;
-
-    // Escape => Toggle focus mode
-    if (evt.keyCode == 27) {
-      evt.preventDefault();
-      toggleFocus();
-    }
   };
 
   const switchScene = (e) => {
