@@ -60,6 +60,16 @@ body {
     background: rgba(0, 0, 0, 0.5);
 }
 
+::selection {
+    background: lavender;
+    color: black;
+}
+
+::-moz-selection {
+    background: lavender;
+    color: black;
+}
+
 a {
     color: var(--text-color);
 }
