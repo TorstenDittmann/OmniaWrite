@@ -1,7 +1,7 @@
 <script>
   import { createEventDispatcher } from "svelte";
   import { _ } from "svelte-i18n";
-  import { link, push } from "svelte-spa-router";
+  import { push } from "svelte-spa-router";
   import active from "svelte-spa-router/active";
   import tippy from "sveltejs-tippy";
 
