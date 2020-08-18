@@ -66,7 +66,7 @@
 <li
   use:active={'/write/' + scene.id}
   on:click|self={() => push('/write/' + scene.id)}>
-  <a href="/write/{scene.id}" use:link>{scene.title}</a>
+  <a href="#/write/{scene.id}">{scene.title}</a>
   <span
     class="lnr lnr-cog action"
     use:tippy={{ content: $_('sidebar.editScene'), placement: 'right' }}
