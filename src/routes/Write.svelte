@@ -13,6 +13,8 @@
   export let params = {};
   let currentScene;
   let editor;
+  let currentHistory = 0;
+  let lengthHistory = 0;
 
   $: currentScene = $scenes.filter((scene) => scene.id == params.sceneId)[0];
   $: analytics =
@@ -83,13 +85,18 @@
   };
 
   const undo = () => {
-    document.execCommand("undo", false, null);
-    scenes.setSceneContent(params.sceneId, editor.getContent());
+    editor.history.undo();
   };
 
   const redo = () => {
-    document.execCommand("redo", false, null);
-    scenes.setSceneContent(params.sceneId, editor.getContent());
+    editor.history.redo();
+  };
+
+  const init = () => {
+    editor.history.subscribe((n) => {
+      currentHistory = n.current;
+      lengthHistory = n.data.length;
+    });
   };
 </script>
 
@@ -171,13 +178,29 @@
           {analytics.words} {$_('write.toolbar.words')}
         </span>
         <span
-          class="lnr lnr-undo"
+          class="lnr lnr-bold"
           use:tippy={{ content: $_('write.toolbar.undo'), placement: 'bottom' }}
-          on:click={undo} />
+          on:click={() => editor.toggleFormat('bold')} />
         <span
-          class="lnr lnr-redo"
-          use:tippy={{ content: $_('write.toolbar.redo'), placement: 'bottom' }}
-          on:click={redo} />
+          class="lnr lnr-italic"
+          use:tippy={{ content: $_('write.toolbar.undo'), placement: 'bottom' }}
+          on:click={() => editor.toggleFormat('italic')} />
+        <span
+          class="lnr lnr-underline"
+          use:tippy={{ content: $_('write.toolbar.undo'), placement: 'bottom' }}
+          on:click={() => editor.toggleFormat('underline')} />
+        {#if currentHistory < lengthHistory - 1}
+          <span
+            class="lnr lnr-undo"
+            use:tippy={{ content: $_('write.toolbar.undo'), placement: 'bottom' }}
+            on:click={undo} />
+        {/if}
+        {#if currentHistory !== 0}
+          <span
+            class="lnr lnr-redo"
+            use:tippy={{ content: $_('write.toolbar.redo'), placement: 'bottom' }}
+            on:click={redo} />
+        {/if}
         <span
           class="lnr"
           use:tippy={{ content: $_('write.toolbar.focus'), placement: 'bottom' }}
@@ -205,6 +228,7 @@
         <OmniaEditor
           bind:this={editor}
           data={currentScene.content}
+          on:init={init}
           on:change={change} />
       </div>
     {:else}
