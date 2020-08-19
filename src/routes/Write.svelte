@@ -192,15 +192,15 @@
           <div>
             <span
               class="lnr lnr-bold"
-              use:tippy={{ content: $_('write.toolbar.undo'), placement: 'bottom' }}
+              use:tippy={{ content: $_('write.toolbar.bold'), placement: 'bottom' }}
               on:click={() => editor.toggleFormat('bold')} />
             <span
               class="lnr lnr-italic"
-              use:tippy={{ content: $_('write.toolbar.undo'), placement: 'bottom' }}
+              use:tippy={{ content: $_('write.toolbar.italic'), placement: 'bottom' }}
               on:click={() => editor.toggleFormat('italic')} />
             <span
               class="lnr lnr-underline"
-              use:tippy={{ content: $_('write.toolbar.undo'), placement: 'bottom' }}
+              use:tippy={{ content: $_('write.toolbar.underline'), placement: 'bottom' }}
               on:click={() => editor.toggleFormat('underline')} />
             {#if currentHistory < lengthHistory - 1}
               <span
@@ -241,6 +241,7 @@
               class:lnr-exit={$ui.focus} />
             <span
               class="lnr"
+              use:tippy={{ content: $_('write.toolbar.savestate'), placement: 'bottom' }}
               class:lnr-sync={editorStatus === 1}
               class:spinner={editorStatus === 1}
               class:lnr-checkmark-circle={editorStatus === 2} />
