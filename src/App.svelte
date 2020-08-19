@@ -10,7 +10,6 @@
   } from "./bridge";
   import { state, settings, intern, ui } from "./stores";
   import cloud from "./appwrite";
-  import * as Sentry from "@sentry/browser";
   import HeaderComponent from "./shared/Header.svelte";
   import SidebarComponent from "./shared/Sidebar.svelte";
   import Toast from "./shared/Toast.svelte";
@@ -51,10 +50,6 @@
     // Catch-all
     "*": OverviewRoute,
   };
-
-  Sentry.init({
-    dsn: "https://23916d0950d744b49ded80f0177467a5@sentry.io/2319182",
-  });
 
   const wb = new Workbox("./service-worker.js");
   let updateAvailable = false;

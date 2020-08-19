@@ -1,4 +1,3 @@
-import * as Sentry from "@sentry/browser";
 import { register, init } from "svelte-i18n";
 import pkg from "../package.json";
 
@@ -15,7 +14,6 @@ init({
 	initialLocale: JSON.parse(localStorage.getItem("settings")).language || "en"
 });
 
-Sentry.init({ dsn: "https://23916d0950d744b49ded80f0177467a5@sentry.io/2319182" });
 
 const app = new App({
 	target: document.body,

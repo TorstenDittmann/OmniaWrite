@@ -20,13 +20,12 @@
     "@capacitor/core": "^2.4.0",
     "node-fetch": "^2.6.0",
     "omnia-ebook-generator": "^0.1.2",
-    "omnia-editor": "0.0.10",
+    "omnia-editor": "0.0.11",
     "semver": "^7.3.2",
     "sortablejs": "^1.10.2",
     "sveltejs-tippy": "^3.0.0"
   },
   "devDependencies": {
-    "@sentry/browser": "^5.20.1",
     "@types/file-saver": "^2.0.1",
     "appwrite": "^1.0.29",
     "cross-env": "^7.0.2",
