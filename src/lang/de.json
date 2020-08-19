@@ -264,10 +264,12 @@
         },
         "write": {
             "autosave": "Auto-Speichern",
+            "spellCheck": "Rechtschreibprüfung",
             "fontsize": "Schriftgröße"
         },
         "helpers": {
             "autosave": "Speichert das Projekt automatisch ab",
+            "spellCheck": "Derzeit in der Beta-Phase!",
             "fontsize": "Passt die Schriftgröße vom Editor an",
             "lastLocation": "Ihre letzte geschlossene Seite öffnen"
         }

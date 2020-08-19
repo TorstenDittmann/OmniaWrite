@@ -1,7 +1,7 @@
 <script>
   import { onMount, onDestroy } from "svelte";
   import { fade } from "svelte/transition";
-  import { scenes, chapters, state, ui } from "../stores";
+  import { scenes, chapters, state, settings, ui } from "../stores";
   import { push } from "svelte-spa-router";
   import { _ } from "svelte-i18n";
   import { countChars, countWords } from "../utils";
@@ -13,6 +13,7 @@
   export let params = {};
   let currentScene;
   let editor;
+  let editorStatus = 0;
   let currentHistory = 0;
   let lengthHistory = 0;
 
@@ -59,6 +60,7 @@
 
   const change = (e) => {
     scenes.setSceneContent(params.sceneId, e.detail);
+    editorStatus = 2;
   };
 
   const switchScene = (e) => {
@@ -131,26 +133,53 @@
     position: sticky;
     position: -webkit-sticky;
     top: 0;
-    text-align: center;
     background-color: var(--background-color);
     padding: 1rem;
     font-size: 1.5rem;
-    cursor: pointer;
     margin-bottom: 2rem;
     z-index: 8;
 
-    > * {
-      margin: 0 0.5rem;
-      opacity: 0.65;
-    }
-    > *:hover {
-      opacity: 1;
-    }
-    > span {
-      font-size: 1rem;
-    }
-    > .lnr {
-      font-size: unset;
+    > .inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      align-content: center;
+      margin: auto;
+      max-width: 800px;
+
+      > div {
+        * {
+          margin: 0 0.5rem;
+          opacity: 0.65;
+          cursor: pointer;
+        }
+        *:hover {
+          opacity: 1;
+        }
+        span {
+          font-size: 1rem;
+        }
+        .lnr {
+          font-size: unset;
+
+          &.spinner {
+            display: inline-block;
+            -webkit-animation: spin 2s infinite linear;
+            animation: spin 2s infinite linear;
+          }
+          @keyframes spin {
+            0% {
+              -webkit-transform: rotate(0deg);
+              transform: rotate(0deg);
+            }
+
+            100% {
+              -webkit-transform: rotate(359deg);
+              transform: rotate(359deg);
+            }
+          }
+        }
+      }
     }
   }
 </style>
@@ -159,62 +188,77 @@
   {#if $state.currentProject}
     {#if params.sceneId !== null}
       <div class="toolbar">
-        <span
-          use:tippy={{ content: `${analytics.chars} ${$_('write.toolbar.chars')}`, placement: 'bottom' }}>
-          {analytics.words} {$_('write.toolbar.words')}
-        </span>
-        <span
-          class="lnr lnr-bold"
-          use:tippy={{ content: $_('write.toolbar.undo'), placement: 'bottom' }}
-          on:click={() => editor.toggleFormat('bold')} />
-        <span
-          class="lnr lnr-italic"
-          use:tippy={{ content: $_('write.toolbar.undo'), placement: 'bottom' }}
-          on:click={() => editor.toggleFormat('italic')} />
-        <span
-          class="lnr lnr-underline"
-          use:tippy={{ content: $_('write.toolbar.undo'), placement: 'bottom' }}
-          on:click={() => editor.toggleFormat('underline')} />
-        {#if currentHistory < lengthHistory - 1}
-          <span
-            class="lnr lnr-undo"
-            use:tippy={{ content: $_('write.toolbar.undo'), placement: 'bottom' }}
-            on:click={undo} />
-        {/if}
-        {#if currentHistory !== 0}
-          <span
-            class="lnr lnr-redo"
-            use:tippy={{ content: $_('write.toolbar.redo'), placement: 'bottom' }}
-            on:click={redo} />
-        {/if}
-        <span
-          class="lnr"
-          use:tippy={{ content: $_('write.toolbar.focus'), placement: 'bottom' }}
-          on:click={toggleFocus}
-          class:lnr-eye={!$ui.focus}
-          class:lnr-exit={$ui.focus} />
-        {#if $ui.focus}
-          <!-- svelte-ignore a11y-no-onchange -->
-          <select id="focusSceneSelect" on:change={switchScene}>
-            <option value="" selected="selected">
-              {$_('write.toolbar.switchScene')}
-            </option>
-            {#each $chapters.filter((chapter) => chapter.project == $state.currentProject) as chapter, i}
-              <optgroup label={chapter.title}>
-                {#each $scenes.filter((scene) => scene.chapter == chapter.id) as scene}
-                  <option value={scene.id}>{scene.title}</option>
+        <div class="inner">
+          <div>
+            <span
+              class="lnr lnr-bold"
+              use:tippy={{ content: $_('write.toolbar.undo'), placement: 'bottom' }}
+              on:click={() => editor.toggleFormat('bold')} />
+            <span
+              class="lnr lnr-italic"
+              use:tippy={{ content: $_('write.toolbar.undo'), placement: 'bottom' }}
+              on:click={() => editor.toggleFormat('italic')} />
+            <span
+              class="lnr lnr-underline"
+              use:tippy={{ content: $_('write.toolbar.undo'), placement: 'bottom' }}
+              on:click={() => editor.toggleFormat('underline')} />
+            {#if currentHistory < lengthHistory - 1}
+              <span
+                class="lnr lnr-undo"
+                use:tippy={{ content: $_('write.toolbar.undo'), placement: 'bottom' }}
+                on:click={undo} />
+            {/if}
+            {#if currentHistory !== 0}
+              <span
+                class="lnr lnr-redo"
+                use:tippy={{ content: $_('write.toolbar.redo'), placement: 'bottom' }}
+                on:click={redo} />
+            {/if}
+          </div>
+          <div>
+            {#if $ui.focus}
+              <!-- svelte-ignore a11y-no-onchange -->
+              <select id="focusSceneSelect" on:change={switchScene}>
+                <option value="" selected="selected">
+                  {$_('write.toolbar.switchScene')}
+                </option>
+                {#each $chapters.filter((chapter) => chapter.project == $state.currentProject) as chapter, i}
+                  <optgroup label={chapter.title}>
+                    {#each $scenes.filter((scene) => scene.chapter == chapter.id) as scene}
+                      <option value={scene.id}>{scene.title}</option>
+                    {/each}
+                  </optgroup>
                 {/each}
-              </optgroup>
-            {/each}
-          </select>
-        {/if}
+              </select>
+            {/if}
+          </div>
+          <div>
+            <span
+              class="lnr"
+              use:tippy={{ content: $_('write.toolbar.focus'), placement: 'bottom' }}
+              on:click={toggleFocus}
+              class:lnr-eye={!$ui.focus}
+              class:lnr-exit={$ui.focus} />
+            <span
+              class="lnr"
+              class:lnr-sync={editorStatus === 1}
+              class:spinner={editorStatus === 1}
+              class:lnr-checkmark-circle={editorStatus === 2} />
+            <span
+              use:tippy={{ content: `${analytics.chars} ${$_('write.toolbar.chars')}`, placement: 'bottom' }}>
+              {analytics.words} {$_('write.toolbar.words')}
+            </span>
+          </div>
+        </div>
       </div>
       <div class="editpane" style="--quotation-marks:{$_('write.quote.marks')}">
         <h1 contenteditable bind:textContent={currentScene.title} />
         <OmniaEditor
           bind:this={editor}
           bind:data={currentScene.content}
+          spellCheck={$settings.spellCheck}
           on:init={init}
+          on:input={() => (editorStatus = 1)}
           on:change={change} />
       </div>
     {:else}

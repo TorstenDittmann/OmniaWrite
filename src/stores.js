@@ -12,6 +12,7 @@ const defaultSettings = {
     theme: "dark",
     language: "en",
     autosave: true,
+    spellCheck: true,
     lastLocation: true
 }
 

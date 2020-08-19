@@ -92,6 +92,10 @@
     label={$_('settings.write.autosave')}
     bind:value={$settings.autosave}
     helper={$_('settings.helpers.autosave')} />
+  <Checkbox
+    label={$_('settings.write.spellCheck')}
+    bind:value={$settings.spellCheck}
+    helper={$_('settings.helpers.spellCheck')} />
   <Range
     label={$_('settings.write.fontsize')}
     bind:value={$settings.fontsize}

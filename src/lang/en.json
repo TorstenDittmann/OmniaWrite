@@ -264,10 +264,12 @@
         },
         "write": {
             "autosave": "Autosave",
+            "spellCheck": "Spell check",
             "fontsize": "Fontsize"
         },
         "helpers": {
             "autosave": "Auto saves your project periodically",
+            "spellCheck": "Currently in beta!",
             "fontsize": "Changes the font size inside the editor",
             "lastLocation": "Re-open your last closed page"
         }
