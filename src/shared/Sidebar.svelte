@@ -37,21 +37,101 @@
     },
   };
 
-  const createScene = (chapter) => {
+  const createScene = chapter => {
     modals.createScene.chapter = chapter;
     modals.createScene.show = true;
   };
 
-  const editChapter = (event) => {
+  const editChapter = event => {
     modals.editChapter.data = event.detail;
     modals.editChapter.show = true;
   };
 
-  const editScene = (event) => {
+  const editScene = event => {
     modals.editScene.data = event.detail;
     modals.editScene.show = true;
   };
 </script>
+
+{#if modals.reArrange}
+  <ReArrange bind:show={modals.reArrange} />
+{/if}
+
+{#if modals.editProject}
+  <EditProject bind:show={modals.editProject} id={$state.currentProject} />
+{/if}
+<CreateChapter bind:show={modals.createChapter} />
+<CreateScene
+  bind:show={modals.createScene.show}
+  bind:chapter={modals.createScene.chapter} />
+<EditChapter
+  bind:show={modals.editChapter.show}
+  bind:data={modals.editChapter.data} />
+<EditScene
+  bind:show={modals.editScene.show}
+  bind:data={modals.editScene.data} />
+
+{#if sidebarState}
+  <div
+    class="sidebar"
+    class:active={sidebarState}
+    in:fly={{ y: 200, duration: 200 }}
+    out:fly={{ y: 200, duration: 200 }}>
+    <ul class="menu">
+      <Backdrop bind:state={sidebarState} />
+      <Close bind:state={sidebarState} />
+      {#if $state.currentProject}
+        {#each $chapters
+          .filter(chapter => chapter.project == $state.currentProject)
+          .sort((a, b) => a.order - b.order) as chapter, i}
+          <Chapter {chapter} on:edit={editChapter}>
+            {#each $scenes
+              .filter(scene => scene.chapter == chapter.id)
+              .sort((a, b) => a.order - b.order) as scene}
+              <Scene {scene} on:edit={editScene} />
+            {/each}
+            <ButtonGroup small={true}>
+              <Button on:click={() => createScene(chapter.id)}>
+                <span class="lnr lnr-plus-circle" />
+                {$_('sidebar.createScene')}
+              </Button>
+            </ButtonGroup>
+          </Chapter>
+        {:else}
+          <Placeholder>
+            <div
+              class="placeholder-chapters"
+              use:tippy={{ content: $_('sidebar.createChapter'), placement: 'bottom' }}
+              on:click={() => (modals.createChapter = true)}>
+              {$_('sidebar.placeholderChapters')}
+            </div>
+          </Placeholder>
+        {/each}
+      {:else}
+        <Placeholder />
+      {/if}
+    </ul>
+    {#if $state.currentProject}
+      <div class="actions">
+        <div
+          use:tippy={{ content: $_('sidebar.editProject'), placement: 'top' }}
+          on:click={() => (modals.editProject = true)}>
+          <span class="lnr lnr-cog collapse" />
+        </div>
+        <div
+          use:tippy={{ content: $_('sidebar.editOrder'), placement: 'top' }}
+          on:click={() => (modals.reArrange = true)}>
+          <span class="lnr lnr-line-spacing collapse" />
+        </div>
+        <div
+          use:tippy={{ content: $_('sidebar.createChapter'), placement: 'top' }}
+          on:click={() => (modals.createChapter = true)}>
+          <span class="lnr lnr-plus-circle collapse" />
+        </div>
+      </div>
+    {/if}
+  </div>
+{/if}
 
 <style lang="scss">
   @import "../css/mixins/devices";
@@ -131,83 +211,3 @@
     }
   }
 </style>
-
-{#if modals.reArrange}
-  <ReArrange bind:show={modals.reArrange} />
-{/if}
-
-{#if modals.editProject}
-  <EditProject bind:show={modals.editProject} id={$state.currentProject} />
-{/if}
-<CreateChapter bind:show={modals.createChapter} />
-<CreateScene
-  bind:show={modals.createScene.show}
-  bind:chapter={modals.createScene.chapter} />
-<EditChapter
-  bind:show={modals.editChapter.show}
-  bind:data={modals.editChapter.data} />
-<EditScene
-  bind:show={modals.editScene.show}
-  bind:data={modals.editScene.data} />
-
-{#if sidebarState}
-  <div
-    class="sidebar"
-    class:active={sidebarState}
-    in:fly={{ y: 200, duration: 200 }}
-    out:fly={{ y: 200, duration: 200 }}>
-    <ul class="menu">
-      <Backdrop bind:state={sidebarState} />
-      <Close bind:state={sidebarState} />
-      {#if $state.currentProject}
-        {#each $chapters
-          .filter((chapter) => chapter.project == $state.currentProject)
-          .sort((a, b) => a.order - b.order) as chapter, i}
-          <Chapter {chapter} on:edit={editChapter}>
-            {#each $scenes
-              .filter((scene) => scene.chapter == chapter.id)
-              .sort((a, b) => a.order - b.order) as scene}
-              <Scene {scene} on:edit={editScene} />
-            {/each}
-            <ButtonGroup small={true}>
-              <Button on:click={() => createScene(chapter.id)}>
-                <span class="lnr lnr-plus-circle" />
-                {$_('sidebar.createScene')}
-              </Button>
-            </ButtonGroup>
-          </Chapter>
-        {:else}
-          <Placeholder>
-            <div
-              class="placeholder-chapters"
-              use:tippy={{ content: $_('sidebar.createChapter'), placement: 'bottom' }}
-              on:click={() => (modals.createChapter = true)}>
-              {$_('sidebar.placeholderChapters')}
-            </div>
-          </Placeholder>
-        {/each}
-      {:else}
-        <Placeholder />
-      {/if}
-    </ul>
-    {#if $state.currentProject}
-      <div class="actions">
-        <div
-          use:tippy={{ content: $_('sidebar.editProject'), placement: 'top' }}
-          on:click={() => (modals.editProject = true)}>
-          <span class="lnr lnr-cog collapse" />
-        </div>
-        <div
-          use:tippy={{ content: $_('sidebar.editOrder'), placement: 'top' }}
-          on:click={() => (modals.reArrange = true)}>
-          <span class="lnr lnr-line-spacing collapse" />
-        </div>
-        <div
-          use:tippy={{ content: $_('sidebar.createChapter'), placement: 'top' }}
-          on:click={() => (modals.createChapter = true)}>
-          <span class="lnr lnr-plus-circle collapse" />
-        </div>
-      </div>
-    {/if}
-  </div>
-{/if}

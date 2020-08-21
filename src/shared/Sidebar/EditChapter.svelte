@@ -12,7 +12,7 @@
     show = false;
   };
 
-  const removeChapter = (chapterId) => {
+  const removeChapter = chapterId => {
     let confirmed = confirm($_("sidebar.delete.chapter"));
     if (confirmed == true) {
       chapters.removeChapter(chapterId);
@@ -20,10 +20,6 @@
     }
   };
 </script>
-
-<style>
-
-</style>
 
 <Modal bind:show>
   <h2 slot="header">{$_('sidebar.editChapter')}</h2>
@@ -44,3 +40,7 @@
     </ButtonGroup>
   </form>
 </Modal>
+
+<style>
+
+</style>

@@ -17,7 +17,7 @@
   let currentHistory = 0;
   let lengthHistory = 0;
 
-  $: currentScene = $scenes.filter((scene) => scene.id == params.sceneId)[0];
+  $: currentScene = $scenes.filter(scene => scene.id == params.sceneId)[0];
   $: analytics =
     params.sceneId && currentScene.content
       ? currentScene.content.blocks.reduce(
@@ -58,12 +58,12 @@
     }
   };
 
-  const change = (e) => {
+  const change = e => {
     scenes.setSceneContent(params.sceneId, e.detail);
     editorStatus = 2;
   };
 
-  const switchScene = (e) => {
+  const switchScene = e => {
     push("/write/" + e.target.value);
     e.target.selectedIndex = 0;
   };
@@ -81,12 +81,98 @@
   };
 
   const init = () => {
-    editor.history.subscribe((n) => {
+    editor.history.subscribe(n => {
       currentHistory = n.current;
       lengthHistory = n.data.length;
     });
   };
 </script>
+
+<div in:fade={{ duration: 100 }}>
+  {#if $state.currentProject}
+    {#if params.sceneId !== null}
+      <div class="toolbar">
+        <div class="inner">
+          <div>
+            <span
+              class="lnr lnr-bold"
+              use:tippy={{ content: $_('write.toolbar.bold'), placement: 'bottom' }}
+              on:click={() => editor.toggleFormat('bold')} />
+            <span
+              class="lnr lnr-italic"
+              use:tippy={{ content: $_('write.toolbar.italic'), placement: 'bottom' }}
+              on:click={() => editor.toggleFormat('italic')} />
+            <span
+              class="lnr lnr-underline"
+              use:tippy={{ content: $_('write.toolbar.underline'), placement: 'bottom' }}
+              on:click={() => editor.toggleFormat('underline')} />
+            {#if currentHistory < lengthHistory - 1}
+              <span
+                class="lnr lnr-undo"
+                use:tippy={{ content: $_('write.toolbar.undo'), placement: 'bottom' }}
+                on:click={undo} />
+            {/if}
+            {#if currentHistory !== 0}
+              <span
+                class="lnr lnr-redo"
+                use:tippy={{ content: $_('write.toolbar.redo'), placement: 'bottom' }}
+                on:click={redo} />
+            {/if}
+          </div>
+          <div>
+            {#if $ui.focus}
+              <!-- svelte-ignore a11y-no-onchange -->
+              <select id="focusSceneSelect" on:change={switchScene}>
+                <option value="" selected="selected">
+                  {$_('write.toolbar.switchScene')}
+                </option>
+                {#each $chapters.filter(chapter => chapter.project == $state.currentProject) as chapter, i}
+                  <optgroup label={chapter.title}>
+                    {#each $scenes.filter(scene => scene.chapter == chapter.id) as scene}
+                      <option value={scene.id}>{scene.title}</option>
+                    {/each}
+                  </optgroup>
+                {/each}
+              </select>
+            {/if}
+          </div>
+          <div>
+            <span
+              class="lnr"
+              use:tippy={{ content: $_('write.toolbar.focus'), placement: 'bottom' }}
+              on:click={toggleFocus}
+              class:lnr-eye={!$ui.focus}
+              class:lnr-exit={$ui.focus} />
+            <span
+              class="lnr"
+              use:tippy={{ content: $_('write.toolbar.savestate'), placement: 'bottom' }}
+              class:lnr-sync={editorStatus === 1}
+              class:spinner={editorStatus === 1}
+              class:lnr-checkmark-circle={editorStatus === 2} />
+            <span
+              use:tippy={{ content: `${analytics.chars} ${$_('write.toolbar.chars')}`, placement: 'bottom' }}>
+              {analytics.words} {$_('write.toolbar.words')}
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="editpane" style="--quotation-marks:{$_('write.quote.marks')}">
+        <h1 contenteditable bind:textContent={currentScene.title} />
+        <OmniaEditor
+          bind:this={editor}
+          bind:data={currentScene.content}
+          spellCheck={$settings.spellCheck}
+          on:init={init}
+          on:input={() => (editorStatus = 1)}
+          on:change={change} />
+      </div>
+    {:else}
+      <Overview />
+    {/if}
+  {:else}
+    <Placeholder />
+  {/if}
+</div>
 
 <style lang="scss">
   * {
@@ -183,89 +269,3 @@
     }
   }
 </style>
-
-<div in:fade={{ duration: 100 }}>
-  {#if $state.currentProject}
-    {#if params.sceneId !== null}
-      <div class="toolbar">
-        <div class="inner">
-          <div>
-            <span
-              class="lnr lnr-bold"
-              use:tippy={{ content: $_('write.toolbar.bold'), placement: 'bottom' }}
-              on:click={() => editor.toggleFormat('bold')} />
-            <span
-              class="lnr lnr-italic"
-              use:tippy={{ content: $_('write.toolbar.italic'), placement: 'bottom' }}
-              on:click={() => editor.toggleFormat('italic')} />
-            <span
-              class="lnr lnr-underline"
-              use:tippy={{ content: $_('write.toolbar.underline'), placement: 'bottom' }}
-              on:click={() => editor.toggleFormat('underline')} />
-            {#if currentHistory < lengthHistory - 1}
-              <span
-                class="lnr lnr-undo"
-                use:tippy={{ content: $_('write.toolbar.undo'), placement: 'bottom' }}
-                on:click={undo} />
-            {/if}
-            {#if currentHistory !== 0}
-              <span
-                class="lnr lnr-redo"
-                use:tippy={{ content: $_('write.toolbar.redo'), placement: 'bottom' }}
-                on:click={redo} />
-            {/if}
-          </div>
-          <div>
-            {#if $ui.focus}
-              <!-- svelte-ignore a11y-no-onchange -->
-              <select id="focusSceneSelect" on:change={switchScene}>
-                <option value="" selected="selected">
-                  {$_('write.toolbar.switchScene')}
-                </option>
-                {#each $chapters.filter((chapter) => chapter.project == $state.currentProject) as chapter, i}
-                  <optgroup label={chapter.title}>
-                    {#each $scenes.filter((scene) => scene.chapter == chapter.id) as scene}
-                      <option value={scene.id}>{scene.title}</option>
-                    {/each}
-                  </optgroup>
-                {/each}
-              </select>
-            {/if}
-          </div>
-          <div>
-            <span
-              class="lnr"
-              use:tippy={{ content: $_('write.toolbar.focus'), placement: 'bottom' }}
-              on:click={toggleFocus}
-              class:lnr-eye={!$ui.focus}
-              class:lnr-exit={$ui.focus} />
-            <span
-              class="lnr"
-              use:tippy={{ content: $_('write.toolbar.savestate'), placement: 'bottom' }}
-              class:lnr-sync={editorStatus === 1}
-              class:spinner={editorStatus === 1}
-              class:lnr-checkmark-circle={editorStatus === 2} />
-            <span
-              use:tippy={{ content: `${analytics.chars} ${$_('write.toolbar.chars')}`, placement: 'bottom' }}>
-              {analytics.words} {$_('write.toolbar.words')}
-            </span>
-          </div>
-        </div>
-      </div>
-      <div class="editpane" style="--quotation-marks:{$_('write.quote.marks')}">
-        <h1 contenteditable bind:textContent={currentScene.title} />
-        <OmniaEditor
-          bind:this={editor}
-          bind:data={currentScene.content}
-          spellCheck={$settings.spellCheck}
-          on:init={init}
-          on:input={() => (editorStatus = 1)}
-          on:change={change} />
-      </div>
-    {:else}
-      <Overview />
-    {/if}
-  {:else}
-    <Placeholder />
-  {/if}
-</div>

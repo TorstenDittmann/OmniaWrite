@@ -10,6 +10,14 @@
   export let helper;
 </script>
 
+<Field bind:id bind:label bind:helper>
+  <select {id} bind:value>
+    {#each options as option}
+      <option value={option.value}>{option.text}</option>
+    {/each}
+  </select>
+</Field>
+
 <style>
   select {
     background-color: var(--select-background);
@@ -21,11 +29,3 @@
     cursor: pointer;
   }
 </style>
-
-<Field bind:id bind:label bind:helper>
-  <select {id} bind:value>
-    {#each options as option}
-      <option value={option.value}>{option.text}</option>
-    {/each}
-  </select>
-</Field>

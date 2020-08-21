@@ -88,7 +88,7 @@
   let mql = window.matchMedia("(max-width: 959px)");
   let sidebarState = mql.matches ? false : true;
   let navigationState = mql.matches ? false : true;
-  mql.addListener((e) => {
+  mql.addListener(e => {
     e.matches ? (navigationState = false) : (navigationState = true);
     e.matches ? (sidebarState = false) : (sidebarState = true);
   });
@@ -104,7 +104,7 @@
    * Check for login
    */
   cloud.isUserLoggedIn().then(
-    (user) => {
+    user => {
       if (user["$id"]) {
         state.setLogin(true);
       } else {
@@ -126,7 +126,7 @@
       showChangelog = true;
       $intern.version = version;
     }
-    location.subscribe((currentLocation) => {
+    location.subscribe(currentLocation => {
       state.setCurrentLocation(currentLocation);
     });
   });
@@ -143,6 +143,39 @@
     );
   }
 </script>
+
+{#if $isLoading}
+  <div class="loading">
+    <div class="spinner">
+      <Spinner />
+    </div>
+  </div>
+{:else}
+  <div class="container">
+    <Support />
+    <NewUpdate bind:show={showChangelog} />
+    {#if $state.isUserLoggedIn}
+      <NewBackup />
+    {/if}
+    {#if !$intern.installed}
+      <Install />
+    {/if}
+    <HeaderComponent
+      bind:navigationState
+      on:openSidebar={() => (sidebarState = true)} />
+    <SidebarComponent bind:sidebarState />
+    <div class="content" class:focus={$ui.focus}>
+      <Toast
+        bind:show={updateAvailable}
+        text={$_('common.update-toast')}
+        on:click={updateApp}
+        duration="forever" />
+      <div class="inner">
+        <Router {routes} on:routeLoaded={routeLoaded} />
+      </div>
+    </div>
+  </div>
+{/if}
 
 <style lang="scss">
   @import "css/mixins/devices";
@@ -195,36 +228,3 @@
     }
   }
 </style>
-
-{#if $isLoading}
-  <div class="loading">
-    <div class="spinner">
-      <Spinner />
-    </div>
-  </div>
-{:else}
-  <div class="container">
-    <Support />
-    <NewUpdate bind:show={showChangelog} />
-    {#if $state.isUserLoggedIn}
-      <NewBackup />
-    {/if}
-    {#if !$intern.installed}
-      <Install />
-    {/if}
-    <HeaderComponent
-      bind:navigationState
-      on:openSidebar={() => (sidebarState = true)} />
-    <SidebarComponent bind:sidebarState />
-    <div class="content" class:focus={$ui.focus}>
-      <Toast
-        bind:show={updateAvailable}
-        text={$_('common.update-toast')}
-        on:click={updateApp}
-        duration="forever" />
-      <div class="inner">
-        <Router {routes} on:routeLoaded={routeLoaded} />
-      </div>
-    </div>
-  </div>
-{/if}

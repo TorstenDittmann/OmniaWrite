@@ -17,6 +17,16 @@
   }
 </script>
 
+{#if show}
+  <div class="alert" class:danger class:success class:warning class:info>
+    <span class="closebtn" on:click={() => (show = false)}>
+      <span class="lnr lnr-cross" />
+    </span>
+    <slot name="title" />
+    <slot />
+  </div>
+{/if}
+
 <style lang="scss">
   .alert {
     padding: 20px;
@@ -52,13 +62,3 @@
     }
   }
 </style>
-
-{#if show}
-  <div class="alert" class:danger class:success class:warning class:info>
-    <span class="closebtn" on:click={() => (show = false)}>
-      <span class="lnr lnr-cross" />
-    </span>
-    <slot name="title" />
-    <slot />
-  </div>
-{/if}

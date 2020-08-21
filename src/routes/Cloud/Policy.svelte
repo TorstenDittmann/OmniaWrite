@@ -2,10 +2,6 @@
 
 </script>
 
-<style>
-
-</style>
-
 <p>
   Torsten Dittmann built the OmniaWrite app as a freemium app. This SERVICE is
   provided by Torsten Dittmann at no cost and is intended for use as is.
@@ -37,8 +33,8 @@
   this privacy policy.
 </p>
 <p>
-  The app does not use any third party services that may collect information used to
-  identify you.
+  The app does not use any third party services that may collect information
+  used to identify you.
 </p>
 <p>
   <strong>Log Data</strong>
@@ -66,8 +62,8 @@
   <li>To assist us in analyzing how our Service is used.</li>
 </ul>
 <p>
-  I want to inform users of this Service that these third parties have not access to
-  your Personal Information.
+  I want to inform users of this Service that these third parties have not
+  access to your Personal Information.
 </p>
 
 <p>
@@ -110,3 +106,7 @@
   If you have any questions or suggestions about my Privacy Policy, do not
   hesitate to contact me.
 </p>
+
+<style>
+
+</style>

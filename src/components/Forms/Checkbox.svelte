@@ -9,6 +9,11 @@
   export let helper;
 </script>
 
+<Field bind:id bind:label bind:helper>
+  <input {id} type="checkbox" bind:checked={value} />
+  <label for={id} />
+</Field>
+
 <style lang="scss">
   input {
     display: none;
@@ -64,8 +69,3 @@
     }
   }
 </style>
-
-<Field bind:id bind:label bind:helper>
-  <input {id} type="checkbox" bind:checked={value} />
-  <label for={id} />
-</Field>

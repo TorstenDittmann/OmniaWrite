@@ -2,6 +2,10 @@
   export let small;
 </script>
 
+<div class="button-group" class:small>
+  <slot />
+</div>
+
 <style lang="scss">
   div.button-group {
     margin: 1rem;
@@ -19,7 +23,3 @@
     }
   }
 </style>
-
-<div class="button-group" class:small>
-  <slot />
-</div>

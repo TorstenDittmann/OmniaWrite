@@ -37,7 +37,7 @@
       () => {
         cloudState = "done";
       },
-      (error) => {
+      error => {
         cloudToast.text = error.message;
         cloudToast.show = true;
         cloudState = "upload";
@@ -58,6 +58,101 @@
     }
   }
 </script>
+
+<header style="-webkit-app-region: drag" class:focus={$ui.focus}>
+  <nav class="header noselect">
+    <button
+      class="burger"
+      id="open-sidebar"
+      on:click={() => dispatch('openSidebar')}
+      style="-webkit-app-region: no-drag">
+      <span class="lnr lnr-menu" />
+    </button>
+    <a
+      class="logo-mobile"
+      href="/"
+      use:link
+      style="-webkit-app-region: no-drag">
+      <img src="logo.png" alt="OmniaWrite Logo" />
+    </a>
+    {#if navigationState}
+      <div
+        id="navigation"
+        class="navigation"
+        class:active={navigationState}
+        in:fly={{ y: 200, duration: 200 }}
+        out:fly={{ y: 200, duration: 200 }}>
+        <ul class="menu">
+          <Backdrop bind:state={navigationState} />
+          <Close bind:state={navigationState} right={false} />
+          <li use:active={'/'} style="-webkit-app-region: no-drag">
+            <a href="/" use:link>
+              <img src="logo.png" alt="OmniaWrite Logo" />
+            </a>
+          </li>
+          <li use:active={'/write/*'} style="-webkit-app-region: no-drag">
+            <a href="/write/" use:link>{$_('header.write.title')}</a>
+          </li>
+          <li use:active={'/cards/'} style="-webkit-app-region: no-drag">
+            <a href="/cards/" use:link>{$_('header.cards.title')}</a>
+          </li>
+          <li use:active={'/settings'} style="-webkit-app-region: no-drag">
+            <a href="/settings" use:link>{$_('header.settings.title')}</a>
+          </li>
+          <li use:active={'/export'} style="-webkit-app-region: no-drag">
+            <a href="/export" use:link>{$_('header.export.title')}</a>
+          </li>
+          <li use:active={'/cloud'} style="-webkit-app-region: no-drag">
+            <a href="/cloud" use:link>{$_('header.cloud.title')}</a>
+          </li>
+          {#if cloudState === 'upload'}
+            <li on:click={syncCloud} style="-webkit-app-region: no-drag">
+              <span class="lnr lnr-cloud-upload" />
+            </li>
+          {:else if cloudState === 'done'}
+            <li>
+              <span class="lnr lnr-cloud-check" />
+            </li>
+          {:else if cloudState === 'loading'}
+            <li>
+              <Spinner />
+            </li>
+          {/if}
+        </ul>
+        {#if isRunningElectron}
+          <span
+            class="lnr lnr-cross titlebar"
+            on:click={closeWindow}
+            style="-webkit-app-region: no-drag" />
+          <span
+            class="lnr lnr-frame-expand titlebar"
+            on:click={resizeWindow}
+            style="-webkit-app-region: no-drag" />
+          <span
+            class="lnr lnr-chevron-down titlebar"
+            on:click={minimizeWindow}
+            style="-webkit-app-region: no-drag" />
+        {/if}
+        <span
+          class="lnr lnr-question-circle titlebar feedback"
+          style="-webkit-app-region: no-drag"
+          on:click={() => ($ui.support.show = true)} />
+      </div>
+    {/if}
+    <button
+      class="mobile"
+      id="open-navigation"
+      on:click={() => (navigationState = true)}
+      style="-webkit-app-region: no-drag">
+      <span class="lnr lnr-book" />
+    </button>
+  </nav>
+  <Tabs />
+</header>
+<Toast
+  bind:show={cloudToast.show}
+  text={cloudToast.text}
+  on:click={() => (cloudToast.show = false)} />
 
 <style lang="scss">
   @import "../css/mixins/devices";
@@ -237,98 +332,3 @@
     opacity: 1;
   }
 </style>
-
-<header style="-webkit-app-region: drag" class:focus={$ui.focus}>
-  <nav class="header noselect">
-    <button
-      class="burger"
-      id="open-sidebar"
-      on:click={() => dispatch('openSidebar')}
-      style="-webkit-app-region: no-drag">
-      <span class="lnr lnr-menu" />
-    </button>
-    <a
-      class="logo-mobile"
-      href="/"
-      use:link
-      style="-webkit-app-region: no-drag">
-      <img src="logo.png" alt="OmniaWrite Logo" />
-    </a>
-    {#if navigationState}
-      <div
-        id="navigation"
-        class="navigation"
-        class:active={navigationState}
-        in:fly={{ y: 200, duration: 200 }}
-        out:fly={{ y: 200, duration: 200 }}>
-        <ul class="menu">
-          <Backdrop bind:state={navigationState} />
-          <Close bind:state={navigationState} right={false} />
-          <li use:active={'/'} style="-webkit-app-region: no-drag">
-            <a href="/" use:link>
-              <img src="logo.png" alt="OmniaWrite Logo" />
-            </a>
-          </li>
-          <li use:active={'/write/*'} style="-webkit-app-region: no-drag">
-            <a href="/write/" use:link>{$_('header.write.title')}</a>
-          </li>
-          <li use:active={'/cards/'} style="-webkit-app-region: no-drag">
-            <a href="/cards/" use:link>{$_('header.cards.title')}</a>
-          </li>
-          <li use:active={'/settings'} style="-webkit-app-region: no-drag">
-            <a href="/settings" use:link>{$_('header.settings.title')}</a>
-          </li>
-          <li use:active={'/export'} style="-webkit-app-region: no-drag">
-            <a href="/export" use:link>{$_('header.export.title')}</a>
-          </li>
-          <li use:active={'/cloud'} style="-webkit-app-region: no-drag">
-            <a href="/cloud" use:link>{$_('header.cloud.title')}</a>
-          </li>
-          {#if cloudState === 'upload'}
-            <li on:click={syncCloud} style="-webkit-app-region: no-drag">
-              <span class="lnr lnr-cloud-upload" />
-            </li>
-          {:else if cloudState === 'done'}
-            <li>
-              <span class="lnr lnr-cloud-check" />
-            </li>
-          {:else if cloudState === 'loading'}
-            <li>
-              <Spinner />
-            </li>
-          {/if}
-        </ul>
-        {#if isRunningElectron}
-          <span
-            class="lnr lnr-cross titlebar"
-            on:click={closeWindow}
-            style="-webkit-app-region: no-drag" />
-          <span
-            class="lnr lnr-frame-expand titlebar"
-            on:click={resizeWindow}
-            style="-webkit-app-region: no-drag" />
-          <span
-            class="lnr lnr-chevron-down titlebar"
-            on:click={minimizeWindow}
-            style="-webkit-app-region: no-drag" />
-        {/if}
-        <span
-          class="lnr lnr-question-circle titlebar feedback"
-          style="-webkit-app-region: no-drag"
-          on:click={() => ($ui.support.show = true)} />
-      </div>
-    {/if}
-    <button
-      class="mobile"
-      id="open-navigation"
-      on:click={() => (navigationState = true)}
-      style="-webkit-app-region: no-drag">
-      <span class="lnr lnr-book" />
-    </button>
-  </nav>
-  <Tabs />
-</header>
-<Toast
-  bind:show={cloudToast.show}
-  text={cloudToast.text}
-  on:click={() => (cloudToast.show = false)} />

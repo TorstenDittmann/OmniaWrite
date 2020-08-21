@@ -13,12 +13,12 @@
   export let helper;
 </script>
 
+<Field bind:id bind:label bind:helper>
+  <input {id} {min} {max} {step} type="range" bind:value />
+</Field>
+
 <style>
   input {
     width: 100%;
   }
 </style>
-
-<Field bind:id bind:label bind:helper>
-  <input {id} {min} {max} {step} type="range" bind:value />
-</Field>

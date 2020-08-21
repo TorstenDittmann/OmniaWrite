@@ -1,10 +1,16 @@
-const { app, dialog, shell, BrowserWindow, Menu, MenuItem } = require("electron");
+const {
+  app,
+  dialog,
+  shell,
+  BrowserWindow,
+  Menu,
+  MenuItem,
+} = require("electron");
 
 const path = require("path");
 const fetch = require("node-fetch");
 const semver = require("semver");
 const ipc = require("electron").ipcMain;
-
 
 let mainWindow;
 let loadingScreen;
@@ -15,7 +21,7 @@ const windowHandler = {
       showMainWindow();
     }
     target[key] = value;
-  }
+  },
 };
 const windowState = new Proxy({ main: false }, windowHandler);
 
@@ -30,8 +36,8 @@ const createWindow = () => {
     show: false,
     icon: path.join(__dirname, "../build/icon.png"),
     webPreferences: {
-      nodeIntegration: true
-    }
+      nodeIntegration: true,
+    },
   });
 
   mainWindow.loadURL(`file://${path.join(__dirname, "../public/index.html")}`);
@@ -44,27 +50,32 @@ const createWindow = () => {
     mainWindow = null;
   });
   mainWindow.webContents.on("context-menu", (event, params) => {
-    const menu = new Menu()
+    const menu = new Menu();
     for (const suggestion of params.dictionarySuggestions) {
-      menu.append(new MenuItem({
-        label: suggestion,
-        click: () => mainWindow.webContents.replaceMisspelling(suggestion)
-      }))
+      menu.append(
+        new MenuItem({
+          label: suggestion,
+          click: () => mainWindow.webContents.replaceMisspelling(suggestion),
+        })
+      );
     }
 
     if (params.misspelledWord) {
       menu.append(
         new MenuItem({
           label: "Add to dictionary",
-          click: () => mainWindow.webContents.session.addWordToSpellCheckerDictionary(params.misspelledWord)
+          click: () =>
+            mainWindow.webContents.session.addWordToSpellCheckerDictionary(
+              params.misspelledWord
+            ),
         })
-      )
+      );
     } else {
       return;
     }
-    menu.popup()
-  })
-}
+    menu.popup();
+  });
+};
 
 const showMainWindow = () => {
   console.log("Show app");
@@ -72,7 +83,7 @@ const showMainWindow = () => {
     loadingScreen.close();
   }
   mainWindow.show();
-}
+};
 
 const createLoadingScreen = () => {
   loadingScreen = new BrowserWindow(
@@ -82,10 +93,12 @@ const createLoadingScreen = () => {
       frame: false,
       transparent: true,
       resizable: false,
-      icon: path.join(__dirname, "../build/icon.png")
+      icon: path.join(__dirname, "../build/icon.png"),
     })
   );
-  loadingScreen.loadURL(`file://${path.join(__dirname, "../public/splash/index.html")}`);
+  loadingScreen.loadURL(
+    `file://${path.join(__dirname, "../public/splash/index.html")}`
+  );
 
   loadingScreen.on("closed", () => (loadingScreen = null));
   loadingScreen.webContents.on("did-finish-load", () => {
@@ -93,7 +106,9 @@ const createLoadingScreen = () => {
     loadingScreen.show();
     let status = false;
     let latest = false;
-    fetch("https://api.github.com/repos/torstendittmann/omniawrite/releases/latest")
+    fetch(
+      "https://api.github.com/repos/torstendittmann/omniawrite/releases/latest"
+    )
       .then(response => {
         status = response.status;
         return response.json();
@@ -106,19 +121,25 @@ const createLoadingScreen = () => {
         let currentVersion = app.getVersion();
         let fetchedVersion = latest ? latest.name : false;
 
-        if (status && status === 200 && fetchedVersion && semver.gt(fetchedVersion, currentVersion)) {
+        if (
+          status &&
+          status === 200 &&
+          fetchedVersion &&
+          semver.gt(fetchedVersion, currentVersion)
+        ) {
           let options = {
             buttons: ["Yes", "No"],
             title: "Update available!",
-            message: "There is a new Update available!\n\nWould you like to update now?",
-            type: "info"
+            message:
+              "There is a new Update available!\n\nWould you like to update now?",
+            type: "info",
           };
           dialog.showMessageBox(options).then(res => {
             if (res.response === 0) {
-              shell.openExternal("https://external.omniawrite.com/#/update/")
+              shell.openExternal("https://external.omniawrite.com/#/update/");
             }
             windowState.main = true;
-          })
+          });
         } else {
           windowState.main = true;
         }
@@ -178,4 +199,4 @@ ipc.on("resize", () => {
   } else {
     mainWindow.maximize();
   }
-})
+});

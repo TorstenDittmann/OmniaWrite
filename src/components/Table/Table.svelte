@@ -2,6 +2,10 @@
 
 </script>
 
+<table>
+  <slot />
+</table>
+
 <style lang="scss">
   table {
     border: 0;
@@ -9,7 +13,3 @@
     width: 100%;
   }
 </style>
-
-<table>
-  <slot />
-</table>

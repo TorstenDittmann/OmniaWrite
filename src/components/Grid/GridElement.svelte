@@ -3,6 +3,13 @@
   export let action = false;
 </script>
 
+<div class="grid-element" class:action on:click>
+  {#if title}
+    <h2>{title}</h2>
+  {/if}
+  <slot />
+</div>
+
 <style lang="scss">
   .grid-element {
     background: var(--background-color);
@@ -33,10 +40,3 @@
     }
   }
 </style>
-
-<div class="grid-element" class:action on:click>
-  {#if title}
-    <h2>{title}</h2>
-  {/if}
-  <slot />
-</div>

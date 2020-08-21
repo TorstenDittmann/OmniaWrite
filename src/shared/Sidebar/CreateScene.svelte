@@ -18,10 +18,6 @@
   };
 </script>
 
-<style>
-
-</style>
-
 <Modal bind:show>
   <h2 slot="header">{$_('sidebar.modal.newScene.header')}</h2>
   <form on:submit|preventDefault={createScene}>
@@ -38,3 +34,7 @@
     </ButtonGroup>
   </form>
 </Modal>
+
+<style>
+
+</style>

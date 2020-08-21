@@ -1,3 +1,10 @@
+<div class="lds-ellipsis">
+  <div />
+  <div />
+  <div />
+  <div />
+</div>
+
 <style lang="scss">
   .lds-ellipsis {
     display: inline-block;
@@ -66,10 +73,3 @@
     }
   }
 </style>
-
-<div class="lds-ellipsis">
-  <div />
-  <div />
-  <div />
-  <div />
-</div>

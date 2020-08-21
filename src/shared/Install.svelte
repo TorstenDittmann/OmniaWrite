@@ -20,20 +20,6 @@
   ];
 </script>
 
-<style lang="scss">
-  .install {
-    text-align: center;
-  }
-
-  .link {
-    cursor: pointer;
-
-    &:hover {
-      text-decoration: underline;
-    }
-  }
-</style>
-
 <Modal show="true" persistent="true">
   <h2 slot="header">OmniaWrite</h2>
   <div class="install">
@@ -62,3 +48,17 @@
   <h2 slot="header">{$_('install.disclaimer.title')}</h2>
   <Disclaimer />
 </Modal>
+
+<style lang="scss">
+  .install {
+    text-align: center;
+  }
+
+  .link {
+    cursor: pointer;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+</style>

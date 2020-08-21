@@ -7,6 +7,10 @@
   };
 </script>
 
+<tr on:click={click}>
+  <slot />
+</tr>
+
 <style lang="scss">
   tr {
     width: 100%;
@@ -18,7 +22,3 @@
     }
   }
 </style>
-
-<tr on:click={click}>
-  <slot />
-</tr>

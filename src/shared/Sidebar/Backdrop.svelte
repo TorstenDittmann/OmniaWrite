@@ -2,6 +2,13 @@
   export let state;
 </script>
 
+{#if state}
+  <div
+    class="backdrop"
+    on:click={() => (state = false)}
+    style="-webkit-app-region: no-drag" />
+{/if}
+
 <style lang="scss">
   @import "../../css/mixins/devices";
 
@@ -19,10 +26,3 @@
     }
   }
 </style>
-
-{#if state}
-  <div
-    class="backdrop"
-    on:click={() => (state = false)}
-    style="-webkit-app-region: no-drag" />
-{/if}

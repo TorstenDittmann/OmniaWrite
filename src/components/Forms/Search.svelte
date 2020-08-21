@@ -18,6 +18,17 @@
   });
 </script>
 
+<Field bind:id>
+  <input
+    {id}
+    {autocomplete}
+    {placeholder}
+    {required}
+    type="search"
+    bind:this={element}
+    bind:value />
+</Field>
+
 <style lang="scss">
   input {
     -webkit-appearance: none;
@@ -54,14 +65,3 @@
     }
   }
 </style>
-
-<Field bind:id>
-  <input
-    {id}
-    {autocomplete}
-    {placeholder}
-    {required}
-    type="search"
-    bind:this={element}
-    bind:value />
-</Field>

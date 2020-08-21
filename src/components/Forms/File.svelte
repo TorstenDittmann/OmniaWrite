@@ -11,6 +11,10 @@
   export let required = false;
 </script>
 
+<Field bind:id bind:label bind:helper>
+  <input {id} {required} type="file" bind:files />
+</Field>
+
 <style lang="scss">
   input {
     -webkit-appearance: none;
@@ -47,7 +51,3 @@
     }
   }
 </style>
-
-<Field bind:id bind:label bind:helper>
-  <input {id} {required} type="file" bind:files />
-</Field>

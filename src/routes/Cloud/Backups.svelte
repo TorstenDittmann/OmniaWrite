@@ -34,10 +34,6 @@
   }
 </script>
 
-<style>
-
-</style>
-
 {#if isLoadingBackup}
   <Spinner />
   <br />
@@ -67,3 +63,7 @@
     <p style="color: red">{error.message}</p>
   {/await}
 {/if}
+
+<style>
+
+</style>

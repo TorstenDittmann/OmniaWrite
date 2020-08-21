@@ -16,11 +16,11 @@
   $: {
     sceneData = [];
     $chapters
-      .filter((chapter) => chapter.project == $state.currentProject)
-      .forEach((chapter) => {
+      .filter(chapter => chapter.project == $state.currentProject)
+      .forEach(chapter => {
         $scenes
-          .filter((scene) => scene.chapter == chapter.id)
-          .forEach((scene) => {
+          .filter(scene => scene.chapter == chapter.id)
+          .forEach(scene => {
             sceneData.push(scene);
           });
       });

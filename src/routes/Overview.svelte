@@ -13,7 +13,7 @@
 
   let showCreateProject = false;
 
-  const changeProject = (project) => {
+  const changeProject = project => {
     state.setCurrentProject(project);
     projects.updateProjectTimestamp(project);
     reloadWindow();
@@ -30,20 +30,12 @@
   };
 </script>
 
-<style>
-  .overview {
-    max-width: 800px;
-    margin: auto;
-    text-align: center;
-  }
-</style>
-
 <CreateProject
   bind:showCreateProject
-  on:changeProject={(event) => changeProject(event.detail.project)} />
+  on:changeProject={event => changeProject(event.detail.project)} />
 
 <div in:fade={{ duration: 100 }} class="overview">
-  {#each $projects.filter((project) => project.id == $state.currentProject) as project}
+  {#each $projects.filter(project => project.id == $state.currentProject) as project}
     <h1>{project.title}</h1>
     <ProjectOverview />
   {/each}
@@ -61,9 +53,17 @@
           {moment(project.lastOpen, 'X').fromNow()}
         </p>
         <p>
-          {$_('overview.project.chapters')}: {$chapters.filter((n) => n.project == project.id).length}
+          {$_('overview.project.chapters')}: {$chapters.filter(n => n.project == project.id).length}
         </p>
       </GridElement>
     {/each}
   </Grid>
 </div>
+
+<style>
+  .overview {
+    max-width: 800px;
+    margin: auto;
+    text-align: center;
+  }
+</style>

@@ -13,6 +13,16 @@
   };
 </script>
 
+<li
+  use:active={'/write/' + scene.id}
+  on:click|self={() => push('/write/' + scene.id)}>
+  <a href="#/write/{scene.id}">{scene.title}</a>
+  <span
+    class="lnr lnr-cog action"
+    use:tippy={{ content: $_('sidebar.editScene'), placement: 'right' }}
+    on:click={edit} />
+</li>
+
 <style lang="scss">
   @import "../../css/mixins/devices";
 
@@ -61,13 +71,3 @@
     }
   }
 </style>
-
-<li
-  use:active={'/write/' + scene.id}
-  on:click|self={() => push('/write/' + scene.id)}>
-  <a href="#/write/{scene.id}">{scene.title}</a>
-  <span
-    class="lnr lnr-cog action"
-    use:tippy={{ content: $_('sidebar.editScene'), placement: 'right' }}
-    on:click={edit} />
-</li>
