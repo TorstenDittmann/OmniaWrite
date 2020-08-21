@@ -53,13 +53,6 @@
           cursor: pointer;
         }
 
-        :global(&.active) {
-          opacity: 1;
-          box-shadow: 0 -3px 0 #4aaed9 inset;
-          transition: box-shadow 0.2s ease-in;
-          background: none;
-        }
-
         &:hover {
           box-shadow: 0 -3px 0 #4aaed9 inset;
           transition: box-shadow 0.2s ease-in;
@@ -71,6 +64,12 @@
       width: 0rem;
       height: 0rem;
     }
+  }
+  :global(.tab.active) {
+    opacity: 1;
+    box-shadow: 0 -3px 0 #4aaed9 inset;
+    transition: box-shadow 0.2s ease-in;
+    background: none;
   }
 </style>
 

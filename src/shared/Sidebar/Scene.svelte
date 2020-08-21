@@ -52,13 +52,12 @@
         }
       }
     }
+  }
+  :global(li.active) {
+    background-color: var(--menu-active);
 
-    :global(&.active) {
-      background-color: var(--menu-active);
-
-      a {
-        opacity: 1;
-      }
+    a {
+      opacity: 1;
     }
   }
 </style>
