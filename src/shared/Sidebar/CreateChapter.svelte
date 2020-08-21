@@ -15,10 +15,6 @@
   };
 </script>
 
-<style>
-
-</style>
-
 <Modal bind:show>
   <h2 slot="header">{$_('sidebar.modal.newChapter.header')}</h2>
   <form on:submit|preventDefault={createChapter}>
@@ -35,3 +31,7 @@
     </ButtonGroup>
   </form>
 </Modal>
+
+<style>
+
+</style>

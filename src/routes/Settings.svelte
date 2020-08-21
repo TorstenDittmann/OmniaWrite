@@ -46,28 +46,6 @@
   ];
 </script>
 
-<style type="text/css">
-  .preview {
-    max-width: 800px;
-    padding: 0.5rem;
-    border-radius: 0px 0px 0px 0px;
-    -moz-border-radius: 0px 0px 0px 0px;
-    -webkit-border-radius: 0px 0px 0px 0px;
-    border: 2px dashed var(--editor-color);
-  }
-  .link {
-    cursor: pointer;
-  }
-  .link:hover {
-    text-decoration: underline;
-  }
-  .settings {
-    max-width: 800px;
-    margin: auto;
-    text-align: center;
-  }
-</style>
-
 <div class="settings" in:fade={{ duration: 100 }}>
   <h2>{$_('settings.appereance.title')}</h2>
 
@@ -120,3 +98,25 @@
     {$_('install.disclaimer.show')}
   </small>
 </div>
+
+<style type="text/css">
+  .preview {
+    max-width: 800px;
+    padding: 0.5rem;
+    border-radius: 0px 0px 0px 0px;
+    -moz-border-radius: 0px 0px 0px 0px;
+    -webkit-border-radius: 0px 0px 0px 0px;
+    border: 2px dashed var(--editor-color);
+  }
+  .link {
+    cursor: pointer;
+  }
+  .link:hover {
+    text-decoration: underline;
+  }
+  .settings {
+    max-width: 800px;
+    margin: auto;
+    text-align: center;
+  }
+</style>

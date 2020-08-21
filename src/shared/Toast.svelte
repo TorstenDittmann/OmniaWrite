@@ -17,6 +17,18 @@
   }
 </script>
 
+{#if show}
+  <div
+    on:click={() => {
+      dispatch('click');
+    }}
+    in:fly={{ y: -100, duration: 500 }}
+    out:fly={{ x: 100, duration: 500 }}>
+    {@html text}
+    <slot />
+  </div>
+{/if}
+
 <style type="scss">
   div {
     width: 100%;
@@ -38,15 +50,3 @@
     }
   }
 </style>
-
-{#if show}
-  <div
-    on:click={() => {
-      dispatch('click');
-    }}
-    in:fly={{ y: -100, duration: 500 }}
-    out:fly={{ x: 100, duration: 500 }}>
-    {@html text}
-    <slot />
-  </div>
-{/if}

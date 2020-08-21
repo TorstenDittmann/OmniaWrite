@@ -46,6 +46,29 @@
   };
 </script>
 
+<Modal bind:show>
+  <h2 slot="header">{$_('common.modals.newBackup.header')}</h2>
+  <p>{$_('common.modals.newBackup.subtitle')}</p>
+  {#if loading}
+    <center>
+      <Spinner />
+    </center>
+  {:else}
+    <ul>
+      <li on:click={download}>
+        <span class="from-now">
+          {moment(latest.files[0].dateCreated, 'X').fromNow()}
+        </span>
+        <span class="file-size">
+          {formatBytes(latest.files[0].sizeOriginal)}
+        </span>
+        <span class="lnr lnr-cloud-download" />
+      </li>
+    </ul>
+    <p class="hint">{$_('common.modals.newBackup.warning')}</p>
+  {/if}
+</Modal>
+
 <style>
   ul {
     padding-inline-start: 0px;
@@ -84,26 +107,3 @@
     font-size: 0.8rem;
   }
 </style>
-
-<Modal bind:show>
-  <h2 slot="header">{$_('common.modals.newBackup.header')}</h2>
-  <p>{$_('common.modals.newBackup.subtitle')}</p>
-  {#if loading}
-    <center>
-      <Spinner />
-    </center>
-  {:else}
-    <ul>
-      <li on:click={download}>
-        <span class="from-now">
-          {moment(latest.files[0].dateCreated, 'X').fromNow()}
-        </span>
-        <span class="file-size">
-          {formatBytes(latest.files[0].sizeOriginal)}
-        </span>
-        <span class="lnr lnr-cloud-download" />
-      </li>
-    </ul>
-    <p class="hint">{$_('common.modals.newBackup.warning')}</p>
-  {/if}
-</Modal>

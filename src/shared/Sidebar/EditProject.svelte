@@ -22,7 +22,7 @@
   $: checkForm = form.title !== "";
 
   onMount(() => {
-    form = get(projects).filter((project) => project.id == id)[0];
+    form = get(projects).filter(project => project.id == id)[0];
     console.log(form);
   });
 
@@ -33,12 +33,12 @@
     }
   };
 
-  const removeProject = (project) => {
+  const removeProject = project => {
     let confirmed = confirm($_("overview.project.confirmDelete"));
     if (confirmed == true) {
       $chapters
-        .filter((ch) => ch.project == project)
-        .forEach((chapter) => {
+        .filter(ch => ch.project == project)
+        .forEach(chapter => {
           scenes.removeAllScenes(chapter.id);
         });
       chapters.removeAllChapters(project);
@@ -50,19 +50,13 @@
     }
   };
 
-  const languages = ["en", "de", "ru", "es", "pt", "fr", "it"].map(
-    (language) => {
-      return {
-        value: language,
-        text: $_(`settings.appereance.language.${language}`),
-      };
-    }
-  );
+  const languages = ["en", "de", "ru", "es", "pt", "fr", "it"].map(language => {
+    return {
+      value: language,
+      text: $_(`settings.appereance.language.${language}`),
+    };
+  });
 </script>
-
-<style>
-
-</style>
 
 <Modal bind:show>
   <h2 slot="header">{$_('sidebar.editProject')}</h2>
@@ -105,3 +99,7 @@
     </ButtonGroup>
   </form>
 </Modal>
+
+<style>
+
+</style>

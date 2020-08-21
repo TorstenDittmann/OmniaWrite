@@ -52,7 +52,7 @@
     }
   };
 
-  const removeCard = (cardId) => {
+  const removeCard = cardId => {
     let confirmed = confirm($_("cards.modal.confirmDelete"));
     if (confirmed == true) {
       showEditCard = false;
@@ -62,12 +62,12 @@
 
   $: filteredCards = searchInput
     ? $cards.filter(
-        (card) =>
+        card =>
           card.project == $state.currentProject &&
           (card.title.toLowerCase().includes(searchInput.toLowerCase()) ||
             card.content.toLowerCase().includes(searchInput.toLowerCase()))
       )
-    : $cards.filter((card) => card.project == $state.currentProject);
+    : $cards.filter(card => card.project == $state.currentProject);
 </script>
 
 <Modal bind:show={showCreateCard}>

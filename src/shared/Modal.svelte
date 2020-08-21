@@ -5,13 +5,39 @@
   export let fullscreen = false;
   export let persistent = false;
 
-  const handleKeydown = (event) => {
+  const handleKeydown = event => {
     if (event.keyCode === 27 && !persistent) {
       event.preventDefault();
       show = false;
     }
   };
 </script>
+
+<svelte:window on:keydown={handleKeydown} />
+{#if show}
+  <div
+    class="modal-backdrop"
+    on:click={() => (persistent ? '' : (show = false))}
+    in:fade={{ duration: 200 }}
+    out:fade={{ duration: 200 }} />
+  <div
+    class="modal"
+    in:scale={{ duration: 200 }}
+    out:scale={{ duration: 200 }}
+    class:fullscreen>
+    <div class="modal-header">
+      <slot name="header" />
+      {#if !persistent}
+        <div class="modal-close" on:click={() => (show = false)}>
+          <span class="lnr lnr-cross" />
+        </div>
+      {/if}
+    </div>
+    <div class="modal-content">
+      <slot />
+    </div>
+  </div>
+{/if}
 
 <style lang="scss">
   @import "../css/mixins/devices";
@@ -90,29 +116,3 @@
     }
   }
 </style>
-
-<svelte:window on:keydown={handleKeydown} />
-{#if show}
-  <div
-    class="modal-backdrop"
-    on:click={() => (persistent ? '' : (show = false))}
-    in:fade={{ duration: 200 }}
-    out:fade={{ duration: 200 }} />
-  <div
-    class="modal"
-    in:scale={{ duration: 200 }}
-    out:scale={{ duration: 200 }}
-    class:fullscreen>
-    <div class="modal-header">
-      <slot name="header" />
-      {#if !persistent}
-        <div class="modal-close" on:click={() => (show = false)}>
-          <span class="lnr lnr-cross" />
-        </div>
-      {/if}
-    </div>
-    <div class="modal-content">
-      <slot />
-    </div>
-  </div>
-{/if}

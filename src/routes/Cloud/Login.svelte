@@ -50,15 +50,6 @@
   };
 </script>
 
-<style>
-  .link {
-    cursor: pointer;
-  }
-  .link:hover {
-    text-decoration: underline;
-  }
-</style>
-
 {#if !$state.isUserLoggedIn}
   <div in:fade={{ duration: 100 }}>
     <h2>{$_('cloud.login.title')}</h2>
@@ -94,3 +85,12 @@
     </ButtonGroup>
   </div>
 {/if}
+
+<style>
+  .link {
+    cursor: pointer;
+  }
+  .link:hover {
+    text-decoration: underline;
+  }
+</style>

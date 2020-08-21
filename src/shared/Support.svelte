@@ -36,7 +36,7 @@
           message: description,
         }),
       }
-    ).then((response) => {
+    ).then(response => {
       loading = false;
       if (response.ok) {
         sent = true;

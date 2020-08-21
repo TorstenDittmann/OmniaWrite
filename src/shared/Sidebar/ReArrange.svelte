@@ -31,14 +31,14 @@
   const save = () => {
     orderChapter
       .toArray()
-      .map((chapter) => {
+      .map(chapter => {
         return {
           id: chapter,
           scenes: [
             ...document
               .querySelector(`[data-id="${chapter}"]`)
               .querySelectorAll("[data-id]"),
-          ].map((scene) => scene.dataset.id),
+          ].map(scene => scene.dataset.id),
         };
       })
       .forEach((e, i) => {
@@ -59,7 +59,7 @@
       group: "chapters",
       ...sortableConfig,
     });
-    sceneRefs.forEach((ref) => {
+    sceneRefs.forEach(ref => {
       Sortable.create(ref, {
         group: "scenes",
         ...sortableConfig,
@@ -67,6 +67,31 @@
     });
   });
 </script>
+
+<Modal bind:show>
+  <h2 slot="header">{$_('sidebar.editOrder')}</h2>
+  <ul id="order" class="chapters">
+    {#each get(chapters)
+      .filter(chapter => chapter.project == $state.currentProject)
+      .sort((a, b) => a.order - b.order) as chapter, i}
+      <li class="parent" class:open={chapter.ui.open} data-id={chapter.id}>
+        <span>{chapter.title}</span>
+        <ul class="scenes">
+          {#each get(scenes)
+            .filter(scene => scene.chapter == chapter.id)
+            .sort((a, b) => a.order - b.order) as scene}
+            <li data-id={scene.id}>
+              <span>{scene.title}</span>
+            </li>
+          {/each}
+        </ul>
+      </li>
+    {/each}
+  </ul>
+  <ButtonGroup>
+    <Button on:click={save}>Save</Button>
+  </ButtonGroup>
+</Modal>
 
 <style lang="scss">
   .chapters {
@@ -107,28 +132,3 @@
     }
   }
 </style>
-
-<Modal bind:show>
-  <h2 slot="header">{$_('sidebar.editOrder')}</h2>
-  <ul id="order" class="chapters">
-    {#each get(chapters)
-      .filter((chapter) => chapter.project == $state.currentProject)
-      .sort((a, b) => a.order - b.order) as chapter, i}
-      <li class="parent" class:open={chapter.ui.open} data-id={chapter.id}>
-        <span>{chapter.title}</span>
-        <ul class="scenes">
-          {#each get(scenes)
-            .filter((scene) => scene.chapter == chapter.id)
-            .sort((a, b) => a.order - b.order) as scene}
-            <li data-id={scene.id}>
-              <span>{scene.title}</span>
-            </li>
-          {/each}
-        </ul>
-      </li>
-    {/each}
-  </ul>
-  <ButtonGroup>
-    <Button on:click={save}>Save</Button>
-  </ButtonGroup>
-</Modal>

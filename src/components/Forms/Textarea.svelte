@@ -9,6 +9,10 @@
   export let helper;
 </script>
 
+<Field bind:id bind:label bind:helper>
+  <textarea {id} rows="10" bind:value />
+</Field>
+
 <style lang="scss">
   textarea {
     width: 100%;
@@ -26,7 +30,3 @@
     }
   }
 </style>
-
-<Field bind:id bind:label bind:helper>
-  <textarea {id} rows="10" bind:value />
-</Field>

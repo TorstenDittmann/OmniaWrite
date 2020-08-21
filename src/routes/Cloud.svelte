@@ -50,7 +50,7 @@
     cloud
       .isUserLoggedIn()
       .then(
-        (response) => {
+        response => {
           isUserVerified = response.emailVerification;
           isUserLoggedIn = response.$id ? true : false;
         },
@@ -69,14 +69,6 @@
     showToastText = $_("cloud.confirm.success");
   };
 </script>
-
-<style lang="scss">
-  .cloud-container {
-    max-width: 800px;
-    margin: auto;
-    text-align: center;
-  }
-</style>
 
 <Toast bind:show={showToast} text={showToastText} />
 
@@ -117,3 +109,11 @@
     <Spinner />
   {/if}
 </div>
+
+<style lang="scss">
+  .cloud-container {
+    max-width: 800px;
+    margin: auto;
+    text-align: center;
+  }
+</style>

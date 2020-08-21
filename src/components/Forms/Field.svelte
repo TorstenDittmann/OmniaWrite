@@ -5,6 +5,18 @@
   export let helper;
 </script>
 
+<div class="field">
+  {#if label}
+    <label for={id}>{label}</label>
+  {/if}
+  <div>
+    <slot />
+    {#if helper}
+      <small>{helper}</small>
+    {/if}
+  </div>
+</div>
+
 <style>
   div {
     margin: 0.5rem 0;
@@ -38,15 +50,3 @@
     }
   }
 </style>
-
-<div class="field">
-  {#if label}
-    <label for={id}>{label}</label>
-  {/if}
-  <div>
-    <slot />
-    {#if helper}
-      <small>{helper}</small>
-    {/if}
-  </div>
-</div>

@@ -1,107 +1,107 @@
 html {
-    -webkit-tap-highlight-color: transparent;
-    position: fixed;
-    cursor: default;
+  -webkit-tap-highlight-color: transparent;
+  position: fixed;
+  cursor: default;
 }
 
 body {
-    --text-color: #fff;
-    --background-color: #1b2a32;
+  --text-color: #fff;
+  --background-color: #1b2a32;
+  --primary-color: #5b3451;
+  --secondary-color: #17242b;
+  --menu-active: #324f62;
+  --menu-link: #fafafa;
+  --menu-hover: #28404d;
+  --select-background: #1b2a31;
+  --button-color: #fff;
+  --editor-color: #acbac3;
+  --editor-font-size: 0.9rem;
+  --input-border-color: #0092d1;
+  --snackbar: #000;
+  margin: 0;
+  font-family: "Nunito Sans", sans-serif;
+  color: var(--text-color);
+  background-color: var(--background-color);
+  height: 100vh;
+  position: fixed;
+
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+
+  &.light {
+    --text-color: #000;
+    --background-color: #fafafa;
     --primary-color: #5b3451;
-    --secondary-color: #17242b;
-    --menu-active: #324f62;
+    --secondary-color: #fff;
+    --menu-active: #d8e3e9;
     --menu-link: #fafafa;
-    --menu-hover: #28404d;
-    --select-background: #1b2a31;
+    --menu-hover: #ededed;
+    --select-background: #fafafa;
     --button-color: #fff;
-    --editor-color: #acbac3;
-    --editor-font-size: 0.9rem;
-    --input-border-color: #0092d1;
-    --snackbar: #000;
-    margin: 0;
-    font-family: 'Nunito Sans', sans-serif;
-    color: var(--text-color);
-    background-color: var(--background-color);
-    height: 100vh;
-    position: fixed;
-
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-
-    &.light {
-        --text-color: #000;
-        --background-color: #fafafa;
-        --primary-color: #5b3451;
-        --secondary-color: #fff;
-        --menu-active: #d8e3e9;
-        --menu-link: #fafafa;
-        --menu-hover: #ededed;
-        --select-background: #fafafa;
-        --button-color: #fff;
-        --editor-color: #484848;
-        --snackbar: #fff;
-    }
+    --editor-color: #484848;
+    --snackbar: #fff;
+  }
 }
 
 ::-webkit-scrollbar {
-    width: 1rem;
-    height: 1rem;
+  width: 1rem;
+  height: 1rem;
 }
 
 ::-webkit-scrollbar-track {
-    background: rgba(0, 0, 0, 0.1);
+  background: rgba(0, 0, 0, 0.1);
 }
 
 ::-webkit-scrollbar-thumb {
-    background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.5);
 }
 
 ::selection {
-    background: lavender;
-    color: black;
+  background: lavender;
+  color: black;
 }
 
 ::-moz-selection {
-    background: lavender;
-    color: black;
+  background: lavender;
+  color: black;
 }
 
 a {
-    color: var(--text-color);
+  color: var(--text-color);
 }
 
 .omnia-editor {
-    font-family: 'Libre Baskerville';
-    color: var(--editor-color);
-    font-weight: 400;
-    font-size: var(--editor-font-size);
-    line-height: 2rem;
-    text-align: justify;
+  font-family: "Libre Baskerville";
+  color: var(--editor-color);
+  font-weight: 400;
+  font-size: var(--editor-font-size);
+  line-height: 2rem;
+  text-align: justify;
 
-    @media (min-width: 1200px) {
-        .omnia-editor {
-            line-height: 2.5rem;
-        }
+  @media (min-width: 1200px) {
+    .omnia-editor {
+      line-height: 2.5rem;
     }
+  }
 
-    svg {
-        fill: var(--editor-color);
-    }
+  svg {
+    fill: var(--editor-color);
+  }
 
-    & * {
-        -webkit-touch-callout: auto;
-        -webkit-user-select: auto;
-        -khtml-user-select: auto;
-        -moz-user-select: auto;
-        -ms-user-select: auto;
-        user-select: auto;
-    }
+  & * {
+    -webkit-touch-callout: auto;
+    -webkit-user-select: auto;
+    -khtml-user-select: auto;
+    -moz-user-select: auto;
+    -ms-user-select: auto;
+    user-select: auto;
+  }
 
-    q {
-        quotes: var(--quotation-marks);
-    }
+  q {
+    quotes: var(--quotation-marks);
+  }
 }

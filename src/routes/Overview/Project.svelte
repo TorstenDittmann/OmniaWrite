@@ -8,15 +8,15 @@
   import GridElement from "../../components/Grid/GridElement.svelte";
   import Spinner from "../../shared/Spinner.svelte";
 
-  const analyze = new Promise((resolve) => {
+  const analyze = new Promise(resolve => {
     const filteredChapters = get(chapters).filter(
-      (e) => e.project == $state.currentProject
+      e => e.project == $state.currentProject
     );
-    const filteredScenes = filteredChapters.flatMap((e) =>
-      get(scenes).filter((s) => s.chapter == e.id)
+    const filteredScenes = filteredChapters.flatMap(e =>
+      get(scenes).filter(s => s.chapter == e.id)
     );
     const filteredRest = filteredScenes
-      .flatMap((e) => (e.content && e.content.blocks ? e.content.blocks : []))
+      .flatMap(e => (e.content && e.content.blocks ? e.content.blocks : []))
       .reduce(
         (prev, curr) => {
           return {

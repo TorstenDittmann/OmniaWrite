@@ -9,6 +9,24 @@
   };
 </script>
 
+<div class="tabs" style="-webkit-app-region: no-drag">
+  <ul>
+    {#each $tabs.filter(tabs => tabs.project == $state.currentProject) as tab}
+      <li class="tab" use:active={tab.link}>
+        <a href={tab.link} use:link>{tab.title}</a>
+        <span
+          class="lnr lnr-cross tab-action"
+          on:click={() => tabs.removeTab(tab.id)} />
+      </li>
+    {/each}
+    {#if $location != '/write/' && $location.includes('write')}
+      <li class="tab new" on:click={createTab}>
+        <span class="lnr lnr-plus-circle" />
+      </li>
+    {/if}
+  </ul>
+</div>
+
 <style lang="scss">
   .tabs {
     background-color: var(--secondary-color);
@@ -72,21 +90,3 @@
     background: none;
   }
 </style>
-
-<div class="tabs" style="-webkit-app-region: no-drag">
-  <ul>
-    {#each $tabs.filter((tabs) => tabs.project == $state.currentProject) as tab}
-      <li class="tab" use:active={tab.link}>
-        <a href={tab.link} use:link>{tab.title}</a>
-        <span
-          class="lnr lnr-cross tab-action"
-          on:click={() => tabs.removeTab(tab.id)} />
-      </li>
-    {/each}
-    {#if $location != '/write/' && $location.includes('write')}
-      <li class="tab new" on:click={createTab}>
-        <span class="lnr lnr-plus-circle" />
-      </li>
-    {/if}
-  </ul>
-</div>

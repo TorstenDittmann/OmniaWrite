@@ -3,9 +3,9 @@
 
   const licenses = import(
     /* webpackChunkName: "licenses" */ "../licenses.json"
-  ).then((lic) => {
+  ).then(lic => {
     let licenseData = [];
-    Object.keys(lic).forEach((key) => {
+    Object.keys(lic).forEach(key => {
       licenseData.push({
         name: key,
         license: lic[key].licenses,
@@ -15,12 +15,6 @@
     return licenseData;
   });
 </script>
-
-<style>
-  .licenses {
-    max-width: 800px;
-  }
-</style>
 
 <div class="licenses">
   {#await licenses}
@@ -36,3 +30,9 @@
     {/each}
   {/await}
 </div>
+
+<style>
+  .licenses {
+    max-width: 800px;
+  }
+</style>

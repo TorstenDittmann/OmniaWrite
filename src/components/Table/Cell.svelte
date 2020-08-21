@@ -2,6 +2,10 @@
   export let label;
 </script>
 
+<td data-th={label}>
+  <slot />
+</td>
+
 <style lang="scss">
   td {
     text-align: left;
@@ -37,7 +41,3 @@
     }
   }
 </style>
-
-<td data-th={label}>
-  <slot />
-</td>

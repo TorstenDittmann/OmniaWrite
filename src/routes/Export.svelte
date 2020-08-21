@@ -27,13 +27,6 @@
   let selectedComponent;
 </script>
 
-<style>
-  .export {
-    margin: auto;
-    max-width: 800px;
-  }
-</style>
-
 <Modal bind:show={selected}>
   <h2 slot="header">{selectedComponent.title}</h2>
   <svelte:component this={selectedComponent.component} />
@@ -59,3 +52,10 @@
     <Placeholder />
   {/if}
 </div>
+
+<style>
+  .export {
+    margin: auto;
+    max-width: 800px;
+  }
+</style>

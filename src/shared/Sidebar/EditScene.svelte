@@ -13,7 +13,7 @@
     show = false;
   };
 
-  const removeScene = (sceneId) => {
+  const removeScene = sceneId => {
     let confirmed = confirm($_("sidebar.delete.scene"));
     if (confirmed == true) {
       show = false;
@@ -22,10 +22,6 @@
     }
   };
 </script>
-
-<style>
-
-</style>
 
 <Modal bind:show>
   <h2 slot="header">{$_('sidebar.editScene')}</h2>
@@ -47,3 +43,7 @@
     </ButtonGroup>
   </form>
 </Modal>
+
+<style>
+
+</style>

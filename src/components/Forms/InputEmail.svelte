@@ -12,6 +12,10 @@
   export let required = false;
 </script>
 
+<Field bind:id bind:label bind:helper>
+  <input {id} {autocomplete} {placeholder} {required} type="email" bind:value />
+</Field>
+
 <style lang="scss">
   input {
     -webkit-appearance: none;
@@ -48,7 +52,3 @@
     }
   }
 </style>
-
-<Field bind:id bind:label bind:helper>
-  <input {id} {autocomplete} {placeholder} {required} type="email" bind:value />
-</Field>

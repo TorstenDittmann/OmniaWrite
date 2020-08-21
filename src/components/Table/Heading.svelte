@@ -2,6 +2,10 @@
 
 </script>
 
+<th>
+  <slot />
+</th>
+
 <style lang="scss">
   th {
     display: none;
@@ -22,7 +26,3 @@
     }
   }
 </style>
-
-<th>
-  <slot />
-</th>

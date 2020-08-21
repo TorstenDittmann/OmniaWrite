@@ -21,6 +21,19 @@
   $: passwordIsStrong = regexStrong.test(value);
 </script>
 
+<Field bind:id bind:label>
+  <input
+    class:weak={value.length > 0 && !passwordIsMedium}
+    class:medium={value.length > 0 && passwordIsMedium && !passwordIsStrong}
+    class:strong={value.length > 0 && passwordIsStrong}
+    {id}
+    {placeholder}
+    {autocomplete}
+    {required}
+    type="password"
+    bind:value />
+</Field>
+
 <style lang="scss">
   input {
     -webkit-appearance: none;
@@ -69,16 +82,3 @@
     }
   }
 </style>
-
-<Field bind:id bind:label>
-  <input
-    class:weak={value.length > 0 && !passwordIsMedium}
-    class:medium={value.length > 0 && passwordIsMedium && !passwordIsStrong}
-    class:strong={value.length > 0 && passwordIsStrong}
-    {id}
-    {placeholder}
-    {autocomplete}
-    {required}
-    type="password"
-    bind:value />
-</Field>

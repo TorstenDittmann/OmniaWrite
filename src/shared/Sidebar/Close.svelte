@@ -3,6 +3,16 @@
   export let right = true;
 </script>
 
+{#if state}
+  <div
+    class="close"
+    class:right
+    on:click={() => (state = false)}
+    style="-webkit-app-region: no-drag">
+    <span class="lnr lnr-cross" />
+  </div>
+{/if}
+
 <style lang="scss">
   @import "../../css/mixins/devices";
 
@@ -23,13 +33,3 @@
     }
   }
 </style>
-
-{#if state}
-  <div
-    class="close"
-    class:right
-    on:click={() => (state = false)}
-    style="-webkit-app-region: no-drag">
-    <span class="lnr lnr-cross" />
-  </div>
-{/if}

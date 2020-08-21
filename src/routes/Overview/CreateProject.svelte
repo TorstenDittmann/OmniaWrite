@@ -30,19 +30,13 @@
     });
   };
 
-  const languages = ["en", "de", "ru", "es", "pt", "fr", "it"].map(
-    (language) => {
-      return {
-        value: language,
-        text: $_(`settings.appereance.language.${language}`),
-      };
-    }
-  );
+  const languages = ["en", "de", "ru", "es", "pt", "fr", "it"].map(language => {
+    return {
+      value: language,
+      text: $_(`settings.appereance.language.${language}`),
+    };
+  });
 </script>
-
-<style>
-
-</style>
 
 <Modal bind:show={showCreateProject}>
   <h2 slot="header">{$_('overview.modals.newProject.header')}</h2>
@@ -82,3 +76,7 @@
     </ButtonGroup>
   </form>
 </Modal>
+
+<style>
+
+</style>

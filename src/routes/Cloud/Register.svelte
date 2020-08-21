@@ -65,15 +65,6 @@
   };
 </script>
 
-<style>
-  .link {
-    cursor: pointer;
-  }
-  .link:hover {
-    text-decoration: underline;
-  }
-</style>
-
 <Modal bind:show={showPrivacyPolicy}>
   <h2 slot="header">{$_('cloud.privacy.show')}</h2>
   <Policy />
@@ -118,3 +109,12 @@
     </ButtonGroup>
   </form>
 </div>
+
+<style>
+  .link {
+    cursor: pointer;
+  }
+  .link:hover {
+    text-decoration: underline;
+  }
+</style>

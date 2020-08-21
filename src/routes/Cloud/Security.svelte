@@ -11,7 +11,7 @@
 
   moment.locale($settings.language);
 
-  const logoutSession = (id) => {
+  const logoutSession = id => {
     cloud.logoutSession(id);
   };
 </script>

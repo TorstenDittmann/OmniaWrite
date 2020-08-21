@@ -13,6 +13,26 @@
   };
 </script>
 
+<li class:open={chapter.ui.open}>
+  <span
+    class="key"
+    on:click|self={() => chapters.toggleChapterInSidebar(chapter.id)}>
+    {chapter.title}
+    <span
+      class="lnr lnr-chevron-up collapse"
+      on:click|self={() => chapters.toggleChapterInSidebar(chapter.id)} />
+    <span
+      class="lnr lnr-cog action"
+      use:tippy={{ content: $_('sidebar.editChapter'), placement: 'right' }}
+      on:click={edit} />
+  </span>
+  {#if chapter.ui.open}
+    <ul class="scenes">
+      <slot />
+    </ul>
+  {/if}
+</li>
+
 <style lang="scss">
   @import "../../css/mixins/devices";
 
@@ -78,23 +98,3 @@
     }
   }
 </style>
-
-<li class:open={chapter.ui.open}>
-  <span
-    class="key"
-    on:click|self={() => chapters.toggleChapterInSidebar(chapter.id)}>
-    {chapter.title}
-    <span
-      class="lnr lnr-chevron-up collapse"
-      on:click|self={() => chapters.toggleChapterInSidebar(chapter.id)} />
-    <span
-      class="lnr lnr-cog action"
-      use:tippy={{ content: $_('sidebar.editChapter'), placement: 'right' }}
-      on:click={edit} />
-  </span>
-  {#if chapter.ui.open}
-    <ul class="scenes">
-      <slot />
-    </ul>
-  {/if}
-</li>
