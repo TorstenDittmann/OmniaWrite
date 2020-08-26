@@ -60,14 +60,14 @@
   },
   "scripts": {
     "build": "run-s prepare:* svelte-build",
-    "build:cap": "run-s build cap:copy",
+    "build:cap": "run-s build cap:sync",
     "dev": "webpack-dev-server --content-base public",
     "electron": "run-s build pure-electron",
     "svelte-build": "cross-env NODE_ENV=production webpack",
     "prepare:license": "license-checker --exclude \"MIT\" --json --customPath ./src/licenses.json > ./src/licenses.json",
     "prepare:changelog": "node ./build/scripts/changelog.js",
     "pure-electron": "electron .",
-    "cap:copy": "cap copy",
+    "cap:sync": "cap sync",
     "lint": "eslint src/",
     "prettier": "prettier --write --plugin-search-dir= ./src/**/*.{js,svelte,json,scss}"
   },
