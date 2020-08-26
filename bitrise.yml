@@ -1,0 +1,73 @@
+---
+format_version: '8'
+default_step_lib_source: 'https://github.com/bitrise-io/bitrise-steplib.git'
+project_type: android
+trigger_map:
+- push_branch: '*'
+  workflow: primary
+- pull_request_source_branch: '*'
+  workflow: primary
+workflows:
+  deploy:
+    description: Deploy signed apks to Bitrise
+    steps:
+    - activate-ssh-key@4:
+        run_if: '{{getenv "SSH_RSA_PRIVATE_KEY" | ne ""}}'
+    - git-clone@4: {}
+    - cache-pull@2: {}
+    - script@1:
+        title: Do anything with Script step
+    - install-missing-android-tools@2:
+        inputs:
+        - gradlew_path: $PROJECT_LOCATION/gradlew
+    - change-android-versioncode-and-versionname@1:
+        inputs:
+        - build_gradle_path: $PROJECT_LOCATION/$MODULE/build.gradle
+    - android-build@0:
+        inputs:
+        - project_location: $PROJECT_LOCATION
+        - module: $MODULE
+        - variant: $VARIANT
+    - sign-apk@1:
+        run_if: '{{getenv "BITRISEIO_ANDROID_KEYSTORE_URL" | ne ""}}'
+    - deploy-to-bitrise-io@1: {}
+    - cache-push@2: {}
+  primary:
+    steps:
+    - activate-ssh-key@4:
+        run_if: '{{getenv "SSH_RSA_PRIVATE_KEY" | ne ""}}'
+    - git-clone@4: {}
+    - npm@1:
+        inputs:
+        - command: install
+    - npm@1:
+        inputs:
+        - command: 'run build:cap'
+    - cache-pull@2: {}
+    - install-missing-android-tools@2:
+        inputs:
+        - gradlew_path: $PROJECT_LOCATION/gradlew
+    - android-build@0:
+        inputs:
+        - module: app
+        - project_location: $PROJECT_LOCATION
+    - sign-apk@1:
+        inputs:
+        - android_app: $BITRISE_APK_PATH
+    - google-play-deploy@3:
+        inputs:
+        - app_path: $BITRISE_SIGNED_APK_PATH
+        - service_account_json_key_path: $BITRISEIO_PLAY_CONSOLE_URL
+        - package_name: com.omniawrite.app
+    - deploy-to-bitrise-io@1: {}
+app:
+  envs:
+  - opts:
+      is_expand: false
+    PROJECT_LOCATION: android
+  - opts:
+      is_expand: false
+    MODULE: app
+  - opts:
+      is_expand: false
+    VARIANT: ''
