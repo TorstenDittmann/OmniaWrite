@@ -6,7 +6,7 @@ android {
         applicationId "com.omniawrite.app"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 1
+        versionCode 111
         versionName "1.1"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
