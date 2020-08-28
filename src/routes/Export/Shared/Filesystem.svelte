@@ -2,5 +2,13 @@
   export let uri;
 </script>
 
-<b>Saved to:</b>
-<small>{uri}</small>
+<p>
+  <b>Saved to:</b>
+</p>
+<p class="path">{uri}</p>
+
+<style lang="scss">
+  .path {
+    word-break: break-all;
+  }
+</style>

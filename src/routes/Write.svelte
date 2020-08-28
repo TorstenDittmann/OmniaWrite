@@ -4,7 +4,6 @@
   import { scenes, chapters, state, settings, ui } from "../stores";
   import { push } from "svelte-spa-router";
   import { _ } from "svelte-i18n";
-  import { countChars, countWords } from "../utils";
   import OmniaEditor from "omnia-editor";
   import tippy from "sveltejs-tippy";
   import Overview from "./Write/Overview.svelte";
@@ -18,25 +17,6 @@
   let lengthHistory = 0;
 
   $: currentScene = $scenes.filter(scene => scene.id == params.sceneId)[0];
-  $: analytics =
-    params.sceneId && currentScene.content
-      ? currentScene.content.blocks.reduce(
-          (prev, curr) =>
-            curr.data && curr.data.text
-              ? {
-                  chars: prev.chars + countChars(curr.data.text),
-                  words: prev.words + countWords(curr.data.text),
-                }
-              : prev,
-          {
-            chars: 0,
-            words: 0,
-          }
-        )
-      : {
-          chars: 0,
-          words: 0,
-        };
   $: {
     state.setCurrentTitle(
       params.sceneId ? currentScene.title : "No scene selected!"
@@ -149,10 +129,6 @@
               class:lnr-sync={editorStatus === 1}
               class:spinner={editorStatus === 1}
               class:lnr-checkmark-circle={editorStatus === 2} />
-            <span
-              use:tippy={{ content: `${analytics.chars} ${$_('write.toolbar.chars')}`, placement: 'bottom' }}>
-              {analytics.words} {$_('write.toolbar.words')}
-            </span>
           </div>
         </div>
       </div>
