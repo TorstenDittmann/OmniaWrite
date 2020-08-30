@@ -16,12 +16,16 @@
   let currentHistory = 0;
   let lengthHistory = 0;
 
-  $: currentScene = $scenes.filter(scene => scene.id == params.sceneId)[0];
+  $: currentScene = $scenes.find(scene => scene.id == params.sceneId);
   $: {
     state.setCurrentTitle(
       params.sceneId ? currentScene.title : "No scene selected!"
     );
   }
+
+  const titleInput = () => {
+    scenes.setSceneTitle(currentScene.id, currentScene.title);
+  };
 
   onMount(() => {
     window.addEventListener("hashchange", routeChange, false);
@@ -133,7 +137,10 @@
         </div>
       </div>
       <div class="editpane" style="--quotation-marks:{$_('write.quote.marks')}">
-        <h1 contenteditable bind:textContent={currentScene.title} />
+        <h1
+          contenteditable
+          bind:textContent={currentScene.title}
+          on:input={titleInput} />
         <OmniaEditor
           bind:this={editor}
           bind:data={currentScene.content}
