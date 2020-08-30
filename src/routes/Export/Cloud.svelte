@@ -121,8 +121,8 @@
 
 <Toast bind:show={exportToast} text={exportResponse} />
 <Toast bind:show={completeForm} text={$_('export.form')} />
-<Modal bind:show={progress.active} persistent={true}>
-  <h2 slot="header">{$_('export.templates.progress')}</h2>
+<Modal bind:show={progress.active}>
+  <h2 slot="header">{$_('export.progress')}</h2>
   <center>
     {#if progress.done}
       <Done file={progress.file} />

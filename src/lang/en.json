@@ -40,9 +40,6 @@
       "focus": "Focus",
       "switchScene": "Switch scene ..."
     },
-    "toast": {
-      "saved": "Saved!"
-    },
     "overview": {
       "opened": "opened",
       "placeholder": "This project has no scenes yet."
@@ -186,6 +183,8 @@
     },
     "form": "Please complete all fields.",
     "template": "Template",
+    "templates": "Templates",
+    "progress": "Exporting",
     "helpers": {
       "title": "Title for the book",
       "author": "Listed author for the book",
@@ -205,7 +204,8 @@
     },
     "markdown": {
       "title": "Markdown",
-      "subtitle": "Generates a Markdown document compatible with most blogs."
+      "subtitle": "Export to Markdown file format",
+      "explain": "Generates a Markdown document compatible with most blogs."
     }
   },
   "sidebar": {

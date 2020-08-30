@@ -1,4 +1,6 @@
 <script>
+  import { _ } from "svelte-i18n";
+
   import ButtonGroup from "../../../components/Forms/ButtonGroup.svelte";
   import Button from "../../../components/Forms/Button.svelte";
 
@@ -8,6 +10,6 @@
 <ButtonGroup>
   <Button on:click={download}>
     <span class="lnr lnr-download" />
-    Download
+    {$_('export.finished.download')}
   </Button>
 </ButtonGroup>

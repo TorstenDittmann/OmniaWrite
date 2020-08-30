@@ -1,9 +1,10 @@
 <script>
+  import { _ } from "svelte-i18n";
   export let uri;
 </script>
 
 <p>
-  <b>Saved to:</b>
+  <b>{$_('export.finished.savedTo')}</b>
 </p>
 <p class="path">{uri}</p>
 

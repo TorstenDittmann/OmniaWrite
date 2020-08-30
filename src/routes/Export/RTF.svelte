@@ -3,8 +3,8 @@
   import { _ } from "svelte-i18n";
   import { state } from "../../stores";
   import { Button, ButtonGroup } from "../../components/Forms";
-  import Export from "./RTF/collectData";
   import { saveFile } from "../../bridge";
+  import Export from "./RTF/collectData";
   import Done from "./Shared/Done.svelte";
   import Spinner from "../../shared/Spinner.svelte";
 
