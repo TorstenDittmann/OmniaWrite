@@ -1,11 +1,23 @@
 <script>
+  import { get } from "svelte/store";
   import { link, location } from "svelte-spa-router";
   import active from "svelte-spa-router/active";
 
-  import { state, tabs } from "../../stores";
+  import { state, tabs, scenes } from "../../stores";
 
   const createTab = () => {
-    tabs.createTab($state.currentProject, $state.currentTitle, $location);
+    tabs.createTab($state.currentProject, $location);
+  };
+
+  const getTitle = location => {
+    const [type, id] = location.split("/").filter(String);
+    switch (type) {
+      case "write":
+        return get(scenes).find(s => s.id == id).title;
+
+      default:
+        return "-";
+    }
   };
 </script>
 
@@ -13,7 +25,7 @@
   <ul>
     {#each $tabs.filter(tabs => tabs.project == $state.currentProject) as tab}
       <li class="tab" use:active={tab.link}>
-        <a href={tab.link} use:link>{tab.title}</a>
+        <a href={tab.link} use:link>{getTitle(tab.link)}</a>
         <span
           class="lnr lnr-cross tab-action"
           on:click={() => tabs.removeTab(tab.id)} />

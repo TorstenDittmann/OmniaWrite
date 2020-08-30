@@ -372,15 +372,13 @@ const storeTabs = () => {
     /**
      * Creates new tab.
      * @param {number} project Project ID.
-     * @param {string} title Title.
      * @param {string} link Relative link to content.
      */
-    createTab: (project, title, link) =>
+    createTab: (project, link) =>
       update(n => {
         return n.concat([
           {
             id: getRandomNumber(),
-            title: title,
             project: project,
             link: link,
           },
