@@ -23,7 +23,6 @@
 
   onMount(() => {
     form = get(projects).filter(project => project.id == id)[0];
-    console.log(form);
   });
 
   const save = () => {

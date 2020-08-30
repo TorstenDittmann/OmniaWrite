@@ -116,7 +116,7 @@ const createLoadingScreen = () => {
       .then(data => {
         latest = data;
       })
-      .catch(err => console.log(err))
+      .catch(console.log)
       .finally(() => {
         let currentVersion = app.getVersion();
         let fetchedVersion = latest ? latest.name : false;
