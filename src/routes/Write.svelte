@@ -159,7 +159,7 @@
           <div style="display: flex; flex-direction: column;">
             {#each filteredCards as card}
               <span
-                class="lnr lnr-bookmark"
+                class="lnr lnr-bookmark card"
                 title={card.title}
                 use:tippy={{ content: card.title, placement: 'right' }} />
             {/each}
@@ -195,6 +195,10 @@
       font-family: "IBM Plex Mono", monospace;
       text-align: center;
     }
+  }
+
+  .card {
+    margin: 0.25rem 0;
   }
 
   select#focusSceneSelect {

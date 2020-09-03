@@ -110,9 +110,7 @@
               <span class="lnr lnr-cloud-upload" />
             </li>
           {:else if cloudState === 'done'}
-            <li>
-              <span class="lnr lnr-cloud-check" />
-            </li>
+            <li><span class="lnr lnr-cloud-check" /></li>
           {:else if cloudState === 'loading'}
             <li>
               <Spinner />

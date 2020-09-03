@@ -5,7 +5,3 @@
 <p>
   {@html $_('install.disclaimer.content')}
 </p>
-
-<style>
-
-</style>
