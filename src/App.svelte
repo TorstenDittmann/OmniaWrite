@@ -208,11 +208,12 @@
       height: 90vh;
 
       .inner {
-        padding: 1rem;
+        padding: 0.5rem;
         text-align: center;
 
         @include desktop {
           text-align: initial;
+          padding: 1rem;
         }
       }
 

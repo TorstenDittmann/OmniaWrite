@@ -20,7 +20,7 @@
     "@capacitor/core": "^2.4.0",
     "node-fetch": "^2.6.0",
     "omnia-ebook-generator": "^0.1.2",
-    "omnia-editor": "0.0.14",
+    "omnia-editor": "0.0.15",
     "semver": "^7.3.2",
     "sortablejs": "^1.10.2",
     "sveltejs-tippy": "^3.0.0"

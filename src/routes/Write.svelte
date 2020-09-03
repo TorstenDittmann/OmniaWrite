@@ -1,7 +1,7 @@
 <script>
   import { onMount, onDestroy } from "svelte";
   import { fade } from "svelte/transition";
-  import { scenes, chapters, state, settings, ui } from "../stores";
+  import { scenes, chapters, cards, state, settings, ui } from "../stores";
   import { push } from "svelte-spa-router";
   import { _ } from "svelte-i18n";
   import OmniaEditor from "omnia-editor";
@@ -15,6 +15,7 @@
   let editorStatus = 0;
   let currentHistory = 0;
   let lengthHistory = 0;
+  let filteredCards = [];
 
   $: currentScene = $scenes.find(scene => scene.id == params.sceneId);
   $: {
@@ -45,6 +46,13 @@
   const change = e => {
     scenes.setSceneContent(params.sceneId, e.detail);
     editorStatus = 2;
+    filteredCards = $cards
+      .filter(e => e.showTooltip && e.project == $state.currentProject)
+      .filter(c =>
+        e.detail.blocks.some(
+          block => block.data.text && block.data.text.includes(c.title)
+        )
+      );
   };
 
   const switchScene = e => {
@@ -147,7 +155,16 @@
           spellCheck={$settings.spellCheck}
           on:init={init}
           on:input={() => (editorStatus = 1)}
-          on:change={change} />
+          on:change={change}>
+          <div style="display: flex; flex-direction: column;">
+            {#each filteredCards as card}
+              <span
+                class="lnr lnr-bookmark"
+                title={card.title}
+                use:tippy={{ content: card.title, placement: 'right' }} />
+            {/each}
+          </div>
+        </OmniaEditor>
       </div>
     {:else}
       <Overview />
