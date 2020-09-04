@@ -107,7 +107,17 @@ const cloud = {
    * @returns Promise<boolean>
    */
   saveToCloud: () => {
-    let blob = new Blob(["\ufeff", JSON.stringify(localStorage)], {
+    const keys = [
+      "cards",
+      "chapters",
+      "projects",
+      "scenes",
+      "state",
+      "tabs",
+      "intern",
+      "settings",
+    ].map(key => localStorage.getItem(key));
+    let blob = new Blob(["\ufeff", JSON.stringify(keys)], {
       type: "application/json",
     });
 
