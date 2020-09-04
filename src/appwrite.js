@@ -140,15 +140,18 @@ const cloud = {
    * @returns Promise<response>
    */
   restoreBackup: id => {
+    const cookieFallback = localStorage.getItem("cookieFallback") || false;
     return fetch(SDK.storage.getFileView(id), {
       method: "GET",
       credentials: "include",
       mode: "cors",
+      headers: {
+        ...(cookieFallback && { "X-Fallback-Cookies": cookieFallback })
+      }
+    }).then(response => {
+      if (!response.ok) throw new Error("Something went wrong");
+      return response.json();
     })
-      .then(response => {
-        if (!response.ok) throw new Error("Something went wrong");
-        return response.json();
-      })
       .then(response => {
         const data = response;
         const dataObject = Object.keys(data);
