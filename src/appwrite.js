@@ -146,12 +146,13 @@ const cloud = {
       credentials: "include",
       mode: "cors",
       headers: {
-        ...(cookieFallback && { "X-Fallback-Cookies": cookieFallback })
-      }
-    }).then(response => {
-      if (!response.ok) throw new Error("Something went wrong");
-      return response.json();
+        ...(cookieFallback && { "X-Fallback-Cookies": cookieFallback }),
+      },
     })
+      .then(response => {
+        if (!response.ok) throw new Error("Something went wrong");
+        return response.json();
+      })
       .then(response => {
         const data = response;
         const dataObject = Object.keys(data);
