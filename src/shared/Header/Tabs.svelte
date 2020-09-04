@@ -31,7 +31,7 @@
           on:click={() => tabs.removeTab(tab.id)} />
       </li>
     {/each}
-    {#if $location != '/write/' && $location.includes('write')}
+    {#if $location != '/write/' && $location.includes('write') && !$tabs.some(tab => tab.link == $location)}
       <li class="tab new" on:click={createTab}>
         <span class="lnr lnr-plus-circle" />
       </li>
