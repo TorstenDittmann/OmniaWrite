@@ -44,7 +44,8 @@
       <GridElement on:click={() => push('/write/' + scene.id)}>
         <h2>{scene.title}</h2>
         <small>
-          {$_('write.overview.opened')} {moment(scene.lastEdit, 'X').fromNow()}
+          {$_('write.overview.opened')}
+          {moment(scene.lastEdit, 'X').fromNow()}
         </small>
       </GridElement>
     {:else}

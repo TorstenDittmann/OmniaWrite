@@ -1,7 +1,3 @@
-<script>
-
-</script>
-
 <table>
   <slot />
 </table>

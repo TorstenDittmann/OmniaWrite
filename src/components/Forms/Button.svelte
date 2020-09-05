@@ -11,9 +11,7 @@
   class:red={color == 'red'}
   class:outline={color == 'outline'}
   on:click|preventDefault>
-  {#if loading}
-    <span class="lnr lnr-sync spinner" />
-  {/if}
+  {#if loading}<span class="lnr lnr-sync spinner" />{/if}
   <slot />
 </button>
 

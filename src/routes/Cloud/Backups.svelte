@@ -63,7 +63,3 @@
     <p style="color: red">{error.message}</p>
   {/await}
 {/if}
-
-<style>
-
-</style>

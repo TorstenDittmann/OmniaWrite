@@ -80,9 +80,7 @@
           {#each get(scenes)
             .filter(scene => scene.chapter == chapter.id)
             .sort((a, b) => a.order - b.order) as scene}
-            <li data-id={scene.id}>
-              <span>{scene.title}</span>
-            </li>
+            <li data-id={scene.id}><span>{scene.title}</span></li>
           {/each}
         </ul>
       </li>

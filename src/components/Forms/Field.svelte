@@ -6,14 +6,10 @@
 </script>
 
 <div class="field">
-  {#if label}
-    <label for={id}>{label}</label>
-  {/if}
+  {#if label}<label for={id}>{label}</label>{/if}
   <div>
     <slot />
-    {#if helper}
-      <small>{helper}</small>
-    {/if}
+    {#if helper}<small>{helper}</small>{/if}
   </div>
 </div>
 

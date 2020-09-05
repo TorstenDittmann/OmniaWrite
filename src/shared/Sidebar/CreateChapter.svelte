@@ -31,7 +31,3 @@
     </ButtonGroup>
   </form>
 </Modal>
-
-<style>
-
-</style>

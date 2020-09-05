@@ -1,7 +1,3 @@
-<script>
-
-</script>
-
 <p>
   Torsten Dittmann built the OmniaWrite app as a freemium app. This SERVICE is
   provided by Torsten Dittmann at no cost and is intended for use as is.
@@ -23,9 +19,7 @@
   this Privacy Policy.
 </p>
 
-<p>
-  <strong>Information Collection and Use</strong>
-</p>
+<p><strong>Information Collection and Use</strong></p>
 <p>
   For a better experience while using our Service, I may require you to provide
   us with certain personally identifiable information, including but not limited
@@ -36,9 +30,7 @@
   The app does not use any third party services that may collect information
   used to identify you.
 </p>
-<p>
-  <strong>Log Data</strong>
-</p>
+<p><strong>Log Data</strong></p>
 <p>
   I want to inform you that whenever you use my Service, in case of an error in
   the app I collect data and information (through third party products) on your
@@ -48,9 +40,7 @@
   of your use of the Service, and other statistics.
 </p>
 
-<p>
-  <strong>Service Providers</strong>
-</p>
+<p><strong>Service Providers</strong></p>
 <p>
   I may employ third-party companies and individuals due to the following
   reasons:
@@ -66,9 +56,7 @@
   access to your Personal Information.
 </p>
 
-<p>
-  <strong>Security</strong>
-</p>
+<p><strong>Security</strong></p>
 <p>
   I value your trust in providing us your Personal Information, thus we are
   striving to use commercially acceptable means of protecting it. But remember
@@ -77,9 +65,7 @@
   security.
 </p>
 
-<p>
-  <strong>Links to Other Sites</strong>
-</p>
+<p><strong>Links to Other Sites</strong></p>
 <p>
   This Service may contain links to other sites. If you click on a third-party
   link, you will be directed to that site. Note that these external sites are
@@ -89,9 +75,7 @@
   services.
 </p>
 
-<p>
-  <strong>Changes to This Privacy Policy</strong>
-</p>
+<p><strong>Changes to This Privacy Policy</strong></p>
 <p>
   I may update our Privacy Policy from time to time. Thus, you are advised to
   review this page periodically for any changes. I will notify you of any
@@ -99,14 +83,8 @@
   effective immediately, after they are posted on this page.
 </p>
 
-<p>
-  <strong>Contact Us</strong>
-</p>
+<p><strong>Contact Us</strong></p>
 <p>
   If you have any questions or suggestions about my Privacy Policy, do not
   hesitate to contact me.
 </p>
-
-<style>
-
-</style>
