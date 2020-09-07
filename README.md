@@ -62,6 +62,9 @@ This section should list any major frameworks that you built your project using.
 * [Electron](https://www.electronjs.org)
 * [Cordova](https://cordova.apache.org)
 
+## Contributing
+Current development branch: [1.1](https://github.com/TorstenDittmann/OmniaWrite/tree/1.1)
+
 ## Releasing
 
 When you want to create a new release, follow these steps:
