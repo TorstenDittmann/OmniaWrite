@@ -117,7 +117,7 @@ const cloud = {
       "intern",
       "settings",
     ].reduce((obj, key) => {
-      obj[key] = localStorage.getItem(key)
+      obj[key] = localStorage.getItem(key);
       return obj;
     }, {});
     let blob = new Blob(["\ufeff", JSON.stringify(keys)], {

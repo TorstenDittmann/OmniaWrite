@@ -38,7 +38,13 @@
       "redo": "Redo",
       "save": "Save",
       "focus": "Focus",
-      "switchScene": "Switch scene ..."
+      "bold": "Bold",
+      "italic": "Italic",
+      "underline": "Underline",
+      "switchScene": "Switch scene",
+      "cards": "Cards",
+      "cardsEmpty": "No cards found in this scene.",
+      "savestate": "Save state"
     },
     "overview": {
       "opened": "opened",
@@ -109,7 +115,7 @@
         }
       },
       "error": "Something went wrong :(",
-      "action": "update"
+      "action": "Update"
     },
     "logout": {
       "title": "Logout",
@@ -206,6 +212,9 @@
       "title": "Markdown",
       "subtitle": "Export to Markdown file format",
       "explain": "Generates a Markdown document compatible with most blogs."
+    },
+    "finished": {
+      "download": "Download"
     }
   },
   "sidebar": {

@@ -8,6 +8,7 @@
   import tippy from "sveltejs-tippy";
   import Overview from "./Write/Overview.svelte";
   import Placeholder from "../shared/Placeholder.svelte";
+  import Modal from "../shared/Modal.svelte";
 
   export let params = {};
   let currentScene;
@@ -15,6 +16,7 @@
   let editorStatus = 0;
   let currentHistory = 0;
   let lengthHistory = 0;
+  let showCards = false;
   let filteredCards = [];
 
   $: currentScene = $scenes.find(scene => scene.id == params.sceneId);
@@ -83,6 +85,19 @@
 <div in:fade={{ duration: 100 }}>
   {#if $state.currentProject}
     {#if params.sceneId !== null}
+      <Modal bind:show={showCards}>
+        <h2 slot="header">{$_('write.toolbar.cards')}</h2>
+        {#each filteredCards as card}
+          <div>
+            <h2>{card.title}</h2>
+            <p>{card.content}</p>
+          </div>
+        {:else}
+          <p>
+            <Placeholder>{$_('write.toolbar.cardsEmpty')}</Placeholder>
+          </p>
+        {/each}
+      </Modal>
       <div class="toolbar">
         <div class="inner">
           <div>
@@ -100,25 +115,37 @@
               on:click={() => editor.toggleFormat('underline')} />
             {#if currentHistory < lengthHistory - 1}
               <span
+                transition:fade={{ duration: 100 }}
                 class="lnr lnr-undo"
                 use:tippy={{ content: $_('write.toolbar.undo'), placement: 'bottom' }}
                 on:click={undo} />
             {/if}
             {#if currentHistory !== 0}
               <span
+                transition:fade={{ duration: 100 }}
                 class="lnr lnr-redo"
                 use:tippy={{ content: $_('write.toolbar.redo'), placement: 'bottom' }}
                 on:click={redo} />
             {/if}
           </div>
           <div>
+            {#if filteredCards.length > 0}
+              <span
+                transition:fade={{ duration: 100 }}
+                class="lnr lnr-bookmark"
+                use:tippy={{ content: $_('write.toolbar.cards'), placement: 'bottom' }}
+                on:click={() => (showCards = true)} />
+            {/if}
             {#if $ui.focus}
               <!-- svelte-ignore a11y-no-onchange -->
-              <select id="focusSceneSelect" on:change={switchScene}>
-                <option value="" selected="selected">
-                  {$_('write.toolbar.switchScene')}
-                </option>
-                {#each $chapters.filter(chapter => chapter.project == $state.currentProject) as chapter, i}
+              <select
+                id="focusSceneSelect"
+                transition:fade={{ duration: 100 }}
+                on:change={switchScene}
+                class="lnr"
+                use:tippy={{ content: $_('write.toolbar.switchScene'), placement: 'bottom' }}>
+                <option value="" selected="selected">&#xe871;</option>
+                {#each $chapters.filter(chapter => chapter.project == $state.currentProject) as chapter}
                   <optgroup label={chapter.title}>
                     {#each $scenes.filter(scene => scene.chapter == chapter.id) as scene}
                       <option value={scene.id}>{scene.title}</option>
@@ -155,16 +182,7 @@
           spellCheck={$settings.spellCheck}
           on:init={init}
           on:input={() => (editorStatus = 1)}
-          on:change={change}>
-          <div style="display: flex; flex-direction: column;">
-            {#each filteredCards as card}
-              <span
-                class="lnr lnr-bookmark card"
-                title={card.title}
-                use:tippy={{ content: card.title, placement: 'right' }} />
-            {/each}
-          </div>
-        </OmniaEditor>
+          on:change={change} />
       </div>
     {:else}
       <Overview />
@@ -197,15 +215,10 @@
     }
   }
 
-  .card {
-    margin: 0.25rem 0;
-  }
-
   select#focusSceneSelect {
     background-color: var(--select-background);
-    width: auto;
-    font-size: 1rem;
     font-weight: bold;
+    width: 1.5rem;
     color: var(--text-color);
     text-align: center;
     -webkit-appearance: none;

@@ -23,6 +23,7 @@
     white-space: pre-line;
     line-height: 1.5rem;
     transition: all 0.2s;
+    word-break: break-word;
 
     h2 {
       margin: 0 0 1rem 0;

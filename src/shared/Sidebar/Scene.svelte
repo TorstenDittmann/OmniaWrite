@@ -28,6 +28,8 @@
 
   li {
     padding: 0.5rem 0 0.5rem 2rem;
+    word-break: break-word;
+    line-height: 1.5rem;
 
     a,
     span {
@@ -40,10 +42,13 @@
       float: right;
       margin-right: 1em;
       opacity: 0.65;
+      line-height: 1.5rem;
+      transition: transform 0.2s;
 
       @include desktop {
         visibility: hidden;
         &:hover {
+          transform: scale(1.25);
           opacity: 1;
         }
       }

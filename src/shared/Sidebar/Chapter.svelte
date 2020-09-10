@@ -40,6 +40,7 @@
     cursor: pointer;
     display: block;
     width: 100%;
+    word-break: break-word;
 
     span {
       text-decoration: none;
@@ -65,6 +66,7 @@
         float: right;
         margin-right: 1em;
         opacity: 0.65;
+        transition: transform 0.2s;
 
         @include desktop {
           visibility: hidden;
@@ -72,6 +74,7 @@
 
         &:hover {
           opacity: 1;
+          transform: scale(1.25);
         }
       }
 
