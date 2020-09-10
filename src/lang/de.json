@@ -38,10 +38,25 @@
       "redo": "Wiederholen",
       "save": "Speichern",
       "focus": "Fokus",
-      "switchScene": "Szene wechseln ..."
+      "bold": "Fett",
+      "italic": "Kursiv",
+      "underline": "Unterstrichen",
+      "switchScene": "Szene wechseln",
+      "cards": "Karten",
+      "cardsEmpty": "Keine Karten in dieser Szene gefunden.",
+      "savestate": "Speicher Status"
     },
-    "toast": {
-      "saved": "Gespeichert!"
+    "editor": {
+      "placeholder": "Lasst uns eine fantastische Geschichte schreiben!",
+      "switch": "Block ändern",
+      "delete": "Löschen",
+      "confirmDelete": "Sind Sie sicher?",
+      "blocks": {
+        "paragraph": "Paragraph",
+        "heading": "Überschrift",
+        "quote": "Zitat",
+        "code": "Konstantschrift"
+      }
     },
     "overview": {
       "opened": "geöffnet",
@@ -186,6 +201,8 @@
     },
     "form": "Bitte alle Felder ausfüllen.",
     "template": "Vorlage",
+    "templates": "Vorlagen",
+    "progress": "Exportiert",
     "helpers": {
       "title": "Title des Buches",
       "author": "Gelisteter Autor des Buches",
@@ -205,7 +222,11 @@
     },
     "markdown": {
       "title": "Markdown",
-      "explain": "Erzeugt ein Markdown-Dokuemtn, das mit den meisten Blogs kompatibel ist."
+      "subtitle": "Export in das Markdown-Dateiformat",
+      "explain": "Erzeugt ein Markdown-Dokument, das mit den meisten Blogs kompatibel ist."
+    },
+    "finished": {
+      "download": "Herunterladen"
     }
   },
   "sidebar": {

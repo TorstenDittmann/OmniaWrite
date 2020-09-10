@@ -18,6 +18,18 @@
   let lengthHistory = 0;
   let showCards = false;
   let filteredCards = [];
+  const editorLanguage = {
+    placeholder: $_("write.editor.placeholder"),
+    switch: $_("write.editor.switch"),
+    delete: $_("write.editor.delete"),
+    confirmDelete: $_("write.editor.confirmDelete"),
+    blocks: {
+      paragraph: $_("write.editor.blocks.paragraph"),
+      heading: $_("write.editor.blocks.heading"),
+      quote: $_("write.editor.blocks.quote"),
+      code: $_("write.editor.blocks.code"),
+    },
+  };
 
   $: currentScene = $scenes.find(scene => scene.id == params.sceneId);
   $: {
@@ -180,6 +192,7 @@
           bind:this={editor}
           bind:data={currentScene.content}
           spellCheck={$settings.spellCheck}
+          translation={editorLanguage}
           on:init={init}
           on:input={() => (editorStatus = 1)}
           on:change={change} />

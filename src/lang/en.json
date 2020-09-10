@@ -46,6 +46,18 @@
       "cardsEmpty": "No cards found in this scene.",
       "savestate": "Save state"
     },
+    "editor": {
+      "placeholder": "Let's write an awesome story!",
+      "switch": "Change Block",
+      "delete": "Delete",
+      "confirmDelete": "Are you sure?",
+      "blocks": {
+        "paragraph": "Paragraph",
+        "heading": "Heading",
+        "quote": "Quote",
+        "code": "Monospace"
+      }
+    },
     "overview": {
       "opened": "opened",
       "placeholder": "This project has no scenes yet."
