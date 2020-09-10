@@ -70,6 +70,7 @@
     <div class="field">
       <label for="createTitle">{$_("cards.modal.title")}</label>
       <input
+        autofocus
         id="createTitle"
         autocomplete="off"
         placeholder="enter your title"
@@ -109,6 +110,7 @@
     <div class="field">
       <label for="createTitle">{$_("cards.modal.title")}</label>
       <input
+        autofocus
         id="createTitle"
         autocomplete="off"
         placeholder="enter your title"

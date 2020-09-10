@@ -31,6 +31,7 @@
     <div class="field">
       <label for="createProjectInput">Title:</label>
       <input
+        autofocus
         bind:value={createProjectInput}
         autocomplete="off"
         placeholder="enter your title"

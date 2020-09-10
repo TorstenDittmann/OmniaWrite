@@ -35,6 +35,7 @@
     <div class="field">
       <label for="editChapterInput">{$_("sidebar.modal.title")}</label>
       <input
+        autofocus
         id="editChapterInput"
         bind:value={data.title}
         autocomplete="off"
