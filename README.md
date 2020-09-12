@@ -56,11 +56,11 @@ Write in chapters and scenes to give your text more structure and add manageabil
 OmniaWrite will support Windows, Linux, macOS, Android, iOS and can also run in any modern browser.
 
 ### Built With
-This section should list any major frameworks that you built your project using. Leave any add-ons/plugins for the acknowledgements section. Here are a few examples.
+
 * [svelte](https://svelte.dev)
 * [Appwrite](https://appwrite.io)
 * [Electron](https://www.electronjs.org)
-* [Cordova](https://cordova.apache.org)
+* [Capacitor](https://capacitorjs.com)
 
 ## Contributing
 Current development branch: [1.1](https://github.com/TorstenDittmann/OmniaWrite/tree/1.1)
@@ -80,6 +80,7 @@ After building successfully, the action will publish your release artifacts.
 
 This work is licensed under a Apache License 2.0.
 
+<!-- CONTACT -->
 ## Contact
 
 OmniaWrite - [@OmniaWrite](https://twitter.com/OmniaWrite) - info@omniawrite.com
@@ -87,7 +88,7 @@ OmniaWrite - [@OmniaWrite](https://twitter.com/OmniaWrite) - info@omniawrite.com
 Project Link: [https://OmniaWrite.com](https://OmniaWrite.com)
 Project GitHub Link: [https://github.com/TorstenDittmann/OmniaWrite](https://github.com/TorstenDittmann/OmniaWrite)
 
-## Contributors
+## Contributors ✨
 
 Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
 
@@ -96,9 +97,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <!-- markdownlint-disable -->
 <table>
   <tr>
-    <td align="center"><a href="https://torstendittmann.now.sh"><img src="https://avatars1.githubusercontent.com/u/1759475?v=4" width="100px;" alt=""/><br /><sub><b>Torsten Dittmann</b></sub></a><br /><a href="#maintenance-TorstenDittmann" title="Maintenance">🚧</a></td>
-    <td align="center"><a href="https://github.com/AnthonyBoucher"><img src="https://avatars0.githubusercontent.com/u/6674732?v=4" width="100px;" alt=""/><br /><sub><b>AnthonyBoucher</b></sub></a><br /><a href="#maintenance-AnthonyBoucher" title="Maintenance">🚧</a></td>
-    <td align="center"><a href="https://stigsen.xyz/"><img src="https://avatars3.githubusercontent.com/u/24865450?v=4" width="100px;" alt=""/><br /><sub><b>Benjamin Stigsen</b></sub></a><br /><a href="#ideas-BenStigsen" title="Ideas, Planning, & Feedback">🤔</a></td>
+    <td align="center"><a href="https://github.com/AnthonyBoucher"><img src="https://avatars0.githubusercontent.com/u/6674732?v=4?s=100" width="100px;" alt=""/><br /><sub><b>AnthonyBoucher</b></sub></a><br /><a href="#maintenance-AnthonyBoucher" title="Maintenance">🚧</a></td>
   </tr>
 </table>
 

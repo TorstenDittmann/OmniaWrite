@@ -1,279 +1,46 @@
 @font-face {
-  font-family: 'Nunito Sans';
-  font-style: normal;
-  font-display: swap;
-  font-weight: 200;
-  src:
-    local('Nunito Sans Extra Light '),
-    local('Nunito Sans-Extra Light'),
-    url('fonts/nunito-sans-latin-200.woff2') format('woff2'),
-    url('fonts/nunito-sans-latin-200.woff') format('woff');
-}
-
-@font-face {
-  font-family: 'Nunito Sans';
-  font-style: italic;
-  font-display: swap;
-  font-weight: 200;
-  src:
-    local('Nunito Sans Extra Light italic'),
-    local('Nunito Sans-Extra Lightitalic'),
-    url('fonts/nunito-sans-latin-200italic.woff2') format('woff2'),
-    url('fonts/nunito-sans-latin-200italic.woff') format('woff');
-}
-
-@font-face {
-  font-family: 'Nunito Sans';
-  font-style: normal;
-  font-display: swap;
-  font-weight: 300;
-  src:
-    local('Nunito Sans Light '),
-    local('Nunito Sans-Light'),
-    url('fonts/nunito-sans-latin-300.woff2') format('woff2'),
-    url('fonts/nunito-sans-latin-300.woff') format('woff');
-}
-
-@font-face {
-  font-family: 'Nunito Sans';
-  font-style: italic;
-  font-display: swap;
-  font-weight: 300;
-  src:
-    local('Nunito Sans Light italic'),
-    local('Nunito Sans-Lightitalic'),
-    url('fonts/nunito-sans-latin-300italic.woff2') format('woff2'),
-    url('fonts/nunito-sans-latin-300italic.woff') format('woff');
-}
-
-@font-face {
-  font-family: 'Nunito Sans';
+  font-family: "Nunito Sans";
   font-style: normal;
   font-display: swap;
   font-weight: 400;
-  src:
-    local('Nunito Sans Regular '),
-    local('Nunito Sans-Regular'),
-    url('fonts/nunito-sans-latin-400.woff2') format('woff2'),
-    url('fonts/nunito-sans-latin-400.woff') format('woff');
+  src: local("Nunito Sans Regular "), local("Nunito Sans-Regular"),
+    url("fonts/nunito-sans-latin-400.woff2") format("woff2"),
+    url("fonts/nunito-sans-latin-400.woff") format("woff");
 }
 
 @font-face {
-  font-family: 'Nunito Sans';
+  font-family: "Nunito Sans";
   font-style: italic;
   font-display: swap;
   font-weight: 400;
-  src:
-    local('Nunito Sans Regular italic'),
-    local('Nunito Sans-Regularitalic'),
-    url('fonts/nunito-sans-latin-400italic.woff2') format('woff2'),
-    url('fonts/nunito-sans-latin-400italic.woff') format('woff');
+  src: local("Nunito Sans Regular italic"), local("Nunito Sans-Regularitalic"),
+    url("fonts/nunito-sans-latin-400italic.woff2") format("woff2"),
+    url("fonts/nunito-sans-latin-400italic.woff") format("woff");
 }
 
 @font-face {
-  font-family: 'Nunito Sans';
+  font-family: "Libre Baskerville";
+  src: url("fonts/LibreBaskerville-Bold.woff2") format("woff2"),
+    url("fonts/LibreBaskerville-Bold.woff") format("woff");
+  font-weight: bold;
   font-style: normal;
   font-display: swap;
-  font-weight: 600;
-  src:
-    local('Nunito Sans SemiBold '),
-    local('Nunito Sans-SemiBold'),
-    url('fonts/nunito-sans-latin-600.woff2') format('woff2'),
-    url('fonts/nunito-sans-latin-600.woff') format('woff');
 }
 
 @font-face {
-  font-family: 'Nunito Sans';
+  font-family: "Libre Baskerville";
+  src: url("fonts/LibreBaskerville-Italic.woff2") format("woff2"),
+    url("fonts/LibreBaskerville-Italic.woff") format("woff");
+  font-weight: normal;
   font-style: italic;
   font-display: swap;
-  font-weight: 600;
-  src:
-    local('Nunito Sans SemiBold italic'),
-    local('Nunito Sans-SemiBolditalic'),
-    url('fonts/nunito-sans-latin-600italic.woff2') format('woff2'),
-    url('fonts/nunito-sans-latin-600italic.woff') format('woff');
 }
 
 @font-face {
-  font-family: 'Nunito Sans';
+  font-family: "Libre Baskerville";
+  src: url("fonts/LibreBaskerville-Regular.woff2") format("woff2"),
+    url("fonts/LibreBaskerville-Regular.woff") format("woff");
+  font-weight: normal;
   font-style: normal;
   font-display: swap;
-  font-weight: 700;
-  src:
-    local('Nunito Sans Bold '),
-    local('Nunito Sans-Bold'),
-    url('fonts/nunito-sans-latin-700.woff2') format('woff2'),
-    url('fonts/nunito-sans-latin-700.woff') format('woff');
-}
-
-@font-face {
-  font-family: 'Nunito Sans';
-  font-style: italic;
-  font-display: swap;
-  font-weight: 700;
-  src:
-    local('Nunito Sans Bold italic'),
-    local('Nunito Sans-Bolditalic'),
-    url('fonts/nunito-sans-latin-700italic.woff2') format('woff2'),
-    url('fonts/nunito-sans-latin-700italic.woff') format('woff');
-}
-
-@font-face {
-  font-family: 'Nunito Sans';
-  font-style: normal;
-  font-display: swap;
-  font-weight: 800;
-  src:
-    local('Nunito Sans ExtraBold '),
-    local('Nunito Sans-ExtraBold'),
-    url('fonts/nunito-sans-latin-800.woff2') format('woff2'),
-    url('fonts/nunito-sans-latin-800.woff') format('woff');
-}
-
-@font-face {
-  font-family: 'Nunito Sans';
-  font-style: italic;
-  font-display: swap;
-  font-weight: 800;
-  src:
-    local('Nunito Sans ExtraBold italic'),
-    local('Nunito Sans-ExtraBolditalic'),
-    url('fonts/nunito-sans-latin-800italic.woff2') format('woff2'),
-    url('fonts/nunito-sans-latin-800italic.woff') format('woff');
-}
-
-@font-face {
-  font-family: 'Nunito Sans';
-  font-style: normal;
-  font-display: swap;
-  font-weight: 900;
-  src:
-    local('Nunito Sans Black '),
-    local('Nunito Sans-Black'),
-    url('fonts/nunito-sans-latin-900.woff2') format('woff2'),
-    url('fonts/nunito-sans-latin-900.woff') format('woff');
-}
-
-@font-face {
-  font-family: 'Nunito Sans';
-  font-style: italic;
-  font-display: swap;
-  font-weight: 900;
-  src:
-    local('Nunito Sans Black italic'),
-    local('Nunito Sans-Blackitalic'),
-    url('fonts/nunito-sans-latin-900italic.woff2') format('woff2'),
-    url('fonts/nunito-sans-latin-900italic.woff') format('woff');
-}
-
-@font-face {
-    font-family: 'IBM Plex Mono';
-    src: url('fonts/IBMPlexMono-Medium.woff2') format('woff2'),
-        url('fonts/IBMPlexMono-Medium.woff') format('woff');
-    font-weight: 500;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'IBM Plex Mono';
-    src: url('fonts/IBMPlexMono-Light.woff2') format('woff2'),
-        url('fonts/IBMPlexMono-Light.woff') format('woff');
-    font-weight: 300;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'IBM Plex Mono';
-    src: url('fonts/IBMPlexMono-SemiBoldItalic.woff2') format('woff2'),
-        url('fonts/IBMPlexMono-SemiBoldItalic.woff') format('woff');
-    font-weight: 600;
-    font-style: italic;
-}
-
-@font-face {
-    font-family: 'IBM Plex Mono';
-    src: url('fonts/IBMPlexMono-Thin.woff2') format('woff2'),
-        url('fonts/IBMPlexMono-Thin.woff') format('woff');
-    font-weight: 100;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'IBM Plex Mono';
-    src: url('fonts/IBMPlexMono-ThinItalic.woff2') format('woff2'),
-        url('fonts/IBMPlexMono-ThinItalic.woff') format('woff');
-    font-weight: 100;
-    font-style: italic;
-}
-
-@font-face {
-    font-family: 'IBM Plex Mono';
-    src: url('fonts/IBMPlexMono-BoldItalic.woff2') format('woff2'),
-        url('fonts/IBMPlexMono-BoldItalic.woff') format('woff');
-    font-weight: bold;
-    font-style: italic;
-}
-
-@font-face {
-    font-family: 'IBM Plex Mono';
-    src: url('fonts/IBMPlexMono.woff2') format('woff2'),
-        url('fonts/IBMPlexMono.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'IBM Plex Mono';
-    src: url('fonts/IBMPlexMono-Italic.woff2') format('woff2'),
-        url('fonts/IBMPlexMono-Italic.woff') format('woff');
-    font-weight: normal;
-    font-style: italic;
-}
-
-@font-face {
-    font-family: 'IBM Plex Mono';
-    src: url('fonts/IBMPlexMono-LightItalic.woff2') format('woff2'),
-        url('fonts/IBMPlexMono-LightItalic.woff') format('woff');
-    font-weight: 300;
-    font-style: italic;
-}
-
-@font-face {
-    font-family: 'IBM Plex Mono';
-    src: url('fonts/IBMPlexMono-ExtraLight.woff2') format('woff2'),
-        url('fonts/IBMPlexMono-ExtraLight.woff') format('woff');
-    font-weight: 200;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'IBM Plex Mono';
-    src: url('fonts/IBMPlexMono-MediumItalic.woff2') format('woff2'),
-        url('fonts/IBMPlexMono-MediumItalic.woff') format('woff');
-    font-weight: 500;
-    font-style: italic;
-}
-
-@font-face {
-    font-family: 'IBM Plex Mono';
-    src: url('fonts/IBMPlexMono-Bold.woff2') format('woff2'),
-        url('fonts/IBMPlexMono-Bold.woff') format('woff');
-    font-weight: bold;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'IBM Plex Mono';
-    src: url('fonts/IBMPlexMono-SemiBold.woff2') format('woff2'),
-        url('fonts/IBMPlexMono-SemiBold.woff') format('woff');
-    font-weight: 600;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'IBM Plex Mono';
-    src: url('fonts/IBMPlexMono-ExtraLightItalic.woff2') format('woff2'),
-        url('fonts/IBMPlexMono-ExtraLightItalic.woff') format('woff');
-    font-weight: 200;
-    font-style: italic;
 }

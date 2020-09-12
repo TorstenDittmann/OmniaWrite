@@ -1,13 +1,12 @@
 <script>
   import { _ } from "svelte-i18n";
-
   import { settings } from "../../stores";
-  import { deskgap } from "../../utils";
+  import { reloadWindow } from "../../bridge";
   import cloud from "../../appwrite";
+  import { Table, Cell, Row, Heading } from "../../components/Table";
+  import Spinner from "../../shared/Spinner.svelte";
   import moment from "moment";
   import "moment/locale/de";
-
-  import Spinner from "../../shared/Spinner.svelte";
 
   moment.locale($settings.language);
 
@@ -15,10 +14,15 @@
 
   function restoreBackup(id) {
     isLoadingBackup = true;
-    cloud.restoreBackup(id).then(response => {
-      isLoadingBackup = false;
-      deskgap.reload();
-    });
+    cloud
+      .restoreBackup(id)
+      .then(() => {
+        isLoadingBackup = false;
+        reloadWindow();
+      })
+      .catch(() => {
+        isLoadingBackup = false;
+      });
   }
   function formatBytes(a, b) {
     if (0 == a) return "0 Bytes";
@@ -30,71 +34,31 @@
   }
 </script>
 
-<style>
-  ul {
-    padding-inline-start: 0px;
-    margin-block-start: 0;
-    margin-block-end: 0;
-  }
-  ul li {
-    padding: 2rem 1rem;
-    display: flex;
-    justify-content: space-between;
-    opacity: 1;
-    transition: all 0.5s ease;
-    max-width: 800px;
-    cursor: pointer;
-  }
-
-  ul li:hover {
-    background-color: rgba(255, 255, 255, 0.1);
-  }
-
-  .from-now {
-    flex: 2;
-  }
-
-  .file-size {
-    flex: 1;
-  }
-
-  .date {
-    flex: 3;
-  }
-  .lnr {
-    font-size: 2rem;
-    margin-top: -0.5rem;
-  }
-
-  .file-size,
-  .date {
-    font-size: 0.8rem;
-  }
-</style>
-
 {#if isLoadingBackup}
   <Spinner />
   <br />
-  <i>{$_("cloud.backups.migrating")}</i>
+  <i>{$_('cloud.backups.migrating')}</i>
 {:else}
-  <h2>{$_("cloud.backups.title")}</h2>
+  <h2>{$_('cloud.backups.title')}</h2>
   {#await cloud.getAllBackups()}
     <Spinner />
   {:then backups}
-    <ul>
+    <Table>
+      <Row>
+        <Heading>Timestamp</Heading>
+        <Heading>Age</Heading>
+        <Heading>Size</Heading>
+      </Row>
       {#each backups.files as backup}
-        <li on:click={() => restoreBackup(backup.$id)}>
-          <span class="from-now">
-            {moment(backup.dateCreated, "X").fromNow()}
-          </span>
-          <span class="date">
-            {moment(backup.dateCreated, "X").format("MMMM Do YYYY, h:mm:ss a")}
-          </span>
-          <span class="file-size">{formatBytes(backup.sizeOriginal)}</span>
-          <span class="lnr lnr-cloud-download" />
-        </li>
+        <Row on:click={() => restoreBackup(backup.$id)}>
+          <Cell label="Timestamp">
+            {moment(backup.dateCreated, 'X').format('MMMM Do YYYY, h:mm:ss a')}
+          </Cell>
+          <Cell label="Age">{moment(backup.dateCreated, 'X').fromNow()}</Cell>
+          <Cell label="Size">{formatBytes(backup.sizeOriginal)}</Cell>
+        </Row>
       {/each}
-    </ul>
+    </Table>
   {:catch error}
     <p style="color: red">{error.message}</p>
   {/await}

@@ -1,248 +1,201 @@
-<script lang="javascript">
+<script>
   import { onMount, onDestroy } from "svelte";
   import { fade } from "svelte/transition";
-  import { scenes, chapters, state, cards, settings } from "../stores";
-  import { push, location } from "svelte-spa-router";
+  import { scenes, chapters, cards, state, settings, ui } from "../stores";
+  import { push } from "svelte-spa-router";
   import { _ } from "svelte-i18n";
-  import Paragraph, { QuoteTool } from "./Write/paragraph";
-
+  import OmniaEditor from "omnia-editor";
+  import tippy from "sveltejs-tippy";
   import Overview from "./Write/Overview.svelte";
-  import EditorJS from "@editorjs/editorjs";
-  import Header from "@editorjs/header";
-  import Quote from "@editorjs/quote";
-  import Toast from "../shared/Toast.svelte";
   import Placeholder from "../shared/Placeholder.svelte";
+  import Modal from "../shared/Modal.svelte";
 
   export let params = {};
   let currentScene;
-  let currentChapter;
-  let lastScene;
-  let editorHtml;
   let editor;
-  let editorChangeHappened;
-  let amountWords = 0;
-  let amountChars = 0;
+  let editorStatus = 0;
+  let currentHistory = 0;
+  let lengthHistory = 0;
+  let showCards = false;
+  let filteredCards = [];
+  const editorLanguage = {
+    placeholder: $_("write.editor.placeholder"),
+    switch: $_("write.editor.switch"),
+    delete: $_("write.editor.delete"),
+    confirmDelete: $_("write.editor.confirmDelete"),
+    blocks: {
+      paragraph: $_("write.editor.blocks.paragraph"),
+      heading: $_("write.editor.blocks.heading"),
+      quote: $_("write.editor.blocks.quote"),
+      code: $_("write.editor.blocks.code"),
+    },
+  };
 
-  let showToast = false;
-  let showToastText;
-
-  let focusMode = false;
-  let autosave;
-
-  $: currentScene = $scenes.filter(scene => scene.id == params.sceneId)[0];
-  $: state.setCurrentTitle(
-    params.sceneId ? currentScene.title : "No scene selected!"
-  );
+  $: currentScene = $scenes.find(scene => scene.id == params.sceneId);
   $: {
-    if ($location) {
-      init();
-    }
+    state.setCurrentTitle(
+      params.sceneId ? currentScene.title : "No scene selected!"
+    );
   }
 
+  const titleInput = () => {
+    scenes.setSceneTitle(currentScene.id, currentScene.title);
+  };
+
   onMount(() => {
-    clearTimeout(autosave);
-    if (params.sceneId !== null) {
-      document.addEventListener("keydown", shortcutListener, false);
-    }
+    window.addEventListener("hashchange", routeChange, false);
   });
 
   onDestroy(() => {
-    clearTimeout(autosave);
-    document.removeEventListener("keydown", shortcutListener);
-    if (editorChangeHappened) {
-      save(lastScene);
-    }
-    if (editor && typeof editor.destroy === "function") {
-      editor.destroy();
-    }
+    window.removeEventListener("hashchange", routeChange, false);
   });
 
-  function init() {
-    if (params.sceneId !== null) {
-      if (editor && typeof editor.destroy === "function") {
-        if (editorChangeHappened) {
-          save(lastScene);
-        }
-        editor.destroy();
-      }
-      editorChangeHappened = false;
-      editor = new EditorJS({
-        holder: "codex-editor",
-        placeholder: $_("write.editor.placeholder"),
-        data: currentScene.content,
-        onChange: () => {
-          clearTimeout(autosave);
-          editorChangeHappened = true;
-          countWordsAndChars();
-          if ($settings.autosave) {
-            autosave = setTimeout(() => {
-              save(params.sceneId);
-            }, 10000);
-          }
-        },
-        onReady: () => {
-          countWordsAndChars();
-        },
-        tools: {
-          quote: {
-            class: QuoteTool
-          },
-          paragraph: {
-            class: Paragraph,
-            inlineToolbar: ["bold", "italic", "quote"],
-            config: {
-              project: $state.currentProject,
-              cards: $cards.filter(card => {
-                return (
-                  card.project == $state.currentProject &&
-                  card.showTooltip == true
-                );
-              })
-            }
-          }
-        },
-        logLevel: "ERROR"
-      });
-      editor.tools;
-      lastScene = params.sceneId;
+  const routeChange = () => {
+    if (editor) {
+      editor.update();
+      document.querySelector(".content").scrollTo(0, 0);
     }
-  }
+  };
 
-  function save(param) {
-    editor
-      .save()
-      .then(outputData => {
-        clearTimeout(autosave);
-        scenes.setSceneContent(param, outputData);
-        editorChangeHappened = false;
-        showToast = true;
-        showToastText = $_("write.toast.saved");
-      })
-      .catch(error => {
-        console.error("Saving failed: ", error);
-      });
-  }
+  const change = e => {
+    scenes.setSceneContent(params.sceneId, e.detail);
+    editorStatus = 2;
+    filteredCards = $cards
+      .filter(e => e.showTooltip && e.project == $state.currentProject)
+      .filter(c =>
+        e.detail.blocks.some(
+          block => block.data.text && block.data.text.includes(c.title)
+        )
+      );
+  };
 
-  function shortcutListener(evt) {
-    evt = evt || window.event;
-
-    // Escape => Toggle focus mode
-    if (evt.keyCode == 27) {
-      evt.preventDefault();
-      toggleFocus();
-    }
-    // CTRL/CMD + S => Save
-    if (
-      (window.navigator.platform.match("Mac") ? evt.metaKey : evt.ctrlKey) &&
-      evt.keyCode == 83
-    ) {
-      evt.preventDefault();
-      save(params.sceneId);
-    }
-  }
-
-  function countWordsAndChars() {
-    if (document.getElementById("codex-editor")) {
-      amountChars = document.getElementById("codex-editor").innerText.length;
-      if (amountChars > 0) {
-        amountWords = document
-          .getElementById("codex-editor")
-          .innerText.split(" ").length;
-      } else {
-        amountWords = 0;
-      }
-    }
-  }
-
-  function switchScene(e) {
+  const switchScene = e => {
     push("/write/" + e.target.value);
     e.target.selectedIndex = 0;
-  }
+  };
 
-  function toggleFullscreen() {
-    let element = document.documentElement;
-    if (!document.fullscreen) {
-      element.webkitRequestFullscreen();
-    } else {
-      document.webkitExitFullscreen();
-    }
-  }
+  const toggleFocus = () => {
+    $ui.focus = !$ui.focus;
+  };
 
-  function toggleFocus() {
-    focusMode = !focusMode;
-    document.getElementById("content").classList.toggle("focus");
-    document.getElementById("titlebar").classList.toggle("focus-mode");
-  }
+  const undo = () => {
+    editor.history.undo();
+  };
 
-  function undo() {
-    document.execCommand("undo", false, null);
-  }
+  const redo = () => {
+    editor.history.redo();
+  };
 
-  function redo() {
-    document.execCommand("redo", false, null);
-  }
+  const init = () => {
+    editor.history.subscribe(n => {
+      currentHistory = n.current;
+      lengthHistory = n.data.length;
+    });
+  };
 </script>
 
-<style type="text/css">
-  * {
-    -webkit-tap-highlight-color: rgba(255, 255, 255, 0) !important;
-    -webkit-focus-ring-color: rgba(255, 255, 255, 0) !important;
-    outline: 0 !important;
-  }
-</style>
-
-<Toast bind:show={showToast} text={showToastText} />
 <div in:fade={{ duration: 100 }}>
   {#if $state.currentProject}
     {#if params.sceneId !== null}
+      <Modal bind:show={showCards}>
+        <h2 slot="header">{$_('write.toolbar.cards')}</h2>
+        {#each filteredCards as card}
+          <div>
+            <h2>{card.title}</h2>
+            <p>{card.content}</p>
+          </div>
+        {:else}
+          <p>
+            <Placeholder>{$_('write.toolbar.cardsEmpty')}</Placeholder>
+          </p>
+        {/each}
+      </Modal>
       <div class="toolbar">
-        <span class="tooltip">
-          {amountWords} {$_('write.toolbar.words')}
-          <span class="tooltiptext">
-            {amountChars} {$_('write.toolbar.chars')}
-          </span>
-        </span>
-        <span class="lnr lnr-undo tooltip" on:click={undo}>
-          <span class="tooltiptext">{$_('write.toolbar.undo')}</span>
-        </span>
-        <span class="lnr lnr-redo tooltip" on:click={redo}>
-          <span class="tooltiptext">{$_('write.toolbar.redo')}</span>
-        </span>
-        {#if editorChangeHappened}
-          <span
-            class="lnr lnr-checkmark-circle tooltip"
-            on:click={() => save(params.sceneId)}>
-            <span class="tooltiptext">{$_('write.toolbar.save')}</span>
-          </span>
-        {/if}
-        <span
-          class="lnr tooltip"
-          on:click={toggleFocus}
-          class:lnr-eye={!focusMode}
-          class:lnr-exit={focusMode}>
-          <span class="tooltiptext">{$_('write.toolbar.focus')}</span>
-        </span>
-        <!--<span class="lnr lnr-frame-expand tooltip" on:click={toggleFullscreen}>
-        <span class="tooltiptext">{$_('write.toolbar.fullscreen')}</span>
-      </span>-->
-        {#if focusMode}
-          <select id="focusSceneSelect" on:change={switchScene}>
-            <option value="" selected="selected">
-              {$_('write.toolbar.switchScene')}
-            </option>
-            {#each $chapters.filter(chapter => chapter.project == $state.currentProject) as chapter, i}
-              <optgroup label={chapter.title}>
-                {#each $scenes.filter(scene => scene.chapter == chapter.id) as scene}
-                  <option value={scene.id}>{scene.title}</option>
+        <div class="inner">
+          <div>
+            <span
+              class="lnr lnr-bold"
+              use:tippy={{ content: $_('write.toolbar.bold'), placement: 'bottom' }}
+              on:click={() => editor.toggleFormat('bold')} />
+            <span
+              class="lnr lnr-italic"
+              use:tippy={{ content: $_('write.toolbar.italic'), placement: 'bottom' }}
+              on:click={() => editor.toggleFormat('italic')} />
+            <span
+              class="lnr lnr-underline"
+              use:tippy={{ content: $_('write.toolbar.underline'), placement: 'bottom' }}
+              on:click={() => editor.toggleFormat('underline')} />
+            {#if currentHistory < lengthHistory - 1}
+              <span
+                transition:fade={{ duration: 100 }}
+                class="lnr lnr-undo"
+                use:tippy={{ content: $_('write.toolbar.undo'), placement: 'bottom' }}
+                on:click={undo} />
+            {/if}
+            {#if currentHistory !== 0}
+              <span
+                transition:fade={{ duration: 100 }}
+                class="lnr lnr-redo"
+                use:tippy={{ content: $_('write.toolbar.redo'), placement: 'bottom' }}
+                on:click={redo} />
+            {/if}
+          </div>
+          <div>
+            {#if filteredCards.length > 0}
+              <span
+                transition:fade={{ duration: 100 }}
+                class="lnr lnr-bookmark"
+                use:tippy={{ content: $_('write.toolbar.cards'), placement: 'bottom' }}
+                on:click={() => (showCards = true)} />
+            {/if}
+            {#if $ui.focus}
+              <!-- svelte-ignore a11y-no-onchange -->
+              <select
+                id="focusSceneSelect"
+                transition:fade={{ duration: 100 }}
+                on:change={switchScene}
+                class="lnr"
+                use:tippy={{ content: $_('write.toolbar.switchScene'), placement: 'bottom' }}>
+                <option value="" selected="selected">&#xe871;</option>
+                {#each $chapters.filter(chapter => chapter.project == $state.currentProject) as chapter}
+                  <optgroup label={chapter.title}>
+                    {#each $scenes.filter(scene => scene.chapter == chapter.id) as scene}
+                      <option value={scene.id}>{scene.title}</option>
+                    {/each}
+                  </optgroup>
                 {/each}
-              </optgroup>
-            {/each}
-          </select>
-        {/if}
+              </select>
+            {/if}
+          </div>
+          <div>
+            <span
+              class="lnr"
+              use:tippy={{ content: $_('write.toolbar.focus'), placement: 'bottom' }}
+              on:click={toggleFocus}
+              class:lnr-eye={!$ui.focus}
+              class:lnr-exit={$ui.focus} />
+            <span
+              class="lnr"
+              use:tippy={{ content: $_('write.toolbar.savestate'), placement: 'bottom' }}
+              class:lnr-sync={editorStatus === 1}
+              class:spinner={editorStatus === 1}
+              class:lnr-checkmark-circle={editorStatus === 2} />
+          </div>
+        </div>
       </div>
-      <div class="editpane">
-        <h1 contenteditable="true">{currentScene.title}</h1>
-        <div id="codex-editor" />
+      <div class="editpane" style="--quotation-marks:{$_('write.quote.marks')}">
+        <h1
+          contenteditable
+          bind:textContent={currentScene.title}
+          on:input={titleInput} />
+        <OmniaEditor
+          bind:this={editor}
+          bind:data={currentScene.content}
+          spellCheck={$settings.spellCheck}
+          translation={editorLanguage}
+          on:init={init}
+          on:input={() => (editorStatus = 1)}
+          on:change={change} />
       </div>
     {:else}
       <Overview />
@@ -251,3 +204,98 @@
     <Placeholder />
   {/if}
 </div>
+
+<style lang="scss">
+  * {
+    -webkit-tap-highlight-color: rgba(255, 255, 255, 0) !important;
+    -webkit-focus-ring-color: rgba(255, 255, 255, 0) !important;
+    outline: 0 !important;
+  }
+
+  .editpane {
+    margin: 0 auto;
+    max-width: 800px;
+    margin-bottom: 50vh;
+
+    @media (min-width: 1200px) {
+      padding: 10px;
+      box-shadow: 0 5px 26px 2px rgba(0, 0, 0, 0.2);
+    }
+
+    > h1 {
+      font-family: "IBM Plex Mono", monospace;
+      text-align: center;
+    }
+  }
+
+  select#focusSceneSelect {
+    background-color: var(--select-background);
+    font-weight: bold;
+    width: 1.5rem;
+    color: var(--text-color);
+    text-align: center;
+    -webkit-appearance: none;
+    border: 0;
+    cursor: pointer;
+
+    &:focus,
+    &:active {
+      border: 0;
+      outline: 0;
+    }
+  }
+
+  .toolbar {
+    position: sticky;
+    position: -webkit-sticky;
+    top: 0;
+    background-color: var(--background-color);
+    padding: 1rem;
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+    z-index: 8;
+
+    > .inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      align-content: center;
+      margin: auto;
+      max-width: 800px;
+
+      > div {
+        * {
+          margin: 0 0.5rem;
+          opacity: 0.65;
+          cursor: pointer;
+        }
+        *:hover {
+          opacity: 1;
+        }
+        span {
+          font-size: 1rem;
+        }
+        .lnr {
+          font-size: unset;
+
+          &.spinner {
+            display: inline-block;
+            -webkit-animation: spin 2s infinite linear;
+            animation: spin 2s infinite linear;
+          }
+          @keyframes spin {
+            0% {
+              -webkit-transform: rotate(0deg);
+              transform: rotate(0deg);
+            }
+
+            100% {
+              -webkit-transform: rotate(359deg);
+              transform: rotate(359deg);
+            }
+          }
+        }
+      }
+    }
+  }
+</style>

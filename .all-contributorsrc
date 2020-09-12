@@ -1,19 +1,15 @@
 {
+  "projectName": "OmniaWrite",
+  "projectOwner": "TorstenDittmann",
+  "repoType": "github",
+  "repoHost": "https://github.com",
   "files": [
     "README.md"
   ],
   "imageSize": 100,
-  "commit": false,
+  "commit": true,
+  "commitConvention": "none",
   "contributors": [
-    {
-      "login": "TorstenDittmann",
-      "name": "Torsten Dittmann",
-      "avatar_url": "https://avatars1.githubusercontent.com/u/1759475?v=4",
-      "profile": "https://torstendittmann.now.sh",
-      "contributions": [
-        "maintenance"
-      ]
-    },
     {
       "login": "AnthonyBoucher",
       "name": "AnthonyBoucher",
@@ -22,21 +18,7 @@
       "contributions": [
         "maintenance"
       ]
-    },
-    {
-      "login": "BenStigsen",
-      "name": "Benjamin Stigsen",
-      "avatar_url": "https://avatars3.githubusercontent.com/u/24865450?v=4",
-      "profile": "https://stigsen.xyz/",
-      "contributions": [
-        "ideas"
-      ]
     }
   ],
-  "contributorsPerLine": 7,
-  "projectName": "OmniaWrite",
-  "projectOwner": "TorstenDittmann",
-  "repoType": "github",
-  "repoHost": "https://github.com",
-  "skipCi": true
+  "contributorsPerLine": 7
 }

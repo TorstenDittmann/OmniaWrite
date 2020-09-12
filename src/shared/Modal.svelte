@@ -1,14 +1,48 @@
-<script lang="javascript">
-  import { createEventDispatcher } from "svelte";
+<script>
   import { fade, scale } from "svelte/transition";
 
   export let show = false;
   export let fullscreen = false;
   export let persistent = false;
+
+  const handleKeydown = event => {
+    if (event.keyCode === 27 && !persistent) {
+      event.preventDefault();
+      show = false;
+    }
+  };
 </script>
 
-<style type="text/css">
-  .modal-background {
+<svelte:window on:keydown={handleKeydown} />
+{#if show}
+  <div
+    class="modal-backdrop"
+    on:click={() => (persistent ? '' : (show = false))}
+    in:fade={{ duration: 200 }}
+    out:fade={{ duration: 200 }} />
+  <div
+    class="modal"
+    in:scale={{ duration: 200 }}
+    out:scale={{ duration: 200 }}
+    class:fullscreen>
+    <div class="modal-header">
+      <slot name="header" />
+      {#if !persistent}
+        <div class="modal-close" on:click={() => (show = false)}>
+          <span class="lnr lnr-cross" />
+        </div>
+      {/if}
+    </div>
+    <div class="modal-content">
+      <slot />
+    </div>
+  </div>
+{/if}
+
+<style lang="scss">
+  @import "../css/mixins/devices";
+
+  .modal-backdrop {
     position: fixed;
     top: 0;
     left: 0;
@@ -17,61 +51,68 @@
     background: rgba(0, 0, 0, 0.5);
     z-index: 998;
   }
-
   .modal {
     position: absolute;
     left: 50%;
     top: 50%;
-    width: calc(100vw - 2em);
-    max-width: 32em;
-    max-height: calc(100vh - 4em);
+    width: 100vw;
+    max-height: 100vh;
     overflow: auto;
     transform: translate(-50%, -50%);
-    padding: 1em;
     border-radius: 0.2em;
     background-color: var(--background-color);
     z-index: 999;
-  }
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: 4em auto;
+    grid-template-areas: "modal-header" "modal-content";
 
-  .modal-close {
-    float: right;
-    margin-right: 1em;
-    opacity: 0.65;
-    cursor: pointer;
-  }
+    @include desktop {
+      max-width: 32rem;
+      max-height: 80vh;
+    }
 
-  .modal-close:hover {
-    opacity: 1;
-  }
+    .modal-header {
+      height: 100%;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      justify-content: space-between;
+      align-content: stretch;
+      align-items: center;
+      padding: 0 1rem;
+      background-color: var(--menu-active);
 
-  .modal.fullscreen {
-    max-width: 100vw;
-    height: 100vh;
-    max-height: 100vh;
-    width: 100vw;
-    text-align: center;
-    background-color: var(--secondary-color);
+      .modal-close {
+        font-size: 1.5rem;
+        opacity: 0.65;
+        cursor: pointer;
+        transition: all 0.2s;
+
+        &:hover {
+          opacity: 1;
+          transform: scale(1.25);
+        }
+      }
+    }
+
+    .modal-content {
+      overflow: auto;
+      max-height: calc(100vh - 4rem);
+      padding: 0 0.5rem;
+
+      @include desktop {
+        max-height: calc(80vh - 4rem);
+      }
+    }
+
+    &.fullscreen {
+      max-width: 100vw;
+      height: 100vh;
+      max-height: 100vh;
+      width: 100vw;
+      text-align: center;
+      background-color: var(--secondary-color);
+    }
   }
 </style>
-
-{#if show}
-  <div
-    class="modal-background"
-    on:click={() => (show = false)}
-    in:fade={{ duration: 200 }}
-    out:fade={{ duration: 200 }} />
-
-  <div
-    class="modal"
-    in:scale={{ duration: 200 }}
-    out:scale={{ duration: 200 }}
-    class:fullscreen>
-    {#if !persistent}
-      <div class="modal-close" on:click={() => (show = false)}>
-        <span class="lnr lnr-cross" />
-      </div>
-    {/if}
-    <slot name="header" />
-    <slot />
-  </div>
-{/if}
