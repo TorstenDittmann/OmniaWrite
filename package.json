@@ -15,7 +15,7 @@
     "url": "https://github.com/torstendittmann/omniawrite"
   },
   "dependencies": {
-    "node-fetch": "^2.6.0",
+    "node-fetch": "^2.6.1",
     "semver": "^7.3.2"
   },
   "devDependencies": {
