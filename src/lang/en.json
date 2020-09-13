@@ -19,6 +19,9 @@
   "common": {
     "no-project-selected": "No project selected",
     "update-toast": "New update installed!<br>Click here to restart.",
+    "update": {
+      "title": "Update❗"
+    },
     "modals": {
       "newBackup": {
         "header": "Cloud sync",

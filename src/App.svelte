@@ -122,7 +122,7 @@
         replace($state.lastLocation);
       }
     }
-    if (version !== $intern.version) {
+    if ($intern.installed && version !== $intern.version) {
       showChangelog = true;
       $intern.version = version;
     }

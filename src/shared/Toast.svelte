@@ -40,7 +40,6 @@
     z-index: 9999;
     bottom: 0;
     right: 0;
-    cursor: pointer;
   }
   @media (min-width: 960px) {
     div {

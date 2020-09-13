@@ -45,8 +45,7 @@
 
   let completeForm = false;
 
-  const exportApi =
-    "https://omniawrite-git-11.torstendittmann.vercel.app/api/export";
+  const exportApi = "https://app.omniawrite.com/api/export";
 
   const languages = ["en", "de", "ru", "es", "pt", "fr", "it"].map(language => {
     return {
@@ -65,9 +64,7 @@
     cover.length !== 0;
 
   const fetchTemplates = async () => {
-    const req = await fetch(
-      "https://omniawrite-git-11.torstendittmann.now.sh/api/templates"
-    );
+    const req = await fetch("https://app.omniawrite.com/api/templates");
     return req.json();
   };
 
