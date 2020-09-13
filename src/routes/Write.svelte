@@ -223,7 +223,7 @@
     }
 
     > h1 {
-      font-family: "IBM Plex Mono", monospace;
+      font-family: "Libre Baskerville";
       text-align: center;
     }
   }
