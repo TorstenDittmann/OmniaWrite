@@ -19,13 +19,13 @@ jobs:
         with:
           node-version: 10
       - name: Install Snapcraft
-        uses: samuelmeuli/action-snapcraft@v1.1.1
+        uses: samuelmeuli/action-snapcraft@v1.1.2
         if: startsWith(matrix.os, 'ubuntu-latest')
         with:
           snapcraft_token: ${{ secrets.snapcraft_token }}
 
       - name: Build/release Electron app
-        uses: samuelmeuli/action-electron-builder@v1.4.0
+        uses: samuelmeuli/action-electron-builder@v1.6.0
         with:
           # GitHub token, automatically provided to the action
           # (No need to define this secret in the repo settings)
