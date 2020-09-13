@@ -4,7 +4,6 @@ public/bundle.*
 dist/
 public/service-worker.js
 src/licenses.json
-src/changelog.json
 public/precache-manifest.*
 public/workbox-*
 public/fonts/*
