@@ -19,7 +19,7 @@ init({
 Sentry.init({
   dsn:
     "https://23916d0950d744b49ded80f0177467a5@o350177.ingest.sentry.io/2319182",
-  release: `omniawrite@${pkg.version}`
+  release: `omniawrite@${pkg.version}`,
 });
 
 const app = new App({
