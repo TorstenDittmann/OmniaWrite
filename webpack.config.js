@@ -21,7 +21,7 @@ module.exports = {
   output: {
     path: __dirname + "/public",
     filename: "[name].js",
-    chunkFilename: "[name].[id].js"
+    chunkFilename: "bundle.[name].js"
   },
   module: {
     rules: [
@@ -31,7 +31,8 @@ module.exports = {
           loader: "svelte-loader",
           options: {
             emitCss: true,
-            hotReload: true
+            hotReload: true,
+            preprocess: require("svelte-preprocess")()
           }
         }
       },

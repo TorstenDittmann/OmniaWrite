@@ -4,11 +4,11 @@ public/bundle.*
 dist/
 public/service-worker.js
 src/licenses.json
+src/changelog.json
 public/precache-manifest.*
 public/workbox-*
-public/fonts
+public/fonts/*
 
-mobile/platforms/
-mobile/plugins/
-mobile/node_modules/
-mobile/www/*
+.env
+.env.build
+.vercel

@@ -1,29 +1,43 @@
 <script>
   import { _ } from "svelte-i18n";
+  import {
+    InputEmail,
+    Textarea,
+    ButtonGroup,
+    Button,
+  } from "../components/Forms";
 
   import Modal from "./Modal.svelte";
 
   import { ui } from "../stores";
 
-  let email;
-  let description;
+  let email = "";
+  let description = "";
 
   let sent = false;
+  let loading = false;
+
+  $: checkForm = email !== "" && description !== "";
 
   const send = () => {
+    if (!checkForm) {
+      return false;
+    }
+    loading = true;
     fetch(
       "https://doorbell.io/api/applications/11083/submit?key=E2XjFpPM7gFQpj78ekxtNua2Qdcl2PqzqvxBBaDq6I30UOErH40aoAtkwYHWnTgx",
       {
         method: "post",
         headers: {
-          "Content-Type": "application/json"
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({
           email: email,
-          message: description
-        })
+          message: description,
+        }),
       }
     ).then(response => {
+      loading = false;
       if (response.ok) {
         sent = true;
       }
@@ -33,28 +47,22 @@
 </script>
 
 <Modal bind:show={$ui.support.show}>
+  <h2 slot="header">{$_('feedback.title')}</h2>
   {#if !sent}
-    <h2>{$_('feedback.title')}</h2>
-    {$_('feedback.sub')}
+    <p>{$_('feedback.sub')}</p>
     <hr />
     <form on:submit|preventDefault={send}>
-      <div class="field">
-        <label class="big" for="email">{$_('feedback.email')}</label>
-        <input
-          id="email"
-          type="email"
-          placeholder="john.doe@email.tld"
-          bind:value={email} />
-      </div>
-      <div class="field">
-        <textarea rows="8" bind:value={description} />
-      </div>
-      <div class="btn-group">
-        <button on:click|preventDefault={send}>
-          <span class="lnr lnr-sync spinner" />
+      <InputEmail
+        label={$_('feedback.email')}
+        bind:value={email}
+        required={true}
+        placeholder="john.does@email.ltd" />
+      <Textarea bind:value={description} label={$_('feedback.description')} />
+      <ButtonGroup>
+        <Button on:click={send} {loading} disabled={!checkForm}>
           {$_('feedback.action')}
-        </button>
-      </div>
+        </Button>
+      </ButtonGroup>
     </form>
   {:else}
     <center>

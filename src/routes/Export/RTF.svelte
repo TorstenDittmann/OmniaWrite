@@ -1,32 +1,38 @@
 <script>
-  import { ExportRTF } from "../../export";
-  import { state } from "../../stores";
+  import { fade } from "svelte/transition";
   import { _ } from "svelte-i18n";
+  import { state } from "../../stores";
+  import { Button, ButtonGroup } from "../../components/Forms";
+  import { saveFile } from "../../bridge";
+  import Export from "./RTF/collectData";
+  import Done from "./Shared/Done.svelte";
+  import Spinner from "../../shared/Spinner.svelte";
 
-  let loading = false;
+  let done = false;
+  let progress = false;
+  let file;
 
-  const download = () => {
-    loading = true;
-    let generateDownload = new ExportRTF($state.currentProject, author);
-    generateDownload
-      .fetchTemplate()
-      .then(() => {
-        loading = false;
-      })
-      .finally(() => {
-        generateDownload = null;
-      });
+  const download = async () => {
+    progress = true;
+    let generateDownload = new Export($state.currentProject);
+    const data = await generateDownload.fetchData();
+    const blob = new Blob([data.document], {
+      type: "text/plain",
+    });
+    file = await saveFile(blob, data.filename);
+    done = true;
   };
 </script>
 
-<h2>{$_('export.title.rtf')}</h2>
-<div class="grid">
-  <div on:click={download}>
-    {#if loading}
-      <span class="lnr lnr-sync spinner loading" />
-    {:else}
-      {$_('export.downloadRtf')}
-      <span class="lnr lnr-download" />
-    {/if}
-  </div>
+<div in:fade={{ duration: 100 }}>
+  {#if done}
+    <Done {file} />
+  {:else if progress}
+    <Spinner />
+  {:else}
+    <p>{$_('export.rtf.explain')}</p>
+    <ButtonGroup>
+      <Button on:click={download}>{$_('export.action.export')}</Button>
+    </ButtonGroup>
+  {/if}
 </div>

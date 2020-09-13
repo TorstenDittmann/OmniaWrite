@@ -1,6 +1,6 @@
 {
   "name": "omniawrite",
-  "version": "1.0.4",
+  "version": "1.1.0",
   "main": "./src/electron.js",
   "author": {
     "name": "OmniaWrite",
@@ -9,65 +9,67 @@
   },
   "description": "A text editor engineered for creative writing.",
   "homepage": "https://www.omniawrite.com/",
-  "license": "Attribution-NonCommercial-ShareAlike 4.0 International",
+  "license": "Apache-2.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/torstendittmann/omniawrite"
   },
   "dependencies": {
-    "node-fetch": "^2.6.0",
-    "semver": "^7.3.2"
+    "@capacitor/android": "^2.4.1",
+    "@capacitor/cli": "^2.4.1",
+    "@capacitor/core": "^2.4.1",
+    "node-fetch": "^2.6.1",
+    "omnia-ebook-generator": "^0.1.2",
+    "omnia-editor": "0.0.16",
+    "semver": "^7.3.2",
+    "sortablejs": "^1.10.2",
+    "sveltejs-tippy": "^3.0.0"
   },
   "devDependencies": {
-    "@editorjs/editorjs": "^2.17.0",
-    "@editorjs/header": "^2.4.0",
-    "@editorjs/paragraph": "^2.6.1",
-    "@editorjs/quote": "^2.3.0",
-    "@sentry/browser": "^5.15.4",
     "@types/file-saver": "^2.0.1",
     "appwrite": "^1.0.29",
-    "copy-dir": "^1.2.0",
     "cross-env": "^7.0.2",
-    "css-loader": "^3.5.2",
-    "electron": "^8.2.2",
-    "electron-builder": "^22.4.1",
-    "eslint": "^6.8.0",
+    "css-loader": "^4.3.0",
+    "electron": "^10.1.1",
+    "electron-builder": "^22.8.0",
+    "eslint": "^7.8.1",
     "eslint-plugin-svelte3": "^2.7.3",
-    "file-loader": "^6.0.0",
+    "file-loader": "^6.1.0",
     "file-saver": "^2.0.2",
-    "jszip": "^3.3.0",
+    "husky": "^4.3.0",
     "license-checker": "^25.0.1",
-    "mini-css-extract-plugin": "^0.9.0",
-    "moment": "^2.24.0",
-    "node-sass": "^4.13.1",
+    "mini-css-extract-plugin": "^0.11.1",
+    "moment": "^2.27.0",
     "normalize.css": "^8.0.1",
     "npm-run-all": "^4.1.5",
-    "sass-loader": "^8.0.2",
-    "serve": "^11.3.0",
-    "sirv-cli": "^0.4.5",
+    "prettier": "^2.1.1",
+    "prettier-plugin-svelte": "^1.2.1",
+    "sass": "^1.26.10",
+    "sass-loader": "^10.0.2",
     "style-loader": "^1.1.3",
-    "svelte": "^3.20.1",
-    "svelte-i18n": "^3.0.3",
+    "svelte": "^3.25.0",
+    "svelte-i18n": "^3.0.4",
     "svelte-loader": "^2.13.6",
-    "svelte-spa-router": "^2.1.0",
-    "webpack": "^4.42.1",
-    "webpack-cli": "^3.3.11",
-    "webpack-dev-server": "^3.10.3",
-    "workbox-webpack-plugin": "^5.1.2",
-    "workbox-window": "^5.1.2"
+    "svelte-preprocess": "^4.2.1",
+    "svelte-spa-router": "^2.2.0",
+    "webpack": "^4.44.1",
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.11.0",
+    "workbox-webpack-plugin": "^5.1.4",
+    "workbox-window": "^5.1.4"
   },
   "scripts": {
-    "build": "run-s license svelte-build",
-    "build-phonegap": "run-s license svelte-build-phonegap prepare-phonegap",
-    "build-electron": "run-s svelte-build electron-builder",
-    "svelte-build": "cross-env NODE_ENV=production webpack",
-    "svelte-build-phonegap": "cross-env PHONEGAP=true NODE_ENV=production webpack",
+    "build": "run-s prepare:* svelte-build",
+    "build:cap": "run-s build cap:sync",
     "dev": "webpack-dev-server --content-base public",
     "electron": "run-s build pure-electron",
-    "license": "license-checker --exclude \"MIT\" --json --customPath ./src/licenses.json > ./src/licenses.json",
+    "svelte-build": "cross-env NODE_ENV=production webpack",
+    "prepare:license": "license-checker --exclude \"MIT\" --json --customPath ./src/licenses.json > ./src/licenses.json",
+    "prepare:changelog": "node ./build/scripts/changelog.js",
     "pure-electron": "electron .",
-    "electron-builder": "electron-builder build --dir --macos pkg",
-    "prepare-phonegap": "node scripts/phonegap.js"
+    "cap:sync": "cap sync",
+    "lint": "eslint src/",
+    "prettier": "prettier --write --plugin-search-dir= ./src/**/*.{js,svelte,json,scss}"
   },
   "build": {
     "appId": "com.omniawrite.app",
@@ -96,5 +98,10 @@
       ]
     },
     "win": {}
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "run-s lint prettier"
+    }
   }
 }

@@ -1,7 +1,16 @@
-<script lang="javascript">
+<script>
   import { fade } from "svelte/transition";
   import { cards, state } from "../stores";
   import { _ } from "svelte-i18n";
+  import { Grid, GridElement } from "../components/Grid";
+  import {
+    Input,
+    Textarea,
+    Checkbox,
+    ButtonGroup,
+    Button,
+    Search,
+  } from "../components/Forms";
 
   import Placeholder from "../shared/Placeholder.svelte";
   import Modal from "../shared/Modal.svelte";
@@ -13,7 +22,7 @@
   let newCardObject = {
     title: "",
     content: "",
-    showTooltip: ""
+    showTooltip: false,
   };
 
   let editCardObject = {
@@ -21,10 +30,10 @@
     project: null,
     title: "",
     content: "",
-    showTooltip: ""
+    showTooltip: false,
   };
 
-  function createCard() {
+  const createCard = () => {
     if (newCardObject.title.length > 0) {
       cards.createCard(
         $state.currentProject,
@@ -33,150 +42,106 @@
         newCardObject.showTooltip
       );
       showCreateCard = false;
-    } else {
-      window.alert("Title can't be empty.");
     }
-  }
+  };
 
-  function editCard() {
+  const editCard = () => {
     if (editCardObject.title.length > 0) {
       cards.setCard(editCardObject);
       showEditCard = false;
-    } else {
-      window.alert("Title can't be empty.");
     }
-  }
-  function removeCard(cardId) {
-    let confirmed = confirm($_("overview.cards.confirmDelete"));
+  };
+
+  const removeCard = cardId => {
+    let confirmed = confirm($_("cards.modal.confirmDelete"));
     if (confirmed == true) {
       showEditCard = false;
       cards.removeCard(cardId);
     }
-  }
+  };
 
   $: filteredCards = searchInput
     ? $cards.filter(
         card =>
           card.project == $state.currentProject &&
-          (card.title.toLowerCase().startsWith(searchInput.toLowerCase()) ||
+          (card.title.toLowerCase().includes(searchInput.toLowerCase()) ||
             card.content.toLowerCase().includes(searchInput.toLowerCase()))
       )
     : $cards.filter(card => card.project == $state.currentProject);
 </script>
 
 <Modal bind:show={showCreateCard}>
-  <h2 slot="header">{$_("cards.modal.newHeader")}</h2>
+  <h2 slot="header">{$_('cards.modal.newHeader')}</h2>
   <form on:submit|preventDefault={createCard}>
-    <div class="field">
-      <label for="createTitle">{$_("cards.modal.title")}</label>
-      <input
-        id="createTitle"
-        autocomplete="off"
-        placeholder="enter your title"
-        type="text"
-        bind:value={newCardObject.title} />
-    </div>
-    <div class="field">
-      <label for="createContent">{$_("cards.modal.content")}</label>
-      <textarea
-        id="createContent"
-        rows="10"
-        bind:value={newCardObject.content} />
-    </div>
-    <div class="field">
-      <label for="showTooltip">{$_("cards.modal.showInScenes")}</label>
-      <p>
-        <input
-          id="showTooltip"
-          type="checkbox"
-          bind:checked={newCardObject.showTooltip} />
-        <label for="showTooltip" />
-      </p>
-    </div>
-    {#if newCardObject.title.length > 0}
-      <div class="btn-group">
-        <button on:click|preventDefault={createCard}>
-          {$_("cards.modal.buttonSave")}
-        </button>
-      </div>
-    {/if}
+    <Input
+      label={$_('cards.modal.title')}
+      bind:value={newCardObject.title}
+      autofocus="true"
+      autocomplete="off"
+      placeholder={$_('placeholder.title')}
+      helper={$_('cards.modal.helper.title')} />
+    <Textarea
+      label={$_('cards.modal.content')}
+      bind:value={newCardObject.content} />
+    <Checkbox
+      label={$_('cards.modal.showInScenes')}
+      bind:value={newCardObject.showTooltip}
+      helper={$_('cards.modal.helper.tooltip')} />
+    <ButtonGroup>
+      <Button on:click={createCard} disabled={newCardObject.title.length === 0}>
+        {$_('cards.modal.buttonSave')}
+      </Button>
+    </ButtonGroup>
   </form>
 </Modal>
 
 <Modal bind:show={showEditCard}>
-  <h2 slot="header">{$_("cards.modal.editHeader")} '{editCardObject.title}'</h2>
+  <h2 slot="header">{$_('cards.modal.editHeader')} '{editCardObject.title}'</h2>
   <form on:submit|preventDefault={editCard}>
-    <div class="field">
-      <label for="createTitle">{$_("cards.modal.title")}</label>
-      <input
-        id="createTitle"
-        autocomplete="off"
-        placeholder="enter your title"
-        type="text"
-        bind:value={editCardObject.title} />
-    </div>
-    <div class="field">
-      <label for="createContent">{$_("cards.modal.content")}</label>
-      <textarea
-        id="createContent"
-        rows="10"
-        bind:value={editCardObject.content} />
-    </div>
-    <div class="field">
-      <label for="showTooltip">{$_("cards.modal.showInScenes")}</label>
-      <p>
-        <input
-          id="showTooltip"
-          type="checkbox"
-          bind:checked={editCardObject.showTooltip} />
-        <label for="showTooltip" />
-      </p>
-    </div>
-    <div class="btn-group">
-      {#if editCardObject.title.length > 0}
-        <button on:click|preventDefault={editCard}>
-          {$_("cards.modal.buttonSave")}
-        </button>
-      {/if}
-      <button
-        style="float: right;"
-        class="warning"
-        on:click={() => removeCard(editCardObject.id)}>
-        {$_("sidebar.modal.edit.buttonDelete")}
-      </button>
-    </div>
+    <Input
+      label={$_('cards.modal.title')}
+      bind:value={editCardObject.title}
+      autocomplete="off"
+      placeholder={$_('cards.modal.placeholder.title')}
+      helper={$_('cards.modal.helper.title')} />
+    <Textarea
+      label={$_('cards.modal.content')}
+      bind:value={editCardObject.content} />
+    <Checkbox
+      label={$_('cards.modal.showInScenes')}
+      bind:value={editCardObject.showTooltip}
+      helper={$_('cards.modal.helper.tooltip')} />
+    <ButtonGroup>
+      <Button on:click={editCard} disabled={editCardObject.title.length === 0}>
+        {$_('cards.modal.buttonSave')}
+      </Button>
+      <Button on:click={() => removeCard(editCardObject.id)} color="red">
+        {$_('cards.modal.buttonDelete')}
+      </Button>
+    </ButtonGroup>
   </form>
 </Modal>
 
 <div in:fade={{ duration: 100 }}>
   {#if $state.currentProject}
-    <div class="field">
-      <input
-        autocomplete="off"
-        placeholder={$_("cards.search")}
-        type="search"
-        bind:value={searchInput} />
-    </div>
-    <div id="cards" class="grid">
-      <div class="new" on:click={() => (showCreateCard = true)}>
+    <Search
+      placeholder={$_('cards.search')}
+      bind:value={searchInput}
+      autocomplete="off" />
+    <Grid>
+      <GridElement action="true" on:click={() => (showCreateCard = true)}>
         <span class="lnr lnr-plus-circle" />
-      </div>
+      </GridElement>
       {#each filteredCards as card}
-        <div
-          id="card"
+        <GridElement
+          title={card.title}
           on:click={() => {
             [showEditCard, editCardObject] = [true, card];
           }}>
-          <h2>
-            {#if card.showTooltip}
-              <span class="lnr lnr-checkmark-circle" />
-            {/if}
-            {card.title}
-          </h2>
           {card.content}
-        </div>
+        </GridElement>
       {/each}
-    </div>
+    </Grid>
   {:else}
     <Placeholder />
   {/if}

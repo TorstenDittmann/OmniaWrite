@@ -1,59 +1,45 @@
 <script>
-  import { createEventDispatcher } from "svelte";
   import { _ } from "svelte-i18n";
   import { push } from "svelte-spa-router";
-
-  import { state, scenes } from "../../stores";
-
+  import { scenes } from "../../stores";
+  import { Input, ButtonGroup, Button } from "../../components/Forms";
   import Modal from "../../shared/Modal.svelte";
 
   export let show;
   export let data;
 
-  function editScene() {
+  const editScene = () => {
     scenes.setSceneTitle(data.id, data.title);
     show = false;
-  }
+  };
 
-  function removeScene(sceneId) {
+  const removeScene = sceneId => {
     let confirmed = confirm($_("sidebar.delete.scene"));
     if (confirmed == true) {
       show = false;
       push("/write");
       window.setTimeout(() => scenes.removeScene(sceneId), 200);
     }
-  }
+  };
 </script>
 
-<style>
-
-</style>
-
 <Modal bind:show>
-  <h2 slot="header">{data.title}</h2>
+  <h2 slot="header">{$_('sidebar.editScene')}</h2>
   <form on:submit|preventDefault={editScene}>
-    <div class="field">
-      <label for="editChapterInput">{$_("sidebar.modal.title")}</label>
-      <input
-        id="editChapterInput"
-        bind:value={data.title}
-        autocomplete="off"
-        placeholder="enter your title"
-        type="text" />
-    </div>
-    <br />
-    <div class="btn-group">
-      {#if data.title.length > 0}
-        <button on:click={editScene} type="submit">
-          {$_("sidebar.modal.edit.buttonSave")}
-        </button>
-      {/if}
-      <button
-        style="float: right;"
-        class="warning"
-        on:click={() => removeScene(data.id)}>
-        {$_("sidebar.modal.edit.buttonDelete")}
-      </button>
-    </div>
+    <Input
+      label={$_('sidebar.modal.title')}
+      bind:value={data.title}
+      autocomplete="off"
+      autofocus="true"
+      placeholder={$_('placeholder.title')} />
+
+    <ButtonGroup>
+      <Button on:click={editScene} disabled={data.title.length === 0}>
+        {$_('sidebar.modal.edit.buttonSave')}
+      </Button>
+      <Button on:click={() => removeScene(data.id)} color="red">
+        {$_('sidebar.modal.edit.buttonDelete')}
+      </Button>
+    </ButtonGroup>
   </form>
 </Modal>

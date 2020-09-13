@@ -1,0 +1,13 @@
+{
+  "build": {
+    "env": {
+      "API_ID": "@api_id",
+      "API_KEY": "@api_key"
+    }
+  },
+  "functions": {
+    "api/export.js": {
+      "includeFiles": "node_modules/omnia-ebook-generator/templates/**"
+    }
+  }
+}
