@@ -1,3 +1,5 @@
+import * as Sentry from "@sentry/browser";
+
 import { register, init } from "svelte-i18n";
 import pkg from "../package.json";
 
@@ -12,6 +14,12 @@ register("de", () => import(/* webpackChunkName: "de" */ "./lang/de.json"));
 init({
   fallbackLocale: "en",
   initialLocale: JSON.parse(localStorage.getItem("settings")).language || "en",
+});
+
+Sentry.init({
+  dsn:
+    "https://23916d0950d744b49ded80f0177467a5@o350177.ingest.sentry.io/2319182",
+  release: `omniawrite@${pkg.version}`
 });
 
 const app = new App({
