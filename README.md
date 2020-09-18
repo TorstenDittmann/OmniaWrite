@@ -63,7 +63,7 @@ OmniaWrite will support Windows, Linux, macOS, Android, iOS and can also run in 
 * [Capacitor](https://capacitorjs.com)
 
 ## Contributing
-Current development branch: [1.1](https://github.com/TorstenDittmann/OmniaWrite/tree/1.1)
+Current development branch: [dev](https://github.com/TorstenDittmann/OmniaWrite/tree/dev)
 
 ## Releasing
 
