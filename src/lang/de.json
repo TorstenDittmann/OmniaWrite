@@ -188,6 +188,9 @@
       "helper": {
         "title": "Charakter, Ort, Gegenstand ...",
         "tooltip": "Einen Hinweis im Editor anzeigen"
+      },
+      "placeholder": {
+        "title": "Titel eingeben"
       }
     }
   },

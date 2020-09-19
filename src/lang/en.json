@@ -188,6 +188,9 @@
       "helper": {
         "title": "Character, location, item ...",
         "tooltip": "Show a tooltip inside the editor"
+      },
+      "placeholder": {
+        "title": "Enter your title"
       }
     }
   },
