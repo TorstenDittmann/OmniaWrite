@@ -1,6 +1,6 @@
 <script>
   import { fade } from "svelte/transition";
-  import { _ } from "svelte-i18n";
+  import { _, locales } from "svelte-i18n";
   import { push } from "svelte-spa-router";
   import { settings } from "../stores";
   import { Select, Checkbox, Range } from "../components/Forms";
@@ -34,16 +34,10 @@
     },
   ];
 
-  $: languages = [
-    {
-      value: "en",
-      text: $_("settings.appereance.language.en"),
-    },
-    {
-      value: "de",
-      text: $_("settings.appereance.language.de"),
-    },
-  ];
+  $: languages = $locales.map(locale => ({
+    value: locale,
+    text: $_(`settings.appereance.language.${locale}`),
+  }));
 </script>
 
 <div class="settings" in:fade={{ duration: 100 }}>
