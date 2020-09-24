@@ -20,13 +20,13 @@
     "no-project-selected": "No hay proyecto seleccionado",
     "update-toast": "¡Nueva actualización instalada!New update installed!<br>Haz clic aquí para reiniciar.",
     "update": {
-      "title": "Axtualización❗"
+      "title": "Actualización❗"
     },
     "modals": {
       "newBackup": {
         "header": "Sincronización en la nube",
-        "subtitle": "Encontramos nuevos datos en la nube..",
-        "warning": "Perderás cualquier trabajo que no ha sido guardado en la nube desde este dispositivo."
+        "subtitle": "Encontramos nuevos datos en la nube.",
+        "warning": "Perderás cualquier trabajo que no hayas guardado en la nube desde este dispositivo."
       }
     }
   },
@@ -40,7 +40,7 @@
       "undo": "Deshacer",
       "redo": "Rehacer",
       "save": "Guardar",
-      "focus": "Foco",
+      "focus": "Enfocarse",
       "bold": "Negrillas",
       "italic": "Cursiva",
       "underline": "Subrayado",
@@ -51,7 +51,7 @@
     },
     "editor": {
       "placeholder": "¡Vamos a escribir una historia asombrosa!",
-      "switch": "Cambiar bloqueo",
+      "switch": "Cambiar bloque",
       "delete": "Borrar",
       "confirmDelete": "¿Estás seguro?",
       "blocks": {
@@ -183,7 +183,7 @@
       "buttonCreate": "Crear",
       "buttonSave": "Guardar",
       "buttonDelete": "Borrar",
-      "confirmDelete": "¿Estás seguro de que deseas eliminar esta tarjeta??",
+      "confirmDelete": "¿Estás seguro de que deseas eliminar esta tarjeta?",
       "showInScenes": "Mostrar en escenas",
       "helper": {
         "title": "Personaje, ubicación, elemento ...",
@@ -223,12 +223,12 @@
     },
     "rtf": {
       "title": "RTF",
-      "subtitle": "Exporta a un formato de archivo RTF",
+      "subtitle": "Exporta a un archivo RTF",
       "explain": "Genera un documento de formato enriquecido (Rich Text Format) compatible con la mayoría de los procesadores de texto."
     },
     "markdown": {
       "title": "Markdown",
-      "subtitle": "Exportar a Markdown",
+      "subtitle": "Exportar a un archivo Markdown",
       "explain": "Genera un documento Markdown compatible con la mayoría de los blogs."
     },
     "finished": {
@@ -336,7 +336,7 @@
   },
   "feedback": {
     "title": "Soporte & Sugerencias",
-    "sub": "Tu retroalimentación, incluyendo reportes de errores, sugerencias de mejoras, solicitud de nuevas funcionalidad y otras cosas que tengas que decir son bienvenidas..",
+    "sub": "Tu retroalimentación, incluyendo reportes de errores, sugerencias de mejoras, solicitud de nuevas funcionalidades y otras cosas que tengas que nos tengas decir son bienvenidas.",
     "email": "Correo electrónico",
     "description": "Descripción",
     "action": "Enviar",
