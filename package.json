@@ -62,7 +62,7 @@
     "svelte-jester": "^1.1.5",
     "svelte-loader": "^2.13.6",
     "svelte-preprocess": "^4.3.2",
-    "svelte-spa-router": "^2.2.0",
+    "svelte-spa-router": "^3.0.2",
     "webpack": "^4.44.2",
     "webpack-cli": "^3.3.12",
     "webpack-dev-server": "^3.11.0",
