@@ -82,9 +82,13 @@
   <br />
   <small class="link" on:click={() => push('/thirdparty')}>
     {$_('settings.thirdparty')}
-  </small> | <small class="link" on:click={() => push('/policy')}>
+  </small>
+  |
+  <small class="link" on:click={() => push('/policy')}>
     {$_('cloud.privacy.show')}
-  </small> | <small class="link" on:click={() => push('/disclaimer')}>
+  </small>
+  |
+  <small class="link" on:click={() => push('/disclaimer')}>
     {$_('install.disclaimer.show')}
   </small>
 </div>

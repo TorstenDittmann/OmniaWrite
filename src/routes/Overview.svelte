@@ -53,7 +53,8 @@
           {moment(project.lastOpen, 'X').fromNow()}
         </p>
         <p>
-          {$_('overview.project.chapters')}: {$chapters.filter(n => n.project == project.id).length}
+          {$_('overview.project.chapters')}:
+          {$chapters.filter(n => n.project == project.id).length}
         </p>
       </GridElement>
     {/each}
