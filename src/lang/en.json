@@ -156,6 +156,7 @@
             "email": "E-mail changed",
             "name": "Name changed"
           },
+          "create": "Account created",
           "recovery": {
             "create": "Password recovery request",
             "update": "Password recovery finished"

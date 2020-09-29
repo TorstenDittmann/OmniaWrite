@@ -156,6 +156,7 @@
             "email": "Cambio de correo electrónico",
             "name": "Cambio de nombre"
           },
+          "create": "Creación de cuenta",
           "recovery": {
             "create": "Solicitud de recuperación de contraseña",
             "update": "Finalización de recuperación de contraseña"
