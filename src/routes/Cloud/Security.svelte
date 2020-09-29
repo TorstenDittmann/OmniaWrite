@@ -3,13 +3,13 @@
 
   import { settings } from "../../stores";
   import cloud from "../../appwrite";
-  import moment from "moment";
-  import "moment/locale/de";
+  import { formatDistanceToNow, format, fromUnixTime } from "date-fns";
+  import { es, en, pt, ru, de } from "date-fns/locale";
 
   import Spinner from "../../shared/Spinner.svelte";
   import { Table, Cell, Row, Heading } from "../../components/Table";
 
-  moment.locale($settings.language);
+  export let locales = { es, en, pt, ru, de };
 
   const logoutSession = id => {
     cloud.logoutSession(id);
@@ -51,9 +51,15 @@
     {#each logs as log}
       <Row>
         <Cell label="Timestamp">
-          {moment(log.time, 'X').format('MMMM Do YYYY, h:mm a')}
+          {format(fromUnixTime(log.time), 'PPPp', {
+            locale: locales[$settings.language],
+          })}
         </Cell>
-        <Cell label="Age">{moment(log.time, 'X').fromNow()}</Cell>
+        <Cell label="Age">
+          {formatDistanceToNow(fromUnixTime(log.time), {
+            locale: locales[$settings.language],
+          })}
+        </Cell>
         <Cell label="Event">{$_(`cloud.security.logs.${log.event}`)}</Cell>
       </Row>
     {/each}
