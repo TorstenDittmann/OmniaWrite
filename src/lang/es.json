@@ -147,10 +147,16 @@
     "security": {
       "title": "Seguridad",
       "devices": {
-        "title": "Dispositivos"
+        "title": "Dispositivos",
+        "os": "Sistema Operativo",
+        "country": "País",
+        "ip": "Dirección IP"
       },
       "logs": {
         "title": "Registro de actividad",
+        "timestamp": "Fecha",
+        "age": "Hace cuanto...",
+        "event": "Evento",
         "account": {
           "update": {
             "email": "Cambio de correo electrónico",
