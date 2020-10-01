@@ -1,6 +1,6 @@
 <script>
   import { intern, settings } from "../stores";
-  import { _ } from "svelte-i18n";
+  import { _, locales } from "svelte-i18n";
   import { Button, ButtonGroup, Select, Checkbox } from "../components/Forms";
   import Modal from "./Modal.svelte";
   import Disclaimer from "./Disclaimer.svelte";
@@ -8,16 +8,10 @@
   let disclaimer = false;
   let showDisclaimer = false;
 
-  $: languages = [
-    {
-      value: "en",
-      text: $_("settings.appereance.language.en"),
-    },
-    {
-      value: "de",
-      text: $_("settings.appereance.language.de"),
-    },
-  ];
+  $: languages = $locales.map(locale => ({
+    value: locale,
+    text: $_(`settings.appereance.language.${locale}`),
+  }));
 </script>
 
 <Modal show="true" persistent="true">
