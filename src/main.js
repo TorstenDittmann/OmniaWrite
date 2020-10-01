@@ -10,6 +10,7 @@ import "./css/index.scss";
 
 register("en", () => import(/* webpackChunkName: "en" */ "./lang/en.json"));
 register("de", () => import(/* webpackChunkName: "de" */ "./lang/de.json"));
+register("nl", () => import(/* webpackChunkName: "nl" */ "./lang/nl.json"));
 
 init({
   fallbackLocale: "en",
