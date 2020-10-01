@@ -5,11 +5,12 @@
   import { _ } from "svelte-i18n";
   import { Grid, GridElement } from "../../components/Grid";
 
-  import moment from "moment";
-  import "moment/locale/de";
   import Placeholder from "../../shared/Placeholder.svelte";
 
-  moment.locale($settings.language);
+  import { formatDistanceToNow, fromUnixTime } from "date-fns";
+  import { es, enUS as en, pt, ru, de } from "date-fns/locale";
+
+  let locales = { es, en, pt, ru, de };
 
   let sceneData = [];
 
@@ -45,7 +46,10 @@
         <h2>{scene.title}</h2>
         <small>
           {$_('write.overview.opened')}
-          {moment(scene.lastEdit, 'X').fromNow()}
+          {formatDistanceToNow(fromUnixTime(scene.lastEdit), {
+            locale: locales[$settings.language],
+            addSuffix: true,
+          })}
         </small>
       </GridElement>
     {:else}

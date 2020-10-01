@@ -6,10 +6,10 @@
   import { Grid, GridElement } from "../components/Grid";
   import CreateProject from "./Overview/CreateProject.svelte";
   import ProjectOverview from "./Overview/Project.svelte";
-  import moment from "moment";
-  import "moment/locale/de";
+  import { formatDistanceToNow, fromUnixTime } from "date-fns";
+  import { es, enUS as en, pt, ru, de } from "date-fns/locale";
 
-  moment.locale($settings.language);
+  let locales = { es, en, pt, ru, de };
 
   let showCreateProject = false;
 
@@ -50,7 +50,10 @@
         on:click={() => changeProject(project.id)}>
         <p>
           {$_('overview.projects.opened')}
-          {moment(project.lastOpen, 'X').fromNow()}
+          {formatDistanceToNow(fromUnixTime(project.lastOpen), {
+            locale: locales[$settings.language],
+            addSuffix: true,
+          })}
         </p>
         <p>
           {$_('overview.project.chapters')}:

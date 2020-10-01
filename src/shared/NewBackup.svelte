@@ -4,12 +4,13 @@
   import { state, settings } from "../stores";
   import { reloadWindow } from "../bridge";
   import cloud from "../appwrite";
-  import moment from "moment";
-  import "moment/locale/de";
   import Modal from "./Modal.svelte";
   import Spinner from "./Spinner.svelte";
 
-  moment.locale($settings.language);
+  import { formatDistanceToNow, fromUnixTime } from "date-fns";
+  import { es, enUS as en, pt, ru, de } from "date-fns/locale";
+
+  let locales = { es, en, pt, ru, de };
 
   let latest;
   let show = false;
@@ -57,7 +58,10 @@
     <ul>
       <li on:click={download}>
         <span class="from-now">
-          {moment(latest.files[0].dateCreated, 'X').fromNow()}
+          {formatDistanceToNow(fromUnixTime(latest.files[0].dateCreated), {
+            locale: locales[$settings.language],
+            addSuffix: true,
+          })}
         </span>
         <span class="file-size">
           {formatBytes(latest.files[0].sizeOriginal)}

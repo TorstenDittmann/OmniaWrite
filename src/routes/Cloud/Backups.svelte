@@ -5,10 +5,10 @@
   import cloud from "../../appwrite";
   import { Table, Cell, Row, Heading } from "../../components/Table";
   import Spinner from "../../shared/Spinner.svelte";
-  import moment from "moment";
-  import "moment/locale/de";
+  import { formatDistanceToNow, format, fromUnixTime } from "date-fns";
+  import { es, enUS as en, pt, ru, de } from "date-fns/locale";
 
-  moment.locale($settings.language);
+  let locales = { es, en, pt, ru, de };
 
   let isLoadingBackup = false;
 
@@ -52,9 +52,16 @@
       {#each backups.files as backup}
         <Row on:click={() => restoreBackup(backup.$id)}>
           <Cell label="Timestamp">
-            {moment(backup.dateCreated, 'X').format('MMMM Do YYYY, h:mm:ss a')}
+            {format(fromUnixTime(backup.dateCreated), 'PPPp', {
+              locale: locales[$settings.language],
+            })}
           </Cell>
-          <Cell label="Age">{moment(backup.dateCreated, 'X').fromNow()}</Cell>
+          <Cell label="Age">
+            {formatDistanceToNow(fromUnixTime(backup.dateCreated), {
+              locale: locales[$settings.language],
+              addSuffix: true,
+            })}
+          </Cell>
           <Cell label="Size">{formatBytes(backup.sizeOriginal)}</Cell>
         </Row>
       {/each}
