@@ -22,9 +22,9 @@
 {:then devices}
   <Table>
     <Row>
-      <Heading>OS</Heading>
-      <Heading>Country</Heading>
-      <Heading>IP</Heading>
+      <Heading>{$_('cloud.security.devices.os')}</Heading>
+      <Heading>{$_('cloud.security.devices.country')}</Heading>
+      <Heading>{$_('cloud.security.devices.ip')}</Heading>
     </Row>
     {#each devices as device}
       <Row on:click={() => logoutSession(device.$id)}>
@@ -44,9 +44,9 @@
 {:then logs}
   <Table>
     <Row>
-      <Heading>Timestamp</Heading>
-      <Heading>Age</Heading>
-      <Heading>Event</Heading>
+      <Heading>{$_('cloud.security.logs.timestamp')}</Heading>
+      <Heading>{$_('cloud.security.logs.age')}</Heading>
+      <Heading>{$_('cloud.security.logs.event')}</Heading>
     </Row>
     {#each logs as log}
       <Row>

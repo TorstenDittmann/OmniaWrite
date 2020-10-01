@@ -147,15 +147,22 @@
     "security": {
       "title": "Seguridad",
       "devices": {
-        "title": "Dispositivos"
+        "title": "Dispositivos",
+        "os": "Sistema Operativo",
+        "country": "País",
+        "ip": "Dirección IP"
       },
       "logs": {
         "title": "Registro de actividad",
+        "timestamp": "Fecha",
+        "age": "Hace cuanto...",
+        "event": "Evento",
         "account": {
           "update": {
             "email": "Cambio de correo electrónico",
             "name": "Cambio de nombre"
           },
+          "create": "Creación de cuenta",
           "recovery": {
             "create": "Solicitud de recuperación de contraseña",
             "update": "Finalización de recuperación de contraseña"

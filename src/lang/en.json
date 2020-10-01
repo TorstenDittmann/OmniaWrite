@@ -147,15 +147,22 @@
     "security": {
       "title": "Security",
       "devices": {
-        "title": "Devices"
+        "title": "Devices",
+        "os": "OS",
+        "country": "Country",
+        "ip": "IP"
       },
       "logs": {
         "title": "Activity logs",
+        "timestamp": "Timestamp",
+        "age": "Age",
+        "event": "Event",
         "account": {
           "update": {
             "email": "E-mail changed",
             "name": "Name changed"
           },
+          "create": "Account created",
           "recovery": {
             "create": "Password recovery request",
             "update": "Password recovery finished"
