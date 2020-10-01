@@ -1,0 +1,348 @@
+{
+  "header": {
+    "write": {
+      "title": "Schrijven"
+    },
+    "cards": {
+      "title": "Kaarten"
+    },
+    "settings": {
+      "title": "Instellingen"
+    },
+    "export": {
+      "title": "Exporteren"
+    },
+    "cloud": {
+      "title": "Cloud"
+    }
+  },
+  "common": {
+    "no-project-selected": "Geen project geselecteerd",
+    "update-toast": "Nieuwe update geïnstalleerd!<br>Klik hier om te herstarten.",
+    "update": {
+      "title": "Update❗"
+    },
+    "modals": {
+      "newBackup": {
+        "header": "Cloud sync",
+        "subtitle": "We hebben nieuwere data gevonden op de cloud.",
+        "warning": "All het werk wat niet in de cloud is opgeslagen van deze computer gaat verloren."
+      }
+    }
+  },
+  "write": {
+    "quote": {
+      "marks": "'“' '”' '‘' '’'"
+    },
+    "toolbar": {
+      "words": "woorden",
+      "chars": "Karakters",
+      "undo": "Ongedaan maken",
+      "redo": "Opnieuw uitvoeren",
+      "save": "Opslaan",
+      "focus": "Focus",
+      "bold": "Bold",
+      "italic": "Italic",
+      "underline": "Onderlijnen",
+      "switchScene": "Wissel scene",
+      "cards": "Kaarten",
+      "cardsEmpty": "Geen kaarten gevonden in deze scene.",
+      "savestate": "Voortgang opslaan"
+    },
+    "editor": {
+      "placeholder": "Laten we een awesome verhaal schrijven!",
+      "switch": "Verander Block",
+      "delete": "Verwijderen",
+      "confirmDelete": "Weet je het zeker?",
+      "blocks": {
+        "paragraph": "Paragraaf",
+        "heading": "Titel",
+        "quote": "Quote",
+        "code": "Monospace"
+      }
+    },
+    "overview": {
+      "opened": "Geopend",
+      "placeholder": "Dit project heeft nog geen scenes."
+    }
+  },
+  "cloud": {
+    "confirm": {
+      "text": "Je account is nog niet geverifieerd! Klik hier om je account te verifiëren.",
+      "success": "Bevestigings-email is gestuurd!"
+    },
+    "login": {
+      "title": "Login",
+      "email": "E-Mail",
+      "password": "Wachtwoord",
+      "button": "Login",
+      "register": "Nog geen acoount?",
+      "responses": {
+        "failed": "Login mislukt.",
+        "empty": "Login gegevens kunnen niet leeg zijn."
+      }
+    },
+    "register": {
+      "title": "Registreren",
+      "name": "Naam",
+      "button": "Registreren",
+      "login": "Heb je al een account?",
+      "responses": {
+        "success": "Account gemaakt!",
+        "failed": "Registratie mislukt.",
+        "empty": "Vul alstublieft alle velden in!"
+      }
+    },
+    "reset": {
+      "title": "Wachtwoord vergeten?",
+      "button": "Reset wachtwoord",
+      "success": "Kijk alstublieft in je email voor verdere instructies.",
+      "login": "Herinner je hem weer? Log dan hier in."
+    },
+    "privacy": {
+      "show": "Privacy beleid"
+    },
+    "profile": {
+      "title": "Profiel",
+      "name": {
+        "title": "Update naam",
+        "success": "Naam geüpdate!",
+        "fields": {
+          "name": "Naam"
+        }
+      },
+      "email": {
+        "title": "Update e-mail",
+        "success": "E-mail geüpdate!",
+        "fields": {
+          "email": "E-mail",
+          "password": "Wachtwoord"
+        }
+      },
+      "password": {
+        "title": "Update wachtwoord",
+        "success": "Wachtwoord geüpdate!",
+        "match": "Wachtwoorden moeten overeenkomen!",
+        "fields": {
+          "old": "Huidig wachtwoord",
+          "new": "Nieuw wachtwoord",
+          "confirm": "Bevestig wachtwoord"
+        }
+      },
+      "error": "Er ging iets mis :(",
+      "action": "Update"
+    },
+    "logout": {
+      "title": "Uitloggen",
+      "success": "Uitloggen was succesvol. Je wordt zo doorgestuurd."
+    },
+    "backups": {
+      "title": "Backups",
+      "migrating": "Backup's migreren"
+    },
+    "toast": {
+      "savedCloud": "Opgeslagen in de cloud.",
+      "loginSuccessful": "Login succesvol!"
+    },
+    "security": {
+      "title": "Beveiliging",
+      "devices": {
+        "title": "Apparaten"
+      },
+      "logs": {
+        "title": "Activiteiten log's",
+        "account": {
+          "update": {
+            "email": "E-mail veranderd",
+            "name": "Naam veranderd"
+          },
+          "recovery": {
+            "create": "Wachtwoord herstel verzoek",
+            "update": "Wachtwoord herstel voltooid"
+          },
+          "sessions": {
+            "create": "Inloggen",
+            "delete": "Uitloggen"
+          },
+          "verification": {
+            "create": "Account bevestiging verzoek",
+            "update": "Account bevestiging voltooid"
+          }
+        }
+      }
+    }
+  },
+  "cards": {
+    "title": "Kaarten",
+    "search": "Hier zoeken...",
+    "modal": {
+      "newHeader": "Nieuwe kaart",
+      "editHeader": "Veranderen",
+      "title": "Titel",
+      "content": "Inhoud",
+      "buttonCreate": "Creëren",
+      "buttonSave": "Opslaan",
+      "buttonDelete": "Verwijderen",
+      "confirmDelete": "Weet je zeker dat je deze kaart wilt verwijderen?",
+      "showInScenes": "In scenes zien",
+      "helper": {
+        "title": "Karakter, locatie, item ...",
+        "tooltip": "Laat een tip in de editor zien"
+      },
+      "placeholder": {
+        "title": "Vul je titel in"
+      }
+    }
+  },
+  "export": {
+    "title": "Titel",
+    "publisher": "Uitgever",
+    "author": "Auteur",
+    "language": "Taal",
+    "description": "Omschrijving",
+    "cover": "Cover",
+    "action": {
+      "choose": "Kiezen",
+      "export": "Exporteren"
+    },
+    "form": "Vul alstublieft alle velden in.",
+    "template": "Template",
+    "templates": "Template's",
+    "progress": "Exporteren",
+    "helpers": {
+      "title": "Titel voor het boek",
+      "author": "Auteur voor het book",
+      "publisher": "De Uitgever voor het boek",
+      "language": "De taal voor het boek",
+      "description": "Korte omschrijving voor het boek",
+      "cover": "De cover van het boek"
+    },
+    "cloud": {
+      "title": "EPUB",
+      "subtitle": "Een internet verbinding is nodig voor deze functie."
+    },
+    "rtf": {
+      "title": "RTF",
+      "subtitle": "Exporteren naar RTF bestand",
+      "explain": "Genereert een Rich Text Format document wat compatibel is met de meeste word processors."
+    },
+    "markdown": {
+      "title": "Markdown",
+      "subtitle": "Exporteren naar Markdown file format",
+      "explain": "Genereert een Markdown document compatibel met de meeste blogs."
+    },
+    "finished": {
+      "download": "Download"
+    }
+  },
+  "sidebar": {
+    "createScene": "Nieuwe Scene",
+    "createChapter": "Creëer Hoofdstuk",
+    "editOrder": "Verander volgorde",
+    "editProject": "Verander Project",
+    "editChapter": "Verander Hoofdstuk",
+    "editScene": "Verander Scene",
+    "placeholderChapters": "Klik hier om je eerste hoofdstuk te creëren.",
+    "delete": {
+      "chapter": "Weet je zeker dat je dit hoofdstuk wilt verwijderen?",
+      "scene": "Weet je zeker dat je deze scene wilt verwijderen?"
+    },
+    "modal": {
+      "title": "Titel",
+      "newChapter": {
+        "header": "Nieuw Hoofdstuk",
+        "button": "Creëer Hoofdstuk"
+      },
+      "newScene": {
+        "header": "Nieuwe Scene",
+        "button": "Creëer Scene"
+      },
+      "edit": {
+        "order": "Herrangschik scenes",
+        "buttonSave": "Opslaan",
+        "buttonDelete": "Verwijderen"
+      }
+    }
+  },
+  "settings": {
+    "title": "Instellingen",
+    "thirdparty": "Third Party Licenses",
+    "appereance": {
+      "title": "Uiterlijk",
+      "theme": {
+        "title": "Thema",
+        "dark": "Dark",
+        "light": "Light"
+      },
+      "language": {
+        "title": "Taal",
+        "en": "Engels",
+        "de": "Duits",
+        "es": "Spaans",
+        "it": "Italiaans",
+        "pt": "Portugees",
+        "ru": "Russisch",
+        "fr": "Frans"
+      }
+    },
+    "common": {
+      "title": "algemeen",
+      "lastLocation": "Onthouden"
+    },
+    "write": {
+      "autosave": "Automatisch opslaan",
+      "spellCheck": "spellingscontrole",
+      "fontsize": "Lettertype groote"
+    },
+    "helpers": {
+      "autosave": "Slaat periodiek automatisch je project op",
+      "spellCheck": "Momenteel een beta functie!",
+      "fontsize": "Veranderd de lettertype groote in de editor",
+      "lastLocation": "Heropend je laatst gesloten pagina"
+    }
+  },
+  "install": {
+    "language": "Kies taal",
+    "action": "Starten",
+    "disclaimer": {
+      "action": "Ik ga akkoord met de voorwaarden en condities",
+      "title": "Vrijwaringsverklaring",
+      "show": "Laat de vrijwaringsverklaring zien",
+      "content": "Laats geüpdate: December 03, 2019<br><br>De informatie die door OmniaWrite op onze applicatie wordt verstrekt, is alleen voor algemene informatieve doeleinden. <br> Alle informatie op onze web- en mobiele applicatie wordt in goed vertrouwen verstrekt, maar we geven geen enkele verklaring of garantie van welke aard dan ook, expliciet of impliciet, met betrekking tot de nauwkeurigheid , toereikendheid, geldigheid, betrouwbaarheid, beschikbaarheid of volledigheid van alle informatie op onze applicatie. <br> Onder geen enkele omstandigheid zijn wij aansprakelijk jegens u voor enig verlies of enige schade die is opgelopen als gevolg van het gebruik van onze applicatie of vertrouwen op alle informatie die op onze applicatie wordt verstrekt. <br> Uw gebruik van de applicatie en uw vertrouwen in enige informatie over onze applicatie is uitsluitend op eigen risico. "
+    }
+  },
+  "overview": {
+    "project": {
+      "title": "Titel",
+      "chapters": "Hoofdstukken",
+      "scenes": "Scenes",
+      "words": "Woorden",
+      "characters": "Karakters",
+      "save": "Opslaan",
+      "delete": "Verwijderen",
+      "confirmDelete": "Weet je zeker dat je dit project wilt verwijderen?"
+    },
+    "projects": {
+      "title": "Projecten",
+      "opened": "geopend"
+    },
+    "modals": {
+      "newProject": {
+        "header": "Nieuw Project",
+        "title": "Titel",
+        "button": "Creëren!"
+      }
+    }
+  },
+  "feedback": {
+    "title": "Ondersteuning & Feedback",
+    "sub": "Jouw feedback, inclusief error reports, verbetering suggesties, nieuwe functionaliteit verzoeken and andere dingen die je graag kwijt wilt.",
+    "email": "E-Mail",
+    "description": "Omschrijving",
+    "action": "Verzenden",
+    "success": "Verzonden!"
+  },
+  "placeholder": {
+    "title": "Titel invoeren"
+  }
+}

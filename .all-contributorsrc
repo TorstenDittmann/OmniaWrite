@@ -18,7 +18,17 @@
       "contributions": [
         "maintenance"
       ]
+    },
+    {
+      "login": "dennistobar",
+      "name": "Dennis Tobar",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/1218182?v=4",
+      "profile": "https://twitter.com/dennistobar",
+      "contributions": [
+        "translation"
+      ]
     }
   ],
-  "contributorsPerLine": 7
+  "contributorsPerLine": 7,
+  "skipCi": true
 }
