@@ -1,15 +1,11 @@
 <script>
   import { _ } from "svelte-i18n";
 
-  import { settings } from "../../stores";
   import cloud from "../../appwrite";
-  import moment from "moment";
-  import "moment/locale/de";
 
   import Spinner from "../../shared/Spinner.svelte";
   import { Table, Cell, Row, Heading } from "../../components/Table";
-
-  moment.locale($settings.language);
+  import { formatDistance, formatDate } from "../../utils";
 
   const logoutSession = id => {
     cloud.logoutSession(id);
@@ -50,10 +46,8 @@
     </Row>
     {#each logs as log}
       <Row>
-        <Cell label="Timestamp">
-          {moment(log.time, 'X').format('MMMM Do YYYY, h:mm a')}
-        </Cell>
-        <Cell label="Age">{moment(log.time, 'X').fromNow()}</Cell>
+        <Cell label="Timestamp">{formatDate(log.time)}</Cell>
+        <Cell label="Age">{formatDistance(log.time)}</Cell>
         <Cell label="Event">{$_(`cloud.security.logs.${log.event}`)}</Cell>
       </Row>
     {/each}
