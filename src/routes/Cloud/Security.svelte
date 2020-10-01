@@ -1,15 +1,11 @@
 <script>
   import { _ } from "svelte-i18n";
 
-  import { settings } from "../../stores";
   import cloud from "../../appwrite";
-  import { formatDistanceToNow, format, fromUnixTime } from "date-fns";
-  import { es, enUS as en, pt, ru, de } from "date-fns/locale";
 
   import Spinner from "../../shared/Spinner.svelte";
   import { Table, Cell, Row, Heading } from "../../components/Table";
-
-  let locales = { es, en, pt, ru, de };
+  import { formatDistance, formatDate } from "../../utils";
 
   const logoutSession = id => {
     cloud.logoutSession(id);
@@ -50,17 +46,8 @@
     </Row>
     {#each logs as log}
       <Row>
-        <Cell label="Timestamp">
-          {format(fromUnixTime(log.time), 'PPPp', {
-            locale: locales[$settings.language],
-          })}
-        </Cell>
-        <Cell label="Age">
-          {formatDistanceToNow(fromUnixTime(log.time), {
-            locale: locales[$settings.language],
-            addSuffix: true,
-          })}
-        </Cell>
+        <Cell label="Timestamp">{formatDate(log.time)}</Cell>
+        <Cell label="Age">{formatDistance(log.time)}</Cell>
         <Cell label="Event">{$_(`cloud.security.logs.${log.event}`)}</Cell>
       </Row>
     {/each}

@@ -1,15 +1,12 @@
 <script>
   import { fade } from "svelte/transition";
-  import { state, projects, chapters, settings } from "../stores";
+  import { state, projects, chapters } from "../stores";
   import { reloadWindow } from "../bridge";
   import { _ } from "svelte-i18n";
   import { Grid, GridElement } from "../components/Grid";
   import CreateProject from "./Overview/CreateProject.svelte";
   import ProjectOverview from "./Overview/Project.svelte";
-  import { formatDistanceToNow, fromUnixTime } from "date-fns";
-  import { es, enUS as en, pt, ru, de } from "date-fns/locale";
-
-  let locales = { es, en, pt, ru, de };
+  import { formatDistance } from "../utils";
 
   let showCreateProject = false;
 
@@ -50,10 +47,7 @@
         on:click={() => changeProject(project.id)}>
         <p>
           {$_('overview.projects.opened')}
-          {formatDistanceToNow(fromUnixTime(project.lastOpen), {
-            locale: locales[$settings.language],
-            addSuffix: true,
-          })}
+          {formatDistance(project.lastOpen)}
         </p>
         <p>
           {$_('overview.project.chapters')}:

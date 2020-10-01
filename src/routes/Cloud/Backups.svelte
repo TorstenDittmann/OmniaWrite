@@ -1,14 +1,10 @@
 <script>
   import { _ } from "svelte-i18n";
-  import { settings } from "../../stores";
   import { reloadWindow } from "../../bridge";
   import cloud from "../../appwrite";
   import { Table, Cell, Row, Heading } from "../../components/Table";
   import Spinner from "../../shared/Spinner.svelte";
-  import { formatDistanceToNow, format, fromUnixTime } from "date-fns";
-  import { es, enUS as en, pt, ru, de } from "date-fns/locale";
-
-  let locales = { es, en, pt, ru, de };
+  import { formatDistance, formatDate } from "../../utils";
 
   let isLoadingBackup = false;
 
@@ -51,17 +47,8 @@
       </Row>
       {#each backups.files as backup}
         <Row on:click={() => restoreBackup(backup.$id)}>
-          <Cell label="Timestamp">
-            {format(fromUnixTime(backup.dateCreated), 'PPPp', {
-              locale: locales[$settings.language],
-            })}
-          </Cell>
-          <Cell label="Age">
-            {formatDistanceToNow(fromUnixTime(backup.dateCreated), {
-              locale: locales[$settings.language],
-              addSuffix: true,
-            })}
-          </Cell>
+          <Cell label="Timestamp">{formatDate(backup.dateCreated)}</Cell>
+          <Cell label="Age">{formatDistance(backup.dateCreated)}</Cell>
           <Cell label="Size">{formatBytes(backup.sizeOriginal)}</Cell>
         </Row>
       {/each}

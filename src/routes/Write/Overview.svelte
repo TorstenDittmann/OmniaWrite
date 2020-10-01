@@ -1,16 +1,12 @@
 <script>
   import { fade } from "svelte/transition";
-  import { state, chapters, scenes, settings } from "../../stores";
+  import { state, chapters, scenes } from "../../stores";
   import { push } from "svelte-spa-router";
   import { _ } from "svelte-i18n";
   import { Grid, GridElement } from "../../components/Grid";
 
   import Placeholder from "../../shared/Placeholder.svelte";
-
-  import { formatDistanceToNow, fromUnixTime } from "date-fns";
-  import { es, enUS as en, pt, ru, de } from "date-fns/locale";
-
-  let locales = { es, en, pt, ru, de };
+  import { formatDistance } from "../../utils";
 
   let sceneData = [];
 
@@ -46,10 +42,7 @@
         <h2>{scene.title}</h2>
         <small>
           {$_('write.overview.opened')}
-          {formatDistanceToNow(fromUnixTime(scene.lastEdit), {
-            locale: locales[$settings.language],
-            addSuffix: true,
-          })}
+          {formatDistance(scene.lastEdit)}
         </small>
       </GridElement>
     {:else}
