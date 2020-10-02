@@ -97,10 +97,10 @@
       "title": "Забыли пароль?",
       "button": "Сбросить пароль",
       "success": "Пожалуйста, проверьте ваш e-mail, на него были высланы дальнейшие инструкции.",
-      "login": "Вспомнили пароль? Войдите здесь."
+      "login": "Вспомнили пароль? Войдите здесь:"
     },
     "privacy": {
-      "show": "Privacy Policy"
+      "show": "Политика конфиденциальности"
     },
     "profile": {
       "title": "Профиль",
@@ -137,11 +137,11 @@
       "success": "Вы успешно вышли из профиля. Перенаправляем..."
     },
     "backups": {
-      "title": "Backups",
-      "migrating": "Migrating backup"
+      "title": "Резервные копии",
+      "migrating": "Перенос резервных копий..."
     },
     "toast": {
-      "savedCloud": "Сохранено в облаке.",
+      "savedCloud": "Сохранено в облачное хранилище.",
       "loginSuccessful": "Вы успешно вошли!"
     },
     "security": {
@@ -185,8 +185,8 @@
     "modal": {
       "newHeader": "Новая карточка",
       "editHeader": "Изменить",
-      "title": "Заголовок",
-      "content": "Контент",
+      "title": "Название",
+      "content": "Описание",
       "buttonCreate": "Создать",
       "buttonSave": "Сохранить",
       "buttonDelete": "Удалить",
@@ -197,12 +197,12 @@
         "tooltip": "Показывать подсказку в редакторе"
       },
       "placeholder": {
-        "title": "Введите ваш заголовок"
+        "title": "Ваше название"
       }
     }
   },
   "export": {
-    "title": "Заголовок",
+    "title": "Название",
     "publisher": "Издатель",
     "author": "Автор",
     "language": "Язык",
@@ -218,11 +218,11 @@
     "progress": "Экспортируем",
     "helpers": {
       "title": "Название вашей книги",
-      "author": "Имя автора на обложке вашей книги",
-      "publisher": "Издатель вашей книги",
-      "language": "Язык, на котором написана книга",
-      "description": "Краткое описание вашей книги",
-      "cover": "Обложка вашей книги"
+      "author": "Имя автора на обложке вашего проекта",
+      "publisher": "Издатель вашего проекта",
+      "language": "Язык вашего проекта",
+      "description": "Краткое описание вашего проекта",
+      "cover": "Обложка вашего проекта"
     },
     "cloud": {
       "title": "EPUB",
@@ -249,13 +249,13 @@
     "editProject": "Изменить проект",
     "editChapter": "Изменить главу",
     "editScene": "Изменить сцену",
-    "placeholderChapters": "Нажмите здесь, чтобы создать свою первую сцену.",
+    "placeholderChapters": "Нажмите здесь, чтобы создать свою первую главу.",
     "delete": {
       "chapter": "Вы уверены, что хотите удалить эту главу?",
       "scene": "Вы уверены, что хотите удалить эту сцену?"
     },
     "modal": {
-      "title": "Заголовок",
+      "title": "Название",
       "newChapter": {
         "header": "Новая глава",
         "button": "Создать"
@@ -302,10 +302,10 @@
       "fontsize": "Размер шрифта"
     },
     "helpers": {
-      "autosave": "Автоматически сохраняет ваш проект через некоторые промежутки времени.",
-      "spellCheck": "Currently in beta!",
+      "autosave": "Автоматически сохраняет ваш проект раз в некоторое время",
+      "spellCheck": "Бета-версия!",
       "fontsize": "Меняет размер шрифта редактора",
-      "lastLocation": "Запоминает последнюю открытую вами страницу и открывает ее при старте редактора"
+      "lastLocation": "Открывает последнюю открытую страницу при старте редактора"
     }
   },
   "install": {
@@ -313,8 +313,8 @@
     "action": "Установить",
     "disclaimer": {
       "action": "Я соглашаюсь с условиями",
-      "title": "Дисклеймер",
-      "show": "Показать дисклеймер",
+      "title": "Условия",
+      "show": "Прочитать условия",
       "content": "Последнее обновление: 3 декабря 2019 года<br><br>The information provided by OmniaWrite on our application is for general informational purposes only.<br>All information on our web and mobile application is provided in good faith, however we make no representation or warranty of any kind, express or implied, regarding the accuracy, adequacy, validity, reliability, availability or completeness of any information on our application.<br>Under no circumstance shall we have any liability to you for any loss or damage of any kind incurred as a result of the use of our  application or reliance on any information provided on our application.<br>Your use of the application and your reliance on any information on our application is solely at your own risk."
     }
   },
@@ -323,15 +323,15 @@
       "title": "Название",
       "chapters": "Главы",
       "scenes": "Сцены",
-      "words": "Слов",
-      "characters": "Персонажи",
+      "words": "Слова",
+      "characters": "Символы",
       "save": "Сохранить",
       "delete": "Удалить",
       "confirmDelete": "Вы уверены, что хотите удалить этот проект?"
     },
     "projects": {
       "title": "Проекты",
-      "opened": "opened"
+      "opened": "открыт"
     },
     "modals": {
       "newProject": {
@@ -350,6 +350,6 @@
     "success": "Готово!"
   },
   "placeholder": {
-    "title": "Введите ваш заголовок"
+    "title": "Ваше название"
   }
 }
