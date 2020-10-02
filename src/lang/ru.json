@@ -1,0 +1,355 @@
+{
+  "header": {
+    "write": {
+      "title": "Редактор"
+    },
+    "cards": {
+      "title": "Карточки"
+    },
+    "settings": {
+      "title": "Настройки"
+    },
+    "export": {
+      "title": "Экспорт"
+    },
+    "cloud": {
+      "title": "Облако"
+    }
+  },
+  "common": {
+    "no-project-selected": "Нет выбранного проекта",
+    "update-toast": "Обновление установлено!<br>Нажмите здесь, чтобы перезагрузить приложение.",
+    "update": {
+      "title": "Обновление❗"
+    },
+    "modals": {
+      "newBackup": {
+        "header": "Синхронизация с облачным хранилищем",
+        "subtitle": "Мы нашли более свежие данные в облачном хранилище.",
+        "warning": "Внимание! Все данные на этом девайсе, которых нет в облачном хранилище, будут стерты."
+      }
+    }
+  },
+  "write": {
+    "quote": {
+      "marks": "'“' '”' '‘' '’'"
+    },
+    "toolbar": {
+      "words": "слов",
+      "chars": "знаков",
+      "undo": "Отменить",
+      "redo": "Повторить",
+      "save": "Сохранить",
+      "focus": "Фокус",
+      "bold": "Жирный",
+      "italic": "Наклонный",
+      "underline": "Подчеркнутый",
+      "switchScene": "Сменить сцену",
+      "cards": "Карточки",
+      "cardsEmpty": "В этой сцене нет карточек.",
+      "savestate": "Сохранить"
+    },
+    "editor": {
+      "placeholder": "Давайте напишем замечательную историю!",
+      "switch": "Изменить блок",
+      "delete": "Удалить",
+      "confirmDelete": "Вы уверены?",
+      "blocks": {
+        "paragraph": "Абзац",
+        "heading": "Заголовок",
+        "quote": "Цитата",
+        "code": "Код (моноширинный шрифт)"
+      }
+    },
+    "overview": {
+      "opened": "открыты",
+      "placeholder": "В этом проекте пока нет сцен."
+    }
+  },
+  "cloud": {
+    "confirm": {
+      "text": "Ваш профиль пока не подтвержден! Нажмите здесь, чтобы подтвердить.",
+      "success": "Подтверждение было отправлено на ваш e-mail!"
+    },
+    "login": {
+      "title": "Вход",
+      "email": "E-mail",
+      "password": "Пароль",
+      "button": "Войти",
+      "register": "У вас пока нет профиля?",
+      "responses": {
+        "failed": "Не удалось войти.",
+        "empty": "Логин и пароль не могут быть пустыми."
+      }
+    },
+    "register": {
+      "title": "Регистрация",
+      "name": "Имя",
+      "button": "Зарегистрироваться",
+      "login": "Уже есть профиль?",
+      "responses": {
+        "success": "Профиль создан!",
+        "failed": "Не удалось создать профиль.",
+        "empty": "Пожалуйста, заполните все поля!"
+      }
+    },
+    "reset": {
+      "title": "Забыли пароль?",
+      "button": "Сбросить пароль",
+      "success": "Пожалуйста, проверьте ваш e-mail, на него были высланы дальнейшие инструкции.",
+      "login": "Вспомнили пароль? Войдите здесь."
+    },
+    "privacy": {
+      "show": "Privacy Policy"
+    },
+    "profile": {
+      "title": "Профиль",
+      "name": {
+        "title": "Обновить имя",
+        "success": "Имя обновлено!",
+        "fields": {
+          "name": "Имя"
+        }
+      },
+      "email": {
+        "title": "Обновить e-mail",
+        "success": "E-mail обновлен!",
+        "fields": {
+          "email": "E-mail",
+          "password": "Пароль"
+        }
+      },
+      "password": {
+        "title": "Обновить пароль",
+        "success": "Пароль обновлен!",
+        "match": "Пароли должны совпадать!",
+        "fields": {
+          "old": "Текущий пароль",
+          "new": "Новый пароль",
+          "confirm": "Подтверждение нового пароля"
+        }
+      },
+      "error": "Что-то пошло не так :(",
+      "action": "Обновить"
+    },
+    "logout": {
+      "title": "Выйти",
+      "success": "Вы успешно вышли из профиля. Перенаправляем..."
+    },
+    "backups": {
+      "title": "Backups",
+      "migrating": "Migrating backup"
+    },
+    "toast": {
+      "savedCloud": "Сохранено в облаке.",
+      "loginSuccessful": "Вы успешно вошли!"
+    },
+    "security": {
+      "title": "Безопасность",
+      "devices": {
+        "title": "Устройства",
+        "os": "ОС",
+        "country": "Страна",
+        "ip": "IP"
+      },
+      "logs": {
+        "title": "Логи",
+        "timestamp": "Дата и время",
+        "age": "Возраст",
+        "event": "Событие",
+        "account": {
+          "update": {
+            "email": "E-mail изменен",
+            "name": "Имя изменено"
+          },
+          "create": "Профиль создан",
+          "recovery": {
+            "create": "Запрос на восстановление пароля",
+            "update": "Пароль восстановлен"
+          },
+          "sessions": {
+            "create": "Вход",
+            "delete": "Выход"
+          },
+          "verification": {
+            "create": "Запрос на подтверждение профиля",
+            "update": "Профиль подтвержден"
+          }
+        }
+      }
+    }
+  },
+  "cards": {
+    "title": "Карточки",
+    "search": "искать здесь...",
+    "modal": {
+      "newHeader": "Новая карточка",
+      "editHeader": "Изменить",
+      "title": "Заголовок",
+      "content": "Контент",
+      "buttonCreate": "Создать",
+      "buttonSave": "Сохранить",
+      "buttonDelete": "Удалить",
+      "confirmDelete": "Вы уверены, что хотите удалить эту карточку?",
+      "showInScenes": "Показывать в сценах",
+      "helper": {
+        "title": "Персонаж, сеттинг, предмет...",
+        "tooltip": "Показывать подсказку в редакторе"
+      },
+      "placeholder": {
+        "title": "Введите ваш заголовок"
+      }
+    }
+  },
+  "export": {
+    "title": "Заголовок",
+    "publisher": "Издатель",
+    "author": "Автор",
+    "language": "Язык",
+    "description": "Описание",
+    "cover": "Обложка",
+    "action": {
+      "choose": "Выберите",
+      "export": "Экспорт"
+    },
+    "form": "Пожалуйста, заполните все поля.",
+    "template": "Шаблон",
+    "templates": "Шаблоны",
+    "progress": "Экспортируем",
+    "helpers": {
+      "title": "Название вашей книги",
+      "author": "Имя автора на обложке вашей книги",
+      "publisher": "Издатель вашей книги",
+      "language": "Язык, на котором написана книга",
+      "description": "Краткое описание вашей книги",
+      "cover": "Обложка вашей книги"
+    },
+    "cloud": {
+      "title": "EPUB",
+      "subtitle": "Для этого действия нужен интернет."
+    },
+    "rtf": {
+      "title": "RTF",
+      "subtitle": "Экспортировать как RTF",
+      "explain": "Создает документ формата Rich Text Format, совместимый с большинством текстовых редакторов."
+    },
+    "markdown": {
+      "title": "Markdown",
+      "subtitle": "Экспортировать как Markdown",
+      "explain": "Создает документ формата Markdown, совместимый с большинством блог-платформ."
+    },
+    "finished": {
+      "download": "Скачать"
+    }
+  },
+  "sidebar": {
+    "createScene": "Новая сцена",
+    "createChapter": "Создать главу",
+    "editOrder": "Изменить порядок",
+    "editProject": "Изменить проект",
+    "editChapter": "Изменить главу",
+    "editScene": "Изменить сцену",
+    "placeholderChapters": "Нажмите здесь, чтобы создать свою первую сцену.",
+    "delete": {
+      "chapter": "Вы уверены, что хотите удалить эту главу?",
+      "scene": "Вы уверены, что хотите удалить эту сцену?"
+    },
+    "modal": {
+      "title": "Заголовок",
+      "newChapter": {
+        "header": "Новая глава",
+        "button": "Создать"
+      },
+      "newScene": {
+        "header": "Новая сцена",
+        "button": "Создать"
+      },
+      "edit": {
+        "order": "Порядок сцен",
+        "buttonSave": "Сохранить",
+        "buttonDelete": "Удалить"
+      }
+    }
+  },
+  "settings": {
+    "title": "Настройки",
+    "thirdparty": "Лицензии третьих лиц",
+    "appereance": {
+      "title": "Внешний вид",
+      "theme": {
+        "title": "Тема",
+        "dark": "Темная",
+        "light": "Светлая"
+      },
+      "language": {
+        "title": "Язык",
+        "en": "Английский",
+        "de": "Немецкий",
+        "es": "Испанский",
+        "it": "Итальянский",
+        "pt": "Португальский",
+        "ru": "Русский",
+        "fr": "Французский"
+      }
+    },
+    "common": {
+      "title": "Общие настройки",
+      "lastLocation": "Запомнить последнюю страницу"
+    },
+    "write": {
+      "autosave": "Автосохранение",
+      "spellCheck": "Проверка орфографии",
+      "fontsize": "Размер шрифта"
+    },
+    "helpers": {
+      "autosave": "Автоматически сохраняет ваш проект через некоторые промежутки времени.",
+      "spellCheck": "Currently in beta!",
+      "fontsize": "Меняет размер шрифта редактора",
+      "lastLocation": "Запоминает последнюю открытую вами страницу и открывает ее при старте редактора"
+    }
+  },
+  "install": {
+    "language": "Выбрать язык",
+    "action": "Установить",
+    "disclaimer": {
+      "action": "Я соглашаюсь с условиями",
+      "title": "Дисклеймер",
+      "show": "Показать дисклеймер",
+      "content": "Последнее обновление: 3 декабря 2019 года<br><br>The information provided by OmniaWrite on our application is for general informational purposes only.<br>All information on our web and mobile application is provided in good faith, however we make no representation or warranty of any kind, express or implied, regarding the accuracy, adequacy, validity, reliability, availability or completeness of any information on our application.<br>Under no circumstance shall we have any liability to you for any loss or damage of any kind incurred as a result of the use of our  application or reliance on any information provided on our application.<br>Your use of the application and your reliance on any information on our application is solely at your own risk."
+    }
+  },
+  "overview": {
+    "project": {
+      "title": "Название",
+      "chapters": "Главы",
+      "scenes": "Сцены",
+      "words": "Слов",
+      "characters": "Персонажи",
+      "save": "Сохранить",
+      "delete": "Удалить",
+      "confirmDelete": "Вы уверены, что хотите удалить этот проект?"
+    },
+    "projects": {
+      "title": "Проекты",
+      "opened": "opened"
+    },
+    "modals": {
+      "newProject": {
+        "header": "Новый проект",
+        "title": "Название",
+        "button": "Создать!"
+      }
+    }
+  },
+  "feedback": {
+    "title": "Обратная связь и поддержка",
+    "sub": "Мы рады любой обратной связи, будь то сообщения об ошибках, предложения об улучшении, запросы на новый функционал или что-то еще, что вы хотели бы нам сказать.",
+    "email": "E-mail",
+    "description": "Описание",
+    "action": "Отправить",
+    "success": "Готово!"
+  },
+  "placeholder": {
+    "title": "Введите ваш заголовок"
+  }
+}
