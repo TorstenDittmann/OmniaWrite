@@ -38,7 +38,8 @@
     }
 
     label {
-      flex: 0 1 10rem;
+      flex: 0 1 11rem;
+      padding-right: 1rem;
     }
 
     div {
