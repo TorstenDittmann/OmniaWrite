@@ -1,5 +1,5 @@
 {
-    "editor.fontFamily": "Fira Code Retina",
+    "editor.fontFamily": "Consolas",
     "editor.fontSize": 14,
     "editor.fontLigatures": true,
     "workbench.editor.highlightModifiedTabs": true,
@@ -12,6 +12,5 @@
         "**/.git/objects/**": true,
         "**/.git/subtree-cache/**": true,
         "**/node_modules/*/**": true
-    },
-    "editor.tabSize": 2
+    }
 }

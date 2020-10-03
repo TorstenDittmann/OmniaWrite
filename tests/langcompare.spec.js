@@ -56,7 +56,6 @@ const totalKeys = enKeys.length;
 
 missKey = Object.entries(missKey);
 
-// Just calculate de %% of each language and
 missKey.forEach(x => {
   const nKeys = x[1].length;
   const perc = (((totalKeys - nKeys) * 100) / totalKeys).toFixed(0);
@@ -74,4 +73,3 @@ missKey.forEach(x => {
     console.groupEnd();
   }
 });
-//console.log(missKey);
