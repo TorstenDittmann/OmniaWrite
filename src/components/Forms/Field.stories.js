@@ -1,3 +1,4 @@
+import { withSlots, fromHTML } from "../../stories/decorators/svelte-slots";
 import Field from "./Field.svelte";
 
 export default {
@@ -7,6 +8,11 @@ export default {
     label: { control: "text" },
     helper: { control: "text" },
   },
+  decorators: [
+    withSlots({
+      default: fromHTML("Field <b>slot</b> <i>content</i>"),
+    }),
+  ],
 };
 
 const Template = ({ ...args }) => ({

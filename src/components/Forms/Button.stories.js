@@ -1,3 +1,4 @@
+import { withSlots, fromText } from "../../stories/decorators/svelte-slots";
 import Button from "./Button.svelte";
 
 export default {
@@ -8,6 +9,11 @@ export default {
     loading: { control: "boolean" },
     disabled: { control: "boolean" },
   },
+  decorators: [
+    withSlots({
+      default: fromText("Label"),
+    }),
+  ],
 };
 
 const Template = ({ ...args }) => ({
