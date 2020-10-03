@@ -8,6 +8,7 @@ export default {
     color: { control: "text" },
     loading: { control: "boolean" },
     disabled: { control: "boolean" },
+    onClick: { action: "onClick" },
   },
   decorators: [
     withSlots({
@@ -16,9 +17,12 @@ export default {
   ],
 };
 
-const Template = ({ ...args }) => ({
+const Template = ({ onClick, ...args }) => ({
   Component: Button,
   props: args,
+  on: {
+    click: onClick,
+  },
 });
 
 export const Default = Template.bind({});
