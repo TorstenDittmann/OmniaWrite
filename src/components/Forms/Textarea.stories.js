@@ -1,7 +1,7 @@
 import Textarea from "./Textarea.svelte";
 
 export default {
-  title: "OmniaWrite/Forms/Textarea",
+  title: "OmniaWrite/Components/Forms/Textarea",
   component: Textarea,
   argTypes: {
     label: { control: "text" },

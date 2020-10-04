@@ -1,7 +1,7 @@
 import Checkbox from "./Checkbox.svelte";
 
 export default {
-  title: "OmniaWrite/Forms/Checkbox",
+  title: "OmniaWrite/Components/Forms/Checkbox",
   component: Checkbox,
   argTypes: {
     label: { control: "text" },

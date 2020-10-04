@@ -2,7 +2,7 @@ import { withSlots, fromText } from "../../stories/decorators/svelte-slots";
 import Button from "./Button.svelte";
 
 export default {
-  title: "OmniaWrite/Forms/Button",
+  title: "OmniaWrite/Components/Forms/Button",
   component: Button,
   argTypes: {
     color: { control: "text" },

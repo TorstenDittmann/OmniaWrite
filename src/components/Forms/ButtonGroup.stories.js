@@ -8,7 +8,7 @@ import ButtonGroup from "./ButtonGroup.svelte";
 import Button from "./Button.svelte";
 
 export default {
-  title: "OmniaWrite/Forms/ButtonGroup",
+  title: "OmniaWrite/Components/Forms/ButtonGroup",
   component: ButtonGroup,
   argTypes: {
     small: { control: "boolean" },

@@ -1,7 +1,7 @@
 import Range from "./Range.svelte";
 
 export default {
-  title: "OmniaWrite/Forms/Range",
+  title: "OmniaWrite/Components/Forms/Range",
   component: Range,
   argTypes: {
     label: { control: "text" },

@@ -1,7 +1,7 @@
 import InputPassword from "./InputPassword.svelte";
 
 export default {
-  title: "OmniaWrite/Forms/InputPassword",
+  title: "OmniaWrite/Components/Forms/InputPassword",
   component: InputPassword,
   argTypes: {
     label: { control: "text" },

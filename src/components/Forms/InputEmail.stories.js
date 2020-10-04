@@ -1,7 +1,7 @@
 import InputEmail from "./InputEmail.svelte";
 
 export default {
-  title: "OmniaWrite/Forms/InputEmail",
+  title: "OmniaWrite/Components/Forms/InputEmail",
   component: InputEmail,
   argTypes: {
     label: { control: "text" },

@@ -1,7 +1,7 @@
 import Search from "./Search.svelte";
 
 export default {
-  title: "OmniaWrite/Forms/Search",
+  title: "OmniaWrite/Components/Forms/Search",
   component: Search,
   argTypes: {
     label: { control: "text" },

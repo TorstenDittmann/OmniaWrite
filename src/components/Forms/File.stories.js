@@ -1,7 +1,7 @@
 import File from "./File.svelte";
 
 export default {
-  title: "OmniaWrite/Forms/File",
+  title: "OmniaWrite/Components/Forms/File",
   component: File,
   argTypes: {
     label: { control: "text" },

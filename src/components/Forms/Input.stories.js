@@ -1,7 +1,7 @@
 import Input from "./Input.svelte";
 
 export default {
-  title: "OmniaWrite/Forms/Input",
+  title: "OmniaWrite/Components/Forms/Input",
   component: Input,
   argTypes: {
     label: { control: "text" },

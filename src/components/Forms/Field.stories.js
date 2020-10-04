@@ -2,7 +2,7 @@ import { withSlots, fromHTML } from "../../stories/decorators/svelte-slots";
 import Field from "./Field.svelte";
 
 export default {
-  title: "OmniaWrite/Forms/Field",
+  title: "OmniaWrite/Components/Forms/Field",
   component: Field,
   argTypes: {
     label: { control: "text" },

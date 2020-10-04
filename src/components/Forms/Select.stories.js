@@ -1,7 +1,7 @@
 import Select from "./Select.svelte";
 
 export default {
-  title: "OmniaWrite/Forms/Select",
+  title: "OmniaWrite/Components/Forms/Select",
   component: Select,
   argTypes: {
     label: { control: "text" },
