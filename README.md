@@ -1,6 +1,6 @@
 ![Build/release](https://github.com/TorstenDittmann/OmniaWrite/workflows/Build/release/badge.svg)
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-7-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-8-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 [![omniawrite](https://snapcraft.io//omniawrite/badge.svg)](https://snapcraft.io/omniawrite)
 
@@ -104,6 +104,9 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="http://evgeniae.tk"><img src="https://avatars3.githubusercontent.com/u/22026957?v=4" width="100px;" alt=""/><br /><sub><b>Evgenia Polozova</b></sub></a><br /><a href="#translation-eugpoloz" title="Translation">🌍</a></td>
     <td align="center"><a href="https://github.com/ertugrulk"><img src="https://avatars1.githubusercontent.com/u/1182186?v=4" width="100px;" alt=""/><br /><sub><b>Ertugrul K</b></sub></a><br /><a href="#translation-ertugrulk" title="Translation">🌍</a></td>
     <td align="center"><a href="https://ontheneworbit.blogspot.com/"><img src="https://avatars1.githubusercontent.com/u/25644062?v=4" width="100px;" alt=""/><br /><sub><b>y yam</b></sub></a><br /><a href="#translation-sidemt" title="Translation">🌍</a></td>
+  </tr>
+  <tr>
+    <td align="center"><a href="https://github.com/fredericbonnet"><img src="https://avatars2.githubusercontent.com/u/11368533?v=4" width="100px;" alt=""/><br /><sub><b>Frédéric Bonnet</b></sub></a><br /><a href="https://github.com/TorstenDittmann/OmniaWrite/commits?author=fredericbonnet" title="Tests">⚠️</a></td>
   </tr>
 </table>
 

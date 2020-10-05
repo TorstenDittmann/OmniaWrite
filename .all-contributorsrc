@@ -72,6 +72,15 @@
       "contributions": [
         "translation"
       ]
+    },
+    {
+      "login": "fredericbonnet",
+      "name": "Frédéric Bonnet",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/11368533?v=4",
+      "profile": "https://github.com/fredericbonnet",
+      "contributions": [
+        "test"
+      ]
     }
   ],
   "contributorsPerLine": 7,
