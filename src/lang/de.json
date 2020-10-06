@@ -1,6 +1,8 @@
 {
   "header": {
-    "write": {},
+    "write": {
+      "title": "Schreiben"
+    },
     "cards": {
       "title": "Karten"
     },
