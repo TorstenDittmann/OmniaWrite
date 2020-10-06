@@ -18,7 +18,7 @@
   },
   "common": {
     "no-project-selected": "Projektia ei ole valittu",
-    "update-toast": "Päivitys on asennettu!<br>Käynnistä uudelleen napsauttamalla tätä.",
+    "update-toast": "Uusi päivitys on asennettu!<br>Käynnistä sovellus uudelleen napsauttamalla tätä.",
     "update": {
       "title": "Päivitys❗"
     },
@@ -26,7 +26,7 @@
       "newBackup": {
         "header": "Pilvisynkronointi",
         "subtitle": "Pilvestä on löytynyt uudempia tietoja.",
-        "warning": "Kaikki muutokset, joita ei ole tallennettu pilveen tältä laitteelta, menetetään."
+        "warning": "Menetät kaikki muutokset, joita ei ole tallennettu pilveen tältä laitteelta."
       }
     }
   },
@@ -50,7 +50,7 @@
       "savestate": "Tallenna tila"
     },
     "editor": {
-      "placeholder": "Kirjoitetaanpa upea tarina!",
+      "placeholder": "Kirjoitetaanpa loistava tarina!",
       "switch": "Muuta lohkoa",
       "delete": "Poista",
       "confirmDelete": "Oletko varma?",
@@ -134,7 +134,7 @@
     },
     "logout": {
       "title": "Uloskirjautuminen",
-      "success": "Uloskirjautuminen onnistui. Sinun ohjataan uudelleen."
+      "success": "Uloskirjautuminen onnistui. Sinut ohjataan uudelleen."
     },
     "backups": {
       "title": "Varmuuskopiot",
@@ -177,13 +177,13 @@
     "search": "kirjoita hakusana...",
     "modal": {
       "newHeader": "Uusi kortti",
-      "editHeader": "Muokkaa",
+      "editHeader": "Muokkaa korttia",
       "title": "Otsikko",
       "content": "Sisältö",
       "buttonCreate": "Luo",
       "buttonSave": "Tallenna",
       "buttonDelete": "Poista",
-      "confirmDelete": "Haluatko varmasti poistaa kortin?",
+      "confirmDelete": "Haluatko varmasti poistaa tämän kortin?",
       "showInScenes": "Näytä kohtauksissa",
       "helper": {
         "title": "Hahmo, paikka, esine...",
@@ -287,7 +287,7 @@
     },
     "common": {
       "title": "Yleiset",
-      "lastLocation": "Jatka viimeisintä"
+      "lastLocation": "Kirjanmerkki"
     },
     "write": {
       "autosave": "Automaattinen tallennus",
@@ -320,7 +320,7 @@
       "characters": "Merkit",
       "save": "Tallenna",
       "delete": "Poista",
-      "confirmDelete": "Haluatko varmasti poistaa projektin?"
+      "confirmDelete": "Haluatko varmasti poistaa tämän projektin?"
     },
     "projects": {
       "title": "Projektit",
@@ -336,7 +336,7 @@
   },
   "feedback": {
     "title": "Tuki ja palaute",
-    "sub": "Kaikenlainen palaute, kuten virheraportit, parannusehdotukset, ominaisuustoiveet ja mitkä tahansa muut asiat, ovat tervetulleita.",
+    "sub": "Kaikenlainen palaute, kuten virheraportit, parannusehdotukset, ominaisuustoiveet ja muut kommentit, ovat tervetulleita.",
     "email": "Sähköpostiosoite",
     "description": "Kuvaus",
     "action": "Lähetä",
