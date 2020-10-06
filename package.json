@@ -31,7 +31,7 @@
     "appwrite": "^1.0.29",
     "cross-env": "^7.0.2",
     "css-loader": "^4.3.0",
-    "electron": "^10.1.1",
+    "electron": "^10.1.2",
     "electron-builder": "^22.8.0",
     "eslint": "^7.8.1",
     "eslint-plugin-svelte3": "^2.7.3",
