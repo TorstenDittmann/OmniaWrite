@@ -90,6 +90,15 @@
       "contributions": [
         "translation"
       ]
+    },
+    {
+      "login": "gustavohleal",
+      "name": "Gustavo Henrique Leal",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/22385451?v=4",
+      "profile": "https://github.com/gustavohleal",
+      "contributions": [
+        "test"
+      ]
     }
   ],
   "contributorsPerLine": 7,
