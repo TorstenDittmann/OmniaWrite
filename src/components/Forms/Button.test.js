@@ -4,7 +4,7 @@ import "@testing-library/jest-dom";
 
 import html from "svelte-htm";
 
-import Button from "../src/components/Forms/Button.svelte";
+import Button from "./Button.svelte";
 
 test("events should work", () => {
   const mock = jest.fn();
