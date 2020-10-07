@@ -11,3 +11,5 @@ jobs:
         run: npm i
       - name: Run tests
         run: npm test
+      - name: Run language tests
+        run: node ./tests/langcompare.js
