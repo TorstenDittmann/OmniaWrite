@@ -81,6 +81,15 @@
       "contributions": [
         "test"
       ]
+    },
+    {
+      "login": "minna-xD",
+      "name": "Minna N.",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/44906587?v=4",
+      "profile": "https://github.com/minna-xD",
+      "contributions": [
+        "translation"
+      ]
     }
   ],
   "contributorsPerLine": 7,
