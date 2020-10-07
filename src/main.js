@@ -10,7 +10,13 @@ import "./css/index.scss";
 
 register("en", () => import(/* webpackChunkName: "en" */ "./lang/en.json"));
 register("de", () => import(/* webpackChunkName: "de" */ "./lang/de.json"));
+register("es", () => import(/* webpackChunkName: "es" */ "./lang/es.json"));
 register("fi", () => import(/* webpackChunkName: "fi" */ "./lang/fi.json"));
+register("nl", () => import(/* webpackChunkName: "nl" */ "./lang/nl.json"));
+register("pt", () => import(/* webpackChunkName: "pt" */ "./lang/pt.json"));
+register("ru", () => import(/* webpackChunkName: "ru" */ "./lang/ru.json"));
+register("tr", () => import(/* webpackChunkName: "tr" */ "./lang/tr.json"));
+register("ja", () => import(/* webpackChunkName: "ja" */ "./lang/ja.json"));
 
 init({
   fallbackLocale: "en",

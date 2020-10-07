@@ -37,7 +37,7 @@
       bind:value={email} />
     <ButtonGroup>
       <Button on:click={recover} loading={recoverLoading} disabled={!checkForm}>
-        {$_('cloud.reset.title')}
+        {$_('cloud.reset.button')}
       </Button>
     </ButtonGroup>
   </form>

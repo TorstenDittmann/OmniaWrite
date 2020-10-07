@@ -1,15 +1,12 @@
 <script>
   import { onMount } from "svelte";
   import { _ } from "svelte-i18n";
-  import { state, settings } from "../stores";
+  import { state } from "../stores";
   import { reloadWindow } from "../bridge";
   import cloud from "../appwrite";
-  import moment from "moment";
-  import "moment/locale/de";
   import Modal from "./Modal.svelte";
   import Spinner from "./Spinner.svelte";
-
-  moment.locale($settings.language);
+  import { formatDistance } from "../utils";
 
   let latest;
   let show = false;
@@ -57,7 +54,7 @@
     <ul>
       <li on:click={download}>
         <span class="from-now">
-          {moment(latest.files[0].dateCreated, 'X').fromNow()}
+          {formatDistance(latest.files[0].dateCreated)}
         </span>
         <span class="file-size">
           {formatBytes(latest.files[0].sizeOriginal)}

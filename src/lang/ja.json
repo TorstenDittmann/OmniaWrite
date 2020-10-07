@@ -1,0 +1,358 @@
+{
+  "header": {
+    "write": {
+      "title": "編集"
+    },
+    "cards": {
+      "title": "カード"
+    },
+    "settings": {
+      "title": "設定"
+    },
+    "export": {
+      "title": "エクスポート"
+    },
+    "cloud": {
+      "title": "クラウド"
+    }
+  },
+  "common": {
+    "no-project-selected": "プロジェクトが選択されていません",
+    "update-toast": "更新がインストールされました！<br>こちらをクリックしてアプリを再起動してください。",
+    "update": {
+      "title": "更新情報"
+    },
+    "modals": {
+      "newBackup": {
+        "header": "クラウド連携",
+        "subtitle": "クラウドに新しいデータがあります。",
+        "warning": "クラウドに保存されていないこのデバイス上のデータは失われます。"
+      }
+    }
+  },
+  "write": {
+    "quote": {
+      "marks": "'“' '”' '‘' '’'"
+    },
+    "toolbar": {
+      "words": "ワード数",
+      "chars": "文字数",
+      "undo": "元に戻す",
+      "redo": "やり直し",
+      "save": "保存",
+      "focus": "集中モード",
+      "bold": "太字",
+      "italic": "斜体",
+      "underline": "下線",
+      "switchScene": "シーンを切り替え",
+      "cards": "カード",
+      "cardsEmpty": "このシーンのカードがありません。",
+      "savestate": "保存状況"
+    },
+    "editor": {
+      "placeholder": "素敵なストーリーを書きましょう！",
+      "switch": "ブロックの変更",
+      "delete": "削除",
+      "confirmDelete": "削除してよろしいですか？",
+      "blocks": {
+        "paragraph": "段落",
+        "heading": "見出し",
+        "quote": "引用",
+        "code": "等幅フォント"
+      }
+    },
+    "overview": {
+      "opened": "前回の表示",
+      "placeholder": "シーンがありません。"
+    }
+  },
+  "cloud": {
+    "confirm": {
+      "text": "アカウントの確認が完了していません。こちらをクリックして確認してください。",
+      "success": "確認メールが送信されました！"
+    },
+    "login": {
+      "title": "ログイン",
+      "email": "メールアドレス",
+      "password": "パスワード",
+      "button": "ログイン",
+      "register": "新規アカウント登録",
+      "responses": {
+        "failed": "ログインに失敗しました。",
+        "empty": "ログイン情報は必須です。"
+      }
+    },
+    "register": {
+      "title": "新規登録",
+      "name": "名前",
+      "button": "登録",
+      "login": "アカウントをお持ちですか？",
+      "responses": {
+        "success": "アカウントが作成されました！",
+        "failed": "登録に失敗しました。",
+        "empty": "すべてのフィールドを入力してください。"
+      }
+    },
+    "reset": {
+      "title": "パスワードを忘れた方はこちら",
+      "button": "パスワードリセット",
+      "success": "この後の手順はメールを確認してください。",
+      "login": "思い出しましたか？ こちらからログインしてください。"
+    },
+    "privacy": {
+      "show": "プライバシーポリシー"
+    },
+    "profile": {
+      "title": "プロフィール",
+      "name": {
+        "title": "名前の変更",
+        "success": "名前を変更しました！",
+        "fields": {
+          "name": "名前"
+        }
+      },
+      "email": {
+        "title": "メールアドレスの変更",
+        "success": "メールアドレスを変更しました！",
+        "fields": {
+          "email": "メールアドレス",
+          "password": "パスワード"
+        }
+      },
+      "password": {
+        "title": "パスワードの変更",
+        "success": "パスワードを変更しました！",
+        "match": "パスワードが一致しません。",
+        "fields": {
+          "old": "現在のパスワード",
+          "new": "新しいパスワード",
+          "confirm": "新しいパスワード(再入力)"
+        }
+      },
+      "error": "変更に失敗しました。",
+      "action": "変更"
+    },
+    "logout": {
+      "title": "ログアウト",
+      "success": "ログアウトが完了しました。リダイレクトします。"
+    },
+    "backups": {
+      "title": "バックアップ",
+      "migrating": "バックアップ移行中"
+    },
+    "toast": {
+      "savedCloud": "クラウドに保存しました。",
+      "loginSuccessful": "ログインに成功しました！"
+    },
+    "security": {
+      "title": "セキュリティ",
+      "devices": {
+        "title": "デバイス",
+        "os": "OS",
+        "country": "国",
+        "ip": "IP"
+      },
+      "logs": {
+        "title": "アクティビティログ",
+        "timestamp": "タイムスタンプ",
+        "age": "経過時間",
+        "event": "イベント",
+        "account": {
+          "update": {
+            "email": "メールアドレスの変更",
+            "name": "名前の変更"
+          },
+          "create": "アカウント作成",
+          "recovery": {
+            "create": "パスワードリセットのリクエスト",
+            "update": "パスワードリセット完了"
+          },
+          "sessions": {
+            "create": "ログイン",
+            "delete": "ログアウト"
+          },
+          "verification": {
+            "create": "アカウント確認のリクエスト",
+            "update": "アカウント確認完了"
+          }
+        }
+      }
+    }
+  },
+  "cards": {
+    "title": "カード",
+    "search": "検索...",
+    "modal": {
+      "newHeader": "新しいカード",
+      "editHeader": "編集",
+      "title": "タイトル",
+      "content": "内容",
+      "buttonCreate": "作成",
+      "buttonSave": "保存",
+      "buttonDelete": "削除",
+      "confirmDelete": "このカードを削除してよろしいですか？",
+      "showInScenes": "シーンに表示する",
+      "helper": {
+        "title": "キャラクター, 場所, アイテム等...",
+        "tooltip": "エディタ画面でツールチップを表示する"
+      },
+      "placeholder": {
+        "title": "タイトルを入力"
+      }
+    }
+  },
+  "export": {
+    "title": "タイトル",
+    "publisher": "出版社",
+    "author": "著者",
+    "language": "言語",
+    "description": "概要",
+    "cover": "表紙",
+    "action": {
+      "choose": "選択",
+      "export": "エクスポート"
+    },
+    "form": "すべてのフィールドを入力してください。",
+    "template": "テンプレート",
+    "templates": "テンプレート",
+    "progress": "エクスポート中",
+    "helpers": {
+      "title": "この本のタイトル",
+      "author": "この本の著者のリスト",
+      "publisher": "この本の出版社",
+      "language": "この本の言語",
+      "description": "この本の概要",
+      "cover": "この本の表紙"
+    },
+    "cloud": {
+      "title": "EPUB",
+      "subtitle": "この機能にはインターネット接続が必要です。"
+    },
+    "rtf": {
+      "title": "RTF",
+      "subtitle": "RTF形式でエクスポート",
+      "explain": "多くの文書作成ソフトで利用可能な、リッチテキスト形式のファイルを作成します。"
+    },
+    "markdown": {
+      "title": "Markdown",
+      "subtitle": "マークダウン形式でエクスポート",
+      "explain": "多くのブログで利用可能な、マークダウン形式のファイルを作成します。"
+    },
+    "finished": {
+      "download": "ダウンロード"
+    }
+  },
+  "sidebar": {
+    "createScene": "新しいシーン",
+    "createChapter": "チャプターを作成",
+    "editOrder": "順番を変更",
+    "editProject": "プロジェクトを編集",
+    "editChapter": "チャプターを編集",
+    "editScene": "シーンを編集",
+    "placeholderChapters": "最初のチャプターを作成するにはここをクリックしてください。",
+    "delete": {
+      "chapter": "このチャプターを削除してよろしいですか？",
+      "scene": "このシーンを削除してよろしいですか？"
+    },
+    "modal": {
+      "title": "タイトル",
+      "newChapter": {
+        "header": "新しいチャプター",
+        "button": "チャプターを作成"
+      },
+      "newScene": {
+        "header": "新しいシーン",
+        "button": "シーンを作成"
+      },
+      "edit": {
+        "order": "シーンを並べ替え",
+        "buttonSave": "保存",
+        "buttonDelete": "削除"
+      }
+    }
+  },
+  "settings": {
+    "title": "設定",
+    "thirdparty": "サードパーティライセンス",
+    "appereance": {
+      "title": "表示",
+      "theme": {
+        "title": "テーマ",
+        "dark": "ダーク",
+        "light": "ライト"
+      },
+      "language": {
+        "title": "言語",
+        "en": "英語",
+        "de": "ドイツ語",
+        "es": "スペイン語",
+        "it": "イタリア語",
+        "nl": "オランダ語",
+        "pt": "ポルトガル語",
+        "ru": "ロシア語",
+        "fr": "フランス語",
+        "tr": "トルコ語",
+        "ja": "日本語"
+      }
+    },
+    "common": {
+      "title": "一般",
+      "lastLocation": "ページを記憶"
+    },
+    "write": {
+      "autosave": "自動保存",
+      "spellCheck": "スペルチェック",
+      "fontsize": "フォントサイズ"
+    },
+    "helpers": {
+      "autosave": "プロジェクトを定期的に自動保存する",
+      "spellCheck": "ベータ版の機能です",
+      "fontsize": "エディタ画面のフォントサイズを変更",
+      "lastLocation": "前回閉じたページから再開する"
+    }
+  },
+  "install": {
+    "language": "言語を選択",
+    "action": "実行",
+    "disclaimer": {
+      "action": "規約に同意する",
+      "title": "免責事項",
+      "show": "免責事項を表示",
+      "content": "Last updated: December 03, 2019<br><br>The information provided by OmniaWrite on our application is for general informational purposes only.<br>All information on our web and mobile application is provided in good faith, however we make no representation or warranty of any kind, express or implied, regarding the accuracy, adequacy, validity, reliability, availability or completeness of any information on our application.<br>Under no circumstance shall we have any liability to you for any loss or damage of any kind incurred as a result of the use of our  application or reliance on any information provided on our application.<br>Your use of the application and your reliance on any information on our application is solely at your own risk."
+    }
+  },
+  "overview": {
+    "project": {
+      "title": "タイトル",
+      "chapters": "チャプターの数",
+      "scenes": "シーンの数",
+      "words": "ワード数",
+      "characters": "文字数",
+      "save": "保存",
+      "delete": "削除",
+      "confirmDelete": "このプロジェクトを削除してよろしいですか？"
+    },
+    "projects": {
+      "title": "プロジェクト",
+      "opened": "前回の表示"
+    },
+    "modals": {
+      "newProject": {
+        "header": "新しいプロジェクト",
+        "title": "タイトル",
+        "button": "作成！"
+      }
+    }
+  },
+  "feedback": {
+    "title": "サポート&フィードバック",
+    "sub": "エラー報告、改善提案、新機能のご要望等のフィードバックをお寄せください。",
+    "email": "メールアドレス",
+    "description": "内容",
+    "action": "送信",
+    "success": "送信されました！"
+  },
+  "placeholder": {
+    "title": "タイトルを入力してください"
+  }
+}

@@ -1,3 +1,10 @@
+import { formatDistanceToNow, format, fromUnixTime } from "date-fns";
+import { es, enUS as en, pt, ru, de } from "date-fns/locale";
+import { settings } from "./stores";
+import { get } from "svelte/store";
+
+let locales = { es, en, pt, ru, de };
+
 export const getRandomNumber = () => {
   return Math.floor(Math.random() * 999999);
 };
@@ -135,3 +142,14 @@ export function countWords(s) {
 export const toFileName = text => {
   return text.replace(/[^a-zA-Z0-9]/g, "_");
 };
+
+export const formatDistance = timestamp =>
+  formatDistanceToNow(fromUnixTime(timestamp), {
+    locale: locales[get(settings).language],
+    addSuffix: true,
+  });
+
+export const formatDate = timestamp =>
+  format(fromUnixTime(timestamp), "PPPp", {
+    locale: locales[get(settings).language],
+  });

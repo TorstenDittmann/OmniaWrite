@@ -30,7 +30,7 @@
     height: 2rem;
     width: -webkit-fill-available;
     min-width: 4rem;
-    max-width: 12rem;
+    max-width: 14rem;
 
     &:hover {
       opacity: 1;
