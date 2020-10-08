@@ -99,6 +99,15 @@
       "contributions": [
         "test"
       ]
+    },
+    {
+      "login": "magdapoppins",
+      "name": "Magda Stenius",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/26743924?v=4",
+      "profile": "https://github.com/magdapoppins",
+      "contributions": [
+        "translation"
+      ]
     }
   ],
   "contributorsPerLine": 7,
