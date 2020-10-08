@@ -12,7 +12,7 @@ module.exports = {
       processor: "svelte3/svelte3",
     },
   ],
-  ignorePatterns: ["*.spec.js", "public/**/*"],
+  ignorePatterns: ["*.test.js", "public/**/*"],
   extends: "eslint:recommended",
   globals: {
     Atomics: "readonly",

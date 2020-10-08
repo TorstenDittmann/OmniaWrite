@@ -2,6 +2,7 @@
 node_modules
 public/bundle.*
 dist/
+storybook-static/
 public/service-worker.js
 src/licenses.json
 public/precache-manifest.*

@@ -147,14 +147,21 @@
     "security": {
       "title": "Sicherheit",
       "devices": {
-        "title": "Geräte"
+        "title": "Geräte",
+        "os": "Betriebssystem",
+        "country": "Land",
+        "ip": "IP"
       },
       "logs": {
         "title": "Aktivitäten",
+        "timestamp": "Zeitstempel",
+        "age": "Alter",
+        "event": "Event",
         "account": {
+          "create": "Account erstellt",
           "update": {
             "email": "E-mail geändert",
-            "name": "Name geänder"
+            "name": "Name geändert"
           },
           "recovery": {
             "create": "Passwort angefragt",
@@ -281,6 +288,11 @@
         "es": "Spanisch",
         "it": "Italienisch",
         "pt": "Portugiesisch",
+        "fi": "Finnisch",
+        "nl": "Niederländisch",
+        "tr": "Türkisch",
+        "ja": "Japanisch",
+        "ur": "Urdu",
         "ru": "Russisch",
         "fr": "Französisch"
       }
