@@ -12,3 +12,4 @@ public/fonts/*
 .env
 .env.build
 .vercel
+.vscode
