@@ -1,0 +1,359 @@
+{
+  "header": {
+    "write": {
+      "title": "Skriv"
+    },
+    "cards": {
+      "title": "Kort"
+    },
+    "settings": {
+      "title": "Inställningar"
+    },
+    "export": {
+      "title": "Exportera"
+    },
+    "cloud": {
+      "title": "Moln"
+    }
+  },
+  "common": {
+    "no-project-selected": "Inget projekt valt",
+    "update-toast": "En ny uppdatering är installerad!<br>Starta om programmet genom att klicka här.",
+    "update": {
+      "title": "Uppdatera❗"
+    },
+    "modals": {
+      "newBackup": {
+        "header": "Molnsync",
+        "subtitle": "Vi har hittat nyare data i molnet.",
+        "warning": "Du kommer att förlora alla ändringar som inte är sparade i molnet från denna enheten."
+      }
+    }
+  },
+  "write": {
+    "quote": {
+      "marks": "'”' '”' '’' '’'"
+    },
+    "toolbar": {
+      "words": "ord",
+      "chars": "tecken",
+      "undo": "Ångra",
+      "redo": "Gör om",
+      "save": "Spara",
+      "focus": "Fokusera",
+      "bold": "Fetstil",
+      "italic": "Kursiv",
+      "underline": "Understryk",
+      "switchScene": "Växla scen",
+      "cards": "Kort",
+      "cardsEmpty": "Inga kort hittades i scenen.",
+      "savestate": "Spara tillstånd"
+    },
+    "editor": {
+      "placeholder": "Låt oss skriva en fantastisk berättelse!",
+      "switch": "Ändra Block",
+      "delete": "Radera",
+      "confirmDelete": "Är du säker?",
+      "blocks": {
+        "paragraph": "Paragraf",
+        "heading": "Titel",
+        "quote": "Citat",
+        "code": "Monospace"
+      }
+    },
+    "overview": {
+      "opened": "öppnad",
+      "placeholder": "Projektet har inga scenar än."
+    }
+  },
+  "cloud": {
+    "confirm": {
+      "text": "Kontot har inte verifierats än! Verifiera ditt konto genom att klicka här.",
+      "success": "Ett bekräftelsemail har skickats!"
+    },
+    "login": {
+      "title": "Inloggning",
+      "email": "E-post",
+      "password": "Lösenord",
+      "button": "Logga in",
+      "register": "Har du inget konto än?",
+      "responses": {
+        "failed": "Inloggning misslyckades.",
+        "empty": "Ange inloggningsuppgifter."
+      }
+    },
+    "register": {
+      "title": "Registrering",
+      "name": "Namn",
+      "button": "Registrera dig",
+      "login": "Har du redan ett konto?",
+      "responses": {
+        "success": "Konto skapat!",
+        "failed": "Registrering misslyckades.",
+        "empty": "Fyll i alla fält!"
+      }
+    },
+    "reset": {
+      "title": "Har du glömt ditt lösenord?",
+      "button": "Nollställ lösenord",
+      "success": "Kontrollera din e-post för ytterligare instruktioner.",
+      "login": "Kom du ihåg? Logga in här."
+    },
+    "privacy": {
+      "show": "Integritetspolicy"
+    },
+    "profile": {
+      "title": "Profil",
+      "name": {
+        "title": "Uppdatera namn",
+        "success": "Namn uppdaterat!",
+        "fields": {
+          "name": "Namn"
+        }
+      },
+      "email": {
+        "title": "Uppdatera e-postadress",
+        "success": "E-postadress uppdaterad!",
+        "fields": {
+          "email": "E-postaddress",
+          "password": "Lösenord"
+        }
+      },
+      "password": {
+        "title": "Uppdatera lösenord",
+        "success": "Lösenord uppdaterat!",
+        "match": "Lösenord måste matcha!",
+        "fields": {
+          "old": "Nuvarande lösenord",
+          "new": "Nytt lösenord",
+          "confirm": "Bekräfta lösenord"
+        }
+      },
+      "error": "Något gick snett :(",
+      "action": "Uppdatera"
+    },
+    "logout": {
+      "title": "Logga ut",
+      "success": "Utloggning lyckades. Du kommer att omdirigeras."
+    },
+    "backups": {
+      "title": "Säkerhetskopiering",
+      "migrating": "Säkerhetskopiering migreras"
+    },
+    "toast": {
+      "savedCloud": "Sparat i molnet.",
+      "loginSuccessful": "Inloggning lyckades!"
+    },
+    "security": {
+      "title": "Säkerhet",
+      "devices": {
+        "title": "Enheter",
+        "os": "OS",
+        "country": "Land",
+        "ip": "IP"
+      },
+      "logs": {
+        "title": "Händelselogg",
+        "timestamp": "Tidsstämpel",
+        "age": "Ålder",
+        "event": "Händelse",
+        "account": {
+          "update": {
+            "email": "E-postadress ändrad",
+            "name": "Namn ändrat"
+          },
+          "create": "Konto skapat",
+          "recovery": {
+            "create": "Lösenordets återställningsförfrågan",
+            "update": "Lösenord återställt"
+          },
+          "sessions": {
+            "create": "Inloggning",
+            "delete": "Utloggning"
+          },
+          "verification": {
+            "create": "Begäran av bekräftelse av konto",
+            "update": "Kontot bekräftat"
+          }
+        }
+      }
+    }
+  },
+  "cards": {
+    "title": "Kort",
+    "search": "ange sökord...",
+    "modal": {
+      "newHeader": "Nytt kort",
+      "editHeader": "Redigera",
+      "title": "Titel",
+      "content": "Innehåll",
+      "buttonCreate": "Skapa",
+      "buttonSave": "Spara",
+      "buttonDelete": "Radera",
+      "confirmDelete": "Är du säkrer att du vill radera detta kort?",
+      "showInScenes": "Visa i scener",
+      "helper": {
+        "title": "Karaktär, plats, föremål...",
+        "tooltip": "Visa verktygstips i editorn"
+      },
+      "placeholder": {
+        "title": "Ange titel"
+      }
+    }
+  },
+  "export": {
+    "title": "Titel",
+    "publisher": "Utgivare",
+    "author": "Författare",
+    "language": "Språk",
+    "description": "Beskrivning",
+    "cover": "Omslag",
+    "action": {
+      "choose": "Välj",
+      "export": "Exportera"
+    },
+    "form": "Fyll i alla fält.",
+    "template": "Mall",
+    "templates": "Mallar",
+    "progress": "Exporteras",
+    "helpers": {
+      "title": "Bokens titel",
+      "author": "Bokens listade författare",
+      "publisher": "Bokens utgivare",
+      "language": "Bokens språk",
+      "description": "En kort beskrivning av boken",
+      "cover": "Omslaget för boken"
+    },
+    "cloud": {
+      "title": "EPUB",
+      "subtitle": "Detta kräver internetkoppling."
+    },
+    "rtf": {
+      "title": "RTF",
+      "subtitle": "Exportera till RTF-filformat",
+      "explain": "Skapar ett Rich Text Format -dokument som är kompatibel med de flesta ordbehandlare."
+    },
+    "markdown": {
+      "title": "Markdown",
+      "subtitle": "Exportera till Markdown-filformat",
+      "explain": "Skapar ett  Markdown-dokument som är kompatibel med de flesta bloggar."
+    },
+    "finished": {
+      "download": "Ladda ner"
+    }
+  },
+  "sidebar": {
+    "createScene": "Ny Scen",
+    "createChapter": "Skapa Kapitel",
+    "editOrder": "Redigera Ordning",
+    "editProject": "Redigera Projekt",
+    "editChapter": "Redigera Kapitel",
+    "editScene": "Redigera Scen",
+    "placeholderChapters": "Skapa ditt första kapitel.",
+    "delete": {
+      "chapter": "Är du säker att du vill radera detta kapitel?",
+      "scene": "Är du säker att du vill radera denna scen?"
+    },
+    "modal": {
+      "title": "Titel",
+      "newChapter": {
+        "header": "Nytt kapitel",
+        "button": "Skapa kapitel"
+      },
+      "newScene": {
+        "header": "Ny scen",
+        "button": "Skapa scen"
+      },
+      "edit": {
+        "order": "Ordna scener",
+        "buttonSave": "Spara",
+        "buttonDelete": "Radera"
+      }
+    }
+  },
+  "settings": {
+    "title": "Inställningar",
+    "thirdparty": "Tredjepartslicenser",
+    "appereance": {
+      "title": "Utseende",
+      "theme": {
+        "title": "Tema",
+        "dark": "Mörk",
+        "light": "Ljus"
+      },
+      "language": {
+        "title": "Språk",
+        "en": "Engelska",
+        "de": "Tyska",
+        "es": "Spanska",
+        "it": "Italienska",
+        "nl": "Holländska",
+        "pt": "Portugisiska",
+        "ru": "Ryska",
+        "fr": "Franska",
+        "tr": "Turkiska",
+        "ja": "Japanska",
+        "sv": "Svenska"
+      }
+    },
+    "common": {
+      "title": "Allmänt",
+      "lastLocation": "Bokmärk"
+    },
+    "write": {
+      "autosave": "Automatisk sparning",
+      "spellCheck": "Stavningskontroll",
+      "fontsize": "Fontstorlek"
+    },
+    "helpers": {
+      "autosave": "Regelbundet spara projektet automatiskt",
+      "spellCheck": "I beta!",
+      "fontsize": "Ändra fontstorlek inuti editorn",
+      "lastLocation": "Återöppna sidan du stängde sist"
+    }
+  },
+  "install": {
+    "language": "Välj ett språk",
+    "action": "Starta",
+    "disclaimer": {
+      "action": "Jag accepterar användningsvillkoren",
+      "title": "Ansvarsfriskrivning",
+      "show": "Visa ansvarsfriskrivning",
+      "content": "Senast uppdaterad: 3. december, 2019<br><br>OmniaWrite tillhandahåller informationen i denna applikation endast för kommunikationsändamål.<br>All information i vår webb- och mobilapplikation tillhandahålls i god tro, utan uttryckliga eller underförstådda garantier för noggrannhet, lämplighet, validitet, tillförlitlighet, tillgänglighet eller fullständighet.<br>Under inga omständigheter kommer vi att hållas ansvariga för förlust eller skada av något slag som uppstår till följd av din användning av vår applikation eller ditt beroende av informationen i vår applikation.<br>Användning av applikationen och förtröstan i dess data sker helt på egen risk."
+    }
+  },
+  "overview": {
+    "project": {
+      "title": "Titel",
+      "chapters": "Kapitel",
+      "scenes": "Scener",
+      "words": "Ord",
+      "characters": "Tecken",
+      "save": "Spara",
+      "delete": "Radera",
+      "confirmDelete": "Är du säker att du vill radera detta projektet?"
+    },
+    "projects": {
+      "title": "Projekt",
+      "opened": "öppnat"
+    },
+    "modals": {
+      "newProject": {
+        "header": "Nytt projekt",
+        "title": "Titel",
+        "button": "Skapa!"
+      }
+    }
+  },
+  "feedback": {
+    "title": "Stöd och respons",
+    "sub": "Vi välkomnar all respons, inklusive felrapporter, förslag på förbättringar, förslag på ny funktionalitet och allt annat ni kanske har att säga.",
+    "email": "E-postadress",
+    "description": "Beskrivning",
+    "action": "Skicka",
+    "success": "Skickad!"
+  },
+  "placeholder": {
+    "title": "Ange en titel"
+  }
+}
