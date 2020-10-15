@@ -135,3 +135,13 @@ export function countWords(s) {
 export const toFileName = text => {
   return text.replace(/[^a-zA-Z0-9]/g, "_");
 };
+
+// Checks browser support ==> return true if supported, false if not
+export const checkBrowser = () => {
+  const browser = navigator.userAgent;
+
+  if (browser.indexOf("Electron") > -1) return true;
+  if (browser.indexOf("Capacitor") > -1) return true;
+  if (browser.indexOf("Brave") > -1) return true;
+  return false;
+};
