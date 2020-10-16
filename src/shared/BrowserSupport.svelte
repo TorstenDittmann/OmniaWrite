@@ -8,25 +8,22 @@
   import Modal from "./Modal.svelte";
   import Select from "../components/Forms/Select.svelte";
 
-
   /**
    * @name isIgnoreSet
    * @returns {bool} True if set, false if not
-  **/
+   **/
   const isIgnoreSet = () => {
-
-    let cookies = document.cookie.split(";")
+    let cookies = document.cookie.split(";");
 
     for (let cookie of cookies) {
       if (cookie.trim().startsWith("ignoreModal")) return true;
     }
 
     return false;
-  }
+  };
 
-  let show = (!checkBrowser() && !isIgnoreSet());
+  let show = !checkBrowser() && !isIgnoreSet();
 
-  
   // Options for our Select Field.
   let options = [
     {
@@ -61,21 +58,19 @@
   /**
    * @name setIgnoreCookie
    * @description Sets the IgnoreModal cookie with expiration date
-  **/
+   **/
   const setIgnoreCookie = () => {
     let date = moment();
 
     if (daysIgnored == 0) {
       document.cookie = "ignoreModal=true;expires=0;path=/";
     } else {
-      date.add(daysIgnored, 'd')
+      date.add(daysIgnored, "d");
       document.cookie = "ignoreModal=true;expires=" + date.toDate() + ";path=/";
     }
 
     show = false;
   };
-
-  
 </script>
 
 <Modal bind:show>
@@ -90,7 +85,10 @@
     our website.
   </p>
   <form on:submit|preventDefault={setIgnoreCookie}>
-    <Select label="Don't show this for:" bind:options bind:value={daysIgnored} />
+    <Select
+      label="Don't show this for:"
+      bind:options
+      bind:value={daysIgnored} />
     <ButtonGroup>
       <Button on:click={setIgnoreCookie}>Update</Button>
     </ButtonGroup>
