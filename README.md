@@ -1,6 +1,6 @@
 ![Build/release](https://github.com/TorstenDittmann/OmniaWrite/workflows/Build/release/badge.svg)
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-8-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 [![omniawrite](https://snapcraft.io//omniawrite/badge.svg)](https://snapcraft.io/omniawrite)
 
@@ -99,6 +99,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
   <tr>
     <td align="center"><a href="https://github.com/AnthonyBoucher"><img src="https://avatars0.githubusercontent.com/u/6674732?v=4" width="100px;" alt=""/><br /><sub><b>AnthonyBoucher</b></sub></a><br /><a href="#maintenance-AnthonyBoucher" title="Maintenance">🚧</a></td>
     <td align="center"><a href="https://twitter.com/dennistobar"><img src="https://avatars1.githubusercontent.com/u/1218182?v=4" width="100px;" alt=""/><br /><sub><b>Dennis Tobar</b></sub></a><br /><a href="#translation-dennistobar" title="Translation">🌍</a></td>
+<<<<<<< HEAD
     <td align="center"><a href="https://github.com/marlonemmerich"><img src="https://avatars1.githubusercontent.com/u/52637919?v=4" width="100px;" alt=""/><br /><sub><b>Marlon Emmerich</b></sub></a><br /><a href="#translation-marlonemmerich" title="Translation">🌍</a></td>
     <td align="center"><a href="https://github.com/Gulianrdgd"><img src="https://avatars3.githubusercontent.com/u/45941668?v=4" width="100px;" alt=""/><br /><sub><b>Gulianrdgd</b></sub></a><br /><a href="#translation-Gulianrdgd" title="Translation">🌍</a></td>
     <td align="center"><a href="http://evgeniae.tk"><img src="https://avatars3.githubusercontent.com/u/22026957?v=4" width="100px;" alt=""/><br /><sub><b>Evgenia Polozova</b></sub></a><br /><a href="#translation-eugpoloz" title="Translation">🌍</a></td>
@@ -107,6 +108,8 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
   </tr>
   <tr>
     <td align="center"><a href="https://github.com/fredericbonnet"><img src="https://avatars2.githubusercontent.com/u/11368533?v=4" width="100px;" alt=""/><br /><sub><b>Frédéric Bonnet</b></sub></a><br /><a href="https://github.com/TorstenDittmann/OmniaWrite/commits?author=fredericbonnet" title="Tests">⚠️</a></td>
+=======
+>>>>>>> origin/dev
   </tr>
 </table>
 

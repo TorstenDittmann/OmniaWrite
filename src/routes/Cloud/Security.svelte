@@ -1,15 +1,11 @@
 <script>
   import { _ } from "svelte-i18n";
 
-  import { settings } from "../../stores";
   import cloud from "../../appwrite";
-  import moment from "moment";
-  import "moment/locale/de";
 
   import Spinner from "../../shared/Spinner.svelte";
   import { Table, Cell, Row, Heading } from "../../components/Table";
-
-  moment.locale($settings.language);
+  import { formatDistance, formatDate } from "../../utils";
 
   const logoutSession = id => {
     cloud.logoutSession(id);
@@ -22,9 +18,9 @@
 {:then devices}
   <Table>
     <Row>
-      <Heading>OS</Heading>
-      <Heading>Country</Heading>
-      <Heading>IP</Heading>
+      <Heading>{$_('cloud.security.devices.os')}</Heading>
+      <Heading>{$_('cloud.security.devices.country')}</Heading>
+      <Heading>{$_('cloud.security.devices.ip')}</Heading>
     </Row>
     {#each devices as device}
       <Row on:click={() => logoutSession(device.$id)}>
@@ -44,16 +40,14 @@
 {:then logs}
   <Table>
     <Row>
-      <Heading>Timestamp</Heading>
-      <Heading>Age</Heading>
-      <Heading>Event</Heading>
+      <Heading>{$_('cloud.security.logs.timestamp')}</Heading>
+      <Heading>{$_('cloud.security.logs.age')}</Heading>
+      <Heading>{$_('cloud.security.logs.event')}</Heading>
     </Row>
     {#each logs as log}
       <Row>
-        <Cell label="Timestamp">
-          {moment(log.time, 'X').format('MMMM Do YYYY, h:mm a')}
-        </Cell>
-        <Cell label="Age">{moment(log.time, 'X').fromNow()}</Cell>
+        <Cell label="Timestamp">{formatDate(log.time)}</Cell>
+        <Cell label="Age">{formatDistance(log.time)}</Cell>
         <Cell label="Event">{$_(`cloud.security.logs.${log.event}`)}</Cell>
       </Row>
     {/each}

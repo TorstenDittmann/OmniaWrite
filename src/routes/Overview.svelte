@@ -1,15 +1,12 @@
 <script>
   import { fade } from "svelte/transition";
-  import { state, projects, chapters, settings } from "../stores";
+  import { state, projects, chapters } from "../stores";
   import { reloadWindow } from "../bridge";
   import { _ } from "svelte-i18n";
   import { Grid, GridElement } from "../components/Grid";
   import CreateProject from "./Overview/CreateProject.svelte";
   import ProjectOverview from "./Overview/Project.svelte";
-  import moment from "moment";
-  import "moment/locale/de";
-
-  moment.locale($settings.language);
+  import { formatDistance } from "../utils";
 
   let showCreateProject = false;
 
@@ -50,10 +47,11 @@
         on:click={() => changeProject(project.id)}>
         <p>
           {$_('overview.projects.opened')}
-          {moment(project.lastOpen, 'X').fromNow()}
+          {formatDistance(project.lastOpen)}
         </p>
         <p>
-          {$_('overview.project.chapters')}: {$chapters.filter(n => n.project == project.id).length}
+          {$_('overview.project.chapters')}:
+          {$chapters.filter(n => n.project == project.id).length}
         </p>
       </GridElement>
     {/each}
