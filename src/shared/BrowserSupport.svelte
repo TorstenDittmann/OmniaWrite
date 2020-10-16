@@ -3,7 +3,7 @@
   import ButtonGroup from "../components/Forms/ButtonGroup.svelte";
   import { checkBrowser } from "../utils";
 
-  import moment from "moment";
+  import add from "date-fns/add";
 
   import Modal from "./Modal.svelte";
   import Select from "../components/Forms/Select.svelte";
@@ -60,13 +60,12 @@
    * @description Sets the IgnoreModal cookie with expiration date
    **/
   const setIgnoreCookie = () => {
-    let date = moment();
+    let date = add(new Date(),{days: daysIgnored});
 
     if (daysIgnored == 0) {
       document.cookie = "ignoreModal=true;expires=0;path=/";
     } else {
-      date.add(daysIgnored, "d");
-      document.cookie = "ignoreModal=true;expires=" + date.toDate() + ";path=/";
+      document.cookie = "ignoreModal=true;expires=" + date + ";path=/";
     }
 
     show = false;
@@ -81,8 +80,9 @@
   </p>
   <p>
     For more information regarding browser choice and/or downloads, check out
-    the <a href="https://www.omniawrite.com/get-started/">Get Started</a> page of
-    our website.
+    the
+    <a href="https://www.omniawrite.com/get-started/">Get Started</a>
+    page of our website.
   </p>
   <form on:submit|preventDefault={setIgnoreCookie}>
     <Select

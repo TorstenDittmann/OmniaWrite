@@ -1,4 +1,4 @@
-import { formatDistanceToNow, format, fromUnixTime } from "date-fns";
+import { formatDistanceToNow, fromUnixTime } from "date-fns";
 import { es, enUS as en, pt, ru, de } from "date-fns/locale";
 import { settings } from "./stores";
 import { get } from "svelte/store";
@@ -156,6 +156,7 @@ export const checkBrowser = () => {
   if (browser.indexOf("Edg") > -1) return true;
   return false;
 };
+
 export const formatDistance = timestamp =>
   formatDistanceToNow(fromUnixTime(timestamp), {
     locale: locales[get(settings).language],
