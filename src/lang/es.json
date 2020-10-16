@@ -286,11 +286,16 @@
         "en": "Inglés",
         "de": "Alemán",
         "es": "Español",
+        "fi": "Finés",
+        "fr": "Francés",
         "it": "Italiano",
+        "ja": "Japonés",
         "nl": "Neerlandés",
         "pt": "Portugués",
         "ru": "Ruso",
-        "fr": "Francés"
+        "sv": "Sueco",
+        "tr": "Turco",
+        "ur": "Urdu"
       }
     },
     "common": {
