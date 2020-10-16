@@ -60,7 +60,7 @@
    * @description Sets the IgnoreModal cookie with expiration date
    **/
   const setIgnoreCookie = () => {
-    let date = add(new Date(),{days: daysIgnored});
+    let date = add(new Date(), { days: daysIgnored });
 
     if (daysIgnored == 0) {
       document.cookie = "ignoreModal=true;expires=0;path=/";
