@@ -153,3 +153,16 @@ export const formatDate = timestamp =>
   format(fromUnixTime(timestamp), "PPPp", {
     locale: locales[get(settings).language],
   });
+
+export const checkBrowser = () => {
+  const browser = navigator.userAgent;
+
+  if (browser.indexOf("Electron") > -1) return true;
+  if (browser.indexOf("Capacitor") > -1) return true;
+  if (browser.indexOf("Brave") > -1) return true;
+  if (browser.indexOf("Chrome") > -1) return true;
+  //if (browser.indexOf("Firefox") > -1) return true;
+  if (browser.indexOf("Safari") > -1) return true;
+  if (browser.indexOf("Edg") > -1) return true;
+  return false;
+};
