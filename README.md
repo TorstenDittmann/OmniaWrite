@@ -1,6 +1,6 @@
 ![Build/release](https://github.com/TorstenDittmann/OmniaWrite/workflows/Build/release/badge.svg)
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-11-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-12-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 [![omniawrite](https://snapcraft.io//omniawrite/badge.svg)](https://snapcraft.io/omniawrite)
 
@@ -110,6 +110,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://github.com/minna-xD"><img src="https://avatars2.githubusercontent.com/u/44906587?v=4" width="100px;" alt=""/><br /><sub><b>Minna N.</b></sub></a><br /><a href="#translation-minna-xD" title="Translation">🌍</a></td>
     <td align="center"><a href="https://github.com/gustavohleal"><img src="https://avatars1.githubusercontent.com/u/22385451?v=4" width="100px;" alt=""/><br /><sub><b>Gustavo Henrique Leal</b></sub></a><br /><a href="https://github.com/TorstenDittmann/OmniaWrite/commits?author=gustavohleal" title="Tests">⚠️</a></td>
     <td align="center"><a href="https://github.com/magdapoppins"><img src="https://avatars2.githubusercontent.com/u/26743924?v=4" width="100px;" alt=""/><br /><sub><b>Magda Stenius</b></sub></a><br /><a href="#translation-magdapoppins" title="Translation">🌍</a></td>
+    <td align="center"><a href="https://github.com/syentix"><img src="https://avatars3.githubusercontent.com/u/43079612?v=4" width="100px;" alt=""/><br /><sub><b>Ole S.</b></sub></a><br /><a href="https://github.com/TorstenDittmann/OmniaWrite/commits?author=syentix" title="Code">💻</a></td>
   </tr>
 </table>
 
