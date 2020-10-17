@@ -161,7 +161,7 @@ export const checkBrowser = () => {
   if (browser.indexOf("Capacitor") > -1) return true;
   if (browser.indexOf("Brave") > -1) return true;
   if (browser.indexOf("Chrome") > -1) return true;
-  //if (browser.indexOf("Firefox") > -1) return true;
+  if (browser.indexOf("Firefox") > -1) return true;
   if (browser.indexOf("Safari") > -1) return true;
   if (browser.indexOf("Edg") > -1) return true;
   return false;
