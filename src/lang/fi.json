@@ -1,0 +1,348 @@
+{
+  "header": {
+    "write": {
+      "title": "Kirjoitus"
+    },
+    "cards": {
+      "title": "Kortit"
+    },
+    "settings": {
+      "title": "Asetukset"
+    },
+    "export": {
+      "title": "Vienti"
+    },
+    "cloud": {
+      "title": "Pilvi"
+    }
+  },
+  "common": {
+    "no-project-selected": "Projektia ei ole valittu",
+    "update-toast": "Uusi päivitys on asennettu!<br>Käynnistä sovellus uudelleen napsauttamalla tätä.",
+    "update": {
+      "title": "Päivitys❗"
+    },
+    "modals": {
+      "newBackup": {
+        "header": "Pilvisynkronointi",
+        "subtitle": "Pilvestä on löytynyt uudempia tietoja.",
+        "warning": "Menetät kaikki muutokset, joita ei ole tallennettu pilveen tältä laitteelta."
+      }
+    }
+  },
+  "write": {
+    "quote": {
+      "marks": "'”' '”' '’' '’'"
+    },
+    "toolbar": {
+      "words": "sanaa",
+      "chars": "merkkiä",
+      "undo": "Kumoa",
+      "redo": "Tee uudelleen",
+      "save": "Tallenna",
+      "focus": "Keskity",
+      "bold": "Lihavointi",
+      "italic": "Kursivointi",
+      "underline": "Alleviivaus",
+      "switchScene": "Vaihda kohtaus",
+      "cards": "Kortit",
+      "cardsEmpty": "Kohtauksesta ei löydy kortteja.",
+      "savestate": "Tallenna tila"
+    },
+    "editor": {
+      "placeholder": "Kirjoitetaanpa loistava tarina!",
+      "switch": "Muuta lohkoa",
+      "delete": "Poista",
+      "confirmDelete": "Oletko varma?",
+      "blocks": {
+        "paragraph": "Kappale",
+        "heading": "Otsikko",
+        "quote": "Lainaus",
+        "code": "Tasalevyinen"
+      }
+    },
+    "overview": {
+      "opened": "avattu",
+      "placeholder": "Projektissa ei ole vielä kohtauksia."
+    }
+  },
+  "cloud": {
+    "confirm": {
+      "text": "Tiliä ei ole vielä vahvistettu! Vahvista tilisi napsauttamalla tätä.",
+      "success": "Vahvistussähköposti on lähetetty!"
+    },
+    "login": {
+      "title": "Kirjautuminen",
+      "email": "Sähköpostiosoite",
+      "password": "Salasana",
+      "button": "Kirjaudu",
+      "register": "Eikö sinulla ole vielä tiliä?",
+      "responses": {
+        "failed": "Kirjautuminen epäonnistui.",
+        "empty": "Kirjautumistiedot on annettava."
+      }
+    },
+    "register": {
+      "title": "Rekisteröityminen",
+      "name": "Nimi",
+      "button": "Rekisteröidy",
+      "login": "Onko sinulla jo tili?",
+      "responses": {
+        "success": "Tili on luotu!",
+        "failed": "Rekisteröityminen epäonnistui.",
+        "empty": "Täytä kaikki kentät!"
+      }
+    },
+    "reset": {
+      "title": "Unohtuiko salasana?",
+      "button": "Nollaa salasana",
+      "success": "Tarkista lisäohjeet sähköpostistasi.",
+      "login": "Muistatko salasanan nyt? Kirjaudu tästä sisään."
+    },
+    "privacy": {
+      "show": "Tietosuojakäytäntö"
+    },
+    "profile": {
+      "title": "Profiili",
+      "name": {
+        "title": "Päivitä nimi",
+        "success": "Nimi on päivitetty!",
+        "fields": {
+          "name": "Nimi"
+        }
+      },
+      "email": {
+        "title": "Päivitä sähköpostiosoite",
+        "success": "Sähköpostiosoite päivitetty!",
+        "fields": {
+          "email": "Sähköpostiosoite",
+          "password": "Salasana"
+        }
+      },
+      "password": {
+        "title": "Päivitä salasana",
+        "success": "Salasana päivitetty!",
+        "match": "Salasanojen täytyy olla samat!",
+        "fields": {
+          "old": "Nykyinen salasana",
+          "new": "Uusi salasana",
+          "confirm": "Vahvista salasana"
+        }
+      },
+      "error": "Tapahtui jokin virhe :(",
+      "action": "Päivitä"
+    },
+    "logout": {
+      "title": "Uloskirjautuminen",
+      "success": "Uloskirjautuminen onnistui. Sinut ohjataan uudelleen."
+    },
+    "backups": {
+      "title": "Varmuuskopiot",
+      "migrating": "Varmuuskopiota siirretään"
+    },
+    "toast": {
+      "savedCloud": "Tallennettu pilveen.",
+      "loginSuccessful": "Sisäänkirjautuminen onnistui!"
+    },
+    "security": {
+      "title": "Tietoturva",
+      "devices": {
+        "title": "Laitteet"
+      },
+      "logs": {
+        "title": "Tapahtumaloki",
+        "account": {
+          "update": {
+            "email": "Sähköpostiosoite muutettu",
+            "name": "Nimi muutettu"
+          },
+          "recovery": {
+            "create": "Salasanan palautuspyyntö",
+            "update": "Salasana palautettu"
+          },
+          "sessions": {
+            "create": "Sisäänkirjautuminen",
+            "delete": "Uloskirjautuminen"
+          },
+          "verification": {
+            "create": "Tilin vahvistuspyyntö",
+            "update": "Tili vahvistettu"
+          }
+        }
+      }
+    }
+  },
+  "cards": {
+    "title": "Kortit",
+    "search": "kirjoita hakusana...",
+    "modal": {
+      "newHeader": "Uusi kortti",
+      "editHeader": "Muokkaa korttia",
+      "title": "Otsikko",
+      "content": "Sisältö",
+      "buttonCreate": "Luo",
+      "buttonSave": "Tallenna",
+      "buttonDelete": "Poista",
+      "confirmDelete": "Haluatko varmasti poistaa tämän kortin?",
+      "showInScenes": "Näytä kohtauksissa",
+      "helper": {
+        "title": "Hahmo, paikka, esine...",
+        "tooltip": "Näytä työkaluvihje editorissa"
+      },
+      "placeholder": {
+        "title": "Kirjoita otsikko"
+      }
+    }
+  },
+  "export": {
+    "title": "Nimike",
+    "publisher": "Julkaisija",
+    "author": "Tekijä",
+    "language": "Kieli",
+    "description": "Kuvaus",
+    "cover": "Kansi",
+    "action": {
+      "choose": "Valitse",
+      "export": "Vie"
+    },
+    "form": "Täytä kaikki kentät.",
+    "template": "Malli",
+    "templates": "Mallit",
+    "progress": "Viedään",
+    "helpers": {
+      "title": "Kirjan nimi",
+      "author": "Kirjan tekijä",
+      "publisher": "Kirjan julkaisija",
+      "language": "Kirjan kieli",
+      "description": "Lyhyt kuvaus kirjasta",
+      "cover": "Kirjan kansi"
+    },
+    "cloud": {
+      "title": "EPUB",
+      "subtitle": "Tämä vaatii Internet-yhteyden."
+    },
+    "rtf": {
+      "title": "RTF",
+      "subtitle": "Vie RTF-tiedostomuotoon",
+      "explain": "Luo Rich Text Format -asiakirjan, joka on yhteensopiva useimpien tekstinkäsittelyohjelmien kanssa."
+    },
+    "markdown": {
+      "title": "Markdown",
+      "subtitle": "Vie Markdown-tiedostomuotoon",
+      "explain": "Luo Markdown-asiakirjan, joka on yhteensopiva useimpien blogialustojen kanssa."
+    },
+    "finished": {
+      "download": "Lataa"
+    }
+  },
+  "sidebar": {
+    "createScene": "Uusi kohtaus",
+    "createChapter": "Luo kappale",
+    "editOrder": "Muokkaa järjestystä",
+    "editProject": "Muokkaa projektia",
+    "editChapter": "Muokkaa kappaletta",
+    "editScene": "Muokkaa kohtausta",
+    "placeholderChapters": "Luo ensimmäinen kappale napsauttamalla tätä.",
+    "delete": {
+      "chapter": "Haluatko varmasti poistaa tämän kappaleen?",
+      "scene": "Haluatko varmasti poistaa tämän kohtauksen?"
+    },
+    "modal": {
+      "title": "Otsikko",
+      "newChapter": {
+        "header": "Uusi kappale",
+        "button": "Luo kappale"
+      },
+      "newScene": {
+        "header": "Uusi kohtaus",
+        "button": "Luo kohtaus"
+      },
+      "edit": {
+        "order": "Järjestä kohtaukset",
+        "buttonSave": "Tallenna",
+        "buttonDelete": "Poista"
+      }
+    }
+  },
+  "settings": {
+    "title": "Asetukset",
+    "thirdparty": "Kolmannen osapuolen lisenssit",
+    "appereance": {
+      "title": "Ulkoasu",
+      "theme": {
+        "title": "Teema",
+        "dark": "Tumma",
+        "light": "Vaalea"
+      },
+      "language": {
+        "title": "Kieli",
+        "en": "Englanti",
+        "de": "Saksa",
+        "es": "Espanja",
+        "it": "Italia",
+        "pt": "Portugali",
+        "ru": "Venäjä",
+        "fr": "Ranska"
+      }
+    },
+    "common": {
+      "title": "Yleiset",
+      "lastLocation": "Kirjanmerkki"
+    },
+    "write": {
+      "autosave": "Automaattinen tallennus",
+      "spellCheck": "Oikeinkirjoituksen tarkistus",
+      "fontsize": "Fonttikoko"
+    },
+    "helpers": {
+      "autosave": "Tallentaa projektin ajoittain automaattisesti",
+      "spellCheck": "Vielä beetavaiheessa!",
+      "fontsize": "Muuttaa editorin fonttikokoa",
+      "lastLocation": "Avaa viimeksi suljetun sivun uudelleen"
+    }
+  },
+  "install": {
+    "language": "Valitse kieli",
+    "action": "Käynnistä",
+    "disclaimer": {
+      "action": "Hyväksyn käyttöehdot",
+      "title": "Vastuuvapauslauseke",
+      "show": "Näytä vastuuvapauslauseke",
+      "content": "Päivitetty viimeksi: 3. joulukuuta, 2019<br><br>OmniaWrite tarjoaa tässä sovelluksessa olevat tiedot vain tiedonantotarkoituksessa.<br>Kaikki web- ja mobiilisovelluksemme tiedot toimitetaan vilpittömässä mielessä, ilman suoria tai välillisiä takuita tietojen tarkkuudesta, tarkoituksenmukaisuudesta, oikeellisuudesta, luotettavuudesta, saatavuudesta tai kattavuudesta.<br>Emme missään olosuhteissa vastaa minkäänlaisista menetyksistä tai vahingoista, jotka aiheutuvat sovelluksemme käytöstä tai luottamisesta sovelluksessamme annettuihin tietoihin.<br>Sovelluksen käyttö ja sen tietoihin luottaminen on täysin omalla vastuullasi."
+    }
+  },
+  "overview": {
+    "project": {
+      "title": "Otsikko",
+      "chapters": "Kappaleet",
+      "scenes": "Kohtaukset",
+      "words": "Sanat",
+      "characters": "Merkit",
+      "save": "Tallenna",
+      "delete": "Poista",
+      "confirmDelete": "Haluatko varmasti poistaa tämän projektin?"
+    },
+    "projects": {
+      "title": "Projektit",
+      "opened": "avattu"
+    },
+    "modals": {
+      "newProject": {
+        "header": "Uusi projekti",
+        "title": "Otsikko",
+        "button": "Luo!"
+      }
+    }
+  },
+  "feedback": {
+    "title": "Tuki ja palaute",
+    "sub": "Kaikenlainen palaute, kuten virheraportit, parannusehdotukset, ominaisuustoiveet ja muut kommentit, ovat tervetulleita.",
+    "email": "Sähköpostiosoite",
+    "description": "Kuvaus",
+    "action": "Lähetä",
+    "success": "Lähetetty!"
+  },
+  "placeholder": {
+    "title": "Kirjoita otsikko"
+  }
+}
