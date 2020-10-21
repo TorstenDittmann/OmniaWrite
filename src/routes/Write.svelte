@@ -4,20 +4,25 @@
   import { scenes, chapters, cards, state, settings, ui } from "../stores";
   import { push } from "svelte-spa-router";
   import { _ } from "svelte-i18n";
-  import OmniaEditor from "omnia-editor";
+  import EditorJS from "@editorjs/editorjs";
+  import Quote from "@editorjs/quote";
+  import Header from "@editorjs/header";
+  import Paragraph from "@editorjs/paragraph";
   import tippy from "sveltejs-tippy";
   import Overview from "./Write/Overview.svelte";
   import Placeholder from "../shared/Placeholder.svelte";
   import Modal from "../shared/Modal.svelte";
+  import { countWords, countChars } from "../utils";
 
   export let params = {};
   let currentScene;
   let editor;
+  let editorRef;
   let editorStatus = 0;
-  let currentHistory = 0;
-  let lengthHistory = 0;
   let showCards = false;
   let filteredCards = [];
+  let countWord = 0;
+  let countChar = 0;
   const editorLanguage = {
     placeholder: $_("write.editor.placeholder"),
     switch: $_("write.editor.switch"),
@@ -42,8 +47,57 @@
     scenes.setSceneTitle(currentScene.id, currentScene.title);
   };
 
+  const editorStats = data => {
+    const fullText = data.blocks.reduce(
+      (prev, curr) => `${prev} ${curr.data.text}`,
+      ""
+    );
+    countWord = countWords(fullText);
+    countChar = countChars(fullText);
+    filteredCards = $cards
+      .filter(e => e.showTooltip && e.project == $state.currentProject)
+      .filter(c =>
+        data.blocks.some(
+          block => block.data.text && block.data.text.includes(c.title)
+        )
+      );
+  };
+
   onMount(() => {
     window.addEventListener("hashchange", routeChange, false);
+    editor = new EditorJS({
+      holder: editorRef,
+      data: currentScene.content,
+      autofocus: true,
+      placeholder: $_("write.editor.placeholder"),
+      initialBlock: "paragraph",
+      onReady: async () => {
+        const data = await editor.save();
+        editorStats(data);
+        editorStatus = 2;
+      },
+      onChange: async () => {
+        editorStatus = 1;
+        const data = await editor.save();
+        scenes.setSceneContent(params.sceneId, data);
+        editorStatus = 2;
+        editorStats(data);
+      },
+      tools: {
+        quote: {
+          class: Quote,
+          inlineToolbar: true,
+        },
+        heading: {
+          class: Header,
+          inlineToolbar: true,
+        },
+        paragraph: {
+          class: Paragraph,
+          inlineToolbar: ["bold", "italic"],
+        },
+      },
+    });
   });
 
   onDestroy(() => {
@@ -52,21 +106,9 @@
 
   const routeChange = () => {
     if (editor) {
-      editor.update();
+      editor.render(currentScene.content);
       document.querySelector(".content").scrollTo(0, 0);
     }
-  };
-
-  const change = e => {
-    scenes.setSceneContent(params.sceneId, e.detail);
-    editorStatus = 2;
-    filteredCards = $cards
-      .filter(e => e.showTooltip && e.project == $state.currentProject)
-      .filter(c =>
-        e.detail.blocks.some(
-          block => block.data.text && block.data.text.includes(c.title)
-        )
-      );
   };
 
   const switchScene = e => {
@@ -76,21 +118,6 @@
 
   const toggleFocus = () => {
     $ui.focus = !$ui.focus;
-  };
-
-  const undo = () => {
-    editor.history.undo();
-  };
-
-  const redo = () => {
-    editor.history.redo();
-  };
-
-  const init = () => {
-    editor.history.subscribe(n => {
-      currentHistory = n.current;
-      lengthHistory = n.data.length;
-    });
   };
 </script>
 
@@ -113,32 +140,8 @@
       <div class="toolbar">
         <div class="inner">
           <div>
-            <span
-              class="lnr lnr-bold"
-              use:tippy={{ content: $_('write.toolbar.bold'), placement: 'bottom' }}
-              on:click={() => editor.toggleFormat('bold')} />
-            <span
-              class="lnr lnr-italic"
-              use:tippy={{ content: $_('write.toolbar.italic'), placement: 'bottom' }}
-              on:click={() => editor.toggleFormat('italic')} />
-            <span
-              class="lnr lnr-underline"
-              use:tippy={{ content: $_('write.toolbar.underline'), placement: 'bottom' }}
-              on:click={() => editor.toggleFormat('underline')} />
-            {#if currentHistory < lengthHistory - 1}
-              <span
-                transition:fade={{ duration: 100 }}
-                class="lnr lnr-undo"
-                use:tippy={{ content: $_('write.toolbar.undo'), placement: 'bottom' }}
-                on:click={undo} />
-            {/if}
-            {#if currentHistory !== 0}
-              <span
-                transition:fade={{ duration: 100 }}
-                class="lnr lnr-redo"
-                use:tippy={{ content: $_('write.toolbar.redo'), placement: 'bottom' }}
-                on:click={redo} />
-            {/if}
+            <span>{countWord} {$_('write.toolbar.words')}</span>
+            <span>{countChar} {$_('write.toolbar.chars')}</span>
           </div>
           <div>
             {#if filteredCards.length > 0}
@@ -188,7 +191,9 @@
           contenteditable
           bind:textContent={currentScene.title}
           on:input={titleInput} />
-        <OmniaEditor
+        <div bind:this={editorRef} />
+        <!--
+          <OmniaEditor
           bind:this={editor}
           bind:data={currentScene.content}
           spellCheck={$settings.spellCheck}
@@ -196,8 +201,9 @@
           on:init={init}
           on:input={() => (editorStatus = 1)}
           on:change={change} />
+        -->
       </div>
-    {:else}
+
       <Overview />
     {/if}
   {:else}
@@ -226,6 +232,18 @@
       font-family: "Libre Baskerville";
       text-align: center;
     }
+  }
+
+  :global(.cdx-block) {
+    font-family: "Libre Baskerville";
+    color: var(--editor-color);
+    font-weight: 400;
+    font-size: var(--editor-font-size);
+  }
+
+  :global(.cdx-block.ce-paragraph) {
+    line-height: 2.5rem;
+    text-align: justify;
   }
 
   select#focusSceneSelect {
