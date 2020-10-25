@@ -49,9 +49,9 @@
   };
 
   const handleThemeToggle = () => {
-    $settings.theme = $settings.theme === 'dark' ? 'light' : 'dark';
-    isDarkMode = $settings.theme === 'dark';
-  }
+    $settings.theme = $settings.theme === "dark" ? "light" : "dark";
+    isDarkMode = $settings.theme === "dark";
+  };
 
   $: {
     if ($state.isUserLoggedIn) {

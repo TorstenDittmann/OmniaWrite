@@ -14,8 +14,11 @@
 </script>
 
 <Field bind:id bind:label bind:helper>
-  <input {id} type="checkbox"
-   on:input={() => dispatch('input')} bind:checked={value} />
+  <input
+    {id}
+    type="checkbox"
+    on:input={() => dispatch('input')}
+    bind:checked={value} />
   <label for={id} class={checkboxProps.value || ''} />
 </Field>
 
@@ -51,7 +54,7 @@
       }
       &.light {
         &:after {
-          background: #F28C38 !important;
+          background: #f28c38 !important;
         }
       }
       &:after {
@@ -73,12 +76,11 @@
       }
 
       &:before {
-         display: none;
+        display: none;
       }
       &.light {
-        background: #F0F8FF;
+        background: #f0f8ff;
       }
-
     }
     &:checked + label {
       background: var(--primary-color);
