@@ -274,8 +274,8 @@
   "settings": {
     "title": "Settings",
     "thirdparty": "Third Party Licenses",
-    "appereance": {
-      "title": "Appereance",
+    "appearance": {
+      "title": "Appearance",
       "theme": {
         "title": "Theme",
         "dark": "Dark",

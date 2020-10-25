@@ -52,7 +52,7 @@
   const languages = ["en", "de", "ru", "es", "pt", "fr", "it"].map(language => {
     return {
       value: language,
-      text: $_(`settings.appereance.language.${language}`),
+      text: $_(`settings.appearance.language.${language}`),
     };
   });
 </script>

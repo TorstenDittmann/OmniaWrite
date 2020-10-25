@@ -26,29 +26,29 @@
   $: themes = [
     {
       value: "dark",
-      text: $_("settings.appereance.theme.dark"),
+      text: $_("settings.appearance.theme.dark"),
     },
     {
       value: "light",
-      text: $_("settings.appereance.theme.light"),
+      text: $_("settings.appearance.theme.light"),
     },
   ];
 
   $: languages = $locales.map(locale => ({
     value: locale,
-    text: $_(`settings.appereance.language.${locale}`),
+    text: $_(`settings.appearance.language.${locale}`),
   }));
 </script>
 
 <div class="settings" in:fade={{ duration: 100 }}>
-  <h2>{$_('settings.appereance.title')}</h2>
+  <h2>{$_('settings.appearance.title')}</h2>
 
   <Select
-    label={$_('settings.appereance.theme.title')}
+    label={$_('settings.appearance.theme.title')}
     bind:value={$settings.theme}
     options={themes} />
   <Select
-    label={$_('settings.appereance.language.title')}
+    label={$_('settings.appearance.language.title')}
     bind:value={$settings.language}
     options={languages} />
 

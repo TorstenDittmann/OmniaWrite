@@ -10,7 +10,7 @@
 
   $: languages = $locales.map(locale => ({
     value: locale,
-    text: $_(`settings.appereance.language.${locale}`),
+    text: $_(`settings.appearance.language.${locale}`),
   }));
 </script>
 
@@ -18,7 +18,7 @@
   <h2 slot="header">OmniaWrite</h2>
   <div class="install">
     <Select
-      label={$_('settings.appereance.language.title')}
+      label={$_('settings.appearance.language.title')}
       bind:value={$settings.language}
       options={languages} />
     <Checkbox

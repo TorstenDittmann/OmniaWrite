@@ -8,7 +8,7 @@
     minimizeWindow,
     isRunningElectron,
   } from "../bridge";
-  import { state, ui } from "../stores";
+  import { state, ui, settings } from "../stores";
   import { _ } from "svelte-i18n";
 
   import active from "svelte-spa-router/active";
@@ -19,8 +19,11 @@
   import Close from "./Sidebar/Close.svelte";
   import Tabs from "./Header/Tabs.svelte";
   import Spinner from "./Spinner.svelte";
+  import { Checkbox } from "../components/Forms";
 
   export let navigationState;
+
+  let isDarkMode = $settings.theme === "dark";
 
   const dispatch = createEventDispatcher();
 
@@ -44,6 +47,11 @@
       }
     );
   };
+
+  const handleThemeToggle = () => {
+    $settings.theme = $settings.theme === 'dark' ? 'light' : 'dark';
+    isDarkMode = $settings.theme === 'dark';
+  }
 
   $: {
     if ($state.isUserLoggedIn) {
@@ -131,10 +139,25 @@
             on:click={minimizeWindow}
             style="-webkit-app-region: no-drag" />
         {/if}
-        <span
-          class="lnr lnr-question-circle titlebar feedback"
-          style="-webkit-app-region: no-drag"
-          on:click={() => ($ui.support.show = true)} />
+        <div class="global-setting-grp">
+          <div class="dark-mode-toggle">
+            <div class="theme-icon" style="opacity: {!isDarkMode ? '1' : '0'}">
+              <img src="/assets/icons/sun.svg" alt="Sun" />
+            </div>
+            <Checkbox
+              id="globalThemeToggle"
+              checkboxProps={{ name: 'theme', value: isDarkMode ? 'dark' : 'light' }}
+              on:input={handleThemeToggle}
+              bind:value={isDarkMode} />
+            <div class="theme-icon" style="opacity: {isDarkMode ? '1' : '0'}">
+              <img src="/assets/icons/moon.svg" alt="Moon" />
+            </div>
+          </div>
+          <div
+            class="lnr lnr-question-circle titlebar feedback"
+            style="-webkit-app-region: no-drag"
+            on:click={() => ($ui.support.show = true)} />
+        </div>
       </div>
     {/if}
     <button
@@ -304,13 +327,17 @@
         }
       }
 
-      .feedback {
-        bottom: 0;
-        left: 0;
-        position: absolute;
-
-        @include desktop {
-          position: static;
+      .global-setting-grp {
+        display: flex;
+        float: right;
+        .dark-mode-toggle {
+          display: flex;
+          .theme-icon {
+            padding: 25px 5px;
+            img {
+              margin-top: 4px;
+            }
+          }
         }
       }
     }

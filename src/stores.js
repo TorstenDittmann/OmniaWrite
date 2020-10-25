@@ -477,6 +477,8 @@ tabs.subscribe(val => localStorage.setItem("tabs", JSON.stringify(val)));
 scenes.subscribe(val => localStorage.setItem("scenes", JSON.stringify(val)));
 cards.subscribe(val => localStorage.setItem("cards", JSON.stringify(val)));
 settings.subscribe(val =>
-  localStorage.setItem("settings", JSON.stringify(val))
+  {
+    localStorage.setItem("settings", JSON.stringify(val));
+  }
 );
 intern.subscribe(val => localStorage.setItem("intern", JSON.stringify(val)));

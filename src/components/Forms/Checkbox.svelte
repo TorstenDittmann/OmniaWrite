@@ -1,17 +1,22 @@
 <script>
+  import { createEventDispatcher } from "svelte";
   import { getRandomNumber } from "../../utils";
   import { Field } from ".";
 
+  const dispatch = createEventDispatcher();
+
   export let label;
   export let id = label + getRandomNumber();
+  export let checkboxProps = {};
 
   export let value;
   export let helper;
 </script>
 
 <Field bind:id bind:label bind:helper>
-  <input {id} type="checkbox" bind:checked={value} />
-  <label for={id} />
+  <input {id} type="checkbox"
+   on:input={() => dispatch('input')} bind:checked={value} />
+  <label for={id} class={checkboxProps.value || ''} />
 </Field>
 
 <style lang="scss">
@@ -39,6 +44,16 @@
       border-radius: 2em;
       padding: 2px;
       transition: all 0.4s ease;
+      &.dark {
+        &:after {
+          background: #191970 !important;
+        }
+      }
+      &.light {
+        &:after {
+          background: #F28C38 !important;
+        }
+      }
       &:after {
         border-radius: 50%;
         background: #fff;
@@ -58,11 +73,18 @@
       }
 
       &:before {
-        display: none;
+         display: none;
       }
+      &.light {
+        background: #F0F8FF;
+      }
+
     }
     &:checked + label {
       background: var(--primary-color);
+      &.dark {
+        background: #000;
+      }
     }
     &:checked + label:after {
       left: 50%;
