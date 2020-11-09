@@ -6,8 +6,8 @@ android {
         applicationId "com.omniawrite.app"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 11040
-        versionName "1.1"
+        versionCode 12000
+        versionName "1.2"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
