@@ -1,0 +1,356 @@
+{
+  "header": {
+    "write": {
+      "title": "Yaz"
+    },
+    "cards": {
+      "title": "Kartlar"
+    },
+    "settings": {
+      "title": "Ayarlar"
+    },
+    "export": {
+      "title": "Dışarıya aktar"
+    },
+    "cloud": {
+      "title": "Bulut"
+    }
+  },
+  "common": {
+    "no-project-selected": "Proje seçilmedi",
+    "update-toast": "Yeni güncelleme yüklendi!<br>Yeniden başlatmak için tıklayın.",
+    "update": {
+      "title": "Güncelleme❗"
+    },
+    "modals": {
+      "newBackup": {
+        "header": "Bulut senkronizasyonu",
+        "subtitle": "Bulutta daha yeni veriler bulduk.",
+        "warning": "Bu cihazda buluta kaydedilmeyen bütün çalışmalar kaybolacak."
+      }
+    }
+  },
+  "write": {
+    "quote": {
+      "marks": "'“' '”' '‘' '’'"
+    },
+    "toolbar": {
+      "words": "kelime",
+      "chars": "karakter",
+      "undo": "Geri al",
+      "redo": "Yinele",
+      "save": "Kaydet",
+      "focus": "Odaklan",
+      "bold": "Kalın",
+      "italic": "İtalik",
+      "underline": "Altı çizili",
+      "switchScene": "Sahne değiştir",
+      "cards": "Kartlar",
+      "cardsEmpty": "Bu sahnede kart bulunmuyor.",
+      "savestate": "Durumu kaydet"
+    },
+    "editor": {
+      "placeholder": "Müthiş bir hikaye yazalım!",
+      "switch": "Bloğu değiştir",
+      "delete": "Sil",
+      "confirmDelete": "Emin misiniz?",
+      "blocks": {
+        "paragraph": "Paragraf",
+        "heading": "Başlık",
+        "quote": "Alıntı",
+        "code": "Tek aralıklı"
+      }
+    },
+    "overview": {
+      "opened": "açık",
+      "placeholder": "Bu projede sahne bulunmuyor."
+    }
+  },
+  "cloud": {
+    "confirm": {
+      "text": "Hesabınız henüz doğrulanmadı! Hesabınızı doğrulamak için buraya tıklayın..",
+      "success": "Onay e-postası gönderildi!"
+    },
+    "login": {
+      "title": "Giriş",
+      "email": "E-Posta",
+      "password": "Parola",
+      "button": "Giriş",
+      "register": "Hesabınız yok mu?",
+      "responses": {
+        "failed": "Giriş başarısız.",
+        "empty": "Giriş bilgilerı boş bırakılamaz."
+      }
+    },
+    "register": {
+      "title": "Kayıt",
+      "name": "İsim",
+      "button": "Kayıt ol",
+      "login": "Hesabınız var mı?",
+      "responses": {
+        "success": "Hesap oluşturuldu!",
+        "failed": "Kayıt başarısız oldu.",
+        "empty": "Lütfen bütün alanları doldurun!."
+      }
+    },
+    "reset": {
+      "title": "Şifrenizi mi unuttunuz?",
+      "button": "Şifreyi sıfırla",
+      "success": "Detaylı bilgi için lütfen e-posta hesabınızı kontrol edin.",
+      "login": "Hatırladınız mı? Giriş yapın."
+    },
+    "privacy": {
+      "show": "Gizlilik Politikası"
+    },
+    "profile": {
+      "title": "Profil",
+      "name": {
+        "title": "İsmi güncelle",
+        "success": "İsim güncelledni!",
+        "fields": {
+          "name": "İsim"
+        }
+      },
+      "email": {
+        "title": "E-postayı güncelle",
+        "success": "E-posta güncellendi!",
+        "fields": {
+          "email": "E-posta",
+          "password": "Parola"
+        }
+      },
+      "password": {
+        "title": "Parolayı güncelle",
+        "success": "Parola güncellendi!",
+        "match": "Parolalar eşleşmeli!",
+        "fields": {
+          "old": "Mevcut parola",
+          "new": "Yeni parola",
+          "confirm": "Parolayı onayla"
+        }
+      },
+      "error": "Bir şeyler ters gitti :(",
+      "action": "Güncelle"
+    },
+    "logout": {
+      "title": "Çıkış",
+      "success": "Çıkış başarılı oldu. Birazdan yönlendirileceksiniz."
+    },
+    "backups": {
+      "title": "Yedekler",
+      "migrating": "Yedek taşınıyor"
+    },
+    "toast": {
+      "savedCloud": "Buluta kaydedildi.",
+      "loginSuccessful": "Giriş başarılı!"
+    },
+    "security": {
+      "title": "Güvenlik",
+      "devices": {
+        "title": "Cihazlar",
+        "os": "İS",
+        "country": "Ülke",
+        "ip": "IP"
+      },
+      "logs": {
+        "title": "Etkinlik günlükleri",
+        "timestamp": "Zaman damgası",
+        "age": "Yaş",
+        "event": "Olay",
+        "account": {
+          "update": {
+            "email": "E-posta değiştirildi",
+            "name": "İsim değiştirildi"
+          },
+          "create": "Hesap oluşturuldu",
+          "recovery": {
+            "create": "Parola kurtarma isteği",
+            "update": "Parola kurtarma tamamlandı"
+          },
+          "sessions": {
+            "create": "Giriş",
+            "delete": "Çıkış"
+          },
+          "verification": {
+            "create": "Hesap onayı isteği",
+            "update": "Hesap onayı tamamlandı"
+          }
+        }
+      }
+    }
+  },
+  "cards": {
+    "title": "Kartlar",
+    "search": "burada arayın...",
+    "modal": {
+      "newHeader": "Yeni Kart",
+      "editHeader": "Düzenle",
+      "title": "Başlık",
+      "content": "İçerik",
+      "buttonCreate": "Oluştur",
+      "buttonSave": "Kaydet",
+      "buttonDelete": "Sil",
+      "confirmDelete": "Bu kartı silmek istediğinizden emin misiniz?",
+      "showInScenes": "Sahnelerde göster",
+      "helper": {
+        "title": "Karakter, konum, öğe ...",
+        "tooltip": "Düzenleyici içinde ipuçlarını göster"
+      },
+      "placeholder": {
+        "title": "Başlığınızı girin"
+      }
+    }
+  },
+  "export": {
+    "title": "Başlık",
+    "publisher": "Yayıncı",
+    "author": "Yazar",
+    "language": "Dil",
+    "description": "Açıklama",
+    "cover": "Kapak",
+    "action": {
+      "choose": "Seç",
+      "export": "Dışarıya aktar"
+    },
+    "form": "Lütfen bütün alanları doldurun.",
+    "template": "Şablon",
+    "templates": "Şablonlar",
+    "progress": "Aktarılıyor",
+    "helpers": {
+      "title": "Kitap başlığı",
+      "author": "Kitabın yazarı",
+      "publisher": "Kitap yayınlayıcınız",
+      "language": "Kitabın dili",
+      "description": "Kitabın kısa açıklaması",
+      "cover": "Kitabın kapağı"
+    },
+    "cloud": {
+      "title": "EPUB",
+      "subtitle": "Bu işlem için internet bağlantısı gereklidir."
+    },
+    "rtf": {
+      "title": "RTF",
+      "subtitle": "RTF biçimine dönüştür",
+      "explain": "Kelime işlem yazılımlarının çoğuyla uyumlu bir zengin metin biçimli dosya üretir."
+    },
+    "markdown": {
+      "title": "Markdown",
+      "subtitle": "Markdown biçimine dönüştür",
+      "explain": "Blogların çoğuyla uyumlu bir Markdown biçimli dosya üretir."
+    },
+    "finished": {
+      "download": "İndir"
+    }
+  },
+  "sidebar": {
+    "createScene": "Sahne Oluştur",
+    "createChapter": "Bölüm oLUŞTUR",
+    "editOrder": "Sıralamayı Düzenle",
+    "editProject": "Projeyi Düzenle",
+    "editChapter": "Bölümü Düzenle",
+    "editScene": "Sahneyi Düzenle",
+    "placeholderChapters": "İlk bölümünüzü oluşturmak için tıklayın.",
+    "delete": {
+      "chapter": "Bu bölümü silmek istediğinizden emin misiniz?",
+      "scene": "Bu sahneyi silmek istediğinizden emin misiniz?"
+    },
+    "modal": {
+      "title": "Başlık",
+      "newChapter": {
+        "header": "Yeni Bölüm",
+        "button": "Bölüm oluştur"
+      },
+      "newScene": {
+        "header": "Yeni Sahne",
+        "button": "Sahne Oluştur"
+      },
+      "edit": {
+        "order": "Sahneleri düzenle",
+        "buttonSave": "Kaydet",
+        "buttonDelete": "Sil"
+      }
+    }
+  },
+  "settings": {
+    "title": "Ayarlar",
+    "thirdparty": "Üçüncü parti lisanslar",
+    "appereance": {
+      "title": "Görünüm",
+      "theme": {
+        "title": "Tema",
+        "dark": "Karanlık",
+        "light": "Aydınlık"
+      },
+      "language": {
+        "title": "Dil",
+        "en": "İngilizce",
+        "de": "Almanca",
+        "es": "İspanyolca",
+        "it": "İtalyanca",
+        "pt": "Portekizce",
+        "ru": "Rusça",
+        "fr": "Fransızca",
+        "tr": "Türkçe"
+      }
+    },
+    "common": {
+      "title": "Genel",
+      "lastLocation": "Hatırla"
+    },
+    "write": {
+      "autosave": "Otomatik kaydet",
+      "spellCheck": "Yazım denetimi",
+      "fontsize": "Yazı tipi boyutu"
+    },
+    "helpers": {
+      "autosave": "Projenizi periyodik olarak kaydeder",
+      "spellCheck": "Henüz beta aşamasında!",
+      "fontsize": "Düzenleyici içindeki yazı tipi boytunu değiştirir",
+      "lastLocation": "En son kapattığınız sayfayı açar"
+    }
+  },
+  "install": {
+    "language": "Dil seçin",
+    "action": "Çalıştır",
+    "disclaimer": {
+      "action": "Koşul ve şartları kabul ediyorum",
+      "title": "Sorumluluk reddi",
+      "show": "Sorumluluk reddini göster",
+      "content": "Son güncelleme:  3 Aralık 2019<br><br>OmniaWrite tarafından uygulamamız hakkında sağlanan bilgiler genel bildilendirme amaçlıdır.<br>Web ve mobil uygulamalarımızdaki bütün bilgiler iyi niyetle sağlanmaktadır. Buna ileveten uygulamamızdaki bilgilerin doğruluğu, yeterliliği, geçerliliği, güvenilirliği, bulunabilirliği ya da eksiksizliği hakkında herhangi bir yükümlülüğümüz bulunmamaktadır. Uygulamayı kullanmanız ve uygulamada herhangi bir bilgiye güvenmeniz tamamen kendi sorumluluğunuzdadır."
+    }
+  },
+  "overview": {
+    "project": {
+      "title": "Başlık",
+      "chapters": "Bölümler",
+      "scenes": "Sahneler",
+      "words": "Kelimeler",
+      "characters": "Karakterler",
+      "save": "Kaydet",
+      "delete": "Sil",
+      "confirmDelete": "Bu projeyi silmek istedğinizden emin misiniz?"
+    },
+    "projects": {
+      "title": "Projeler",
+      "opened": "açık"
+    },
+    "modals": {
+      "newProject": {
+        "header": "Yeni proje",
+        "title": "Başlık",
+        "button": "Oluştur!"
+      }
+    }
+  },
+  "feedback": {
+    "title": "Destek & Geri bildirim",
+    "sub": "Geri bildirimleriniz, hata raporlarınız, geliştirme önerileriniz, yeni özellik önerileriniz ya da herhangi bir öneriniz memnuniyetle karşılanır.",
+    "email": "E-Posta",
+    "description": "Açıklama",
+    "action": "Gönder",
+    "success": "Gönderildi!"
+  },
+  "placeholder": {
+    "title": "Başlığınızı girin"
+  }
+}

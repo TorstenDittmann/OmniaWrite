@@ -27,6 +27,7 @@
   import ThirdPartyRoute from "./shared/ThirdParty.svelte";
   import DisclaimerRoute from "./shared/Disclaimer.svelte";
   import PolicyRoute from "./routes/Cloud/Policy.svelte";
+  import BrowserSupport from "./shared/BrowserSupport.svelte";
 
   locale.set($settings.language);
 
@@ -152,6 +153,7 @@
   </div>
 {:else}
   <div class="container">
+    <BrowserSupport />
     <Support />
     <NewUpdate bind:show={showChangelog} />
     {#if $state.isUserLoggedIn}

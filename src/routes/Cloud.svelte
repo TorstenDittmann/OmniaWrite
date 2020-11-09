@@ -1,7 +1,6 @@
 <script>
   import { onMount } from "svelte";
   import { fade } from "svelte/transition";
-  import { settings } from "../stores";
   import { _ } from "svelte-i18n";
   import { push, location } from "svelte-spa-router";
   import { Grid, GridElement } from "../components/Grid";
@@ -16,10 +15,6 @@
   import Backups from "./Cloud/Backups.svelte";
   import ResetPassword from "./Cloud/ResetPassword.svelte";
   import Logout from "./Cloud/Logout.svelte";
-  import moment from "moment";
-  import "moment/locale/de";
-
-  moment.locale($settings.language);
 
   const prefix = "/cloud";
   const routes = {

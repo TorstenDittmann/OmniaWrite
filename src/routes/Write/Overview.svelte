@@ -1,15 +1,12 @@
 <script>
   import { fade } from "svelte/transition";
-  import { state, chapters, scenes, settings } from "../../stores";
+  import { state, chapters, scenes } from "../../stores";
   import { push } from "svelte-spa-router";
   import { _ } from "svelte-i18n";
   import { Grid, GridElement } from "../../components/Grid";
 
-  import moment from "moment";
-  import "moment/locale/de";
   import Placeholder from "../../shared/Placeholder.svelte";
-
-  moment.locale($settings.language);
+  import { formatDistance } from "../../utils";
 
   let sceneData = [];
 
@@ -45,7 +42,7 @@
         <h2>{scene.title}</h2>
         <small>
           {$_('write.overview.opened')}
-          {moment(scene.lastEdit, 'X').fromNow()}
+          {formatDistance(scene.lastEdit)}
         </small>
       </GridElement>
     {:else}
