@@ -1,0 +1,348 @@
+{
+  "header": {
+    "write": {
+      "title": "Escribir"
+    },
+    "cards": {
+      "title": "Tarjetas"
+    },
+    "settings": {
+      "title": "Configuraciones"
+    },
+    "export": {
+      "title": "Exportar"
+    },
+    "cloud": {
+      "title": "Nube"
+    }
+  },
+  "common": {
+    "no-project-selected": "No se ha seleccionado un proyecto",
+    "update-toast": "¡Se ha instalado una actualización!<br>Presiona aquí para recargar.",
+    "update": {
+      "title": "¡Actualizar!"
+    },
+    "modals": {
+      "newBackup": {
+        "header": "Sincronización con la Nube",
+        "subtitle": "Encontramos información más reciente en la nube.",
+        "warning": "Cualquier documento que no haya sido guardado en la nube en este dispositivo se perderá."
+      }
+    }
+  },
+  "write": {
+    "quote": {
+      "marks": "'“' '”' '‘' '’'"
+    },
+    "toolbar": {
+      "words": "palabras",
+      "chars": "caracteres",
+      "undo": "Deshacer",
+      "redo": "Rehacer",
+      "save": "Guardar",
+      "focus": "Enfocar",
+      "bold": "Negritas",
+      "italic": "Itálicas",
+      "underline": "Subrayado",
+      "switchScene": "Ir a otra escena",
+      "cards": "Tarjetas",
+      "cardsEmpty": "No se han encontrado tarjetas en esta escena.",
+      "savestate": "Guardar estado"
+    },
+    "editor": {
+      "placeholder": "¡Vamos a escribir una historia asombrosa!",
+      "switch": "Cambiar bloque",
+      "delete": "Eliminad",
+      "confirmDelete": "¿Estás seguro?",
+      "blocks": {
+        "paragraph": "Párrafo",
+        "heading": "Encabezado",
+        "quote": "Cita",
+        "code": "Código"
+      }
+    },
+    "overview": {
+      "opened": "abierto",
+      "placeholder": "Este proyecto todavía no tiene escenas."
+    }
+  },
+  "cloud": {
+    "confirm": {
+      "text": "¡Tu cuenta todavía no ha sido modificada! Haz click aquí para hacerlo.",
+      "success": "¡Ya hemos enviado el correo de confirmación!"
+    },
+    "login": {
+      "title": "Inicio de sesión",
+      "email": "E-Mail",
+      "password": "Contraseña",
+      "button": "Iniciar sesión",
+      "register": "¿Todavía no tienes una cuenta?",
+      "responses": {
+        "failed": "El inicio de sesión falló.",
+        "empty": "Los datos no pueden estar vacíos."
+      }
+    },
+    "register": {
+      "title": "Registro",
+      "name": "Nombre",
+      "button": "Registrarse",
+      "login": "¿Ya tienes una cuenta?",
+      "responses": {
+        "success": "¡La cuenta ha sido creada!",
+        "failed": "Falló el registro.",
+        "empty": "¡Por favor llene todos los campos!."
+      }
+    },
+    "reset": {
+      "title": "¿Olvidó su contraseña?",
+      "button": "Reestablecer contraseña",
+      "success": "Por favor revisa tu bandeja de entrada de correo para más información.",
+      "login": "¿Ya lo recordaste? Inicia sesión aquí."
+    },
+    "privacy": {
+      "show": "Acuerdo de privacidad"
+    },
+    "profile": {
+      "title": "Perfil",
+      "name": {
+        "title": "Actualizar nombre",
+        "success": "¡Nombre actualizado!",
+        "fields": {
+          "name": "Nombre"
+        }
+      },
+      "email": {
+        "title": "Actualizar e-mail",
+        "success": "¡E-mail actualizado!",
+        "fields": {
+          "email": "E-mail",
+          "password": "Contraseña"
+        }
+      },
+      "password": {
+        "title": "Actualizar contraseña",
+        "success": "¡Contraseña actualizada!",
+        "match": "¡La contraseña debe coincidir!",
+        "fields": {
+          "old": "Contraseña actual",
+          "new": "Nueva contraseña",
+          "confirm": "Confirma la nueva contraseña"
+        }
+      },
+      "error": "Algo salió mal :(",
+      "action": "Actualizar"
+    },
+    "logout": {
+      "title": "Cerrar sesión",
+      "success": "El cierre de sesión fue exitoso. Serás redirigido."
+    },
+    "backups": {
+      "title": "Respaldos",
+      "migrating": "Importando respaldo"
+    },
+    "toast": {
+      "savedCloud": "Guardado en la nube.",
+      "loginSuccessful": "¡Inicio de sesión exitoso!"
+    },
+    "security": {
+      "title": "Seguridad",
+      "devices": {
+        "title": "Dispositivos"
+      },
+      "logs": {
+        "title": "Registro de actividad",
+        "account": {
+          "update": {
+            "email": "El E-mail cambió",
+            "name": "El nombre cambió"
+          },
+          "recovery": {
+            "create": "Solicitud de recuperación de contraseña",
+            "update": "La recuperación de contraseña concluyó"
+          },
+          "sessions": {
+            "create": "Iniciar sesión",
+            "delete": "Cerrar sesión"
+          },
+          "verification": {
+            "create": "Solicitud de confirmación de cuenta",
+            "update": "La confirmación de la cuenta concluyó"
+          }
+        }
+      }
+    }
+  },
+  "cards": {
+    "title": "Tarjetas",
+    "search": "Buscar aquí...",
+    "modal": {
+      "newHeader": "Nueva tarjetas",
+      "editHeader": "Editar",
+      "title": "Título",
+      "content": "Contenido",
+      "buttonCreate": "Crear",
+      "buttonSave": "Guardar",
+      "buttonDelete": "Eliminar",
+      "confirmDelete": "¿Estás seguro de que quieres eliminar esta tarjeta?",
+      "showInScenes": "Mostrar en escenas",
+      "helper": {
+        "title": "Personaje, lugar, objeto ...",
+        "tooltip": "Mostrar una descripción dentro del editor"
+      },
+      "placeholder": {
+        "title": "Ingresa tu título"
+      }
+    }
+  },
+  "export": {
+    "title": "Título",
+    "publisher": "Editorial",
+    "author": "Autor",
+    "language": "Idioma",
+    "description": "Descripción",
+    "cover": "Portada",
+    "action": {
+      "choose": "Elegir",
+      "export": "Exportar"
+    },
+    "form": "Por favor llene los campos.",
+    "template": "Plantilla",
+    "templates": "Plantillas",
+    "progress": "Exportando",
+    "helpers": {
+      "title": "Título del libro",
+      "author": "Autor del libro",
+      "publisher": "La editorial del libro",
+      "language": "El idioma del libro",
+      "description": "Una pequeña descripción de la obra",
+      "cover": "La portada del libro"
+    },
+    "cloud": {
+      "title": "EPUB",
+      "subtitle": "La exportación a este formato necesita una conexión a Internet."
+    },
+    "rtf": {
+      "title": "RTF",
+      "subtitle": "Exportar a formato RTF",
+      "explain": "Formato compatible con procesadores de texto como LibreOffice Writer, Microsoft Office o Google Docs."
+    },
+    "markdown": {
+      "title": "Markdown",
+      "subtitle": "Genera un archivo en formato Markdown",
+      "explain": "Compatible con la mayoría de los blogs."
+    },
+    "finished": {
+      "download": "Descargar"
+    }
+  },
+  "sidebar": {
+    "createScene": "Nueva escena",
+    "createChapter": "Crear un capítulo",
+    "editOrder": "Editar el orden",
+    "editProject": "Editar el proyecto",
+    "editChapter": "Editar el capítulo",
+    "editScene": "Editar la escena",
+    "placeholderChapters": "Haz click aquí para crear tu primer capítulo.",
+    "delete": {
+      "chapter": "¿Estás seguro de que quieres eliminar el capítulo?",
+      "scene": "¿Estás seguro de que quieres eliminar la escena?"
+    },
+    "modal": {
+      "title": "Título",
+      "newChapter": {
+        "header": "Nuevo capítulo",
+        "button": "Crear capítulo"
+      },
+      "newScene": {
+        "header": "Nueva escena",
+        "button": "Crear escena"
+      },
+      "edit": {
+        "order": "Ordenar escenas",
+        "buttonSave": "Guardar",
+        "buttonDelete": "Eliminar"
+      }
+    }
+  },
+  "settings": {
+    "title": "Configuración",
+    "thirdparty": "Licencias de terceros",
+    "appereance": {
+      "title": "Apariencia",
+      "theme": {
+        "title": "Tema",
+        "dark": "Oscuro",
+        "light": "Claro"
+      },
+      "language": {
+        "title": "Idioma",
+        "en": "Inglés",
+        "de": "Alemán",
+        "es": "Español",
+        "it": "Italiano",
+        "pt": "Portugués",
+        "ru": "Ruso",
+        "fr": "Francés"
+      }
+    },
+    "common": {
+      "title": "Común",
+      "lastLocation": "Recordar"
+    },
+    "write": {
+      "autosave": "Autoguardado",
+      "spellCheck": "Análisis de ortografía",
+      "fontsize": "Tamaño de la fuente"
+    },
+    "helpers": {
+      "autosave": "Guardaa tu trabajo automáticamente cada cierto tiempo",
+      "spellCheck": "¡Sigue bajo desarrollo, puede no incluir tu idioma!",
+      "fontsize": "Cambia el tamaño de la fuente dentro del editor",
+      "lastLocation": "Abre automáticamente la útlima página cerrada"
+    }
+  },
+  "install": {
+    "language": "Elije el idioma",
+    "action": "Ejecutar",
+    "disclaimer": {
+      "action": "Acepto los términos y condiciones",
+      "title": "Descargo legal",
+      "show": "Mostrar descargo",
+      "content": "Última vez acutualizado: 03 de Diciembre de 2019<br><br>La información proporcionada por OmniaWrite en nuestra solicitud es solo para fines informativos generales.<br>Toda la información en nuestra web y aplicación móvil se proporciona de buena fe, sin embargo, no hacemos ninguna representación o garantía de ningún tipo, expresa o implícita, con respecto a la exactitud, adecuación, validez, fiabilidad, disponibilidad o integridad de cualquier información en nuestra solicitud.<br>Bajo ninguna circunstancia tendremos ninguna responsabilidad ante usted por cualquier pérdida o daño de cualquier tipo incurrido como resultado del uso de nuestra aplicación o la confianza en cualquier información proporcionada en nuestra aplicación.<br>Su uso de la aplicación y su confianza en cualquier información en nuestra aplicación es únicamente bajo su propio riesgo"
+    }
+  },
+  "overview": {
+    "project": {
+      "title": "Título",
+      "chapters": "Capítulos",
+      "scenes": "Escenas",
+      "words": "Palabras",
+      "characters": "Caracteres",
+      "save": "Guardar",
+      "delete": "Eliminar",
+      "confirmDelete": "¿Seguro que quieres eliminar este proyecto?"
+    },
+    "projects": {
+      "title": "Proyectos",
+      "opened": "abierto"
+    },
+    "modals": {
+      "newProject": {
+        "header": "Nuevo proyecto",
+        "title": "Título",
+        "button": "¡Crear!"
+      }
+    }
+  },
+  "feedback": {
+    "title": "Soporte y comentarios",
+    "sub": "Sus comentarios, incluidos informes de errores, sugerencias de mejora, nuevas solicitudes de funciones y cualquier otra cosa que pueda tener que decir, son bienvenidos.",
+    "email": "E-Mail",
+    "description": "Descripción",
+    "action": "Enviar",
+    "success": "¡Enviado!"
+  },
+  "placeholder": {
+    "title": "Introduce tu título"
+  }
+}
