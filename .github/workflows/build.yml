@@ -19,7 +19,7 @@ jobs:
         with:
           node-version: 10
       - name: Install Snapcraft
-        uses: samuelmeuli/action-snapcraft@v1.1.2
+        uses: samuelmeuli/action-snapcraft@v1.1.3
         if: startsWith(matrix.os, 'ubuntu-latest')
         with:
           snapcraft_token: ${{ secrets.snapcraft_token }}
