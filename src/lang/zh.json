@@ -1,32 +1,32 @@
 {
   "header": {
     "write": {
-      "title": "Write"
+      "title": "创作"
     },
     "cards": {
-      "title": "Cards"
+      "title": "提示卡"
     },
     "settings": {
-      "title": "Settings"
+      "title": "设定"
     },
     "export": {
-      "title": "Export"
+      "title": "导出"
     },
     "cloud": {
-      "title": "Cloud"
+      "title": "云功能"
     }
   },
   "common": {
-    "no-project-selected": "No project selected",
-    "update-toast": "New update installed!<br>Click here to restart.",
+    "no-project-selected": "没有选择项目",
+    "update-toast": "更新已安装！<br>点此重启软件.",
     "update": {
-      "title": "Update❗"
+      "title": "更新❗"
     },
     "modals": {
       "newBackup": {
-        "header": "Cloud sync",
-        "subtitle": "We found newer data on the cloud.",
-        "warning": "Any work that has not been saved to the cloud from this device will be lost."
+        "header": "云同步",
+        "subtitle": "云存储上有新的数据。",
+        "warning": "任何未从本地存储到云上的作品将会丢失."
       }
     }
   },
@@ -35,327 +35,328 @@
       "marks": "'“' '”' '‘' '’'"
     },
     "toolbar": {
-      "words": "words",
-      "chars": "characters",
-      "undo": "Undo",
-      "redo": "Redo",
-      "save": "Save",
-      "focus": "Focus",
-      "bold": "Bold",
-      "italic": "Italic",
-      "underline": "Underline",
-      "switchScene": "Switch scene",
-      "cards": "Cards",
-      "cardsEmpty": "No cards found in this scene.",
-      "savestate": "Save state"
+      "words": "词数",
+      "chars": "字数",
+      "undo": "撤销",
+      "redo": "重做",
+      "save": "保存",
+      "focus": "专注模式",
+      "bold": "粗体",
+      "italic": "斜体",
+      "underline": "下划线",
+      "switchScene": "切换场景",
+      "cards": "提示卡",
+      "cardsEmpty": "本场景暂无提示卡。",
+      "savestate": "立即保存"
     },
     "editor": {
-      "placeholder": "Let's write an awesome story!",
-      "switch": "Change Block",
-      "delete": "Delete",
-      "confirmDelete": "Are you sure?",
+      "placeholder": "让我们写个了不起的故事吧！",
+      "switch": "切换分段",
+      "delete": "删除",
+      "confirmDelete": "你确定吗？",
       "blocks": {
-        "paragraph": "Paragraph",
-        "heading": "Heading",
-        "quote": "Quote",
-        "code": "Monospace"
+        "paragraph": "自然段",
+        "heading": "标题",
+        "quote": "引用",
+        "code": "等宽段"
       }
     },
     "overview": {
-      "opened": "opened",
-      "placeholder": "This project has no scenes yet."
+      "opened": "已打开",
+      "placeholder": "本项目暂无场景."
     }
   },
   "cloud": {
     "confirm": {
-      "text": "Your account is not verfied yet! Click here to verify your account.",
-      "success": "Confirmation e-mail has been sent!"
+      "text": "您的账户未验证！请点此验证您的账户。",
+      "success": "确认电邮已经发出！"
     },
     "login": {
-      "title": "Login",
-      "email": "E-Mail",
-      "password": "Password",
-      "button": "Login",
-      "register": "Don't have an account yet?",
+      "title": "登录",
+      "email": "电子邮件",
+      "password": "密码",
+      "button": "登录",
+      "register": "没有账户？",
       "responses": {
-        "failed": "Login failed.",
-        "empty": "Login credentials can't be empty."
+        "failed": "登录失败。",
+        "empty": "密码不能为空。"
       }
     },
     "register": {
-      "title": "Register",
-      "name": "Name",
-      "button": "Register",
-      "login": "Already have an account?",
+      "title": "注册",
+      "name": "姓名",
+      "button": "注册",
+      "login": "已有账户？",
       "responses": {
-        "success": "Account created!",
-        "failed": "Registration failed.",
-        "empty": "Please fill out all fields!."
+        "success": "账户创建成功！,
+        "failed": "账户创建失败。",
+        "empty": "请填写所有空栏！"
       }
     },
     "reset": {
-      "title": "Forgot password?",
-      "button": "Reset password",
-      "success": "Please check your mail inbox for further instructions.",
-      "login": "Remembered? Log in here."
+      "title": "忘记密码？",
+      "button": "重置密码",
+      "success": "请检查电子邮箱，并按照电子邮件中的指导操作。",
+      "login": "想起密码了？在此登录。"
     },
     "privacy": {
-      "show": "Privacy Policy"
+      "show": "隐私政策"
     },
     "profile": {
-      "title": "Profile",
+      "title": "个人档案",
       "name": {
-        "title": "Update name",
-        "success": "Name updated!",
+        "title": "更新姓名",
+        "success": "姓名已更新!",
         "fields": {
-          "name": "Name"
+          "name": "姓名"
         }
       },
       "email": {
-        "title": "Update e-mail",
-        "success": "E-mail updated!",
+        "title": "更新电子邮件",
+        "success": "电子邮件已更新!",
         "fields": {
-          "email": "E-mail",
-          "password": "Password"
+          "email": "电子邮件",
+          "password": "密码"
         }
       },
       "password": {
-        "title": "Update password",
-        "success": "Password updated!",
-        "match": "Password have to match!",
+        "title": "更新密码",
+        "success": "密码已更新!",
+        "match": "两次输入的密码必须一致!",
         "fields": {
-          "old": "Current password",
-          "new": "New password",
-          "confirm": "Confirm password"
+          "old": "旧密码",
+          "new": "新密码",
+          "confirm": "确认新密码"
         }
       },
-      "error": "Something went wrong :(",
-      "action": "Update"
+      "error": "错误 :(",
+      "action": "更新"
     },
     "logout": {
-      "title": "Logout",
-      "success": "Logout was successful. You will be redirected."
+      "title": "登出",
+      "success": "登出成功。页面将重定向。"
     },
     "backups": {
-      "title": "Backups",
-      "migrating": "Migrating backup"
+      "title": "备份",
+      "migrating": "迁移备份"
     },
     "toast": {
-      "savedCloud": "Saved into cloud.",
-      "loginSuccessful": "Login successful!"
+      "savedCloud": "保存到云端",
+      "loginSuccessful": "登录成功!"
     },
     "security": {
-      "title": "Security",
+      "title": "安全",
       "devices": {
-        "title": "Devices",
-        "os": "OS",
-        "country": "Country",
-        "ip": "IP"
+        "title": "设备",
+        "os": "操作系统",
+        "country": "国家",
+        "ip": "IP地址"
       },
       "logs": {
-        "title": "Activity logs",
-        "timestamp": "Timestamp",
-        "age": "Age",
-        "event": "Event",
+        "title": "活动记录",
+        "timestamp": "时间戳",
+        "age": "年龄",
+        "event": "事件",
         "account": {
           "update": {
-            "email": "E-mail changed",
-            "name": "Name changed"
+            "email": "电子邮件已变更",
+            "name": "姓名已变更"
           },
-          "create": "Account created",
+          "create": "账户已创建",
           "recovery": {
-            "create": "Password recovery request",
-            "update": "Password recovery finished"
+            "create": "账户恢复请求",
+            "update": "账户已经恢复"
           },
           "sessions": {
-            "create": "Login",
-            "delete": "Logout"
+            "create": "登录",
+            "delete": "登出"
           },
           "verification": {
-            "create": "Account confirmation request",
-            "update": "Account confirmation finished"
+            "create": "账户确认请求",
+            "update": "账户确认完毕"
           }
         }
       }
     }
   },
   "cards": {
-    "title": "Cards",
-    "search": "search here...",
+    "title": "提示卡",
+    "search": "搜索...",
     "modal": {
-      "newHeader": "New Card",
-      "editHeader": "Edit",
-      "title": "Title",
-      "content": "Content",
-      "buttonCreate": "Create",
-      "buttonSave": "Save",
-      "buttonDelete": "Delete",
-      "confirmDelete": "Are you sure you want to delete this card?",
-      "showInScenes": "Show in scenes",
+      "newHeader": "新提示卡",
+      "editHeader": "编辑",
+      "title": "标题",
+      "content": "内容",
+      "buttonCreate": "新建",
+      "buttonSave": "保存",
+      "buttonDelete": "删除",
+      "confirmDelete": "你确定要删除这张提示卡吗？",
+      "showInScenes": "在场景中显示",
       "helper": {
-        "title": "Character, location, item ...",
-        "tooltip": "Show a tooltip inside the editor"
+        "title": "人物，地点，道具 ...",
+        "tooltip": "在编辑器内展示工具栏"
       },
       "placeholder": {
-        "title": "Enter your title"
+        "title": "输入标题"
       }
     }
   },
   "export": {
-    "title": "Title",
-    "publisher": "Publisher",
-    "author": "Author",
-    "language": "Language",
-    "description": "Description",
-    "cover": "Cover",
+    "title": "标题",
+    "publisher": "出版社",
+    "author": "作者",
+    "language": "语言",
+    "description": "描述",
+    "cover": "封面",
     "action": {
-      "choose": "Choose",
-      "export": "Export"
+      "choose": "选择",
+      "export": "导出"
     },
-    "form": "Please complete all fields.",
-    "template": "Template",
-    "templates": "Templates",
-    "progress": "Exporting",
+    "form": "请填写所有空栏。",
+    "template": "模板",
+    "templates": "模板",
+    "progress": "导出中",
     "helpers": {
-      "title": "Title for the book",
-      "author": "Listed author for the book",
-      "publisher": "Your publisher for the book",
-      "language": "The language of the book",
-      "description": "Short description of the book",
-      "cover": "The cover for the book"
+      "title": "书的标题",
+      "author": "书的作者",
+      "publisher": "书的出版社",
+      "language": "书中所用语言",
+      "description": "书本内容摘要",
+      "cover": "书的封面"
     },
     "cloud": {
       "title": "EPUB",
-      "subtitle": "Internet connection is needed for this."
+      "subtitle": "进行此操作需要网络链接"
     },
     "rtf": {
       "title": "RTF",
-      "subtitle": "Export to RTF file format",
-      "explain": "Generates a Rich Text Format document compatible with most word processors."
+      "subtitle": "导出为RTF格式",
+      "explain": "导出为富文本格式（RTF）文件，本格式在大多数文字处理软件中可用。"
     },
     "markdown": {
       "title": "Markdown",
-      "subtitle": "Export to Markdown file format",
-      "explain": "Generates a Markdown document compatible with most blogs."
+      "subtitle": "导出为Markdown格式",
+      "explain": "导出为Markdown格式文件，本格式在大多数博客中可用。"
     },
     "finished": {
-      "download": "Download"
+      "download": "下载"
     }
   },
   "sidebar": {
-    "createScene": "New Scene",
-    "createChapter": "Create Chapter",
-    "editOrder": "Edit Order",
-    "editProject": "Edit Project",
-    "editChapter": "Edit Chapter",
-    "editScene": "Edit Scene",
-    "placeholderChapters": "Click here to create your first chapter.",
+    "createScene": "新场景",
+    "createChapter": "创建章节",
+    "editOrder": "更改顺序",
+    "editProject": "编辑项目",
+    "editChapter": "编辑章节",
+    "editScene": "编辑场景",
+    "placeholderChapters": "点此创建第一章。",
     "delete": {
-      "chapter": "Are you sure you want to delete this chapter?",
-      "scene": "Are you sure you want to delete this scene?"
+      "chapter": "你确定要删除这个章节吗？",
+      "scene": "你确定要删除这个场景吗？"
     },
     "modal": {
-      "title": "Title",
+      "title": "标题",
       "newChapter": {
-        "header": "New Chapter",
-        "button": "Create Chapter"
+        "header": "新章节",
+        "button": "创建章节"
       },
       "newScene": {
-        "header": "New Scene",
-        "button": "Create Scene"
+        "header": "新场景",
+        "button": "创建场景"
       },
       "edit": {
-        "order": "Order scenes",
-        "buttonSave": "Save",
-        "buttonDelete": "Delete"
+        "order": "排列场景顺序",
+        "buttonSave": "保存",
+        "buttonDelete": "删除"
       }
     }
   },
   "settings": {
-    "title": "Settings",
-    "thirdparty": "Third Party Licenses",
+    "title": "设定",
+    "thirdparty": "第三方许可证",
     "appereance": {
-      "title": "Appereance",
+      "title": "外观",
       "theme": {
-        "title": "Theme",
-        "dark": "Dark",
-        "light": "Light"
+        "title": "主题",
+        "dark": "暗",
+        "light": "亮"
       },
       "language": {
-        "title": "Language",
-        "en": "English",
-        "de": "German",
-        "es": "Spanish",
-        "fr": "French",
-        "fi": "Finnish",
-        "it": "Italian",
-        "nl": "Dutch",
-        "pt": "Portuguese",
-        "ru": "Russian",
-        "tr": "Turkish",
-        "ja": "Japanese",
-        "sv": "Swedish",
-        "ur": "Urdu"
+        "title": "语言",
+        "en": "英语",
+        "de": "德语",
+        "es": "西班牙语",
+        "fr": "法语",
+        "fi": "芬兰语",
+        "it": "意大利语",
+        "nl": "荷兰语",
+        "pt": "葡萄牙语",
+        "ru": "俄语",
+        "tr": "土耳其语",
+        "ja": "日语",
+        "sv": "瑞典语",
+        "ur": "乌尔都语",
+        "zh": "中文"
       }
     },
     "common": {
-      "title": "Common",
-      "lastLocation": "Remember"
+      "title": "通用",
+      "lastLocation": "记住位置"
     },
     "write": {
-      "autosave": "Autosave",
-      "spellCheck": "Spell check",
-      "fontsize": "Fontsize"
+      "autosave": "自动保存",
+      "spellCheck": "拼写检查",
+      "fontsize": "字体大小"
     },
     "helpers": {
-      "autosave": "Auto saves your project periodically",
-      "spellCheck": "Currently in beta!",
-      "fontsize": "Changes the font size inside the editor",
-      "lastLocation": "Re-open your last closed page"
+      "autosave": "定期自动保存你的项目",
+      "spellCheck": "当前为测试版！",
+      "fontsize": "改变编辑器内的字体大小",
+      "lastLocation": "软件重启后，重新打开你上次关闭的页面"
     }
   },
   "install": {
-    "language": "Choose language",
-    "action": "Run",
+    "language": "选择语言",
+    "action": "运行",
     "disclaimer": {
-      "action": "I agree to the terms and conditions",
-      "title": "Disclaimer",
-      "show": "Show Disclaimer",
-      "content": "Last updated: December 03, 2019<br><br>The information provided by OmniaWrite on our application is for general informational purposes only.<br>All information on our web and mobile application is provided in good faith, however we make no representation or warranty of any kind, express or implied, regarding the accuracy, adequacy, validity, reliability, availability or completeness of any information on our application.<br>Under no circumstance shall we have any liability to you for any loss or damage of any kind incurred as a result of the use of our  application or reliance on any information provided on our application.<br>Your use of the application and your reliance on any information on our application is solely at your own risk."
+      "action": "我同意以上条款",
+      "title": "免责声明",
+      "show": "显示免责声明",
+      "content": "最近更新：2019年12月3日<br><br>OmniaWrite在软件上提供给你的讯息仅供参考。<br>我们的网页和移动应用上的所有信息都是基于善意提供的，但我们对我们应用上的任何信息的准确性、充分性、有效性、可靠性、可用性或完整性不作任何明示或暗示的陈述或保证。<br>在任何情况下，对于因使用我们的应用或依赖于我们的应用所提供的任何信息而造成的任何损失或者损害，我们概不负责。<br>您使用本应用以及依赖本应用上的任何信息的风险由您自行承担。"
     }
   },
   "overview": {
     "project": {
-      "title": "Title",
-      "chapters": "Chapters",
-      "scenes": "Scenes",
-      "words": "Words",
-      "characters": "Characters",
-      "save": "Save",
-      "delete": "Delete",
-      "confirmDelete": "Are you sure you want to delete this project?"
+      "title": "标题",
+      "chapters": "章节",
+      "scenes": "场景",
+      "words": "词数",
+      "characters": "人物",
+      "save": "保存",
+      "delete": "删除",
+      "confirmDelete": "你确定要删除这个项目？"
     },
     "projects": {
-      "title": "Projects",
-      "opened": "opened"
+      "title": "项目",
+      "opened": "打开"
     },
     "modals": {
       "newProject": {
-        "header": "New Project",
-        "title": "Title",
-        "button": "Create!"
+        "header": "新项目",
+        "title": "标题",
+        "button": "创建!"
       }
     }
   },
   "feedback": {
-    "title": "Support & Feedback",
-    "sub": "Your feedback, including error reports, improvement suggestions, new feature requests and any other things you might have to say is welcome.",
-    "email": "E-Mail",
-    "description": "Description",
-    "action": "Submit",
-    "success": "Submitted!"
+    "title": "帮助与反馈",
+    "sub": "我们欢迎你的反馈，包括错误报告，改进建议，新功能建议和其他任何你想说的话。",
+    "email": "电子邮件",
+    "description": "描述",
+    "action": "提交",
+    "success": "提交成功!"
   },
   "placeholder": {
-    "title": "Enter your title"
+    "title": "输入标题"
   }
 }
