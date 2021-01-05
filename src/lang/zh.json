@@ -88,7 +88,7 @@
       "button": "注册",
       "login": "已有账户？",
       "responses": {
-        "success": "账户创建成功！,
+        "success": "账户创建成功！",
         "failed": "账户创建失败。",
         "empty": "请填写所有空栏！"
       }
