@@ -1,7 +1,7 @@
 <script>
   import { get } from "svelte/store";
   import { fade } from "svelte/transition";
-  import { _ } from "svelte-i18n";
+  import { _, locales } from "svelte-i18n";
   import { state, projects } from "../../stores";
   import { getBase64, toFileName } from "../../utils";
   import { saveFile } from "../../bridge";
@@ -47,7 +47,7 @@
 
   const exportApi = "https://app.omniawrite.com/api/export";
 
-  const languages = ["en", "de", "ru", "es", "pt", "fr", "it"].map(language => {
+  const languages = $locales.map(language => {
     return {
       value: language,
       text: $_(`settings.appereance.language.${language}`),

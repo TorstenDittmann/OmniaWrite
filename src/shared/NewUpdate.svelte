@@ -10,15 +10,14 @@
   <h3>🌐 More languages</h3>
   <p>We added support for following languages:</p>
   <ul>
-    <li>Spanish</li>
-    <li>Finnish</li>
-    <li>Dutch</li>
-    <li>Japanese</li>
-    <li>Portugese</li>
-    <li>Russian</li>
-    <li>Turkish</li>
-    <li>Swedish</li>
-    <li>Turkish</li>
+    <li>Simplified Chinese</li>
+  </ul>
+  <p />
+  <h3>📶 Others</h3>
+  <ul>
+    <li>New Romance E-Book template</li>
+    <li>Bug fixes</li>
+    <li>Security fixes</li>
   </ul>
   <p />
 </Modal>
