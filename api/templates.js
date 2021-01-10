@@ -12,6 +12,10 @@ module.exports = (req, res) => {
       id: "scifi",
       name: "Science Fiction",
     },
+    {
+      id: "romance",
+      name: "Romance",
+    },
   ];
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.json(templates);
