@@ -117,6 +117,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "moetale",
+      "name": "moetale",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/76101934?v=4",
+      "profile": "https://github.com/moetale",
+      "contributions": [
+        "translation"
+      ]
     }
   ],
   "contributorsPerLine": 7,
