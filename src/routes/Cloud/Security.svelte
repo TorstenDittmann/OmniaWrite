@@ -22,10 +22,10 @@
       <Heading>{$_('cloud.security.devices.country')}</Heading>
       <Heading>{$_('cloud.security.devices.ip')}</Heading>
     </Row>
-    {#each devices as device}
+    {#each devices.sessions as device}
       <Row on:click={() => logoutSession(device.$id)}>
-        <Cell label="OS">{device.OS.name}</Cell>
-        <Cell label="Country">{device.geo.country}</Cell>
+        <Cell label="OS">{device.osName}</Cell>
+        <Cell label="Country">{device.countryName}</Cell>
         <Cell label="IP">{device.ip}</Cell>
       </Row>
     {/each}
@@ -44,7 +44,7 @@
       <Heading>{$_('cloud.security.logs.age')}</Heading>
       <Heading>{$_('cloud.security.logs.event')}</Heading>
     </Row>
-    {#each logs as log}
+    {#each logs.logs as log}
       <Row>
         <Cell label="Timestamp">{formatDate(log.time)}</Cell>
         <Cell label="Age">{formatDistance(log.time)}</Cell>
