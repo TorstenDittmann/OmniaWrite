@@ -1,5 +1,5 @@
 <script>
-  import { onMount } from "svelte";
+  import { onDestroy, onMount } from "svelte";
   import { get } from "svelte/store";
   import { _ } from "svelte-i18n";
   import { chapters, scenes, state } from "../../stores";
@@ -11,7 +11,11 @@
   import Modal from "../Modal.svelte";
   import { ButtonGroup, Button } from "../../components/Forms";
 
-  Sortable.mount(new AutoScroll());
+  try {
+    Sortable.mount(new AutoScroll());
+  } catch (e) {
+    console.info("Prevent duplicate mounting.")
+  }
 
   export let show;
 
@@ -65,6 +69,13 @@
         ...sortableConfig,
       });
     });
+  });
+
+  onDestroy(() => {
+    [
+      document.querySelector("#order.chapters"),
+      ...document.querySelectorAll("#order .scenes"),
+    ].forEach(ref => Sortable.get(ref).destroy());
   });
 </script>
 
