@@ -1,1 +1,362 @@
-
+{
+  "header": {
+    "write": {
+      "title": "쓰기"
+    },
+    "cards": {
+      "title": "카드"
+    },
+    "settings": {
+      "title": "설정"
+    },
+    "export": {
+      "title": "내보내기"
+    },
+    "cloud": {
+      "title": "클라우드"
+    }
+  },
+  "common": {
+    "no-project-selected": "선택된 프로젝트 없음",
+    "update-toast": "새 업데이트가 설치되었습니다!<br>다시 시작하려면 여기를 클릭하십시오.",
+    "update": {
+      "title": "업데이트❗"
+    },
+    "modals": {
+      "newBackup": {
+        "header": "클라우드 동기화",
+        "subtitle": "클라우드에서 최신 데이터를 찾았습니다.",
+        "warning": "이 장치에서 클라우드에 저장하지 않은 모든 작업은 손실됩니다."
+      }
+    }
+  },
+  "write": {
+    "quote": {
+      "marks": "'“' '”' '‘' '’'"
+    },
+    "toolbar": {
+      "words": "단어",
+      "chars": "글자",
+      "undo": "실행 취소",
+      "redo": "다시 실행",
+      "save": "저장",
+      "focus": "집중",
+      "bold": "진하게",
+      "italic": "기울임",
+      "underline": "밑줄",
+      "switchScene": "장면 전환",
+      "cards": "카드",
+      "cardsEmpty": "이 장면에서 카드를 찾을 수 없습니다.",
+      "savestate": "상태 저장"
+    },
+    "editor": {
+      "placeholder": "멋진 이야기를 써보세요!",
+      "switch": "블록 변경",
+      "delete": "삭제",
+      "confirmDelete": "삭제하시겠습니까?",
+      "blocks": {
+        "paragraph": "문단",
+        "heading": "제목",
+        "quote": "인용",
+        "code": "Monospace"
+      }
+    },
+    "overview": {
+      "opened": "열기",
+      "placeholder": "이 프로젝트에는 아직 장면이 없습니다."
+    }
+  },
+  "cloud": {
+    "confirm": {
+      "text": "Your account is not verfied yet! Click here to verify your account.",
+      "success": "Confirmation e-mail has been sent!"
+    },
+    "login": {
+      "title": "Login",
+      "email": "E-Mail",
+      "password": "Password",
+      "button": "Login",
+      "register": "Don't have an account yet?",
+      "responses": {
+        "failed": "Login failed.",
+        "empty": "Login credentials can't be empty."
+      }
+    },
+    "register": {
+      "title": "Register",
+      "name": "Name",
+      "button": "Register",
+      "login": "Already have an account?",
+      "responses": {
+        "success": "Account created!",
+        "failed": "Registration failed.",
+        "empty": "Please fill out all fields!."
+      }
+    },
+    "reset": {
+      "title": "Forgot password?",
+      "button": "Reset password",
+      "success": "Please check your mail inbox for further instructions.",
+      "login": "Remembered? Log in here."
+    },
+    "privacy": {
+      "show": "Privacy Policy"
+    },
+    "profile": {
+      "title": "Profile",
+      "name": {
+        "title": "Update name",
+        "success": "Name updated!",
+        "fields": {
+          "name": "Name"
+        }
+      },
+      "email": {
+        "title": "Update e-mail",
+        "success": "E-mail updated!",
+        "fields": {
+          "email": "E-mail",
+          "password": "Password"
+        }
+      },
+      "password": {
+        "title": "Update password",
+        "success": "Password updated!",
+        "match": "Password have to match!",
+        "fields": {
+          "old": "Current password",
+          "new": "New password",
+          "confirm": "Confirm password"
+        }
+      },
+      "error": "Something went wrong :(",
+      "action": "Update"
+    },
+    "logout": {
+      "title": "Logout",
+      "success": "Logout was successful. You will be redirected."
+    },
+    "backups": {
+      "title": "Backups",
+      "migrating": "Migrating backup"
+    },
+    "toast": {
+      "savedCloud": "Saved into cloud.",
+      "loginSuccessful": "Login successful!"
+    },
+    "security": {
+      "title": "Security",
+      "devices": {
+        "title": "Devices",
+        "os": "OS",
+        "country": "Country",
+        "ip": "IP"
+      },
+      "logs": {
+        "title": "Activity logs",
+        "timestamp": "Timestamp",
+        "age": "Age",
+        "event": "Event",
+        "account": {
+          "update": {
+            "email": "E-mail changed",
+            "name": "Name changed"
+          },
+          "create": "Account created",
+          "recovery": {
+            "create": "Password recovery request",
+            "update": "Password recovery finished"
+          },
+          "sessions": {
+            "create": "Login",
+            "delete": "Logout"
+          },
+          "verification": {
+            "create": "Account confirmation request",
+            "update": "Account confirmation finished"
+          }
+        }
+      }
+    }
+  },
+  "cards": {
+    "title": "Cards",
+    "search": "search here...",
+    "modal": {
+      "newHeader": "New Card",
+      "editHeader": "Edit",
+      "title": "Title",
+      "content": "Content",
+      "buttonCreate": "Create",
+      "buttonSave": "Save",
+      "buttonDelete": "Delete",
+      "confirmDelete": "Are you sure you want to delete this card?",
+      "showInScenes": "Show in scenes",
+      "helper": {
+        "title": "Character, location, item ...",
+        "tooltip": "Show a tooltip inside the editor"
+      },
+      "placeholder": {
+        "title": "Enter your title"
+      }
+    }
+  },
+  "export": {
+    "title": "Title",
+    "publisher": "Publisher",
+    "author": "Author",
+    "language": "Language",
+    "description": "Description",
+    "cover": "Cover",
+    "action": {
+      "choose": "Choose",
+      "export": "Export"
+    },
+    "form": "Please complete all fields.",
+    "template": "Template",
+    "templates": "Templates",
+    "progress": "Exporting",
+    "helpers": {
+      "title": "Title for the book",
+      "author": "Listed author for the book",
+      "publisher": "Your publisher for the book",
+      "language": "The language of the book",
+      "description": "Short description of the book",
+      "cover": "The cover for the book"
+    },
+    "cloud": {
+      "title": "EPUB",
+      "subtitle": "Internet connection is needed for this."
+    },
+    "rtf": {
+      "title": "RTF",
+      "subtitle": "Export to RTF file format",
+      "explain": "Generates a Rich Text Format document compatible with most word processors."
+    },
+    "markdown": {
+      "title": "Markdown",
+      "subtitle": "Export to Markdown file format",
+      "explain": "Generates a Markdown document compatible with most blogs."
+    },
+    "finished": {
+      "download": "Download"
+    }
+  },
+  "sidebar": {
+    "createScene": "New Scene",
+    "createChapter": "Create Chapter",
+    "editOrder": "Edit Order",
+    "editProject": "Edit Project",
+    "editChapter": "Edit Chapter",
+    "editScene": "Edit Scene",
+    "placeholderChapters": "Click here to create your first chapter.",
+    "delete": {
+      "chapter": "Are you sure you want to delete this chapter?",
+      "scene": "Are you sure you want to delete this scene?"
+    },
+    "modal": {
+      "title": "Title",
+      "newChapter": {
+        "header": "New Chapter",
+        "button": "Create Chapter"
+      },
+      "newScene": {
+        "header": "New Scene",
+        "button": "Create Scene"
+      },
+      "edit": {
+        "order": "Order scenes",
+        "buttonSave": "Save",
+        "buttonDelete": "Delete"
+      }
+    }
+  },
+  "settings": {
+    "title": "Settings",
+    "thirdparty": "Third Party Licenses",
+    "appereance": {
+      "title": "Appereance",
+      "theme": {
+        "title": "Theme",
+        "dark": "Dark",
+        "light": "Light"
+      },
+      "language": {
+        "title": "Language",
+        "en": "English",
+        "de": "German",
+        "es": "Spanish",
+        "fr": "French",
+        "fi": "Finnish",
+        "it": "Italian",
+        "nl": "Dutch",
+        "pt": "Portuguese",
+        "ru": "Russian",
+        "tr": "Turkish",
+        "ja": "Japanese",
+        "sv": "Swedish",
+        "ur": "Urdu",
+        "zh": "Simplified Chinese"
+      }
+    },
+    "common": {
+      "title": "Common",
+      "lastLocation": "Remember"
+    },
+    "write": {
+      "autosave": "Autosave",
+      "spellCheck": "Spell check",
+      "fontsize": "Fontsize"
+    },
+    "helpers": {
+      "autosave": "Auto saves your project periodically",
+      "spellCheck": "Currently in beta!",
+      "fontsize": "Changes the font size inside the editor",
+      "lastLocation": "Re-open your last closed page"
+    }
+  },
+  "install": {
+    "language": "Choose language",
+    "action": "Run",
+    "disclaimer": {
+      "action": "I agree to the terms and conditions",
+      "title": "Disclaimer",
+      "show": "Show Disclaimer",
+      "content": "Last updated: December 03, 2019<br><br>The information provided by OmniaWrite on our application is for general informational purposes only.<br>All information on our web and mobile application is provided in good faith, however we make no representation or warranty of any kind, express or implied, regarding the accuracy, adequacy, validity, reliability, availability or completeness of any information on our application.<br>Under no circumstance shall we have any liability to you for any loss or damage of any kind incurred as a result of the use of our  application or reliance on any information provided on our application.<br>Your use of the application and your reliance on any information on our application is solely at your own risk."
+    }
+  },
+  "overview": {
+    "project": {
+      "title": "Title",
+      "chapters": "Chapters",
+      "scenes": "Scenes",
+      "words": "Words",
+      "characters": "Characters",
+      "save": "Save",
+      "delete": "Delete",
+      "confirmDelete": "Are you sure you want to delete this project?"
+    },
+    "projects": {
+      "title": "Projects",
+      "opened": "opened"
+    },
+    "modals": {
+      "newProject": {
+        "header": "New Project",
+        "title": "Title",
+        "button": "Create!"
+      }
+    }
+  },
+  "feedback": {
+    "title": "Support & Feedback",
+    "sub": "Your feedback, including error reports, improvement suggestions, new feature requests and any other things you might have to say is welcome.",
+    "email": "E-Mail",
+    "description": "Description",
+    "action": "Submit",
+    "success": "Submitted!"
+  },
+  "placeholder": {
+    "title": "Enter your title"
+  }
+}
