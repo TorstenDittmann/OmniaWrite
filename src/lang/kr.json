@@ -68,81 +68,81 @@
   },
   "cloud": {
     "confirm": {
-      "text": "Your account is not verfied yet! Click here to verify your account.",
-      "success": "Confirmation e-mail has been sent!"
+      "text": "계정이 아직 확인되지 않았습니다! 계정을 확인하려면 여기를 클릭하십시오",
+      "success": "확인 이메일이 전송되었습니다!"
     },
     "login": {
-      "title": "Login",
-      "email": "E-Mail",
-      "password": "Password",
-      "button": "Login",
-      "register": "Don't have an account yet?",
+      "title": "로그인",
+      "email": "이메일",
+      "password": "비밀번호",
+      "button": "로그인",
+      "register": "아직 계정이 없으신가요?",
       "responses": {
-        "failed": "Login failed.",
-        "empty": "Login credentials can't be empty."
+        "failed": "로그인 실패.",
+        "empty": "로그인 자격 증명은 비워둘 수 없습니다."
       }
     },
     "register": {
-      "title": "Register",
-      "name": "Name",
-      "button": "Register",
-      "login": "Already have an account?",
+      "title": "등록",
+      "name": "이름",
+      "button": "등록",
+      "login": "이미 계정이 있습니까?",
       "responses": {
-        "success": "Account created!",
-        "failed": "Registration failed.",
-        "empty": "Please fill out all fields!."
+        "success": "계정이 생성되었습니다!",
+        "failed": "등록에 실패했습니다.",
+        "empty": "모든 필드를 작성하십시오!"
       }
     },
     "reset": {
-      "title": "Forgot password?",
-      "button": "Reset password",
-      "success": "Please check your mail inbox for further instructions.",
-      "login": "Remembered? Log in here."
+      "title": "비밀번호를 잊어버리셨습니까?",
+      "button": "비밀번호 재설정",
+      "success": "이메일로 비밀번호 재설정 방법을 발송했습니다. 이메일을 확인해 주세요.",
+      "login": "기억나셨나요? 여기에서 로그인하세요."
     },
     "privacy": {
-      "show": "Privacy Policy"
+      "show": "개인정보 보호정책"
     },
     "profile": {
-      "title": "Profile",
+      "title": "프로필",
       "name": {
-        "title": "Update name",
-        "success": "Name updated!",
+        "title": "이름 수정",
+        "success": "이름이 수정되었습니다!",
         "fields": {
-          "name": "Name"
+          "name": "이름"
         }
       },
       "email": {
-        "title": "Update e-mail",
-        "success": "E-mail updated!",
+        "title": "이메일 수정",
+        "success": "이메일이 수정되었습니다!",
         "fields": {
-          "email": "E-mail",
-          "password": "Password"
+          "email": "이메일",
+          "password": "비밀번호"
         }
       },
       "password": {
-        "title": "Update password",
-        "success": "Password updated!",
-        "match": "Password have to match!",
+        "title": "비밀번호 변경",
+        "success": "비밀번호가 변경되었습니다!",
+        "match": "비밀번호가 일치해야 합니다!",
         "fields": {
-          "old": "Current password",
-          "new": "New password",
-          "confirm": "Confirm password"
+          "old": "현재 비밀번호",
+          "new": "새 비밀번호",
+          "confirm": "비밀번호 확인"
         }
       },
-      "error": "Something went wrong :(",
-      "action": "Update"
+      "error": "문제가 발생하였습니다 :(",
+      "action": "업데이트"
     },
     "logout": {
-      "title": "Logout",
-      "success": "Logout was successful. You will be redirected."
+      "title": "로그아웃",
+      "success": "로그아웃에 성공했습니다. You will be redirected."
     },
     "backups": {
-      "title": "Backups",
-      "migrating": "Migrating backup"
+      "title": "백업",
+      "migrating": "백업 마이그레이션"
     },
     "toast": {
-      "savedCloud": "Saved into cloud.",
-      "loginSuccessful": "Login successful!"
+      "savedCloud": "클라우드에 저장.",
+      "loginSuccessful": "로그인 성공!"
     },
     "security": {
       "title": "Security",
