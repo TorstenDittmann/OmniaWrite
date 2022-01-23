@@ -145,98 +145,98 @@
       "loginSuccessful": "로그인 성공!"
     },
     "security": {
-      "title": "Security",
+      "title": "보안",
       "devices": {
-        "title": "Devices",
+        "title": "장치",
         "os": "OS",
-        "country": "Country",
+        "country": "국가",
         "ip": "IP"
       },
       "logs": {
-        "title": "Activity logs",
-        "timestamp": "Timestamp",
-        "age": "Age",
-        "event": "Event",
+        "title": "활동 로그",
+        "timestamp": "타임스탬프",
+        "age": "나이",
+        "event": "이벤트",
         "account": {
           "update": {
-            "email": "E-mail changed",
-            "name": "Name changed"
+            "email": "이메일이 변경되었습니다",
+            "name": "이름이 변경되었습니다"
           },
-          "create": "Account created",
+          "create": "계정 생성",
           "recovery": {
-            "create": "Password recovery request",
-            "update": "Password recovery finished"
+            "create": "비밀번호 복구 요청",
+            "update": "비밀번호 복구 완료"
           },
           "sessions": {
-            "create": "Login",
-            "delete": "Logout"
+            "create": "로그인",
+            "delete": "로그아웃"
           },
           "verification": {
-            "create": "Account confirmation request",
-            "update": "Account confirmation finished"
+            "create": "계정 확인 요청",
+            "update": "계정 확인 완료"
           }
         }
       }
     }
   },
   "cards": {
-    "title": "Cards",
-    "search": "search here...",
+    "title": "카드",
+    "search": "검색하기...",
     "modal": {
-      "newHeader": "New Card",
-      "editHeader": "Edit",
-      "title": "Title",
-      "content": "Content",
-      "buttonCreate": "Create",
-      "buttonSave": "Save",
-      "buttonDelete": "Delete",
-      "confirmDelete": "Are you sure you want to delete this card?",
-      "showInScenes": "Show in scenes",
+      "newHeader": "새 카드",
+      "editHeader": "편집",
+      "title": "제목",
+      "content": "내용",
+      "buttonCreate": "생성",
+      "buttonSave": "저장",
+      "buttonDelete": "삭제",
+      "confirmDelete": "이 카드를 삭제하시겠습니까?",
+      "showInScenes": "장면에 표시",
       "helper": {
-        "title": "Character, location, item ...",
-        "tooltip": "Show a tooltip inside the editor"
+        "title": "캐릭터, 위치, 아이템 ...",
+        "tooltip": "편집기 내부에 툴팁 표시"
       },
       "placeholder": {
-        "title": "Enter your title"
+        "title": "제목을 입력하세요"
       }
     }
   },
   "export": {
-    "title": "Title",
-    "publisher": "Publisher",
-    "author": "Author",
-    "language": "Language",
-    "description": "Description",
-    "cover": "Cover",
+    "title": "제목",
+    "publisher": "게시자",
+    "author": "저자",
+    "language": "언어",
+    "description": "설명",
+    "cover": "표지",
     "action": {
-      "choose": "Choose",
-      "export": "Export"
+      "choose": "선택",
+      "export": "내보내기"
     },
-    "form": "Please complete all fields.",
-    "template": "Template",
-    "templates": "Templates",
-    "progress": "Exporting",
+    "form": "모든 항목을 채워주세요.",
+    "template": "템플릿",
+    "templates": "템플릿",
+    "progress": "내보내는 중",
     "helpers": {
-      "title": "Title for the book",
-      "author": "Listed author for the book",
-      "publisher": "Your publisher for the book",
-      "language": "The language of the book",
-      "description": "Short description of the book",
-      "cover": "The cover for the book"
+      "title": "책 제목",
+      "author": "책의 저자 목록",
+      "publisher": "책의 발행인",
+      "language": "책의 언어",
+      "description": "책에 대한 간단한 설명",
+      "cover": "책의 표지"
     },
     "cloud": {
       "title": "EPUB",
-      "subtitle": "Internet connection is needed for this."
+      "subtitle": "인터넷 연결이 필요합니다.."
     },
     "rtf": {
       "title": "RTF",
-      "subtitle": "Export to RTF file format",
-      "explain": "Generates a Rich Text Format document compatible with most word processors."
+      "subtitle": "RTF 파일 형식으로 내보내기",
+      "explain": "대부분의 워드 프로세서와 호환되는 서식 있는 텍스트 형식 문서를 생성합니다."
     },
     "markdown": {
       "title": "Markdown",
-      "subtitle": "Export to Markdown file format",
-      "explain": "Generates a Markdown document compatible with most blogs."
+      "subtitle": "Markdown 파일 형식으로 내보내기",
+      "explain": "대부분의 블로그와 호환되는 Markdown 문서를 생성합니다."
     },
     "finished": {
       "download": "Download"
