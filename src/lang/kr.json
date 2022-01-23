@@ -239,64 +239,65 @@
       "explain": "대부분의 블로그와 호환되는 Markdown 문서를 생성합니다."
     },
     "finished": {
-      "download": "Download"
+      "download": "다운로드"
     }
   },
   "sidebar": {
-    "createScene": "New Scene",
-    "createChapter": "Create Chapter",
-    "editOrder": "Edit Order",
-    "editProject": "Edit Project",
-    "editChapter": "Edit Chapter",
-    "editScene": "Edit Scene",
-    "placeholderChapters": "Click here to create your first chapter.",
+    "createScene": "새 장면",
+    "createChapter": "장 만들기",
+    "editOrder": "순서 편집",
+    "editProject": "프로젝트 편집",
+    "editChapter": "장 편집",
+    "editScene": "장면 편집",
+    "placeholderChapters": "첫 번째 장을 만들려면 여기를 클릭하십시오.",
     "delete": {
-      "chapter": "Are you sure you want to delete this chapter?",
-      "scene": "Are you sure you want to delete this scene?"
+      "chapter": "이 장을 삭제하시겠습니까?",
+      "scene": "이 장면을 삭제하시겠습니까?"
     },
     "modal": {
-      "title": "Title",
+      "title": "제목",
       "newChapter": {
-        "header": "New Chapter",
-        "button": "Create Chapter"
+        "header": "새로운 장",
+        "button": "장 만들기"
       },
       "newScene": {
-        "header": "New Scene",
-        "button": "Create Scene"
+        "header": "새 장면",
+        "button": "장면 만들기"
       },
       "edit": {
-        "order": "Order scenes",
-        "buttonSave": "Save",
-        "buttonDelete": "Delete"
+        "order": "장면 순서",
+        "buttonSave": "저장",
+        "buttonDelete": "삭제"
       }
     }
   },
   "settings": {
-    "title": "Settings",
-    "thirdparty": "Third Party Licenses",
+    "title": "설정",
+    "thirdparty": "Third Party 라이선스",
     "appereance": {
-      "title": "Appereance",
+      "title": "모양",
       "theme": {
-        "title": "Theme",
-        "dark": "Dark",
-        "light": "Light"
+        "title": "테마",
+        "dark": "어두운 테마",
+        "light": "밝은 테"
       },
       "language": {
-        "title": "Language",
-        "en": "English",
-        "de": "German",
-        "es": "Spanish",
-        "fr": "French",
-        "fi": "Finnish",
-        "it": "Italian",
-        "nl": "Dutch",
-        "pt": "Portuguese",
-        "ru": "Russian",
-        "tr": "Turkish",
-        "ja": "Japanese",
-        "sv": "Swedish",
-        "ur": "Urdu",
-        "zh": "Simplified Chinese"
+        "title": "언어",
+        "en": "영어",
+        "de": "독일어",
+        "es": "스페인어",
+        "fr": "프랑스어",
+        "fi": "핀란드어",
+        "it": "이탈리아어",
+        "nl": "네델란드어",
+        "pt": "포르투갈어",
+        "ru": "러시아어",
+        "tr": "터키어",
+        "ja": "일본어",
+        "kr": "한국어",
+        "sv": "스위스어",
+        "ur": "우르두어",
+        "zh": "간체자"
       }
     },
     "common": {
