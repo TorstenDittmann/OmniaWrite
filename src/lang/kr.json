@@ -301,19 +301,19 @@
       }
     },
     "common": {
-      "title": "Common",
-      "lastLocation": "Remember"
+      "title": "공통",
+      "lastLocation": "기억하기"
     },
     "write": {
-      "autosave": "Autosave",
-      "spellCheck": "Spell check",
-      "fontsize": "Fontsize"
+      "autosave": "자동저장",
+      "spellCheck": "맞춤법 검사",
+      "fontsize": "글자 크기"
     },
     "helpers": {
-      "autosave": "Auto saves your project periodically",
-      "spellCheck": "Currently in beta!",
-      "fontsize": "Changes the font size inside the editor",
-      "lastLocation": "Re-open your last closed page"
+      "autosave": "프로젝트를 주기적으로 자동 저장합니다.",
+      "spellCheck": "현재 베타 버전입니다!",
+      "fontsize": "편집기 내에서 글꼴 크기를 변경합니다",
+      "lastLocation": "마지막으로 닫은 페이지 다시 열기"
     }
   },
   "install": {
