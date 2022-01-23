@@ -317,47 +317,47 @@
     }
   },
   "install": {
-    "language": "Choose language",
-    "action": "Run",
+    "language": "언어 선택",
+    "action": "실행",
     "disclaimer": {
-      "action": "I agree to the terms and conditions",
-      "title": "Disclaimer",
-      "show": "Show Disclaimer",
+      "action": "이용약관에 동의합니다",
+      "title": "면책조항",
+      "show": "면책조항 표시",
       "content": "Last updated: December 03, 2019<br><br>The information provided by OmniaWrite on our application is for general informational purposes only.<br>All information on our web and mobile application is provided in good faith, however we make no representation or warranty of any kind, express or implied, regarding the accuracy, adequacy, validity, reliability, availability or completeness of any information on our application.<br>Under no circumstance shall we have any liability to you for any loss or damage of any kind incurred as a result of the use of our  application or reliance on any information provided on our application.<br>Your use of the application and your reliance on any information on our application is solely at your own risk."
     }
   },
   "overview": {
     "project": {
-      "title": "Title",
-      "chapters": "Chapters",
-      "scenes": "Scenes",
-      "words": "Words",
-      "characters": "Characters",
-      "save": "Save",
-      "delete": "Delete",
-      "confirmDelete": "Are you sure you want to delete this project?"
+      "title": "제목",
+      "chapters": "장",
+      "scenes": "장면",
+      "words": "단어",
+      "characters": "글자",
+      "save": "저장",
+      "delete": "삭제",
+      "confirmDelete": "이 프로젝트를 삭제하시겠습니까?"
     },
     "projects": {
-      "title": "Projects",
-      "opened": "opened"
+      "title": "프로젝트",
+      "opened": "열림"
     },
     "modals": {
       "newProject": {
-        "header": "New Project",
-        "title": "Title",
-        "button": "Create!"
+        "header": "새 프로젝트",
+        "title": "제목",
+        "button": "만들기!"
       }
     }
   },
   "feedback": {
-    "title": "Support & Feedback",
-    "sub": "Your feedback, including error reports, improvement suggestions, new feature requests and any other things you might have to say is welcome.",
-    "email": "E-Mail",
-    "description": "Description",
-    "action": "Submit",
-    "success": "Submitted!"
+    "title": "지원 및 피드백",
+    "sub": "오류 보고서, 개선 제안, 새로운 기능 요청 및 기타 의견을 포함한 귀하의 피드백을 환영합니다.",
+    "email": "이메일",
+    "description": "설명",
+    "action": "제출",
+    "success": "성공적으로 제출되었습니다!"
   },
   "placeholder": {
-    "title": "Enter your title"
+    "title": "제목을 입력하세요"
   }
 }
