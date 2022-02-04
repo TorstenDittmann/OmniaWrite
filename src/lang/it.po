@@ -1,0 +1,362 @@
+{
+  "header": {
+    "write": {
+      "title": "Scrivi"
+    },
+    "cards": {
+      "title": "Carte"
+    },
+    "settings": {
+      "title": "Impostazioni"
+    },
+    "export": {
+      "title": "Esporta"
+    },
+    "cloud": {
+      "title": "Cloud"
+    }
+  },
+  "common": {
+    "no-project-selected": "Nessun progetto selezionato",
+    "update-toast": "Installato nuovo aggiornamento!<br>Clicca qui per riavviare.",
+    "update": {
+      "title": "Aggiornato❗"
+    },
+    "modals": {
+      "newBackup": {
+        "header": "Sincronizzazione cloud",
+        "subtitle": "Abbiamo trovato dati più recenti sul cloud.",
+        "warning": "Qualsiasi lavoro che non è stato salvato nel cloud da questo dispositivo andrà perso."
+      }
+    }
+  },
+  "write": {
+    "quote": {
+      "marks": "'“' '”' '‘' '’'"
+    },
+    "toolbar": {
+      "words": "parole",
+      "chars": "caratteri",
+      "undo": "Annulla",
+      "redo": "Rifare",
+      "save": "Salva",
+      "focus": "Focus",
+      "bold": "Grassetto",
+      "italic": "Corsivo",
+      "underline": "Sottolineato",
+      "switchScene": "Cambia scena",
+      "cards": "Carte",
+      "cardsEmpty": "Nessuna carta trovata in questa scena.",
+      "savestate": "Salva stato"
+    },
+    "editor": {
+      "placeholder": "Scriviamo una storia fantastica!",
+      "switch": "Cambia blocco",
+      "delete": "Cancella",
+      "confirmDelete": "Sei sicuro?",
+      "blocks": {
+        "paragraph": "Paragrafo",
+        "heading": "Intestazione",
+        "quote": "Citazione",
+        "code": "Monospazio"
+      }
+    },
+    "overview": {
+      "opened": "aperto",
+      "placeholder": "Questo progetto non ha ancora scene."
+    }
+  },
+  "cloud": {
+    "confirm": {
+      "text": "Il tuo account non è ancora verificato! Clicca qui per verificare il tuo account.",
+      "success": "L'e-mail di conferma è stata inviata!"
+    },
+    "login": {
+      "title": "Login",
+      "email": "E-Mail",
+      "password": "Password",
+      "button": "Login",
+      "register": "Non hai ancora un account?",
+      "responses": {
+        "failed": "Login fallito.",
+        "empty": "Le credenziali di accesso non possono essere vuote."
+      }
+    },
+    "register": {
+      "title": "Registrati",
+      "name": "Nome",
+      "button": "Registrati",
+      "login": "Hai già un account?",
+      "responses": {
+        "success": "Account creato!",
+        "failed": "Registrazione fallita.",
+        "empty": "Si prega di compilare tutti i campi!."
+      }
+    },
+    "reset": {
+      "title": "Ha dimenticato la password?",
+      "button": "Reimposta password",
+      "success": "Si prega di controllare la posta in arrivo per ulteriori istruzioni.",
+      "login": "Ricordato? Accedi qui."
+    },
+    "privacy": {
+      "show": "Privacy Policy"
+    },
+    "profile": {
+      "title": "Profilo",
+      "name": {
+        "title": "Aggiorna nome",
+        "success": "Nome aggiornato!",
+        "fields": {
+          "name": "Nome"
+        }
+      },
+      "email": {
+        "title": "Aggiorna e-mail",
+        "success": "E-mail aggiornata!",
+        "fields": {
+          "email": "E-mail",
+          "password": "Password"
+        }
+      },
+      "password": {
+        "title": "Aggiorna password",
+        "success": "Password aggiornata!",
+        "match": "La password deve corrispondere!",
+        "fields": {
+          "old": "Password attuale",
+          "new": "Nuova password",
+          "confirm": "Conferma password"
+        }
+      },
+      "error": "Qualcosa è andato storto :(",
+      "action": "Aggiornamento"
+    },
+    "logout": {
+      "title": "Logout",
+      "success": "La disconnessione è riuscita. Sarai reindirizzato."
+    },
+    "backups": {
+      "title": "Backup",
+      "migrating": "Migrazione del backup"
+    },
+    "toast": {
+      "savedCloud": "Salvato nel cloud.",
+      "loginSuccessful": "Accesso riuscito!"
+    },
+    "security": {
+      "title": "Sicurezza",
+      "devices": {
+        "title": "Dispositivi",
+        "os": "OS",
+        "country": "Nazione",
+        "ip": "IP"
+      },
+      "logs": {
+        "title": "Registri delle attività",
+        "timestamp": "Timestamp",
+        "age": "Età",
+        "event": "Evento",
+        "account": {
+          "update": {
+            "email": "E-mail modificata",
+            "name": "Nome cambiato"
+          },
+          "create": "Account creato",
+          "recovery": {
+            "create": "Richiesta di recupero password",
+            "update": "Password recovery finished"
+          },
+          "sessions": {
+            "create": "Login",
+            "delete": "Logout"
+          },
+          "verification": {
+            "create": "Richiesta di conferma dell'account",
+            "update": "Conferma dell'account terminata"
+          }
+        }
+      }
+    }
+  },
+  "cards": {
+    "title": "Carte",
+    "search": "cerca qui...",
+    "modal": {
+      "newHeader": "Nuova tessera",
+      "editHeader": "Modifica",
+      "title": "Titolo",
+      "content": "Contenuto",
+      "buttonCreate": "Crea",
+      "buttonSave": "Salva",
+      "buttonDelete": "Cancella",
+      "confirmDelete": "Sei sicuro di voler eliminare questa tessera?",
+      "showInScenes": "Mostra nelle scene",
+      "helper": {
+        "title": "Personaggio, posizione, oggetto ...",
+        "tooltip": "Mostra un suggerimento all'interno dell'editor"
+      },
+      "placeholder": {
+        "title": "Inserisci il tuo titolo"
+      }
+    }
+  },
+  "export": {
+    "title": "Titolo",
+    "publisher": "Editore",
+    "author": "Autore",
+    "language": "Langua",
+    "description": "Descrizione",
+    "cover": "Copertina",
+    "action": {
+      "choose": "Scegli",
+      "export": "Esporta"
+    },
+    "form": "Per favore completa tutti i campi.",
+    "template": "Modello",
+    "templates": "Modelli",
+    "progress": "Esportazione",
+    "helpers": {
+      "title": "Titolo per il libro",
+      "author": "Autore elencato per il libro",
+      "publisher": "Il tuo editore per il libro",
+      "language": "La lingua del libro",
+      "description": "Breve descrizione del libro",
+      "cover": "La copertina del libro"
+    },
+    "cloud": {
+      "title": "EPUB",
+      "subtitle": "Per questo è necessaria una connessione a Internet."
+    },
+    "rtf": {
+      "title": "RTF",
+      "subtitle": "Esporta in formato file RTF",
+      "explain": "Genera un documento RTF compatibile con la maggior parte dei word processor."
+    },
+    "markdown": {
+      "title": "Markdown",
+      "subtitle": "Esporta in formato file Markdown",
+      "explain": "Genera un documento Markdown compatibile con la maggior parte dei blog."
+    },
+    "finished": {
+      "download": "Download"
+    }
+  },
+  "sidebar": {
+    "createScene": "Nuova Scena",
+    "createChapter": "Crea capitolo",
+    "editOrder": "Modifica ordine",
+    "editProject": "Modifica progetto",
+    "editChapter": "Modifica capitolo",
+    "editScene": "Modifica capitolo",
+    "placeholderChapters": "Clicca qui per creare il tuo primo capitolo.",
+    "delete": {
+      "chapter": "Sei sicuro di voler eliminare questo capitolo?",
+      "scene": "Sei sicuro di voler eliminare questa scena?"
+    },
+    "modal": {
+      "title": "Titolo",
+      "newChapter": {
+        "header": "Nuovo Capitolo",
+        "button": "Crea Capitolo"
+      },
+      "newScene": {
+        "header": "Nuova Scena",
+        "button": "Crea Scena"
+      },
+      "edit": {
+        "order": "Ordina le scene",
+        "buttonSave": "Salva",
+        "buttonDelete": "Cancella"
+      }
+    }
+  },
+  "settings": {
+    "title": "Impostazioni",
+    "thirdparty": "Licenze di terzi",
+    "appereance": {
+      "title": "Aspetto",
+      "theme": {
+        "title": "Tema",
+        "dark": "Scuro",
+        "light": "Chiaro"
+      },
+      "language": {
+        "title": "Lingua",
+        "en": "Inglese",
+        "de": "Tedesco",
+        "es": "Italiano",
+        "fr": "Francese",
+        "fi": "Finlandese",
+        "it": "Italiano",
+        "nl": "Olandese",
+        "pt": "Portoghese",
+        "ru": "Russo",
+        "tr": "Turco",
+        "ja": "Japponese",
+        "sv": "Svedese",
+        "ur": "Urdu",
+        "zh": "Cinese semplificato"
+      }
+    },
+    "common": {
+      "title": "Comune",
+      "lastLocation": "Ricorda"
+    },
+    "write": {
+      "autosave": "Salvataggio automatico",
+      "spellCheck": "Controllo ortografico",
+      "fontsize": "Dimensione del font"
+    },
+    "helpers": {
+      "autosave": "Auto salva periodicamente il tuo progetto",
+      "spellCheck": "Attualmente in versione beta!",
+      "fontsize": "Modifica la dimensione del carattere all'interno dell'editor",
+      "lastLocation": "Riapri l'ultima pagina chiusa"
+    }
+  },
+  "install": {
+    "language": "Scegli la lingua",
+    "action": "Esegui",
+    "disclaimer": {
+      "action": "Accetto i Termini e Condizioni",
+      "title": "Disclaimer",
+      "show": "Show Disclaimer",
+      "content": "Ultimo aggiornamento: 03 Dicembre, 2019<br><br>Le informazioni fornite da OmniaWrite sulla nostra applicazione sono solo a scopo informativo generale.<br>Tutte le informazioni sulla nostra applicazione web e mobile sono fornite in buona fede, tuttavia non rilasciamo alcuna dichiarazione o garanzia di alcun tipo, esplicita o implicita, in merito all'accuratezza, adeguatezza, validità, affidabilità, disponibilità o completezza di qualsiasi informazione sulla nostra applicazione.<br>In nessun caso avremo alcuna responsabilità nei tuoi confronti per eventuali perdite o danni di qualsiasi tipo sostenuti a seguito dell'uso della nostra applicazione o dell'affidamento a qualsiasi informazione fornita sulla nostra applicazione.<br>Il tuo utilizzo dell'applicazione e il tuo fare affidamento su qualsiasi informazione sulla nostra applicazione è esclusivamente a proprio rischio."
+    }
+  },
+  "overview": {
+    "project": {
+      "title": "Titolo",
+      "chapters": "Capitoli",
+      "scenes": "Scene",
+      "words": "Parole",
+      "characters": "Caratteri",
+      "save": "Salva",
+      "delete": "Cancella",
+      "confirmDelete": "Sei sicuro di voler eliminare questo progetto?"
+    },
+    "projects": {
+      "title": "Progetti",
+      "opened": "aperto"
+    },
+    "modals": {
+      "newProject": {
+        "header": "Nuovo Progetto",
+        "title": "Titolo",
+        "button": "Crea!"
+      }
+    }
+  },
+  "feedback": {
+    "title": "Supporto & Feedback",
+    "sub": "Il tuo feedback, inclusi segnalazioni di errori, suggerimenti di miglioramento, richieste di nuove funzionalità e qualsiasi altra cosa che potresti avere da dire è il benvenuto.",
+    "email": "E-Mail",
+    "description": "Descizione",
+    "action": "Invia",
+    "success": "Inviato!"
+  },
+  "placeholder": {
+    "title": "Inserisci il titolo"
+  }
+}
