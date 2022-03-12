@@ -8,6 +8,7 @@ import "./css/index.scss";
 
 register("en", () => import(/* webpackChunkName: "en" */ "./lang/en.json"));
 register("de", () => import(/* webpackChunkName: "de" */ "./lang/de.json"));
+register("it", () => import(/* webpackChunkName: "it" */ "./lang/it.json"));
 register("es", () => import(/* webpackChunkName: "es" */ "./lang/es.json"));
 register("fi", () => import(/* webpackChunkName: "fi" */ "./lang/fi.json"));
 register("nl", () => import(/* webpackChunkName: "nl" */ "./lang/nl.json"));
@@ -17,7 +18,8 @@ register("tr", () => import(/* webpackChunkName: "tr" */ "./lang/tr.json"));
 register("ja", () => import(/* webpackChunkName: "ja" */ "./lang/ja.json"));
 register("sv", () => import(/* webpackChunkName: "sv" */ "./lang/sv.json"));
 register("ur", () => import(/* webpackChunkName: "ur" */ "./lang/ur.json"));
-register("zh", () => import(/* webpackChunkName: "zh" */ "./lang/zh.json"));
+register("zh_hans", () => import(/* webpackChunkName: "zh_hans" */ "./lang/zh_hans.json"));
+register("zh_hant", () => import(/* webpackChunkName: "zh_hant" */ "./lang/zh_hant.json"));
 
 init({
   fallbackLocale: "en",

@@ -117,10 +117,5 @@
       ]
     },
     "win": {}
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "run-s lint prettier test"
-    }
   }
 }

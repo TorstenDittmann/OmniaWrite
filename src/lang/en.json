@@ -296,7 +296,8 @@
         "ja": "Japanese",
         "sv": "Swedish",
         "ur": "Urdu",
-        "zh": "Simplified Chinese"
+        "zh_hans": "Simplified Chinese",
+        "zh_hant": "Traditional Chinese"
       }
     },
     "common": {
