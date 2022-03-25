@@ -44,7 +44,7 @@
     "cross-env": "^7.0.3",
     "css-loader": "^4.3.0",
     "date-fns": "^2.19.0",
-    "electron": "^11.4.1",
+    "electron": "^13.6.6",
     "electron-builder": "^22.10.5",
     "eslint": "^7.22.0",
     "eslint-plugin-svelte3": "^2.7.3",
